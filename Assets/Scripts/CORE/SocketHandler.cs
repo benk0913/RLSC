@@ -1,5 +1,6 @@
 ﻿using BestHTTP.SocketIO;
 using BestHTTP.SocketIO.Events;
+using Newtonsoft.Json;
 using PlatformSupport.Collections.ObjectModel;
 using SimpleJSON;
 using System;
@@ -46,6 +47,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("connect_error", OnError));
         SocketEventListeners.Add(new SocketEventListener("error", OnError));
         SocketEventListeners.Add(new SocketEventListener("connect_timeout", OnError));
+        SocketEventListeners.Add(new SocketEventListener("actor_spawn", OnActorSpawn));
+        SocketEventListeners.Add(new SocketEventListener("actor_despawn", OnActorDespawn));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -145,7 +148,7 @@ public class SocketHandler : MonoBehaviour
     Coroutine ConnectSocketRoutineInstance;
     IEnumerator ConnectSocketRoutine(Action OnComplete = null)
     {
-        BestHTTP.HTTPManager.Logger.Level = BestHTTP.Logger.Loglevels.All; //Uncomment to log socket...
+        //BestHTTP.HTTPManager.Logger.Level = BestHTTP.Logger.Loglevels.All; //Uncomment to log socket...
 
         SocketOptions options = new SocketOptions();
         options.AdditionalQueryParams = new ObservableDictionary<string, string>();
@@ -204,9 +207,7 @@ public class SocketHandler : MonoBehaviour
         //CurrentUser.actor = JsonConvert.DeserializeObject<ActorData>(response.downloadHandler.text);
         JSONNode data = JSON.Parse(response.downloadHandler.text);
 
-        CurrentUser.actor.scene   = data["actor"]["scene"].Value;
-        CurrentUser.actor.name    = data["actor"]["name"].Value;
-        CurrentUser.actor.classJob = data["actor"]["classJob"].Value;
+        CurrentUser.actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
 
 
     }
@@ -307,6 +308,19 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.LoadScene(data["scene"].Value, SendSceneLoaded);
     }
 
+    public void OnActorSpawn(JSONNode data)
+    {
+        ActorData actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
+        actor.actorId = data["actorId"].Value;
+
+        CORE.Instance.SpawnActor(new Vector3(0,0,0), actor);
+    }
+
+    public void OnActorDespawn(JSONNode data)
+    {
+        CORE.Instance.DespawnActor(data["actorId"].Value);
+    }
+
     #endregion
 }
 
@@ -322,9 +336,21 @@ public class UserData
 [Serializable]
 public class ActorData
 {
+    public string actorId;
     public string scene;
     public string name;
     public string classJob;
+
+    [JsonIgnore]
+    public GameObject ActorObject;
+
+    public ActorData(string gScene, string gName, string gClassJob, GameObject gActorObject = null)
+    {
+        this.scene = gScene;
+        this.name = gName;
+        this.classJob = gClassJob;
+        this.ActorObject = gActorObject;
+    }
 }
 
 public class SocketEventListener

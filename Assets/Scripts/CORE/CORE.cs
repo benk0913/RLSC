@@ -10,6 +10,8 @@ public class CORE : MonoBehaviour
     public static CORE Instance;
     
     public CGDatabase Data;
+
+    public RoomData Room;
     
     public bool DEBUG = false;
     
@@ -110,6 +112,20 @@ public class CORE : MonoBehaviour
         LoadSceneRoutineInstance = StartCoroutine(LoadSceneRoutine(sceneKey,onComplete));
     }
 
+    public void SpawnActor(Vector3 position, ActorData actorData)
+    {
+        GameObject actorObject = ResourcesLoader.Instance.GetRecycledObject("Actor");
+        actorObject.transform.position = position;
+        actorData.ActorObject = actorObject;
+
+        Room.ActorJoined(actorData);
+    }
+
+    public void DespawnActor(string actorId)
+    {
+        Room.ActorLeft(actorId);
+    }
+
     Coroutine LoadSceneRoutineInstance;
     IEnumerator LoadSceneRoutine(string sceneKey, Action onComplete = null)
     {
@@ -132,4 +148,29 @@ public class CORE : MonoBehaviour
     }
 
     
+}
+
+[Serializable]
+public class RoomData
+{
+    public List<ActorData> Actors = new List<ActorData>();
+
+    public void ActorJoined(ActorData actor)
+    {
+        Actors.Add(actor);
+    }
+
+    public void ActorLeft(string actorID)
+    {
+        ActorData actor = Actors.Find(x => x.actorId == actorID);
+
+        if(actor == null)
+        {
+            CORE.Instance.LogMessageError("No actorId " + actorID + " in room.");
+            return;
+        }
+
+        actor.ActorObject.SetActive(false);
+        Actors.Remove(actor);
+    }
 }
