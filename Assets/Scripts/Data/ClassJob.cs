@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,10 @@ using UnityEngine;
 [Serializable]
 public class ClassJob : ScriptableObject
 {
+    [JsonIgnore]
+    [PreviewSprite]
+    public Sprite Icon;
+
     public List<string> Abilities = new List<string>();
 
     public AttributeData Attributes;

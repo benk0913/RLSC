@@ -12,6 +12,10 @@ public class CGDatabase : ScriptableObject
 
     public List<Ability> Abilities = new List<Ability>();
 
+    public List<Monster> Monsters = new List<Monster>();
+
+    public List<Buff> Buffs = new List<Buff>();
+
     public string StartingScene;
 
     public float Power;

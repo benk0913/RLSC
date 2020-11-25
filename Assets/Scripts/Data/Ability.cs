@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,17 @@ using UnityEngine;
 [Serializable]
 public class Ability : ScriptableObject
 {
+    [JsonIgnore]
+    [PreviewSprite]
+    public Sprite Icon;
+
     public float CD = 1f;
     public float CastingTime = 0.003f;//0.003f is the min (Lag Compensation).
 
+    [JsonIgnore]
     public string PreparingAnimation;
+
+    [JsonIgnore]
     public string ExecuteAnimation;
 
     public AttributeData Attributes;
