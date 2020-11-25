@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class CORE : MonoBehaviour
 {
@@ -78,6 +80,56 @@ public class CORE : MonoBehaviour
         action.Invoke();
     }
 
+    public void LogMessage(string message)
+    {
+        if(!DEBUG)
+        {
+            return;
+        }
 
+        Debug.Log(message);
+    }
 
+    public void LogMessageError(string message)
+    {
+        if (!DEBUG)
+        {
+            return;
+        }
+
+        Debug.LogError(message);
+    }
+
+    public void LoadScene(string sceneKey, Action onComplete = null)
+    {
+        if(LoadSceneRoutineInstance != null)
+        {
+            StopCoroutine(LoadSceneRoutineInstance);
+        }
+        
+        LoadSceneRoutineInstance = StartCoroutine(LoadSceneRoutine(sceneKey,onComplete));
+    }
+
+    Coroutine LoadSceneRoutineInstance;
+    IEnumerator LoadSceneRoutine(string sceneKey, Action onComplete = null)
+    {
+        string currentSceneKey = SceneManager.GetActiveScene().name;
+
+        SceneManager.LoadScene(sceneKey);
+
+        yield return 0;
+
+        while (SceneManager.GetActiveScene().name != sceneKey)
+        {
+            yield return 0;
+        }
+
+        yield return 0;
+
+        onComplete?.Invoke();
+
+        LoadSceneRoutineInstance = null;
+    }
+
+    
 }
