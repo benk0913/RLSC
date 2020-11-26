@@ -20,7 +20,7 @@ public class ParallaxTilingSprite : MonoBehaviour
         {
             ActorData foundActor = CORE.Instance.Room.Actors.Find(X => X.IsPlayer);
 
-            if(foundActor != null)
+            if(foundActor != null && foundActor.ActorObject != null)
             {
                 ReferenceObject = foundActor.ActorObject.transform;
             }
@@ -28,7 +28,7 @@ public class ParallaxTilingSprite : MonoBehaviour
             return;
         }
 
-        Renderer.material.mainTextureOffset = new Vector2(Renderer.material.mainTextureOffset.x + ((ReferenceObject.position - LastPos).x * Time.deltaTime), Renderer.material.mainTextureOffset.y);
+        Renderer.material.mainTextureOffset = new Vector2(Renderer.material.mainTextureOffset.x + ((ReferenceObject.position - LastPos).x * Speed* Time.deltaTime), Renderer.material.mainTextureOffset.y);
 
         LastPos = ReferenceObject.position;
     }

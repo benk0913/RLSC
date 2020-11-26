@@ -1881,7 +1881,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &1551737044
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1946,6 +1946,7 @@ MonoBehaviour:
     ActorObject: {fileID: 0}
   Rigid: {fileID: 1551737043}
   Body: {fileID: 5413539527731326573}
+  PlayerControl: {fileID: 1551737045}
   Animer: {fileID: 832035075}
   GroundMask:
     serializedVersion: 2
@@ -1953,5 +1954,6 @@ MonoBehaviour:
   Shadow: {fileID: 401683988}
   IsGrounded: 0
   GroundCheckDistance: 10
-  GroundedDistance: 0.2
+  GroundedDistance: 0.4
   VelocityMinimumThreshold: 0.1
+  InterpolationSpeed: 999

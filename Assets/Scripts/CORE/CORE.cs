@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleJSON;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,8 +23,11 @@ public class CORE : MonoBehaviour
     {
         Instance = this;
         Application.targetFrameRate = 60;
+        Time.fixedDeltaTime = 0.01666667f;
+        Application.runInBackground = true;
         DontDestroyOnLoad(this.gameObject);
     }
+
 
     public static void ClearContainer(Transform container)
     {
@@ -136,6 +140,12 @@ public class CORE : MonoBehaviour
 
         SceneManager.LoadScene(sceneKey);
 
+        if(RoomUpdateRoutineInstance != null)
+        {
+            StopCoroutine(RoomUpdateRoutineInstance);
+            RoomUpdateRoutineInstance = null;
+        }
+
         yield return 0;
 
         while (SceneManager.GetActiveScene().name != sceneKey)
@@ -145,9 +155,21 @@ public class CORE : MonoBehaviour
 
         yield return 0;
 
+        RoomUpdateRoutineInstance = StartCoroutine(RoomUpdateRoutine());
+
         onComplete?.Invoke();
 
         LoadSceneRoutineInstance = null;
+    }
+
+    Coroutine RoomUpdateRoutineInstance;
+    IEnumerator RoomUpdateRoutine()
+    {
+        while(true)
+        {
+            Room.SendActorsPositions();
+            yield return 0;
+        }
     }
 
     
@@ -175,5 +197,41 @@ public class RoomData
 
         actor.ActorObject.SetActive(false);
         Actors.Remove(actor);
+    }
+
+    public void SendActorsPositions()
+    {
+        JSONNode node = new JSONClass();
+        for(int i=0;i<Actors.Count;i++)
+        {
+            ActorData actor = Actors[i];
+            if (actor.IsPlayer && actor.ActorObject != null)
+            {
+                actor.positionX = actor.ActorObject.transform.position.x;
+                actor.positionY = actor.ActorObject.transform.position.y;
+                node["actorPositions"][i]["actorId"] = actor.actorId;
+                node["actorPositions"][i]["x"] = actor.positionX.ToString();
+                node["actorPositions"][i]["y"] = actor.positionY.ToString();
+            }
+        }
+
+        SocketHandler.Instance.SendEvent("actors_moved",node);
+    }
+
+    public void ReceiveActorPositions(JSONNode data)
+    {
+        for(int i=0;i<data["actorPositions"].Count;i++)
+        {
+            ActorData actor = Actors.Find(x => x.actorId == data["actorPositions"][i]["actorId"].Value);
+
+            if(actor == null)
+            {
+                CORE.Instance.LogMessageError("No actor with id " + data["actorPositions"][i]["actorId"].Value);
+                continue;
+            }
+
+            actor.positionX = float.Parse(data["actorPositions"][i]["x"]);
+            actor.positionY = float.Parse(data["actorPositions"][i]["y"]);
+        }
     }
 }

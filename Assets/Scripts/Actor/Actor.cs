@@ -13,6 +13,9 @@ public class Actor : MonoBehaviour
     public Transform Body;
 
     [SerializeField]
+    public ActorControl PlayerControl;
+
+    [SerializeField]
     protected Animator Animer;
 
     [SerializeField]
@@ -35,13 +38,38 @@ public class Actor : MonoBehaviour
     protected Vector3 deltaPosition;
     protected Vector3 lastPosition;
 
+
+    public float InterpolationSpeed = 1f;
+
+    public bool IsClientControl
+    {
+        get
+        {
+            return PlayerControl.enabled;
+        }
+    }
+
     public void SetActorInfo(ActorData data)
     {
         this.Data = data;
+
+        if(data.IsPlayer)
+        {
+            PlayerControl.enabled = true;
+        }
+        else
+        {
+            PlayerControl.enabled = false;
+        }
     }
 
     protected void FixedUpdate()
     {
+        if(!IsClientControl)
+        {
+            UpdateFromActorData();
+        }
+
         deltaPosition = transform.position - lastPosition;
         lastPosition = transform.position;
         Animer.SetFloat("VelocityX", deltaPosition.x);
@@ -84,5 +112,23 @@ public class Actor : MonoBehaviour
         }
 
         Animer.SetBool("InAir", !IsGrounded);
+    }
+
+    void UpdateFromActorData()
+    {
+        Vector3 targetPosition = new Vector2(Data.positionX, Data.positionY);
+
+        if (targetPosition != lastPosition)
+        {
+            Rigid.isKinematic = true;
+        }
+        else 
+        {
+            if(Rigid.isKinematic)
+                Rigid.isKinematic = false;
+        }
+
+
+        Rigid.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * InterpolationSpeed); 
     }
 }

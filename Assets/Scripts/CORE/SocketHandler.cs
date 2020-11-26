@@ -35,6 +35,11 @@ public class SocketHandler : MonoBehaviour
     {
         SetupSocketIO();
     }
+    
+    private void OnApplicationQuit()
+    {
+        SendDisconnectSocket();
+    }
 
     void SetupSocketIO()
     {
@@ -49,6 +54,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("connect_timeout", OnError));
         SocketEventListeners.Add(new SocketEventListener("actor_spawn", OnActorSpawn));
         SocketEventListeners.Add(new SocketEventListener("actor_despawn", OnActorDespawn));
+        SocketEventListeners.Add(new SocketEventListener("move_actors", OnMoveActors));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -85,15 +91,6 @@ public class SocketHandler : MonoBehaviour
 
     #endregion
 
-    #region TEST
-
-
-    private void OnApplicationQuit()
-    {
-        SendDisconnectSocket();
-    }
-
-    #endregion
 
 
     #region Request
@@ -300,7 +297,7 @@ public class SocketHandler : MonoBehaviour
 
         SocketManager.Socket.Emit(eventKey, node);    
     }
-    
+   
 
     #endregion
 
@@ -308,8 +305,18 @@ public class SocketHandler : MonoBehaviour
 
     public void OnErrorRawCallback(Socket socket, Packet packet, params object[] args)
     {
-        JSONNode data = (JSONNode)args[0];
-        CORE.Instance.LogMessageError("Socket IO error - " + data.ToString());
+
+        JSONNode data;
+
+        try
+        {
+            data = (JSONNode)args[0];
+            CORE.Instance.LogMessageError("Socket IO error - " + data.ToString());
+        }
+        catch
+        {
+            CORE.Instance.LogMessageError(string.Format("Casting Data to JSON Error... {0}", args[0]));
+        }
     }
 
     public void OnError(JSONNode data)
@@ -320,6 +327,11 @@ public class SocketHandler : MonoBehaviour
     public void OnLoadScene(JSONNode data)
     {
         CORE.Instance.LoadScene(data["scene"].Value, ()=> SendEvent("scene_loaded"));
+    }
+
+    public void OnMoveActors(JSONNode data)
+    {
+        CORE.Instance.Room.ReceiveActorPositions(data);
     }
 
     public void OnActorSpawn(JSONNode data)
