@@ -112,11 +112,14 @@ public class CORE : MonoBehaviour
         LoadSceneRoutineInstance = StartCoroutine(LoadSceneRoutine(sceneKey,onComplete));
     }
 
-    public void SpawnActor(Vector3 position, ActorData actorData)
+    public void SpawnActor(ActorData actorData)
     {
-        GameObject actorObject = ResourcesLoader.Instance.GetRecycledObject("Actor");
-        actorObject.transform.position = position;
+
+
+        GameObject actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.actorType);
+        actorObject.transform.position = new Vector3(actorData.positionX,actorData.positionY,0f);
         actorData.ActorObject = actorObject;
+        actorObject.GetComponent<Actor>().SetActorInfo(actorData);
 
         Room.ActorJoined(actorData);
     }

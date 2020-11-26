@@ -2,25 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParallaxTilingSprite : MonoBehaviour
+public class CameraChaseEntity : MonoBehaviour
 {
-    [SerializeField]
-    SpriteRenderer Renderer;
-
     [SerializeField]
     Transform ReferenceObject;
 
     public float Speed = 1f;
 
-    Vector3 LastPos;
 
-    void Update()
+    public float YOffset = 3f;
+
+    void LateUpdate()
     {
         if (ReferenceObject == null)
         {
             ActorData foundActor = CORE.Instance.Room.Actors.Find(X => X.IsPlayer);
 
-            if(foundActor != null)
+            if (foundActor != null)
             {
                 ReferenceObject = foundActor.ActorObject.transform;
             }
@@ -28,8 +26,8 @@ public class ParallaxTilingSprite : MonoBehaviour
             return;
         }
 
-        Renderer.material.mainTextureOffset = new Vector2(Renderer.material.mainTextureOffset.x + ((ReferenceObject.position - LastPos).x * Time.deltaTime), Renderer.material.mainTextureOffset.y);
-
-        LastPos = ReferenceObject.position;
+        transform.position = Vector3.Lerp(transform.position,
+            new Vector3(ReferenceObject.transform.position.x, ReferenceObject.transform.position.y + YOffset, transform.position.z), 
+            Speed * Time.deltaTime);
     }
 }

@@ -69,6 +69,8 @@ public class SocketHandler : MonoBehaviour
         {
             SocketManager.Socket.On(listener.EventKey, listener.Callback);
         }
+
+        SocketManager.Socket.On(SocketIOEventTypes.Error, OnErrorRawCallback);
     }
 
     public void RemoveListeners()
@@ -77,24 +79,14 @@ public class SocketHandler : MonoBehaviour
         {
             SocketManager.Socket.Off(listener.EventKey, listener.Callback);
         }
+
+        SocketManager.Socket.Off(SocketIOEventTypes.Error, OnErrorRawCallback);
     }
 
     #endregion
 
     #region TEST
 
-    public bool Test;
-    private void Update()
-    {
-        if(Test)
-        {
-            SendLogin(() =>
-                SendCreateCharacter(()=>
-                    SendConnectSocket()));
-
-            Test = false;
-        }
-    }
 
     private void OnApplicationQuit()
     {
@@ -116,13 +108,13 @@ public class SocketHandler : MonoBehaviour
         });
     }
 
-    public void SendCreateCharacter(Action OnComplete = null)
+    public void SendCreateCharacter(string element = "fire", Action OnComplete = null)
     {
 
         Dictionary<string, string> urlParams = new Dictionary<string, string>();
 
         urlParams["unicorn"] = CurrentUser.Unicorn;
-        urlParams["classJob"] = "fire";
+        urlParams["classJob"] = element;
 
         SendWebRequest(HostUrl + "/create-char", (UnityWebRequest ccreq) =>
         {
@@ -133,6 +125,12 @@ public class SocketHandler : MonoBehaviour
         },
         "",
         urlParams);
+    }
+
+    public void SendSelectCharacter(Action OnComplete = null, int index = 0)
+    {
+        CurrentUser.SelectedCharacterIndex = index;
+        SendConnectSocket(OnComplete);
     }
 
     public void SendConnectSocket(Action OnComplete = null)
@@ -153,7 +151,7 @@ public class SocketHandler : MonoBehaviour
         SocketOptions options = new SocketOptions();
         options.AdditionalQueryParams = new ObservableDictionary<string, string>();
         options.AdditionalQueryParams.Add("unicorn", CurrentUser.Unicorn);
-        options.AdditionalQueryParams.Add("charIndex", "0");
+        options.AdditionalQueryParams.Add("charIndex", CurrentUser.SelectedCharacterIndex.ToString());
         options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
 
         SocketManager = new SocketManager(new Uri(SocketUrl),options);
@@ -287,16 +285,32 @@ public class SocketHandler : MonoBehaviour
 
     #region Socket Request
 
-    public void SendSceneLoaded()
+    public void SendEvent(string eventKey, JSONNode node = null)
     {
-        JSONNode node = new JSONClass();
-        
-        SocketManager.Socket.Emit("scene_loaded",node);
+        if (node == null)
+        {
+            CORE.Instance.LogMessage("Sending Event: " + eventKey);
+
+            node = new JSONClass();
+            SocketManager.Socket.Emit(eventKey, node);
+            return;
+        }
+
+        CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + node.ToString());
+
+        SocketManager.Socket.Emit(eventKey, node);    
     }
+    
 
     #endregion
 
     #region Socket Response
+
+    public void OnErrorRawCallback(Socket socket, Packet packet, params object[] args)
+    {
+        JSONNode data = (JSONNode)args[0];
+        CORE.Instance.LogMessageError("Socket IO error - " + data.ToString());
+    }
 
     public void OnError(JSONNode data)
     {
@@ -305,15 +319,14 @@ public class SocketHandler : MonoBehaviour
 
     public void OnLoadScene(JSONNode data)
     {
-        CORE.Instance.LoadScene(data["scene"].Value, SendSceneLoaded);
+        CORE.Instance.LoadScene(data["scene"].Value, ()=> SendEvent("scene_loaded"));
     }
 
     public void OnActorSpawn(JSONNode data)
     {
         ActorData actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
-        actor.actorId = data["actorId"].Value;
 
-        CORE.Instance.SpawnActor(new Vector3(0,0,0), actor);
+        CORE.Instance.SpawnActor(actor);
     }
 
     public void OnActorDespawn(JSONNode data)
@@ -331,6 +344,8 @@ public class UserData
     public string Unicorn;
 
     public ActorData actor;
+
+    public int SelectedCharacterIndex;
 }
 
 [Serializable]
@@ -338,11 +353,22 @@ public class ActorData
 {
     public string actorId;
     public string scene;
+    public float positionX;
+    public float positionY;
     public string name;
     public string classJob;
+    public string actorType;
 
     [JsonIgnore]
     public GameObject ActorObject;
+
+    public bool IsPlayer
+    {
+        get
+        {
+            return actorId == SocketHandler.Instance.CurrentUser.actor.actorId;
+        }
+    }
 
     public ActorData(string gScene, string gName, string gClassJob, GameObject gActorObject = null)
     {
@@ -371,7 +397,16 @@ public class SocketEventListener
 
     public void Callback(Socket socket, Packet packet, params object[] args)
     {
-        JSONNode data = (JSONNode)args[0];
-        InternalCallback.Invoke(data);
+        JSONNode data;
+
+        try
+        {
+            data = (JSONNode)args[0];
+            InternalCallback.Invoke(data);
+        }
+        catch
+        {
+            CORE.Instance.LogMessageError(string.Format("Casting Data to JSON Error... {0}", args[0]));
+        }
     }
 }

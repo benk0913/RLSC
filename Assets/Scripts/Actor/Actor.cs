@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour
 {
+    public ActorData Data;
+
     [SerializeField]
     public Rigidbody2D Rigid;
 
@@ -32,6 +34,11 @@ public class Actor : MonoBehaviour
 
     protected Vector3 deltaPosition;
     protected Vector3 lastPosition;
+
+    public void SetActorInfo(ActorData data)
+    {
+        this.Data = data;
+    }
 
     protected void FixedUpdate()
     {
