@@ -51,6 +51,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("load_scene", OnLoadScene));
         SocketEventListeners.Add(new SocketEventListener("connect_error", OnError));
         SocketEventListeners.Add(new SocketEventListener("error", OnError));
+        SocketEventListeners.Add(new SocketEventListener("event_error", OnError));
         SocketEventListeners.Add(new SocketEventListener("connect_timeout", OnError));
         SocketEventListeners.Add(new SocketEventListener("actor_spawn", OnActorSpawn));
         SocketEventListeners.Add(new SocketEventListener("actor_despawn", OnActorDespawn));
