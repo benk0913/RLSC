@@ -118,15 +118,15 @@ public class Actor : MonoBehaviour
     {
         Vector3 targetPosition = new Vector2(Data.positionX, Data.positionY);
 
-        if (targetPosition != lastPosition)
-        {
-            Rigid.isKinematic = true;
-        }
-        else 
-        {
-            if(Rigid.isKinematic)
-                Rigid.isKinematic = false;
-        }
+        //if (targetPosition != lastPosition)
+        //{
+        //    Rigid.isKinematic = true;
+        //}
+        //else 
+        //{
+        //    if(Rigid.isKinematic)
+        //        Rigid.isKinematic = false;
+        //}
 
 
         Rigid.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * InterpolationSpeed); 

@@ -201,18 +201,25 @@ public class RoomData
 
     public void SendActorsPositions()
     {
+        List<ActorData> actorsToUpdate = new List<ActorData>();
         JSONNode node = new JSONClass();
         for(int i=0;i<Actors.Count;i++)
         {
             ActorData actor = Actors[i];
             if (actor.IsPlayer && actor.ActorObject != null)
             {
+                actorsToUpdate.Add(actor);
                 actor.positionX = actor.ActorObject.transform.position.x;
                 actor.positionY = actor.ActorObject.transform.position.y;
-                node["actorPositions"][i]["actorId"] = actor.actorId;
-                node["actorPositions"][i]["x"] = actor.positionX.ToString();
-                node["actorPositions"][i]["y"] = actor.positionY.ToString();
             }
+        }
+
+        for(int i=0;i<actorsToUpdate.Count;i++)
+        {
+            ActorData actor = actorsToUpdate[i];
+            node["actorPositions"][i]["actorId"] = actor.actorId;
+            node["actorPositions"][i]["x"] = actor.positionX.ToString();
+            node["actorPositions"][i]["y"] = actor.positionY.ToString();
         }
 
         SocketHandler.Instance.SendEvent("actors_moved",node);

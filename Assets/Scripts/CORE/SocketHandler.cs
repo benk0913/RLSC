@@ -102,16 +102,20 @@ public class SocketHandler : MonoBehaviour
             OnLogin(lreq);
 
             OnComplete?.Invoke();
-        });
+        },"",null, true);
     }
 
     public void SendCreateCharacter(string element = "fire", Action OnComplete = null)
     {
 
-        Dictionary<string, string> urlParams = new Dictionary<string, string>();
+        //Dictionary<string, string> urlParams = new Dictionary<string, string>();
 
-        urlParams["unicorn"] = CurrentUser.Unicorn;
-        urlParams["classJob"] = element;
+        //urlParams["unicorn"] = CurrentUser.Unicorn;
+        //urlParams["classJob"] = element;
+
+        JSONNode node = new JSONClass();
+        node["unicorn"] = CurrentUser.Unicorn;
+        node["classJob"] = element;
 
         SendWebRequest(HostUrl + "/create-char", (UnityWebRequest ccreq) =>
         {
@@ -120,8 +124,9 @@ public class SocketHandler : MonoBehaviour
 
             OnComplete?.Invoke();
         },
-        "",
-        urlParams);
+        node.ToString(),
+        null,
+        true);
     }
 
     public void SendSelectCharacter(Action OnComplete = null, int index = 0)
@@ -212,12 +217,12 @@ public class SocketHandler : MonoBehaviour
 
     #region HTTP Request Handling
 
-    public void SendWebRequest(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string,string> urlParams = null)
+    public void SendWebRequest(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string,string> urlParams = null, bool isPost = false)
     {
-        StartCoroutine(SendHTTPRequestRoutine(url, OnResponse,sentJson,urlParams));
+        StartCoroutine(SendHTTPRequestRoutine(url, OnResponse,sentJson,urlParams,isPost));
     }
 
-    public IEnumerator SendHTTPRequestRoutine(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string, string> urlParams = null)
+    public IEnumerator SendHTTPRequestRoutine(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string, string> urlParams = null, bool isPost = false)
     {
 
         UnityWebRequest request;
@@ -238,7 +243,14 @@ public class SocketHandler : MonoBehaviour
                 CORE.Instance.LogMessage("Request: " + urlWithParams + " | " + sentJson);
             }
 
-            request = UnityWebRequest.Get(urlWithParams);
+            if (isPost)
+            {
+                request = UnityWebRequest.Post(urlWithParams, new WWWForm());
+            }
+            else
+            {
+                request = UnityWebRequest.Get(urlWithParams);
+            }
         }
         else
         {
@@ -247,7 +259,15 @@ public class SocketHandler : MonoBehaviour
                 CORE.Instance.LogMessage("Request: " + url + " | " + sentJson);
             }
 
-            request = UnityWebRequest.Get(url);
+
+            if (isPost)
+            {
+                request = UnityWebRequest.Post(url, new WWWForm());
+            }
+            else
+            {
+                request = UnityWebRequest.Get(url);
+            }
         }
 
 

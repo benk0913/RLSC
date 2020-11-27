@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ using UnityEngine;
 [Serializable]
 public class CGDatabase : ScriptableObject
 {
+    [JsonIgnore]
+    public string HostURL;
 
     public List<ClassJob> Classes = new List<ClassJob>();
 
@@ -17,6 +20,8 @@ public class CGDatabase : ScriptableObject
     public List<Buff> Buffs = new List<Buff>();
 
     public string StartingScene;
+
+    public string HumanPrefab;
 
     public float Power;
     public float HP;
