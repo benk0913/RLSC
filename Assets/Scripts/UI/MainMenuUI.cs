@@ -8,7 +8,7 @@ public class MainMenuUI : MonoBehaviour
     
     private void Start()
     {
-        AutoLogin();
+        CORE.Instance.DelayedInvokation(1f,AutoLogin);
     }
     
     public void AutoLogin()

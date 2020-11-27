@@ -11,6 +11,15 @@ public class CGDatabase : ScriptableObject
     [JsonIgnore]
     public string HostURL;
 
+    public string unic0rn = "b0ss";
+
+    public DatabaseContent content;
+}
+
+[Serializable]
+public class DatabaseContent
+{
+
     public List<ClassJob> Classes = new List<ClassJob>();
 
     public List<Ability> Abilities = new List<Ability>();

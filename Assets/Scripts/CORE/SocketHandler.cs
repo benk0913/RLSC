@@ -29,10 +29,7 @@ public class SocketHandler : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
 
-    private void Start()
-    {
         SetupSocketIO();
     }
     
@@ -98,6 +95,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendLogin(Action OnComplete = null)
     {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Color.green, 3f, true));
         SendWebRequest(HostUrl + "/login", (UnityWebRequest lreq) =>
         {
             OnLogin(lreq);
@@ -108,6 +106,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendCreateCharacter(string element = "fire", Action OnComplete = null)
     {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Creating Character...", Color.green, 1f, true));
 
         //Dictionary<string, string> urlParams = new Dictionary<string, string>();
 
@@ -132,13 +131,17 @@ public class SocketHandler : MonoBehaviour
 
     public void SendSelectCharacter(Action OnComplete = null, int index = 0)
     {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Selecting Character", Color.green, 1f, true));
+
         CurrentUser.SelectedCharacterIndex = index;
         SendConnectSocket(OnComplete);
     }
 
     public void SendConnectSocket(Action OnComplete = null)
     {
-        if(ConnectSocketRoutineInstance != null)
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Embracing Humanity...", Color.green, 3f, true));
+
+        if (ConnectSocketRoutineInstance != null)
         {
             StopCoroutine(ConnectSocketRoutineInstance);
         }
@@ -178,6 +181,8 @@ public class SocketHandler : MonoBehaviour
 
     public void SendDisconnectSocket()
     {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Rejecting Humanity... Returning to MONKE...", Color.green, 3f, true));
+
         if (SocketManager != null)
         {
             SocketManager.Socket.Off();
@@ -342,11 +347,15 @@ public class SocketHandler : MonoBehaviour
 
     public void OnError(JSONNode data)
     {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("ERROR "+data.ToString(), Color.red, 1f, true));
+
         CORE.Instance.LogMessageError("server error - " + data.ToString());
     }
 
     public void OnLoadScene(JSONNode data)
     {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering "+data["scene"].Value, Color.green, 1f, false));
+
         CORE.Instance.LoadScene(data["scene"].Value, ()=> SendEvent("scene_loaded"));
     }
 

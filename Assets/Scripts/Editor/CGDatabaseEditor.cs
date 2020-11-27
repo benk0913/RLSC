@@ -1,13 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
-using System.Text.RegularExpressions;
-using TMPro;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
 using System.Text;
-using SimpleJSON;
 
 [CustomEditor(typeof(CGDatabase))]
 public class CGDatabaseEditor : Editor
@@ -18,10 +13,7 @@ public class CGDatabaseEditor : Editor
 
         if (GUILayout.Button("Sync With Server"))
         {
-            JSONNode node = new JSONClass();
-            node["unic0rn"] = "b0ss";
-            node["content"] = JsonConvert.SerializeObject(db, Formatting.None);
-            SendWebRequest(db.HostURL, node.ToString());
+            SendWebRequest(db.HostURL, JsonConvert.SerializeObject(db, Formatting.None));
         }
         
         DrawDefaultInspector();
