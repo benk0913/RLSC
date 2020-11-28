@@ -10,10 +10,6 @@ public class ActorControl : MonoBehaviour
     [SerializeField]
     Actor CurrentActor;
 
-    public float MovementSpeed = 1f;
-
-    public float JumpHeight = 1f;
-
     float internalJumpCooldown = 0f;
 
     private void Reset()
@@ -28,22 +24,33 @@ public class ActorControl : MonoBehaviour
             internalJumpCooldown -= 1f * Time.deltaTime;
         }
 
-        if(Input.GetKey(KeyCode.A))
+        if(Input.GetKey(InputMap.Map["Move Left"]))
         {
-            CurrentActor.Rigid.position += Vector2.left * MovementSpeed * Time.deltaTime;
+            CurrentActor.AttemptMoveLeft();
         }
-        else if(Input.GetKey(KeyCode.D))
+        else if(Input.GetKey(InputMap.Map["Move Right"]))
         {
-            CurrentActor.Rigid.position += Vector2.right * MovementSpeed * Time.deltaTime;
+            CurrentActor.AttemptMoveRight();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(InputMap.Map["Jump"]))
         {
-            if (CurrentActor.IsGrounded && internalJumpCooldown <= 0f)
+            if (internalJumpCooldown > 0f)
             {
-                CurrentActor.Rigid.AddForce(Vector2.up * JumpHeight, ForceMode2D.Impulse);
-                internalJumpCooldown = 1f;
+                return;
+            }
+
+            CurrentActor.AttemptJump();
+            internalJumpCooldown = 1f;
+        }
+        
+        for(int i=0;i<3;i++)
+        {
+            if (Input.GetKeyDown(InputMap.Map["Ability"+i]))
+            {
+                CurrentActor.AttemptPrepareAbility(i);
             }
         }
+        
     }
 }

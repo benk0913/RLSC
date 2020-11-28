@@ -19,6 +19,7 @@ public class CORE : MonoBehaviour
     public Dictionary<string, UnityEvent> DynamicEvents = new Dictionary<string, UnityEvent>();
 
     public bool IsBitch;
+
     private void Awake()
     {
         Instance = this;
@@ -27,6 +28,7 @@ public class CORE : MonoBehaviour
         Application.runInBackground = true;
         DontDestroyOnLoad(this.gameObject);
     }
+
 
 
     public static void ClearContainer(Transform container)
@@ -121,7 +123,7 @@ public class CORE : MonoBehaviour
 
 
         GameObject actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.actorType);
-        actorObject.transform.position = new Vector3(actorData.positionX,actorData.positionY,0f);
+        actorObject.transform.position = new Vector3(actorData.x,actorData.y,0f);
         actorData.ActorObject = actorObject;
         actorObject.GetComponent<Actor>().SetActorInfo(actorData);
 
@@ -210,8 +212,8 @@ public class RoomData
             if (actor.IsPlayer && actor.ActorObject != null)
             {
                 actorsToUpdate.Add(actor);
-                actor.positionX = actor.ActorObject.transform.position.x;
-                actor.positionY = actor.ActorObject.transform.position.y;
+                actor.x = actor.ActorObject.transform.position.x;
+                actor.y = actor.ActorObject.transform.position.y;
             }
         }
 
@@ -219,8 +221,8 @@ public class RoomData
         {
             ActorData actor = actorsToUpdate[i];
             node["actorPositions"][i]["actorId"] = actor.actorId;
-            node["actorPositions"][i]["x"] = actor.positionX.ToString();
-            node["actorPositions"][i]["y"] = actor.positionY.ToString();
+            node["actorPositions"][i]["x"] = actor.x.ToString();
+            node["actorPositions"][i]["y"] = actor.y.ToString();
         }
 
         SocketHandler.Instance.SendEvent("actors_moved",node);
@@ -238,8 +240,8 @@ public class RoomData
                 continue;
             }
 
-            actor.positionX = float.Parse(data["actorPositions"][i]["x"]);
-            actor.positionY = float.Parse(data["actorPositions"][i]["y"]);
+            actor.x = float.Parse(data["actorPositions"][i]["x"]);
+            actor.y = float.Parse(data["actorPositions"][i]["y"]);
         }
     }
 }

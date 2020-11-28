@@ -55,6 +55,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("move_actors", OnMoveActors));
         SocketEventListeners.Add(new SocketEventListener("bitch_please", OnBitchPlease));
         SocketEventListeners.Add(new SocketEventListener("actor_bitch", OnActorBitch));
+        SocketEventListeners.Add(new SocketEventListener("actor_prepare_ability", OnActorPrepareAbility));
+        SocketEventListeners.Add(new SocketEventListener("actor_execute_ability", OnActorExecuteAbility));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -389,6 +391,40 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.DespawnActor(data["actorId"].Value);
     }
 
+    public void OnActorPrepareAbility(JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if(actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+        }
+
+        string abilityName = data["abilityName"];
+        actorDat.ActorObject.GetComponent<Actor>().PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
+    }
+
+    public void OnActorExecuteAbility(JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+        }
+
+        string abilityName = data["abilityName"];
+
+        Ability ability = CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName);
+        Vector2 position = new Vector2(data["x"].AsFloat, data["y"].AsFloat);
+        bool faceRight = data["faceRight"].AsBool;
+
+        actorDat.ActorObject.GetComponent<Actor>().ExecuteAbility(ability,position,faceRight);
+
+
+    }
 
     #endregion
 }
@@ -409,11 +445,12 @@ public class ActorData
 {
     public string actorId;
     public string scene;
-    public float positionX;
-    public float positionY;
+    public float x;
+    public float y;
     public string name;
     public string classJob;
     public string actorType;
+    public int hp;
 
     [JsonIgnore]
     public GameObject ActorObject;

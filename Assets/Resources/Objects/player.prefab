@@ -1921,8 +1921,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentActor: {fileID: 1551737046}
-  MovementSpeed: 10
-  JumpHeight: 20
 --- !u!114 &1551737046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1935,15 +1933,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f30273ed3f42042a102d7e9d0f1fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data:
-    actorId: 
-    scene: 
-    positionX: 0
-    positionY: 0
-    name: 
-    classJob: 
-    actorType: 
-    ActorObject: {fileID: 0}
+  State:
+    Data:
+      actorId: 
+      scene: 
+      positionX: 0
+      positionY: 0
+      name: 
+      classJob: 
+      actorType: 
+      ActorObject: {fileID: 0}
+    Abilities: []
+    IsPreparingAbility: 0
+    CurrentControlState: 0
   Rigid: {fileID: 1551737043}
   Body: {fileID: 5413539527731326573}
   PlayerControl: {fileID: 1551737045}
@@ -1956,4 +1958,6 @@ MonoBehaviour:
   GroundCheckDistance: 10
   GroundedDistance: 0.4
   VelocityMinimumThreshold: 0.1
+  MovementSpeed: 12
+  JumpHeight: 20
   InterpolationSpeed: 25
