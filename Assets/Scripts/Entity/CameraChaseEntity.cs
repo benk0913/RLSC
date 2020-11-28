@@ -16,11 +16,11 @@ public class CameraChaseEntity : MonoBehaviour
     {
         if (ReferenceObject == null)
         {
-            ActorData foundActor = CORE.Instance.Room.Actors.Find(X => X.IsPlayer);
+            ActorData foundActor = CORE.Instance.Room.PlayerActor;
 
-            if (foundActor != null)
+            if (foundActor != null && foundActor.ActorEntity != null)
             {
-                ReferenceObject = foundActor.ActorObject.transform;
+                ReferenceObject = foundActor.ActorEntity.transform;
             }
 
             return;

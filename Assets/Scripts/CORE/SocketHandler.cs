@@ -66,6 +66,10 @@ public class SocketHandler : MonoBehaviour
 
     void AddEventListenerLogging(JSONNode data)
     {
+        if(!string.IsNullOrEmpty(data["actorPositions"].ToString()) || !string.IsNullOrEmpty(data["actorMoved"].ToString()))
+        {
+            return;
+        }
         CORE.Instance.LogMessage("On Socket Event: " + data["name"].Value+ " | " + data.ToString());
     }
 
@@ -323,7 +327,10 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + node.ToString());
+        if (eventKey != "actors_moved")
+        {
+            CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + node.ToString());
+        }
 
         SocketManager.Socket.Emit(eventKey, node);    
     }
@@ -383,6 +390,11 @@ public class SocketHandler : MonoBehaviour
     {
         ActorData actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
 
+        if(CurrentUser.actor.actorId == actor.actorId)
+        {
+            CurrentUser.actor = actor;
+        }
+
         CORE.Instance.SpawnActor(actor);
     }
 
@@ -402,7 +414,7 @@ public class SocketHandler : MonoBehaviour
         }
 
         string abilityName = data["abilityName"];
-        actorDat.ActorObject.GetComponent<Actor>().PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
+        actorDat.ActorEntity.PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
     }
 
     public void OnActorExecuteAbility(JSONNode data)
@@ -421,7 +433,7 @@ public class SocketHandler : MonoBehaviour
         Vector2 position = new Vector2(data["x"].AsFloat, data["y"].AsFloat);
         bool faceRight = data["faceRight"].AsBool;
 
-        actorDat.ActorObject.GetComponent<Actor>().ExecuteAbility(ability,position,faceRight);
+        actorDat.ActorEntity.ExecuteAbility(ability,position,faceRight);
 
 
     }
@@ -453,7 +465,7 @@ public class ActorData
     public int hp;
 
     [JsonIgnore]
-    public GameObject ActorObject;
+    public Actor ActorEntity;
 
     public bool IsPlayer
     {
@@ -468,7 +480,11 @@ public class ActorData
         this.scene = gScene;
         this.name = gName;
         this.classJob = gClassJob;
-        this.ActorObject = gActorObject;
+
+        if (gActorObject != null)
+        {
+            this.ActorEntity = gActorObject.GetComponent<Actor>();
+        }
     }
 }
 
@@ -494,7 +510,8 @@ public class SocketEventListener
 
         try
         {
-            data = (JSONNode)args[0];
+            data = JSON.Parse(args[0].ToString());
+            //data = (JSONNode)args[0];
             InternalCallback.Invoke(data);
         }
         catch

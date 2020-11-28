@@ -20,9 +20,9 @@ public class ParallaxTilingSprite : MonoBehaviour
         {
             ActorData foundActor = CORE.Instance.Room.Actors.Find(X => X.IsPlayer);
 
-            if(foundActor != null && foundActor.ActorObject != null)
+            if(foundActor != null && foundActor.ActorEntity != null)
             {
-                ReferenceObject = foundActor.ActorObject.transform;
+                ReferenceObject = foundActor.ActorEntity.transform;
             }
 
             return;

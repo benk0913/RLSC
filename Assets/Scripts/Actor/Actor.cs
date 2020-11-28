@@ -194,28 +194,77 @@ public class Actor : MonoBehaviour
 
     public void ExecuteAbility(Ability ability, Vector3 position = default, bool faceRight = default)
     {
+        if(IsClientControl)
+        {
+            AbilityState abilityState = State.Abilities.Find(x=>x.Ability.name == ability.name);
+            
+            abilityState.CurrentCD = abilityState.Ability.CD;
+
+            ActivateAbilityParamsOnExecute(abilityState.Ability);
+        }
+
         Animer.Play(ability.ExecuteAnimation);
 
         transform.position = position;
         transform.localScale = new Vector3(faceRight ? 1 : -1, 1, 1);
+
+        State.IsPreparingAbility = false;
     }
 
 
     #region ClientControl
 
+    public void ActivateAbilityParamsOnExecute(Ability ability)
+    {
+        foreach(AbilityParam param in ability.OnExecuteParams)
+        {
+            if(param.Type.name == "Movement")
+            {
+                ExecuteMovement(param.Value);
+            }
+        }
+    }
+
+    public void ExecuteMovement(string movementKey)
+    {
+        switch(movementKey)
+        {
+            case "Disengage":
+                {
+                    StartCoroutine(MovementDisengageRoutine());
+                    break;
+                }
+        }
+    }
+
     public void AttemptMoveLeft()
     {
+        if(State.CurrentControlState == ActorState.ControlState.Immobile || State.CurrentControlState == ActorState.ControlState.Stunned)
+        {
+            return;
+        }
+
         Rigid.position += Vector2.left * MovementSpeed * Time.deltaTime;
     }
 
     public void AttemptMoveRight()
     {
+        if (State.CurrentControlState == ActorState.ControlState.Immobile || State.CurrentControlState == ActorState.ControlState.Stunned)
+        {
+            return;
+        }
+
         Rigid.position += Vector2.right * MovementSpeed * Time.deltaTime;
     }
 
     public void AttemptJump()
     {
-        if(!IsGrounded)
+        if (State.CurrentControlState == ActorState.ControlState.Immobile || State.CurrentControlState == ActorState.ControlState.Stunned)
+        {
+            return;
+        }
+
+        if (!IsGrounded)
         {
             return;
         }
@@ -230,14 +279,18 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        State.Abilities[abilityIndex].CurrentCastingTime = State.Abilities[abilityIndex].Ability.CastingTime;
+        AbilityState abilityState = State.Abilities[abilityIndex];
+
+        abilityState.CurrentCastingTime = abilityState.Ability.CastingTime;
 
         State.CurrentControlState = ActorState.ControlState.Immobile;
 
-        PrepareAbility(State.Abilities[abilityIndex].Ability);
+        PrepareAbility(abilityState.Ability);
+
+        
 
         JSONNode node = new JSONClass();
-        node["abilityName"] = State.Abilities[abilityIndex].Ability.name;
+        node["abilityName"] = abilityState.Ability.name;
         node["actorId"] = State.Data.actorId;
         SocketHandler.Instance.SendEvent("prepared_ability", node);
 
@@ -266,6 +319,17 @@ public class Actor : MonoBehaviour
 
         return abilityState.CurrentCD <= 0f && abilityState.CurrentCastingTime <= 0f && !State.IsPreparingAbility;
     }
+
+    #region MovementRoutines
+
+    IEnumerator MovementDisengageRoutine()
+    {
+        Rigid.AddForce(new Vector2(transform.localScale.x > 0 ? 1f : -1f, 1f) * 100, ForceMode2D.Impulse);
+
+        yield return 0;
+    }
+
+    #endregion
 
     #endregion
 }

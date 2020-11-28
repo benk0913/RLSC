@@ -9,7 +9,9 @@ using UnityEngine.SceneManagement;
 public class CORE : MonoBehaviour
 {
     public static CORE Instance;
-    
+
+    public CanvasGroup GameUICG;
+
     public CGDatabase Data;
 
     public RoomData Room;
@@ -124,7 +126,7 @@ public class CORE : MonoBehaviour
 
         GameObject actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.actorType);
         actorObject.transform.position = new Vector3(actorData.x,actorData.y,0f);
-        actorData.ActorObject = actorObject;
+        actorData.ActorEntity = actorObject.GetComponent<Actor>();
         actorObject.GetComponent<Actor>().SetActorInfo(actorData);
 
         Room.ActorJoined(actorData);
@@ -161,7 +163,10 @@ public class CORE : MonoBehaviour
 
         onComplete?.Invoke();
 
+        GameUICG.alpha = 1f;
+
         LoadSceneRoutineInstance = null;
+
     }
 
     Coroutine RoomUpdateRoutineInstance;
@@ -183,9 +188,16 @@ public class RoomData
 {
     public List<ActorData> Actors = new List<ActorData>();
 
+    public ActorData PlayerActor;
+
     public void ActorJoined(ActorData actor)
     {
         Actors.Add(actor);
+
+        if(actor.IsPlayer)
+        {
+            PlayerActor = actor;
+        }
     }
 
     public void ActorLeft(string actorID)
@@ -198,7 +210,7 @@ public class RoomData
             return;
         }
 
-        actor.ActorObject.SetActive(false);
+        actor.ActorEntity.gameObject.SetActive(false);
         Actors.Remove(actor);
     }
 
@@ -209,11 +221,11 @@ public class RoomData
         for(int i=0;i<Actors.Count;i++)
         {
             ActorData actor = Actors[i];
-            if (actor.IsPlayer && actor.ActorObject != null)
+            if (actor.IsPlayer && actor.ActorEntity != null)
             {
                 actorsToUpdate.Add(actor);
-                actor.x = actor.ActorObject.transform.position.x;
-                actor.y = actor.ActorObject.transform.position.y;
+                actor.x = actor.ActorEntity.transform.position.x;
+                actor.y = actor.ActorEntity.transform.position.y;
             }
         }
 
@@ -225,7 +237,10 @@ public class RoomData
             node["actorPositions"][i]["y"] = actor.y.ToString();
         }
 
-        SocketHandler.Instance.SendEvent("actors_moved",node);
+        if (actorsToUpdate.Count > 0)
+        {
+            SocketHandler.Instance.SendEvent("actors_moved", node);
+        }
     }
 
     public void ReceiveActorPositions(JSONNode data)
