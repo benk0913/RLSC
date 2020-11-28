@@ -18,7 +18,7 @@ public class CORE : MonoBehaviour
     
     public Dictionary<string, UnityEvent> DynamicEvents = new Dictionary<string, UnityEvent>();
 
-
+    public bool IsBitch;
     private void Awake()
     {
         Instance = this;
@@ -171,8 +171,9 @@ public class CORE : MonoBehaviour
             yield return 0;
         }
     }
-
     
+
+
 }
 
 [Serializable]

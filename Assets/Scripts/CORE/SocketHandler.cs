@@ -53,6 +53,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_spawn", OnActorSpawn));
         SocketEventListeners.Add(new SocketEventListener("actor_despawn", OnActorDespawn));
         SocketEventListeners.Add(new SocketEventListener("move_actors", OnMoveActors));
+        SocketEventListeners.Add(new SocketEventListener("bitch_please", OnBitchPlease));
+        SocketEventListeners.Add(new SocketEventListener("actor_bitch", OnActorBitch));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -364,6 +366,17 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.Room.ReceiveActorPositions(data);
     }
 
+    protected void OnBitchPlease(JSONNode data)
+    {
+        SendEvent("bitch_please",data);
+    }
+
+    protected void OnActorBitch(JSONNode data)
+    {
+        CORE.Instance.IsBitch = data["is_bitch"].AsBool;
+    }
+
+
     public void OnActorSpawn(JSONNode data)
     {
         ActorData actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
@@ -375,6 +388,7 @@ public class SocketHandler : MonoBehaviour
     {
         CORE.Instance.DespawnActor(data["actorId"].Value);
     }
+
 
     #endregion
 }
