@@ -58,6 +58,16 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public bool CanAttemptToMove
+    {
+        get
+        {
+            return State.CurrentControlState != ActorState.ControlState.Immobile
+            && State.CurrentControlState != ActorState.ControlState.Stunned
+            && MovementEffectRoutineInstance == null;
+        }
+    }
+
     public void SetActorInfo(ActorData data)
     {
         this.State.Data = data;
@@ -130,15 +140,6 @@ public class Actor : MonoBehaviour
         lastPosition = transform.position;
         Animer.SetFloat("VelocityX", deltaPosition.x);
         Animer.SetFloat("VelocityY", deltaPosition.y);
-
-        if (deltaPosition.x > 0.1f)
-        {
-            Body.transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (deltaPosition.x < -0.1f)
-        {
-            Body.transform.localScale = new Vector3(1, 1, 1);
-        }
     }
 
     void RefreshGroundedState()
@@ -184,7 +185,9 @@ public class Actor : MonoBehaviour
         //}
 
 
-        Rigid.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * InterpolationSpeed); 
+        Rigid.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * InterpolationSpeed);
+
+        Body.localScale = State.Data.faceRight ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
     }
 
     public void PrepareAbility(Ability ability)
@@ -210,8 +213,35 @@ public class Actor : MonoBehaviour
 
         State.IsPreparingAbility = false;
         State.CurrentControlState = ActorState.ControlState.Normal;
+
+        if(!string.IsNullOrEmpty(ability.AbilityColliderObject))
+        {
+            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(ability.AbilityColliderObject);
+            colliderObj.transform.position = transform.position;
+            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
+
+            colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
+        }
     }
 
+    public void HitAbility(Ability ability, int damage = 0, int currentHp = 0)
+    {
+        ActivateAbilityParamsOnHit(ability);
+
+        if(damage != 0)
+        {
+            Animer.Play("Hurt" + UnityEngine.Random.Range(1, 5));
+        }
+        
+        State.Data.hp = currentHp;
+    }
+
+    public void Ded()
+    {
+        Animer.Play("Dead1");
+        State.CurrentControlState = ActorState.ControlState.Stunned;
+    }
 
     #region ClientControl
 
@@ -226,13 +256,30 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public void ActivateAbilityParamsOnHit(Ability ability)
+    {
+        foreach (AbilityParam param in ability.OnHitParams)
+        {
+            if (param.Type.name == "Movement")
+            {
+                ExecuteMovement(param.Value);
+            }
+        }
+    }
+
     public void ExecuteMovement(string movementKey)
     {
+        if(MovementEffectRoutineInstance != null)
+        {
+            StopCoroutine(MovementEffectRoutineInstance);
+            MovementEffectRoutineInstance = null;
+        }
+
         switch(movementKey)
         {
             case "Disengage":
                 {
-                    StartCoroutine(MovementDisengageRoutine());
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDisengageRoutine());
                     break;
                 }
         }
@@ -240,27 +287,31 @@ public class Actor : MonoBehaviour
 
     public void AttemptMoveLeft()
     {
-        if(State.CurrentControlState == ActorState.ControlState.Immobile || State.CurrentControlState == ActorState.ControlState.Stunned)
+        if (!CanAttemptToMove)
         {
             return;
         }
 
-        Rigid.position += Vector2.left * MovementSpeed * Time.deltaTime;
+        Rigid.position += Vector2.left * Time.deltaTime * MovementSpeed;
+
+        Body.localScale = new Vector3(1f, 1f, 1f);
     }
 
     public void AttemptMoveRight()
     {
-        if (State.CurrentControlState == ActorState.ControlState.Immobile || State.CurrentControlState == ActorState.ControlState.Stunned)
+        if (!CanAttemptToMove)
         {
             return;
         }
 
-        Rigid.position += Vector2.right * MovementSpeed * Time.deltaTime;
+        Rigid.position += Vector2.right * Time.deltaTime * MovementSpeed;
+        Body.localScale = new Vector3(-1f, 1f, 1f);
     }
+
 
     public void AttemptJump()
     {
-        if (State.CurrentControlState == ActorState.ControlState.Immobile || State.CurrentControlState == ActorState.ControlState.Stunned)
+        if (!CanAttemptToMove)
         {
             return;
         }
@@ -323,11 +374,15 @@ public class Actor : MonoBehaviour
 
     #region MovementRoutines
 
+    Coroutine MovementEffectRoutineInstance;
     IEnumerator MovementDisengageRoutine()
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? 1f : -1f, 1f) * 10, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 15, ForceMode2D.Impulse);
 
-        yield return 0;
+        yield return new WaitForSeconds(1f);
+        
+        MovementEffectRoutineInstance = null;
+
     }
 
     #endregion

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Air Whip
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 53f3a2bbba0603e43976124e8b954929, type: 3}
+  AbilityColliderObject: AirWhipCollider
   CD: 1
-  CastingTime: 0.2
+  CastingTime: 0.5
   PreparingAnimation: Cast1
   ExecuteAnimation: Execute1
   Attributes:
@@ -35,10 +36,10 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
   OnExecuteParams:
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
-    Targets: 0
-    Value: 1
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Targets: 2
     Value: Disengage
-  OnHitParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Targets: 0
+    Value: 1

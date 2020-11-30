@@ -57,6 +57,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_bitch", OnActorBitch));
         SocketEventListeners.Add(new SocketEventListener("actor_prepare_ability", OnActorPrepareAbility));
         SocketEventListeners.Add(new SocketEventListener("actor_execute_ability", OnActorExecuteAbility));
+        SocketEventListeners.Add(new SocketEventListener("actor_ability_hit", OnActorAbilityHit));
+        SocketEventListeners.Add(new SocketEventListener("actor_ded", OnActorDed));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -413,6 +415,7 @@ public class SocketHandler : MonoBehaviour
         if(actorDat == null)
         {
             CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
         }
 
         string abilityName = data["abilityName"];
@@ -427,6 +430,7 @@ public class SocketHandler : MonoBehaviour
         if (actorDat == null)
         {
             CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
         }
 
         string abilityName = data["abilityName"];
@@ -440,6 +444,47 @@ public class SocketHandler : MonoBehaviour
 
     }
 
+    public void OnActorAbilityHit(string eventName, JSONNode data)
+    {
+        JSONNode hitData = data["hitData"];
+
+        string givenActorId = hitData["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + hitData["actorId"].Value);
+            return;
+        }
+
+        string abilityName = hitData["abilityName"];
+
+        Ability ability = CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName);
+
+        int damage = int.Parse(hitData["damage"]);
+        int currentHp = int.Parse(hitData["hp"]);
+
+        actorDat.ActorEntity.HitAbility(ability, damage, currentHp);
+
+
+    }
+
+    public void OnActorDed(string eventName, JSONNode data)
+    {
+      
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+
+        actorDat.ActorEntity.Ded();
+
+
+    }
     #endregion
 }
 
@@ -461,6 +506,7 @@ public class ActorData
     public string scene;
     public float x;
     public float y;
+    public bool faceRight;
     public string name;
     public string classJob;
     public string actorType;
@@ -521,4 +567,6 @@ public class SocketEventListener
             CORE.Instance.LogMessageError(string.Format("Casting Data to JSON Error... {0}", args[0]));
         }
     }
+
 }
+

@@ -226,6 +226,7 @@ public class RoomData
                 actorsToUpdate.Add(actor);
                 actor.x = actor.ActorEntity.transform.position.x;
                 actor.y = actor.ActorEntity.transform.position.y;
+                actor.faceRight = actor.ActorEntity.transform.localScale.x < 0f;
             }
         }
 
@@ -235,6 +236,7 @@ public class RoomData
             node["actorPositions"][i]["actorId"] = actor.actorId;
             node["actorPositions"][i]["x"] = actor.x.ToString();
             node["actorPositions"][i]["y"] = actor.y.ToString();
+            node["actorPositions"][i]["faceRight"] = actor.faceRight.ToString();
         }
 
         if (actorsToUpdate.Count > 0)
@@ -257,6 +259,7 @@ public class RoomData
 
             actor.x = float.Parse(data["actorPositions"][i]["x"]);
             actor.y = float.Parse(data["actorPositions"][i]["y"]);
+            actor.faceRight = bool.Parse(data["actorPositions"][i]["faceRight"]);
         }
     }
 }
