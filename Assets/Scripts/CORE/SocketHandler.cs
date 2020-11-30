@@ -64,18 +64,20 @@ public class SocketHandler : MonoBehaviour
         }
     }
 
-    void AddEventListenerLogging(JSONNode data)
+    void AddEventListenerLogging(string eventName, JSONNode data)
     {
-        if(!string.IsNullOrEmpty(data["actorPositions"].ToString()) || !string.IsNullOrEmpty(data["actorMoved"].ToString()))
+        if (!string.IsNullOrEmpty(data["actorPositions"].ToString()) || !string.IsNullOrEmpty(data["actorMoved"].ToString()))
         {
             return;
         }
-        CORE.Instance.LogMessage("On Socket Event: " + data["name"].Value+ " | " + data.ToString());
+
+        CORE.Instance.LogMessage("On Socket Event: " + eventName + " | " + data.ToString());
     }
 
 
     public void AddListeners()
     {
+        
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -348,7 +350,7 @@ public class SocketHandler : MonoBehaviour
         try
         {
             data = (JSONNode)args[0];
-            CORE.Instance.LogMessageError("Socket IO error - " + data.ToString());
+            CORE.Instance.LogMessageError("Socket IO error - "+packet.EventName+" | " + data.ToString());
         }
         catch
         {
@@ -356,37 +358,37 @@ public class SocketHandler : MonoBehaviour
         }
     }
 
-    public void OnError(JSONNode data)
+    public void OnError(string eventName, JSONNode data)
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("ERROR "+data.ToString(), Color.red, 1f, true));
 
         CORE.Instance.LogMessageError("server error - " + data.ToString());
     }
 
-    public void OnLoadScene(JSONNode data)
+    public void OnLoadScene(string eventName, JSONNode data)
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering "+data["scene"].Value, Color.green, 1f, false));
 
         CORE.Instance.LoadScene(data["scene"].Value, ()=> SendEvent("scene_loaded"));
     }
 
-    public void OnMoveActors(JSONNode data)
+    public void OnMoveActors(string eventName, JSONNode data)
     {
         CORE.Instance.Room.ReceiveActorPositions(data);
     }
 
-    protected void OnBitchPlease(JSONNode data)
+    protected void OnBitchPlease(string eventName, JSONNode data)
     {
         SendEvent("bitch_please",data);
     }
 
-    protected void OnActorBitch(JSONNode data)
+    protected void OnActorBitch(string eventName, JSONNode data)
     {
         CORE.Instance.IsBitch = data["is_bitch"].AsBool;
     }
 
 
-    public void OnActorSpawn(JSONNode data)
+    public void OnActorSpawn(string eventName, JSONNode data)
     {
         ActorData actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
 
@@ -398,12 +400,12 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.SpawnActor(actor);
     }
 
-    public void OnActorDespawn(JSONNode data)
+    public void OnActorDespawn(string eventName, JSONNode data)
     {
         CORE.Instance.DespawnActor(data["actorId"].Value);
     }
 
-    public void OnActorPrepareAbility(JSONNode data)
+    public void OnActorPrepareAbility(string eventName, JSONNode data)
     {
         string givenActorId = data["actorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
@@ -417,7 +419,7 @@ public class SocketHandler : MonoBehaviour
         actorDat.ActorEntity.PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
     }
 
-    public void OnActorExecuteAbility(JSONNode data)
+    public void OnActorExecuteAbility(string eventName, JSONNode data)
     {
         string givenActorId = data["actorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
@@ -492,12 +494,12 @@ public class SocketEventListener
 {
     public string EventKey;
 
-    public Action<JSONNode> InternalCallback;
+    public Action<string,JSONNode> InternalCallback;
 
 
    
 
-    public SocketEventListener(string key, Action<JSONNode> internalCallback = null)
+    public SocketEventListener(string key, Action<string,JSONNode> internalCallback = null)
     {
         this.EventKey = key;
 
@@ -512,7 +514,7 @@ public class SocketEventListener
         {
             data = JSON.Parse(args[0].ToString());
             //data = (JSONNode)args[0];
-            InternalCallback.Invoke(data);
+            InternalCallback.Invoke(packet.EventName,data);
         }
         catch
         {

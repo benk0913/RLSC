@@ -133,11 +133,11 @@ public class Actor : MonoBehaviour
 
         if (deltaPosition.x > 0.1f)
         {
-            Body.transform.localScale = Vector3.one;
+            Body.transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (deltaPosition.x < -0.1f)
         {
-            Body.transform.localScale = new Vector3(-1, 1, 1);
+            Body.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
@@ -206,9 +206,10 @@ public class Actor : MonoBehaviour
         Animer.Play(ability.ExecuteAnimation);
 
         transform.position = position;
-        transform.localScale = new Vector3(faceRight ? 1 : -1, 1, 1);
+        Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
 
         State.IsPreparingAbility = false;
+        State.CurrentControlState = ActorState.ControlState.Normal;
     }
 
 
@@ -304,7 +305,7 @@ public class Actor : MonoBehaviour
         node["actorId"] = State.Data.actorId;
         node["x"] = transform.position.x.ToString();
         node["y"] = transform.position.y.ToString();
-        node["faceRight"] = (transform.localScale.x > 0).ToString();
+        node["faceRight"] = (Body.localScale.x < 0).ToString();
         SocketHandler.Instance.SendEvent("executed_ability", node);
     }
 
@@ -324,7 +325,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementDisengageRoutine()
     {
-        Rigid.AddForce(new Vector2(transform.localScale.x > 0 ? 1f : -1f, 1f) * 100, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? 1f : -1f, 1f) * 10, ForceMode2D.Impulse);
 
         yield return 0;
     }
