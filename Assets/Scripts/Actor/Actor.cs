@@ -225,9 +225,9 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void HitAbility(Ability ability, int damage = 0, int currentHp = 0)
+    public void HitAbility(Actor casterActor, Ability ability, int damage = 0, int currentHp = 0)
     {
-        ActivateAbilityParamsOnHit(ability);
+        ActivateAbilityParamsOnHit(casterActor, ability);
 
         if(damage != 0)
         {
@@ -256,18 +256,18 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void ActivateAbilityParamsOnHit(Ability ability)
+    public void ActivateAbilityParamsOnHit(Actor casterActor, Ability ability)
     {
         foreach (AbilityParam param in ability.OnHitParams)
         {
             if (param.Type.name == "Movement")
             {
-                ExecuteMovement(param.Value);
+                ExecuteMovement(param.Value, casterActor);
             }
         }
     }
 
-    public void ExecuteMovement(string movementKey)
+    public void ExecuteMovement(string movementKey, Actor casterActor = null)
     {
         if(MovementEffectRoutineInstance != null)
         {
@@ -285,6 +285,11 @@ public class Actor : MonoBehaviour
             case "DashForward":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine());
+                    break;
+                }
+            case "Pull":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementPullRoutine(casterActor));
                     break;
                 }
         }
@@ -400,6 +405,22 @@ public class Actor : MonoBehaviour
         {
             t += Time.deltaTime  * 1.25f;
             Rigid.position += initDir * MovementSpeed * 2f * Time.deltaTime;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        MovementEffectRoutineInstance = null;
+
+    }
+
+
+    IEnumerator MovementPullRoutine(Actor caster)
+    {
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 1.25f;
+            Rigid.position += Vector2.Lerp(Rigid.position, caster.transform.position, t);
 
             yield return new WaitForFixedUpdate();
         }

@@ -455,14 +455,23 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
+        string casterActorId = data["casterActorId"].Value;
+        ActorData casterActorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == casterActorId);
+
+        if (casterActorDat == null)
+        {
+            CORE.Instance.LogMessageError("No caster actor with ID " + data["casterActorId"].Value);
+            //return;
+        }
+
         string abilityName = data["abilityName"];
 
         Ability ability = CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName);
 
         int damage = int.Parse(data["damage"]);
         int currentHp = int.Parse(data["hp"]);
-
-        actorDat.ActorEntity.HitAbility(ability, damage, currentHp);
+        
+        actorDat.ActorEntity.HitAbility(casterActorDat.ActorEntity, ability, damage, currentHp);
 
 
     }
