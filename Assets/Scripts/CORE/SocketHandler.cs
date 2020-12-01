@@ -68,7 +68,7 @@ public class SocketHandler : MonoBehaviour
 
     void AddEventListenerLogging(string eventName, JSONNode data)
     {
-        if (!string.IsNullOrEmpty(data["actorPositions"].ToString()) || !string.IsNullOrEmpty(data["actorMoved"].ToString()))
+        if (!CORE.Instance.DEBUG_SPAMMY_EVENTS && (!string.IsNullOrEmpty(data["actorPositions"].ToString()) || !string.IsNullOrEmpty(data["actorMoved"].ToString())))
         {
             return;
         }
@@ -331,7 +331,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        if (eventKey != "actors_moved")
+        if (eventKey != "actors_moved" || CORE.Instance.DEBUG_SPAMMY_EVENTS)
         {
             CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + node.ToString());
         }
@@ -446,23 +446,21 @@ public class SocketHandler : MonoBehaviour
 
     public void OnActorAbilityHit(string eventName, JSONNode data)
     {
-        JSONNode hitData = data["hitData"];
-
-        string givenActorId = hitData["actorId"].Value;
+        string givenActorId = data["actorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
         if (actorDat == null)
         {
-            CORE.Instance.LogMessageError("No actor with ID " + hitData["actorId"].Value);
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
             return;
         }
 
-        string abilityName = hitData["abilityName"];
+        string abilityName = data["abilityName"];
 
         Ability ability = CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName);
 
-        int damage = int.Parse(hitData["damage"]);
-        int currentHp = int.Parse(hitData["hp"]);
+        int damage = int.Parse(data["damage"]);
+        int currentHp = int.Parse(data["hp"]);
 
         actorDat.ActorEntity.HitAbility(ability, damage, currentHp);
 

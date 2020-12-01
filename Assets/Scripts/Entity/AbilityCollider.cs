@@ -11,13 +11,24 @@ public class AbilityCollider : MonoBehaviour
 
     public UnityEvent OnHitEvent;
 
+    public bool StickToActor;
+
+
+    private void Update()
+    {
+        if(StickToActor)
+        {
+            transform.position = ActorSource.transform.position;
+        }
+    }
+
     public void SetInfo(Ability abilitySource, Actor actorSource)
     {
         AbilitySource = abilitySource;
         ActorSource = actorSource;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Actor")
         {   
@@ -37,13 +48,14 @@ public class AbilityCollider : MonoBehaviour
         }
     }
 
-    public void HitActor(Actor actor)
+    public void HitActor(Actor targetActor)
     {
         OnHitEvent?.Invoke();
 
         JSONNode node = new JSONClass();
-        node["hitData"]["actorId"] = actor.State.Data.actorId;
-        node["hitData"]["abilityName"] = AbilitySource.name;
+        node["casterActorId"] = ActorSource.State.Data.actorId;
+        node["targetActorId"] = targetActor.State.Data.actorId;
+        node["abilityName"] = AbilitySource.name;
 
         SocketHandler.Instance.SendEvent("ability_hit",node);
     }

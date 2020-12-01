@@ -17,7 +17,9 @@ public class CORE : MonoBehaviour
     public RoomData Room;
     
     public bool DEBUG = false;
-    
+
+    public bool DEBUG_SPAMMY_EVENTS = false;
+
     public Dictionary<string, UnityEvent> DynamicEvents = new Dictionary<string, UnityEvent>();
 
     public bool IsBitch;
@@ -226,7 +228,7 @@ public class RoomData
                 actorsToUpdate.Add(actor);
                 actor.x = actor.ActorEntity.transform.position.x;
                 actor.y = actor.ActorEntity.transform.position.y;
-                actor.faceRight = actor.ActorEntity.transform.localScale.x < 0f;
+                actor.faceRight = actor.ActorEntity.Body.localScale.x < 0f;
             }
         }
 
@@ -236,7 +238,7 @@ public class RoomData
             node["actorPositions"][i]["actorId"] = actor.actorId;
             node["actorPositions"][i]["x"] = actor.x.ToString();
             node["actorPositions"][i]["y"] = actor.y.ToString();
-            node["actorPositions"][i]["faceRight"] = actor.faceRight.ToString();
+            node["actorPositions"][i]["faceRight"].AsBool = actor.faceRight;
         }
 
         if (actorsToUpdate.Count > 0)

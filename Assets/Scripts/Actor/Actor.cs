@@ -282,6 +282,11 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementDisengageRoutine());
                     break;
                 }
+            case "DashForward":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine());
+                    break;
+                }
         }
     }
 
@@ -381,6 +386,24 @@ public class Actor : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         
+        MovementEffectRoutineInstance = null;
+
+    }
+    
+    IEnumerator MovementDashRoutine()
+    {
+        
+        Vector2 initDir= (Body.localScale.x < 0 ? Vector3.right : Vector3.left);
+
+        float t = 0f;
+        while(t<1f)
+        {
+            t += Time.deltaTime  * 1.25f;
+            Rigid.position += initDir * MovementSpeed * 2f * Time.deltaTime;
+
+            yield return new WaitForFixedUpdate();
+        }
+
         MovementEffectRoutineInstance = null;
 
     }
