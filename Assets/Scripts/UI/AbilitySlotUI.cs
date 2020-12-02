@@ -34,7 +34,7 @@ public class AbilitySlotUI : MonoBehaviour
             return;
         }
 
-        IconImage.sprite = CurrentAbility.Ability.Icon;
+        IconImage.sprite = CurrentAbility.CurrentAbility.Icon;
     }
 
     private void Update()
@@ -55,7 +55,7 @@ public class AbilitySlotUI : MonoBehaviour
                 CooldownImage.gameObject.SetActive(true);
             }
 
-            CooldownImage.fillAmount = CurrentAbility.CurrentCD / CurrentAbility.Ability.CD;
+            CooldownImage.fillAmount = CurrentAbility.CurrentCD / CurrentAbility.CurrentAbility.CD;
             CooldownLabel.text = Mathf.RoundToInt(CurrentAbility.CurrentCD).ToString();
         }
 
@@ -70,7 +70,7 @@ public class AbilitySlotUI : MonoBehaviour
                 CastingCooldownImage.gameObject.SetActive(true);
             }
 
-            CastingCooldownImage.fillAmount = CurrentAbility.CurrentCastingTime / CurrentAbility.Ability.CastingTime;
+            CastingCooldownImage.fillAmount = CurrentAbility.CurrentCastingTime / CurrentAbility.CurrentAbility.CastingTime;
             CastingCooldownLabel.text = Mathf.RoundToInt(CurrentAbility.CurrentCastingTime).ToString();
         }
     }

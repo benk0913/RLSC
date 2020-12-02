@@ -30,6 +30,9 @@ public class Actor : MonoBehaviour
     [SerializeField]
     protected SpriteRenderer Shadow;
 
+    [SerializeField]
+    SpriteColorGroup spriteColorGroup;
+
 
     public bool IsGrounded;
 
@@ -113,8 +116,6 @@ public class Actor : MonoBehaviour
 
     void RefreshActorState()
     {
-
-
         foreach(AbilityState abilityState in State.Abilities)
         {
             if(abilityState.CurrentCD > 0f)
@@ -128,8 +129,16 @@ public class Actor : MonoBehaviour
 
                 if(abilityState.CurrentCastingTime <= 0f && State.IsPreparingAbility)
                 {
-                    AttemptExecuteAbility(abilityState.Ability);
+                    AttemptExecuteAbility(abilityState.CurrentAbility);
                 }
+            }
+        }
+
+        foreach (BuffState buffState in State.Buffs)
+        {
+            if (buffState.CurrentLength > 0f)
+            {
+                buffState.CurrentLength -= Time.deltaTime;
             }
         }
     }
@@ -199,11 +208,11 @@ public class Actor : MonoBehaviour
     {
         if(IsClientControl)
         {
-            AbilityState abilityState = State.Abilities.Find(x=>x.Ability.name == ability.name);
+            AbilityState abilityState = State.Abilities.Find(x=>x.CurrentAbility.name == ability.name);
             
-            abilityState.CurrentCD = abilityState.Ability.CD;
+            abilityState.CurrentCD = abilityState.CurrentAbility.CD;
 
-            ActivateAbilityParamsOnExecute(abilityState.Ability);
+            ActivateParams(abilityState.CurrentAbility.OnExecuteParams);
         }
 
         Animer.Play(ability.ExecuteAnimation);
@@ -227,14 +236,30 @@ public class Actor : MonoBehaviour
 
     public void HitAbility(Actor casterActor, Ability ability, int damage = 0, int currentHp = 0)
     {
-        ActivateAbilityParamsOnHit(casterActor, ability);
+        if (IsClientControl)
+        {
+            ActivateParams(ability.OnHitParams, casterActor);
+        }
 
         if(damage != 0)
         {
-            Animer.Play("Hurt" + UnityEngine.Random.Range(1, 5));
+            HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+            label.transform.position = transform.position;
+            label.SetLabel(damage.ToString(), damage > 0 ? Color.yellow : Color.green);
+            HurtEffect();
         }
         
         State.Data.hp = currentHp;
+    }
+
+    public void HurtEffect()
+    {
+        Animer.Play("Hurt" + UnityEngine.Random.Range(1, 5));
+        spriteColorGroup.SetColor(Color.black);
+        CORE.Instance.DelayedInvokation(0.1f, () =>
+        {
+            spriteColorGroup.SetColor(Color.white);
+        });
     }
 
     public void Ded()
@@ -243,29 +268,78 @@ public class Actor : MonoBehaviour
         State.CurrentControlState = ActorState.ControlState.Stunned;
     }
 
-    #region ClientControl
 
-    public void ActivateAbilityParamsOnExecute(Ability ability)
+
+    public void AddBuff(Buff buff)
     {
-        foreach(AbilityParam param in ability.OnExecuteParams)
+        BuffState state = State.Buffs.Find(x => x.CurrentBuff.name == buff.name);
+
+        if (state == null)
         {
-            if(param.Type.name == "Movement")
-            {
-                ExecuteMovement(param.Value);
-            }
+            State.Buffs.Add(new BuffState(buff));
+        }
+        else
+        {
+            state.CurrentLength = buff.Length;
+        }
+
+        if(IsClientControl)
+        {
+            ActivateParams(state.CurrentBuff.OnStart);
+        }
+
+        if (!string.IsNullOrEmpty(buff.BuffColliderObject))
+        {
+            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(buff.BuffColliderObject);
+            colliderObj.transform.position = transform.position;
+            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
+
+            colliderObj.GetComponent<BuffCollider>().SetInfo(buff, this);
+        }
+
+        if (CORE.Instance.Room.PlayerActor.ActorEntity == this)
+        {
+            CORE.Instance.InvokeEvent("BuffStateChanged");
         }
     }
 
-    public void ActivateAbilityParamsOnHit(Actor casterActor, Ability ability)
+    public void RemoveBuff(Buff buff)
     {
-        foreach (AbilityParam param in ability.OnHitParams)
+        BuffState state = State.Buffs.Find(x => x.CurrentBuff.name == buff.name);
+
+        if (state == null)
         {
-            if (param.Type.name == "Movement")
+            CORE.Instance.LogMessageError("No active buff with the name: " + buff.name);
+            return;
+        }
+
+        State.Buffs.Remove(state);
+
+        if (IsClientControl)
+        {
+            ActivateParams(state.CurrentBuff.OnEnd);
+        }
+
+        if (CORE.Instance.Room.PlayerActor.ActorEntity == this)
+        {
+            CORE.Instance.InvokeEvent("BuffStateChanged");
+        }
+    }
+
+    #region ClientControl
+
+    public void ActivateParams(List<AbilityParam> onExecuteParams, Actor casterActor = null)
+    {
+        foreach(AbilityParam param in onExecuteParams)
+        {
+            if(param.Type.name == "Movement")
             {
                 ExecuteMovement(param.Value, casterActor);
             }
         }
     }
+
 
     public void ExecuteMovement(string movementKey, Actor casterActor = null)
     {
@@ -295,6 +369,7 @@ public class Actor : MonoBehaviour
         }
     }
 
+
     public void AttemptMoveLeft()
     {
         if (!CanAttemptToMove)
@@ -317,8 +392,7 @@ public class Actor : MonoBehaviour
         Rigid.position += Vector2.right * Time.deltaTime * MovementSpeed;
         Body.localScale = new Vector3(-1f, 1f, 1f);
     }
-
-
+    
     public void AttemptJump()
     {
         if (!CanAttemptToMove)
@@ -334,25 +408,26 @@ public class Actor : MonoBehaviour
         Rigid.AddForce(Vector2.up * JumpHeight, ForceMode2D.Impulse);
     }
 
+
     public void AttemptPrepareAbility(int abilityIndex)
     {
-        if(!IsAbleToUseAbility(State.Abilities[abilityIndex].Ability))
+        if(!IsAbleToUseAbility(State.Abilities[abilityIndex].CurrentAbility))
         {
             return;
         }
 
         AbilityState abilityState = State.Abilities[abilityIndex];
 
-        abilityState.CurrentCastingTime = abilityState.Ability.CastingTime;
+        abilityState.CurrentCastingTime = abilityState.CurrentAbility.CastingTime;
 
         State.CurrentControlState = ActorState.ControlState.Immobile;
 
-        PrepareAbility(abilityState.Ability);
+        PrepareAbility(abilityState.CurrentAbility);
 
         
 
         JSONNode node = new JSONClass();
-        node["abilityName"] = abilityState.Ability.name;
+        node["abilityName"] = abilityState.CurrentAbility.name;
         node["actorId"] = State.Data.actorId;
         SocketHandler.Instance.SendEvent("prepared_ability", node);
 
@@ -372,7 +447,7 @@ public class Actor : MonoBehaviour
 
     public bool IsAbleToUseAbility(Ability ability)
     {
-        AbilityState abilityState = State.Abilities.Find(x => x.Ability.name == ability.name);
+        AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
         if(State.CurrentControlState == ActorState.ControlState.Silenced || State.CurrentControlState == ActorState.ControlState.Stunned)
         {
@@ -403,8 +478,8 @@ public class Actor : MonoBehaviour
         float t = 0f;
         while(t<1f)
         {
-            t += Time.deltaTime  * 1.25f;
-            Rigid.position += initDir * MovementSpeed * 2f * Time.deltaTime;
+            t += Time.deltaTime  * 2f;
+            Rigid.position += initDir * MovementSpeed * 4f * Time.deltaTime;
 
             yield return new WaitForFixedUpdate();
         }
@@ -420,7 +495,7 @@ public class Actor : MonoBehaviour
         while (t < 1f)
         {
             t += Time.deltaTime * 1.25f;
-            Rigid.position += Vector2.Lerp(Rigid.position, caster.transform.position, t);
+            Rigid.position = Vector2.Lerp(Rigid.position, caster.transform.position, t);
 
             yield return new WaitForFixedUpdate();
         }
@@ -441,6 +516,8 @@ public class ActorState
 
     public List<AbilityState> Abilities = new List<AbilityState>();
 
+    public List<BuffState> Buffs = new List<BuffState>();
+
     public bool IsPreparingAbility;
 
     public ControlState CurrentControlState = ControlState.Normal;
@@ -459,7 +536,7 @@ public class ActorState
 [Serializable]
 public class AbilityState
 {
-    public Ability Ability;
+    public Ability CurrentAbility;
     public float CurrentCD;
     public float CurrentCastingTime;
 
@@ -473,7 +550,22 @@ public class AbilityState
 
     public AbilityState(Ability ability)
     {
-        this.Ability = ability;
+        this.CurrentAbility = ability;
+    }
+
+
+}
+
+[Serializable]
+public class BuffState
+{
+    public Buff CurrentBuff;
+    public float CurrentLength;
+    
+    public BuffState(Buff buff)
+    {
+        this.CurrentBuff = buff;
+        CurrentLength = CurrentBuff.Length;
     }
 
 

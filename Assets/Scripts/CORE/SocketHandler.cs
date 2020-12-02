@@ -59,6 +59,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_execute_ability", OnActorExecuteAbility));
         SocketEventListeners.Add(new SocketEventListener("actor_ability_hit", OnActorAbilityHit));
         SocketEventListeners.Add(new SocketEventListener("actor_ded", OnActorDed));
+        SocketEventListeners.Add(new SocketEventListener("actor_add_buff", OnActorAddBuff));
+        SocketEventListeners.Add(new SocketEventListener("actor_remove_buff", OnActorRemoveBuff));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -446,12 +448,12 @@ public class SocketHandler : MonoBehaviour
 
     public void OnActorAbilityHit(string eventName, JSONNode data)
     {
-        string givenActorId = data["actorId"].Value;
+        string givenActorId = data["targetActorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
         if (actorDat == null)
         {
-            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            CORE.Instance.LogMessageError("No actor with ID " + data["targetActorId"].Value);
             return;
         }
 
@@ -490,6 +492,45 @@ public class SocketHandler : MonoBehaviour
 
         actorDat.ActorEntity.Ded();
 
+
+    }
+
+    public void OnActorAddBuff(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+
+        string buffName = data["buffName"];
+
+        Buff buff = CORE.Instance.Data.content.Buffs.Find(x => x.name == buffName);
+        
+        actorDat.ActorEntity.AddBuff(buff);
+
+
+    }
+
+    public void OnActorRemoveBuff(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+
+        string buffName = data["buffName"];
+
+        Buff buff = CORE.Instance.Data.content.Buffs.Find(x => x.name == buffName);
+
+        actorDat.ActorEntity.RemoveBuff(buff);
 
     }
     #endregion

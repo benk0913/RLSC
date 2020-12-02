@@ -12,8 +12,16 @@ public class CameraChaseEntity : MonoBehaviour
 
     public float YOffset = 3f;
 
+    public float Extrapolation = 1f;
+
+    Vector3 deltaPosition;
+    Vector3 lastPosition;
+
     void LateUpdate()
     {
+        deltaPosition = transform.position - lastPosition;
+        lastPosition = transform.position;
+
         if (ReferenceObject == null)
         {
             ActorData foundActor = CORE.Instance.Room.PlayerActor;
@@ -25,9 +33,12 @@ public class CameraChaseEntity : MonoBehaviour
 
             return;
         }
+        
+        Vector3 targetPosition = new Vector3(ReferenceObject.transform.position.x + ((deltaPosition.x > 0? 1f:-1f)*Extrapolation), ReferenceObject.transform.position.y + YOffset, transform.position.z);
 
+        
         transform.position = Vector3.Lerp(transform.position,
-            new Vector3(ReferenceObject.transform.position.x, ReferenceObject.transform.position.y + YOffset, transform.position.z), 
+            targetPosition, 
             Speed * Time.deltaTime);
     }
 }

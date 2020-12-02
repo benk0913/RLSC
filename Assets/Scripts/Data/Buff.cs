@@ -12,8 +12,14 @@ public class Buff : ScriptableObject
     [PreviewSprite]
     public Sprite Icon;
 
+    [JsonIgnore]
+    public string BuffColliderObject;
+
     public float Length = 1f;
     public bool isDebuff = false;
+
+    [JsonIgnore]
+    public bool ShowBuffIcon = true;
     
     public AttributeData Attributes;
 
