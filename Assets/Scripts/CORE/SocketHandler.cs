@@ -604,16 +604,16 @@ public class SocketEventListener
     {
         JSONNode data;
 
-        try
-        {
+        //try
+        //{
             data = JSON.Parse(args[0].ToString());
             //data = (JSONNode)args[0];
             InternalCallback.Invoke(packet.EventName,data);
-        }
-        catch
-        {
-            CORE.Instance.LogMessageError(string.Format("Casting Data to JSON Error... {0}", args[0]));
-        }
+        //}
+        //catch
+        //{
+        //    CORE.Instance.LogMessageError(string.Format("Casting Data to JSON Error... {0}", args[0]));
+        //}
     }
 
 }
