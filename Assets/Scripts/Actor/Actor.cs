@@ -372,26 +372,25 @@ public class Actor : MonoBehaviour
 
     public void AttemptMoveLeft()
     {
-        Body.localScale = new Vector3(1f, 1f, 1f);
-
         if (!CanAttemptToMove)
         {
             return;
         }
 
         Rigid.position += Vector2.left * Time.deltaTime * MovementSpeed;
+
+        Body.localScale = new Vector3(1f, 1f, 1f);
     }
 
     public void AttemptMoveRight()
     {
-        Body.localScale = new Vector3(-1f, 1f, 1f);
-
         if (!CanAttemptToMove)
         {
             return;
         }
 
         Rigid.position += Vector2.right * Time.deltaTime * MovementSpeed;
+        Body.localScale = new Vector3(-1f, 1f, 1f);
     }
     
     public void AttemptJump()
@@ -528,7 +527,6 @@ public class ActorState
     public enum ControlState
     {
         Normal,
-        Stuck,
         Immobile,
         Silenced,
         Stunned
