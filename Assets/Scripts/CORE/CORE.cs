@@ -212,7 +212,13 @@ public class RoomData
             return;
         }
 
-        actor.ActorEntity.gameObject.SetActive(false);
+        CORE.Destroy(actor.ActorEntity.gameObject);
+
+        if(PlayerActor == actor)
+        {
+            PlayerActor = null;
+        }
+
         Actors.Remove(actor);
     }
 
