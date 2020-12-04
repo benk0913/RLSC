@@ -45,6 +45,8 @@ public class Actor : MonoBehaviour
     protected Vector3 lastPosition;
 
 
+    Ability lastAbility;
+
     //TODO Replace with  actor atribtes
     public float MovementSpeed = 1f;
 
@@ -202,6 +204,19 @@ public class Actor : MonoBehaviour
     public void PrepareAbility(Ability ability)
     {
         Animer.Play(ability.PreparingAnimation);
+
+        if(!string.IsNullOrEmpty(ability.PrepareAbilitySound))
+            AudioControl.Instance.PlayInPosition(ability.PrepareAbilitySound,transform.position);
+
+        if (!string.IsNullOrEmpty(ability.PrepareAbilityColliderObject))
+        {
+            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(ability.PrepareAbilityColliderObject);
+            colliderObj.transform.position = transform.position;
+            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
+
+            colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
+        }
     }
 
     public void ExecuteAbility(Ability ability, Vector3 position = default, bool faceRight = default)
@@ -213,9 +228,14 @@ public class Actor : MonoBehaviour
             abilityState.CurrentCD = abilityState.CurrentAbility.CD;
 
             ActivateParams(abilityState.CurrentAbility.OnExecuteParams);
+
+            lastAbility = ability;
         }
 
         Animer.Play(ability.ExecuteAnimation);
+
+        if (!string.IsNullOrEmpty(ability.ExecuteAbilitySound))
+            AudioControl.Instance.PlayInPosition(ability.ExecuteAbilitySound, transform.position); 
 
         transform.position = position;
         Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
@@ -241,7 +261,10 @@ public class Actor : MonoBehaviour
             ActivateParams(ability.OnHitParams, casterActor);
         }
 
-        if(damage != 0)
+        if (!string.IsNullOrEmpty(ability.HitAbilitySound))
+            AudioControl.Instance.PlayInPosition(ability.HitAbilitySound, transform.position);
+
+        if (damage != 0)
         {
             HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
             label.transform.position = transform.position;
@@ -337,6 +360,15 @@ public class Actor : MonoBehaviour
             {
                 ExecuteMovement(param.Value, casterActor);
             }
+            if (param.Type.name == "Reset Last CD")
+            {
+                if(lastAbility == null)
+                {
+                    continue;
+                }
+
+                State.Abilities.Find(x => x.CurrentAbility.name == lastAbility.name).CurrentCD = 0f;
+            }
         }
     }
 
@@ -406,6 +438,8 @@ public class Actor : MonoBehaviour
         }
 
         Rigid.AddForce(Vector2.up * JumpHeight, ForceMode2D.Impulse);
+
+        AudioControl.Instance.PlayInPosition("_ound_bloop",transform.position);
     }
 
 

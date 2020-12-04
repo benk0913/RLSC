@@ -15,6 +15,18 @@ public class Ability : ScriptableObject
     [JsonIgnore]
     public string AbilityColliderObject;
 
+    [JsonIgnore]
+    public string PrepareAbilityColliderObject;
+
+    [JsonIgnore]
+    public string PrepareAbilitySound;
+
+    [JsonIgnore]
+    public string ExecuteAbilitySound;
+
+    [JsonIgnore]
+    public string HitAbilitySound;
+
     public float CD = 1f;
     public float CastingTime = 0.003f;//0.003f is the min (Lag Compensation).
 

@@ -421,7 +421,11 @@ public class SocketHandler : MonoBehaviour
         }
 
         string abilityName = data["abilityName"];
-        actorDat.ActorEntity.PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
+
+        if (!actorDat.IsPlayer)
+        {
+            actorDat.ActorEntity.PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
+        }
     }
 
     public void OnActorExecuteAbility(string eventName, JSONNode data)
@@ -443,7 +447,7 @@ public class SocketHandler : MonoBehaviour
 
         actorDat.ActorEntity.ExecuteAbility(ability,position,faceRight);
 
-
+        
     }
 
     public void OnActorAbilityHit(string eventName, JSONNode data)

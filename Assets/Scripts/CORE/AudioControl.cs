@@ -42,7 +42,7 @@ public class AudioControl : MonoBehaviour {
         return m_dicVolumeGroup[tag];
     }
 
-    public void PlayInPosition(string gClip, Vector3 pos, float MaxDistance = 47f)
+    public void PlayInPosition(string gClip, Vector3 pos, float MaxDistance = 200f)
     {
         GameObject currentInstance = null;
 
