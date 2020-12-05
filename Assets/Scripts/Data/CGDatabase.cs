@@ -48,5 +48,6 @@ public class DatabaseContent
     public float KnockbackResistance;
     public float SmallerColliderSize;
     public float Threat;
+    public float MovementSpeed = 12f;
 
 }

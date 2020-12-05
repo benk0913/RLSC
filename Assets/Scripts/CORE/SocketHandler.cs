@@ -564,6 +564,9 @@ public class ActorData
     public string actorType;
     public int hp;
 
+    [JsonIgnore]//TODO SPEED_IMP_SERVER
+    public float movementSpeed = 12;
+
     [JsonIgnore]
     public Actor ActorEntity;
 
@@ -580,6 +583,9 @@ public class ActorData
         this.scene = gScene;
         this.name = gName;
         this.classJob = gClassJob;
+
+        //TODO SPEED_IMP_SERVER
+        movementSpeed = CORE.Instance.Data.content.MovementSpeed;
 
         if (gActorObject != null)
         {

@@ -46,12 +46,9 @@ public class Actor : MonoBehaviour
 
 
     Ability lastAbility;
-
-    //TODO Replace with  actor atribtes
-    public float MovementSpeed = 1f;
+    
 
     public float JumpHeight = 1f;
-    //
 
     public float InterpolationSpeed = 1f;
 
@@ -322,6 +319,11 @@ public class Actor : MonoBehaviour
             ActivateParams(state.CurrentBuff.OnStart);
         }
 
+        if (IsClientControl)
+        {
+            AddRelevantAttributes(state.CurrentBuff.Attributes);
+        }
+
         if (!string.IsNullOrEmpty(buff.BuffColliderObject))
         {
             GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(buff.BuffColliderObject);
@@ -355,6 +357,11 @@ public class Actor : MonoBehaviour
             ActivateParams(state.CurrentBuff.OnEnd);
         }
 
+        if (IsClientControl)
+        {
+            RemoveRelevantAttributes(state.CurrentBuff.Attributes);
+        }
+
         if (CORE.Instance.Room.PlayerActor.ActorEntity == this)
         {
             CORE.Instance.InvokeEvent("BuffStateChanged");
@@ -383,9 +390,28 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void ActivateRelevantAttributes(AttributeData attributes)
+    public void AddRelevantAttributes(AttributeData attributes)
     {
+        if(attributes.MovementSpeedBoost != 0f)//TODO SPEED_IMP_SERVER
+        {
+            State.Data.movementSpeed += CORE.Instance.Data.content.MovementSpeed * attributes.MovementSpeedBoost;
+            if(State.Data.movementSpeed < 0)
+            {
+                State.Data.movementSpeed = 0f;
+            }
+        }
+    }
 
+    public void RemoveRelevantAttributes(AttributeData attributes)
+    {
+        if (attributes.MovementSpeedBoost != 0f)//TODO SPEED_IMP_SERVER
+        {
+            State.Data.movementSpeed -= CORE.Instance.Data.content.MovementSpeed * attributes.MovementSpeedBoost;
+            if (State.Data.movementSpeed < 0)
+            {
+                State.Data.movementSpeed = 0f;
+            }
+        }
     }
 
 
@@ -425,7 +451,7 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        Rigid.position += Vector2.left * Time.deltaTime * MovementSpeed;
+        Rigid.position += Vector2.left * Time.deltaTime * State.Data.movementSpeed;
 
         Body.localScale = new Vector3(1f, 1f, 1f);
     }
@@ -437,7 +463,7 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        Rigid.position += Vector2.right * Time.deltaTime * MovementSpeed;
+        Rigid.position += Vector2.right * Time.deltaTime * State.Data.movementSpeed;
         Body.localScale = new Vector3(-1f, 1f, 1f);
     }
     
@@ -529,7 +555,7 @@ public class Actor : MonoBehaviour
         while(t<1f)
         {
             t += Time.deltaTime  * 2f;
-            Rigid.position += initDir * MovementSpeed * 4f * Time.deltaTime;
+            Rigid.position += initDir * State.Data.movementSpeed * 4f * Time.deltaTime;
 
             yield return new WaitForFixedUpdate();
         }
