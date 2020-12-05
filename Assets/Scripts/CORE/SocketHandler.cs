@@ -64,7 +64,7 @@ public class SocketHandler : MonoBehaviour
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
-            listener.InternalCallback += AddEventListenerLogging;
+            listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
         }
     }
 

@@ -264,6 +264,16 @@ public class Actor : MonoBehaviour
         if (!string.IsNullOrEmpty(ability.HitAbilitySound))
             AudioControl.Instance.PlayInPosition(ability.HitAbilitySound, transform.position);
 
+        if (!string.IsNullOrEmpty(ability.HitAbilityColliderObject))
+        {
+            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(ability.HitAbilityColliderObject);
+            colliderObj.transform.position = transform.position;
+            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
+
+            colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
+        }
+
         if (damage != 0)
         {
             HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
@@ -299,7 +309,8 @@ public class Actor : MonoBehaviour
 
         if (state == null)
         {
-            State.Buffs.Add(new BuffState(buff));
+            state = new BuffState(buff);
+            State.Buffs.Add(state);
         }
         else
         {
@@ -370,6 +381,11 @@ public class Actor : MonoBehaviour
                 State.Abilities.Find(x => x.CurrentAbility.name == lastAbility.name).CurrentCD = 0f;
             }
         }
+    }
+
+    public void ActivateRelevantAttributes(AttributeData attributes)
+    {
+
     }
 
 

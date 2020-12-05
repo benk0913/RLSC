@@ -12,6 +12,10 @@ public class AbilityCollider : MonoBehaviour
     public UnityEvent OnHitEvent;
 
     public bool StickToActor;
+    public bool StickToSkilledShot;
+
+    [SerializeField]
+    Transform SkilledShotPoint;
 
 
     private void Update()
@@ -26,6 +30,15 @@ public class AbilityCollider : MonoBehaviour
     {
         AbilitySource = abilitySource;
         ActorSource = actorSource;
+
+        if(StickToSkilledShot)
+        {
+            RaycastHit2D rhit = Physics2D.Raycast(SkilledShotPoint.position, Vector2.down, Mathf.Infinity);
+            if(rhit)
+            {
+                transform.position = rhit.point;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -39,24 +52,20 @@ public class AbilityCollider : MonoBehaviour
                 return;
             }
 
+            OnHitEvent?.Invoke();
+
             if (actorVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId) //is not the players actor
             {
                 return;
             }
 
-            HitActor(actorVictim);
+            JSONNode node = new JSONClass();
+            node["casterActorId"] = ActorSource.State.Data.actorId;
+            node["targetActorId"] = actorVictim.State.Data.actorId;
+            node["abilityName"] = AbilitySource.name;
+
+            SocketHandler.Instance.SendEvent("ability_hit", node);
         }
     }
 
-    public void HitActor(Actor targetActor)
-    {
-        OnHitEvent?.Invoke();
-
-        JSONNode node = new JSONClass();
-        node["casterActorId"] = ActorSource.State.Data.actorId;
-        node["targetActorId"] = targetActor.State.Data.actorId;
-        node["abilityName"] = AbilitySource.name;
-
-        SocketHandler.Instance.SendEvent("ability_hit",node);
-    }
 }
