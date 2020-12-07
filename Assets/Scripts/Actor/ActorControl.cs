@@ -19,6 +19,11 @@ public class ActorControl : MonoBehaviour
 
     private void Update()
     {
+        if(CurrentActor.ControlSource != ControlSourceType.Player)
+        {
+            return;
+        }
+
         if(internalJumpCooldown > 0f)
         {
             internalJumpCooldown -= 1f * Time.deltaTime;

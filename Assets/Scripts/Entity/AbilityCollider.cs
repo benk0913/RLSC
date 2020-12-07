@@ -24,13 +24,44 @@ public class AbilityCollider : MonoBehaviour
     [SerializeField]
     string onHitObject;
 
+    [SerializeField]
+    Transform OnHitSource;
+
+    public string AudioOnHit;
+
     private void Awake()
     {
-        OnHitEvent.AddListener(() =>
+        if (!string.IsNullOrEmpty(onHitObject))
         {
-            GameObject obj = ResourcesLoader.Instance.GetRecycledObject(onHitObject);
-            obj.transform.position = transform.position;
-        });
+            OnHitEvent.AddListener(() =>
+            {
+                GameObject obj = ResourcesLoader.Instance.GetRecycledObject(onHitObject);
+                if (OnHitSource != null)
+                {
+                    obj.transform.position = OnHitSource.position;
+                }
+                else
+                {
+                    obj.transform.position = transform.position;
+                }
+            });
+        }
+
+        if (!string.IsNullOrEmpty(AudioOnHit))
+        {
+            OnHitEvent.AddListener(() =>
+            {
+
+                if (OnHitSource != null)
+                {
+                    AudioControl.Instance.PlayInPosition(AudioOnHit, OnHitSource.position);
+                }
+                else
+                {
+                    AudioControl.Instance.PlayInPosition(AudioOnHit, transform.position);
+                }
+            });
+        }
     }
 
     private void Update()

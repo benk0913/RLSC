@@ -9,22 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Rock
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Rock Stun
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 61063bdfbc8e6024fb2782d846fc154a, type: 3}
-  HitAbilityColliderObject: MudshotHit
-  AbilityColliderObject: ThrowRockCollider
-  PrepareAbilityColliderObject: PrepareThrowRock
-  PrepareAbilitySound: sound_earth_1
-  ExecuteAbilitySound: 
-  HitAbilitySound: 
-  CD: 5
-  CastingTime: 1
-  PreparingAnimation: Cast3
-  ExecuteAnimation: Execute3
+  BuffColliderObject: 
+  Length: 5
+  isDebuff: 1
+  ShowBuffIcon: 1
   Attributes:
-    Power: 2
+    Power: 0
     HP: 0
     Defense: 0
     CDReduction: 0
@@ -41,11 +35,11 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeedBoost: 0
-  OnExecuteParams: []
-  OnHitParams:
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
-    Targets: 0
-    Value: 15
-  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
-    Targets: 0
-    Value: Rock Stun
+  OnStart:
+  - Type: {fileID: 11400000, guid: 5b84a38c4767d0f4ca7d6a6d7238cb86, type: 2}
+    Targets: 2
+    Value: Stunned
+  OnEnd:
+  - Type: {fileID: 11400000, guid: 5b84a38c4767d0f4ca7d6a6d7238cb86, type: 2}
+    Targets: 2
+    Value: Normal

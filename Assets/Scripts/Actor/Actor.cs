@@ -411,8 +411,20 @@ public class Actor : MonoBehaviour
 
                 State.Abilities.Find(x => x.CurrentAbility.name == lastAbility.name).CurrentCD = 0f;
             }
+            if (param.Type.name == "Change Control State")
+            {
+                if (lastAbility == null)
+                {
+                    continue;
+                }
+
+                State.CurrentControlState = (ActorState.ControlState) Enum.Parse(typeof(ActorState.ControlState), param.Value);
+            }
         }
     }
+
+
+    
 
     public void AddRelevantAttributes(AttributeData attributes)
     {
