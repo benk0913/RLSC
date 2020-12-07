@@ -28,6 +28,8 @@ public class DatabaseContent
 
     public List<Buff> Buffs = new List<Buff>();
 
+    public List<SceneInfo> Scenes = new List<SceneInfo>();
+
     public string StartingScene;
 
     public string HumanPrefab;
@@ -50,4 +52,20 @@ public class DatabaseContent
     public float Threat;
     public float MovementSpeed = 12f;
 
+}
+
+[Serializable]
+public class SceneInfo
+{
+    public string sceneName;
+    public List<MobSpawn> Mobs = new List<MobSpawn>();
+}
+
+[Serializable]
+public class MobSpawn
+{
+    public string monsterName;
+    public float positionX;
+    public float positionY;
+    
 }
