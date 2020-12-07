@@ -1,4 +1,5 @@
-﻿using SimpleJSON;
+﻿using Newtonsoft.Json;
+using SimpleJSON;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,6 +34,10 @@ public class CORE : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void Start()
+    {
+        SubscribeToEvent("ActorDied", Room.RefreshThreat);
+    }
 
 
     public static void ClearContainer(Transform container)
@@ -192,6 +197,33 @@ public class RoomData
 
     public ActorData PlayerActor;
 
+    [JsonIgnore]
+    public Actor MostThreateningActor;
+
+    public Actor GetMostThreateningActor()
+    {
+        Actor mostThreatAct = null;
+        float mostThreat = Mathf.NegativeInfinity;
+        for(int i=0;i<Actors.Count;i++)
+        {
+            if (Actors[i].ActorEntity.State.Data.hp <= 0)
+            {
+                continue;
+            }
+
+            float currentThreat = Actors[i].ActorEntity.State.Data.threat;//TODO THREAT_IMP_SERVER
+
+            if (currentThreat > mostThreat)
+            {
+                mostThreatAct = Actors[i].ActorEntity;
+                mostThreat = currentThreat;
+            }
+        }
+
+        return mostThreatAct;
+        
+    }
+
     public void ActorJoined(ActorData actor)
     {
         Actors.Add(actor);
@@ -200,6 +232,8 @@ public class RoomData
         {
             PlayerActor = actor;
         }
+
+        RefreshThreat();
     }
 
     public void ActorLeft(string actorID)
@@ -220,6 +254,13 @@ public class RoomData
         }
 
         Actors.Remove(actor);
+
+        RefreshThreat();
+    }
+
+    public void RefreshThreat()
+    {
+        MostThreateningActor = GetMostThreateningActor();
     }
 
     public void SendActorsPositions()

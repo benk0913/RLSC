@@ -13,10 +13,25 @@ public class AbilityCollider : MonoBehaviour
 
     public bool StickToActor;
     public bool StickToSkilledShot;
+    public bool HitEventOnWalls;
 
     [SerializeField]
     Transform SkilledShotPoint;
 
+    [SerializeField]
+    Vector3 InitForce;
+
+    [SerializeField]
+    string onHitObject;
+
+    private void Awake()
+    {
+        OnHitEvent.AddListener(() =>
+        {
+            GameObject obj = ResourcesLoader.Instance.GetRecycledObject(onHitObject);
+            obj.transform.position = transform.position;
+        });
+    }
 
     private void Update()
     {
@@ -38,6 +53,11 @@ public class AbilityCollider : MonoBehaviour
             {
                 transform.position = rhit.point;
             }
+        }
+
+        if(InitForce != default)
+        {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(-1f * transform.localScale.x * InitForce.x,InitForce.y));
         }
     }
 
@@ -65,6 +85,13 @@ public class AbilityCollider : MonoBehaviour
             node["abilityName"] = AbilitySource.name;
 
             SocketHandler.Instance.SendEvent("ability_hit", node);
+        }
+        else if(other.tag == "Untagged")
+        {
+            if(HitEventOnWalls)
+            {
+                OnHitEvent?.Invoke();
+            }
         }
     }
 

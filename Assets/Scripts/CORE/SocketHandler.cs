@@ -389,6 +389,7 @@ public class SocketHandler : MonoBehaviour
     protected void OnActorBitch(string eventName, JSONNode data)
     {
         CORE.Instance.IsBitch = data["is_bitch"].AsBool;
+        CORE.Instance.InvokeEvent("BitchChanged");
     }
 
 
@@ -566,6 +567,9 @@ public class ActorData
 
     [JsonIgnore]//TODO SPEED_IMP_SERVER
     public float movementSpeed = 12;
+
+    [JsonIgnore]//TODO THREAT_IMP_SERVER
+    public float threat;
 
     [JsonIgnore]
     public Actor ActorEntity;

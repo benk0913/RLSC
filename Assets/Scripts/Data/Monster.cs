@@ -10,8 +10,7 @@ public class Monster : ScriptableObject
     public AttributeData Attributes;
 
     public AIChaseBehaviour ChaseBehaviour;
-
-    public List<string> Abilities = new List<string>();
+    
 
 }
 

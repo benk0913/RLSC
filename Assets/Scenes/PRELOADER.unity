@@ -823,6 +823,7 @@ GameObject:
   - component: {fileID: 231128629}
   - component: {fileID: 231128634}
   - component: {fileID: 231128628}
+  - component: {fileID: 231128635}
   m_Layer: 0
   m_Name: CORE
   m_TagString: Untagged
@@ -1003,6 +1004,8 @@ MonoBehaviour:
       classJob: 
       actorType: 
       hp: 0
+      movementSpeed: 0
+      threat: 0
       ActorEntity: {fileID: 0}
     SelectedCharacterIndex: 0
 --- !u!114 &231128633
@@ -1031,7 +1034,10 @@ MonoBehaviour:
       classJob: 
       actorType: 
       hp: 0
+      movementSpeed: 0
+      threat: 0
       ActorEntity: {fileID: 0}
+    MostThreateningActor: {fileID: 0}
   DEBUG: 1
   DEBUG_SPAMMY_EVENTS: 0
   IsBitch: 0
@@ -1060,6 +1066,19 @@ MonoBehaviour:
     KeyCode: 107
   - Name: Ability2
     KeyCode: 108
+--- !u!114 &231128635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231128627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f69d8e2e697aed4896de8e1352c3fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Test: 0
 --- !u!1 &302743570
 GameObject:
   m_ObjectHideFlags: 0

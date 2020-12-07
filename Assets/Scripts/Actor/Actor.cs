@@ -19,6 +19,9 @@ public class Actor : MonoBehaviour
     public ActorControl PlayerControl;
 
     [SerializeField]
+    public ActorAI AIControl;
+
+    [SerializeField]
     protected Animator Animer;
 
     [SerializeField]
@@ -56,17 +59,25 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return PlayerControl.enabled;
+            return ControlSource != ControlSourceType.Server;
         }
     }
+    public ControlSourceType ControlSource;
 
     public bool CanAttemptToMove
     {
         get
         {
+            return CanLookAround && MovementEffectRoutineInstance == null;
+        }
+    }
+
+    public bool CanLookAround
+    {
+        get
+        {
             return State.CurrentControlState != ActorState.ControlState.Immobile
-            && State.CurrentControlState != ActorState.ControlState.Stunned
-            && MovementEffectRoutineInstance == null;
+            && State.CurrentControlState != ActorState.ControlState.Stunned;
         }
     }
 
@@ -83,15 +94,29 @@ public class Actor : MonoBehaviour
             this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName)));
         }
 
-        if (data.IsPlayer)
+        RefreshControlSource();
+    }
+
+    public void RefreshControlSource()
+    {
+        if (State.Data.IsPlayer)
         {
-            PlayerControl.enabled = true;
+            ControlSource = ControlSourceType.Player;
         }
         else
         {
-            PlayerControl.enabled = false;
+            if (AIControl.MonsterRef != null && CORE.Instance.IsBitch)
+            {
+                ControlSource = ControlSourceType.AI;
+            }
+            else
+            {
+                ControlSource = ControlSourceType.Server;
+            }
         }
     }
+
+
 
     protected void FixedUpdate()
     {
@@ -105,10 +130,7 @@ public class Actor : MonoBehaviour
 
     protected void LateUpdate()
     {
-        if (IsClientControl)
-        {
-            RefreshActorState();
-        }
+        RefreshActorState();
 
         RefreshGroundedState();
     }
@@ -296,6 +318,8 @@ public class Actor : MonoBehaviour
     {
         Animer.Play("Dead1");
         State.CurrentControlState = ActorState.ControlState.Stunned;
+
+        CORE.Instance.InvokeEvent("ActorDied");
     }
 
 
@@ -446,25 +470,36 @@ public class Actor : MonoBehaviour
 
     public void AttemptMoveLeft()
     {
+        if(!CanLookAround)
+        {
+            return;
+        }
+
+        Body.localScale = new Vector3(1f, 1f, 1f);
+
         if (!CanAttemptToMove)
         {
             return;
         }
 
         Rigid.position += Vector2.left * Time.deltaTime * State.Data.movementSpeed;
-
-        Body.localScale = new Vector3(1f, 1f, 1f);
     }
 
     public void AttemptMoveRight()
     {
+        if (!CanLookAround)
+        {
+            return;
+        }
+
+        Body.localScale = new Vector3(-1f, 1f, 1f);
+
         if (!CanAttemptToMove)
         {
             return;
         }
 
         Rigid.position += Vector2.right * Time.deltaTime * State.Data.movementSpeed;
-        Body.localScale = new Vector3(-1f, 1f, 1f);
     }
     
     public void AttemptJump()
@@ -645,4 +680,11 @@ public class BuffState
     }
 
 
+}
+
+public enum ControlSourceType
+{
+    Player,
+    AI,
+    Server
 }
