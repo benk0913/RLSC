@@ -564,6 +564,21 @@ public class ActorData
     public string classJob;
     public string actorType;
     public int hp;
+    public bool isMob
+    {
+        get
+        {
+            return actorType == "mob";
+        }
+    }
+
+    public bool isCharacter
+    {
+        get
+        {
+            return !isMob;
+        }
+    }
 
     [JsonIgnore]//TODO SPEED_IMP_SERVER
     public float movementSpeed = 12;

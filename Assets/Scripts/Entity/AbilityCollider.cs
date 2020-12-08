@@ -29,6 +29,8 @@ public class AbilityCollider : MonoBehaviour
 
     public string AudioOnHit;
 
+    public TargetType targetType = TargetType.Enemies;
+
     private void Awake()
     {
         if (!string.IsNullOrEmpty(onHitObject))
@@ -96,17 +98,48 @@ public class AbilityCollider : MonoBehaviour
     {
         if(other.tag == "Actor")
         {   
+
             Actor actorVictim = other.GetComponent<Actor>();
 
-            if(actorVictim == ActorSource) // is the initiator
+
+            
+            if(targetType == TargetType.Self)
             {
-                return;
+                if(actorVictim != ActorSource)
+                {
+                    return;
+                }
+            }
+            else if (targetType == TargetType.Enemies)
+            {
+                if (ActorSource.State.Data.isMob && actorVictim.State.Data.isMob)
+                {
+                    return;
+                }
+
+                if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isCharacter)
+                {
+                    return;
+                }
+            }
+            else if (targetType == TargetType.Friends)
+            {
+                if (ActorSource.State.Data.isMob && actorVictim.State.Data.isCharacter)
+                {
+                    return;
+                }
+
+                if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isMob)
+                {
+                    return;
+                }
             }
 
             OnHitEvent?.Invoke();
 
             if (actorVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId) //is not the players actor
             {
+                
                 return;
             }
 

@@ -129,9 +129,16 @@ public class CORE : MonoBehaviour
 
     public void SpawnActor(ActorData actorData)
     {
+        GameObject actorObject;
 
-
-        GameObject actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.actorType);
+        if (actorData.isMob)
+        {
+            actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.name);
+        }
+        else
+        {
+            actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.actorType);
+        }
         actorObject.transform.position = new Vector3(actorData.x,actorData.y,0f);
         actorData.ActorEntity = actorObject.GetComponent<Actor>();
         actorObject.GetComponent<Actor>().SetActorInfo(actorData);
@@ -206,7 +213,7 @@ public class RoomData
         float mostThreat = Mathf.NegativeInfinity;
         for(int i=0;i<Actors.Count;i++)
         {
-            if (Actors[i].ActorEntity.State.Data.hp <= 0)
+            if (Actors[i].ActorEntity.State.Data.hp <= 0 || Actors[i].isMob)
             {
                 continue;
             }
@@ -233,7 +240,10 @@ public class RoomData
             PlayerActor = actor;
         }
 
-        RefreshThreat();
+        if (!actor.isMob)
+        {
+            RefreshThreat();
+        }
     }
 
     public void ActorLeft(string actorID)
@@ -255,7 +265,10 @@ public class RoomData
 
         Actors.Remove(actor);
 
-        RefreshThreat();
+        if (!actor.isMob)
+        {
+            RefreshThreat();
+        }
     }
 
     public void RefreshThreat()
@@ -270,7 +283,7 @@ public class RoomData
         for(int i=0;i<Actors.Count;i++)
         {
             ActorData actor = Actors[i];
-            if (actor.IsPlayer && actor.ActorEntity != null)
+            if ((actor.IsPlayer || (actor.isMob && CORE.Instance.IsBitch)) && actor.ActorEntity != null) 
             {
                 actorsToUpdate.Add(actor);
                 actor.x = actor.ActorEntity.transform.position.x;
