@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6091865643249420805}
   - component: {fileID: 1935860746220234754}
   m_Layer: 0
-  m_Name: BlessCollider 1
+  m_Name: BubblePopHit
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ Animator:
   m_GameObject: {fileID: 1314719724268210257}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0e467a1b5e92ef14794a39b505c97068, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3b004f718ce4a7544baa784a023a763d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -88,13 +88,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314719724268210257}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.9601111, y: 1.5010252}
+  m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -105,7 +105,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.068332, y: 4.0020504}
+  m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
 --- !u!114 &1935860746220234754
 MonoBehaviour:
@@ -124,7 +124,7 @@ MonoBehaviour:
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
-  StickToActor: 1
+  StickToActor: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 0
   SkilledShotPoint: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   onHitObject: 
   OnHitSource: {fileID: 0}
   AudioOnHit: 
-  targetType: 1
+  targetType: 0
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,13 +157,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314719725301908296}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071057, w: 0.7071079}
-  m_LocalPosition: {x: -0.258, y: 1.752, z: 0}
-  m_LocalScale: {x: 1.8158, y: 1.8158, z: 1.8158}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071064, w: -0.7071072}
+  m_LocalPosition: {x: -0.01, y: 1.47, z: 0}
+  m_LocalScale: {x: 2.3922, y: 2.3922, z: 2.3922}
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &1314719725301908310
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ SpriteRenderer:
   m_SortingLayerID: -1365627307
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3924131072041096784, guid: 2cf568dbdc7028f4c952ec881806ed37, type: 3}
+  m_Sprite: {fileID: -4445611875895635699, guid: 2cf568dbdc7028f4c952ec881806ed37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

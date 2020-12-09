@@ -112,6 +112,11 @@ public class AbilityCollider : MonoBehaviour
             }
             else if (targetType == TargetType.Enemies)
             {
+                if (actorVictim == ActorSource)
+                {
+                    return;
+                }
+
                 if (ActorSource.State.Data.isMob && actorVictim.State.Data.isMob)
                 {
                     return;
@@ -124,6 +129,11 @@ public class AbilityCollider : MonoBehaviour
             }
             else if (targetType == TargetType.Friends)
             {
+                if (actorVictim == ActorSource)
+                {
+                    return;
+                }
+
                 if (ActorSource.State.Data.isMob && actorVictim.State.Data.isCharacter)
                 {
                     return;
@@ -157,6 +167,12 @@ public class AbilityCollider : MonoBehaviour
                 OnHitEvent?.Invoke();
             }
         }
+    }
+
+
+    public void ForceOnHit()
+    {
+        OnHitEvent?.Invoke();
     }
 
 }
