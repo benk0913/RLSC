@@ -1746,8 +1746,8 @@ GameObject:
   - component: {fileID: 1551737043}
   - component: {fileID: 1551737044}
   - component: {fileID: 1551737046}
-  - component: {fileID: 2607866053076225662}
   - component: {fileID: 7318722103061463516}
+  - component: {fileID: 7516106643622441650}
   m_Layer: 8
   m_Name: ActorRabbit
   m_TagString: Actor
@@ -1852,7 +1852,7 @@ MonoBehaviour:
   Rigid: {fileID: 1551737043}
   Body: {fileID: 1450574624275921511}
   PlayerControl: {fileID: 7318722103061463516}
-  AIControl: {fileID: 2607866053076225662}
+  AIControl: {fileID: 7516106643622441650}
   Animer: {fileID: 1968958247804861251}
   GroundMask:
     serializedVersion: 2
@@ -1865,21 +1865,7 @@ MonoBehaviour:
   VelocityMinimumThreshold: 0.1
   JumpHeight: 20
   InterpolationSpeed: 25
---- !u!114 &2607866053076225662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7785496889078657400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a092977ecadb3f349b9a41d4377cc9c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Act: {fileID: 1551737046}
-  MonsterRef: {fileID: 11400000, guid: ab04291b8e37397418041d2573dabde5, type: 2}
-  CurrentTarget: {fileID: 0}
+  ControlSource: 0
 --- !u!114 &7318722103061463516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1893,3 +1879,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentActor: {fileID: 1551737046}
+--- !u!114 &7516106643622441650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785496889078657400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ce14612f8661b4f9c44ec9cad37fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Act: {fileID: 1551737046}
+  MonsterRef: {fileID: 11400000, guid: ab04291b8e37397418041d2573dabde5, type: 2}
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  CurrentTarget: {fileID: 0}

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,7 +50,10 @@ public class Ability : ScriptableObject
 public class AbilityParam
 {
     public AbilityParamType Type;
+
+    [JsonConverter(typeof(StringEnumConverter))]
     public TargetType Targets;
+
     public string Value;
 }
 

@@ -12,6 +12,9 @@ public class ActorAI : MonoBehaviour
     [SerializeField]
     public Monster MonsterRef;
 
+    [SerializeField]
+    LayerMask groundLayerMask;
+
     public Actor CurrentTarget;
 
 
@@ -58,8 +61,8 @@ public class ActorAI : MonoBehaviour
 
     protected void RefreshRaycasts()
     {
-        rhitLeft  = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.left, 1f);
-        rhitRight = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.left, 1f);
+        rhitLeft  = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.left, 1f, groundLayerMask);
+        rhitRight = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.left, 1f, groundLayerMask);
     }
 
     #endregion
@@ -68,7 +71,11 @@ public class ActorAI : MonoBehaviour
 
     protected virtual AbilityState GetAvailableAbilityState()
     {
-        return Act.State.Abilities.Find(x => x.CurrentCD <= 0);
+        List<AbilityState> abilities = new List<AbilityState>();
+
+        abilities.AddRange(Act.State.Abilities.FindAll(x => x.CurrentCD <= 0));
+
+        return abilities[Random.Range(0, abilities.Count)];
     }
     
     protected void MoveToTarget()

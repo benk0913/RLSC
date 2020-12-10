@@ -158,10 +158,19 @@ public class AbilityCollider : MonoBehaviour
 
             OnHitEvent?.Invoke();
 
-            if (actorVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId) //is not the players actor
+            if (CORE.Instance.IsBitch)
             {
-                
-                return;
+                if(actorVictim.State.Data.IsPlayer && actorVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (actorVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId) //is not the players actor
+                {
+                    return;
+                }
             }
 
             JSONNode node = new JSONClass();
