@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6091865643249420805}
   - component: {fileID: 1935860746220234754}
   m_Layer: 0
-  m_Name: WallCollider
+  m_Name: MeteorCollider
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,10 +131,14 @@ MonoBehaviour:
   StickToSkilledShot: 1
   HitEventOnWalls: 0
   SkilledShotPoint: {fileID: 1392339480142145124}
+  SkilledshotLayermask:
+    serializedVersion: 2
+    m_Bits: 1
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
   AudioOnHit: 
+  targetType: 0
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0

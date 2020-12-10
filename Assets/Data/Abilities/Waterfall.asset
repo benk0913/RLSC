@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Frost Shield
+  m_Name: Waterfall
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 8eff94603aa55b24284f40c55a1f1119, type: 3}
+  Icon: {fileID: 21300000, guid: 375250ac166e1ad4eaf2cfdbbaa0ca83, type: 3}
   HitAbilityColliderObject: 
-  AbilityColliderObject: FrostShieldBuffCollider
+  AbilityColliderObject: WaterfallCollider
   PrepareAbilityColliderObject: PrepareWaterSpell
   PrepareAbilitySound: sound_prepwaterspell
-  ExecuteAbilitySound: 
-  HitAbilitySound: sound_bubblepop
-  CD: 5
-  CastingTime: 1
-  PreparingAnimation: Cast2
-  ExecuteAnimation: Execute3
+  ExecuteAbilitySound: voice_watersplash2
+  HitAbilitySound: 
+  CD: 1
+  CastingTime: 0.2
+  PreparingAnimation: Cast4
+  ExecuteAnimation: Execute4
   Attributes:
-    Power: 1
+    Power: 2
     HP: 0
     Defense: 0
     CDReduction: 0
@@ -43,6 +43,9 @@ MonoBehaviour:
     MovementSpeedBoost: 0
   OnExecuteParams: []
   OnHitParams:
-  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Targets: 0
+    Value: 10
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Targets: 1
-    Value: Invulnerability
+    Value: -10

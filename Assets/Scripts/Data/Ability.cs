@@ -58,5 +58,6 @@ public enum TargetType
 {
     Enemies,
     Friends,
-    Self
+    Self,
+    NotSelf
 }

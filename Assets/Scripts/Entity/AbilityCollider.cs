@@ -19,6 +19,9 @@ public class AbilityCollider : MonoBehaviour
     Transform SkilledShotPoint;
 
     [SerializeField]
+    LayerMask SkilledshotLayermask;
+
+    [SerializeField]
     Vector3 InitForce;
 
     [SerializeField]
@@ -26,6 +29,7 @@ public class AbilityCollider : MonoBehaviour
 
     [SerializeField]
     Transform OnHitSource;
+
 
     public string AudioOnHit;
 
@@ -81,7 +85,7 @@ public class AbilityCollider : MonoBehaviour
 
         if(StickToSkilledShot)
         {
-            RaycastHit2D rhit = Physics2D.Raycast(SkilledShotPoint.position, Vector2.down, Mathf.Infinity);
+            RaycastHit2D rhit = Physics2D.Raycast(SkilledShotPoint.position, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
             if(rhit)
             {
                 transform.position = rhit.point;
@@ -140,6 +144,13 @@ public class AbilityCollider : MonoBehaviour
                 }
 
                 if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isMob)
+                {
+                    return;
+                }
+            }
+            else if (targetType == TargetType.NotSelf)
+            {
+                if (actorVictim == ActorSource)
                 {
                     return;
                 }
