@@ -59,6 +59,8 @@ public class SceneInfo
 {
     public string sceneName;
     public List<MobSpawn> Mobs = new List<MobSpawn>();
+    public float playerSpawnX;
+    public float playerSpawnY;
 }
 
 [Serializable]

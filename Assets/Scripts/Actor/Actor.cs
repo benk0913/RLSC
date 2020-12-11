@@ -88,7 +88,8 @@ public class Actor : MonoBehaviour
         this.State.Abilities.Clear();
 
         //TODO Replace this with ability from seleted set.
-        for (int i = 0; i < 3; i++)
+        int abilityCount = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob).Abilities.Count;
+        for (int i = 0; i < abilityCount; i++)
         {
             string abilityName = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob).Abilities[i];
             this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName)));
@@ -476,6 +477,11 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementPullRoutine(casterActor));
                     break;
                 }
+            case "Escape":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementEscapeRoutine());
+                    break;
+                }
         }
     }
 
@@ -592,7 +598,7 @@ public class Actor : MonoBehaviour
         MovementEffectRoutineInstance = null;
 
     }
-    
+
     IEnumerator MovementDashRoutine()
     {
         
@@ -622,6 +628,16 @@ public class Actor : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+
+        MovementEffectRoutineInstance = null;
+
+    }
+
+    IEnumerator MovementEscapeRoutine()
+    {
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 25, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(1f);
 
         MovementEffectRoutineInstance = null;
 

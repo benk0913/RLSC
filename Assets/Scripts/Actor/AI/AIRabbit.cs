@@ -4,20 +4,54 @@ using UnityEngine;
 
 public class AIRabbit : ActorAI
 {
+    [SerializeField]
+    float closestActorDistance;
+
+    [SerializeField]
+    float EscapeDistance = 10f;
+
+    [SerializeField]
+    float ThrowCarrotRange = 40f;
+
+    private void LateUpdate()
+    {
+        closestActorDistance = Mathf.Infinity;
+        for(int i=0;i< CORE.Instance.Room.Actors.Count;i++)
+        {
+            if(CORE.Instance.Room.Actors[i].isMob)
+            {
+                continue;
+            }
+
+            float currentDist = Vector2.Distance(transform.position, CORE.Instance.Room.Actors[i].ActorEntity.transform.position);
+            if (currentDist < closestActorDistance)
+            {
+                closestActorDistance = currentDist;
+            }
+        }
+    }
+
     protected override IEnumerator UseAbilityRoutine(AbilityState selectedAbility)
     {
         float abilityTimeout = 5f;
-
-        Debug.LogError("### -ABILITY-");
-        if (selectedAbility.CurrentAbility.name == "Air Whip")
+        
+        if (selectedAbility.CurrentAbility.name == "Throw Carrot")
         {
-            Debug.LogError("### Air Whip");
-            while (Vector2.Distance(transform.position, CurrentTarget.transform.position) > 2f)
+            MoveToTarget();
+
+            yield return 0;
+
+            if (CurrentTarget == null)
+            {
+                yield break;
+            }
+
+            float rangeDist = 0f;
+            while (rangeDist > ThrowCarrotRange)
             {
                 abilityTimeout -= Time.deltaTime;
                 MoveToTarget();
-
-                Debug.LogError("### Advancing towards target");
+                
 
                 if (abilityTimeout <= 0f)
                 {
@@ -26,32 +60,31 @@ public class AIRabbit : ActorAI
 
 
                 yield return 0;
+
+                if(CurrentTarget == null)
+                {
+                    yield break;
+                }
+                else
+                {
+                    rangeDist = Vector2.Distance(transform.position, CurrentTarget.transform.position);
+                }
             }
             
-            yield return 0;
-
             Act.AttemptPrepareAbility(Act.State.Abilities.IndexOf(selectedAbility));
         }
-        else if (selectedAbility.CurrentAbility.name == "Twirling")
+        else if (selectedAbility.CurrentAbility.name == "Escape")
         {
-            Debug.LogError("### Twirling");
 
-            if (Vector2.Distance(transform.position, CurrentTarget.transform.position) < 5f)
+            if(Random.Range(0,2) == 0)
             {
-                MoveFromTarget();
-
-                yield return 0;
-
-                Act.AttemptPrepareAbility(Act.State.Abilities.IndexOf(selectedAbility));
+                Act.AttemptMoveLeft();
             }
             else
             {
-                yield break;
+                Act.AttemptMoveRight();
             }
-        }
-        else if (selectedAbility.CurrentAbility.name == "Wind Pull")
-        {
-            Debug.LogError("### Wind Pull!");
+            
             Act.AttemptPrepareAbility(Act.State.Abilities.IndexOf(selectedAbility));
         }
 
@@ -73,27 +106,22 @@ public class AIRabbit : ActorAI
 
             while (SelectedAbility == null)
             {
-                if(Act.State.Data.hp < CORE.Instance.Data.content.HP/2f)
+                if(closestActorDistance < EscapeDistance)
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Twirling");
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Escape" && x.CurrentCD <= 0f);
 
-                    if(SelectedAbility.CurrentCD > 0f)
+                    if(SelectedAbility == null)
                     {
-                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Air Whip");
-                    }
-
-                    if (SelectedAbility.CurrentCD > 0f)
-                    {
-                        SelectedAbility = null;
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Throw Carrot" && x.CurrentCD <= 0f);
                     }
                 }
                 else
                 {
-                    SelectedAbility = GetAvailableAbilityState();
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Throw Carrot" && x.CurrentCD <= 0f);
                 }
-
-                Debug.LogError("### Pending For ability...");
+                
                 yield return StartCoroutine(WaitBehaviourRoutine());
+
             }
 
             yield return StartCoroutine(UseAbilityRoutine(SelectedAbility));

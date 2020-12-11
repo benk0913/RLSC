@@ -9,15 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorRabbit
+  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
+  m_Name: Escape
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300002, guid: 65b783eed2a9de64c8394133a31977e7, type: 3}
-  Abilities:
-  - Escape
-  - Throw Carrot
+  Icon: {fileID: 21300000, guid: 53f3a2bbba0603e43976124e8b954929, type: 3}
+  HitAbilityColliderObject: 
+  AbilityColliderObject: EscapeCollider
+  PrepareAbilityColliderObject: 
+  PrepareAbilitySound: 
+  ExecuteAbilitySound: _ound_throw
+  HitAbilitySound: _ound_hit_4
+  CD: 1
+  CastingTime: 0.5
+  PreparingAnimation: Cast2
+  ExecuteAnimation: Execute2
   Attributes:
-    Power: 0
+    Power: 1
     HP: 0
     Defense: 0
     CDReduction: 0
@@ -34,3 +41,8 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeedBoost: 0
+  OnExecuteParams:
+  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
+    Targets: 2
+    Value: Escape
+  OnHitParams: []
