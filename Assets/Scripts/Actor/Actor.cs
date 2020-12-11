@@ -357,6 +357,8 @@ public class Actor : MonoBehaviour
             colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
 
             colliderObj.GetComponent<BuffCollider>().SetInfo(buff, this);
+
+            state.EffectObject = colliderObj;
         }
 
         if (CORE.Instance.Room.PlayerActor.ActorEntity == this)
@@ -373,6 +375,11 @@ public class Actor : MonoBehaviour
         {
             CORE.Instance.LogMessageError("No active buff with the name: " + buff.name);
             return;
+        }
+        
+        if (state.EffectObject != null)
+        {
+            state.EffectObject.SetActive(false);
         }
 
         State.Buffs.Remove(state);
@@ -700,7 +707,8 @@ public class BuffState
 {
     public Buff CurrentBuff;
     public float CurrentLength;
-    
+    public GameObject EffectObject;
+
     public BuffState(Buff buff)
     {
         this.CurrentBuff = buff;
