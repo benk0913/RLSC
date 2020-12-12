@@ -5,15 +5,18 @@ using UnityEngine;
 public class AIRabbit : ActorAI
 {
     [SerializeField]
-    float closestActorDistance;
+    protected float closestActorDistance;
 
     [SerializeField]
-    float EscapeDistance = 10f;
+    protected float EscapeDistance = 10f;
 
     [SerializeField]
-    float ThrowCarrotRange = 40f;
+    protected float ThrowCarrotRange = 40f;
 
-    private void LateUpdate()
+    [SerializeField]
+    protected float ThinkingTime;
+
+    protected void LateUpdate()
     {
         closestActorDistance = Mathf.Infinity;
         for(int i=0;i< CORE.Instance.Room.Actors.Count;i++)
@@ -103,6 +106,8 @@ public class AIRabbit : ActorAI
             CurrentTarget = GetCurrentTarget();
 
             AbilityState SelectedAbility = null;
+            
+            yield return new WaitForSeconds(ThinkingTime);
 
             while (SelectedAbility == null)
             {

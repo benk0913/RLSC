@@ -13,7 +13,10 @@ public class ActorAI : MonoBehaviour
     public Monster MonsterRef;
 
     [SerializeField]
-    LayerMask groundLayerMask;
+    protected LayerMask groundLayerMask;
+
+    [SerializeField]
+    protected float ChaseDistance = 1f;
 
     public Actor CurrentTarget;
 
@@ -138,6 +141,17 @@ public class ActorAI : MonoBehaviour
                         t+= Time.deltaTime;
 
                         MoveToTarget();
+
+                        
+                        if(CurrentTarget == null)
+                        {
+                            yield break;
+                        }
+
+                        if (Vector2.Distance(transform.position, CurrentTarget.transform.position) < ChaseDistance)
+                        {
+                            yield break;
+                        }
 
                         yield return 0;
                     }
