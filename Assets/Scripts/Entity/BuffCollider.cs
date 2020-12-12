@@ -18,6 +18,11 @@ public class BuffCollider : MonoBehaviour
     {
         if(StickToActor)
         {
+            if(ActorSource == null)
+            {
+                this.gameObject.SetActive(false);
+                return;
+            }
             transform.position = ActorSource.transform.position;
         }
     }

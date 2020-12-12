@@ -333,32 +333,33 @@ public class Actor : MonoBehaviour
         {
             state = new BuffState(buff);
             State.Buffs.Add(state);
+
+            if (!string.IsNullOrEmpty(buff.BuffColliderObject))
+            {
+                GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(buff.BuffColliderObject);
+                colliderObj.transform.position = transform.position;
+                colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
+
+                colliderObj.GetComponent<BuffCollider>().SetInfo(buff, this);
+
+                state.EffectObject = colliderObj;
+
+
+                if (IsClientControl)
+                {
+                    ActivateParams(state.CurrentBuff.OnStart);
+                }
+                
+                if (IsClientControl)
+                {
+                    AddRelevantAttributes(state.CurrentBuff.Attributes);
+                }
+            }
         }
         else
         {
             state.CurrentLength = buff.Length;
-        }
-
-        if(IsClientControl)
-        {
-            ActivateParams(state.CurrentBuff.OnStart);
-        }
-
-        if (IsClientControl)
-        {
-            AddRelevantAttributes(state.CurrentBuff.Attributes);
-        }
-
-        if (!string.IsNullOrEmpty(buff.BuffColliderObject))
-        {
-            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(buff.BuffColliderObject);
-            colliderObj.transform.position = transform.position;
-            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
-
-            colliderObj.GetComponent<BuffCollider>().SetInfo(buff, this);
-
-            state.EffectObject = colliderObj;
         }
 
         if (CORE.Instance.Room.PlayerActor.ActorEntity == this)
@@ -668,7 +669,16 @@ public class ActorState
 
     public ControlState CurrentControlState = ControlState.Normal;
 
-
+    public void ClearAllObjects()
+    {
+        foreach(BuffState buff in Buffs)
+        {
+            if(buff.EffectObject != null)
+            {
+                buff.EffectObject.SetActive(false);
+            }
+        }
+    }
 
     public enum ControlState
     {
