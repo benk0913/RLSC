@@ -17,6 +17,7 @@ public class ActorAI : MonoBehaviour
 
     [SerializeField]
     protected float ChaseDistance = 1f;
+    
 
     public Actor CurrentTarget;
 
@@ -77,6 +78,11 @@ public class ActorAI : MonoBehaviour
         List<AbilityState> abilities = new List<AbilityState>();
 
         abilities.AddRange(Act.State.Abilities.FindAll(x => x.CurrentCD <= 0));
+
+        if(abilities.Count == 0)
+        {
+            return null;
+        }
 
         return abilities[Random.Range(0, abilities.Count)];
     }
@@ -225,8 +231,9 @@ public class ActorAI : MonoBehaviour
                 SelectedAbility = GetAvailableAbilityState();
                 yield return StartCoroutine(WaitBehaviourRoutine());
             }
-
+            
             yield return StartCoroutine(UseAbilityRoutine(SelectedAbility));
+            
 
             yield return 0;
         }

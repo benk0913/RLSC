@@ -21,6 +21,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4f30f0753b0fdb6479c058f168861cfb, type: 2}
     - {fileID: 11400000, guid: a541fc971532da54ea76ffd9ad8070b9, type: 2}
     - {fileID: 11400000, guid: 0232275aa0d277c488941f40ae46cfc2, type: 2}
+    - {fileID: 11400000, guid: 59f0a939912db544897377842d7cdc3e, type: 2}
     Abilities:
     - {fileID: 11400000, guid: 31a928101e30cc948a924ddb23bac880, type: 2}
     - {fileID: 11400000, guid: 5db03140510dac84eaf0c4e8018586e9, type: 2}
@@ -36,8 +37,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 437dac05c115a364ca2478ed69a74d87, type: 2}
     - {fileID: 11400000, guid: b0d5be31382a90546bf016a55aca8ffe, type: 2}
     - {fileID: 11400000, guid: cf28bb3650589b642bd9e154c5c4f964, type: 2}
+    - {fileID: 11400000, guid: 073d371f97550d1408ab2c27c0be4c92, type: 2}
     Monsters:
     - {fileID: 11400000, guid: ab04291b8e37397418041d2573dabde5, type: 2}
+    - {fileID: 11400000, guid: 9b2fccb8ebf02ca43bbd928ad24f31a5, type: 2}
     Buffs:
     - {fileID: 11400000, guid: 9cc852a75c5c319469b60e07d170c7ef, type: 2}
     - {fileID: 11400000, guid: 01bb46704bd795242a52025af39a406b, type: 2}
@@ -50,7 +53,14 @@ MonoBehaviour:
         positionY: 10
       playerSpawnX: 0
       playerSpawnY: 0
-    StartingScene: TestScene2
+    - sceneName: TestBossChamber
+      Mobs:
+      - monsterName: ActorTurtle
+        positionX: 10
+        positionY: 10
+      playerSpawnX: 0
+      playerSpawnY: 0
+    StartingScene: TestBossChamber
     HumanPrefab: ActorHuman
     Power: 30
     HP: 100

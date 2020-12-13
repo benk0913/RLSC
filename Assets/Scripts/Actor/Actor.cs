@@ -47,6 +47,8 @@ public class Actor : MonoBehaviour
     protected Vector3 deltaPosition;
     protected Vector3 lastPosition;
 
+    public float CustomSpeedMult = 1f;
+
 
     Ability lastAbility;
     
@@ -508,7 +510,7 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        Rigid.position += Vector2.left * Time.deltaTime * State.Data.movementSpeed;
+        Rigid.position += Vector2.left * CustomSpeedMult * Time.deltaTime * State.Data.movementSpeed;
     }
 
     public void AttemptMoveRight()
@@ -525,7 +527,7 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        Rigid.position += Vector2.right * Time.deltaTime * State.Data.movementSpeed;
+        Rigid.position += Vector2.right * CustomSpeedMult * Time.deltaTime * State.Data.movementSpeed;
     }
     
     public void AttemptJump()
@@ -616,7 +618,7 @@ public class Actor : MonoBehaviour
         while(t<1f)
         {
             t += Time.deltaTime  * 2f;
-            Rigid.position += initDir * State.Data.movementSpeed * 4f * Time.deltaTime;
+            Rigid.position += initDir * CustomSpeedMult * State.Data.movementSpeed * 4f * Time.deltaTime;
 
             yield return new WaitForFixedUpdate();
         }
