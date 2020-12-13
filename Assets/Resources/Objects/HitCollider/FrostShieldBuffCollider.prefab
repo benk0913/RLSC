@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1935860746220234754}
   - component: {fileID: 7937529260699182551}
   - component: {fileID: 1888112222413399368}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FrostShieldBuffCollider
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
@@ -121,8 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbilitySource: {fileID: 0}
   ActorSource: {fileID: 0}
+  AbilitySource: {fileID: 0}
+  targetType: 1
   OnHitEvent:
     m_PersistentCalls:
       m_Calls:
@@ -142,11 +143,13 @@ MonoBehaviour:
   StickToSkilledShot: 0
   HitEventOnWalls: 0
   SkilledShotPoint: {fileID: 0}
+  SkilledshotLayermask:
+    serializedVersion: 2
+    m_Bits: 0
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: BubblePopHit
   OnHitSource: {fileID: 0}
   AudioOnHit: sound_earth_4
-  targetType: 1
 --- !u!114 &7937529260699182551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8569120220983137347}
   - component: {fileID: 2878551958347056463}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8445536448255949976}
   - component: {fileID: 434384975226338960}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}

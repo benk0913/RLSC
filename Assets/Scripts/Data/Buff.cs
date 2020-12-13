@@ -23,6 +23,8 @@ public class Buff : ScriptableObject
     
     public AttributeData Attributes;
 
+    public bool MakesInvulnerable = false;
+
     public List<AbilityParam> OnStart = new List<AbilityParam>();
     public List<AbilityParam> OnEnd = new List<AbilityParam>();
 }

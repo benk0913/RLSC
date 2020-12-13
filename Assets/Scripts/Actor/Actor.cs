@@ -37,7 +37,13 @@ public class Actor : MonoBehaviour
     SpriteColorGroup spriteColorGroup;
 
 
+    [SerializeField]
+    public PassiveAbilityCollider PassiveHitCollider;
+    
+
+
     public bool IsGrounded;
+    public bool IsInvulnerable;
 
     public float GroundCheckDistance = 10f;
     public float GroundedDistance= 1f;
@@ -90,14 +96,29 @@ public class Actor : MonoBehaviour
         this.State.Abilities.Clear();
 
         //TODO Replace this with ability from seleted set.
-        int abilityCount = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob).Abilities.Count;
+        ClassJob classJob = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob);
+
+        int abilityCount = classJob.Abilities.Count;
         for (int i = 0; i < abilityCount; i++)
         {
-            string abilityName = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob).Abilities[i];
+            string abilityName = classJob.Abilities[i];
             this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName)));
         }
 
         RefreshControlSource();
+
+        if (PassiveHitCollider != null)
+        {
+            if (!string.IsNullOrEmpty(classJob.PassiveAbility))
+            {
+                PassiveHitCollider.enabled = true;
+                PassiveHitCollider.SetInfo(CORE.Instance.Data.content.Abilities.Find(x => x.name == classJob.PassiveAbility), this);
+            }
+            else
+            {
+                PassiveHitCollider.enabled = false;
+            }
+        }
     }
 
     public void RefreshControlSource()
@@ -309,7 +330,11 @@ public class Actor : MonoBehaviour
 
     public void HurtEffect()
     {
-        Animer.Play("Hurt" + UnityEngine.Random.Range(1, 5));
+        if (!State.IsPreparingAbility)
+        {
+            Animer.Play("Hurt" + UnityEngine.Random.Range(1, 5));
+        }
+
         spriteColorGroup.SetColor(Color.black);
         CORE.Instance.DelayedInvokation(0.1f, () =>
         {
@@ -346,17 +371,17 @@ public class Actor : MonoBehaviour
                 colliderObj.GetComponent<BuffCollider>().SetInfo(buff, this);
 
                 state.EffectObject = colliderObj;
-
-
-                if (IsClientControl)
-                {
-                    ActivateParams(state.CurrentBuff.OnStart);
-                }
                 
-                if (IsClientControl)
-                {
-                    AddRelevantAttributes(state.CurrentBuff.Attributes);
-                }
+            }
+
+
+            ActivateParams(state.CurrentBuff.OnStart);
+
+            AddRelevantAttributes(state.CurrentBuff.Attributes);
+
+            if (state.CurrentBuff.MakesInvulnerable) //TODO Change later to attribute ? or maybe server imp
+            {
+                IsInvulnerable = true;
             }
         }
         else
@@ -379,13 +404,18 @@ public class Actor : MonoBehaviour
             CORE.Instance.LogMessageError("No active buff with the name: " + buff.name);
             return;
         }
-        
+
         if (state.EffectObject != null)
         {
             state.EffectObject.SetActive(false);
         }
 
         State.Buffs.Remove(state);
+
+        if (state.CurrentBuff.MakesInvulnerable && State.Buffs.Find(x => x.CurrentBuff.MakesInvulnerable) == null)
+        {
+            IsInvulnerable = false;
+        }
 
         if (IsClientControl)
         {
@@ -424,11 +454,6 @@ public class Actor : MonoBehaviour
             }
             if (param.Type.name == "Change Control State")
             {
-                if (lastAbility == null)
-                {
-                    continue;
-                }
-
                 State.CurrentControlState = (ActorState.ControlState) Enum.Parse(typeof(ActorState.ControlState), param.Value);
             }
         }
@@ -584,6 +609,7 @@ public class Actor : MonoBehaviour
         SocketHandler.Instance.SendEvent("executed_ability", node);
     }
 
+
     public bool IsAbleToUseAbility(Ability ability)
     {
         AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
@@ -669,7 +695,23 @@ public class ActorState
 
     public bool IsPreparingAbility;
 
-    public ControlState CurrentControlState = ControlState.Normal;
+    public ControlState CurrentControlState
+    {
+        get
+        {
+            return _currentControlState;
+        }
+        set
+        {
+            _currentControlState = value;
+
+            if(_currentControlState == ControlState.Stunned || _currentControlState == ControlState.Silenced)
+            {
+                InterruptAbilities();
+            }
+        }
+    }
+    public ControlState _currentControlState = ControlState.Normal;
 
     public void ClearAllObjects()
     {
@@ -678,6 +720,18 @@ public class ActorState
             if(buff.EffectObject != null)
             {
                 buff.EffectObject.SetActive(false);
+            }
+        }
+    }
+    
+    public void InterruptAbilities()
+    {
+        IsPreparingAbility = false;
+        foreach (AbilityState state in Abilities)
+        {
+            if (state.CurrentCastingTime > 0f)
+            {
+                state.CurrentCastingTime = 0f;
             }
         }
     }

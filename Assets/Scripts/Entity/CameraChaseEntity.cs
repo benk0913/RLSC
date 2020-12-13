@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿using Ferr;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraChaseEntity : MonoBehaviour
 {
+    public static CameraChaseEntity Instance;
+
     [SerializeField]
     Transform ReferenceObject;
+
 
     public float Speed = 1f;
 
@@ -16,6 +20,12 @@ public class CameraChaseEntity : MonoBehaviour
 
     Vector3 deltaPosition;
     Vector3 lastPosition;
+    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void LateUpdate()
     {
@@ -40,5 +50,10 @@ public class CameraChaseEntity : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position,
             targetPosition, 
             Speed * Time.deltaTime);
+    }
+
+    public void Shake(float power = 3f, float duration = 1f)
+    {
+        CameraShake.Shake(Vector3.one * power, duration);
     }
 }

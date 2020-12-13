@@ -10,8 +10,6 @@ public class Monster : ScriptableObject
     public AttributeData Attributes;
 
     public AIChaseBehaviour ChaseBehaviour;
-    
-
 }
 
 [Serializable]

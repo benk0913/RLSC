@@ -13,6 +13,8 @@ public class CGDatabase : ScriptableObject
 
     public string unic0rn = "b0ss";
 
+    public string DataPath = "Data";
+
     public DatabaseContent content;
 }
 

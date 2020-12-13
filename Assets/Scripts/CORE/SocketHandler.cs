@@ -477,7 +477,7 @@ public class SocketHandler : MonoBehaviour
 
         int damage = int.Parse(data["damage"]);
         int currentHp = int.Parse(data["hp"]);
-        
+
         actorDat.ActorEntity.HitAbility(casterActorDat.ActorEntity, ability, damage, currentHp);
 
 
@@ -564,6 +564,7 @@ public class ActorData
     public string classJob;
     public string actorType;
     public int hp;
+    public int maxHp;
     public bool isMob
     {
         get

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1314719724268210270}
   - component: {fileID: 6091865643249420805}
   - component: {fileID: 1935860746220234754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BubblePopHit
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
@@ -119,8 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbilitySource: {fileID: 0}
   ActorSource: {fileID: 0}
+  AbilitySource: {fileID: 0}
+  targetType: 0
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -128,11 +129,13 @@ MonoBehaviour:
   StickToSkilledShot: 0
   HitEventOnWalls: 0
   SkilledShotPoint: {fileID: 0}
+  SkilledshotLayermask:
+    serializedVersion: 2
+    m_Bits: 0
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
   AudioOnHit: 
-  targetType: 0
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1314719725301908297}
   - component: {fileID: 1314719725301908310}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: effect_dust_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

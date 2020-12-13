@@ -17,7 +17,10 @@ public class ActorAI : MonoBehaviour
 
     [SerializeField]
     protected float ChaseDistance = 1f;
-    
+
+    [SerializeField]
+    protected float FleeDistance = 10f;
+
 
     public Actor CurrentTarget;
 
@@ -27,11 +30,35 @@ public class ActorAI : MonoBehaviour
     protected RaycastHit2D rhitLeft;
     protected RaycastHit2D rhitRight;
 
+    protected bool patrolDirection;
+
     protected virtual void Awake()
     {
         CORE.Instance.SubscribeToEvent("BitchChanged", OnBitchChanged);
         
         OnBitchChanged();
+    }
+
+    protected virtual void Start()
+    {
+        if (MonsterRef.ChaseBehaviour == AIChaseBehaviour.Patrol)
+        {
+            System.Action patrolDirectionChangeAction = null;
+
+            patrolDirectionChangeAction = () => 
+            {
+                if (!this.gameObject.activeInHierarchy)
+                {
+                    return;
+                }
+
+                patrolDirection = (Random.Range(0, 2) == 0);
+
+                CORE.Instance.DelayedInvokation(5f, patrolDirectionChangeAction);
+            };
+
+            CORE.Instance.DelayedInvokation(5f, patrolDirectionChangeAction);
+        }
     }
 
     protected virtual void OnBitchChanged()
@@ -130,73 +157,52 @@ public class ActorAI : MonoBehaviour
 
     #region Layer2
     
-    protected virtual IEnumerator WaitBehaviourRoutine()
+    protected virtual void WaitBehaviour()
     {
-        switch(MonsterRef.ChaseBehaviour)
+        switch (MonsterRef.ChaseBehaviour)
         {
             case AIChaseBehaviour.Static:
                 {
-                    yield return new WaitForSeconds(1f);
                     break;
                 }
             case AIChaseBehaviour.Chase:
                 {
-                    float t = 0f;
-                    while(t<1f)
+                    
+                    if (CurrentTarget == null)
                     {
-                        t+= Time.deltaTime;
-
-                        MoveToTarget();
-
-                        
-                        if(CurrentTarget == null)
-                        {
-                            yield break;
-                        }
-
-                        if (Vector2.Distance(transform.position, CurrentTarget.transform.position) < ChaseDistance)
-                        {
-                            yield break;
-                        }
-
-                        yield return 0;
+                        break;
                     }
+
+                    if (Vector2.Distance(transform.position, CurrentTarget.transform.position) < ChaseDistance)
+                    {
+                        break;
+                    }
+
+                    MoveToTarget();
                     break;
                 }
             case AIChaseBehaviour.Patrol:
                 {
-                    float t = 0f;
-
-                    bool toRight = Random.Range(0, 2) == 0;
-
-                    while (t < 1f)
+                    if(patrolDirection)
                     {
-                        t += Time.deltaTime;
-
-                        if (toRight)
-                        {
-                            Act.AttemptMoveRight();
-                        }
-                        else
-                        {
-                            Act.AttemptMoveLeft();
-                        }
-
-                        yield return 0;
+                        Act.AttemptMoveLeft();
                     }
+                    else
+                    {
+                        Act.AttemptMoveRight();
+                    }
+
                     break;
                 }
             case AIChaseBehaviour.Flee:
                 {
-                    float t = 0f;
-                    while (t < 1f)
+                    if (Vector2.Distance(transform.position, CurrentTarget.transform.position) > FleeDistance)
                     {
-                        t += Time.deltaTime;
-
-                        MoveFromTarget();
-
-                        yield return 0;
+                        break;
                     }
+
+                    MoveFromTarget();
+
                     break;
                 }
         }
@@ -229,7 +235,9 @@ public class ActorAI : MonoBehaviour
             while (SelectedAbility == null)
             {
                 SelectedAbility = GetAvailableAbilityState();
-                yield return StartCoroutine(WaitBehaviourRoutine());
+                WaitBehaviour();
+
+                yield return 0;
             }
             
             yield return StartCoroutine(UseAbilityRoutine(SelectedAbility));
