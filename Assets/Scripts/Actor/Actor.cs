@@ -123,8 +123,8 @@ public class Actor : MonoBehaviour
             }
         }
 
-        
-        PlayerHalo.SetActive(State.Data.IsPlayer);
+        if(PlayerHalo != null)
+            PlayerHalo.SetActive(State.Data.IsPlayer);
         
     }
 
