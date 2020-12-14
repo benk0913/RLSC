@@ -127,6 +127,7 @@ public class AIRabbit : ActorAI
                 
                 WaitBehaviour();
 
+                yield return 0;
             }
 
             yield return StartCoroutine(UseAbilityRoutine(SelectedAbility));

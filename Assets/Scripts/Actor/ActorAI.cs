@@ -93,7 +93,7 @@ public class ActorAI : MonoBehaviour
     protected void RefreshRaycasts()
     {
         rhitLeft  = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.left, 1f, groundLayerMask);
-        rhitRight = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.left, 1f, groundLayerMask);
+        rhitRight = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.right, 1f, groundLayerMask);
     }
 
     #endregion
