@@ -39,6 +39,9 @@ public class Actor : MonoBehaviour
 
     [SerializeField]
     public PassiveAbilityCollider PassiveHitCollider;
+
+    [SerializeField]
+    GameObject PlayerHalo;
     
 
 
@@ -119,6 +122,10 @@ public class Actor : MonoBehaviour
                 PassiveHitCollider.enabled = false;
             }
         }
+
+        
+        PlayerHalo.SetActive(State.Data.IsPlayer);
+        
     }
 
     public void RefreshControlSource()
