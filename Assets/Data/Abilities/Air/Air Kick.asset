@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Rock
+  m_Name: Air Kick
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 61063bdfbc8e6024fb2782d846fc154a, type: 3}
-  HitAbilityColliderObject: MudshotHit
-  AbilityColliderObject: ThrowRockCollider
-  PrepareAbilityColliderObject: PrepareThrowRock
-  PrepareAbilitySound: sound_earth_1
-  ExecuteAbilitySound: 
+  Icon: {fileID: 21300000, guid: 53f3a2bbba0603e43976124e8b954929, type: 3}
+  HitAbilityColliderObject: 
+  AbilityColliderObject: AirWhipCollider
+  PrepareAbilityColliderObject: 
+  PrepareAbilitySound: 
+  ExecuteAbilitySound: _ound_throw
   HitAbilitySound: _ound_hit_4
-  CD: 5
-  CastingTime: 1
-  PreparingAnimation: Cast3
-  ExecuteAnimation: Execute3
+  CD: 1
+  CastingTime: 0.5
+  PreparingAnimation: Cast1
+  ExecuteAnimation: Execute1
   Attributes:
-    Power: 2
+    Power: 1
     HP: 0
     Defense: 0
     CDReduction: 0
@@ -41,11 +41,11 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeedBoost: 0
-  OnExecuteParams: []
+  OnExecuteParams:
+  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
+    Targets: 2
+    Value: Disengage
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Targets: 0
-    Value: 15
-  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
-    Targets: 0
-    Value: Rock Stun
+    Value: 30

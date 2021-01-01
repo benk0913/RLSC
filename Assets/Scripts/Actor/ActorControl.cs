@@ -49,7 +49,7 @@ public class ActorControl : MonoBehaviour
             internalJumpCooldown = 1f;
         }
         
-        for(int i=0;i<3;i++)
+        for(int i=0;i<5;i++)
         {
             if (Input.GetKeyDown(InputMap.Map["Ability"+i]))
             {
