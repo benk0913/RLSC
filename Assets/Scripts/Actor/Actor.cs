@@ -509,6 +509,11 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementDisengageRoutine());
                     break;
                 }
+            case "Engage":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementEngageRoutine());
+                    break;
+                }
             case "DashForward":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine());
@@ -638,6 +643,16 @@ public class Actor : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         
+        MovementEffectRoutineInstance = null;
+
+    }
+
+    IEnumerator MovementEngageRoutine()
+    {
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? 1f : -1f, 2f) * 15, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(1f);
+
         MovementEffectRoutineInstance = null;
 
     }

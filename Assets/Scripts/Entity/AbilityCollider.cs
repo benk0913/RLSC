@@ -82,6 +82,12 @@ public class AbilityCollider : HitCollider
             {
                 transform.position = rhit.point;
             }
+            else
+            {
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No nearby ground to hit!", Color.red, 2f));
+                this.gameObject.SetActive(false);
+                return;
+            }
         }
 
         if(InitForce != default)

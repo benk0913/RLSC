@@ -374,6 +374,15 @@ public class SocketHandler : MonoBehaviour
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering "+data["scene"].Value, Color.green, 1f, false));
 
         CORE.Instance.LoadScene(data["scene"].Value, ()=> SendEvent("scene_loaded"));
+
+        SceneInfo info = CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == data["scene"].Value);
+        if(info != null)
+        {
+            if(!string.IsNullOrEmpty(info.MusicTrack))
+            {
+                AudioControl.Instance.SetMusic(info.MusicTrack);
+            }
+        }
     }
 
     public void OnMoveActors(string eventName, JSONNode data)

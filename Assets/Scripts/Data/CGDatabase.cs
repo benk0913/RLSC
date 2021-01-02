@@ -63,6 +63,9 @@ public class SceneInfo
     public List<MobSpawn> Mobs = new List<MobSpawn>();
     public float playerSpawnX;
     public float playerSpawnY;
+
+    [JsonIgnore]
+    public string MusicTrack;
 }
 
 [Serializable]
