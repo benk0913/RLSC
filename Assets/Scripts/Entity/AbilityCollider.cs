@@ -43,6 +43,12 @@ public class AbilityCollider : HitCollider
                 {
                     obj.transform.position = transform.position;
                 }
+
+                AbilityCollider abilityCol = obj.GetComponent<AbilityCollider>();
+                if (abilityCol != null)
+                {
+                    abilityCol.SetInfo(this.AbilitySource, this.ActorSource);
+                }
             });
         }
 
