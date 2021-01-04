@@ -94,6 +94,7 @@ public class CGDatabaseEditor : Editor
             db.content.Monsters.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(Monster)) as Monster);
         }
 
+        EditorUtility.SetDirty(db);
     }
 
 }

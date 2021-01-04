@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Actor : MonoBehaviour
 {
@@ -125,7 +126,14 @@ public class Actor : MonoBehaviour
 
         if(PlayerHalo != null)
             PlayerHalo.SetActive(State.Data.IsPlayer);
+
+        this.State.OnInterrupt.AddListener(Interrupted);
         
+    }
+
+    public void Interrupted()
+    {
+        Animer.SetTrigger("Interrupted");
     }
 
     public void RefreshControlSource()
@@ -193,6 +201,8 @@ public class Actor : MonoBehaviour
                 buffState.CurrentLength -= Time.deltaTime;
             }
         }
+
+        Animer.SetBool("Stunned", State.CurrentControlState == ActorState.ControlState.Stunned);
     }
 
     void RefreshVelocity()
@@ -717,6 +727,8 @@ public class ActorState
 
     public bool IsPreparingAbility;
 
+    public UnityEvent OnInterrupt = new UnityEvent();
+
     public ControlState CurrentControlState
     {
         get
@@ -756,6 +768,8 @@ public class ActorState
                 state.CurrentCastingTime = 0f;
             }
         }
+
+        OnInterrupt?.Invoke();
     }
 
     public enum ControlState

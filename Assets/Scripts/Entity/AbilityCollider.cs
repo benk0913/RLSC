@@ -86,11 +86,20 @@ public class AbilityCollider : HitCollider
             RaycastHit2D rhit = Physics2D.Raycast(SkilledShotPoint.position, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
             if(rhit)
             {
+
+                if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.1f)
+                {
+                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Spell has been blocked by a wall...", Color.red, 1f,true));
+                    this.gameObject.SetActive(false);
+                    return;
+                }
+
                 transform.position = rhit.point;
+
             }
             else
             {
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No nearby ground to hit!", Color.red, 2f));
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No nearby ground to hit!", Color.red, 1f,true));
                 this.gameObject.SetActive(false);
                 return;
             }
@@ -105,7 +114,7 @@ public class AbilityCollider : HitCollider
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Actor")
-        {   
+        {
 
             Actor actorVictim = other.GetComponent<Actor>();
 
