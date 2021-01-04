@@ -529,6 +529,11 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine());
                     break;
                 }
+            case "DashUpwards":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashUpwardsRoutine());
+                    break;
+                }
             case "Pull":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementPullRoutine(casterActor));
@@ -667,6 +672,28 @@ public class Actor : MonoBehaviour
 
     }
 
+    IEnumerator MovementDashUpwardsRoutine()
+    {
+        Vector2 initDir = Vector2.up;
+        
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 1;
+            Rigid.position += initDir* CustomSpeedMult * State.Data.movementSpeed *4* (1f-t) * Time.deltaTime;
+
+            Rigid.velocity = Vector2.zero;
+
+            yield return new WaitForFixedUpdate();
+        }
+  
+        Rigid.velocity = Vector2.zero;
+
+        MovementEffectRoutineInstance = null;
+
+    }
+    
     IEnumerator MovementDashRoutine()
     {
         

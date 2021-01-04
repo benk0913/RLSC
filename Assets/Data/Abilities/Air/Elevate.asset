@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: TurtleSmash
+  m_Name: Elevate
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 375250ac166e1ad4eaf2cfdbbaa0ca83, type: 3}
+  Icon: {fileID: 21300000, guid: 5003e9d1f43c5794fa1853082606d43b, type: 3}
   HitAbilityColliderObject: 
-  AbilityColliderObject: TurtleSmashCollider
+  AbilityColliderObject: AirDodgeCollider
   PrepareAbilityColliderObject: 
   PrepareAbilitySound: 
-  ExecuteAbilitySound: 
+  ExecuteAbilitySound: _wosh
   HitAbilitySound: 
-  CD: 10
-  CastingTime: 2
-  PreparingAnimation: Cast1
-  ExecuteAnimation: Execute1
+  CD: 3
+  CastingTime: 0.003
+  PreparingAnimation: Cast2
+  ExecuteAnimation: Execute2
   Attributes:
-    Power: 1
+    Power: 0
     HP: 0
     Defense: 0
     CDReduction: 0
@@ -41,11 +41,11 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeedBoost: 0
-  OnExecuteParams: []
-  OnHitParams:
+  OnExecuteParams:
+  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
+    Targets: 2
+    Value: DashUpwards
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
-    Targets: 0
-    Value: Smash Stun
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
-    Targets: 0
-    Value: 30
+    Targets: 2
+    Value: Invulnerability
+  OnHitParams: []
