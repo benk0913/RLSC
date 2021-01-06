@@ -38,6 +38,15 @@ public class ActorControl : MonoBehaviour
             CurrentActor.AttemptMoveRight();
         }
 
+        if (Input.GetKey(InputMap.Map["Move Up"]))
+        {
+            CurrentActor.AttemptMoveUp();
+        }
+        else if (Input.GetKey(InputMap.Map["Move Down"]))
+        {
+            CurrentActor.AttemptMoveDown();
+        }
+
         if (Input.GetKeyDown(InputMap.Map["Jump"]))
         {
             if (internalJumpCooldown > 0f)

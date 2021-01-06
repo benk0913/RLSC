@@ -49,6 +49,8 @@ public class Actor : MonoBehaviour
     public bool IsGrounded;
     public bool IsInvulnerable;
 
+    public bool IsFlying;
+
     public float GroundCheckDistance = 10f;
     public float GroundedDistance= 1f;
 
@@ -473,6 +475,14 @@ public class Actor : MonoBehaviour
             {
                 State.CurrentControlState = (ActorState.ControlState) Enum.Parse(typeof(ActorState.ControlState), param.Value);
             }
+            if (param.Type.name == "Start Flying")
+            {
+                StartFlying();
+            }
+            if (param.Type.name == "Stop Flying")
+            {
+                StopFlying();
+            }
         }
     }
 
@@ -581,7 +591,47 @@ public class Actor : MonoBehaviour
 
         Rigid.position += Vector2.right * CustomSpeedMult * Time.deltaTime * State.Data.movementSpeed;
     }
-    
+
+    public void AttemptMoveDown()
+    {
+        if (!CanLookAround)
+        {
+            return;
+        }
+
+        if (!CanAttemptToMove)
+        {
+            return;
+        }
+        
+        if(!IsFlying)
+        {
+            return;
+        }
+
+        Rigid.position += Vector2.down * CustomSpeedMult * Time.deltaTime * State.Data.movementSpeed;
+    }
+
+    public void AttemptMoveUp()
+    {
+        if (!CanLookAround)
+        {
+            return;
+        }
+
+        if (!CanAttemptToMove)
+        {
+            return;
+        }
+
+        if (!IsFlying)
+        {
+            return;
+        }
+
+        Rigid.position += Vector2.up * CustomSpeedMult * Time.deltaTime * State.Data.movementSpeed;
+    }
+
     public void AttemptJump()
     {
         if (!CanAttemptToMove)
@@ -590,6 +640,11 @@ public class Actor : MonoBehaviour
         }
 
         if (!IsGrounded)
+        {
+            return;
+        }
+
+        if(IsFlying)
         {
             return;
         }
@@ -647,6 +702,23 @@ public class Actor : MonoBehaviour
         }
 
         return abilityState.CurrentCD <= 0f && abilityState.CurrentCastingTime <= 0f && !State.IsPreparingAbility;
+    }
+
+
+    public void StartFlying()
+    {
+        Rigid.velocity = Vector2.zero;
+        Rigid.gravityScale = 0f;
+        IsFlying = true;
+        Animer.SetBool("IsFlying", true);
+    }
+
+    public void StopFlying()
+    {
+        Rigid.velocity = Vector2.zero;
+        Rigid.gravityScale = 1f;
+        IsFlying = false;
+        Animer.SetBool("IsFlying", false);
     }
 
     #region MovementRoutines
