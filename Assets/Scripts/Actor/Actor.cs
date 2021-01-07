@@ -344,6 +344,19 @@ public class Actor : MonoBehaviour
             HurtEffect();
         }
         
+        if(ability.HitConditionObjectCondition != null 
+            && ability.HitConditionObjectCondition.IsValid(this) 
+            && !string.IsNullOrEmpty(ability.HitConditionObject))
+        {
+            
+            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(ability.HitConditionObject);
+            colliderObj.transform.position = transform.position;
+            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
+
+            colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
+        }
+
         State.Data.hp = currentHp;
     }
 

@@ -21,6 +21,12 @@ public class Ability : ScriptableObject
 
     [JsonIgnore]
     public string PrepareAbilityColliderObject;
+    
+    [JsonIgnore]
+    public string HitConditionObject;
+
+    [JsonIgnore]
+    public AbilityCondition HitConditionObjectCondition;
 
     [JsonIgnore]
     public string PrepareAbilitySound;
@@ -40,8 +46,6 @@ public class Ability : ScriptableObject
     [JsonIgnore]
     public string ExecuteAnimation;
 
-    public AttributeData Attributes;
-
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();
 }
@@ -50,12 +54,15 @@ public class Ability : ScriptableObject
 public class AbilityParam
 {
     public AbilityParamType Type;
+    
+    public AbilityCondition Condition;
 
     [JsonConverter(typeof(StringEnumConverter))]
     public TargetType Targets;
 
     public string Value;
 }
+
 
 [Serializable]
 public enum TargetType
@@ -65,3 +72,6 @@ public enum TargetType
     Self,
     NotSelf
 }
+
+
+
