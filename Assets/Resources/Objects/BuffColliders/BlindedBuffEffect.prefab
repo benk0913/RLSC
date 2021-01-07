@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1314719724268210271}
   - component: {fileID: 1314719724268210270}
   - component: {fileID: 6091865643249420805}
-  - component: {fileID: 1935860746220234754}
+  - component: {fileID: 6675563160516856569}
   m_Layer: 9
-  m_Name: CleanseCollider
+  m_Name: BlindedBuffEffect
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ Animator:
   m_GameObject: {fileID: 1314719724268210257}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8c593195a94a10489abb8604150da86, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5ca73f70cba89974097cbce6d5a57320, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -88,13 +88,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314719724268210257}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.67, y: 1.9}
+  m_Offset: {x: -1.9601111, y: 1.5010252}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -105,9 +105,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.15, y: 3.26}
+  m_Size: {x: 4.068332, y: 4.0020504}
   m_EdgeRadius: 0
---- !u!114 &1935860746220234754
+--- !u!114 &6675563160516856569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,26 +116,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1314719724268210257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
+  m_Script: {fileID: 11500000, guid: cf51ca97ea092944698ba886be5e745b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuffSource: {fileID: 0}
   ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 1
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
-  StickToActor: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 0
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: 
-  OnHitSource: {fileID: 0}
-  AudioOnHit: 
+  StickToActor: 1
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,13 +149,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314719725301908296}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071057, w: 0.7071079}
-  m_LocalPosition: {x: -1.98, y: 1.752, z: 0}
-  m_LocalScale: {x: 1.8158, y: 1.8158, z: 1.8158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.11, y: 5.1, z: 0}
+  m_LocalScale: {x: 0.36715, y: 0.36715, z: 0.36715}
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1314719725301908310
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -207,8 +196,8 @@ SpriteRenderer:
   m_SortingLayerID: -1365627307
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3924131072041096784, guid: 2cf568dbdc7028f4c952ec881806ed37, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a6d68b284c991214e93931e806d0dd0b, type: 3}
+  m_Color: {r: 0.9433962, g: 0.8858429, b: 0.24474904, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -48,6 +48,7 @@ public class Actor : MonoBehaviour
 
     public bool IsGrounded;
     public bool IsInvulnerable;
+    public bool IsImpassive;
 
     public bool IsFlying;
 
@@ -415,6 +416,11 @@ public class Actor : MonoBehaviour
             {
                 IsInvulnerable = true;
             }
+
+            if (state.CurrentBuff.MakesImpassive) //TODO Change later to attribute ? or maybe server imp
+            {
+                IsImpassive = true;
+            }
         }
         else
         {
@@ -447,6 +453,11 @@ public class Actor : MonoBehaviour
         if (state.CurrentBuff.MakesInvulnerable && State.Buffs.Find(x => x.CurrentBuff.MakesInvulnerable) == null)
         {
             IsInvulnerable = false;
+        }
+
+        if (state.CurrentBuff.MakesImpassive && State.Buffs.Find(x => x.CurrentBuff.MakesInvulnerable) == null)
+        {
+            IsImpassive = false;
         }
 
         if (IsClientControl)
