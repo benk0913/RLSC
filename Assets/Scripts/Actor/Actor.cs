@@ -484,7 +484,14 @@ public class Actor : MonoBehaviour
         {
             if(param.Type.name == "Movement")
             {
-                ExecuteMovement(param.Value, casterActor);
+                if (param.Targets == TargetType.Self && casterActor != null)
+                {
+                    casterActor.ExecuteMovement(param.Value, casterActor);
+                }
+                else
+                {
+                    ExecuteMovement(param.Value, casterActor);
+                }
             }
             if (param.Type.name == "Reset Last CD")
             {
@@ -548,9 +555,19 @@ public class Actor : MonoBehaviour
 
         switch(movementKey)
         {
+            case "InterruptMovement":
+                {
+                    Rigid.velocity = Vector2.zero;
+                    break;
+                }
             case "Disengage":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDisengageRoutine());
+                    break;
+                }
+            case "DisengageX1.5":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDisengageRoutine(1.5f));
                     break;
                 }
             case "Engage":
@@ -578,6 +595,12 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementEscapeRoutine());
                     break;
                 }
+            case "Pounce":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementPounceRoutine());
+                    break;
+                }
+
         }
     }
 
@@ -748,9 +771,9 @@ public class Actor : MonoBehaviour
     #region MovementRoutines
 
     Coroutine MovementEffectRoutineInstance;
-    IEnumerator MovementDisengageRoutine()
+    IEnumerator MovementDisengageRoutine(float multiplier = 1f)
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 15, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 15 * multiplier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
         
@@ -829,6 +852,29 @@ public class Actor : MonoBehaviour
         Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 25, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
+
+        MovementEffectRoutineInstance = null;
+
+    }
+
+
+    IEnumerator MovementPounceRoutine()
+    {
+        Vector2 initDir;
+        
+        if(IsGrounded)
+            initDir = new Vector2((Body.localScale.x < 0 ? Vector3.right : Vector3.left).x,1f);
+        else
+            initDir = new Vector2((Body.localScale.x < 0 ? Vector3.right : Vector3.left).x,-1f);
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 4f;
+            Rigid.position += initDir * CustomSpeedMult * State.Data.movementSpeed * 6f * Time.deltaTime;
+
+            yield return new WaitForFixedUpdate();
+        }
 
         MovementEffectRoutineInstance = null;
 
