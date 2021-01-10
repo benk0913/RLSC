@@ -61,6 +61,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_ded", OnActorDed));
         SocketEventListeners.Add(new SocketEventListener("actor_add_buff", OnActorAddBuff));
         SocketEventListeners.Add(new SocketEventListener("actor_remove_buff", OnActorRemoveBuff));
+        SocketEventListeners.Add(new SocketEventListener("actor_set_attributes", OnActorSetAttributes));
+        SocketEventListeners.Add(new SocketEventListener("actor_set_states", OnActorSetStates));
+        
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -547,6 +550,35 @@ public class SocketHandler : MonoBehaviour
         actorDat.ActorEntity.RemoveBuff(buff);
 
     }
+
+    public void OnActorSetAttributes(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+
+        actorDat.Attributes = JsonConvert.DeserializeObject<AttributeData>(data["attributes"].ToString());
+    }
+
+    public void OnActorSetStates(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+
+        actorDat.States = JsonConvert.DeserializeObject<Dictionary<string,StateData>>(data["states"].ToString());
+    }
+    
     #endregion
 }
 
@@ -581,6 +613,10 @@ public class ActorData
             return actorType == "mob";
         }
     }
+
+    public AttributeData Attributes;
+
+    public Dictionary<string, StateData> States = new Dictionary<string, StateData>();
 
     public bool isCharacter
     {
