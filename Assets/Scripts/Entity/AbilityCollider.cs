@@ -26,6 +26,11 @@ public class AbilityCollider : HitCollider
     [SerializeField]
     Transform OnHitSource;
 
+    [SerializeField]
+    bool DuplicateBubbles = false; //TODO Replace with something more generic?
+    public bool IsBubble = false; //TODO Replace with something more generic?
+    public List<AbilityCollider> BubblesDuplicated = new List<AbilityCollider>();
+
     public string AudioOnHit;
 
     private void Awake()
@@ -109,6 +114,11 @@ public class AbilityCollider : HitCollider
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(-1f * transform.localScale.x * InitForce.x,InitForce.y));
         }
+
+        if(DuplicateBubbles) //TODO Replace with something more generic
+        {
+            BubblesDuplicated.Clear();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -125,6 +135,35 @@ public class AbilityCollider : HitCollider
             if(HitEventOnWalls)
             {
                 OnHitEvent?.Invoke();
+            }
+        }
+        else if (other.tag == "HitCollider" && other != this) //TODO Replace with something more generic?
+        {
+
+            if (DuplicateBubbles)
+            {
+                AbilityCollider otherAbilityCollider = other.GetComponent<AbilityCollider>();
+
+                if (otherAbilityCollider == null || !otherAbilityCollider.IsBubble)
+                {
+                    return;
+                }
+
+                if(BubblesDuplicated.Contains(otherAbilityCollider))
+                {
+                    return;
+                }
+
+                GameObject clone = ResourcesLoader.Instance.GetRecycledObject(other.name);
+
+                AbilityCollider cloneAbilityCollider = clone.GetComponent<AbilityCollider>();
+                cloneAbilityCollider.SetInfo(otherAbilityCollider.AbilitySource, otherAbilityCollider.ActorSource);
+                clone.transform.position = other.transform.position;
+                clone.transform.position += clone.transform.TransformDirection(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+                clone.transform.localScale = other.transform.localScale;
+
+                BubblesDuplicated.Add(otherAbilityCollider);
+                BubblesDuplicated.Add(cloneAbilityCollider);
             }
         }
     }

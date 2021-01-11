@@ -123,10 +123,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActorSource: {fileID: 0}
   AbilitySource: {fileID: 0}
-  targetType: 1
+  targetType: 0
   OnHitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1314719724268210257}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   StickToActor: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 0
@@ -137,6 +149,9 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: PainBubblePopHit
   OnHitSource: {fileID: 0}
+  DuplicateBubbles: 0
+  IsBubble: 1
+  BubblesDuplicated: []
   AudioOnHit: sound_earth_4
 --- !u!114 &7937529260699182551
 MonoBehaviour:

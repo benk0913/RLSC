@@ -10,28 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Fly
+  m_Name: Fizzle
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: a731669898b53f843ba558fafc7af903, type: 3}
-  HitAbilityColliderObject: 
-  AbilityColliderObject: AirDodgeCollider
-  PrepareAbilityColliderObject: 
+  Icon: {fileID: 21300000, guid: 9b6b3f4523b223747abe162610518e01, type: 3}
+  HitAbilityColliderObject: FizzleHit
+  AbilityColliderObject: FizzleCollider
+  PrepareAbilityColliderObject: PrepareWaterSpell
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: 
-  ExecuteAbilitySound: _wosh
-  HitAbilitySound: 
-  CD: 25
-  CastingTime: 0.5
+  PrepareAbilitySound: sound_prepwaterspell
+  ExecuteAbilitySound: sound_watersplashs
+  HitAbilitySound: sound_heal
+  CD: 5
+  CastingTime: 1
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute2
-  OnExecuteParams:
+  OnExecuteParams: []
+  OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
-    Targets: 2
-    Value: Flight
-  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
-    Condition: {fileID: 0}
-    Targets: 2
-    Value: Disengage
-  OnHitParams: []
+    Targets: 1
+    Value: Fizzle Energy

@@ -10,28 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Air Kick
+  m_Name: Piercing Flame
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 3c088dabd8b4d464f8883382a02db6c1, type: 3}
+  Icon: {fileID: 21300000, guid: fda3fa2d3b92da046b1d896b5dd0627d, type: 3}
   HitAbilityColliderObject: 
-  AbilityColliderObject: AirKickCollider
-  PrepareAbilityColliderObject: 
+  AbilityColliderObject: PiercingFlameCollider
+  PrepareAbilityColliderObject: PrepareFireSpell
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
   PrepareAbilitySound: 
-  ExecuteAbilitySound: _ound_throw
+  ExecuteAbilitySound: sound_flamerelease
   HitAbilitySound: _ound_hit_1
-  CD: 3
-  CastingTime: 0.5
-  PreparingAnimation: Cast1
-  ExecuteAnimation: Execute1
-  OnExecuteParams:
-  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
-    Condition: {fileID: 0}
-    Targets: 2
-    Value: Disengage
+  CD: 5
+  CastingTime: 1
+  PreparingAnimation: Cast5
+  ExecuteAnimation: Execute6
+  OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     Targets: 0
-    Value: 30
+    Value: 90
