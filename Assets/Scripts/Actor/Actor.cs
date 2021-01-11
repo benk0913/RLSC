@@ -47,10 +47,27 @@ public class Actor : MonoBehaviour
 
 
     public bool IsGrounded;
-    public bool IsInvulnerable;
-    public bool IsImpassive;
+    public bool IsInvulnerable
+    {
+        get
+        {
+            return State.Data.States.ContainsKey("Invulnerable");
+        }
+    }
+
+    public bool IsImpassive
+    {
+        get
+        {
+            return State.Data.States.ContainsKey("Impassive");
+        }
+    }
 
     public bool IsFlying;
+
+    public bool IsStunned;
+
+    public bool IsSilenced;
 
     public float GroundCheckDistance = 10f;
     public float GroundedDistance= 1f;
@@ -91,8 +108,11 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return State.CurrentControlState != ActorState.ControlState.Immobile
-            && State.CurrentControlState != ActorState.ControlState.Stunned;
+            return !State.Data.States.ContainsKey("Immobile")
+            && !IsStunned
+            && !State.IsPreparingAbility
+            && !State.IsDead;
+               
         }
     }
 
@@ -101,6 +121,8 @@ public class Actor : MonoBehaviour
         this.State.Data = data;
 
         this.State.Abilities.Clear();
+
+        this.State.IsDead = false;
 
         //TODO Replace this with ability from seleted set.
         ClassJob classJob = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob);
@@ -205,7 +227,7 @@ public class Actor : MonoBehaviour
             }
         }
 
-        Animer.SetBool("Stunned", State.CurrentControlState == ActorState.ControlState.Stunned);
+        Animer.SetBool("Stunned", IsStunned);
     }
 
     void RefreshVelocity()
@@ -304,7 +326,6 @@ public class Actor : MonoBehaviour
         Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
 
         State.IsPreparingAbility = false;
-        State.CurrentControlState = ActorState.ControlState.Normal;
 
         if(!string.IsNullOrEmpty(ability.AbilityColliderObject))
         {
@@ -378,7 +399,7 @@ public class Actor : MonoBehaviour
     public void Ded()
     {
         Animer.Play("Dead1");
-        State.CurrentControlState = ActorState.ControlState.Stunned;
+        State.IsDead = true;
 
         CORE.Instance.InvokeEvent("ActorDied");
     }
@@ -411,16 +432,6 @@ public class Actor : MonoBehaviour
             ActivateParams(state.CurrentBuff.OnStart);
 
             AddRelevantAttributes(state.CurrentBuff.Attributes);
-
-            if (state.CurrentBuff.MakesInvulnerable) //TODO Change later to attribute ? or maybe server imp
-            {
-                IsInvulnerable = true;
-            }
-
-            if (state.CurrentBuff.MakesImpassive) //TODO Change later to attribute ? or maybe server imp
-            {
-                IsImpassive = true;
-            }
         }
         else
         {
@@ -450,16 +461,6 @@ public class Actor : MonoBehaviour
 
         State.Buffs.Remove(state);
 
-        if (state.CurrentBuff.MakesInvulnerable && State.Buffs.Find(x => x.CurrentBuff.MakesInvulnerable) == null)
-        {
-            IsInvulnerable = false;
-        }
-
-        if (state.CurrentBuff.MakesImpassive && State.Buffs.Find(x => x.CurrentBuff.MakesInvulnerable) == null)
-        {
-            IsImpassive = false;
-        }
-
         if (IsClientControl)
         {
             ActivateParams(state.CurrentBuff.OnEnd);
@@ -473,6 +474,39 @@ public class Actor : MonoBehaviour
         if (CORE.Instance.Room.PlayerActor.ActorEntity == this)
         {
             CORE.Instance.InvokeEvent("BuffStateChanged");
+        }
+    }
+
+    
+    public void RefreshStates()
+    {
+        if (State.Data.States.ContainsKey("Stunned") && !IsStunned)
+        {
+            State.InterruptAbilities();
+            IsStunned = true;
+        }
+        else if (!State.Data.States.ContainsKey("Stunned") && IsStunned)
+        {
+            IsStunned = false;
+        }
+
+        if(State.Data.States.ContainsKey("Silenced") && !IsSilenced)
+        {
+            IsSilenced = true;
+            State.InterruptAbilities();
+        }
+        else if (!State.Data.States.ContainsKey("Silenced") && IsSilenced)
+        {
+            IsSilenced = false;
+        }
+
+        if (State.Data.States.ContainsKey("Flying") && !IsFlying)
+        {
+            StartFlying();
+        }
+        else if (!State.Data.States.ContainsKey("Flying") && IsFlying)
+        {
+            StopFlying();
         }
     }
 
@@ -501,10 +535,6 @@ public class Actor : MonoBehaviour
                 }
 
                 State.Abilities.Find(x => x.CurrentAbility.name == lastAbility.name).CurrentCD = 0f;
-            }
-            if (param.Type.name == "Change Control State")
-            {
-                State.CurrentControlState = (ActorState.ControlState) Enum.Parse(typeof(ActorState.ControlState), param.Value);
             }
             if (param.Type.name == "Start Flying")
             {
@@ -713,8 +743,6 @@ public class Actor : MonoBehaviour
 
         abilityState.CurrentCastingTime = abilityState.CurrentAbility.CastingTime;
 
-        State.CurrentControlState = ActorState.ControlState.Immobile;
-
         PrepareAbility(abilityState.CurrentAbility);
 
         
@@ -743,7 +771,7 @@ public class Actor : MonoBehaviour
     {
         AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
-        if(State.CurrentControlState == ActorState.ControlState.Silenced || State.CurrentControlState == ActorState.ControlState.Stunned)
+        if(IsStunned || IsSilenced || State.IsDead || State.IsPreparingAbility)
         {
             return false;
         }
@@ -756,16 +784,16 @@ public class Actor : MonoBehaviour
     {
         Rigid.velocity = Vector2.zero;
         Rigid.gravityScale = 0f;
-        IsFlying = true;
         Animer.SetBool("IsFlying", true);
+        IsFlying = true;
     }
 
     public void StopFlying()
     {
         Rigid.velocity = Vector2.zero;
         Rigid.gravityScale = 1f;
-        IsFlying = false;
         Animer.SetBool("IsFlying", false);
+        IsFlying = false;
     }
 
     #region MovementRoutines
@@ -896,25 +924,9 @@ public class ActorState
 
     public bool IsPreparingAbility;
 
+    public bool IsDead;
+
     public UnityEvent OnInterrupt = new UnityEvent();
-
-    public ControlState CurrentControlState
-    {
-        get
-        {
-            return _currentControlState;
-        }
-        set
-        {
-            _currentControlState = value;
-
-            if(_currentControlState == ControlState.Stunned || _currentControlState == ControlState.Silenced)
-            {
-                InterruptAbilities();
-            }
-        }
-    }
-    public ControlState _currentControlState = ControlState.Normal;
 
     public void ClearAllObjects()
     {
@@ -941,13 +953,6 @@ public class ActorState
         OnInterrupt?.Invoke();
     }
 
-    public enum ControlState
-    {
-        Normal,
-        Immobile,
-        Silenced,
-        Stunned
-    }
 }
 
 [Serializable]

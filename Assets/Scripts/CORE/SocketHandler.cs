@@ -577,6 +577,14 @@ public class SocketHandler : MonoBehaviour
         }
 
         actorDat.States = JsonConvert.DeserializeObject<Dictionary<string,StateData>>(data["states"].ToString());
+
+        if(actorDat.ActorEntity == null)
+        {
+            CORE.Instance.LogMessageError("ACTOR DATA HAS NO ENTITY?");
+            return;
+        }
+
+        actorDat.ActorEntity.RefreshStates();
     }
     
     #endregion
