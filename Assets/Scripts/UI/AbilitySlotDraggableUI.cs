@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class AbilitySlotDraggableUI : AbilitySlotUI
+public class AbilitySlotDraggableUI : AbilitySlotUI,IPointerEnterHandler,IPointerDownHandler
 {
     [SerializeField]
     public UnityEvent OnSelect;
@@ -34,10 +35,20 @@ public class AbilitySlotDraggableUI : AbilitySlotUI
     {
         OnSelect?.Invoke();
     }
+    
 
     protected override void Update()
     {
         //Dont delete, this is done to terminate the inherited update.
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        AbilitiesUI.Instance.MouseEnter(this);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        AbilitiesUI.Instance.MouseClick(this);
+    }
 }

@@ -488,10 +488,7 @@ public class SocketHandler : MonoBehaviour
 
         Ability ability = CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName);
 
-        //int damage = int.Parse(data["damage"]);
-        //int currentHp = int.Parse(data["hp"]);
-
-        //actorDat.ActorEntity.HitAbility(casterActorDat.ActorEntity, ability, damage, currentHp);
+        actorDat.ActorEntity.HitAbility(casterActorDat.ActorEntity, ability);
 
 
     }
