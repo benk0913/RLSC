@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public class SocketHandler : MonoBehaviour
@@ -63,7 +64,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_remove_buff", OnActorRemoveBuff));
         SocketEventListeners.Add(new SocketEventListener("actor_set_attributes", OnActorSetAttributes));
         SocketEventListeners.Add(new SocketEventListener("actor_set_states", OnActorSetStates));
-        
+        SocketEventListeners.Add(new SocketEventListener("actor_update_data", OnActorUpdateData));
+
+
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -231,8 +234,6 @@ public class SocketHandler : MonoBehaviour
         JSONNode data = JSON.Parse(response.downloadHandler.text);
 
         CurrentUser.actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
-
-
     }
     
     
@@ -487,10 +488,10 @@ public class SocketHandler : MonoBehaviour
 
         Ability ability = CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName);
 
-        int damage = int.Parse(data["damage"]);
-        int currentHp = int.Parse(data["hp"]);
+        //int damage = int.Parse(data["damage"]);
+        //int currentHp = int.Parse(data["hp"]);
 
-        actorDat.ActorEntity.HitAbility(casterActorDat.ActorEntity, ability, damage, currentHp);
+        //actorDat.ActorEntity.HitAbility(casterActorDat.ActorEntity, ability, damage, currentHp);
 
 
     }
@@ -565,6 +566,17 @@ public class SocketHandler : MonoBehaviour
         actorDat.Attributes = JsonConvert.DeserializeObject<AttributeData>(data["attributes"].ToString());
     }
 
+
+    public void OnActorUpdateData(string eventName, JSONNode data)
+    {
+        //TODO Add more?
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        actorDat.hp = data["hp"].AsInt;
+        actorDat.OnRefreshData?.Invoke();
+    }
+
     public void OnActorSetStates(string eventName, JSONNode data)
     {
         string givenActorId = data["actorId"].Value;
@@ -584,7 +596,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        actorDat.ActorEntity.RefreshStates();
+        actorDat.OnRefreshStates?.Invoke();
     }
     
     #endregion
@@ -613,7 +625,6 @@ public class ActorData
     public string classJob;
     public string actorType;
     public int hp;
-    public int maxHp;
     public bool isMob
     {
         get
@@ -625,6 +636,31 @@ public class ActorData
     public AttributeData Attributes;
 
     public Dictionary<string, StateData> States = new Dictionary<string, StateData>();
+
+    [JsonIgnore]
+    public List<string> Abilities
+    {
+        get
+        {
+            if(abilities == null && ClassJobReference != null)
+            {
+                abilities = new List<string>();
+
+                int upTo = ClassJobReference.Abilities.Count > 5 ? 5 : ClassJobReference.Abilities.Count;//TODO Replace with proper capacity
+                for (int i = 0; i < upTo; i++)
+                {
+                    abilities.Add(ClassJobReference.Abilities[i]);
+                }
+            }
+
+            return abilities;
+        }
+        set
+        {
+            abilities = value;
+        }
+    }
+    List<string> abilities;
 
     public bool isCharacter
     {
@@ -642,6 +678,43 @@ public class ActorData
 
     [JsonIgnore]
     public Actor ActorEntity;
+
+    [JsonIgnore]
+    public ClassJob ClassJobReference
+    {
+        get
+        {
+            if(_classjobRef == null && !string.IsNullOrEmpty(classJob))
+            {
+                _classjobRef = CORE.Instance.Data.content.Classes.Find(x => x.name == this.classJob);
+            }
+
+            return _classjobRef;
+        }
+        set
+        {
+            _classjobRef = value;
+        }
+    }
+    ClassJob _classjobRef;
+
+    [JsonIgnore]
+    public int MaxHP
+    {
+        get
+        {
+            return Mathf.FloorToInt(CORE.Instance.Data.content.HP + (CORE.Instance.Data.content.HP * Attributes.HP));
+        }
+    }
+
+    [JsonIgnore]
+    public UnityEvent OnRefreshData = new UnityEvent();
+
+    [JsonIgnore]
+    public UnityEvent OnRefreshStates = new UnityEvent();
+
+    [JsonIgnore]
+    public UnityEvent OnRefreshAbilities = new UnityEvent();
 
     public bool IsPlayer
     {

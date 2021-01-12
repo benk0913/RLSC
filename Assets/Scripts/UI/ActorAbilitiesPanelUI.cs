@@ -16,23 +16,23 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
         Instance = this;
     }
 
-    public void LateUpdate()
-    {
-        if(playerActor == null)
-        {
-            if (CORE.Instance.Room.PlayerActor == null || CORE.Instance.Room.PlayerActor.ActorEntity == null)
-            {
-                return;
-            }
+    //public void LateUpdate()
+    //{
+    //    if(playerActor == null)
+    //    {
+    //        if (CORE.Instance.Room.PlayerActor == null || CORE.Instance.Room.PlayerActor.ActorEntity == null)
+    //        {
+    //            return;
+    //        }
 
-            SetActor(CORE.Instance.Room.PlayerActor.ActorEntity);
+    //        SetActor(CORE.Instance.Room.PlayerActor.ActorEntity);
 
-        }
+    //    }
 
 
-    }
+    //}
 
-    void SetActor(Actor actor)
+    public void SetActor(Actor actor)
     {
         playerActor = actor;
 

@@ -24,6 +24,7 @@ public class CORE : MonoBehaviour
     public Dictionary<string, UnityEvent> DynamicEvents = new Dictionary<string, UnityEvent>();
 
     public bool IsBitch;
+    public bool InGame = false;
 
     private void Awake()
     {
@@ -37,6 +38,17 @@ public class CORE : MonoBehaviour
     private void Start()
     {
         SubscribeToEvent("ActorDied", Room.RefreshThreat);
+    }
+
+    private void Update()
+    {
+        if(InGame)
+        {
+            if(Input.GetKeyDown(InputMap.Map["Abilities Window"]))
+            {
+                AbilitiesUI.Instance.Show(Room.PlayerActor.ActorEntity);
+            }
+        }
     }
 
 
@@ -177,10 +189,22 @@ public class CORE : MonoBehaviour
 
         onComplete?.Invoke();
 
-        GameUICG.alpha = 1f;
+        EnterGame();
 
         LoadSceneRoutineInstance = null;
 
+    }
+
+    void EnterGame()
+    {
+        GameUICG.alpha = 1f;
+        InGame = true;
+    }
+
+    void LeaveGame()
+    {
+        GameUICG.alpha = 0f;
+        InGame = false;
     }
 
     Coroutine RoomUpdateRoutineInstance;

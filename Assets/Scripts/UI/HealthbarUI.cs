@@ -23,7 +23,7 @@ public class HealthbarUI : MonoBehaviour
         else
         {
             CG.alpha = 1f;
-            ImageFill.fillAmount = Mathf.Lerp(ImageFill.fillAmount, ((float)CurrentActor.State.Data.hp / (float)CurrentActor.State.Data.maxHp), Time.deltaTime);
+            ImageFill.fillAmount = Mathf.Lerp(ImageFill.fillAmount, ((float)CurrentActor.State.Data.hp / (float)CurrentActor.State.Data.MaxHP), Time.deltaTime);
         }
     }
 }

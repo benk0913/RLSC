@@ -81,7 +81,8 @@ public class Actor : MonoBehaviour
 
 
     Ability lastAbility;
-    
+
+
 
     public float JumpHeight = 1f;
 
@@ -119,22 +120,21 @@ public class Actor : MonoBehaviour
     public void SetActorInfo(ActorData data)
     {
         this.State.Data = data;
+        this.State.Data.OnRefreshData.AddListener(RefreshData);
+        this.State.Data.OnRefreshStates.AddListener(RefreshStates);
+        this.State.Data.OnRefreshAbilities.AddListener(RefreshAbilities);
 
-        this.State.Abilities.Clear();
-
+        RefreshData();
+        RefreshStates();
+        RefreshAbilities();
+ 
+        //TODO Replace later...
         this.State.IsDead = false;
-
-        //TODO Replace this with ability from seleted set.
-        ClassJob classJob = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob);
-
-        int abilityCount = classJob.Abilities.Count;
-        for (int i = 0; i < abilityCount; i++)
-        {
-            string abilityName = classJob.Abilities[i];
-            this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName)));
-        }
+        Animer.SetBool("IsDead", false);
 
         RefreshControlSource();
+
+        ClassJob classJob = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob);
 
         if (PassiveHitCollider != null)
         {
@@ -158,6 +158,11 @@ public class Actor : MonoBehaviour
 
     public void Interrupted()
     {
+        if(State.IsDead)
+        {
+            return;
+        }
+
         Animer.SetTrigger("Interrupted");
     }
 
@@ -181,6 +186,12 @@ public class Actor : MonoBehaviour
     }
 
 
+    private void OnDestroy()
+    {
+        this.State.Data.OnRefreshData.RemoveListener(RefreshData);
+        this.State.Data.OnRefreshStates.RemoveListener(RefreshStates);
+        this.State.Data.OnRefreshAbilities.RemoveListener(RefreshAbilities);
+    }
 
     protected void FixedUpdate()
     {
@@ -338,7 +349,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void HitAbility(Actor casterActor, Ability ability, int damage = 0, int currentHp = 0)
+    public void HitAbility(Actor casterActor, Ability ability)
     {
         if (IsClientControl)
         {
@@ -358,13 +369,7 @@ public class Actor : MonoBehaviour
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
 
-        if (damage != 0)
-        {
-            HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
-            label.transform.position = transform.position;
-            label.SetLabel(damage.ToString(), damage > 0 ? Color.yellow : Color.green);
-            HurtEffect();
-        }
+        
         
         if(ability.HitConditionObjectCondition != null 
             && ability.HitConditionObjectCondition.IsValid(this) 
@@ -378,8 +383,6 @@ public class Actor : MonoBehaviour
 
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
-
-        State.Data.hp = currentHp;
     }
 
     public void HurtEffect()
@@ -398,8 +401,9 @@ public class Actor : MonoBehaviour
 
     public void Ded()
     {
-        Animer.Play("Dead1");
         State.IsDead = true;
+        Animer.Play("Dead1");
+        Animer.SetBool("IsDead", true);
 
         CORE.Instance.InvokeEvent("ActorDied");
     }
@@ -477,7 +481,21 @@ public class Actor : MonoBehaviour
         }
     }
 
-    
+    public void RefreshData()
+    {
+        int damage = State.HP - State.Data.hp;
+        
+        if (damage != 0)
+        {
+            HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+            label.transform.position = transform.position;
+            label.SetLabel(Mathf.Abs(damage).ToString(), damage > 0 ? Color.yellow : Color.green);
+            HurtEffect();
+        }
+
+        State.HP = State.Data.hp;
+    }
+
     public void RefreshStates()
     {
         if (State.Data.States.ContainsKey("Stunned") && !IsStunned)
@@ -508,6 +526,18 @@ public class Actor : MonoBehaviour
         {
             StopFlying();
         }
+    }
+
+    public void RefreshAbilities()
+    {
+        this.State.Abilities.Clear();
+        for (int i = 0; i < State.Data.Abilities.Count; i++)
+        {
+            this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.Abilities[i])));
+        }
+
+        if (State.Data.IsPlayer)
+            ActorAbilitiesPanelUI.Instance.SetActor(this);
     }
 
     #region ClientControl
@@ -923,6 +953,8 @@ public class ActorState
     public List<BuffState> Buffs = new List<BuffState>();
 
     public bool IsPreparingAbility;
+
+    public int HP;
 
     public bool IsDead;
 

@@ -6,29 +6,30 @@ using UnityEngine.UI;
 
 public class AbilitySlotUI : MonoBehaviour
 {
-    AbilityState CurrentAbility;
+    public AbilityState CurrentAbility;
 
     [SerializeField]
-    Image IconImage;
+    protected Image IconImage;
 
     [SerializeField]
-    Image CooldownImage;
+    protected Image CooldownImage;
 
     [SerializeField]
-    TextMeshProUGUI CooldownLabel;
+    protected TextMeshProUGUI CooldownLabel;
 
     [SerializeField]
-    Image CastingCooldownImage;
+    protected Image CastingCooldownImage;
 
     [SerializeField]
-    TextMeshProUGUI CastingCooldownLabel;
+    protected TextMeshProUGUI CastingCooldownLabel;
 
 
-    public void SetAbilityState(AbilityState abilityState = null)
+    public virtual void SetAbilityState(AbilityState abilityState = null)
     {
+
         CurrentAbility = abilityState;
 
-        if(CurrentAbility == null)
+        if(CurrentAbility == null || CurrentAbility.CurrentAbility == null)
         {
             IconImage.sprite = ResourcesLoader.Instance.GetSprite("emptySlot");
             return;
@@ -37,7 +38,7 @@ public class AbilitySlotUI : MonoBehaviour
         IconImage.sprite = CurrentAbility.CurrentAbility.Icon;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if(CurrentAbility == null)
         {
