@@ -556,7 +556,7 @@ public class Actor : MonoBehaviour
 
     public void PutAbilityOnCooldown(AbilityState abilityState)
     {
-        abilityState.CurrentCD = abilityState.CurrentAbility.CD;
+        abilityState.CurrentCD = abilityState.CurrentAbility.CD * (1f - State.Data.Attributes.CDReduction);
     }
 
     #region ClientControl
@@ -795,11 +795,9 @@ public class Actor : MonoBehaviour
 
         AbilityState abilityState = State.Abilities[abilityIndex];
 
-        abilityState.CurrentCastingTime = abilityState.CurrentAbility.CastingTime;
+        abilityState.CurrentCastingTime = abilityState.CurrentAbility.CastingTime * (1f - State.Data.Attributes.CTReduction);
 
         PrepareAbility(abilityState.CurrentAbility);
-
-        
 
         JSONNode node = new JSONClass();
         node["abilityName"] = abilityState.CurrentAbility.name;

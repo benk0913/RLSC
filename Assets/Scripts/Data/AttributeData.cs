@@ -11,6 +11,7 @@ public class AttributeData// : ScriptableObject
     public float HP;
     public float Defense;
     public float CDReduction;
+    public float CTReduction;
     public float Lifesteal;
     public float CriticalChance;
     public float LongRangeMultiplier;
