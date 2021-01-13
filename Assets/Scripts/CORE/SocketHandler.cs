@@ -59,7 +59,6 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_prepare_ability", OnActorPrepareAbility));
         SocketEventListeners.Add(new SocketEventListener("actor_execute_ability", OnActorExecuteAbility));
         SocketEventListeners.Add(new SocketEventListener("actor_ability_hit", OnActorAbilityHit));
-        SocketEventListeners.Add(new SocketEventListener("actor_ded", OnActorDed));
         SocketEventListeners.Add(new SocketEventListener("actor_add_buff", OnActorAddBuff));
         SocketEventListeners.Add(new SocketEventListener("actor_remove_buff", OnActorRemoveBuff));
         SocketEventListeners.Add(new SocketEventListener("actor_set_attributes", OnActorSetAttributes));
@@ -489,23 +488,6 @@ public class SocketHandler : MonoBehaviour
         Ability ability = CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName);
 
         actorDat.ActorEntity.HitAbility(casterActorDat.ActorEntity, ability);
-
-
-    }
-
-    public void OnActorDed(string eventName, JSONNode data)
-    {
-      
-        string givenActorId = data["actorId"].Value;
-        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
-
-        if (actorDat == null)
-        {
-            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
-            return;
-        }
-
-        actorDat.ActorEntity.Ded();
 
 
     }
