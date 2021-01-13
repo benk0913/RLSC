@@ -78,6 +78,11 @@ public class AbilityCollider : HitCollider
     {
         if(StickToActor)
         {
+            if(ActorSource == null)
+            {
+                this.gameObject.SetActive(false);
+            }
+
             transform.position = ActorSource.transform.position;
 
             if (StickToSkilledShot)

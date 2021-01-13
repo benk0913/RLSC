@@ -900,17 +900,12 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementWindPushRoutine(Actor caster)
     {
-        float t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime * 1.25f;
-            Rigid.position += (Vector2)caster.transform.position - (Vector2)transform.position * State.Data.movementSpeed * Time.deltaTime;
+        Rigid.AddForce(new Vector2(caster.Body.localScale.x < 0 ? 1f : -1f, 1f) * 25, ForceMode2D.Impulse);
 
-            yield return new WaitForFixedUpdate();
-        }
+
+        yield return new WaitForSeconds(1f);
 
         MovementEffectRoutineInstance = null;
-
     }
 
 
