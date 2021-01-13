@@ -400,11 +400,13 @@ public class Actor : MonoBehaviour
     public void Ded()
     {
         Animer.Play("Dead1");
+        IsDead = true;
         Animer.SetBool("IsDead", true);
     }
 
     public void Resurrect()
     {
+        IsDead = false;
         Animer.SetBool("IsDead", false);
     }
 
