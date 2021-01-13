@@ -127,6 +127,7 @@ public class Actor : MonoBehaviour
 
         RefreshStates();
         RefreshAbilities();
+        PutAbilitiesOnCooldown();
  
         RefreshControlSource();
 
@@ -321,7 +322,7 @@ public class Actor : MonoBehaviour
         {
             AbilityState abilityState = State.Abilities.Find(x=>x.CurrentAbility.name == ability.name);
             
-            abilityState.CurrentCD = abilityState.CurrentAbility.CD;
+            PutAbilityOnCooldown(abilityState);
 
             ActivateParams(abilityState.CurrentAbility.OnExecuteParams);
 
@@ -543,6 +544,19 @@ public class Actor : MonoBehaviour
 
         if (State.Data.IsPlayer)
             ActorAbilitiesPanelUI.Instance.SetActor(this);
+    }
+
+    public void PutAbilitiesOnCooldown()
+    {
+        foreach (AbilityState abilityState in this.State.Abilities)
+        {
+            PutAbilityOnCooldown(abilityState);
+        }
+    }
+
+    public void PutAbilityOnCooldown(AbilityState abilityState)
+    {
+        abilityState.CurrentCD = abilityState.CurrentAbility.CD;
     }
 
     #region ClientControl
@@ -997,7 +1011,7 @@ public class ActorState
             if (state.CurrentCastingTime > 0f)
             {
                 state.CurrentCastingTime = 0f;
-                state.CurrentCD = state.CurrentAbility.CD;
+                Data.ActorEntity.PutAbilityOnCooldown(state);
             }
         }
         IsPreparingAbility = false;
