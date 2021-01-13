@@ -59,12 +59,12 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_prepare_ability", OnActorPrepareAbility));
         SocketEventListeners.Add(new SocketEventListener("actor_execute_ability", OnActorExecuteAbility));
         SocketEventListeners.Add(new SocketEventListener("actor_ability_hit", OnActorAbilityHit));
-        SocketEventListeners.Add(new SocketEventListener("actor_ded", OnActorDed));
         SocketEventListeners.Add(new SocketEventListener("actor_add_buff", OnActorAddBuff));
         SocketEventListeners.Add(new SocketEventListener("actor_remove_buff", OnActorRemoveBuff));
         SocketEventListeners.Add(new SocketEventListener("actor_set_attributes", OnActorSetAttributes));
         SocketEventListeners.Add(new SocketEventListener("actor_set_states", OnActorSetStates));
         SocketEventListeners.Add(new SocketEventListener("actor_update_data", OnActorUpdateData));
+        SocketEventListeners.Add(new SocketEventListener("actor_hurt", OnActorHurt));
 
 
 
@@ -493,23 +493,6 @@ public class SocketHandler : MonoBehaviour
 
     }
 
-    public void OnActorDed(string eventName, JSONNode data)
-    {
-      
-        string givenActorId = data["actorId"].Value;
-        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
-
-        if (actorDat == null)
-        {
-            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
-            return;
-        }
-
-        actorDat.ActorEntity.Ded();
-
-
-    }
-
     public void OnActorAddBuff(string eventName, JSONNode data)
     {
         string givenActorId = data["actorId"].Value;
@@ -563,15 +546,28 @@ public class SocketHandler : MonoBehaviour
         actorDat.Attributes = JsonConvert.DeserializeObject<AttributeData>(data["attributes"].ToString());
     }
 
-
     public void OnActorUpdateData(string eventName, JSONNode data)
     {
         //TODO Add more?
         string givenActorId = data["actorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
-        actorDat.hp = data["hp"].AsInt;
-        actorDat.OnRefreshData?.Invoke();
+        if (!string.IsNullOrEmpty(data["hp"].ToString())) {
+            actorDat.hp = data["hp"].AsInt;
+        }
+        if (!string.IsNullOrEmpty(data["x"].ToString()) && !string.IsNullOrEmpty(data["y"].ToString())) {
+            actorDat.x = data["x"].AsFloat;
+            actorDat.y = data["y"].AsFloat;
+            actorDat.ActorEntity.SnapToPosition();
+        }
+    }
+
+    public void OnActorHurt(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        actorDat.ActorEntity.ShowHurtLabel(data["dmg"].AsInt);
     }
 
     public void OnActorSetStates(string eventName, JSONNode data)
@@ -703,9 +699,6 @@ public class ActorData
             return Mathf.FloorToInt(CORE.Instance.Data.content.HP + (CORE.Instance.Data.content.HP * Attributes.HP));
         }
     }
-
-    [JsonIgnore]
-    public UnityEvent OnRefreshData = new UnityEvent();
 
     [JsonIgnore]
     public UnityEvent OnRefreshStates = new UnityEvent();

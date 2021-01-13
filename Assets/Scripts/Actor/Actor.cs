@@ -69,6 +69,8 @@ public class Actor : MonoBehaviour
 
     public bool IsSilenced;
 
+    public bool IsDead;
+
     public float GroundCheckDistance = 10f;
     public float GroundedDistance= 1f;
 
@@ -112,7 +114,7 @@ public class Actor : MonoBehaviour
             return !State.Data.States.ContainsKey("Immobile")
             && !IsStunned
             && !State.IsPreparingAbility
-            && !State.IsDead;
+            && !IsDead;
                
         }
     }
@@ -120,18 +122,12 @@ public class Actor : MonoBehaviour
     public void SetActorInfo(ActorData data)
     {
         this.State.Data = data;
-        this.State.Data.OnRefreshData.AddListener(RefreshData);
         this.State.Data.OnRefreshStates.AddListener(RefreshStates);
         this.State.Data.OnRefreshAbilities.AddListener(RefreshAbilities);
 
-        RefreshData();
         RefreshStates();
         RefreshAbilities();
  
-        //TODO Replace later...
-        this.State.IsDead = false;
-        Animer.SetBool("IsDead", false);
-
         RefreshControlSource();
 
         ClassJob classJob = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob);
@@ -158,7 +154,7 @@ public class Actor : MonoBehaviour
 
     public void Interrupted()
     {
-        if(State.IsDead)
+        if(IsDead)
         {
             return;
         }
@@ -188,7 +184,6 @@ public class Actor : MonoBehaviour
 
     private void OnDestroy()
     {
-        this.State.Data.OnRefreshData.RemoveListener(RefreshData);
         this.State.Data.OnRefreshStates.RemoveListener(RefreshStates);
         this.State.Data.OnRefreshAbilities.RemoveListener(RefreshAbilities);
     }
@@ -297,6 +292,11 @@ public class Actor : MonoBehaviour
         Body.localScale = State.Data.faceRight ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
     }
 
+    public void SnapToPosition()
+    {
+        Rigid.position = new Vector2(State.Data.x, State.Data.y);
+    }
+
     public void PrepareAbility(Ability ability)
     {
         Animer.Play(ability.PreparingAnimation);
@@ -401,14 +401,16 @@ public class Actor : MonoBehaviour
 
     public void Ded()
     {
-        State.IsDead = true;
         Animer.Play("Dead1");
+        IsDead = true;
         Animer.SetBool("IsDead", true);
-
-        CORE.Instance.InvokeEvent("ActorDied");
     }
 
-
+    public void Resurrect()
+    {
+        IsDead = false;
+        Animer.SetBool("IsDead", false);
+    }
 
     public void AddBuff(Buff buff)
     {
@@ -480,20 +482,13 @@ public class Actor : MonoBehaviour
             CORE.Instance.InvokeEvent("BuffStateChanged");
         }
     }
-
-    public void RefreshData()
+    
+    public void ShowHurtLabel(int damage)
     {
-        int damage = State.HP - State.Data.hp;
-        
-        if (damage != 0)
-        {
-            HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
-            label.transform.position = transform.position;
-            label.SetLabel(Mathf.Abs(damage).ToString(), damage > 0 ? Color.yellow : Color.green);
-            HurtEffect();
-        }
-
-        State.HP = State.Data.hp;
+        HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+        label.transform.position = transform.position;
+        label.SetLabel(Mathf.Abs(damage).ToString(), damage > 0 ? Color.yellow : Color.green);
+        HurtEffect();
     }
 
     public void RefreshStates()
@@ -525,6 +520,15 @@ public class Actor : MonoBehaviour
         else if (!State.Data.States.ContainsKey("Flying") && IsFlying)
         {
             StopFlying();
+        }
+
+        if (State.Data.States.ContainsKey("Dead") && !IsDead)
+        {
+            Ded();
+        }
+        else if (!State.Data.States.ContainsKey("Dead") && IsDead)
+        {
+            Resurrect();
         }
     }
 
@@ -801,7 +805,7 @@ public class Actor : MonoBehaviour
     {
         AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
-        if(IsStunned || IsSilenced || State.IsDead || State.IsPreparingAbility)
+        if(IsStunned || IsSilenced || IsDead || State.IsPreparingAbility)
         {
             return false;
         }
@@ -954,9 +958,6 @@ public class ActorState
 
     public bool IsPreparingAbility;
 
-    public int HP;
-
-    public bool IsDead;
 
     public UnityEvent OnInterrupt = new UnityEvent();
 

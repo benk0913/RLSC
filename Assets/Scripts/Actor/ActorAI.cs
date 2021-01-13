@@ -226,6 +226,7 @@ public class ActorAI : MonoBehaviour
     
     protected virtual IEnumerator AIBehaviourRoutine()
     {
+        yield return 0;
         while (true)
         {
             CurrentTarget = GetCurrentTarget();
