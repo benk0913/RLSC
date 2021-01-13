@@ -639,6 +639,11 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementEngageRoutine());
                     break;
                 }
+            case "Wind Push":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementWindPushRoutine(casterActor));
+                    break;
+                }
             case "DashForward":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine());
@@ -893,14 +898,31 @@ public class Actor : MonoBehaviour
 
     }
 
-
-    IEnumerator MovementPullRoutine(Actor caster)
+    IEnumerator MovementWindPushRoutine(Actor caster)
     {
         float t = 0f;
         while (t < 1f)
         {
             t += Time.deltaTime * 1.25f;
-            Rigid.position = Vector2.Lerp(Rigid.position, caster.transform.position, t);
+            Rigid.position += (Vector2)caster.transform.position - (Vector2)transform.position * State.Data.movementSpeed * Time.deltaTime;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        MovementEffectRoutineInstance = null;
+
+    }
+
+
+    IEnumerator MovementPullRoutine(Actor caster)
+    {
+        Vector2 Pullpoint = caster.transform.position;
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 1.25f;
+            Rigid.position = Vector2.Lerp(Rigid.position, Pullpoint, t);
 
             yield return new WaitForFixedUpdate();
         }

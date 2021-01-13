@@ -9,24 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: earth
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Pushed By Wind
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: a3617e29cb805e343a0c0e53a9cf17fd, type: 3}
-  Abilities:
-  - Push
-  - Rock
-  - Wall
-  - Root Hook
-  - Splinter
-  - Earth Trap
-  - Throw Sand
-  - Spikes
-  PassiveAbility: 
+  Icon: {fileID: 21300000, guid: 9f315414a499c774886c8ba6af70e23e, type: 3}
+  BuffColliderObject: PushedByWindBuffEffect
+  Length: 1
+  isDebuff: 0
+  ShowBuffIcon: 1
   Attributes:
     Power: 0
     HP: 0
-    Defense: 0
+    Defense: 9999
     CDReduction: 0
     Lifesteal: 0
     CriticalChance: 0
@@ -41,3 +35,15 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeedBoost: 0
+  MakesInvulnerable: 1
+  MakesImpassive: 0
+  OnStart:
+  - Type: {fileID: 11400000, guid: 034387b51f278eb4bb93006ae97fadc1, type: 2}
+    Condition: {fileID: 0}
+    Targets: 2
+    Value: Invulnerable
+  OnEnd:
+  - Type: {fileID: 11400000, guid: 0ce036530cecb14419eef4cfc770b466, type: 2}
+    Condition: {fileID: 0}
+    Targets: 2
+    Value: Invulnerable

@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Fire Orbs
+  m_Name: Wind Push
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 2ef66f349dd11b94b830593a33e7232a, type: 3}
+  Icon: {fileID: 21300000, guid: 9f315414a499c774886c8ba6af70e23e, type: 3}
   HitAbilityColliderObject: 
-  AbilityColliderObject: FireOrbsCollider
-  PrepareAbilityColliderObject: PrepareFireSpell
+  AbilityColliderObject: WindPushCollider
+  PrepareAbilityColliderObject: 
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
   PrepareAbilitySound: 
-  ExecuteAbilitySound: sound_flamerelease
-  HitAbilitySound: _ound_hit_1
-  CD: 25
+  ExecuteAbilitySound: sound_swashaw
+  HitAbilitySound: 
+  CD: 5
   CastingTime: 1
-  PreparingAnimation: Cast2
-  ExecuteAnimation: Execute1
+  PreparingAnimation: Cast3
+  ExecuteAnimation: Execute3
   OnExecuteParams: []
   OnHitParams:
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
-    Targets: 0
-    Value: 10
+    Targets: 1
+    Value: Wind Push
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    Targets: 1
+    Value: Invulnerability

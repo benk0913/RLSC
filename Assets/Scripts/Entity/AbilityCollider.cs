@@ -79,6 +79,26 @@ public class AbilityCollider : HitCollider
         if(StickToActor)
         {
             transform.position = ActorSource.transform.position;
+
+            if (StickToSkilledShot)
+            {
+                RaycastHit2D rhit = Physics2D.Raycast(SkilledShotPoint.position, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
+                if (rhit)
+                {
+
+                    if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.1f)
+                    {
+                        return;
+                    }
+
+                    transform.position = rhit.point;
+
+                }
+                else
+                {
+                    return;
+                }
+            }
         }
     }
 

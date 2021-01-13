@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Fire Orbs
+  m_Name: Spikes
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 2ef66f349dd11b94b830593a33e7232a, type: 3}
+  Icon: {fileID: 21300000, guid: f3ecd13eca244a6498417c3e6dedccdd, type: 3}
   HitAbilityColliderObject: 
-  AbilityColliderObject: FireOrbsCollider
-  PrepareAbilityColliderObject: PrepareFireSpell
+  AbilityColliderObject: SpikesCollider
+  PrepareAbilityColliderObject: PrepareEarthSpell
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: 
-  ExecuteAbilitySound: sound_flamerelease
-  HitAbilitySound: _ound_hit_1
-  CD: 25
-  CastingTime: 1
+  PrepareAbilitySound: sound_earth_1
+  ExecuteAbilitySound: sound_earth_4
+  HitAbilitySound: sound_earth_2
+  CD: 15
+  CastingTime: 2
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute1
   OnExecuteParams: []
@@ -30,4 +30,8 @@ MonoBehaviour:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     Targets: 0
-    Value: 10
+    Value: 5
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    Targets: 0
+    Value: Splinter Stun
