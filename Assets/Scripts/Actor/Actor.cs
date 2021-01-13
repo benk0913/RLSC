@@ -122,11 +122,9 @@ public class Actor : MonoBehaviour
     public void SetActorInfo(ActorData data)
     {
         this.State.Data = data;
-        this.State.Data.OnRefreshData.AddListener(RefreshData);
         this.State.Data.OnRefreshStates.AddListener(RefreshStates);
         this.State.Data.OnRefreshAbilities.AddListener(RefreshAbilities);
 
-        RefreshData();
         RefreshStates();
         RefreshAbilities();
  
@@ -186,7 +184,6 @@ public class Actor : MonoBehaviour
 
     private void OnDestroy()
     {
-        this.State.Data.OnRefreshData.RemoveListener(RefreshData);
         this.State.Data.OnRefreshStates.RemoveListener(RefreshStates);
         this.State.Data.OnRefreshAbilities.RemoveListener(RefreshAbilities);
     }
@@ -480,20 +477,13 @@ public class Actor : MonoBehaviour
             CORE.Instance.InvokeEvent("BuffStateChanged");
         }
     }
-
-    public void RefreshData()
+    
+    public void ShowHurtLabel(int damage)
     {
-        int damage = State.HP - State.Data.hp;
-        
-        if (damage != 0)
-        {
-            HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
-            label.transform.position = transform.position;
-            label.SetLabel(Mathf.Abs(damage).ToString(), damage > 0 ? Color.yellow : Color.green);
-            HurtEffect();
-        }
-
-        State.HP = State.Data.hp;
+        HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+        label.transform.position = transform.position;
+        label.SetLabel(Mathf.Abs(damage).ToString(), damage > 0 ? Color.yellow : Color.green);
+        HurtEffect();
     }
 
     public void RefreshStates()
@@ -963,7 +953,6 @@ public class ActorState
 
     public bool IsPreparingAbility;
 
-    public int HP;
 
     public UnityEvent OnInterrupt = new UnityEvent();
 

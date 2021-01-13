@@ -64,6 +64,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_set_attributes", OnActorSetAttributes));
         SocketEventListeners.Add(new SocketEventListener("actor_set_states", OnActorSetStates));
         SocketEventListeners.Add(new SocketEventListener("actor_update_data", OnActorUpdateData));
+        SocketEventListeners.Add(new SocketEventListener("actor_hurt", OnActorHurt));
 
 
 
@@ -545,7 +546,6 @@ public class SocketHandler : MonoBehaviour
         actorDat.Attributes = JsonConvert.DeserializeObject<AttributeData>(data["attributes"].ToString());
     }
 
-
     public void OnActorUpdateData(string eventName, JSONNode data)
     {
         //TODO Add more?
@@ -553,7 +553,14 @@ public class SocketHandler : MonoBehaviour
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
         actorDat.hp = data["hp"].AsInt;
-        actorDat.OnRefreshData?.Invoke();
+    }
+
+    public void OnActorHurt(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        actorDat.ActorEntity.ShowHurtLabel(data["dmg"].AsInt);
     }
 
     public void OnActorSetStates(string eventName, JSONNode data)
@@ -685,9 +692,6 @@ public class ActorData
             return Mathf.FloorToInt(CORE.Instance.Data.content.HP + (CORE.Instance.Data.content.HP * Attributes.HP));
         }
     }
-
-    [JsonIgnore]
-    public UnityEvent OnRefreshData = new UnityEvent();
 
     [JsonIgnore]
     public UnityEvent OnRefreshStates = new UnityEvent();
