@@ -525,6 +525,7 @@ public class Actor : MonoBehaviour
         if (State.Data.States.ContainsKey("Dead") && !IsDead)
         {
             Ded();
+            State.InterruptAbilities();
         }
         else if (!State.Data.States.ContainsKey("Dead") && IsDead)
         {
