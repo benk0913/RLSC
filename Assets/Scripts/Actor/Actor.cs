@@ -292,6 +292,11 @@ public class Actor : MonoBehaviour
         Body.localScale = State.Data.faceRight ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
     }
 
+    public void SnapToPosition()
+    {
+        Rigid.position = new Vector2(State.Data.x, State.Data.y);
+    }
+
     public void PrepareAbility(Ability ability)
     {
         Animer.Play(ability.PreparingAnimation);

@@ -552,7 +552,14 @@ public class SocketHandler : MonoBehaviour
         string givenActorId = data["actorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
-        actorDat.hp = data["hp"].AsInt;
+        if (!string.IsNullOrEmpty(data["hp"].ToString())) {
+            actorDat.hp = data["hp"].AsInt;
+        }
+        if (!string.IsNullOrEmpty(data["x"].ToString()) && !string.IsNullOrEmpty(data["y"].ToString())) {
+            actorDat.x = data["x"].AsFloat;
+            actorDat.y = data["y"].AsFloat;
+            actorDat.ActorEntity.SnapToPosition();
+        }
     }
 
     public void OnActorHurt(string eventName, JSONNode data)
