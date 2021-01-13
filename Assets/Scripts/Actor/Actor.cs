@@ -992,14 +992,15 @@ public class ActorState
     
     public void InterruptAbilities()
     {
-        IsPreparingAbility = false;
         foreach (AbilityState state in Abilities)
         {
             if (state.CurrentCastingTime > 0f)
             {
                 state.CurrentCastingTime = 0f;
+                state.CurrentCD = state.CurrentAbility.CD;
             }
         }
+        IsPreparingAbility = false;
 
         OnInterrupt?.Invoke();
     }
