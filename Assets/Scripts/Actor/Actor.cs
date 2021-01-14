@@ -196,6 +196,11 @@ public class Actor : MonoBehaviour
             UpdateFromActorData();
         }
 
+        if (IsFlying)
+        {
+            Rigid.velocity = Vector2.Lerp(Rigid.velocity, Vector2.zero, Time.deltaTime);
+        }
+
         RefreshVelocity();
     }
 
