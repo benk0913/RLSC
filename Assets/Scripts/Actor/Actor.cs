@@ -240,6 +240,7 @@ public class Actor : MonoBehaviour
         }
 
         Animer.SetBool("Stunned", IsStunned);
+        Animer.SetBool("Dead", IsDead);
     }
 
     void RefreshVelocity()
