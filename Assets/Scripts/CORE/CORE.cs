@@ -163,6 +163,48 @@ public class CORE : MonoBehaviour
         Room.ActorLeft(actorId);
     }
 
+    public void SpawnInteractable(Interactable interactable)
+    {
+        InteractableData dataRef = Data.content.Interactables.Find(X => X.name == interactable.interactableName);
+
+        if(dataRef == null)
+        {
+            LogMessageError("No known interactable " + interactable.interactableName);
+            return;
+        }
+
+        if (!string.IsNullOrEmpty(dataRef.InteractablePrefab))
+        {
+            GameObject interactableObject;
+
+            interactableObject = ResourcesLoader.Instance.GetRecycledObject(dataRef.InteractablePrefab);
+
+            interactableObject.transform.position = new Vector3(interactable.x, interactable.y, 0f);
+            interactable.Entity = interactableObject.GetComponent<InteractableEntity>();
+            interactable.Entity.SetInfo(interactable);
+        }
+
+        Room.InteractableJoined(interactable);
+    }
+
+    public void DespawnInteractable(string interactableId)
+    {
+        Room.InteractableLeft(interactableId);
+    }
+
+    public void InteractableUse(string interactableId, string byActorID = "")
+    {
+        Interactable interactable = Room.Interactables.Find(x => x.interactableId == interactableId);
+
+        if(interactable == null)
+        {
+            LogMessageError("No interactable with the id " + interactableId);
+            return;
+        }
+
+        interactable.Entity.Interacted(byActorID);
+    }
+
     Coroutine LoadSceneRoutineInstance;
     IEnumerator LoadSceneRoutine(string sceneKey, Action onComplete = null)
     {
@@ -225,6 +267,7 @@ public class CORE : MonoBehaviour
 public class RoomData
 {
     public List<ActorData> Actors = new List<ActorData>();
+    public List<Interactable> Interactables = new List<Interactable>();
 
     public ActorData PlayerActor;
 
@@ -293,6 +336,28 @@ public class RoomData
         {
             RefreshThreat();
         }
+    }
+
+    public void InteractableJoined(Interactable interactable)
+    {
+        Interactables.Add(interactable);
+    }
+
+    public void InteractableLeft(string interactableId)
+    {
+        Interactable interactable = Interactables.Find(x => x.interactableId == interactableId);
+
+        if (interactable == null)
+        {
+            CORE.Instance.LogMessageError("No interactableId " + interactableId + " in room.");
+            return;
+        }
+
+        CORE.Destroy(interactable.Entity.gameObject);
+
+        
+        Interactables.Remove(interactable);
+        
     }
 
     public void RefreshThreat()

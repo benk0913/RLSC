@@ -32,6 +32,8 @@ public class DatabaseContent
 
     public List<SceneInfo> Scenes = new List<SceneInfo>();
 
+    public List<InteractableData> Interactables = new List<InteractableData>();
+
     public string StartingScene;
 
     public string HumanPrefab;
@@ -61,11 +63,20 @@ public class SceneInfo
 {
     public string sceneName;
     public List<MobSpawn> Mobs = new List<MobSpawn>();
+    public List<SceneInteractable> Interactables = new List<SceneInteractable>();
     public float playerSpawnX;
     public float playerSpawnY;
 
     [JsonIgnore]
     public string MusicTrack;
+}
+
+[Serializable]
+public class SceneInteractable
+{
+    public string interactableName;
+    public int positionX;
+    public int positionY;
 }
 
 [Serializable]

@@ -65,6 +65,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_set_states", OnActorSetStates));
         SocketEventListeners.Add(new SocketEventListener("actor_update_data", OnActorUpdateData));
         SocketEventListeners.Add(new SocketEventListener("actor_hurt", OnActorHurt));
+        SocketEventListeners.Add(new SocketEventListener("interactable_spawn", OnInteractableSpawn));
+        SocketEventListeners.Add(new SocketEventListener("interactable_despawn", OnInteractableDespawn));
+        SocketEventListeners.Add(new SocketEventListener("interactable_use", OnInteractableUse));
 
 
 
@@ -387,6 +390,21 @@ public class SocketHandler : MonoBehaviour
                 AudioControl.Instance.SetMusic(info.MusicTrack);
             }
         }
+    }
+
+    public void OnInteractableSpawn(string eventName, JSONNode data)
+    {
+        CORE.Instance.SpawnInteractable(JsonConvert.DeserializeObject<Interactable>(data["interactable"].ToString()));
+    }
+
+    public void OnInteractableDespawn(string eventName, JSONNode data)
+    {
+        CORE.Instance.DespawnInteractable(data["interactableId"]);
+    }
+
+    public void OnInteractableUse(string eventName, JSONNode data)
+    {
+        CORE.Instance.InteractableUse(data["interactableId"], data["actorId"]);
     }
 
     public void OnMoveActors(string eventName, JSONNode data)
@@ -728,6 +746,39 @@ public class ActorData
             this.ActorEntity = gActorObject.GetComponent<Actor>();
         }
     }
+}
+
+[Serializable]
+public class Interactable
+{
+    public float x;
+    public float y;
+    public string interactableId;
+    public string interactableName;
+    public string actorId;
+
+    [JsonIgnore]
+    public InteractableData Data
+    {
+        get
+        {
+            if(_data == null)
+            {
+                _data = CORE.Instance.Data.content.Interactables.Find(x => x.name == interactableName);
+            }
+
+            return _data;
+        }
+        set
+        {
+            _data = value;
+        }
+    }
+    [JsonIgnore]
+    InteractableData _data;
+
+    [JsonIgnore]
+    public InteractableEntity Entity;
 }
 
 public class SocketEventListener

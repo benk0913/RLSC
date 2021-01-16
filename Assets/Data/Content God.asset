@@ -88,6 +88,7 @@ MonoBehaviour:
       - monsterName: ActorRabbit
         positionX: 20
         positionY: 10
+      Interactables: []
       playerSpawnX: 0
       playerSpawnY: 0
       MusicTrack: music_CliffRelaxedBaP
@@ -96,14 +97,21 @@ MonoBehaviour:
       - monsterName: ActorTurtle
         positionX: 10
         positionY: 10
+      Interactables:
+      - interactableName: Test Interactable
+        positionX: 1
+        positionY: -10
       playerSpawnX: 0
       playerSpawnY: 0
       MusicTrack: music_RockBossOrientalBap
     - sceneName: TestEmptyChamber
       Mobs: []
+      Interactables: []
       playerSpawnX: 0
       playerSpawnY: 0
       MusicTrack: music_CliffRelaxedBaP
+    Interactables:
+    - {fileID: 11400000, guid: 66653ef37b3136b4eb124c885ec77a08, type: 2}
     StartingScene: TestBossChamber
     HumanPrefab: ActorHuman
     Power: 30
