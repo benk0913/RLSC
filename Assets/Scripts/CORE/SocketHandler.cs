@@ -18,8 +18,13 @@ public class SocketHandler : MonoBehaviour
 
     public static SocketHandler Instance;
 
-    public string HostUrl = "www.lul2.herokuapp.com";
-    public string SocketUrl = "www.lul2.herokuapp.com";
+    public bool IsLocal = false;
+    public string LocalHostUrl = "http://localhost:5000";
+    public string LocalSocketUrl = "http://localhost:5000/socket.io/";
+    public string ProdHostUrl = "https://lul2.herokuapp.com";
+    public string ProdSocketUrl = "https://lul2.herokuapp.com/socket.io/";
+    public string HostUrl { get { return IsLocal ? LocalHostUrl : ProdHostUrl; }}
+    public string SocketUrl { get { return IsLocal ? LocalSocketUrl : ProdSocketUrl; }}
 
     public UserData CurrentUser;
 
