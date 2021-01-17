@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6091865643249420805}
   - component: {fileID: 1935860746220234754}
   m_Layer: 9
-  m_Name: CleanseCollider
+  m_Name: RefreshingRushCollider
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ Animator:
   m_GameObject: {fileID: 1314719724268210257}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8c593195a94a10489abb8604150da86, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3276f029ec0ef3b409f1d7ac42ce8cc6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -135,6 +135,9 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
+  DuplicateBubbles: 0
+  IsBubble: 0
+  BubblesDuplicated: []
   AudioOnHit: 
 --- !u!1 &1314719725301908296
 GameObject:
