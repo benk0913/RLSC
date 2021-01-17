@@ -15,6 +15,9 @@ public class Buff : ScriptableObject
     [JsonIgnore]
     public string BuffColliderObject;
 
+    [JsonIgnore]
+    public Material BuffMaterial;
+
     public float Length = 1f;
     public bool isDebuff = false;
 

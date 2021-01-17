@@ -445,6 +445,11 @@ public class Actor : MonoBehaviour
             ActivateParams(state.CurrentBuff.OnStart);
 
             AddRelevantAttributes(state.CurrentBuff.Attributes);
+
+            if(buff.BuffMaterial != null)
+            {
+                spriteColorGroup.SetMaterial(buff.BuffMaterial);
+            }
         }
         else
         {
@@ -473,6 +478,11 @@ public class Actor : MonoBehaviour
         }
 
         State.Buffs.Remove(state);
+
+        if (buff.BuffMaterial != null)
+        {
+            spriteColorGroup.ResetMaterial();
+        }
 
         if (IsClientControl)
         {
@@ -658,6 +668,11 @@ public class Actor : MonoBehaviour
             case "Engage":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementEngageRoutine());
+                    break;
+                }
+            case "Earth Push":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementEarthPushRoutine(casterActor));
                     break;
                 }
             case "Wind Push":
@@ -915,6 +930,16 @@ public class Actor : MonoBehaviour
 
         MovementEffectRoutineInstance = null;
 
+    }
+
+    IEnumerator MovementEarthPushRoutine(Actor caster)
+    {
+        Rigid.AddForce(new Vector2(caster.Body.localScale.x < 0 ? 1f : -1f, 1f) * 15, ForceMode2D.Impulse);
+
+
+        yield return new WaitForSeconds(1f);
+
+        MovementEffectRoutineInstance = null;
     }
 
     IEnumerator MovementWindPushRoutine(Actor caster)
