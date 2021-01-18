@@ -15,6 +15,8 @@ public class Ability : ScriptableObject
 
     [JsonIgnore]
     public string HitAbilityColliderObject;
+
+    [JsonIgnore]
     public string MissAbilityColliderObject;
 
     [JsonIgnore]
@@ -25,11 +27,9 @@ public class Ability : ScriptableObject
     
     [JsonIgnore]
     public string HitConditionObject;
-    public string MissConditionObject;
 
     [JsonIgnore]
     public AbilityCondition HitConditionObjectCondition;
-    public AbilityCondition MissConditionObjectCondition;
 
     [JsonIgnore]
     public string PrepareAbilitySound;
