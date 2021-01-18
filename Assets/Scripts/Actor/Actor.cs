@@ -393,13 +393,7 @@ public class Actor : MonoBehaviour
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
 
-        if(ability.MissConditionObjectCondition != null 
-            && ability.MissConditionObjectCondition.IsValid(this) 
-            && !string.IsNullOrEmpty(ability.MissConditionObject))
-        {
-            GameObject colliderObj = AddColliderOnPosition(ability.MissConditionObject);
-            colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
-        }
+        
     }
 
     public void HurtEffect()
