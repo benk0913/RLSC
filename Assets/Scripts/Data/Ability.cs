@@ -17,6 +17,9 @@ public class Ability : ScriptableObject
     public string HitAbilityColliderObject;
 
     [JsonIgnore]
+    public string MissAbilityColliderObject;
+
+    [JsonIgnore]
     public string AbilityColliderObject;
 
     [JsonIgnore]
@@ -36,6 +39,7 @@ public class Ability : ScriptableObject
 
     [JsonIgnore]
     public string HitAbilitySound;
+    public string MissAbilitySound;
 
     public float CD = 1f;
     public float CastingTime = 0.003f;//0.003f is the min (Lag Compensation).
@@ -48,6 +52,7 @@ public class Ability : ScriptableObject
 
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();
+    public List<AbilityParam> OnMissParams = new List<AbilityParam>();
 }
 
 [Serializable]

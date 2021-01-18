@@ -10,24 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Refreshing Rush
+  m_Name: Earth Totem Interaction Spell
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: c991693b50cd210419257b0518ee4e8d, type: 3}
-  HitAbilityColliderObject: HealHit
-  AbilityColliderObject: RefreshingRushCollider
-  PrepareAbilityColliderObject: PrepareWaterSpell
+  Icon: {fileID: 21300000, guid: 6578f8976a78b884399640c855c9a1e8, type: 3}
+  HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
+  AbilityColliderObject: EarthTotemInteractionSpellCollider
+  PrepareAbilityColliderObject: 
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: sound_prepwaterspell
-  ExecuteAbilitySound: sound_watersplashs
-  HitAbilitySound: sound_heal
-  CD: 30
-  CastingTime: 1
-  PreparingAnimation: Cast2
-  ExecuteAnimation: Execute2
+  PrepareAbilitySound: 
+  ExecuteAbilitySound: 
+  HitAbilitySound: 
+  MissAbilitySound: 
+  CD: 25
+  CastingTime: 3
+  PreparingAnimation: Cast5
+  ExecuteAnimation: Execute5
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
-    Targets: 1
-    Value: Refreshing Rush Undying
+    Targets: 0
+    Value: Thump Stun
+  OnMissParams: []

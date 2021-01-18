@@ -199,4 +199,12 @@ public class AbilityCollider : HitCollider
         OnHitEvent?.Invoke();
     }
 
+    private void OnDisable()
+    {
+        if (this.CanMiss && this.AbilitySource.OnMissParams.Count > 0 && this.TimesHit == 0)
+        {
+            this.AttemptMissAbility();
+        }
+    }
+
 }

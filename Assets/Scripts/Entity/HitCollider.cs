@@ -18,17 +18,22 @@ public class HitCollider : MonoBehaviour
     [SerializeField]
     public UnityEvent OnHitEvent;
 
+    [SerializeField]
+    public bool CanMiss;
+
+    protected int TimesHit = 0;
+
 
     public virtual void SetInfo(Ability abilitySource, Actor actorSource)
     {
         AbilitySource = abilitySource;
         ActorSource = actorSource;
+        TimesHit = 0;
     }
 
     public virtual void AttemptHitAbility(Actor actorVictim)
     {
-
-        if (actorVictim.IsInvulnerable)
+        if (!CanHitActor(actorVictim))
         {
             return;
         }
@@ -84,19 +89,9 @@ public class HitCollider : MonoBehaviour
 
         OnHitEvent?.Invoke();
 
-        if (CORE.Instance.IsBitch)
+        if (!CanSendEventForActor(actorVictim))
         {
-            if (actorVictim.State.Data.IsPlayer && actorVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId)
-            {
-                return;
-            }
-        }
-        else
-        {
-            if (actorVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId) //is not the players actor
-            {
-                return;
-            }
+            return;
         }
 
         JSONNode node = new JSONClass();
@@ -105,5 +100,50 @@ public class HitCollider : MonoBehaviour
         node["abilityName"] = AbilitySource.name;
 
         SocketHandler.Instance.SendEvent("ability_hit", node);
+        TimesHit++;
+    }
+
+    public virtual void AttemptMissAbility()
+    {
+        if (!CanHitActor(ActorSource))
+        {
+            return;
+        }
+
+        if (!CanSendEventForActor(ActorSource))
+        {
+            return;
+        }
+
+        JSONNode node = new JSONClass();
+        node["actorId"] = ActorSource.State.Data.actorId;
+        node["abilityName"] = AbilitySource.name;
+
+        SocketHandler.Instance.SendEvent("ability_miss", node);
+    }
+
+    private bool CanHitActor(Actor targetVictim)
+    {
+        // TODO some spells should hit if invulnerable, such as heal or buff
+        return !targetVictim.IsInvulnerable;
+    }
+
+    private bool CanSendEventForActor(Actor targetVictim)
+    {
+        if (CORE.Instance.IsBitch)
+        {
+            if (targetVictim.State.Data.IsPlayer && targetVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId)
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if (targetVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId) // is not the players actor
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

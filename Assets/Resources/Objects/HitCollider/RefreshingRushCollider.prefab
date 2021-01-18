@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6091865643249420805}
   - component: {fileID: 1935860746220234754}
   m_Layer: 9
-  m_Name: BlessCollider
+  m_Name: RefreshingRushCollider
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ Animator:
   m_GameObject: {fileID: 1314719724268210257}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0e467a1b5e92ef14794a39b505c97068, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3276f029ec0ef3b409f1d7ac42ce8cc6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -94,7 +94,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.9601111, y: 1.5010252}
+  m_Offset: {x: -1.67, y: 1.9}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -105,7 +105,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.068332, y: 4.0020504}
+  m_Size: {x: 3.15, y: 3.26}
   m_EdgeRadius: 0
 --- !u!114 &1935860746220234754
 MonoBehaviour:
@@ -125,8 +125,7 @@ MonoBehaviour:
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
-  CanMiss: 1
-  StickToActor: 1
+  StickToActor: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 0
   SkilledShotPoint: {fileID: 0}
@@ -165,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314719725301908296}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071057, w: 0.7071079}
-  m_LocalPosition: {x: -0.258, y: 1.752, z: 0}
+  m_LocalPosition: {x: -1.98, y: 1.752, z: 0}
   m_LocalScale: {x: 1.8158, y: 1.8158, z: 1.8158}
   m_Children: []
   m_Father: {fileID: 1314719724268210268}

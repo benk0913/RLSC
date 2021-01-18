@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
-  m_Name: Refreshing Rush Undying
+  m_Name: Thump Stun
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: c991693b50cd210419257b0518ee4e8d, type: 3}
-  BuffColliderObject: Refreshing Rush Buff Effect
+  Icon: {fileID: 21300000, guid: 6578f8976a78b884399640c855c9a1e8, type: 3}
+  BuffColliderObject: StunBuffEffect
   BuffMaterial: {fileID: 0}
-  Length: 5
-  isDebuff: 0
+  Length: 1.5
+  isDebuff: 1
   ShowBuffIcon: 1
   Attributes:
     Power: 0
@@ -43,9 +43,9 @@ MonoBehaviour:
   - Type: {fileID: 11400000, guid: 034387b51f278eb4bb93006ae97fadc1, type: 2}
     Condition: {fileID: 0}
     Targets: 2
-    Value: Undying
+    Value: Stunned
   OnEnd:
   - Type: {fileID: 11400000, guid: 0ce036530cecb14419eef4cfc770b466, type: 2}
     Condition: {fileID: 0}
     Targets: 2
-    Value: Undying
+    Value: Stunned
