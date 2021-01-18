@@ -313,11 +313,7 @@ public class Actor : MonoBehaviour
 
         if (!string.IsNullOrEmpty(ability.PrepareAbilityColliderObject))
         {
-            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(ability.PrepareAbilityColliderObject);
-            colliderObj.transform.position = transform.position;
-            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
-
+            GameObject colliderObj = AddColliderOnPosition(ability.PrepareAbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
     }
@@ -347,11 +343,7 @@ public class Actor : MonoBehaviour
 
         if(!string.IsNullOrEmpty(ability.AbilityColliderObject))
         {
-            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(ability.AbilityColliderObject);
-            colliderObj.transform.position = transform.position;
-            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
-
+            GameObject colliderObj = AddColliderOnPosition(ability.AbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
     }
@@ -364,30 +356,48 @@ public class Actor : MonoBehaviour
         }
 
         if (!string.IsNullOrEmpty(ability.HitAbilitySound))
+        {
             AudioControl.Instance.PlayInPosition(ability.HitAbilitySound, transform.position);
+        }
 
         if (!string.IsNullOrEmpty(ability.HitAbilityColliderObject))
         {
-            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(ability.HitAbilityColliderObject);
-            colliderObj.transform.position = transform.position;
-            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
-
+            GameObject colliderObj = AddColliderOnPosition(ability.HitAbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
-
-        
         
         if(ability.HitConditionObjectCondition != null 
             && ability.HitConditionObjectCondition.IsValid(this) 
             && !string.IsNullOrEmpty(ability.HitConditionObject))
         {
-            
-            GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(ability.HitConditionObject);
-            colliderObj.transform.position = transform.position;
-            colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
+            GameObject colliderObj = AddColliderOnPosition(ability.HitConditionObject);
+            colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
+        }
+    }
 
+    public void MissAbility(Ability ability)
+    {
+        if (IsClientControl)
+        {
+            ActivateParams(ability.OnMissParams);
+        }
+
+        if (!string.IsNullOrEmpty(ability.MissAbilitySound))
+        {
+            AudioControl.Instance.PlayInPosition(ability.MissAbilitySound, transform.position);
+        }
+
+        if (!string.IsNullOrEmpty(ability.MissAbilityColliderObject))
+        {
+            GameObject colliderObj = AddColliderOnPosition(ability.MissAbilityColliderObject);
+            colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
+        }
+
+        if(ability.MissConditionObjectCondition != null 
+            && ability.MissConditionObjectCondition.IsValid(this) 
+            && !string.IsNullOrEmpty(ability.MissConditionObject))
+        {
+            GameObject colliderObj = AddColliderOnPosition(ability.MissConditionObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
     }
@@ -430,11 +440,7 @@ public class Actor : MonoBehaviour
 
             if (!string.IsNullOrEmpty(buff.BuffColliderObject))
             {
-                GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(buff.BuffColliderObject);
-                colliderObj.transform.position = transform.position;
-                colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
-
+                GameObject colliderObj = AddColliderOnPosition(buff.BuffColliderObject);
                 colliderObj.GetComponent<BuffCollider>().SetInfo(buff, this);
 
                 state.EffectObject = colliderObj;
@@ -460,6 +466,15 @@ public class Actor : MonoBehaviour
         {
             CORE.Instance.InvokeEvent("BuffStateChanged");
         }
+    }
+
+    private GameObject AddColliderOnPosition(string colliderKey)
+    {
+        GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(colliderKey);
+        colliderObj.transform.position = transform.position;
+        colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
+        return colliderObj;
     }
 
     public void RemoveBuff(Buff buff)
