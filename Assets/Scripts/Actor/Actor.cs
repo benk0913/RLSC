@@ -592,7 +592,7 @@ public class Actor : MonoBehaviour
         {
             if(param.Type.name == "Movement")
             {
-                if (param.Targets == TargetType.Self && casterActor != null)
+                if ((param.Targets == TargetType.Self || param.Targets == TargetType.FriendsAndSelf) && casterActor != null)
                 {
                     casterActor.ExecuteMovement(param.Value, casterActor);
                 }

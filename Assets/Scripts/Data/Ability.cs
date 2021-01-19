@@ -75,7 +75,9 @@ public enum TargetType
     Enemies,
     Friends,
     Self,
-    NotSelf
+    NotSelf,
+    FriendsAndSelf,
+    All
 }
 
 

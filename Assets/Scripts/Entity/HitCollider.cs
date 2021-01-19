@@ -79,6 +79,18 @@ public class HitCollider : MonoBehaviour
                 return;
             }
         }
+        else if (targetType == TargetType.FriendsAndSelf)
+        {
+            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isCharacter)
+            {
+                return;
+            }
+
+            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isMob)
+            {
+                return;
+            }
+        }
         else if (targetType == TargetType.NotSelf)
         {
             if (actorVictim == ActorSource)
