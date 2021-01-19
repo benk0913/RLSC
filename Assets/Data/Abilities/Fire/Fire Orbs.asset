@@ -14,20 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 2ef66f349dd11b94b830593a33e7232a, type: 3}
   HitAbilityColliderObject: 
-  AbilityColliderObject: FireOrbsCollider
+  MissAbilityColliderObject: 
+  AbilityColliderObject: 
   PrepareAbilityColliderObject: PrepareFireSpell
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
   PrepareAbilitySound: 
   ExecuteAbilitySound: sound_flamerelease
   HitAbilitySound: _ound_hit_1
+  MissAbilitySound: 
   CD: 25
   CastingTime: 1
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute1
-  OnExecuteParams: []
-  OnHitParams:
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+  OnExecuteParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
-    Targets: 0
-    Value: 10
+    Targets: 2
+    Value: Fire Orbs Buff
+  OnHitParams: []
+  OnMissParams: []

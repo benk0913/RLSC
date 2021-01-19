@@ -24,7 +24,7 @@ public class HitCollider : MonoBehaviour
     protected int TimesHit = 0;
 
 
-    public virtual void SetInfo(Ability abilitySource, Actor actorSource)
+    public virtual void SetInfo(Ability abilitySource = null, Actor actorSource = null)
     {
         AbilitySource = abilitySource;
         ActorSource = actorSource;
@@ -36,67 +36,6 @@ public class HitCollider : MonoBehaviour
         if (!CanHitActor(actorVictim))
         {
             return;
-        }
-
-        if (targetType == TargetType.Self)
-        {
-            if (actorVictim != ActorSource)
-            {
-                return;
-            }
-        }
-        else if (targetType == TargetType.Enemies)
-        {
-            if (actorVictim == ActorSource)
-            {
-                return;
-            }
-
-            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isMob)
-            {
-                return;
-            }
-
-            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isCharacter)
-            {
-                return;
-            }
-        }
-        else if (targetType == TargetType.Friends)
-        {
-            if (actorVictim == ActorSource)
-            {
-                return;
-            }
-
-            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isCharacter)
-            {
-                return;
-            }
-
-            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isMob)
-            {
-                return;
-            }
-        }
-        else if (targetType == TargetType.FriendsAndSelf)
-        {
-            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isCharacter)
-            {
-                return;
-            }
-
-            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isMob)
-            {
-                return;
-            }
-        }
-        else if (targetType == TargetType.NotSelf)
-        {
-            if (actorVictim == ActorSource)
-            {
-                return;
-            }
         }
 
         OnHitEvent?.Invoke();
@@ -134,10 +73,72 @@ public class HitCollider : MonoBehaviour
         SocketHandler.Instance.SendEvent("ability_miss", node);
     }
 
-    private bool CanHitActor(Actor targetVictim)
+    private bool CanHitActor(Actor actorVictim)
     {
         // TODO some spells should hit if invulnerable, such as heal or buff
-        return !targetVictim.IsInvulnerable;
+
+        if (targetType == TargetType.Self)
+        {
+            if (actorVictim != ActorSource)
+            {
+                return false;
+            }
+        }
+        else if (targetType == TargetType.Enemies)
+        {
+            if (actorVictim == ActorSource)
+            {
+                return false;
+            }
+
+            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isMob)
+            {
+                return false;
+            }
+
+            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isCharacter)
+            {
+                return false;
+            }
+        }
+        else if (targetType == TargetType.Friends)
+        {
+            if (actorVictim == ActorSource)
+            {
+                return false;
+            }
+
+            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isCharacter)
+            {
+                return false;
+            }
+
+            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isMob)
+            {
+                return false;
+            }
+        }
+        else if (targetType == TargetType.FriendsAndSelf)
+        {
+            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isCharacter)
+            {
+                return false;
+            }
+
+            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isMob)
+            {
+                return false;
+            }
+        }
+        else if (targetType == TargetType.NotSelf)
+        {
+            if (actorVictim == ActorSource)
+            {
+                return false;
+            }
+        }
+
+        return !actorVictim.IsInvulnerable;
     }
 
     private bool CanSendEventForActor(Actor targetVictim)
