@@ -9,23 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: water
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Liquid Bond Connection
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 375250ac166e1ad4eaf2cfdbbaa0ca83, type: 3}
-  Abilities:
-  - Bless
-  - Splash
-  - Frost Shield
-  - Pain Bubble
-  - Cleanse
-  - Resurrect
-  - Fizzle
-  - Saturate
-  - Water Totem
-  - Refreshing Rush
-  - Liquid Bond
-  PassiveAbility: 
+  Icon: {fileID: 21300000, guid: 4c52f84f8697c774e8d378b0b54dde57, type: 3}
+  BuffColliderObject: LiquidBondBuffEffect
+  BuffMaterial: {fileID: 0}
+  Length: 20
+  isDebuff: 1
+  ShowBuffIcon: 1
   Attributes:
     Power: 0
     HP: 0
@@ -45,3 +37,14 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeedBoost: 0
+  HitAbility: {fileID: 0}
+  OnStart:
+  - Type: {fileID: 11400000, guid: 034387b51f278eb4bb93006ae97fadc1, type: 2}
+    Condition: {fileID: 0}
+    Targets: 2
+    Value: Bind
+  OnEnd:
+  - Type: {fileID: 11400000, guid: 0ce036530cecb14419eef4cfc770b466, type: 2}
+    Condition: {fileID: 0}
+    Targets: 2
+    Value: Bind
