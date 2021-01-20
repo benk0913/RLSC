@@ -322,11 +322,14 @@ public class Actor : MonoBehaviour
     {
         if(IsClientControl)
         {
-            AbilityState abilityState = State.Abilities.Find(x=>x.CurrentAbility.name == ability.name);
-            
-            PutAbilityOnCooldown(abilityState);
+            AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
-            ActivateParams(abilityState.CurrentAbility.OnExecuteParams);
+            if (abilityState != null)
+            {
+                PutAbilityOnCooldown(abilityState);
+            }
+
+            ActivateParams(ability.OnExecuteParams);
 
             lastAbility = ability;
         }
