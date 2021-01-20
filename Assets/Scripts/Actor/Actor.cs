@@ -601,7 +601,7 @@ public class Actor : MonoBehaviour
                     ExecuteMovement(param.Value, casterActor);
                 }
             }
-            if (param.Type.name == "Reset Last CD")
+            else if (param.Type.name == "Reset Last CD")
             {
                 if(lastAbility == null)
                 {
@@ -610,13 +610,17 @@ public class Actor : MonoBehaviour
 
                 State.Abilities.Find(x => x.CurrentAbility.name == lastAbility.name).CurrentCD = 0f;
             }
-            if (param.Type.name == "Start Flying")
+            else if (param.Type.name == "Start Flying")
             {
                 StartFlying();
             }
-            if (param.Type.name == "Stop Flying")
+            else if (param.Type.name == "Stop Flying")
             {
                 StopFlying();
+            }
+            else if (param.Type.name == "Execute Ability")
+            {
+                AttemptExecuteAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == param.Value));
             }
         }
     }
@@ -712,6 +716,40 @@ public class Actor : MonoBehaviour
             case "Pounce":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementPounceRoutine());
+                    break;
+                }
+            case "TeleportToFriendFar":
+                {
+
+                    float furthestDist = 0f;
+                    Actor furthestActor = null;
+                    for(int i=0;i<CORE.Instance.Room.Actors.Count;i++)
+                    {
+                        if(CORE.Instance.Room.Actors[i].ActorEntity == this)
+                        {
+                            continue;
+                        }
+
+                        if(CORE.Instance.Room.Actors[i].isMob)
+                        {
+                            continue;
+                        }
+
+                        float currentDist = Vector2.Distance(transform.position, CORE.Instance.Room.Actors[i].ActorEntity.transform.position);
+                        if (currentDist > furthestDist)
+                        {
+                            furthestDist = currentDist;
+                            furthestActor = CORE.Instance.Room.Actors[i].ActorEntity;
+                        }
+                    }
+
+                    if (furthestActor == null)
+                    {
+                        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No friendly actor to move towards...", Color.red, 3f));
+                        break;
+                    }
+
+                    CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = furthestActor.Rigid.position; });
                     break;
                 }
 

@@ -9,23 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: earth
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Infernal Bomb Timer
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: a3617e29cb805e343a0c0e53a9cf17fd, type: 3}
-  Abilities:
-  - Push
-  - Rock
-  - Wall
-  - Root Hook
-  - Splinter
-  - Earth Trap
-  - Throw Sand
-  - Spikes
-  - Earth Totem
-  - Raise Surroundings
-  - Reinforce Earth
-  PassiveAbility: 
+  Icon: {fileID: 21300000, guid: 91e1a53f89460e14d8e9c429b6e5aed5, type: 3}
+  BuffColliderObject: InfernalBombBuffEffect
+  BuffMaterial: {fileID: 0}
+  Length: 5
+  isDebuff: 0
+  ShowBuffIcon: 1
   Attributes:
     Power: 0
     HP: 0
@@ -45,3 +37,10 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeedBoost: 0
+  HitAbility: {fileID: 0}
+  OnStart: []
+  OnEnd:
+  - Type: {fileID: 11400000, guid: 702f92c8f9d60634e9a401d7e7e4af3f, type: 2}
+    Condition: {fileID: 0}
+    Targets: 2
+    Value: Infernal Bomb Explosion

@@ -40,5 +40,7 @@ public class AbilityCondition : ScriptableObject
 [Serializable]
 public enum ConditionType
 {
-    HasBuff
+    HasBuff,
+    HasState
+        
 }
