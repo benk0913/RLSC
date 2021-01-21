@@ -14,35 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 46e165c483d468e43b2650e41ea4a5cf, type: 3}
   HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
   AbilityColliderObject: ChargeFinishCollider
   PrepareAbilityColliderObject: ChargeCollider
-  PrepareAbilitySound: _ound_flame
-  ExecuteAbilitySound: sound_fireblast
+  HitConditionObject: 
+  HitConditionObjectCondition: {fileID: 0}
+  PrepareAbilitySound: 
+  ExecuteAbilitySound: F_FireSurge
   HitAbilitySound: 
+  MissAbilitySound: 
   CD: 10
   CastingTime: 0.01
   PreparingAnimation: Cast4
   ExecuteAnimation: Execute4
-  Attributes:
-    Power: 0
-    HP: 0
-    Defense: 0
-    CDReduction: 0
-    Lifesteal: 0
-    CriticalChance: 0
-    LongRangeMultiplier: 0
-    ShortRangeMultiplier: 0
-    WildMagicChance: 0
-    SingleTargetDamage: 0
-    AOEDamage: 0
-    SpellDuration: 0
-    AntiDebuff: 0
-    KnockbackResistance: 0
-    SmallerColliderSize: 0
-    Threat: 0
-    MovementSpeedBoost: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 3a324772d7eee094a956d79f860f9248, type: 2}
+    Condition: {fileID: 0}
     Targets: 2
     Value: 
   OnHitParams: []
+  OnMissParams: []
