@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 9f315414a499c774886c8ba6af70e23e, type: 3}
   HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
   AbilityColliderObject: WindPushCollider
   PrepareAbilityColliderObject: 
   HitConditionObject: 
@@ -21,7 +22,8 @@ MonoBehaviour:
   PrepareAbilitySound: 
   ExecuteAbilitySound: sound_swashaw
   HitAbilitySound: 
-  CD: 5
+  MissAbilitySound: 
+  CD: 10
   CastingTime: 1
   PreparingAnimation: Cast3
   ExecuteAnimation: Execute3
@@ -35,3 +37,4 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: Pushed By Wind
+  OnMissParams: []
