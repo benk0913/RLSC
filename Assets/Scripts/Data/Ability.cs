@@ -14,6 +14,10 @@ public class Ability : ScriptableObject
     public Sprite Icon;
 
     [JsonIgnore]
+    [TextArea(3, 6)]
+    public string Description;
+
+    [JsonIgnore]
     public string HitAbilityColliderObject;
 
     [JsonIgnore]
