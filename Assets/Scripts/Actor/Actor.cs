@@ -37,6 +37,9 @@ public class Actor : MonoBehaviour
     [SerializeField]
     SpriteColorGroup spriteColorGroup;
 
+    [SerializeField]
+    Collider2D Collider;
+
 
     [SerializeField]
     public PassiveAbilityCollider PassiveHitCollider;
@@ -70,6 +73,8 @@ public class Actor : MonoBehaviour
     public bool IsSilenced;
 
     public bool IsDead;
+
+    public int ClientMovingTowardsDir;
 
     public float GroundCheckDistance = 10f;
     public float GroundedDistance= 1f;
@@ -201,11 +206,12 @@ public class Actor : MonoBehaviour
             Rigid.velocity = Vector2.Lerp(Rigid.velocity, Vector2.zero, Time.deltaTime);
         }
 
-        RefreshVelocity();
     }
 
     protected void LateUpdate()
     {
+        RefreshVelocity();
+
         RefreshActorState();
 
         RefreshGroundedState();
@@ -247,8 +253,19 @@ public class Actor : MonoBehaviour
     {
         deltaPosition = transform.position - lastPosition;
         lastPosition = transform.position;
-        Animer.SetFloat("VelocityX", deltaPosition.x);
-        Animer.SetFloat("VelocityY", deltaPosition.y);
+
+        if (IsClientControl)
+        {
+            Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
+            Animer.SetFloat("VelocityY", deltaPosition.y);
+        }
+        else
+        {
+            Animer.SetFloat("VelocityX", deltaPosition.x);
+            Animer.SetFloat("VelocityY", deltaPosition.y);
+        }
+
+        ClientMovingTowardsDir = 0;
     }
 
     void RefreshGroundedState()
@@ -783,6 +800,8 @@ public class Actor : MonoBehaviour
             return;
         }
 
+        ClientMovingTowardsDir = -1;
+
         Rigid.position += Vector2.left * CustomSpeedMult * Time.deltaTime * State.Data.movementSpeed;
     }
 
@@ -799,6 +818,8 @@ public class Actor : MonoBehaviour
         {
             return;
         }
+
+        ClientMovingTowardsDir = 1;
 
         Rigid.position += Vector2.right * CustomSpeedMult * Time.deltaTime * State.Data.movementSpeed;
     }

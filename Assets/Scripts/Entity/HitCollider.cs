@@ -21,6 +21,9 @@ public class HitCollider : MonoBehaviour
     [SerializeField]
     public bool CanMiss;
 
+    [SerializeField]
+    public bool HitOnlyGroundedActors = false;
+
     protected int TimesHit = 0;
 
 
@@ -136,6 +139,12 @@ public class HitCollider : MonoBehaviour
             {
                 return false;
             }
+        }
+
+        if (HitOnlyGroundedActors && !actorVictim.IsGrounded)
+        {
+            Debug.LogError(this.AbilitySource.name + " | CANCELLED ");
+            return false;
         }
 
         return !actorVictim.IsInvulnerable;

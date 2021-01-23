@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 401683987}
   - component: {fileID: 401683988}
-  - component: {fileID: 401683989}
   m_Layer: 8
   m_Name: Shadow
   m_TagString: Untagged
@@ -83,14 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!362 &401683989
-WorldAnchor:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401683986}
-  serializedVersion: 2
 --- !u!1 &185918073813294902
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569d44504d9d8604199c1c9d5d03f1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultMaterial: {fileID: 0}
 --- !u!1 &2950695082334499551
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +313,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!1 &4767366531139675301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,14 +1837,40 @@ MonoBehaviour:
       classJob: 
       actorType: 
       hp: 0
-      maxHp: 0
+      Attributes:
+        Power: 0
+        HP: 0
+        Defense: 0
+        CDReduction: 0
+        CTReduction: 0
+        Lifesteal: 0
+        CriticalChance: 0
+        LongRangeMultiplier: 0
+        ShortRangeMultiplier: 0
+        WildMagicChance: 0
+        SingleTargetDamage: 0
+        AOEDamage: 0
+        SpellDuration: 0
+        AntiDebuff: 0
+        KnockbackResistance: 0
+        SmallerColliderSize: 0
+        Threat: 0
+        MovementSpeedBoost: 0
       movementSpeed: 0
       threat: 0
       ActorEntity: {fileID: 0}
+      OnRefreshStates:
+        m_PersistentCalls:
+          m_Calls: []
+      OnRefreshAbilities:
+        m_PersistentCalls:
+          m_Calls: []
     Abilities: []
     Buffs: []
     IsPreparingAbility: 0
-    _currentControlState: 0
+    OnInterrupt:
+      m_PersistentCalls:
+        m_Calls: []
   Rigid: {fileID: 1551737043}
   Body: {fileID: 1450574624275921511}
   PlayerControl: {fileID: 7318722103061463516}
@@ -1862,9 +1881,14 @@ MonoBehaviour:
     m_Bits: 1
   Shadow: {fileID: 401683988}
   spriteColorGroup: {fileID: 8670522097953782760}
+  Collider: {fileID: 1551737044}
   PassiveHitCollider: {fileID: 8761908232127801425}
+  PlayerHalo: {fileID: 0}
   IsGrounded: 0
-  IsInvulnerable: 0
+  IsFlying: 0
+  IsStunned: 0
+  IsSilenced: 0
+  IsDead: 0
   GroundCheckDistance: 10
   GroundedDistance: 0.4
   VelocityMinimumThreshold: 0.1
@@ -2048,6 +2072,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f007a4b427a6c8348a285512b8208502, type: 3}
+--- !u!4 &4187224793295259050 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1961361078568754045, guid: f007a4b427a6c8348a285512b8208502, type: 3}
+  m_PrefabInstance: {fileID: 2388074667329756887}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8761908232127801425 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6394170687031932550, guid: f007a4b427a6c8348a285512b8208502, type: 3}
@@ -2059,8 +2088,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc384d69accc9542a05eb6fefa0bb97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &4187224793295259050 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1961361078568754045, guid: f007a4b427a6c8348a285512b8208502, type: 3}
-  m_PrefabInstance: {fileID: 2388074667329756887}
-  m_PrefabAsset: {fileID: 0}

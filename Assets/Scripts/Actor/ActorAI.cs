@@ -129,6 +129,7 @@ public class ActorAI : MonoBehaviour
         {
             Act.AttemptMoveLeft();
         }
+
     }
 
     protected void MoveFromTarget()
