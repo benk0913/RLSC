@@ -16,6 +16,8 @@ public class InteractableEntity : MonoBehaviour
 
     public float InteractableCooldown = 0f;
 
+    public bool IsBusy;
+
     public void SetInfo(Interactable data)
     {
         Data = data;
@@ -25,6 +27,12 @@ public class InteractableEntity : MonoBehaviour
     {
         if(InteractableCooldown > 0f)
         {
+            IsBusy = false;
+            return;
+        }
+
+        if(IsBusy)
+        {
             return;
         }
 
@@ -32,7 +40,9 @@ public class InteractableEntity : MonoBehaviour
         node["interactableId"] = Data.interactableId;
         SocketHandler.Instance.SendEvent("used_interactable",node);
 
-        InteractableCooldown = 1f;
+        InteractableCooldown = 2f;
+
+        IsBusy = true;
     }
 
     public void Interacted(string byActorID)
@@ -88,6 +98,11 @@ public class InteractableEntity : MonoBehaviour
         }
     }
 
+    public void SetBusy(bool state)
+    {
+        IsBusy = state;
+    }
+
     private void Update()
     {
         if(InteractableCooldown > 0f)
@@ -95,7 +110,7 @@ public class InteractableEntity : MonoBehaviour
             InteractableCooldown -= Time.deltaTime;
         }
 
-        if(NearbyActor != null && Input.GetKeyDown(InputMap.Map["Interact"]))
+        if(NearbyActor != null && Input.GetKeyDown(InputMap.Map["Interact"]) && NearbyActor.CanLookAround)
         {
             Interact();
         }

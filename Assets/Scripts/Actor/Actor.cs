@@ -929,6 +929,12 @@ public class Actor : MonoBehaviour
             return false;
         }
 
+        if(ability.OnlyIfGrounded && !IsGrounded)
+        {
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(ability.name + " can only be cast from the ground!",Color.red));
+            return false;
+        }
+
         return abilityState.CurrentCD <= 0f && abilityState.CurrentCastingTime <= 0f && !State.IsPreparingAbility;
     }
 
