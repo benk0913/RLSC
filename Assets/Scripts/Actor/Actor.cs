@@ -50,13 +50,6 @@ public class Actor : MonoBehaviour
 
 
     public bool IsGrounded;
-    public bool IsInvulnerable
-    {
-        get
-        {
-            return State.Data.States.ContainsKey("Invulnerable");
-        }
-    }
 
     public bool IsImpassive
     {

@@ -78,7 +78,6 @@ public class HitCollider : MonoBehaviour
 
     private bool CanHitActor(Actor actorVictim)
     {
-        // TODO some spells should hit if invulnerable, such as heal or buff
 
         if (targetType == TargetType.Self)
         {
@@ -146,7 +145,7 @@ public class HitCollider : MonoBehaviour
             return false;
         }
 
-        return !actorVictim.IsInvulnerable;
+        return true;
     }
 
     private bool CanSendEventForActor(Actor targetVictim)
