@@ -16,6 +16,9 @@ public class CGDatabase : ScriptableObject
     public string DataPath = "Data";
 
     public DatabaseContent content;
+
+    [JsonIgnore]
+    public Material DefaultSpriteMaterial;
 }
 
 [Serializable]

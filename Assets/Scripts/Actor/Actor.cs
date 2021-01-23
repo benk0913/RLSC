@@ -444,6 +444,10 @@ public class Actor : MonoBehaviour
                 
             }
 
+            if(!string.IsNullOrEmpty(buff.OnStartSound))
+            {
+                AudioControl.Instance.PlayInPosition(buff.OnStartSound,transform.position);
+            }
 
             ActivateParams(state.CurrentBuff.OnStart);
 
@@ -487,6 +491,11 @@ public class Actor : MonoBehaviour
         if (state.EffectObject != null)
         {
             state.EffectObject.SetActive(false);
+        }
+
+        if (!string.IsNullOrEmpty(buff.OnEndSound))
+        {
+            AudioControl.Instance.PlayInPosition(buff.OnEndSound, transform.position);
         }
 
         State.Buffs.Remove(state);
