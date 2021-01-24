@@ -22,7 +22,13 @@ public class ActorAI : MonoBehaviour
     protected float FleeDistance = 10f;
 
 
-    public Actor CurrentTarget;
+    public Actor CurrentTarget
+    {
+        get
+        {
+            return CORE.Instance.Room.MostThreateningActor;
+        }
+    }
 
 
     protected bool lastIsBitch;
@@ -149,11 +155,6 @@ public class ActorAI : MonoBehaviour
         }
     }
 
-    protected virtual Actor GetCurrentTarget()
-    {
-        return CORE.Instance.Room.MostThreateningActor;
-    }
-
     #endregion
 
     #region Layer2
@@ -230,8 +231,6 @@ public class ActorAI : MonoBehaviour
         yield return 0;
         while (true)
         {
-            CurrentTarget = GetCurrentTarget();
-
             AbilityState SelectedAbility = null;
 
             while (SelectedAbility == null)

@@ -428,12 +428,14 @@ public class Actor : MonoBehaviour
         Animer.Play("Dead1");
         IsDead = true;
         Animer.SetBool("IsDead", true);
+        CORE.Instance.InvokeEvent("ActorDied");
     }
 
     public void Resurrect()
     {
         IsDead = false;
         Animer.SetBool("IsDead", false);
+        CORE.Instance.InvokeEvent("ActorResurrected");
     }
 
     public void AddBuff(Buff buff)

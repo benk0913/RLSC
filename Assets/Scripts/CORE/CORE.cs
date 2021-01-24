@@ -38,6 +38,7 @@ public class CORE : MonoBehaviour
     private void Start()
     {
         SubscribeToEvent("ActorDied", Room.RefreshThreat);
+        SubscribeToEvent("ActorResurrected", Room.RefreshThreat);
     }
 
     private void Update()
@@ -295,12 +296,12 @@ public class RoomData
         float mostThreat = Mathf.NegativeInfinity;
         for(int i=0;i<Actors.Count;i++)
         {
-            if (Actors[i].ActorEntity.State.Data.hp <= 0 || Actors[i].isMob)
+            if (Actors[i].ActorEntity.IsDead || Actors[i].isMob)
             {
                 continue;
             }
 
-            float currentThreat = Actors[i].ActorEntity.State.Data.threat;//TODO THREAT_IMP_SERVER
+            float currentThreat = Actors[i].ActorEntity.State.Data.Attributes.Threat;
 
             if (currentThreat > mostThreat)
             {
