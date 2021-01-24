@@ -21,6 +21,9 @@ public class HitCollider : MonoBehaviour
     [SerializeField]
     public bool CanMiss;
 
+    [SerializeField]
+    public bool HitOnlyGroundedActors = false;
+
     protected int TimesHit = 0;
 
 
@@ -75,7 +78,6 @@ public class HitCollider : MonoBehaviour
 
     private bool CanHitActor(Actor actorVictim)
     {
-        // TODO some spells should hit if invulnerable, such as heal or buff
 
         if (targetType == TargetType.Self)
         {
@@ -138,7 +140,12 @@ public class HitCollider : MonoBehaviour
             }
         }
 
-        return !actorVictim.IsInvulnerable;
+        if (HitOnlyGroundedActors && !actorVictim.IsGrounded)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private bool CanSendEventForActor(Actor targetVictim)

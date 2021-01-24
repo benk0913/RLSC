@@ -14,6 +14,10 @@ public class Ability : ScriptableObject
     public Sprite Icon;
 
     [JsonIgnore]
+    [TextArea(3, 6)]
+    public string Description;
+
+    [JsonIgnore]
     public string HitAbilityColliderObject;
 
     [JsonIgnore]
@@ -43,6 +47,8 @@ public class Ability : ScriptableObject
 
     public float CD = 1f;
     public float CastingTime = 0.003f;//0.003f is the min (Lag Compensation).
+
+    public bool OnlyIfGrounded;
 
     [JsonIgnore]
     public string PreparingAnimation;

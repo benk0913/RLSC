@@ -28,6 +28,12 @@ public class Buff : ScriptableObject
 
     public Ability HitAbility;
 
+    [JsonIgnore]
+    public string OnStartSound;
+
+    [JsonIgnore]
+    public string OnEndSound;
+
     public List<AbilityParam> OnStart = new List<AbilityParam>();
     public List<AbilityParam> OnEnd = new List<AbilityParam>();
 }

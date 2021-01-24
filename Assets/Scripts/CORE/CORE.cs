@@ -97,14 +97,29 @@ public class CORE : MonoBehaviour
         DynamicEvents[eventKey].Invoke();
     }
 
-    public void DelayedInvokation(float time, System.Action action)
+    public void DelayedInvokation(float time, Action action)
     {
         StartCoroutine(DelayedInvokationRoutine(time, action));
     }
 
-    IEnumerator DelayedInvokationRoutine(float time, System.Action action)
+    IEnumerator DelayedInvokationRoutine(float time, Action action)
     {
         yield return new WaitForSeconds(time);
+
+        action.Invoke();
+    }
+
+    public void ConditionalInvokation(Predicate<object> condition, Action action)
+    {
+        StartCoroutine(ConditionalInvokationRoutine(condition, action));    
+    }
+
+    IEnumerator ConditionalInvokationRoutine(Predicate<object> condition, Action action)
+    {
+        while(!condition(null))
+        {
+            yield return new WaitForSeconds(1f);
+        }
 
         action.Invoke();
     }
@@ -347,17 +362,23 @@ public class RoomData
     {
         Interactable interactable = Interactables.Find(x => x.interactableId == interactableId);
 
+
         if (interactable == null)
         {
             CORE.Instance.LogMessageError("No interactableId " + interactableId + " in room.");
             return;
         }
-
-        CORE.Destroy(interactable.Entity.gameObject);
-
         
         Interactables.Remove(interactable);
-        
+
+        CORE.Instance.ConditionalInvokation(
+            x => 
+        {
+            return !interactable.Entity.IsBusy;
+        }, () => 
+        {
+            CORE.Destroy(interactable.Entity.gameObject);
+        });
     }
 
     public void RefreshThreat()

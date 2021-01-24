@@ -32,6 +32,11 @@ public class SpriteColorGroup : MonoBehaviour
 
     public void ResetMaterial()
     {
+        if(DefaultMaterial == null)
+        {
+            DefaultMaterial = CORE.Instance.Data.DefaultSpriteMaterial;
+        }
+
         foreach (SpriteRenderer renderer in Renderers)
         {
             renderer.material = DefaultMaterial;

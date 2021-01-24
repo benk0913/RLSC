@@ -23,6 +23,9 @@ public class AbilitySlotUI : MonoBehaviour
     [SerializeField]
     protected TextMeshProUGUI CastingCooldownLabel;
 
+    [SerializeField]
+    TooltipTargetUI Tooltip;
+
 
     public virtual void SetAbilityState(AbilityState abilityState = null)
     {
@@ -36,6 +39,42 @@ public class AbilitySlotUI : MonoBehaviour
         }
 
         IconImage.sprite = CurrentAbility.CurrentAbility.Icon;
+
+        string tooltipString = "";
+
+        tooltipString += "<color=yellow>"+abilityState.CurrentAbility.name+"</color>";
+        tooltipString += System.Environment.NewLine + abilityState.CurrentAbility.Description;
+        tooltipString += System.Environment.NewLine + "CASTING TIME: "+abilityState.CurrentAbility.CastingTime;
+        tooltipString += System.Environment.NewLine + "COOLDOWN: " + abilityState.CurrentAbility.CD;
+
+        if (abilityState.CurrentAbility.OnExecuteParams.Count > 0)
+        {
+            tooltipString += System.Environment.NewLine + "<color=yellow>On Execute</color>";
+            foreach (AbilityParam param in abilityState.CurrentAbility.OnExecuteParams)
+            {
+                tooltipString += System.Environment.NewLine + param.Type.name + " | " + param.Targets.ToString() + " | " + param.Value;
+            }
+        }
+
+        if (abilityState.CurrentAbility.OnHitParams.Count > 0)
+        {
+            tooltipString += System.Environment.NewLine + "<color=yellow>On Hit</color>";
+            foreach (AbilityParam param in abilityState.CurrentAbility.OnHitParams)
+            {
+                tooltipString += System.Environment.NewLine + param.Type.name + " | " + param.Targets.ToString() + " | " + param.Value;
+            }
+        }
+
+        if (abilityState.CurrentAbility.OnMissParams.Count > 0)
+        {
+            tooltipString += System.Environment.NewLine + "<color=yellow>On Miss</color>";
+            foreach (AbilityParam param in abilityState.CurrentAbility.OnMissParams)
+            {
+                tooltipString += System.Environment.NewLine + param.Type.name + " | " + param.Targets.ToString() + " | " + param.Value;
+            }
+        }
+
+        Tooltip.SetTooltip(tooltipString);
     }
 
     protected virtual void Update()
