@@ -407,10 +407,16 @@ public class RoomData
             ActorData actor = Actors[i];
             if ((actor.IsPlayer || (actor.isMob && CORE.Instance.IsBitch)) && actor.ActorEntity != null) 
             {
-                actorsToUpdate.Add(actor);
+                float lastX = actor.x;
+                float lastY = actor.y;
+                bool lastFaceRight = actor.faceRight;
                 actor.x = actor.ActorEntity.transform.position.x;
                 actor.y = actor.ActorEntity.transform.position.y;
                 actor.faceRight = actor.ActorEntity.Body.localScale.x < 0f;
+
+                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight) {
+                    actorsToUpdate.Add(actor);
+                }
             }
         }
 
