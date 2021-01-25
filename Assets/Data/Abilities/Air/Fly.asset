@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Fly
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: a731669898b53f843ba558fafc7af903, type: 3}
+  Description: Move freely in the air
   HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
   AbilityColliderObject: AirDodgeCollider
   PrepareAbilityColliderObject: 
   HitConditionObject: 
@@ -21,8 +23,11 @@ MonoBehaviour:
   PrepareAbilitySound: 
   ExecuteAbilitySound: _wosh
   HitAbilitySound: 
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 25
   CastingTime: 0.5
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute2
   OnExecuteParams:
@@ -35,3 +40,4 @@ MonoBehaviour:
     Targets: 2
     Value: Disengage
   OnHitParams: []
+  OnMissParams: []

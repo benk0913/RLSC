@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Fizzle
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 9b6b3f4523b223747abe162610518e01, type: 3}
+  Description: Duplicate all floating bubbles next to you and let close allies cast
+    abilities faster
   HitAbilityColliderObject: FizzleHit
+  MissAbilityColliderObject: 
   AbilityColliderObject: FizzleCollider
   PrepareAbilityColliderObject: PrepareWaterSpell
   HitConditionObject: 
@@ -21,8 +24,11 @@ MonoBehaviour:
   PrepareAbilitySound: sound_prepwaterspell
   ExecuteAbilitySound: sound_watersplashs
   HitAbilitySound: sound_heal
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 1
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute2
   OnExecuteParams: []
@@ -31,3 +37,4 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: Fizzle Energy
+  OnMissParams: []

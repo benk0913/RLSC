@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Blast
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: dcdfcc65b82aeb54f9f57e11397612c6, type: 3}
+  Description: Damage and ignite a close enemy
   HitAbilityColliderObject: 
   MissAbilityColliderObject: 
   AbilityColliderObject: BlastCollider
@@ -23,8 +24,10 @@ MonoBehaviour:
   ExecuteAbilitySound: F_Blast
   HitAbilitySound: F_Blast_Hit
   MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 0.2
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute1
   OnExecuteParams: []

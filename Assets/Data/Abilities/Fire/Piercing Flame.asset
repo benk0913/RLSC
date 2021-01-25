@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Piercing Flame
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fda3fa2d3b92da046b1d896b5dd0627d, type: 3}
+  Description: Damage an enemy in a long distance
   HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
   AbilityColliderObject: PiercingFlameCollider
   PrepareAbilityColliderObject: PrepareFireSpell
   HitConditionObject: 
@@ -21,8 +23,11 @@ MonoBehaviour:
   PrepareAbilitySound: 
   ExecuteAbilitySound: sound_flamerelease
   HitAbilitySound: _ound_hit_1
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 1
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast5
   ExecuteAnimation: Execute6
   OnExecuteParams: []
@@ -31,3 +36,4 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 0
     Value: 90
+  OnMissParams: []

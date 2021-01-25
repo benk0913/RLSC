@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Ghost
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: ced6abbe21a991249a883df9fcb3bdef, type: 3}
+  Description: Become invulnerable
   HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
   AbilityColliderObject: AirDodgeCollider
   PrepareAbilityColliderObject: 
   HitConditionObject: 
@@ -21,8 +23,11 @@ MonoBehaviour:
   PrepareAbilitySound: 
   ExecuteAbilitySound: _wosh
   HitAbilitySound: 
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 15
   CastingTime: 1
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute2
   OnExecuteParams:
@@ -31,3 +36,4 @@ MonoBehaviour:
     Targets: 2
     Value: Ghost Shield
   OnHitParams: []
+  OnMissParams: []

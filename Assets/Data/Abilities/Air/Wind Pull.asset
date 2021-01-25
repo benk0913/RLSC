@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Wind Pull
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 73d0b1bff0255a046a660d8d9d59cd47, type: 3}
+  Description: Pull an ally to you
   HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
   AbilityColliderObject: WindPullCollider
   PrepareAbilityColliderObject: 
   HitConditionObject: 
@@ -21,8 +23,11 @@ MonoBehaviour:
   PrepareAbilitySound: 
   ExecuteAbilitySound: sound_swashaw
   HitAbilitySound: 
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 0.2
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast3
   ExecuteAnimation: Execute3
   OnExecuteParams: []
@@ -35,3 +40,4 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: Invulnerability
+  OnMissParams: []

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Resurrect
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 9a140b5905c72a240abaa9773c051b34, type: 3}
+  Description: Slowly revive an ally
   HitAbilityColliderObject: ResurrectHit
+  MissAbilityColliderObject: 
   AbilityColliderObject: ResurrectCollider
   PrepareAbilityColliderObject: PrepareResurrect
   HitConditionObject: 
@@ -21,8 +23,11 @@ MonoBehaviour:
   PrepareAbilitySound: sound_prepwaterspell
   ExecuteAbilitySound: sound_watersplashs
   HitAbilitySound: sound_heal
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 30
   CastingTime: 10
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast4
   ExecuteAnimation: Execute2
   OnExecuteParams: []
@@ -31,3 +36,4 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: 
+  OnMissParams: []
