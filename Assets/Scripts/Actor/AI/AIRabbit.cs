@@ -103,8 +103,6 @@ public class AIRabbit : ActorAI
 
         while (true)
         {
-            CurrentTarget = GetCurrentTarget();
-
             AbilityState SelectedAbility = null;
             
             yield return new WaitForSeconds(ThinkingTime);
