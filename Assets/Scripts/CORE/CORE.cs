@@ -274,9 +274,20 @@ public class CORE : MonoBehaviour
             yield return 0;
         }
     }
-    
 
+    public void ShowScreenEffect(string screenEffectObject)
+    {
+        GameObject obj = ResourcesLoader.Instance.GetRecycledObject(screenEffectObject);
+        obj.transform.SetParent(GameUICG.transform, true);
+        obj.transform.position = GameUICG.transform.position;
+        obj.transform.localScale = Vector3.one;
 
+        RectTransform rt = obj.GetComponent<RectTransform>();
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.sizeDelta = Vector2.zero;
+
+    }
 }
 
 [Serializable]

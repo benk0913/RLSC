@@ -332,6 +332,9 @@ public class Actor : MonoBehaviour
     {
         if(IsClientControl)
         {
+
+            ActivateParams(ability.OnExecuteParams);
+
             AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
             if (abilityState != null)
@@ -339,15 +342,18 @@ public class Actor : MonoBehaviour
                 PutAbilityOnCooldown(abilityState);
             }
 
-            ActivateParams(ability.OnExecuteParams);
-
             lastAbility = ability;
         }
 
         Animer.Play(ability.ExecuteAnimation);
 
         if (!string.IsNullOrEmpty(ability.ExecuteAbilitySound))
-            AudioControl.Instance.PlayInPosition(ability.ExecuteAbilitySound, transform.position); 
+            AudioControl.Instance.PlayInPosition(ability.ExecuteAbilitySound, transform.position);
+
+        if (!string.IsNullOrEmpty(ability.ScreenEffectObject))
+        {
+            CORE.Instance.ShowScreenEffect(ability.ScreenEffectObject);
+        }
 
         transform.position = position;
         Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
@@ -633,6 +639,10 @@ public class Actor : MonoBehaviour
                 }
 
                 State.Abilities.Find(x => x.CurrentAbility.name == lastAbility.name).CurrentCD = 0f;
+            }
+            else if (param.Type.name == "Reset All CD")
+            {
+                State.Abilities.ForEach(x => x.CurrentCD = 0f);
             }
             else if (param.Type.name == "Start Flying")
             {
