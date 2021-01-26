@@ -77,8 +77,6 @@ public class Actor : MonoBehaviour
     protected Vector3 deltaPosition;
     protected Vector3 lastPosition;
 
-    public float CustomSpeedMult = 1f;
-
 
     Ability lastAbility;
 
@@ -772,7 +770,7 @@ public class Actor : MonoBehaviour
 
         ClientMovingTowardsDir = -1;
 
-        Rigid.position += Vector2.left * CustomSpeedMult * Time.deltaTime * State.Data.MovementSpeed;
+        Rigid.position += Vector2.left * Time.deltaTime * State.Data.MovementSpeed;
     }
 
     public void AttemptMoveRight()
@@ -791,7 +789,7 @@ public class Actor : MonoBehaviour
 
         ClientMovingTowardsDir = 1;
 
-        Rigid.position += Vector2.right * CustomSpeedMult * Time.deltaTime * State.Data.MovementSpeed;
+        Rigid.position += Vector2.right * Time.deltaTime * State.Data.MovementSpeed;
     }
 
     public void AttemptMoveDown()
@@ -811,7 +809,7 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        Rigid.position += Vector2.down * CustomSpeedMult * Time.deltaTime * State.Data.MovementSpeed;
+        Rigid.position += Vector2.down * Time.deltaTime * State.Data.MovementSpeed;
     }
 
     public void AttemptMoveUp()
@@ -831,7 +829,7 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        Rigid.position += Vector2.up * CustomSpeedMult * Time.deltaTime * State.Data.MovementSpeed;
+        Rigid.position += Vector2.up * Time.deltaTime * State.Data.MovementSpeed;
     }
 
     public void AttemptJump()
@@ -957,7 +955,7 @@ public class Actor : MonoBehaviour
         while (t < 1f)
         {
             t += Time.deltaTime * 1;
-            Rigid.position += initDir* CustomSpeedMult * State.Data.MovementSpeed *4* (1f-t) * Time.deltaTime;
+            Rigid.position += initDir* State.Data.MovementSpeed *4* (1f-t) * Time.deltaTime;
 
             Rigid.velocity = Vector2.zero;
 
@@ -979,7 +977,7 @@ public class Actor : MonoBehaviour
         while(t<1f)
         {
             t += Time.deltaTime  * 2f;
-            Rigid.position += initDir * CustomSpeedMult * State.Data.MovementSpeed * 4f * Time.deltaTime;
+            Rigid.position += initDir * State.Data.MovementSpeed * 4f * Time.deltaTime;
 
             yield return new WaitForFixedUpdate();
         }
@@ -1050,7 +1048,7 @@ public class Actor : MonoBehaviour
         while (t < 1f)
         {
             t += Time.deltaTime * 4f;
-            Rigid.position += initDir * CustomSpeedMult * State.Data.MovementSpeed * 6f * Time.deltaTime;
+            Rigid.position += initDir * State.Data.MovementSpeed * 6f * Time.deltaTime;
 
             yield return new WaitForFixedUpdate();
         }
