@@ -16,7 +16,7 @@ public class HealthbarUI : MonoBehaviour
 
     void Update()
     {
-        if (CurrentActor.State.Data.hp == CORE.Instance.Data.content.HP)
+        if (CurrentActor.State.Data.hp == CurrentActor.State.Data.MaxHP)
         {
             CG.alpha = 0f;
         }
@@ -24,6 +24,6 @@ public class HealthbarUI : MonoBehaviour
         {
             CG.alpha = 1f;
         }
-        ImageFill.fillAmount = Mathf.Lerp(ImageFill.fillAmount, ((float)CurrentActor.State.Data.hp / (float)CurrentActor.State.Data.MaxHP), Time.deltaTime * 2f);
+        ImageFill.fillAmount = Mathf.Lerp(ImageFill.fillAmount, ((float)CurrentActor.State.Data.hp / CurrentActor.State.Data.MaxHP), Time.deltaTime * 2f);
     }
 }

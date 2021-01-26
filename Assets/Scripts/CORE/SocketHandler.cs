@@ -703,11 +703,14 @@ public class ActorData
         }
     }
 
-    [JsonIgnore]//TODO SPEED_IMP_SERVER
-    public float movementSpeed = 12;
-
-    [JsonIgnore]//TODO THREAT_IMP_SERVER
-    public float threat;
+    [JsonIgnore]
+    public float MovementSpeed
+    {
+        get
+        {
+            return CORE.Instance.Data.content.BaseAttributes.MovementSpeed + (CORE.Instance.Data.content.BaseAttributes.MovementSpeed * Attributes.MovementSpeed);
+        }
+    }
 
     [JsonIgnore]
     public Actor ActorEntity;
@@ -732,11 +735,11 @@ public class ActorData
     ClassJob _classjobRef;
 
     [JsonIgnore]
-    public int MaxHP
+    public float MaxHP
     {
         get
         {
-            return Mathf.FloorToInt(CORE.Instance.Data.content.HP + (CORE.Instance.Data.content.HP * Attributes.HP));
+            return CORE.Instance.Data.content.BaseAttributes.HP + (CORE.Instance.Data.content.BaseAttributes.HP * Attributes.HP);
         }
     }
 
@@ -759,9 +762,6 @@ public class ActorData
         this.scene = gScene;
         this.name = gName;
         this.classJob = gClassJob;
-
-        //TODO SPEED_IMP_SERVER
-        movementSpeed = CORE.Instance.Data.content.MovementSpeed;
 
         if (gActorObject != null)
         {

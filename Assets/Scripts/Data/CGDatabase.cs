@@ -16,7 +16,7 @@ public class CGDatabase : ScriptableObject
  
     [JsonIgnore]
     public string LocalHostURL;
-    
+
     [JsonIgnore]
     public string HostURL { get { return IsLocal ? LocalHostURL : ProdHostURL; }}
 
@@ -50,24 +50,7 @@ public class DatabaseContent
 
     public string HumanPrefab;
 
-    public float Power;
-    public float HP;
-    public float Defense;
-    public float CDReduction;
-    public float Lifesteal;
-    public float CriticalChance;
-    public float LongRangeMultiplier;
-    public float ShortRangeMultiplier;
-    public float WildMagicChance;
-    public float SingleTargetDamage;
-    public float AOEDamage;
-    public float SpellDuration;
-    public float AntiDebuff;
-    public float KnockbackResistance;
-    public float SmallerColliderSize;
-    public float Threat;
-    public float MovementSpeed = 12f;
-
+    public AttributeData BaseAttributes;
 }
 
 [Serializable]
