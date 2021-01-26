@@ -9,7 +9,16 @@ using UnityEngine;
 public class CGDatabase : ScriptableObject
 {
     [JsonIgnore]
-    public string HostURL;
+    public bool IsLocal = false;
+ 
+    [JsonIgnore]
+    public string ProdHostURL;
+ 
+    [JsonIgnore]
+    public string LocalHostURL;
+    
+    [JsonIgnore]
+    public string HostURL { get { return IsLocal ? LocalHostURL : ProdHostURL; }}
 
     public string unic0rn = "b0ss";
 
