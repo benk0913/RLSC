@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8eff94603aa55b24284f40c55a1f1119, type: 3}
   BuffColliderObject: ShieldBuffEffect
+  BuffMaterial: {fileID: 0}
   Length: 5
   isDebuff: 0
   ShowBuffIcon: 1
@@ -22,6 +23,7 @@ MonoBehaviour:
     HP: 0
     Defense: 9999
     CDReduction: 0
+    CTReduction: 0
     Lifesteal: 0
     CriticalChance: 0
     LongRangeMultiplier: 0
@@ -34,16 +36,11 @@ MonoBehaviour:
     KnockbackResistance: 0
     SmallerColliderSize: 0
     Threat: 0
-    MovementSpeedBoost: 0
-  MakesInvulnerable: 1
-  MakesImpassive: 0
-  OnStart:
-  - Type: {fileID: 11400000, guid: 034387b51f278eb4bb93006ae97fadc1, type: 2}
-    Condition: {fileID: 0}
-    Targets: 2
-    Value: Invulnerable
-  OnEnd:
-  - Type: {fileID: 11400000, guid: 0ce036530cecb14419eef4cfc770b466, type: 2}
-    Condition: {fileID: 0}
-    Targets: 2
-    Value: Invulnerable
+    MovementSpeed: 0
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States:
+  - {fileID: 11400000, guid: 3e8a9ede5d286654f912327fdf8ae35f, type: 2}
+  OnStart: []
+  OnEnd: []

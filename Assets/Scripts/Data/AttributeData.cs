@@ -24,5 +24,5 @@ public class AttributeData// : ScriptableObject
     public float KnockbackResistance;
     public float SmallerColliderSize;
     public float Threat;
-    public float MovementSpeedBoost;
+    public float MovementSpeed;
 }

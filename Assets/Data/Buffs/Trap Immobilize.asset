@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: b016f394dd0405744998b7fe2de0afd5, type: 3}
   BuffColliderObject: ImmobilizeBuffEffect
+  BuffMaterial: {fileID: 0}
   Length: 10
   isDebuff: 1
   ShowBuffIcon: 1
@@ -22,6 +23,7 @@ MonoBehaviour:
     HP: 0
     Defense: 0
     CDReduction: 0
+    CTReduction: 0
     Lifesteal: 0
     CriticalChance: 0
     LongRangeMultiplier: 0
@@ -34,16 +36,11 @@ MonoBehaviour:
     KnockbackResistance: 0
     SmallerColliderSize: 0
     Threat: 0
-    MovementSpeedBoost: 0
-  MakesInvulnerable: 0
-  MakesImpassive: 0
-  OnStart:
-  - Type: {fileID: 11400000, guid: 034387b51f278eb4bb93006ae97fadc1, type: 2}
-    Condition: {fileID: 0}
-    Targets: 2
-    Value: Immobile
-  OnEnd:
-  - Type: {fileID: 11400000, guid: 0ce036530cecb14419eef4cfc770b466, type: 2}
-    Condition: {fileID: 0}
-    Targets: 2
-    Value: Immobile
+    MovementSpeed: 0
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States:
+  - {fileID: 11400000, guid: e7fceea113913be4fb95d1f64d2b4c22, type: 2}
+  OnStart: []
+  OnEnd: []
