@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Meteor
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 86316cb51d52fdb4eafa03d4962a10b1, type: 3}
+  Description: Damage and ignite an enemy in a medium distance
   HitAbilityColliderObject: 
   MissAbilityColliderObject: 
   AbilityColliderObject: MeteorCollider
@@ -23,8 +24,10 @@ MonoBehaviour:
   ExecuteAbilitySound: 
   HitAbilitySound: sound_flamerelease
   MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 3
   CastingTime: 0.2
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast1
   ExecuteAnimation: Execute3
   OnExecuteParams: []

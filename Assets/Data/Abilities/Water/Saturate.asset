@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Saturate
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8d29b8ea0260bd643a02a8959ed9ec11, type: 3}
+  Description: Float a bubble that on impact clears the cooldown of the last ability
   HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
   AbilityColliderObject: SaturateBuffCollider
   PrepareAbilityColliderObject: PrepareWaterSpell
   HitConditionObject: 
@@ -21,8 +23,11 @@ MonoBehaviour:
   PrepareAbilitySound: sound_prepwaterspell
   ExecuteAbilitySound: 
   HitAbilitySound: sound_bubblepop
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 1
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute3
   OnExecuteParams: []
@@ -31,3 +36,4 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: 
+  OnMissParams: []

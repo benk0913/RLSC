@@ -38,6 +38,7 @@ public class CORE : MonoBehaviour
     private void Start()
     {
         SubscribeToEvent("ActorDied", Room.RefreshThreat);
+        SubscribeToEvent("ActorResurrected", Room.RefreshThreat);
     }
 
     private void Update()
@@ -273,9 +274,20 @@ public class CORE : MonoBehaviour
             yield return 0;
         }
     }
-    
 
+    public void ShowScreenEffect(string screenEffectObject)
+    {
+        GameObject obj = ResourcesLoader.Instance.GetRecycledObject(screenEffectObject);
+        obj.transform.SetParent(GameUICG.transform, true);
+        obj.transform.position = GameUICG.transform.position;
+        obj.transform.localScale = Vector3.one;
 
+        RectTransform rt = obj.GetComponent<RectTransform>();
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.sizeDelta = Vector2.zero;
+
+    }
 }
 
 [Serializable]
@@ -295,12 +307,12 @@ public class RoomData
         float mostThreat = Mathf.NegativeInfinity;
         for(int i=0;i<Actors.Count;i++)
         {
-            if (Actors[i].ActorEntity.State.Data.hp <= 0 || Actors[i].isMob)
+            if (Actors[i].ActorEntity.IsDead || Actors[i].isMob)
             {
                 continue;
             }
 
-            float currentThreat = Actors[i].ActorEntity.State.Data.threat;//TODO THREAT_IMP_SERVER
+            float currentThreat = Actors[i].ActorEntity.State.Data.Attributes.Threat;
 
             if (currentThreat > mostThreat)
             {
@@ -395,10 +407,16 @@ public class RoomData
             ActorData actor = Actors[i];
             if ((actor.IsPlayer || (actor.isMob && CORE.Instance.IsBitch)) && actor.ActorEntity != null) 
             {
-                actorsToUpdate.Add(actor);
+                float lastX = actor.x;
+                float lastY = actor.y;
+                bool lastFaceRight = actor.faceRight;
                 actor.x = actor.ActorEntity.transform.position.x;
                 actor.y = actor.ActorEntity.transform.position.y;
                 actor.faceRight = actor.ActorEntity.Body.localScale.x < 0f;
+
+                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight) {
+                    actorsToUpdate.Add(actor);
+                }
             }
         }
 

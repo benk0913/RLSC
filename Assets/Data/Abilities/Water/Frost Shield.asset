@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Frost Shield
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8eff94603aa55b24284f40c55a1f1119, type: 3}
+  Description: Float a bubble that on impact protects an ally
   HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
   AbilityColliderObject: FrostShieldBuffCollider
   PrepareAbilityColliderObject: PrepareWaterSpell
   HitConditionObject: 
@@ -21,8 +23,11 @@ MonoBehaviour:
   PrepareAbilitySound: sound_prepwaterspell
   ExecuteAbilitySound: 
   HitAbilitySound: sound_bubblepop
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 1
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute3
   OnExecuteParams: []
@@ -31,3 +36,4 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: Frost Shield
+  OnMissParams: []

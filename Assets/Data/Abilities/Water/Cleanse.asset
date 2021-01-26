@@ -13,36 +13,27 @@ MonoBehaviour:
   m_Name: Cleanse
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 6253c1699645948419bc1a6dbbd44475, type: 3}
+  Description: Remove all debuffs on an ally or yourself
   HitAbilityColliderObject: HealHit
+  MissAbilityColliderObject: 
   AbilityColliderObject: CleanseCollider
   PrepareAbilityColliderObject: PrepareWaterSpell
+  HitConditionObject: 
+  HitConditionObjectCondition: {fileID: 0}
   PrepareAbilitySound: sound_prepwaterspell
   ExecuteAbilitySound: sound_watersplashs
   HitAbilitySound: sound_heal
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 1
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute2
-  Attributes:
-    Power: 1
-    HP: 0
-    Defense: 0
-    CDReduction: 0
-    Lifesteal: 0
-    CriticalChance: 0
-    LongRangeMultiplier: 0
-    ShortRangeMultiplier: 0
-    WildMagicChance: 0
-    SingleTargetDamage: 0
-    AOEDamage: 0
-    SpellDuration: 0
-    AntiDebuff: 0
-    KnockbackResistance: 0
-    SmallerColliderSize: 0
-    Threat: 0
-    MovementSpeedBoost: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 8fea71598b46cf843aba7ffae4242968, type: 2}
+    Condition: {fileID: 0}
     Targets: 1
     Value: 
+  OnMissParams: []

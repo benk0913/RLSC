@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Liquid Bond
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 4c52f84f8697c774e8d378b0b54dde57, type: 3}
+  Description: Bind to an ally and both of you receive all damage, heal and buffs
+    from the other
   HitAbilityColliderObject: LiquidBondHit
   MissAbilityColliderObject: 
   AbilityColliderObject: LiquidBondCollider
@@ -23,8 +25,10 @@ MonoBehaviour:
   ExecuteAbilitySound: sound_watersplashs
   HitAbilitySound: sound_heal
   MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 20
   CastingTime: 1
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute2
   OnExecuteParams: []

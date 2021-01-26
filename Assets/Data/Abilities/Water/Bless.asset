@@ -13,20 +13,21 @@ MonoBehaviour:
   m_Name: Bless
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 45205b54a1348e94fb776ad86c67035c, type: 3}
+  Description: Heal an ally or yourself
   HitAbilityColliderObject: HealHit
   MissAbilityColliderObject: HealHit
   AbilityColliderObject: BlessCollider
   PrepareAbilityColliderObject: PrepareWaterSpell
   HitConditionObject: 
-  MissConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
-  MissConditionObjectCondition: {fileID: 0}
   PrepareAbilitySound: sound_prepwaterspell
   ExecuteAbilitySound: sound_watersplashs
   HitAbilitySound: sound_heal
   MissAbilitySound: sound_heal
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 1
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast1
   ExecuteAnimation: Execute1
   OnExecuteParams: []

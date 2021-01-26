@@ -45,6 +45,9 @@ public class Ability : ScriptableObject
     public string HitAbilitySound;
     public string MissAbilitySound;
 
+    [JsonIgnore]
+    public string ScreenEffectObject;
+
     public float CD = 1f;
     public float CastingTime = 0.003f;//0.003f is the min (Lag Compensation).
 

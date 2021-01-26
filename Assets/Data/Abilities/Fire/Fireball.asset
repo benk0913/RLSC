@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 6db403e28438f6946b9d0a59947414e4, type: 3}
+  Description: Throw a fire ball that explodes on impact
   HitAbilityColliderObject: 
   MissAbilityColliderObject: 
   AbilityColliderObject: ThrowFireBallCollider
@@ -23,8 +24,10 @@ MonoBehaviour:
   ExecuteAbilitySound: sound_flamerelease
   HitAbilitySound: F_FireBall_Hit
   MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 2
   CastingTime: 2
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast3
   ExecuteAnimation: Execute5
   OnExecuteParams: []

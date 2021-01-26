@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Refreshing Rush
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: c991693b50cd210419257b0518ee4e8d, type: 3}
+  Description: Prevent an ally or you from dying for a while
   HitAbilityColliderObject: HealHit
+  MissAbilityColliderObject: 
   AbilityColliderObject: RefreshingRushCollider
   PrepareAbilityColliderObject: PrepareWaterSpell
   HitConditionObject: 
@@ -21,8 +23,11 @@ MonoBehaviour:
   PrepareAbilitySound: sound_prepwaterspell
   ExecuteAbilitySound: sound_watersplashs
   HitAbilitySound: sound_heal
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 30
   CastingTime: 1
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute2
   OnExecuteParams: []
@@ -31,3 +36,4 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: Refreshing Rush Undying
+  OnMissParams: []

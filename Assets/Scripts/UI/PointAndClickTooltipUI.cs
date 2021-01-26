@@ -88,9 +88,9 @@ public class PointAndClickTooltipUI : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        while (CG.alpha < 1f)
+        while (CG.alpha < 0.9f)
         {
-            CG.alpha += 2f * Time.deltaTime;
+            CG.alpha += Mathf.Min(6f * Time.deltaTime, 0.9f);
 
             yield return 0;
         }

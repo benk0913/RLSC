@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Flame Fan
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 508224ac51a630e48b18e23c2fbb273f, type: 3}
+  Description: Repeatedly damage a close enemy
   HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
   AbilityColliderObject: FlameFanCollider
   PrepareAbilityColliderObject: PrepareFireSpell
   HitConditionObject: 
@@ -21,8 +23,11 @@ MonoBehaviour:
   PrepareAbilitySound: 
   ExecuteAbilitySound: _ound_flame
   HitAbilitySound: 
+  MissAbilitySound: 
+  ScreenEffectObject: 
   CD: 1
   CastingTime: 0.5
+  OnlyIfGrounded: 0
   PreparingAnimation: Cast1
   ExecuteAnimation: Execute1
   OnExecuteParams: []
@@ -31,3 +36,4 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 0
     Value: 15
+  OnMissParams: []
