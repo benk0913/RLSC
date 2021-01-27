@@ -7,7 +7,6 @@ using UnityEngine;
 [Serializable]
 public class Monster : ScriptableObject
 {
-    public AttributeData Attributes;
     public List<State> Immunity;
     public AIChaseBehaviour ChaseBehaviour;
 }
