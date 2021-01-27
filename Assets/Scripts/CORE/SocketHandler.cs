@@ -708,7 +708,7 @@ public class ActorData
     {
         get
         {
-            return CORE.Instance.Data.content.BaseAttributes.MovementSpeed + (CORE.Instance.Data.content.BaseAttributes.MovementSpeed * Attributes.MovementSpeed);
+            return CORE.Instance.Data.content.BaseAttributes.MovementSpeed + CORE.Instance.Data.content.BaseAttributes.MovementSpeed * Attributes.MovementSpeed;
         }
     }
 
@@ -739,7 +739,16 @@ public class ActorData
     {
         get
         {
-            return CORE.Instance.Data.content.BaseAttributes.HP + (CORE.Instance.Data.content.BaseAttributes.HP * Attributes.HP);
+            return CORE.Instance.Data.content.BaseAttributes.HP + CORE.Instance.Data.content.BaseAttributes.HP * Attributes.HP;
+        }
+    }
+
+    [JsonIgnore]
+    public float AntiDebuffModifier
+    {
+        get
+        {
+            return 1 - Attributes.AntiDebuff;
         }
     }
 
