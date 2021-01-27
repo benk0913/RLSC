@@ -442,13 +442,13 @@ public class Actor : MonoBehaviour
         CORE.Instance.InvokeEvent("ActorResurrected");
     }
 
-    public void AddBuff(Buff buff)
+    public void AddBuff(Buff buff, float duration)
     {
         BuffState state = State.Buffs.Find(x => x.CurrentBuff.name == buff.name);
 
         if (state == null)
         {
-            state = new BuffState(buff);
+            state = new BuffState(buff, duration);
             State.Buffs.Add(state);
 
             if (!string.IsNullOrEmpty(buff.BuffColliderObject))
@@ -474,7 +474,7 @@ public class Actor : MonoBehaviour
         }
         else
         {
-            state.CurrentLength = buff.Length;
+            state.CurrentLength = duration;
         }
 
         if (CORE.Instance.Room.PlayerActor.ActorEntity == this)
@@ -1130,16 +1130,16 @@ public class AbilityState
 public class BuffState
 {
     public Buff CurrentBuff;
+    public float Length;
     public float CurrentLength;
     public GameObject EffectObject;
 
-    public BuffState(Buff buff)
+    public BuffState(Buff buff, float duration)
     {
         this.CurrentBuff = buff;
-        CurrentLength = CurrentBuff.Length;
+        CurrentLength = duration;
+        Length = duration;
     }
-
-
 }
 
 public enum ControlSourceType

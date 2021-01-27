@@ -50,7 +50,7 @@ public class BuffSlotUI : MonoBehaviour
                 CooldownImage.gameObject.SetActive(true);
             }
 
-            CooldownImage.fillAmount = ActiveBuff.CurrentLength / ActiveBuff.CurrentBuff.Length;
+            CooldownImage.fillAmount = ActiveBuff.CurrentLength / ActiveBuff.Length;
             CooldownImage.color = ActiveBuff.CurrentBuff.isDebuff ? Color.red : Color.green;
 
             CooldownLabel.text = Mathf.RoundToInt(ActiveBuff.CurrentLength).ToString();

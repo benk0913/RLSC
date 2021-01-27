@@ -545,10 +545,11 @@ public class SocketHandler : MonoBehaviour
         }
 
         string buffName = data["buffName"];
+        float duration = data["durationInSeconds"].AsFloat;
 
         Buff buff = CORE.Instance.Data.content.Buffs.Find(x => x.name == buffName);
         
-        actorDat.ActorEntity.AddBuff(buff);
+        actorDat.ActorEntity.AddBuff(buff, duration);
 
 
     }
