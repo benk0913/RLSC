@@ -6,11 +6,22 @@ using UnityEngine.Events;
 
 public class BuffCollider : HitCollider
 {
-    public Buff BuffSource;
+    public BuffState BuffSource;
 
     public bool StickToActor;
 
     public bool HitCollider;
+
+    [SerializeField]
+    Animator Anim;
+
+    private void Awake()
+    {
+        if(Anim ==null)
+        {
+            Anim = GetComponent<Animator>();
+        }
+    }
 
 
     protected void Update()
@@ -24,14 +35,16 @@ public class BuffCollider : HitCollider
             }
             transform.position = ActorSource.transform.position;
         }
+
+        Anim.SetBool("Ending", (BuffSource.CurrentLength < 2f));
     }
 
-    public void SetInfo(Buff buffSource, Actor actorSource)
+    public void SetInfo(BuffState buffSource, Actor actorSource)
     {
         BuffSource = buffSource;
         ActorSource = actorSource;
 
-        SetInfo(buffSource.HitAbility, actorSource);
+        SetInfo(buffSource.CurrentBuff.HitAbility, actorSource);
     }
 
     protected void OnTriggerEnter2D(Collider2D other)

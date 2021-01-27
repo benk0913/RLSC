@@ -454,7 +454,7 @@ public class Actor : MonoBehaviour
             if (!string.IsNullOrEmpty(buff.BuffColliderObject))
             {
                 GameObject colliderObj = AddColliderOnPosition(buff.BuffColliderObject);
-                colliderObj.GetComponent<BuffCollider>().SetInfo(buff, this);
+                colliderObj.GetComponent<BuffCollider>().SetInfo(state, this);
 
                 state.EffectObject = colliderObj;
                 

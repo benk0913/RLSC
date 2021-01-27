@@ -119,12 +119,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf51ca97ea092944698ba886be5e745b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuffSource: {fileID: 0}
   ActorSource: {fileID: 0}
+  AbilitySource: {fileID: 0}
+  targetType: 0
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
+  CanMiss: 0
+  HitOnlyGroundedActors: 0
+  BuffSource:
+    CurrentBuff: {fileID: 0}
+    Length: 0
+    CurrentLength: 0
+    EffectObject: {fileID: 0}
   StickToActor: 1
+  HitCollider: 0
+  Anim: {fileID: 1314719724268210271}
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0

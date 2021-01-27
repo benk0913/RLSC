@@ -128,9 +128,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   CanMiss: 0
-  BuffSource: {fileID: 0}
+  HitOnlyGroundedActors: 0
+  BuffSource:
+    CurrentBuff: {fileID: 0}
+    Length: 0
+    CurrentLength: 0
+    EffectObject: {fileID: 0}
   StickToActor: 1
   HitCollider: 0
+  Anim: {fileID: 0}
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7641458379222166418
 Transform:
   m_ObjectHideFlags: 0
