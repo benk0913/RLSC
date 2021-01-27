@@ -2372,6 +2372,69 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7689060239962662722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1448517386495709633}
+  - component: {fileID: 3730723267319527366}
+  m_Layer: 8
+  m_Name: TEMPORARYPANTSCHANGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1448517386495709633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7689060239962662722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5952646397111703715}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3730723267319527366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7689060239962662722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b72c9492581534648b2f2c6743049590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireClassSpriteLeft: {fileID: -7471165101335420347, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  FireClassSpriteRight: {fileID: -1193300027683890967, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  FireClassSpriteCrotch: {fileID: 3321385676039467420, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  WaterClassSpriteLeft: {fileID: 974369770484016116, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  WaterClassSpriteRight: {fileID: 4866162666645062131, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  WaterClassSpriteCrotch: {fileID: 5650987772448162431, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  EarthClassSpriteLeft: {fileID: 4890541722184732842, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  EarthClassSpriteRight: {fileID: -8254651400933470538, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  EarthClassSpriteCrotch: {fileID: -1379186330403959890, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  AirClassSpriteLeft: {fileID: 8627296880525258336, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  AirClassSpriteRight: {fileID: 3320285236428664839, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  AirClassSpriteCrotch: {fileID: 1139094468026821254, guid: 046bb079fff42fb4a9e678e585741538, type: 3}
+  Crotch: {fileID: 1847020129536903239}
+  LeftHip: {fileID: 5413539528594455649}
+  RightHip: {fileID: 5413539527464831339}
+  FireClass: {fileID: 11400000, guid: 96716ea7040a0304cbb813bee25f510c, type: 2}
+  AirClass: {fileID: 11400000, guid: c6150352cd9f5db42b34b4d249e5bd71, type: 2}
+  WaterClass: {fileID: 11400000, guid: a541fc971532da54ea76ffd9ad8070b9, type: 2}
+  EarthClass: {fileID: 11400000, guid: 4f30f0753b0fdb6479c058f168861cfb, type: 2}
+  actor: {fileID: 1551737046}
 --- !u!1 &7785496889078657400
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,6 +2471,7 @@ Transform:
   - {fileID: 401683987}
   - {fileID: 1450574624275921511}
   - {fileID: 5391226743004753092}
+  - {fileID: 1448517386495709633}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2513,8 +2577,6 @@ MonoBehaviour:
         SmallerColliderSize: 0
         Threat: 0
         MovementSpeed: 0
-      movementSpeed: 0
-      threat: 0
       ActorEntity: {fileID: 0}
       OnRefreshStates:
         m_PersistentCalls:
@@ -2546,10 +2608,10 @@ MonoBehaviour:
   IsStunned: 0
   IsSilenced: 0
   IsDead: 0
+  ClientMovingTowardsDir: 0
   GroundCheckDistance: 10
   GroundedDistance: 0.4
   VelocityMinimumThreshold: 0.1
-  CustomSpeedMult: 1
   JumpHeight: 20
   InterpolationSpeed: 25
   ControlSource: 0
@@ -2572,7 +2634,6 @@ MonoBehaviour:
     m_Bits: 1
   ChaseDistance: 1
   FleeDistance: 10
-  CurrentTarget: {fileID: 0}
 --- !u!1 &8608259621569069638
 GameObject:
   m_ObjectHideFlags: 0
