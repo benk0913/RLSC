@@ -140,6 +140,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  CanMiss: 0
+  HitOnlyGroundedActors: 0
   StickToActor: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 1
@@ -150,6 +152,9 @@ MonoBehaviour:
   InitForce: {x: 1200, y: 1200, z: 0}
   onHitObject: FireballExplosionCollider
   OnHitSource: {fileID: 1314719725301908297}
+  DuplicateBubbles: 0
+  IsBubble: 0
+  BubblesDuplicated: []
   AudioOnHit: _ire_pop1
 --- !u!50 &7377038427229910495
 Rigidbody2D:
@@ -222,7 +227,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
