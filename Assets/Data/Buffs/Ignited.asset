@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Ignited
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 34d3c354760f3f04db86c9daa9454829, type: 3}
+  Description: On fire
   BuffColliderObject: IgniteBuffEffect
+  BuffMaterial: {fileID: 0}
   Length: 5
   isDebuff: 1
   ShowBuffIcon: 1
@@ -22,6 +24,7 @@ MonoBehaviour:
     HP: 0
     Defense: 0
     CDReduction: 0
+    CTReduction: 0
     Lifesteal: 0
     CriticalChance: 0
     LongRangeMultiplier: 0
@@ -29,12 +32,15 @@ MonoBehaviour:
     WildMagicChance: 0
     SingleTargetDamage: 0
     AOEDamage: 0
-    SpellDuration: 1.5
+    SpellDuration: 0
     AntiDebuff: 0
     KnockbackResistance: 0
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeed: 0
-  MakesInvulnerable: 0
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States: []
   OnStart: []
   OnEnd: []

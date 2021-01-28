@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Fizzle Energy
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 9b6b3f4523b223747abe162610518e01, type: 3}
+  Description: Lower casting time of abilities
   BuffColliderObject: FizzleEnergyBuffEffect
+  BuffMaterial: {fileID: 0}
   Length: 5
   isDebuff: 0
   ShowBuffIcon: 1
@@ -22,6 +24,7 @@ MonoBehaviour:
     HP: 0
     Defense: 0
     CDReduction: 0
+    CTReduction: 0
     Lifesteal: 0
     CriticalChance: 0
     LongRangeMultiplier: 0
@@ -35,7 +38,9 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeed: 0
-  MakesInvulnerable: 0
-  MakesImpassive: 0
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States: []
   OnStart: []
   OnEnd: []

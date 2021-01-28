@@ -11,6 +11,10 @@ public class Buff : ScriptableObject
     [JsonIgnore]
     [PreviewSprite]
     public Sprite Icon;
+    
+    [JsonIgnore]
+    [TextArea(3, 6)]
+    public string Description;
 
     [JsonIgnore]
     public string BuffColliderObject;

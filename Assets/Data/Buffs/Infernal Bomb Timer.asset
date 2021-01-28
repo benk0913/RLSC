@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Infernal Bomb Timer
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 91e1a53f89460e14d8e9c429b6e5aed5, type: 3}
+  Description: Carry a bomb that explodes at the end
   BuffColliderObject: InfernalBombBuffEffect
   BuffMaterial: {fileID: 0}
   Length: 5
@@ -38,6 +39,9 @@ MonoBehaviour:
     Threat: 0
     MovementSpeed: 0
   HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States: []
   OnStart: []
   OnEnd:
   - Type: {fileID: 11400000, guid: 702f92c8f9d60634e9a401d7e7e4af3f, type: 2}

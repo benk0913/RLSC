@@ -17,6 +17,8 @@ public class BuffSlotUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI CooldownLabel;
 
+    [SerializeField]
+    TooltipTargetUI Tooltip;
 
 
     public void SetBuffState(BuffState buffState = null)
@@ -30,6 +32,12 @@ public class BuffSlotUI : MonoBehaviour
         }
 
         IconImage.sprite = ActiveBuff.CurrentBuff.Icon;
+
+        string tooltipString = "";
+
+        tooltipString += "<color=yellow>"+ActiveBuff.CurrentBuff.name+"</color>";
+        tooltipString += System.Environment.NewLine + ActiveBuff.CurrentBuff.Description;
+        Tooltip.SetTooltip(tooltipString);
     }
 
     private void Update()
