@@ -78,7 +78,7 @@ public class Actor : MonoBehaviour
     protected Vector3 lastPosition;
 
 
-    Ability lastAbility;
+    public Ability LastAbility;
 
 
 
@@ -331,7 +331,7 @@ public class Actor : MonoBehaviour
         if(IsClientControl)
         {
 
-            ActivateParams(ability.OnExecuteParams);
+            CORE.Instance.ActivateParams(ability.OnExecuteParams, null, this);
 
             AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
@@ -340,7 +340,7 @@ public class Actor : MonoBehaviour
                 PutAbilityOnCooldown(abilityState);
             }
 
-            lastAbility = ability;
+            LastAbility = ability;
         }
 
         Animer.Play(ability.ExecuteAnimation);
@@ -369,7 +369,7 @@ public class Actor : MonoBehaviour
     {
         if (IsClientControl)
         {
-            ActivateParams(ability.OnHitParams, casterActor);
+            CORE.Instance.ActivateParams(ability.OnHitParams, casterActor, this);
         }
 
         if (!string.IsNullOrEmpty(ability.HitAbilitySound))
@@ -396,7 +396,7 @@ public class Actor : MonoBehaviour
     {
         if (IsClientControl)
         {
-            ActivateParams(ability.OnMissParams);
+            CORE.Instance.ActivateParams(ability.OnMissParams, null, this);
         }
 
         if (!string.IsNullOrEmpty(ability.MissAbilitySound))
@@ -465,7 +465,7 @@ public class Actor : MonoBehaviour
                 AudioControl.Instance.PlayInPosition(buff.OnStartSound,transform.position);
             }
 
-            ActivateParams(state.CurrentBuff.OnStart);
+            CORE.Instance.ActivateParams(state.CurrentBuff.OnStart, null, this);
 
             if(buff.BuffMaterial != null)
             {
@@ -521,7 +521,7 @@ public class Actor : MonoBehaviour
 
         if (IsClientControl)
         {
-            ActivateParams(state.CurrentBuff.OnEnd);
+            CORE.Instance.ActivateParams(state.CurrentBuff.OnEnd, null, this);
         }
 
         if (CORE.Instance.Room.PlayerActor.ActorEntity == this)
@@ -606,49 +606,6 @@ public class Actor : MonoBehaviour
     }
 
     #region ClientControl
-
-    public void ActivateParams(List<AbilityParam> onExecuteParams, Actor casterActor = null)
-    {
-        foreach(AbilityParam param in onExecuteParams)
-        {
-            if(param.Type.name == "Movement")
-            {
-                if ((param.Targets == TargetType.Self || param.Targets == TargetType.FriendsAndSelf) && casterActor != null)
-                {
-                    casterActor.ExecuteMovement(param.Value, casterActor);
-                }
-                else
-                {
-                    ExecuteMovement(param.Value, casterActor);
-                }
-            }
-            else if (param.Type.name == "Reset Last CD")
-            {
-                if(lastAbility == null)
-                {
-                    continue;
-                }
-
-                State.Abilities.Find(x => x.CurrentAbility.name == lastAbility.name).CurrentCD = 0f;
-            }
-            else if (param.Type.name == "Reset All CD")
-            {
-                State.Abilities.ForEach(x => x.CurrentCD = 0f);
-            }
-            else if (param.Type.name == "Start Flying")
-            {
-                StartFlying();
-            }
-            else if (param.Type.name == "Stop Flying")
-            {
-                StopFlying();
-            }
-            else if (param.Type.name == "Execute Ability")
-            {
-                AttemptExecuteAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == param.Value));
-            }
-        }
-    }
 
     public void ExecuteMovement(string movementKey, Actor casterActor = null)
     {
@@ -876,11 +833,11 @@ public class Actor : MonoBehaviour
         State.IsPreparingAbility = true;
     }
 
-    public void AttemptExecuteAbility(Ability ability)
+    public void AttemptExecuteAbility(Ability ability, Actor caster = null)
     {
         JSONNode node = new JSONClass();
         node["abilityName"] = ability.name;
-        node["actorId"] = State.Data.actorId;
+        node["actorId"] = caster == null? this.State.Data.actorId : caster.State.Data.actorId;
         node["x"] = transform.position.x.ToString();
         node["y"] = transform.position.y.ToString();
         node["faceRight"] = (Body.localScale.x < 0).ToString();

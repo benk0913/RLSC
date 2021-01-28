@@ -49,16 +49,10 @@ public class InteractableEntity : MonoBehaviour
     {
         OnInteract?.Invoke();
 
-        if(!string.IsNullOrEmpty(Data.Data.AbilityOnInteract))
+        if(Data.Data.OnInteractParams.Count > 0)
         {
-            Ability ability = CORE.Instance.Data.content.Abilities.Find(X => X.name == Data.Data.AbilityOnInteract);
-
-            if(ability == null)
-            {
-                CORE.Instance.LogMessageError("No ability with key " + Data.Data.AbilityOnInteract);
-                return;
-            }
-
+            
+            
             ActorData casterData;
 
             if (!string.IsNullOrEmpty(Data.actorId))
@@ -82,19 +76,17 @@ public class InteractableEntity : MonoBehaviour
                 return;
             }
 
-            if (!string.IsNullOrEmpty(ability.ExecuteAbilitySound))
-                AudioControl.Instance.PlayInPosition(ability.ExecuteAbilitySound, transform.position);
+            if (!string.IsNullOrEmpty(Data.Data.InteractionSound))
+                AudioControl.Instance.PlayInPosition(Data.Data.InteractionSound, transform.position);
 
-            if (!string.IsNullOrEmpty(ability.AbilityColliderObject))
+            ActorData byActor = CORE.Instance.Room.Actors.Find(x => x.actorId == byActorID);
+
+            if(byActor == null)
             {
-                GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(ability.AbilityColliderObject);
-                colliderObj.transform.position = transform.position;
-                colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                colliderObj.transform.localScale = Vector3.one;
-
-                colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, casterData.ActorEntity);
+                byActor = casterData;
             }
-            
+
+            CORE.Instance.ActivateParams(Data.Data.OnInteractParams, casterData.ActorEntity, byActor.ActorEntity);
         }
     }
 

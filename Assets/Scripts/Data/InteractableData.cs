@@ -11,10 +11,14 @@ public class InteractableData : ScriptableObject
 {
     public int Usages = 0;
     public int DurationInSeconds = 0;
-    public string AbilityOnInteract;
+
+    public List<AbilityParam> OnInteractParams = new List<AbilityParam>();
 
     [JsonIgnore]
     public string InteractablePrefab;
+
+    [JsonIgnore]
+    public string InteractionSound;
 }
 
 
