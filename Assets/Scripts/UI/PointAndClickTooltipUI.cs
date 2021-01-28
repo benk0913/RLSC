@@ -47,12 +47,7 @@ public class PointAndClickTooltipUI : MonoBehaviour
             return;
         }
 
-        bool xInRightSide = Input.mousePosition.x > Screen.width / 2;
-        bool yInUpperSide = Input.mousePosition.y > Screen.height / 2;
-
-        rectT.anchorMin = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
-        rectT.anchorMax = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
-        rectT.pivot = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
+        PositionTooltip();
 
         Text.text = message;
 
@@ -71,6 +66,19 @@ public class PointAndClickTooltipUI : MonoBehaviour
                 bonusObj.transform.GetChild(1).GetComponent<Image>().sprite = bonus.Icon;
             }
         }
+    }
+
+    void PositionTooltip()
+    {
+        bool xInRightSide = Input.mousePosition.x > Screen.width / 2;
+        bool yInUpperSide = Input.mousePosition.y > Screen.height / 2;
+        bool topLeftCorner = !xInRightSide && yInUpperSide;
+
+        rectT.anchorMin = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
+        rectT.anchorMax = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
+        rectT.pivot = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
+
+        transform.position = Input.mousePosition + new Vector3(topLeftCorner ? 12 : 0, 0, 0);
     }
 
     void ClearBonuses()
@@ -98,7 +106,7 @@ public class PointAndClickTooltipUI : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Input.mousePosition;
+        PositionTooltip();
     }
 
     public void Hide()
