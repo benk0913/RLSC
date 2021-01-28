@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Wind Pull
+  m_Name: Throw
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 73d0b1bff0255a046a660d8d9d59cd47, type: 3}
-  Description: Pull an ally to you
+  Icon: {fileID: 21300000, guid: 9f315414a499c774886c8ba6af70e23e, type: 3}
+  Description: Throw an ally
   HitAbilityColliderObject: 
   MissAbilityColliderObject: 
-  AbilityColliderObject: WindPullCollider
+  AbilityColliderObject: WindPushCollider
   PrepareAbilityColliderObject: 
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
@@ -25,8 +25,8 @@ MonoBehaviour:
   HitAbilitySound: 
   MissAbilitySound: 
   ScreenEffectObject: 
-  CD: 5
-  CastingTime: 0.2
+  CD: 10
+  CastingTime: 1
   OnlyIfGrounded: 0
   PreparingAnimation: Cast3
   ExecuteAnimation: Execute3
@@ -35,9 +35,9 @@ MonoBehaviour:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
     Targets: 1
-    Value: Pull
+    Value: Wind Push
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 1
-    Value: Invulnerability
+    Value: Pushed By Wind
   OnMissParams: []

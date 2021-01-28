@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Fire Totem
+  m_Name: Trap
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: b78035c35a00b6d44b3798362b61a4d1, type: 3}
-  Description: Place a totem that on interaction summons an orb that damages enemies
-  HitAbilityColliderObject: 
+  Icon: {fileID: 21300000, guid: b016f394dd0405744998b7fe2de0afd5, type: 3}
+  Description: Place a trap that immobilizes enemies
+  HitAbilityColliderObject: TrapHit
   MissAbilityColliderObject: 
-  AbilityColliderObject: 
+  AbilityColliderObject: TrapCollider
   PrepareAbilityColliderObject: PrepareTrap
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
@@ -25,15 +25,19 @@ MonoBehaviour:
   HitAbilitySound: 
   MissAbilitySound: 
   ScreenEffectObject: 
-  CD: 60
+  CD: 25
   CastingTime: 3
   OnlyIfGrounded: 1
   PreparingAnimation: Cast5
   ExecuteAnimation: Execute5
-  OnExecuteParams:
-  - Type: {fileID: 11400000, guid: 2f3bcc93099b30545b1dc1397e16a5de, type: 2}
+  OnExecuteParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
-    Targets: 2
-    Value: Fire Totem Interactable
-  OnHitParams: []
+    Targets: 0
+    Value: Trap Immobilize
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    Targets: 0
+    Value: 10
   OnMissParams: []

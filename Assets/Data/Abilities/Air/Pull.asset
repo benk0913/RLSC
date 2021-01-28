@@ -10,30 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Refreshing Rush
+  m_Name: Pull
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: c991693b50cd210419257b0518ee4e8d, type: 3}
-  Description: Prevent an ally or you from dying for a while
-  HitAbilityColliderObject: HealHit
+  Icon: {fileID: 21300000, guid: 73d0b1bff0255a046a660d8d9d59cd47, type: 3}
+  Description: Pull an ally to you
+  HitAbilityColliderObject: 
   MissAbilityColliderObject: 
-  AbilityColliderObject: RefreshingRushCollider
-  PrepareAbilityColliderObject: PrepareCleanse
+  AbilityColliderObject: WindPullCollider
+  PrepareAbilityColliderObject: 
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: sound_prepwaterspell
-  ExecuteAbilitySound: sound_watersplashs
-  HitAbilitySound: sound_heal
+  PrepareAbilitySound: 
+  ExecuteAbilitySound: sound_swashaw
+  HitAbilitySound: 
   MissAbilitySound: 
   ScreenEffectObject: 
-  CD: 30
-  CastingTime: 1
+  CD: 5
+  CastingTime: 0.2
   OnlyIfGrounded: 0
-  PreparingAnimation: Cast2
-  ExecuteAnimation: Execute2
+  PreparingAnimation: Cast3
+  ExecuteAnimation: Execute3
   OnExecuteParams: []
   OnHitParams:
+  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
+    Condition: {fileID: 0}
+    Targets: 1
+    Value: Pull
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 1
-    Value: Refreshing Rush Undying
+    Value: Invulnerability
   OnMissParams: []
