@@ -672,6 +672,11 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementPounceRoutine());
                     break;
                 }
+            case "Backstepped":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementBacksteppedRoutine(casterActor));
+                    break;
+                }
             case "TeleportToFriendFar":
                 {
 
@@ -1008,6 +1013,30 @@ public class Actor : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+
+        MovementEffectRoutineInstance = null;
+
+    }
+
+    IEnumerator MovementBacksteppedRoutine(Actor casterActor)
+    {
+        Vector2 stepDir;
+
+        stepDir = transform.position - casterActor.transform.position;
+
+        Vector2 targetPoint = new Vector2(Rigid.position.x + (Collider.bounds.extents.x * (stepDir).normalized.x * 1.1f), Rigid.position.y);
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 4f;
+
+            casterActor.Rigid.position = Vector2.Lerp(casterActor.Rigid.position, targetPoint, t);
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        casterActor.Body.localScale = new Vector3(stepDir.x > 0f? 1f:-1f, 1f, 1f);
 
         MovementEffectRoutineInstance = null;
 
