@@ -39,6 +39,8 @@ public class CORE : MonoBehaviour
     {
         SubscribeToEvent("ActorDied", Room.RefreshThreat);
         SubscribeToEvent("ActorResurrected", Room.RefreshThreat);
+        SubscribeToEvent("ActorAddedBuff", Room.RefreshThreat);
+        SubscribeToEvent("ActorRemovedBuff", Room.RefreshThreat);
     }
 
     private void Update()

@@ -10,34 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Fireball
+  m_Name: Taunt
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 6db403e28438f6946b9d0a59947414e4, type: 3}
-  Description: Throw a fire ball that explodes on impact
+  Icon: {fileID: 21300000, guid: 55813074ad72e354897d9443f90ccae5, type: 3}
+  Description: Gain a 50 Threat buff, which will cause enemies to focus on you for
+    a short period of time.
   HitAbilityColliderObject: 
   MissAbilityColliderObject: 
-  AbilityColliderObject: ThrowFireBallCollider
-  PrepareAbilityColliderObject: PrepareFireSpell
+  AbilityColliderObject: TauntCollider
+  PrepareAbilityColliderObject: PrepareTaunt
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: F_FireBall_Prepare
-  ExecuteAbilitySound: sound_flamerelease
-  HitAbilitySound: F_FireBall_Hit
+  PrepareAbilitySound: sound_earth_1
+  ExecuteAbilitySound: sound_earth_4
+  HitAbilitySound: sound_earth_2
   MissAbilitySound: 
   ScreenEffectObject: 
-  CD: 2
+  CD: 20
   CastingTime: 2
   OnlyIfGrounded: 0
-  PreparingAnimation: Cast3
-  ExecuteAnimation: Execute5
-  OnExecuteParams: []
-  OnHitParams:
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
-    Condition: {fileID: 0}
-    Targets: 0
-    Value: 5
+  PreparingAnimation: Cast6
+  ExecuteAnimation: Execute4
+  OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
-    Targets: 0
-    Value: Soften
+    Targets: 2
+    Value: Earth Taunt
+  OnHitParams: []
   OnMissParams: []

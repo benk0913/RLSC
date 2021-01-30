@@ -316,6 +316,8 @@ public class Actor : MonoBehaviour
     {
         Animer.Play(ability.PreparingAnimation);
 
+        State.IsPreparingAbility = true;
+
         if(!string.IsNullOrEmpty(ability.PrepareAbilitySound))
             AudioControl.Instance.PlayInPosition(ability.PrepareAbilitySound,transform.position);
 
@@ -481,9 +483,11 @@ public class Actor : MonoBehaviour
         {
             CORE.Instance.InvokeEvent("BuffStateChanged");
         }
+
+        CORE.Instance.InvokeEvent("ActorAddedBuff");
     }
 
-    private GameObject AddColliderOnPosition(string colliderKey)
+    public GameObject AddColliderOnPosition(string colliderKey)
     {
         GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(colliderKey);
         colliderObj.transform.position = transform.position;
@@ -528,6 +532,8 @@ public class Actor : MonoBehaviour
         {
             CORE.Instance.InvokeEvent("BuffStateChanged");
         }
+
+        CORE.Instance.InvokeEvent("ActorRemovedBuff");
     }
     
     public void ShowHurtLabel(int damage)
@@ -1083,6 +1089,9 @@ public class ActorState
             }
         }
         IsPreparingAbility = false;
+
+        GameObject colliderObj = Data.ActorEntity.AddColliderOnPosition("InterruptAbilityCollider");
+        colliderObj.GetComponent<AbilityCollider>().SetInfo(null, Data.ActorEntity);
 
         OnInterrupt?.Invoke();
     }

@@ -9,24 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: earth
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Earth Taunt
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: a3617e29cb805e343a0c0e53a9cf17fd, type: 3}
-  Abilities:
-  - Push
-  - Rock
-  - Wall
-  - Hook
-  - Splinter
-  - Trap
-  - Throw Sand
-  - Taunt
-  - Earth Totem
-  - Raise Surroundings
-  - Reinforce Earth
-  - Earthquake
-  PassiveAbility: 
+  Icon: {fileID: 21300000, guid: 55813074ad72e354897d9443f90ccae5, type: 3}
+  Description: Have 50 threat for a short period of time...
+  BuffColliderObject: TauntBuffEffect
+  BuffMaterial: {fileID: 0}
+  Length: 10
+  isDebuff: 0
+  ShowBuffIcon: 1
   Attributes:
     Power: 0
     HP: 0
@@ -44,5 +36,11 @@ MonoBehaviour:
     AntiDebuff: 0
     KnockbackResistance: 0
     SmallerColliderSize: 0
-    Threat: 0.25
+    Threat: 50
     MovementSpeed: 0
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States: []
+  OnStart: []
+  OnEnd: []
