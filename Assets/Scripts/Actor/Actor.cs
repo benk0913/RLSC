@@ -1092,16 +1092,19 @@ public class ActorState
             }
         }
 
-        if(PreparingAbiityColliderObject != null)
+        if(IsPreparingAbility)
         {
-            PreparingAbiityColliderObject.SetActive(false);
-            PreparingAbiityColliderObject = null;
+            if (PreparingAbiityColliderObject != null)
+            {
+                PreparingAbiityColliderObject.SetActive(false);
+            }
+
+            GameObject colliderObj = Data.ActorEntity.AddColliderOnPosition("InterruptAbilityCollider");
+            colliderObj.GetComponent<AbilityCollider>().SetInfo(null, Data.ActorEntity);
         }
 
         IsPreparingAbility = false;
-
-        GameObject colliderObj = Data.ActorEntity.AddColliderOnPosition("InterruptAbilityCollider");
-        colliderObj.GetComponent<AbilityCollider>().SetInfo(null, Data.ActorEntity);
+        PreparingAbiityColliderObject = null;
 
         OnInterrupt?.Invoke();
     }
