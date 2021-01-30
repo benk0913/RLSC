@@ -325,6 +325,7 @@ public class Actor : MonoBehaviour
         {
             GameObject colliderObj = AddColliderOnPosition(ability.PrepareAbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
+            State.PreparingAbiityColliderObject = colliderObj;
         }
     }
 
@@ -359,8 +360,9 @@ public class Actor : MonoBehaviour
         Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
 
         State.IsPreparingAbility = false;
+        State.PreparingAbiityColliderObject = null;
 
-        if(!string.IsNullOrEmpty(ability.AbilityColliderObject))
+        if (!string.IsNullOrEmpty(ability.AbilityColliderObject))
         {
             GameObject colliderObj = AddColliderOnPosition(ability.AbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
@@ -1064,6 +1066,7 @@ public class ActorState
 
     public bool IsPreparingAbility;
 
+    public GameObject PreparingAbiityColliderObject;
 
     public UnityEvent OnInterrupt = new UnityEvent();
 
@@ -1088,6 +1091,13 @@ public class ActorState
                 Data.ActorEntity.PutAbilityOnCooldown(state);
             }
         }
+
+        if(PreparingAbiityColliderObject != null)
+        {
+            PreparingAbiityColliderObject.SetActive(false);
+            PreparingAbiityColliderObject = null;
+        }
+
         IsPreparingAbility = false;
 
         GameObject colliderObj = Data.ActorEntity.AddColliderOnPosition("InterruptAbilityCollider");

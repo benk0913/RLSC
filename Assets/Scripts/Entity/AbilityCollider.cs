@@ -119,9 +119,14 @@ public class AbilityCollider : HitCollider
 
                 if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.1f)
                 {
-                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Spell has been blocked by a wall...", Color.red, 1f,true));
-                    this.gameObject.SetActive(false);
-                    return;
+                    rhit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
+
+                    if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.01f)
+                    {
+                        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Spell has been blocked by a wall...", Color.red, 1f, true));
+                        this.gameObject.SetActive(false);
+                        return;
+                    }
                 }
 
                 transform.position = rhit.point;
