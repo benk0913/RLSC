@@ -51,6 +51,8 @@ public class DatabaseContent
     public string HumanPrefab;
 
     public AttributeData BaseAttributes;
+    
+    public AttributeData AttributesLimits;
 }
 
 [Serializable]
