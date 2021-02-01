@@ -322,7 +322,9 @@ public class Actor : MonoBehaviour
 
         State.IsPreparingAbility = true;
 
-        if(!string.IsNullOrEmpty(ability.PrepareAbilitySound))
+        State.PreparingAbilityCurrent = ability;
+
+        if (!string.IsNullOrEmpty(ability.PrepareAbilitySound))
             AudioControl.Instance.PlayInPosition(ability.PrepareAbilitySound,transform.position);
 
         if (!string.IsNullOrEmpty(ability.PrepareAbilityColliderObject))
@@ -854,6 +856,7 @@ public class Actor : MonoBehaviour
         SocketHandler.Instance.SendEvent("prepared_ability", node);
 
         State.IsPreparingAbility = true;
+        State.PreparingAbilityCurrent = abilityState.CurrentAbility;
     }
 
     public void AttemptExecuteAbility(Ability ability, Actor caster = null)
@@ -901,6 +904,28 @@ public class Actor : MonoBehaviour
         Rigid.gravityScale = 1f;
         Animer.SetBool("IsFlying", false);
         IsFlying = false;
+    }
+
+    public void HaltAbility(int haltAbilityIndex)
+    {
+
+        if (State.Abilities[haltAbilityIndex].CurrentAbility != State.PreparingAbilityCurrent)
+        {
+            return;
+        }
+
+        HaltAbility();
+    }
+
+    public void HaltAbility()
+    {
+        if (!State.IsPreparingAbility)
+        {
+            return;
+        }
+
+        State.IsPreparingAbility = false;
+        State.PreparingAbiityColliderObject = null;
     }
 
     #region MovementRoutines
@@ -1075,6 +1100,8 @@ public class ActorState
     public List<BuffState> Buffs = new List<BuffState>();
 
     public bool IsPreparingAbility;
+
+    public Ability PreparingAbilityCurrent;
 
     public GameObject PreparingAbiityColliderObject;
 

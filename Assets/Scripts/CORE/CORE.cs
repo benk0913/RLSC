@@ -26,6 +26,10 @@ public class CORE : MonoBehaviour
     public bool IsBitch;
     public bool InGame = false;
 
+    public bool LongPressMode;
+    public bool MoveToHaltMode;
+    public bool RepressToHaltMode;
+
     private void Awake()
     {
         Instance = this;
