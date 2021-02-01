@@ -47,7 +47,7 @@ public class ActorControl : MonoBehaviour
             CurrentActor.AttemptMoveDown();
         }
 
-        if (Input.GetKeyDown(InputMap.Map["Jump"]))
+        if (Input.GetKeyDown(InputMap.Map["Jump"]) || Input.GetKeyDown(InputMap.Map["Move Up"]))
         {
             if (internalJumpCooldown > 0f)
             {

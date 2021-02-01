@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6091865643249420805}
   - component: {fileID: 1935860746220234754}
   m_Layer: 9
-  m_Name: AirWhipCollider
+  m_Name: AirKickCollider
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.9601111, y: 1.5010252}
+  m_Offset: {x: -4.3076305, y: 2.6900287}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.068332, y: 4.0020504}
+  m_Size: {x: 8.7633705, y: 6.3800573}
   m_EdgeRadius: 0
 --- !u!114 &1935860746220234754
 MonoBehaviour:
@@ -126,6 +126,8 @@ MonoBehaviour:
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
+  CanMiss: 0
+  HitOnlyGroundedActors: 0
   StickToActor: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 0
@@ -136,6 +138,9 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
+  DuplicateBubbles: 0
+  IsBubble: 0
+  BubblesDuplicated: []
   AudioOnHit: 
 --- !u!1 &1314719725301908296
 GameObject:

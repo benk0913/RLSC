@@ -187,16 +187,20 @@ public class Actor : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        if(!IsClientControl)
-        {
-            UpdateFromActorData();
-        }
 
         if (IsFlying)
         {
             Rigid.velocity = Vector2.Lerp(Rigid.velocity, Vector2.zero, Time.deltaTime);
         }
 
+    }
+
+    protected void Update()
+    {
+        if (!IsClientControl)
+        {
+            UpdateFromActorData();
+        }
     }
 
     protected void LateUpdate()
@@ -338,16 +342,17 @@ public class Actor : MonoBehaviour
 
             AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
-            if (abilityState != null)
+            if (!ability.IsCastingExternal)
             {
-                PutAbilityOnCooldown(abilityState);
+                if (abilityState != null)
+                {
+                    PutAbilityOnCooldown(abilityState);
+                }
+
+                LastAbility = ability;
             }
-
-            LastAbility = ability;
         }
-
-        Animer.Play(ability.ExecuteAnimation);
-
+        
         if (!string.IsNullOrEmpty(ability.ExecuteAbilitySound))
             AudioControl.Instance.PlayInPosition(ability.ExecuteAbilitySound, transform.position);
 
@@ -356,11 +361,16 @@ public class Actor : MonoBehaviour
             CORE.Instance.ShowScreenEffect(ability.ScreenEffectObject);
         }
 
-        transform.position = position;
-        Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
+        if (!ability.IsCastingExternal)
+        {
+            Animer.Play(ability.ExecuteAnimation);
 
-        State.IsPreparingAbility = false;
-        State.PreparingAbiityColliderObject = null;
+            transform.position = position;
+            Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
+
+            State.IsPreparingAbility = false;
+            State.PreparingAbiityColliderObject = null;
+        }
 
         if (!string.IsNullOrEmpty(ability.AbilityColliderObject))
         {

@@ -53,6 +53,8 @@ public class Ability : ScriptableObject
 
     public bool OnlyIfGrounded;
 
+    public bool IsCastingExternal;
+
     [JsonIgnore]
     public string PreparingAnimation;
 
