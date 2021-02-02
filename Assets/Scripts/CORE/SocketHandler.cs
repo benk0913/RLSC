@@ -187,6 +187,11 @@ public class SocketHandler : MonoBehaviour
         options.AdditionalQueryParams = new ObservableDictionary<string, string>();
         options.AdditionalQueryParams.Add("unicorn", CurrentUser.Unicorn);
         options.AdditionalQueryParams.Add("charIndex", CurrentUser.SelectedCharacterIndex.ToString());
+
+        #if UNITY_EDITOR
+        options.AdditionalQueryParams.Add("isEditor", "1");
+        #endif
+
         options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
 
         SocketManager = new SocketManager(new Uri(SocketUrl),options);
@@ -741,15 +746,6 @@ public class ActorData
         get
         {
             return CORE.Instance.Data.content.BaseAttributes.HP + CORE.Instance.Data.content.BaseAttributes.HP * Attributes.HP;
-        }
-    }
-
-    [JsonIgnore]
-    public float AntiDebuffModifier
-    {
-        get
-        {
-            return 1 - Attributes.AntiDebuff;
         }
     }
 

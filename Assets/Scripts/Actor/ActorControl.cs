@@ -28,6 +28,13 @@ public class ActorControl : MonoBehaviour
         {
             internalJumpCooldown -= 1f * Time.deltaTime;
         }
+        
+        #if UNITY_EDITOR
+        if(Input.GetKey(InputMap.Map["Console"]))
+        {
+            ConsoleInputUI.Instance.Show();
+        }
+        #endif
 
         if(Input.GetKey(InputMap.Map["Move Left"]))
         {

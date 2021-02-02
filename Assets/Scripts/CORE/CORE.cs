@@ -41,10 +41,10 @@ public class CORE : MonoBehaviour
 
     private void Start()
     {
-        SubscribeToEvent("ActorDied", Room.RefreshThreat);
-        SubscribeToEvent("ActorResurrected", Room.RefreshThreat);
-        SubscribeToEvent("ActorAddedBuff", Room.RefreshThreat);
-        SubscribeToEvent("ActorRemovedBuff", Room.RefreshThreat);
+        SubscribeToEvent("ActorDied", () => {Room.RefreshThreat();});
+        SubscribeToEvent("ActorResurrected", () => {Room.RefreshThreat();});
+        SubscribeToEvent("ActorAddedBuff", () => {Room.RefreshThreat();});
+        SubscribeToEvent("ActorRemovedBuff", () => {Room.RefreshThreat();});
     }
 
     private void Update()
@@ -157,6 +157,7 @@ public class CORE : MonoBehaviour
         {
             StopCoroutine(LoadSceneRoutineInstance);
         }
+        Room = new RoomData();
         
         LoadSceneRoutineInstance = StartCoroutine(LoadSceneRoutine(sceneKey,onComplete));
     }
