@@ -603,9 +603,9 @@ public class Actor : MonoBehaviour
     public void RefreshAbilities()
     {
         this.State.Abilities.Clear();
-        for (int i = 0; i < State.Data.Abilities.Count; i++)
+        for (int i = 0; i < State.Data.abilities.Count; i++)
         {
-            this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.Abilities[i])));
+            this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.abilities[i])));
         }
 
         if (State.Data.IsPlayer)

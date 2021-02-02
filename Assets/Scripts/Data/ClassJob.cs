@@ -17,4 +17,6 @@ public class ClassJob : ScriptableObject
     public string PassiveAbility;
 
     public AttributeData Attributes;
+    
+    public List<State> Immunity;
 }

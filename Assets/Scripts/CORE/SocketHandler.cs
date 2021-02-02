@@ -676,30 +676,7 @@ public class ActorData
 
     public Dictionary<string, StateData> States = new Dictionary<string, StateData>();
 
-    [JsonIgnore]
-    public List<string> Abilities
-    {
-        get
-        {
-            if(abilities == null && ClassJobReference != null)
-            {
-                abilities = new List<string>();
-
-                int upTo = ClassJobReference.Abilities.Count > 5 ? 5 : ClassJobReference.Abilities.Count;//TODO Replace with proper capacity
-                for (int i = 0; i < upTo; i++)
-                {
-                    abilities.Add(ClassJobReference.Abilities[i]);
-                }
-            }
-
-            return abilities;
-        }
-        set
-        {
-            abilities = value;
-        }
-    }
-    List<string> abilities;
+    public List<string> abilities;
 
     public bool isCharacter
     {

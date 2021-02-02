@@ -1,4 +1,5 @@
 ﻿using System;
+using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -187,9 +188,12 @@ public class AbilitiesUI : MonoBehaviour
         {
             SelectedAbility.Deselect();
 
-            int indexToReplace = playerActor.State.Data.Abilities.IndexOf(SelectedAbility.CurrentAbility.CurrentAbility.name);
-            playerActor.State.Data.Abilities.RemoveAt(indexToReplace);
-            playerActor.State.Data.Abilities.Insert(indexToReplace, HoveredAbility.CurrentAbility.CurrentAbility.name);
+            int indexToReplace = playerActor.State.Data.abilities.IndexOf(SelectedAbility.CurrentAbility.CurrentAbility.name);
+            string abilityName = HoveredAbility.CurrentAbility.CurrentAbility.name;
+            playerActor.State.Data.abilities.RemoveAt(indexToReplace);
+            playerActor.State.Data.abilities.Insert(indexToReplace, abilityName);
+            
+            SendSwapAbilityEvent(indexToReplace, abilityName);
 
             playerActor.RefreshAbilities();
 
@@ -207,6 +211,14 @@ public class AbilitiesUI : MonoBehaviour
             RefreshHover();
             SelectedAbility.Select();
         }
+    }
+
+    private void SendSwapAbilityEvent(int index, string abilityName)
+    {
+        JSONNode node = new JSONClass();
+        node["index"].AsInt = index;
+        node["abilityName"] = abilityName;
+        SocketHandler.Instance.SendEvent("swapped_ability", node);
     }
 
     public void RefreshHover()
@@ -239,7 +251,7 @@ public class AbilitiesUI : MonoBehaviour
 
         foreach (string abilityName in job.Abilities)
         {
-            if(playerActor.State.Data.Abilities.Contains(abilityName))
+            if(playerActor.State.Data.abilities.Contains(abilityName))
             {
                 continue;
             }
