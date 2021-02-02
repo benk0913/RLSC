@@ -157,6 +157,7 @@ public class CORE : MonoBehaviour
         {
             StopCoroutine(LoadSceneRoutineInstance);
         }
+        Room = new RoomData();
         
         LoadSceneRoutineInstance = StartCoroutine(LoadSceneRoutine(sceneKey,onComplete));
     }
