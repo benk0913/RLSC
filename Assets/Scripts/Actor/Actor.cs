@@ -993,7 +993,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementEarthPushRoutine(Actor caster)
     {
-        Rigid.AddForce(new Vector2(caster.transform.position.x < transform.position.x ? 1f : -1f, 1f) * 15 * State.Data.AntiDebuffModifier, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(caster.transform.position.x < transform.position.x ? 1f : -1f, 1f) * 15, ForceMode2D.Impulse);
 
 
         yield return new WaitForSeconds(1f);

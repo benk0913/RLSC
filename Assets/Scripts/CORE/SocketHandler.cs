@@ -750,15 +750,6 @@ public class ActorData
     }
 
     [JsonIgnore]
-    public float AntiDebuffModifier
-    {
-        get
-        {
-            return 1 - Attributes.AntiDebuff;
-        }
-    }
-
-    [JsonIgnore]
     public UnityEvent OnRefreshStates = new UnityEvent();
 
     [JsonIgnore]
