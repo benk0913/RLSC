@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Reinforce Earth
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 5372d9436059d6342b8098410fe5277c, type: 3}
-  Description: Slow the mob - if slowed, immobilize - if immobilized, stun - if stunned,
-    damage
+  Description: 'Bolster all negative effects which are on nearby enemies.
+
+
+    Nothing
+    - Becomes slow.
+
+    Slow - Becomes Immobilize.
+
+    Immobilize - Becomes Stun.
+
+    Stun
+    - Receives Damage.'
   HitAbilityColliderObject: ReinforceEarthHit
   MissAbilityColliderObject: 
   AbilityColliderObject: ReinforceEarthCollider
@@ -29,6 +39,7 @@ MonoBehaviour:
   CD: 15
   CastingTime: 1
   OnlyIfGrounded: 0
+  IsCastingExternal: 0
   PreparingAnimation: Cast3
   ExecuteAnimation: Execute3
   OnExecuteParams: []

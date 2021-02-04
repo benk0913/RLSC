@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Wall
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 7cbe7cc0ad0ea8c49bf83490f1bbf34c, type: 3}
-  Description: Place a wall
+  Description: 'Raise a physical and solid wall from the ground.
+
+
+    It may block
+    enemies from advancing, stop projectiles and function as a platform.'
   HitAbilityColliderObject: 
   MissAbilityColliderObject: 
   AbilityColliderObject: WallCollider
@@ -28,6 +32,7 @@ MonoBehaviour:
   CD: 10
   CastingTime: 0.2
   OnlyIfGrounded: 0
+  IsCastingExternal: 0
   PreparingAnimation: Cast7
   ExecuteAnimation: Execute8
   OnExecuteParams: []

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Pull
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 73d0b1bff0255a046a660d8d9d59cd47, type: 3}
-  Description: Pull an ally to you
+  Description: Quickly pull a distant ally to your position, hopefully saving him
+    from nearby threats.
   HitAbilityColliderObject: 
   MissAbilityColliderObject: 
   AbilityColliderObject: WindPullCollider
@@ -28,6 +29,7 @@ MonoBehaviour:
   CD: 5
   CastingTime: 0.2
   OnlyIfGrounded: 0
+  IsCastingExternal: 0
   PreparingAnimation: Cast3
   ExecuteAnimation: Execute3
   OnExecuteParams: []

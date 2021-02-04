@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Throw Sand
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 81c94dc1766060747a800f063c646772, type: 3}
-  Description: Blind the enemy which prevents damage from touch
+  Description: Blind the enemy which prevents it from damaging anyone touching it.
   HitAbilityColliderObject: 
   MissAbilityColliderObject: 
   AbilityColliderObject: ThrowSandCollider
@@ -28,6 +28,7 @@ MonoBehaviour:
   CD: 10
   CastingTime: 0.2
   OnlyIfGrounded: 0
+  IsCastingExternal: 0
   PreparingAnimation: Cast2
   ExecuteAnimation: Execute1
   OnExecuteParams: []
