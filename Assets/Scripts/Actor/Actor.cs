@@ -58,12 +58,31 @@ public class Actor : MonoBehaviour
             return State.Data.States.ContainsKey("Impassive");
         }
     }
+    public bool IsImmobile
+    {
+        get
+        {
+            return State.Data.States.ContainsKey("Immobile");
+        }
+    }
 
     public bool IsFlying;
 
-    public bool IsStunned;
+    public bool IsSilenced
+    {
+        get
+        {
+            return State.Data.States.ContainsKey("Silenced");
+        }
+    }
 
-    public bool IsSilenced;
+    public bool IsStunned
+    {
+        get
+        {
+            return State.Data.States.ContainsKey("Stunned");
+        }
+    }
 
     public bool IsDead;
 
@@ -107,7 +126,7 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return !State.Data.States.ContainsKey("Immobile")
+            return !IsImmobile
             && !IsStunned
             && !State.IsPreparingAbility
             && !CORE.Instance.IsTyping
@@ -561,26 +580,6 @@ public class Actor : MonoBehaviour
 
     public void RefreshStates()
     {
-        if (State.Data.States.ContainsKey("Stunned") && !IsStunned)
-        {
-            State.InterruptAbilities(true);
-            IsStunned = true;
-        }
-        else if (!State.Data.States.ContainsKey("Stunned") && IsStunned)
-        {
-            IsStunned = false;
-        }
-
-        if(State.Data.States.ContainsKey("Silenced") && !IsSilenced)
-        {
-            IsSilenced = true;
-            State.InterruptAbilities(true);
-        }
-        else if (!State.Data.States.ContainsKey("Silenced") && IsSilenced)
-        {
-            IsSilenced = false;
-        }
-
         if (State.Data.States.ContainsKey("Flying") && !IsFlying)
         {
             StartFlying();
@@ -593,7 +592,6 @@ public class Actor : MonoBehaviour
         if (State.Data.States.ContainsKey("Dead") && !IsDead)
         {
             Ded();
-            State.InterruptAbilities(true);
         }
         else if (!State.Data.States.ContainsKey("Dead") && IsDead)
         {
@@ -1004,7 +1002,6 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementWindPushRoutine(Actor caster)
     {
-        State.InterruptAbilities(false);
         Rigid.AddForce(new Vector2(caster.transform.position.x < transform.position.x ? 1f : -1f, 1f) * 25, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
@@ -1015,9 +1012,6 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementPullRoutine(Actor caster)
     {
-        if (State.Data.isCharacter) {
-            State.InterruptAbilities(false);
-        }
         Vector2 Pullpoint = caster.transform.position;
 
         float t = 0f;
@@ -1123,14 +1117,14 @@ public class ActorState
         }
     }
     
-    public void InterruptAbilities(bool putAbilityOnCooldown)
+    public void Interrupt(bool putAbilityOnCd)
     {
         foreach (AbilityState state in Abilities)
         {
             if (state.CurrentCastingTime > 0f)
             {
                 state.CurrentCastingTime = 0f;
-                if (putAbilityOnCooldown) {
+                if (putAbilityOnCd) {
                     Data.ActorEntity.PutAbilityOnCooldown(state);
                 }
             }
