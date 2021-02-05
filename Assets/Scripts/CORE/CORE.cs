@@ -166,14 +166,9 @@ public class CORE : MonoBehaviour
     {
         GameObject actorObject;
 
-        if (actorData.isMob)
-        {
-            actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.name);
-        }
-        else
-        {
-            actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.actorType);
-        }
+        
+        actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.prefab);
+        
         actorObject.transform.position = new Vector3(actorData.x,actorData.y,0f);
         actorData.ActorEntity = actorObject.GetComponent<Actor>();
         actorObject.GetComponent<Actor>().SetActorInfo(actorData);

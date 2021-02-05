@@ -663,6 +663,7 @@ public class ActorData
     public string name;
     public string classJob;
     public string actorType;
+    public string prefab;
     public int hp;
     public bool isMob
     {
