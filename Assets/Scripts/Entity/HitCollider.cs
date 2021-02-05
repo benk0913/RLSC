@@ -152,7 +152,7 @@ public class HitCollider : MonoBehaviour
     {
         if (CORE.Instance.IsBitch)
         {
-            if (targetVictim.State.Data.IsPlayer && targetVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId)
+            if (targetVictim.State.Data.isCharacter && targetVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId)
             {
                 return false;
             }
