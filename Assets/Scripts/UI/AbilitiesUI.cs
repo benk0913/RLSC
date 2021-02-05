@@ -32,6 +32,10 @@ public class AbilitiesUI : MonoBehaviour
 
     private void Update()
     {
+        if (CORE.Instance.IsTyping) {
+            return;
+        }
+        
         if (Input.GetKeyDown(InputMap.Map["Exit"]))
         {
             this.gameObject.SetActive(false);

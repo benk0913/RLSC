@@ -10,6 +10,8 @@ public class ConsoleInputUI : MonoBehaviour
 
     [SerializeField]
     InputField inputField;
+
+    public bool IsTyping;
     
     private void Awake()
     {
@@ -19,8 +21,11 @@ public class ConsoleInputUI : MonoBehaviour
 
     public void Show()
     {
-        this.gameObject.SetActive(true);
-        inputField.ActivateInputField();
+        if (!CORE.Instance.IsTyping) {
+            this.gameObject.SetActive(true);
+            inputField.ActivateInputField();
+            IsTyping = true;
+        }
     }
 
     public void Submit()
@@ -44,5 +49,6 @@ public class ConsoleInputUI : MonoBehaviour
     {
         inputField.text = "";
         this.gameObject.SetActive(false);
+        IsTyping = false;
     }
 }

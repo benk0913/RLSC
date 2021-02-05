@@ -25,6 +25,17 @@ public class CORE : MonoBehaviour
 
     public bool IsBitch;
     public bool InGame = false;
+    public bool IsTyping
+    {
+        get 
+        {
+            return false
+            #if UNITY_EDITOR
+            || ConsoleInputUI.Instance.IsTyping
+            #endif
+            ;
+        }
+    }
 
     public bool LongPressMode;
     public bool MoveToHaltMode;
@@ -49,7 +60,7 @@ public class CORE : MonoBehaviour
 
     private void Update()
     {
-        if(InGame)
+        if(InGame && !IsTyping)
         {
             if(Input.GetKeyDown(InputMap.Map["Abilities Window"]))
             {

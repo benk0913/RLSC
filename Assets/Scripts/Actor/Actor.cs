@@ -110,6 +110,7 @@ public class Actor : MonoBehaviour
             return !State.Data.States.ContainsKey("Immobile")
             && !IsStunned
             && !State.IsPreparingAbility
+            && !CORE.Instance.IsTyping
             && !IsDead;
                
         }
@@ -875,7 +876,7 @@ public class Actor : MonoBehaviour
     {
         AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
-        if(IsStunned || IsSilenced || IsDead || State.IsPreparingAbility)
+        if(IsStunned || IsSilenced || IsDead || State.IsPreparingAbility || CORE.Instance.IsTyping)
         {
             return false;
         }
