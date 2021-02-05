@@ -166,14 +166,7 @@ public class CORE : MonoBehaviour
     {
         GameObject actorObject;
 
-        if (actorData.isMob)
-        {
-            actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.name);
-        }
-        else
-        {
-            actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.actorType);
-        }
+        actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.prefab);
         actorObject.transform.position = new Vector3(actorData.x,actorData.y,0f);
         actorData.ActorEntity = actorObject.GetComponent<Actor>();
         actorObject.GetComponent<Actor>().SetActorInfo(actorData);
@@ -473,7 +466,7 @@ public class RoomData
         for(int i=0;i<Actors.Count;i++)
         {
             ActorData actor = Actors[i];
-            if ((actor.IsPlayer || (actor.isMob && CORE.Instance.IsBitch)) && actor.ActorEntity != null) 
+            if ((actor.IsPlayer || (!actor.isCharacter && CORE.Instance.IsBitch)) && actor.ActorEntity != null) 
             {
                 float lastX = actor.x;
                 float lastY = actor.y;

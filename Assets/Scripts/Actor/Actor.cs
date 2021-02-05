@@ -167,7 +167,7 @@ public class Actor : MonoBehaviour
         }
         else
         {
-            if (AIControl.MonsterRef != null && CORE.Instance.IsBitch)
+            if (!State.Data.isCharacter && CORE.Instance.IsBitch)
             {
                 ControlSource = ControlSourceType.AI;
             }
