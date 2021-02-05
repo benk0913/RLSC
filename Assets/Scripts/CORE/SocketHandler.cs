@@ -672,20 +672,26 @@ public class ActorData
             return actorType == "mob";
         }
     }
+    public bool isCharacter
+    {
+        get
+        {
+            return actorType == "player";
+        }
+    }
+    public bool isBot
+    {
+        get
+        {
+            return actorType == "bot";
+        }
+    }
 
     public AttributeData Attributes;
 
     public Dictionary<string, StateData> States = new Dictionary<string, StateData>();
 
     public List<string> abilities;
-
-    public bool isCharacter
-    {
-        get
-        {
-            return !isMob;
-        }
-    }
 
     [JsonIgnore]
     public float MovementSpeed

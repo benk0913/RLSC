@@ -93,12 +93,8 @@ public class HitCollider : MonoBehaviour
                 return false;
             }
 
-            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isMob)
-            {
-                return false;
-            }
-
-            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isCharacter)
+            // Both are either mobs or not mobs
+            if (ActorSource.State.Data.isMob == actorVictim.State.Data.isMob)
             {
                 return false;
             }
@@ -110,24 +106,15 @@ public class HitCollider : MonoBehaviour
                 return false;
             }
 
-            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isCharacter)
-            {
-                return false;
-            }
-
-            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isMob)
+            // Only one is a mob
+            if (ActorSource.State.Data.isMob != actorVictim.State.Data.isMob)
             {
                 return false;
             }
         }
         else if (targetType == TargetType.FriendsAndSelf)
         {
-            if (ActorSource.State.Data.isMob && actorVictim.State.Data.isCharacter)
-            {
-                return false;
-            }
-
-            if (ActorSource.State.Data.isCharacter && actorVictim.State.Data.isMob)
+            if (ActorSource.State.Data.isMob != actorVictim.State.Data.isMob)
             {
                 return false;
             }
@@ -152,7 +139,7 @@ public class HitCollider : MonoBehaviour
     {
         if (CORE.Instance.IsBitch)
         {
-            if (targetVictim.State.Data.IsPlayer && targetVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId)
+            if (targetVictim.State.Data.isCharacter && targetVictim.State.Data.actorId != CORE.Instance.Room.PlayerActor.actorId)
             {
                 return false;
             }
