@@ -563,7 +563,7 @@ public class Actor : MonoBehaviour
     {
         if (State.Data.States.ContainsKey("Stunned") && !IsStunned)
         {
-            State.InterruptAbilities();
+            State.InterruptAbilities(true);
             IsStunned = true;
         }
         else if (!State.Data.States.ContainsKey("Stunned") && IsStunned)
@@ -574,7 +574,7 @@ public class Actor : MonoBehaviour
         if(State.Data.States.ContainsKey("Silenced") && !IsSilenced)
         {
             IsSilenced = true;
-            State.InterruptAbilities();
+            State.InterruptAbilities(true);
         }
         else if (!State.Data.States.ContainsKey("Silenced") && IsSilenced)
         {
@@ -593,7 +593,7 @@ public class Actor : MonoBehaviour
         if (State.Data.States.ContainsKey("Dead") && !IsDead)
         {
             Ded();
-            State.InterruptAbilities();
+            State.InterruptAbilities(true);
         }
         else if (!State.Data.States.ContainsKey("Dead") && IsDead)
         {
@@ -1004,6 +1004,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementWindPushRoutine(Actor caster)
     {
+        State.InterruptAbilities(false);
         Rigid.AddForce(new Vector2(caster.transform.position.x < transform.position.x ? 1f : -1f, 1f) * 25, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
@@ -1014,6 +1015,9 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementPullRoutine(Actor caster)
     {
+        if (State.Data.isCharacter) {
+            State.InterruptAbilities(false);
+        }
         Vector2 Pullpoint = caster.transform.position;
 
         float t = 0f;
@@ -1119,14 +1123,16 @@ public class ActorState
         }
     }
     
-    public void InterruptAbilities()
+    public void InterruptAbilities(bool putAbilityOnCooldown)
     {
         foreach (AbilityState state in Abilities)
         {
             if (state.CurrentCastingTime > 0f)
             {
                 state.CurrentCastingTime = 0f;
-                Data.ActorEntity.PutAbilityOnCooldown(state);
+                if (putAbilityOnCooldown) {
+                    Data.ActorEntity.PutAbilityOnCooldown(state);
+                }
             }
         }
 
