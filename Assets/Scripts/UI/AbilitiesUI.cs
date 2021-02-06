@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class AbilitiesUI : MonoBehaviour
 {
     public static AbilitiesUI Instance;
+    private const int AbilitiesCountInRow = 4;
 
     [SerializeField]
     Transform CurrentAbilitiesContainer;
@@ -47,10 +48,7 @@ public class AbilitiesUI : MonoBehaviour
             CurrentIndex--;
             if(CurrentIndex < 0)
             {
-                if (IsSelectingReplacement)
-                    CurrentIndex = AllAbilitiesContainer.childCount - 1;
-                else
-                    CurrentIndex = CurrentAbilitiesContainer.childCount- 1;
+                CurrentIndex = CurrentAbilitiesContainer.childCount + AllAbilitiesContainer.childCount- 1;
             }
 
             RefreshHover();
@@ -60,13 +58,70 @@ public class AbilitiesUI : MonoBehaviour
         {
             CurrentIndex++;
 
-            if (IsSelectingReplacement && CurrentIndex >= AllAbilitiesContainer.childCount)
+            if (CurrentIndex >= CurrentAbilitiesContainer.childCount + AllAbilitiesContainer.childCount)
             {
                 CurrentIndex = 0;
             }
-            else if (!IsSelectingReplacement && CurrentIndex >= CurrentAbilitiesContainer.childCount)
+
+            RefreshHover();
+        }
+        
+        if (Input.GetKeyDown(InputMap.Map["Move Down"]))
+        {
+            if (CurrentIndex < CurrentAbilitiesContainer.childCount - 1)
             {
-                CurrentIndex = 0;
+                // Current abilities row
+                CurrentIndex += CurrentAbilitiesContainer.childCount;
+            }
+            else if (CurrentIndex < CurrentAbilitiesContainer.childCount + AllAbilitiesContainer.childCount - AbilitiesCountInRow)
+            {
+                // Any row in the mid of all abilities.
+                CurrentIndex += AbilitiesCountInRow;
+            }
+            else 
+            {
+                int AbilitiesCountInLastRow = AllAbilitiesContainer.childCount % AbilitiesCountInRow;
+                // Last 4 abilities.
+                CurrentIndex += AbilitiesCountInLastRow;
+                if (CurrentIndex < CurrentAbilitiesContainer.childCount + AllAbilitiesContainer.childCount)
+                {
+                    // If it's the last 4 abilities but not in the last row, we want to pretend as if it was in the last row.
+                    CurrentIndex += AbilitiesCountInRow;
+                }
+                // If it's over the limit, bring to start.
+                CurrentIndex %= CurrentAbilitiesContainer.childCount + AllAbilitiesContainer.childCount;
+            }
+
+            RefreshHover();
+        }
+
+        if (Input.GetKeyDown(InputMap.Map["Move Up"]))
+        {
+            if (CurrentIndex >= CurrentAbilitiesContainer.childCount + AbilitiesCountInRow)
+            {
+                // Not the first 2 rows.
+                CurrentIndex -= AbilitiesCountInRow;
+            }
+            else if (CurrentIndex >= CurrentAbilitiesContainer.childCount)
+            {
+                // The second row.
+                CurrentIndex -= CurrentAbilitiesContainer.childCount;
+            }
+            else 
+            {
+                // The first row.
+                int AbilitiesCountInLastRow = AllAbilitiesContainer.childCount % AbilitiesCountInRow;
+                if (CurrentIndex >= AbilitiesCountInLastRow)
+                {
+                    // The first row abilities 
+                    CurrentIndex -= AbilitiesCountInRow;
+                    if (CurrentIndex == 0)
+                    {
+                        CurrentIndex--;
+                    }
+                }
+                CurrentIndex -= AbilitiesCountInLastRow;
+                CurrentIndex += CurrentAbilitiesContainer.childCount + AllAbilitiesContainer.childCount;
             }
 
             RefreshHover();
@@ -80,65 +135,25 @@ public class AbilitiesUI : MonoBehaviour
 
     public void MouseClick(AbilitySlotDraggableUI abilitySlotDraggableUI)
     {
-        for (int i = 0; i < CurrentAbilitiesContainer.childCount; i++)
-        {
-            if (CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>() == abilitySlotDraggableUI)
-            {
-                if (IsSelectingReplacement)
-                {
-                    ResetReplacement();
-                    SetHover(abilitySlotDraggableUI);
-                    SelectAbility();
-                }
-                else
-                {
-                    SelectAbility();
-                }
-            }
-        }
-
-        for (int i = 0; i < AllAbilitiesContainer.childCount; i++)
-        {
-            if (AllAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>() == abilitySlotDraggableUI)
-            {
-                if(IsSelectingReplacement)
-                {
-                    SelectAbility();
-                }
-                else
-                {
-                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Please select an ability to replace first.", Color.yellow, 3f));
-                }
-
-                return;
-            }
-        }
-
-
+        SelectAbility();
     }
 
     public void MouseEnter(AbilitySlotDraggableUI abilitySlotDraggableUI)
     {
-        if (IsSelectingReplacement)
+        for (int i = 0; i < CurrentAbilitiesContainer.childCount; i++)
         {
-            for (int i = 0; i < AllAbilitiesContainer.childCount; i++)
+            if(CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>() == abilitySlotDraggableUI)
             {
-                if (AllAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>() == abilitySlotDraggableUI)
-                {
-                    CurrentIndex = i;
-                    RefreshHover();
-                }
+                CurrentIndex = i;
+                RefreshHover();
             }
         }
-        else
+        for (int i = 0; i < AllAbilitiesContainer.childCount; i++)
         {
-            for (int i = 0; i < CurrentAbilitiesContainer.childCount; i++)
+            if (AllAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>() == abilitySlotDraggableUI)
             {
-                if(CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>() == abilitySlotDraggableUI)
-                {
-                    CurrentIndex = i;
-                    RefreshHover();
-                }
+                CurrentIndex = i + CurrentAbilitiesContainer.childCount;
+                RefreshHover();
             }
         }
     }
@@ -175,7 +190,6 @@ public class AbilitiesUI : MonoBehaviour
         }
 
         IsSelectingReplacement = false;
-        CurrentIndex = 0;
         RefreshHover();
     }
 
@@ -200,28 +214,50 @@ public class AbilitiesUI : MonoBehaviour
 
         if (IsSelectingReplacement)
         {
+            string ability1Name = SelectedAbility.CurrentAbility.CurrentAbility.name;
+            string ability2Name = HoveredAbility.CurrentAbility.CurrentAbility.name;
+            if (ability1Name == ability2Name)
+            {
+                // Same spell selected - ignore.
+                ResetReplacement();
+                return;
+            }
+
+            // Swap the slots in the UI.
+            Transform parent1 = SelectedAbility.transform.parent;
+            int index1InParent = SelectedAbility.transform.GetSiblingIndex();
+            Transform parent2 = HoveredAbility.transform.parent;
+            int index2InParent = HoveredAbility.transform.GetSiblingIndex();
+            SelectedAbility.transform.SetParent(parent2);
+            HoveredAbility.transform.SetParent(parent1);
+            SelectedAbility.transform.SetSiblingIndex(index2InParent);
+            HoveredAbility.transform.SetSiblingIndex(index1InParent);
+
             SelectedAbility.Deselect();
 
-            int indexToReplace = playerActor.State.Data.abilities.IndexOf(SelectedAbility.CurrentAbility.CurrentAbility.name);
-            string abilityName = HoveredAbility.CurrentAbility.CurrentAbility.name;
-            playerActor.State.Data.abilities.RemoveAt(indexToReplace);
-            playerActor.State.Data.abilities.Insert(indexToReplace, abilityName);
+            int index1ToReplace = playerActor.State.Data.abilities.IndexOf(ability1Name);
+            int index2ToReplace = playerActor.State.Data.abilities.IndexOf(ability2Name);
+            if (index1ToReplace >= 0)
+            {
+                playerActor.State.Data.abilities.RemoveAt(index1ToReplace);
+                playerActor.State.Data.abilities.Insert(index1ToReplace, ability2Name);
+                SendSwapAbilityEvent(index1ToReplace, ability2Name);
+            }
+            if (index2ToReplace >= 0)
+            {
+                playerActor.State.Data.abilities.RemoveAt(index2ToReplace);
+                playerActor.State.Data.abilities.Insert(index2ToReplace, ability1Name);
+                SendSwapAbilityEvent(index2ToReplace, ability1Name);
+            }
             
-            SendSwapAbilityEvent(indexToReplace, abilityName);
-
             playerActor.RefreshAbilities();
 
             ResetReplacement();
-            RefreshUI();
-
-            //TODO Request to server
-            //On RESPONSE -> 
         }
         else
         {
             SelectedAbility = HoveredAbility;
             IsSelectingReplacement = true;
-            CurrentIndex = 0;
             RefreshHover();
             SelectedAbility.Select();
         }
@@ -237,13 +273,13 @@ public class AbilitiesUI : MonoBehaviour
 
     public void RefreshHover()
     {
-        if(IsSelectingReplacement)
+        if (CurrentIndex < CurrentAbilitiesContainer.childCount)
         {
-            SetHover(AllAbilitiesContainer.GetChild(CurrentIndex).GetComponent<AbilitySlotDraggableUI>());
+            SetHover(CurrentAbilitiesContainer.GetChild(CurrentIndex).GetComponent<AbilitySlotDraggableUI>());
         }
         else
         {
-            SetHover(CurrentAbilitiesContainer.GetChild(CurrentIndex).GetComponent<AbilitySlotDraggableUI>());
+            SetHover(AllAbilitiesContainer.GetChild(CurrentIndex - CurrentAbilitiesContainer.childCount).GetComponent<AbilitySlotDraggableUI>());
         }
     }
 
