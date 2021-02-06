@@ -14,6 +14,9 @@ public class HealthbarUI : MonoBehaviour
     [SerializeField]
     CanvasGroup CG;
 
+    float LastHpPercent = 1f;
+    Coroutine UpdateBarFillRoutineInstance;
+
     void Update()
     {
         if (CurrentActor.State.Data.hp == CurrentActor.State.Data.MaxHP)
@@ -24,6 +27,33 @@ public class HealthbarUI : MonoBehaviour
         {
             CG.alpha = 1f;
         }
-        ImageFill.fillAmount = Mathf.Lerp(ImageFill.fillAmount, ((float)CurrentActor.State.Data.hp / CurrentActor.State.Data.MaxHP), Time.deltaTime * 2f);
+
+        float hpPercent = (float)CurrentActor.State.Data.hp / CurrentActor.State.Data.MaxHP;
+        if (hpPercent != LastHpPercent)
+        {
+            LastHpPercent = hpPercent;
+            if(UpdateBarFillRoutineInstance != null)
+            {
+                StopCoroutine(UpdateBarFillRoutineInstance);
+            }
+            UpdateBarFillRoutineInstance = StartCoroutine(UpdateBarFillRoutine());
+        }
+    }
+    
+    IEnumerator UpdateBarFillRoutine()
+    {
+        float initialHpPercent = ImageFill.fillAmount;
+        float t = 0f;
+        while (t < 0.5f)
+        {
+            t += Time.deltaTime * 0.5f;
+            // Use sin to ease the animation.
+            float easedOutTime = Mathf.Sin(t * Mathf.PI);
+            ImageFill.fillAmount = Mathf.Lerp(initialHpPercent, LastHpPercent, easedOutTime);
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        UpdateBarFillRoutineInstance = null;
     }
 }
