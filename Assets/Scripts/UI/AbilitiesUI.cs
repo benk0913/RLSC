@@ -19,7 +19,8 @@ public class AbilitiesUI : MonoBehaviour
     Actor playerActor;
 
     int CurrentIndex;
-    
+
+    public bool IsOpen;    
 
     public bool IsSelectingReplacement;
 
@@ -27,7 +28,7 @@ public class AbilitiesUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        this.gameObject.SetActive(false);
+        Hide();
     }
 
     private void Update()
@@ -38,7 +39,7 @@ public class AbilitiesUI : MonoBehaviour
         
         if (Input.GetKeyDown(InputMap.Map["Exit"]))
         {
-            this.gameObject.SetActive(false);
+            Hide();
         }
 
         if(Input.GetKeyDown(InputMap.Map["Move Left"]))
@@ -142,19 +143,28 @@ public class AbilitiesUI : MonoBehaviour
         }
     }
 
-    public void Show(Actor actor)
+    public void Toggle(Actor actor)
     {
-        if(this.gameObject.activeInHierarchy)
+        if(IsOpen)
         {
-            this.gameObject.SetActive(false);
-            return;
+            Hide();
+        }
+        else
+        {
+            IsOpen = true;
+            playerActor = actor;
+
+            this.gameObject.SetActive(true);
+
+            RefreshUI();
         }
 
-        playerActor = actor;
+    }
 
-        this.gameObject.SetActive(true);
-
-        RefreshUI();
+    private void Hide()
+    {
+        IsOpen = false;
+        this.gameObject.SetActive(false);
     }
 
     public void ResetReplacement()

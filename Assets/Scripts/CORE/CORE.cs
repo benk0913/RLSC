@@ -36,6 +36,13 @@ public class CORE : MonoBehaviour
             ;
         }
     }
+    public bool HasWindowOpen
+    {
+        get 
+        {
+            return AbilitiesUI.Instance.IsOpen;
+        }
+    }
 
     public bool LongPressMode;
     public bool MoveToHaltMode;
@@ -64,7 +71,7 @@ public class CORE : MonoBehaviour
         {
             if(Input.GetKeyDown(InputMap.Map["Abilities Window"]))
             {
-                AbilitiesUI.Instance.Show(Room.PlayerActor.ActorEntity);
+                AbilitiesUI.Instance.Toggle(Room.PlayerActor.ActorEntity);
             }
         }
     }

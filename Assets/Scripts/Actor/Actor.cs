@@ -130,8 +130,8 @@ public class Actor : MonoBehaviour
             && !IsStunned
             && !State.IsPreparingAbility
             && !CORE.Instance.IsTyping
+            && !CORE.Instance.HasWindowOpen
             && !IsDead;
-               
         }
     }
 
@@ -874,7 +874,7 @@ public class Actor : MonoBehaviour
     {
         AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
-        if(IsStunned || IsSilenced || IsDead || State.IsPreparingAbility || CORE.Instance.IsTyping)
+        if(IsStunned || IsSilenced || IsDead || State.IsPreparingAbility || CORE.Instance.IsTyping || CORE.Instance.HasWindowOpen)
         {
             return false;
         }
