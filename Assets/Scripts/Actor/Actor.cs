@@ -84,6 +84,14 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public bool IsInvulnerable
+    {
+        get
+        {
+            return State.Data.States.ContainsKey("Invulnerable");
+        }
+    }
+
     public bool IsDead;
 
     public int ClientMovingTowardsDir;

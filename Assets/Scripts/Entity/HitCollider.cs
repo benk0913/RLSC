@@ -78,6 +78,7 @@ public class HitCollider : MonoBehaviour
 
     private bool CanHitActor(Actor actorVictim)
     {
+        bool isVictimAlly = ActorSource.State.Data.isMob == actorVictim.State.Data.isMob;
 
         if (targetType == TargetType.Self)
         {
@@ -93,8 +94,7 @@ public class HitCollider : MonoBehaviour
                 return false;
             }
 
-            // Both are either mobs or not mobs
-            if (ActorSource.State.Data.isMob == actorVictim.State.Data.isMob)
+            if (isVictimAlly)
             {
                 return false;
             }
@@ -106,15 +106,14 @@ public class HitCollider : MonoBehaviour
                 return false;
             }
 
-            // Only one is a mob
-            if (ActorSource.State.Data.isMob != actorVictim.State.Data.isMob)
+            if (!isVictimAlly)
             {
                 return false;
             }
         }
         else if (targetType == TargetType.FriendsAndSelf)
         {
-            if (ActorSource.State.Data.isMob != actorVictim.State.Data.isMob)
+            if (!isVictimAlly)
             {
                 return false;
             }
@@ -128,6 +127,11 @@ public class HitCollider : MonoBehaviour
         }
 
         if (HitOnlyGroundedActors && !actorVictim.IsGrounded)
+        {
+            return false;
+        }
+
+        if (!isVictimAlly && actorVictim.IsInvulnerable)
         {
             return false;
         }
