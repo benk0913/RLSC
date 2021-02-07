@@ -41,6 +41,7 @@ public class HitCollider : MonoBehaviour
             return;
         }
 
+        TimesHit++;
         OnHitEvent?.Invoke();
 
         if (!CanSendEventForActor(actorVictim))
@@ -54,16 +55,10 @@ public class HitCollider : MonoBehaviour
         node["abilityName"] = AbilitySource.name;
 
         SocketHandler.Instance.SendEvent("ability_hit", node);
-        TimesHit++;
     }
 
     public virtual void AttemptMissAbility()
     {
-        if (!CanHitActor(ActorSource))
-        {
-            return;
-        }
-
         if (!CanSendEventForActor(ActorSource))
         {
             return;
