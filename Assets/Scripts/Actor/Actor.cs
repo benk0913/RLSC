@@ -554,7 +554,16 @@ public class Actor : MonoBehaviour
 
         if (buff.BuffMaterial != null)
         {
-            spriteColorGroup.ResetMaterial();
+            BuffState existingBuff = State.Buffs.Find(x => x.CurrentBuff.BuffMaterial != null);
+
+            if (existingBuff != null)
+            {
+                spriteColorGroup.SetMaterial(existingBuff.CurrentBuff.BuffMaterial);
+            }
+            else
+            {
+                spriteColorGroup.ResetMaterial();
+            }
         }
 
         if (IsClientControl)
