@@ -725,6 +725,11 @@ public class Actor : MonoBehaviour
                             continue;
                         }
 
+                        if(CORE.Instance.Room.Actors[i].ActorEntity.IsDead)
+                        {
+                            continue;
+                        }
+
                         if(CORE.Instance.Room.Actors[i].isMob)
                         {
                             continue;
