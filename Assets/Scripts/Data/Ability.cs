@@ -43,16 +43,22 @@ public class Ability : ScriptableObject
 
     [JsonIgnore]
     public string HitAbilitySound;
+
+    [JsonIgnore]
     public string MissAbilitySound;
 
     [JsonIgnore]
     public string ScreenEffectObject;
 
     public float CD = 1f;
+
+    [JsonIgnore]
     public float CastingTime = 0.003f;//0.003f is the min (Lag Compensation).
 
+    [JsonIgnore]
     public bool OnlyIfGrounded;
 
+    [JsonIgnore]
     public bool IsCastingExternal;
 
     [JsonIgnore]
@@ -60,6 +66,9 @@ public class Ability : ScriptableObject
 
     [JsonIgnore]
     public string ExecuteAnimation;
+
+    [JsonIgnore]
+    public int TargetCap;
 
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();

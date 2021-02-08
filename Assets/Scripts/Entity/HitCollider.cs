@@ -40,6 +40,11 @@ public class HitCollider : MonoBehaviour
         {
             return;
         }
+        
+        if (AbilitySource.TargetCap > 0 && TimesHit > AbilitySource.TargetCap)
+        {
+            return;
+        }
 
         TimesHit++;
         OnHitEvent?.Invoke();
