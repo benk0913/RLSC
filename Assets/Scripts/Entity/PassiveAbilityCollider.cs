@@ -20,10 +20,13 @@ public class PassiveAbilityCollider : HitCollider
         }
         else
         {
-            CurrentTime = Interval;
+            if (!ActorSource.IsImpassive)
+            {
+                CurrentTime = Interval;
 
-            foreach(Actor actorVictim in ActorsContained)
-                AttemptHitAbility(actorVictim);
+                foreach (Actor actorVictim in ActorsContained)
+                    AttemptHitAbility(actorVictim);
+            }
         }
     }
 
