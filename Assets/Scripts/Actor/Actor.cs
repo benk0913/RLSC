@@ -132,6 +132,15 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public bool IsInputEnabled
+    {
+        get
+        {
+            return State.Data.isMob ||
+                (!CORE.Instance.IsTyping && !CORE.Instance.HasWindowOpen);
+        }
+    }
+
     public bool CanLookAround
     {
         get
@@ -139,8 +148,18 @@ public class Actor : MonoBehaviour
             return !IsImmobile
             && !IsStunned
             && !State.IsPreparingAbility
-            && !CORE.Instance.IsTyping
-            && !CORE.Instance.HasWindowOpen
+            && IsInputEnabled
+            && !IsDead;
+        }
+    }
+    public bool CanCastAbility
+    {
+        get
+        {
+            return !IsStunned
+            && !IsSilenced
+            && !State.IsPreparingAbility
+            && IsInputEnabled
             && !IsDead;
         }
     }
@@ -916,7 +935,7 @@ public class Actor : MonoBehaviour
     {
         AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
-        if(IsStunned || IsSilenced || IsDead || State.IsPreparingAbility || CORE.Instance.IsTyping || CORE.Instance.HasWindowOpen)
+        if(!CanCastAbility)
         {
             return false;
         }
