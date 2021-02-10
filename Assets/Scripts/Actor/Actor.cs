@@ -68,6 +68,8 @@ public class Actor : MonoBehaviour
 
     public bool IsFlying;
 
+    public bool IsAttached;
+
     public bool IsSilenced
     {
         get
@@ -219,6 +221,25 @@ public class Actor : MonoBehaviour
         if (IsFlying)
         {
             Rigid.velocity = Vector2.Lerp(Rigid.velocity, Vector2.zero, Time.deltaTime);
+        }
+
+        if(IsAttached)
+        {
+            ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Bind Attach"].linkedActorIds[0]);
+
+            if (actorDat == null || actorDat.ActorEntity == null)
+            {
+                CORE.Instance.LogMessageError("No actor with actorId " + CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Bind Buff"].linkedActorIds[0]));
+            }
+            else if(actorDat == this.State.Data)
+            {
+                //
+            }
+            else
+            {
+                Rigid.position = actorDat.ActorEntity.transform.position;
+            }
+            
         }
 
     }
@@ -606,6 +627,16 @@ public class Actor : MonoBehaviour
             StopFlying();
         }
 
+        if(State.Data.States.ContainsKey("Bind Attach") && !IsAttached)
+        {
+            StartAttach();
+        }
+        else if(!State.Data.States.ContainsKey("Bind Attach") && IsAttached)
+        {
+            StopAttach();
+        }
+
+
         if (State.Data.States.ContainsKey("Dead") && !IsDead)
         {
             Ded();
@@ -716,32 +747,7 @@ public class Actor : MonoBehaviour
             case "TeleportToFriendFar":
                 {
 
-                    float furthestDist = 0f;
-                    Actor furthestActor = null;
-                    for(int i=0;i<CORE.Instance.Room.Actors.Count;i++)
-                    {
-                        if(CORE.Instance.Room.Actors[i].ActorEntity == this)
-                        {
-                            continue;
-                        }
-
-                        if(CORE.Instance.Room.Actors[i].ActorEntity.IsDead)
-                        {
-                            continue;
-                        }
-
-                        if(CORE.Instance.Room.Actors[i].isMob)
-                        {
-                            continue;
-                        }
-
-                        float currentDist = Vector2.Distance(transform.position, CORE.Instance.Room.Actors[i].ActorEntity.transform.position);
-                        if (currentDist > furthestDist)
-                        {
-                            furthestDist = currentDist;
-                            furthestActor = CORE.Instance.Room.Actors[i].ActorEntity;
-                        }
-                    }
+                    Actor furthestActor = CORE.Instance.Room.GetFurthestActor(this);
 
                     if (furthestActor == null)
                     {
@@ -750,6 +756,20 @@ public class Actor : MonoBehaviour
                     }
 
                     CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = furthestActor.Rigid.position; });
+                    break;
+                }
+            case "TeleportToFriendNear":
+                {
+
+                    Actor nearestActor = CORE.Instance.Room.GetNearestActor(this);
+
+                    if (nearestActor == null)
+                    {
+                        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No friendly actor to move towards...", Color.red, 3f));
+                        break;
+                    }
+
+                    CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = nearestActor.Rigid.position; });
                     break;
                 }
 
@@ -925,6 +945,16 @@ public class Actor : MonoBehaviour
         Rigid.gravityScale = 1f;
         Animer.SetBool("IsFlying", false);
         IsFlying = false;
+    }
+
+    public void StartAttach()
+    {
+        IsAttached = true;
+    }
+
+    public void StopAttach()
+    {
+        IsAttached = false;
     }
 
     public void HaltAbility(int haltAbilityIndex)

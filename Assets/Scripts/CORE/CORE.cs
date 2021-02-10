@@ -404,6 +404,70 @@ public class RoomData
         return mostThreatAct;
         
     }
+    
+    public Actor GetFurthestActor(Actor from)
+    {
+        float furthestDist = 0f;
+        Actor furthestActor = null;
+        for (int i = 0; i < CORE.Instance.Room.Actors.Count; i++)
+        {
+            if (CORE.Instance.Room.Actors[i].ActorEntity == from)
+            {
+                continue;
+            }
+
+            if (CORE.Instance.Room.Actors[i].ActorEntity.IsDead)
+            {
+                continue;
+            }
+
+            if (CORE.Instance.Room.Actors[i].isMob)
+            {
+                continue;
+            }
+
+            float currentDist = Vector2.Distance(from.transform.position, CORE.Instance.Room.Actors[i].ActorEntity.transform.position);
+            if (currentDist > furthestDist)
+            {
+                furthestDist = currentDist;
+                furthestActor = CORE.Instance.Room.Actors[i].ActorEntity;
+            }
+        }
+
+        return furthestActor;
+    }
+
+    public Actor GetNearestActor(Actor from)
+    {
+        float nearestDist = Mathf.Infinity;
+        Actor nearestActor = null;
+        for (int i = 0; i < CORE.Instance.Room.Actors.Count; i++)
+        {
+            if (CORE.Instance.Room.Actors[i].ActorEntity == from)
+            {
+                continue;
+            }
+
+            if (CORE.Instance.Room.Actors[i].ActorEntity.IsDead)
+            {
+                continue;
+            }
+
+            if (CORE.Instance.Room.Actors[i].isMob)
+            {
+                continue;
+            }
+
+            float currentDist = Vector2.Distance(from.transform.position, CORE.Instance.Room.Actors[i].ActorEntity.transform.position);
+            if (currentDist < nearestDist)
+            {
+                nearestDist = currentDist;
+                nearestActor = CORE.Instance.Room.Actors[i].ActorEntity;
+            }
+        }
+
+        return nearestActor;
+    }
 
     public void ActorJoined(ActorData actor)
     {
@@ -532,4 +596,5 @@ public class RoomData
             actor.faceRight = bool.Parse(data["actorPositions"][i]["faceRight"]);
         }
     }
+
 }
