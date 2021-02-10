@@ -1,31 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PassiveAbilityCollider : HitCollider
 {
     [SerializeField]
-    public float Interval = 3f;
+    public float Interval = 1f;
 
-    [SerializeField]
-    protected float CurrentTime = 0f;
+    public Dictionary<Actor, float> ActorsTimers = new Dictionary<Actor, float>();
 
-    public List<Actor> ActorsContained = new List<Actor>();
+    public HashSet<Actor> ActorsContained = new HashSet<Actor>();
 
     protected void Update()
     {
-        if(CurrentTime > 0f)
+        List<Actor> actors = new List<Actor>(ActorsTimers.Keys);
+        foreach (Actor actorVictim in actors)
         {
-            CurrentTime -= Time.deltaTime;
-        }
-        else
-        {
-            if (!ActorSource.IsImpassive)
+            if(ActorsTimers[actorVictim] > 0f)
             {
-                CurrentTime = Interval;
-
-                foreach (Actor actorVictim in ActorsContained)
+                ActorsTimers[actorVictim] -= Time.deltaTime;
+            }
+            else
+            {
+                // Actors that are removed still have a timer in case they come back, so they won't get hit twice.
+                // Once the timer is done, remove gone actors.
+                if (!ActorsContained.Contains(actorVictim))
+                {
+                    ActorsTimers.Remove(actorVictim);
+                }
+                else if (!ActorSource.IsImpassive)
+                {
                     AttemptHitAbility(actorVictim);
+                    ActorsTimers[actorVictim] = Interval;
+                }
             }
         }
     }
@@ -35,6 +41,7 @@ public class PassiveAbilityCollider : HitCollider
         base.SetInfo(abilitySource, actorSource);
 
         ActorsContained.Clear();
+        ActorsTimers.Clear();
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -45,10 +52,9 @@ public class PassiveAbilityCollider : HitCollider
             Actor actorVictim = other.GetComponent<Actor>();
 
             ActorsContained.Add(actorVictim);
-
-            if (!ActorSource.IsImpassive)
+            if (!ActorsTimers.ContainsKey(actorVictim))
             {
-                AttemptHitAbility(actorVictim);
+                ActorsTimers[actorVictim] = 0;
             }
         }
     }
@@ -63,6 +69,4 @@ public class PassiveAbilityCollider : HitCollider
                 ActorsContained.Remove(actorVictim);
         }
     }
-
-
 }
