@@ -21,7 +21,6 @@ public class ActorAI : MonoBehaviour
     [SerializeField]
     protected float FleeDistance = 10f;
 
-
     public Actor CurrentTarget
     {
         get
@@ -98,8 +97,8 @@ public class ActorAI : MonoBehaviour
 
     protected void RefreshRaycasts()
     {
-        rhitLeft  = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.left, 1f, groundLayerMask);
-        rhitRight = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.right, 1f, groundLayerMask);
+        rhitLeft  = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.left, Act.GroundCheckDistance, groundLayerMask);
+        rhitRight = Physics2D.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector2.right, Act.GroundCheckDistance, groundLayerMask);
     }
 
     #endregion
@@ -120,7 +119,7 @@ public class ActorAI : MonoBehaviour
         return abilities[Random.Range(0, abilities.Count)];
     }
     
-    protected void MoveToTarget()
+    protected virtual void MoveToTarget()
     {
         if (CurrentTarget == null)
         {
