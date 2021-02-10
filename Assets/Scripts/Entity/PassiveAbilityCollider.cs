@@ -39,17 +39,17 @@ public class PassiveAbilityCollider : HitCollider
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (ActorSource.IsImpassive)
-        {
-            return;
-        }
 
         if (other.tag == "Actor")
         {
             Actor actorVictim = other.GetComponent<Actor>();
 
             ActorsContained.Add(actorVictim);
-            AttemptHitAbility(actorVictim);
+
+            if (!ActorSource.IsImpassive)
+            {
+                AttemptHitAbility(actorVictim);
+            }
         }
     }
 
