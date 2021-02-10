@@ -96,13 +96,34 @@ public class AbilityCollider : HitCollider
                         return;
                     }
 
-                    transform.position = rhit.point;
-
                 }
                 else
                 {
-                    return;
+
+
+                    RaycastHit2D subrhit = Physics2D.Raycast(transform.position, transform.localScale.x > 0f ? Vector3.left : Vector3.right, Mathf.Infinity, SkilledshotLayermask);
+
+                    if (!subrhit)
+                    {
+                        return;
+                    }
+
+                    rhit = Physics2D.Raycast(subrhit.point, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
+
+                    if (!rhit)
+                    {
+                        return;
+                    }
+
+                    if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.1f)
+                    {
+                        return;
+                    }
+
                 }
+
+
+                transform.position = rhit.point;
             }
         }
     }
