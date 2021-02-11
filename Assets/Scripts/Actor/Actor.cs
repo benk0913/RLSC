@@ -726,6 +726,16 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementEngageRoutine());
                     break;
                 }
+            case "EngageX1.5":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementEngageRoutine(1.5f));
+                    break;
+                }
+            case "EngageX2":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementEngageRoutine(2f));
+                    break;
+                }
             case "Earth Push":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementEarthPushRoutine(casterActor));
@@ -1014,9 +1024,9 @@ public class Actor : MonoBehaviour
 
     }
 
-    IEnumerator MovementEngageRoutine()
+    IEnumerator MovementEngageRoutine(float power = 1f)
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? 1f : -1f, 2f) * 15, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? 1f : -1f, 2f) * 15 * power, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
 
