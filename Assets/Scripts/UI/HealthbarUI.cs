@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class HealthbarUI : MonoBehaviour
 {
+
     [SerializeField]
     Actor CurrentActor;
 
@@ -19,7 +20,7 @@ public class HealthbarUI : MonoBehaviour
 
     void Update()
     {
-        if (CurrentActor.State.Data.hp == CurrentActor.State.Data.MaxHP)
+        if (CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP || CurrentActor.State.Data.hp <= 0)
         {
             CG.alpha = 0f;
         }

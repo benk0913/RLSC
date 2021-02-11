@@ -53,12 +53,11 @@ public class AISlime : ActorAI
 
             patrolDirectionChangeAction = () =>
             {
-                if (!this.gameObject.activeInHierarchy)
+                if (this == null || !this.gameObject.activeInHierarchy)
                 {
                     return;
                 }
 
-                Debug.LogError("TEST "+ (patrolDirection) + " | " + (rhitLeft.collider != null) + " | " +( rhitRight.collider != null));
                 if (patrolDirection && rhitLeft.collider)
                 {
                     patrolDirection = false;
@@ -72,6 +71,8 @@ public class AISlime : ActorAI
             };
 
             CORE.Instance.DelayedInvokation(5f, patrolDirectionChangeAction);
+
+            patrolDirection = (Random.Range(0, 2) == 0);
         }
     }
 

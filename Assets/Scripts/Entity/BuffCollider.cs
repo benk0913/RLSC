@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class BuffCollider : HitCollider
 {
+    public const float SIZE_STANDARD = 2f;
+
     public BuffState BuffSource;
 
     public bool StickToActor;
@@ -21,6 +23,18 @@ public class BuffCollider : HitCollider
         {
             Anim = GetComponent<Animator>();
         }
+    }
+
+    private void OnEnable()
+    {
+        CORE.Instance.DelayedInvokation(0.1f, () =>
+        {
+            float SizeValue = (ActorSource.Collider.bounds.extents.magnitude / SIZE_STANDARD);
+
+            transform.position += transform.TransformDirection(0f, SizeValue, 0f);
+
+            transform.localScale = Vector3.one * SizeValue;
+        });
     }
 
 

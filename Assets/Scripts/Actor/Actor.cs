@@ -38,7 +38,7 @@ public class Actor : MonoBehaviour
     SpriteColorGroup spriteColorGroup;
 
     [SerializeField]
-    Collider2D Collider;
+    public Collider2D Collider;
 
 
     [SerializeField]
@@ -499,7 +499,7 @@ public class Actor : MonoBehaviour
 
     public void HurtEffect()
     {
-        if (!State.IsPreparingAbility)
+        if (!State.IsPreparingAbility && !IsDead)
         {
             Animer.Play("Hurt" + UnityEngine.Random.Range(1, 5));
         }
@@ -517,6 +517,7 @@ public class Actor : MonoBehaviour
         IsDead = true;
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
+        PassiveHitCollider.enabled = false;
     }
 
     public void Resurrect()
@@ -524,6 +525,8 @@ public class Actor : MonoBehaviour
         IsDead = false;
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
+
+        PassiveHitCollider.enabled = !string.IsNullOrEmpty(State.Data.ClassJobReference.PassiveAbility);
     }
 
     public void AddBuff(Buff buff, float duration)

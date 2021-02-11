@@ -2692,6 +2692,7 @@ MonoBehaviour:
       name: 
       classJob: 
       actorType: 
+      prefab: 
       hp: 0
       Attributes:
         Power: 0
@@ -2712,6 +2713,7 @@ MonoBehaviour:
         SmallerColliderSize: 0
         Threat: 0
         MovementSpeed: 0
+      abilities: []
       ActorEntity: {fileID: 0}
       OnRefreshStates:
         m_PersistentCalls:
@@ -2722,6 +2724,8 @@ MonoBehaviour:
     Abilities: []
     Buffs: []
     IsPreparingAbility: 0
+    PreparingAbilityCurrent: {fileID: 0}
+    PreparingAbiityColliderObject: {fileID: 0}
     OnInterrupt:
       m_PersistentCalls:
         m_Calls: []
@@ -2740,8 +2744,7 @@ MonoBehaviour:
   PlayerHalo: {fileID: 5664128466082675156}
   IsGrounded: 0
   IsFlying: 0
-  IsStunned: 0
-  IsSilenced: 0
+  IsAttached: 0
   IsDead: 0
   ClientMovingTowardsDir: 0
   GroundCheckDistance: 10
