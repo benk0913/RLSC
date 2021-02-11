@@ -88,14 +88,10 @@ public class AbilityCollider : HitCollider
             if (StickToSkilledShot)
             {
                 RaycastHit2D rhit = Physics2D.Raycast(SkilledShotPoint.position, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
-                if (rhit)
+                if (rhit && Vector2.Distance(rhit.point, SkilledShotPoint.position) > 0.1f)
                 {
-
-                    if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.1f)
-                    {
-                        return;
-                    }
-
+                    Debug.LogError(Vector2.Distance(rhit.point, SkilledShotPoint.position));
+                    //TODO Remove?
                 }
                 else
                 {
@@ -103,11 +99,13 @@ public class AbilityCollider : HitCollider
 
                     RaycastHit2D subrhit = Physics2D.Raycast(transform.position, transform.localScale.x > 0f ? Vector3.left : Vector3.right, Mathf.Infinity, SkilledshotLayermask);
 
+                    Debug.LogError("Skilledshot fix 1");
                     if (!subrhit)
                     {
                         return;
                     }
 
+                    Debug.LogError("Skilledshot fix 2");
                     rhit = Physics2D.Raycast(subrhit.point, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
 
                     if (!rhit)
@@ -115,10 +113,13 @@ public class AbilityCollider : HitCollider
                         return;
                     }
 
+                    Debug.LogError("Skilledshot fix 3");
                     if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.1f)
                     {
                         return;
                     }
+
+                    Debug.LogError("Skilledshot fix 4");
 
                 }
 
@@ -135,30 +136,38 @@ public class AbilityCollider : HitCollider
         if(StickToSkilledShot)
         {
             RaycastHit2D rhit = Physics2D.Raycast(SkilledShotPoint.position, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
-            if(rhit)
+            if (rhit && Vector2.Distance(rhit.point, SkilledShotPoint.position) > 0.1f)
             {
-
-                if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.1f)
-                {
-                    rhit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
-
-                    if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.01f)
-                    {
-                        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Spell has been blocked by a wall...", Color.red, 1f, true));
-                        this.gameObject.SetActive(false);
-                        return;
-                    }
-                }
-
-                transform.position = rhit.point;
-
+                //TODO Remove?
             }
             else
             {
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No nearby ground to hit!", Color.red, 1f,true));
-                this.gameObject.SetActive(false);
-                return;
+
+
+                RaycastHit2D subrhit = Physics2D.Raycast(transform.position, transform.localScale.x > 0f ? Vector3.left : Vector3.right, Mathf.Infinity, SkilledshotLayermask);
+                
+                if (!subrhit)
+                {
+                    return;
+                }
+
+                rhit = Physics2D.Raycast(subrhit.point, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
+
+                if (!rhit)
+                {
+                    return;
+                }
+                
+                if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.1f)
+                {
+                    return;
+                }
+                
+
             }
+
+
+            transform.position = rhit.point;
         }
 
         if(InitForce != default)

@@ -12,6 +12,18 @@ public class SpriteColorGroup : MonoBehaviour
     private void Awake()
     {
         Renderers = GetComponentsInChildren<SpriteRenderer>(true);
+
+        List<SpriteRenderer> newRenderers = new List<SpriteRenderer>();//TODO Optimize the part from this point onward?
+
+        foreach(SpriteRenderer renderer in Renderers)
+        {
+            if(renderer.material == DefaultMaterial)
+            {
+                newRenderers.Add(renderer);
+            }
+        }
+
+        Renderers = newRenderers.ToArray();
     }
 
     public void SetColor(Color clr)

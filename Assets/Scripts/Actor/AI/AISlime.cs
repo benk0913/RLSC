@@ -15,9 +15,14 @@ public class AISlime : ActorAI
 
             while (SelectedAbility == null)
             {
-                if (Act.State.Data.hp < (Act.State.Data.MaxHP*0.2f))
+                if (Act.State.Data.hp < (Act.State.Data.MaxHP*0.5f))
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Split" && x.CurrentCD <= 0f);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Split Medium" && x.CurrentCD <= 0f);
+
+                    if (SelectedAbility == null)
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Split Large" && x.CurrentCD <= 0f);
+                    }
 
                     if (SelectedAbility == null)
                     {
@@ -73,6 +78,7 @@ public class AISlime : ActorAI
             CORE.Instance.DelayedInvokation(5f, patrolDirectionChangeAction);
 
             patrolDirection = (Random.Range(0, 2) == 0);
+            transform.position += transform.TransformDirection(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
         }
     }
 
