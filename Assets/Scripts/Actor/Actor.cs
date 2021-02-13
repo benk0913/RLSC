@@ -517,7 +517,9 @@ public class Actor : MonoBehaviour
         IsDead = true;
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
-        PassiveHitCollider.enabled = false;
+
+        if(PassiveHitCollider != null)
+            PassiveHitCollider.enabled = false;
     }
 
     public void Resurrect()
@@ -526,7 +528,8 @@ public class Actor : MonoBehaviour
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
 
-        PassiveHitCollider.enabled = !string.IsNullOrEmpty(State.Data.ClassJobReference.PassiveAbility);
+        if (PassiveHitCollider != null)
+            PassiveHitCollider.enabled = !string.IsNullOrEmpty(State.Data.ClassJobReference.PassiveAbility);
     }
 
     public void AddBuff(Buff buff, float duration)
@@ -704,7 +707,12 @@ public class Actor : MonoBehaviour
             MovementEffectRoutineInstance = null;
         }
 
-        switch(movementKey)
+        if (this.AIControl != null && this.AIControl.MonsterRef != null && this.AIControl.MonsterRef.ChaseBehaviour == AIChaseBehaviour.Static)
+        {
+            return;
+        }
+
+        switch (movementKey)
         {
             case "InterruptMovement":
                 {
@@ -1096,6 +1104,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementPullRoutine(Actor caster)
     {
+
         Vector2 Pullpoint = caster.transform.position;
 
         float t = 0f;

@@ -18,8 +18,18 @@ public class HealthbarUI : MonoBehaviour
     float LastHpPercent = 1f;
     Coroutine UpdateBarFillRoutineInstance;
 
+    public void SetCurrentActor(Actor actor)
+    {
+        CurrentActor = actor;
+    }
+
     void Update()
     {
+        if(CurrentActor == null)
+        {
+            return;
+        }
+
         if (CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP || CurrentActor.State.Data.hp <= 0)
         {
             CG.alpha = 0f;

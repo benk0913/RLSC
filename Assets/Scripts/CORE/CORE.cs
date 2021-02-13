@@ -268,6 +268,8 @@ public class CORE : MonoBehaviour
 
         EnterGame();
 
+        InvokeEvent("NewSceneLoaded");
+
         LoadSceneRoutineInstance = null;
 
     }
@@ -471,6 +473,7 @@ public class RoomData
 
     public void ActorJoined(ActorData actor)
     {
+
         Actors.Add(actor);
 
         if(actor.IsPlayer)

@@ -44,6 +44,13 @@ public class CGDatabaseEditor : Editor
 
         foreach (SpawnerEntity spawner in spawners)
         {
+            if(spawner.PlayersSpawner)
+            {
+                currentInfo.playerSpawnX = spawner.transform.position.x;
+                currentInfo.playerSpawnY = spawner.transform.position.y;
+                continue;
+            }
+
             MobSpawn spawn = new MobSpawn();
             spawn.monsterName = spawner.MobKey;
             spawn.positionX = spawner.transform.position.x;
