@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
+  m_Name: Snake Bite 3
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3c088dabd8b4d464f8883382a02db6c1, type: 3}
+  Description: Strike the enemy in a short distance while backing away from it.
+  HitAbilityColliderObject: 
+  MissAbilityColliderObject: 
+  AbilityColliderObject: SnakeBite3Collider
+  PrepareAbilityColliderObject: PrepareSnakeBite3
+  HitConditionObject: 
+  HitConditionObjectCondition: {fileID: 0}
+  PrepareAbilitySound: 
+  ExecuteAbilitySound: _ound_throw
+  HitAbilitySound: 
+  MissAbilitySound: 
+  ScreenEffectObject: 
+  CD: 1
+  CastingTime: 1.5
+  OnlyIfGrounded: 0
+  IsCastingExternal: 0
+  PreparingAnimation: Cast3
+  ExecuteAnimation: Execute3
+  TargetCap: 0
+  OnExecuteParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    Targets: 0
+    Value: 60
+  OnMissParams: []

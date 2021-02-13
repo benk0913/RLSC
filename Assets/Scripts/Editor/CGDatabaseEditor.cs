@@ -3,6 +3,7 @@ using UnityEditor;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
 using System.Text;
+using UnityEditor.SceneManagement;
 
 [CustomEditor(typeof(CGDatabase))]
 public class CGDatabaseEditor : Editor
@@ -11,17 +12,47 @@ public class CGDatabaseEditor : Editor
     {
         CGDatabase db = (CGDatabase)target;
 
-        if (GUILayout.Button("Autofill Database"))
+        if (GUILayout.Button("Autofill Current Scene Data"))
         {
-            AutofillDatabase(db);
+            AutofillCurrentSceneInfo(db);
         }
 
         if (GUILayout.Button("Sync With Server"))
         {
+            AutofillDatabase(db);
             SendWebRequest(db.HostURL, JsonConvert.SerializeObject(db, Formatting.None));
         }
         
         DrawDefaultInspector();
+    }
+
+    public void AutofillCurrentSceneInfo(CGDatabase db)
+    {
+        SceneInfo currentInfo = db.content.Scenes.Find(x => x.sceneName == EditorSceneManager.GetActiveScene().name);
+
+        if (currentInfo == null)
+        {
+            currentInfo = new SceneInfo();
+            currentInfo.sceneName = EditorSceneManager.GetActiveScene().name;
+
+            db.content.Scenes.Add(currentInfo);
+        }
+
+        SpawnerEntity[] spawners = FindObjectsOfType<SpawnerEntity>();
+
+        currentInfo.Mobs.Clear();
+
+        foreach (SpawnerEntity spawner in spawners)
+        {
+            MobSpawn spawn = new MobSpawn();
+            spawn.monsterName = spawner.MobKey;
+            spawn.positionX = spawner.transform.position.x;
+            spawn.positionY = spawner.transform.position.y;
+
+            currentInfo.Mobs.Add(spawn);
+        }
+
+        EditorUtility.SetDirty(db);
     }
 
     public void SendWebRequest(string url, string sentJson = "")
