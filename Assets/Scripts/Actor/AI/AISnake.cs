@@ -7,7 +7,7 @@ public class AISnake : ActorAI
 
     protected override IEnumerator AIBehaviourRoutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
 
         while (true)
         {
