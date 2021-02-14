@@ -27,6 +27,8 @@ public class AISnake : ActorAI
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Snake Hypno " + rndDir && x.CurrentCD <= 0f);
                 }
 
+                yield return new WaitForSeconds(1f);
+
                 WaitBehaviour();
 
                 yield return 0;
