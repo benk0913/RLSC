@@ -20,16 +20,18 @@ MonoBehaviour:
   PrepareAbilityColliderObject: PrepareWaterSpell
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: sound_prepwaterspell
+  PrepareAbilitySound: W_Splash_Prepare
   ExecuteAbilitySound: voice_watersplash2
-  HitAbilitySound: 
+  HitAbilitySound: W_Splash_Hit
   MissAbilitySound: 
   ScreenEffectObject: 
   CD: 5
   CastingTime: 0.2
   OnlyIfGrounded: 0
+  IsCastingExternal: 0
   PreparingAnimation: Cast4
   ExecuteAnimation: Execute4
+  TargetCap: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 1d7afcae3dbafe140b41a3f772030c9f, type: 2}
