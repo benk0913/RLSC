@@ -164,6 +164,8 @@ public class ActorAI : MonoBehaviour
         {
             case AIChaseBehaviour.Static:
                 {
+                    yield return new WaitForSeconds(0.1f);
+
                     break;
                 }
             case AIChaseBehaviour.Chase:

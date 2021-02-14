@@ -7,13 +7,13 @@ public class AISnake : ActorAI
 
     protected override IEnumerator AIBehaviourRoutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
 
         while (true)
         {
             AbilityState SelectedAbility = null;
 
-            while (SelectedAbility == null)
+            while (SelectedAbility == null && !Act.State.IsPreparingAbility)
             {
 
                 if (Random.Range(0, 2) == 0)
@@ -26,6 +26,7 @@ public class AISnake : ActorAI
                     int rndDir = Random.Range(1, 3);
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Snake Hypno " + rndDir && x.CurrentCD <= 0f);
                 }
+
                 WaitBehaviour();
 
                 yield return 0;
