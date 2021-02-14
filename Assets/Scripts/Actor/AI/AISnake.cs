@@ -23,7 +23,8 @@ public class AISnake : ActorAI
                 }
                 else
                 {
-                    //Snake Hyptnotize
+                    int rndDir = Random.Range(1, 3);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Snake Hypno " + rndDir && x.CurrentCD <= 0f);
                 }
                 WaitBehaviour();
 

@@ -82,7 +82,7 @@ public class ActorControl : MonoBehaviour
             }
 
             CurrentActor.AttemptJump();
-            internalJumpCooldown = 1f;
+            internalJumpCooldown = 0.5f;
 
             if (CORE.Instance.MoveToHaltMode)
             {
