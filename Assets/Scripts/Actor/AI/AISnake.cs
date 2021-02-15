@@ -16,15 +16,15 @@ public class AISnake : ActorAI
             while (SelectedAbility == null && !Act.State.IsPreparingAbility)
             {
 
-                if (Random.Range(0, 2) == 0)
-                {
-                    int rndDir = Random.Range(1, 5);
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Snake Bite "+rndDir && x.CurrentCD <= 0f);
-                }
-                else
+                if (Random.Range(0, 3) == 0)
                 {
                     int rndDir = Random.Range(1, 3);
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Snake Hypno " + rndDir && x.CurrentCD <= 0f);
+                }
+                else
+                {
+                    int rndDir = Random.Range(1, 5);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Snake Bite " + rndDir && x.CurrentCD <= 0f);
                 }
 
                 yield return new WaitForSeconds(1f);

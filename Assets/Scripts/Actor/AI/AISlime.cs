@@ -27,6 +27,7 @@ public class AISlime : ActorAI
                     if (SelectedAbility == null)
                     {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Hop" && x.CurrentCD <= 0f);
+                        Debug.LogError("Chose Hop");
                     }
                 }
                 else
