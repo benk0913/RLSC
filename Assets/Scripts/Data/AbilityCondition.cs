@@ -41,6 +41,6 @@ public class AbilityCondition : ScriptableObject
 public enum ConditionType
 {
     HasBuff,
-    HasState
-        
+    HasState,
+    Staring,
 }
