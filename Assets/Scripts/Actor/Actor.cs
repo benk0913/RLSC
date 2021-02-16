@@ -825,12 +825,10 @@ public class Actor : MonoBehaviour
 
     public void AttemptMoveLeft()
     {
-        if(!CanLookAround)
+        if(!AttemptLookLeft())
         {
             return;
         }
-
-        Body.localScale = new Vector3(1f, 1f, 1f);
 
         if (!CanAttemptToMove)
         {
@@ -844,12 +842,10 @@ public class Actor : MonoBehaviour
 
     public void AttemptMoveRight()
     {
-        if (!CanLookAround)
+        if (!AttemptLookRight())
         {
             return;
         }
-
-        Body.localScale = new Vector3(-1f, 1f, 1f);
 
         if (!CanAttemptToMove)
         {
@@ -859,6 +855,28 @@ public class Actor : MonoBehaviour
         ClientMovingTowardsDir = 1;
 
         Rigid.position += Vector2.right * Time.deltaTime * State.Data.MovementSpeed;
+    }
+
+    public bool AttemptLookLeft()
+    {
+        if (!CanLookAround)
+        {
+            return false;
+        }
+
+        Body.localScale = new Vector3(1f, 1f, 1f);
+        return true;
+    }
+
+    public bool AttemptLookRight()
+    {
+        if (!CanLookAround)
+        {
+            return false;
+        }
+
+        Body.localScale = new Vector3(-1f, 1f, 1f);
+        return true;
     }
 
     public void AttemptMoveDown()
