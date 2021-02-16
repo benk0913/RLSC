@@ -166,13 +166,18 @@ public class Actor : MonoBehaviour
 
     public void SetActorInfo(ActorData data)
     {
-        this.State.Data = data;
-        this.State.Data.OnRefreshStates.AddListener(RefreshStates);
-        this.State.Data.OnRefreshAbilities.AddListener(RefreshAbilities);
+        State.Data = data;
+        State.Data.OnRefreshStates.AddListener(RefreshStates);
+        State.Data.OnRefreshAbilities.AddListener(RefreshAbilities);
 
         RefreshStates();
         RefreshAbilities();
-        PutAbilitiesOnCooldown();
+
+        // Mob abilities start with cooldown to give a breathing room.
+        if (State.Data.isMob)
+        {
+            PutAbilitiesOnCooldown();
+        }
  
         RefreshControlSource();
 
@@ -194,8 +199,7 @@ public class Actor : MonoBehaviour
         if(PlayerHalo != null)
             PlayerHalo.SetActive(State.Data.IsPlayer);
 
-        this.State.OnInterrupt.AddListener(Interrupted);
-        
+        State.OnInterrupt.AddListener(Interrupted);
     }
 
     public void Interrupted()
