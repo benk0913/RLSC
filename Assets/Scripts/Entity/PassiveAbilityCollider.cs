@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PassiveAbilityCollider : HitCollider
 {
-    [SerializeField]
     public float Interval = 1f;
 
     public Dictionary<Actor, float> ActorsTimers = new Dictionary<Actor, float>();
@@ -30,8 +29,8 @@ public class PassiveAbilityCollider : HitCollider
                 else if (!ActorSource.IsImpassive)
                 {
                     AttemptHitAbility(actorVictim);
-                    ActorsTimers[actorVictim] = Interval;
                 }
+                ActorsTimers[actorVictim] = Interval;
             }
         }
     }
