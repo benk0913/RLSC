@@ -1118,7 +1118,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementWindPushRoutine(Actor caster)
     {
-        Rigid.AddForce(new Vector2(caster.Body.transform.localScale.x * 25,25f), ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(-caster.Body.transform.localScale.x * 25,25f), ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
 
