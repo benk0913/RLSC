@@ -10,7 +10,24 @@ public class AISnake : ActorAI
         {
             foreach(ActorData actor in CORE.Instance.Room.Actors)
             {
-                if (actor.ActorEntity != null && actor.isCharacter && actor.ActorEntity.transform.position.x < transform.position.x)
+                if (!actor.isMob && actor.ActorEntity != null && !actor.ActorEntity.IsDead && actor.ActorEntity.transform.position.x < transform.position.x)
+                {
+                    
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+    
+    public bool HasEnemiesToRight
+    {
+        get
+        {
+            foreach(ActorData actor in CORE.Instance.Room.Actors)
+            {
+                if (!actor.isMob && actor.ActorEntity != null && !actor.ActorEntity.IsDead && actor.ActorEntity.transform.position.x > transform.position.x)
                 {
                     
                     return true;
@@ -61,7 +78,17 @@ public class AISnake : ActorAI
 
     protected override void MoveToTarget()
     {
+        int random = Random.Range(0, 2);
+
         if (!HasEnemiesToLeft)
+        {
+            Act.AttemptLookRight();
+        }
+        else if (!HasEnemiesToRight)
+        {
+            Act.AttemptLookLeft();
+        }
+        else if (Random.Range(0, 2) == 0)
         {
             Act.AttemptLookRight();
         }
