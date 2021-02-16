@@ -213,7 +213,6 @@ public class ActorAI : MonoBehaviour
 
     protected virtual IEnumerator UseAbilityRoutine(AbilityState selectedAbility)
     {
-        Debug.LogError("Using Hop");
 
         //It is recommended to change this behaviour with each AI, so monsters will use their abilities wisely.
         MoveToTarget();

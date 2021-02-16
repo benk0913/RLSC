@@ -36,6 +36,7 @@ public class HealthbarUI : MonoBehaviour
         }
         else
         {
+            
             CG.alpha = 1f;
         }
 
