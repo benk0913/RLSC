@@ -707,11 +707,22 @@ public class Actor : MonoBehaviour
             MovementEffectRoutineInstance = null;
         }
 
+        // Abilities that move the caster
+        switch (movementKey)
+        {
+            case "Backstepped":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementBacksteppedRoutine(casterActor));
+                    break;
+                }
+        }
+
         if (this.AIControl != null && this.AIControl.MonsterRef != null && this.AIControl.MonsterRef.ChaseBehaviour == AIChaseBehaviour.Static)
         {
             return;
         }
 
+        // Abilities that move the target
         switch (movementKey)
         {
             case "InterruptMovement":
@@ -777,11 +788,6 @@ public class Actor : MonoBehaviour
             case "Pounce":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementPounceRoutine());
-                    break;
-                }
-            case "Backstepped":
-                {
-                    MovementEffectRoutineInstance = StartCoroutine(MovementBacksteppedRoutine(casterActor));
                     break;
                 }
             case "TeleportToFriendFar":
