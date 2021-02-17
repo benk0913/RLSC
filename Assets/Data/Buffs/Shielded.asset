@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorCatGuard
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Shielded
   m_EditorClassIdentifier: 
-  Icon: {fileID: 3413451862118824628, guid: 524f28d50a9d6af499ce7d588e67d865, type: 3}
-  Abilities:
-  - CatShielding
-  - CatShieldBash
-  - CatSmash
-  PassiveAbility: PassiveHitCatBoss
+  Icon: {fileID: 21300000, guid: 8eff94603aa55b24284f40c55a1f1119, type: 3}
+  Description: Cannot receive damage from looking direction
+  BuffColliderObject: 
+  BuffMaterial: {fileID: 0}
+  Length: 999
+  isDebuff: 0
+  ShowBuffIcon: 0
   Attributes:
     Power: 0
-    HP: 10
+    HP: 0
     Defense: 0
     CDReduction: 0
     CTReduction: 0
@@ -36,5 +37,11 @@ MonoBehaviour:
     KnockbackResistance: 0
     SmallerColliderSize: 0
     Threat: 0
-    MovementSpeed: -0.7
-  Immunity: []
+    MovementSpeed: 0
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States:
+  - {fileID: 11400000, guid: df8b5e19831d77a47a72b49fd78b7c33, type: 2}
+  OnStart: []
+  OnEnd: []

@@ -390,7 +390,10 @@ public class Actor : MonoBehaviour
 
     public void PrepareAbility(Ability ability)
     {
-        Animer.Play(ability.PreparingAnimation);
+        if (!string.IsNullOrEmpty(ability.PreparingAnimation))
+        {
+            Animer.Play(ability.PreparingAnimation);
+        }
 
         State.IsPreparingAbility = true;
 
@@ -437,7 +440,10 @@ public class Actor : MonoBehaviour
 
         if (!ability.IsCastingExternal)
         {
-            Animer.Play(ability.ExecuteAnimation);
+            if (!string.IsNullOrEmpty(ability.ExecuteAnimation))
+            {
+                Animer.Play(ability.ExecuteAnimation);
+            }
 
             transform.position = position;
             Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
