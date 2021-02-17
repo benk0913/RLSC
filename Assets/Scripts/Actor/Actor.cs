@@ -726,14 +726,12 @@ public class Actor : MonoBehaviour
             return;
         }
 
+        // Interrupt any existing movement force added.
+        Rigid.velocity = Vector2.zero;
+
         // Abilities that move the target
         switch (movementKey)
         {
-            case "InterruptMovement":
-                {
-                    Rigid.velocity = Vector2.zero;
-                    break;
-                }
             case "Disengage":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDisengageRoutine());
@@ -1183,6 +1181,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementBacksteppedRoutine(Actor casterActor)
     {
+        casterActor.Rigid.velocity = Vector2.zero;
         Vector2 stepDir;
 
         stepDir = transform.position - casterActor.transform.position;
