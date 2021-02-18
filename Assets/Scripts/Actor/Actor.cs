@@ -369,17 +369,6 @@ public class Actor : MonoBehaviour
     {
         Vector3 targetPosition = new Vector2(State.Data.x, State.Data.y);
 
-        //if (targetPosition != lastPosition)
-        //{
-        //    Rigid.isKinematic = true;
-        //}
-        //else 
-        //{
-        //    if(Rigid.isKinematic)
-        //        Rigid.isKinematic = false;
-        //}
-
-
         Rigid.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * InterpolationSpeed);
 
         Body.localScale = State.Data.faceRight ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
@@ -529,14 +518,6 @@ public class Actor : MonoBehaviour
         IsDead = true;
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
-
-        Collider.enabled = false;
-        PassiveHitCollider.enabled = false;
-
-        Shadow.gameObject.SetActive(false);
-
-        if(PassiveHitCollider != null)
-            PassiveHitCollider.enabled = false;
     }
 
     public void Resurrect()
@@ -544,15 +525,6 @@ public class Actor : MonoBehaviour
         IsDead = false;
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
-
-        
-        Collider.enabled = true;
-        PassiveHitCollider.enabled = true;
-
-        Shadow.gameObject.SetActive(true);
-
-        if (PassiveHitCollider != null)
-            PassiveHitCollider.enabled = !string.IsNullOrEmpty(State.Data.ClassJobReference.PassiveAbility);
     }
 
     public void AddBuff(Buff buff, float duration)

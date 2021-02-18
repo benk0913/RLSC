@@ -78,6 +78,11 @@ public class HitCollider : MonoBehaviour
 
     protected virtual bool CanHitActor(Actor actorVictim)
     {
+        if (ActorSource.IsDead)
+        {
+            return false;
+        }
+        
         bool isVictimAlly = ActorSource.State.Data.isMob == actorVictim.State.Data.isMob;
 
         if (targetType == TargetType.Self)
@@ -95,6 +100,11 @@ public class HitCollider : MonoBehaviour
             }
 
             if (isVictimAlly)
+            {
+                return false;
+            }
+
+            if (actorVictim.IsDead)
             {
                 return false;
             }
