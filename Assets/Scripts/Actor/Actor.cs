@@ -47,7 +47,10 @@ public class Actor : MonoBehaviour
     [SerializeField]
     GameObject PlayerHalo;
     
-
+    private Dictionary<string, Coroutine> ColliderCooldowns = new Dictionary<string, Coroutine>();
+    
+    public List<DamageHistoryRow> DamageHistory = new List<DamageHistoryRow>();
+    private Coroutine DamageHistoryResetRoutine = null;
 
     public bool IsGrounded;
 
@@ -647,6 +650,43 @@ public class Actor : MonoBehaviour
         HurtEffect();
     }
 
+    public void AddDps(int damage)
+    {
+        DamageHistoryRow row = new DamageHistoryRow(damage, Time.time);
+        DamageHistory.Add(row);
+        if (DamageHistory.Count > 150)
+        {
+            DamageHistory.RemoveAt(0);
+        }
+        if (DamageHistoryResetRoutine != null)
+        {
+            StopCoroutine(DamageHistoryResetRoutine);
+        }
+        DamageHistoryResetRoutine = StartCoroutine(ResetDpsRoutine());
+    }
+
+    public int GetDps()
+    {
+        if (DamageHistory.Count == 0)
+        {
+            return 0;
+        }
+        float durationInSeconds = Mathf.Max(1, DamageHistory[DamageHistory.Count - 1].Time - DamageHistory[0].Time);
+        float sum = 0;
+        foreach (DamageHistoryRow row in DamageHistory)
+        {
+            // Consider heals as damage too
+            sum += Mathf.Abs(row.Damage);
+        }
+        return (int)(sum / durationInSeconds);
+    }
+
+    IEnumerator ResetDpsRoutine()
+    {
+        yield return new WaitForSeconds(8);
+        DamageHistory.Clear();
+    }
+
     public void RefreshStates()
     {
         if (State.Data.States.ContainsKey("Flying") && !IsFlying)
@@ -701,6 +741,22 @@ public class Actor : MonoBehaviour
     public void PutAbilityOnCooldown(AbilityState abilityState)
     {
         abilityState.CurrentCD = abilityState.CurrentAbility.CD * (1f - State.Data.Attributes.CDReduction);
+    }
+
+    public bool IsColliderOnCooldown(string colliderName)
+    {
+        return ColliderCooldowns.ContainsKey(colliderName);
+    }
+
+    public void SetColliderOnCooldown(string colliderName, int duration)
+    {
+        ColliderCooldowns.Add(colliderName, StartCoroutine(ColliderCooldownRoutine(colliderName, duration)));
+    }
+
+    IEnumerator ColliderCooldownRoutine(string colliderName, int duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ColliderCooldowns.Remove(colliderName);
     }
 
     #region ClientControl
@@ -1268,7 +1324,6 @@ public class ActorState
 
         OnInterrupt?.Invoke();
     }
-
 }
 
 [Serializable]
@@ -1315,4 +1370,16 @@ public enum ControlSourceType
     Player,
     AI,
     Server
+}
+
+public class DamageHistoryRow
+{
+    public int Damage;
+    public float Time;
+
+    public DamageHistoryRow(int damage, float time)
+    {
+        Damage = damage;
+        Time = time;
+    }
 }
