@@ -47,6 +47,7 @@ public class Actor : MonoBehaviour
     [SerializeField]
     GameObject PlayerHalo;
     
+    private Dictionary<string, Coroutine> colliderCooldowns = new Dictionary<string, Coroutine>();
 
 
     public bool IsGrounded;
@@ -703,6 +704,22 @@ public class Actor : MonoBehaviour
         abilityState.CurrentCD = abilityState.CurrentAbility.CD * (1f - State.Data.Attributes.CDReduction);
     }
 
+    public bool IsColliderOnCooldown(string colliderName)
+    {
+        return colliderCooldowns.ContainsKey(colliderName);
+    }
+
+    public void SetColliderOnCooldown(string colliderName, int duration)
+    {
+        colliderCooldowns.Add(colliderName, StartCoroutine(ColliderCooldownRoutine(colliderName, duration)));
+    }
+
+    IEnumerator ColliderCooldownRoutine(string colliderName, int duration)
+    {
+        yield return new WaitForSeconds(duration);
+        colliderCooldowns.Remove(colliderName);
+    }
+
     #region ClientControl
 
     public void ExecuteMovement(string movementKey, Actor casterActor = null)
@@ -1268,7 +1285,6 @@ public class ActorState
 
         OnInterrupt?.Invoke();
     }
-
 }
 
 [Serializable]

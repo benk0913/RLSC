@@ -76,7 +76,7 @@ public class HitCollider : MonoBehaviour
         SocketHandler.Instance.SendEvent("ability_miss", node);
     }
 
-    private bool CanHitActor(Actor actorVictim)
+    protected virtual bool CanHitActor(Actor actorVictim)
     {
         bool isVictimAlly = ActorSource.State.Data.isMob == actorVictim.State.Data.isMob;
 
