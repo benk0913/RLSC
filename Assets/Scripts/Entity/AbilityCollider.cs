@@ -33,6 +33,9 @@ public class AbilityCollider : HitCollider
 
     public string AudioOnHit;
 
+    // Interval that colliders of the same type should hit the same actor. 
+    public int HitInterval = 0;
+
     private void Awake()
     {
         if (!string.IsNullOrEmpty(onHitObject))
@@ -228,6 +231,22 @@ public class AbilityCollider : HitCollider
         }
     }
 
+    protected override bool CanHitActor(Actor actorVictim)
+    {
+        bool CanHit = base.CanHitActor(actorVictim);
+        if (CanHit && HitInterval > 0)
+        {
+            if (actorVictim.IsColliderOnCooldown(name))
+            {
+                CanHit = false;
+            }
+            else
+            {
+                actorVictim.SetColliderOnCooldown(name, HitInterval);
+            }
+        }
+        return CanHit;
+    }
 
     public void ForceOnHit()
     {
