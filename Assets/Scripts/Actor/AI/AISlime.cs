@@ -37,7 +37,7 @@ public class AISlime : ActorAI
 
                 WaitBehaviour();
 
-                yield return 0;
+                yield return new WaitForSeconds(Random.Range(0.1f,1f);
             }
 
             yield return StartCoroutine(UseAbilityRoutine(SelectedAbility));

@@ -527,6 +527,11 @@ public class Actor : MonoBehaviour
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
 
+        Collider.enabled = false;
+        PassiveHitCollider.enabled = false;
+
+        Shadow.gameObject.SetActive(false);
+
         if(PassiveHitCollider != null)
             PassiveHitCollider.enabled = false;
     }
@@ -536,6 +541,12 @@ public class Actor : MonoBehaviour
         IsDead = false;
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
+
+        
+        Collider.enabled = true;
+        PassiveHitCollider.enabled = true;
+
+        Shadow.gameObject.SetActive(true);
 
         if (PassiveHitCollider != null)
             PassiveHitCollider.enabled = !string.IsNullOrEmpty(State.Data.ClassJobReference.PassiveAbility);

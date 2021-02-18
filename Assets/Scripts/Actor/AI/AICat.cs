@@ -16,6 +16,8 @@ public class AICat : ActorAI
 
             while (SelectedAbility == null)
             {
+                
+
                 if (!Act.State.Data.States.ContainsKey("Shielded"))
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShielding" && x.CurrentCD <= 0f);
