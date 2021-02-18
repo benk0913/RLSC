@@ -623,7 +623,18 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        actorDat.ActorEntity.ShowHurtLabel(data["dmg"].AsInt);
+        int dmg = data["dmg"].AsInt;
+        actorDat.ActorEntity.ShowHurtLabel(dmg);
+
+        string casterActorId = data["casterActorId"].Value;
+        ActorData casterActorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == casterActorId);
+
+        if (casterActorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["casterActorId"].Value);
+            return;
+        }
+        casterActorDat.ActorEntity.AddDps(dmg);
     }
 
     public void OnActorInterrupt(string eventName, JSONNode data)

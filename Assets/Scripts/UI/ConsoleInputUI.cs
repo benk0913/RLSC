@@ -41,8 +41,16 @@ public class ConsoleInputUI : MonoBehaviour
     private void SendConsoleMessage()
     {
         JSONNode node = new JSONClass();
-        node["message"] = inputField.text;
-        SocketHandler.Instance.SendEvent("console_message", node);
+        if (inputField.text == "/dps")
+        {
+            int dps = CORE.Instance.Room.PlayerActor.ActorEntity.GetDps();
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("The total damage per second is: " + dps, Color.green, 3f, true));
+        }
+        else
+        {
+            node["message"] = inputField.text;
+            SocketHandler.Instance.SendEvent("console_message", node);
+        }
     }
 
     public void Hide()
