@@ -25,7 +25,7 @@ public class ActorAI : MonoBehaviour
     {
         get
         {
-            return CORE.Instance.Room.MostThreateningActor;
+            return GetCurrentTarget();
         }
     }
 
@@ -65,6 +65,12 @@ public class ActorAI : MonoBehaviour
             CORE.Instance.DelayedInvokation(5f, patrolDirectionChangeAction);
         }
     }
+
+    public virtual Actor GetCurrentTarget()
+    {
+        return CORE.Instance.Room.MostThreateningActor;
+    }
+
 
     protected virtual void OnBitchChanged()
     {

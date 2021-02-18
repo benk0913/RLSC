@@ -383,6 +383,9 @@ public class RoomData
     [JsonIgnore]
     public Actor MostThreateningActor;
 
+    [JsonIgnore]
+    public Actor LeastThreatheningActor;
+
     public Actor GetMostThreateningActor()
     {
         Actor mostThreatAct = null;
@@ -407,6 +410,29 @@ public class RoomData
         
     }
     
+    public Actor GetLeastThreateningActor()
+    {
+        Actor leastThreatAct = null;
+        float leastThreat = Mathf.Infinity;
+        for (int i = 0; i < Actors.Count; i++)
+        {
+            if (Actors[i].ActorEntity.IsDead || Actors[i].isMob)
+            {
+                continue;
+            }
+
+            float currentThreat = Actors[i].ActorEntity.State.Data.Attributes.Threat;
+
+            if (currentThreat < leastThreat)
+            {
+                leastThreatAct = Actors[i].ActorEntity;
+                leastThreat = currentThreat;
+            }
+        }
+
+        return leastThreatAct;
+    }
+
     public Actor GetFurthestActor(Actor from)
     {
         float furthestDist = 0f;
@@ -543,6 +569,7 @@ public class RoomData
     public void RefreshThreat()
     {
         MostThreateningActor = GetMostThreateningActor();
+        LeastThreatheningActor = GetLeastThreateningActor();
     }
 
     public void SendActorsPositions()
