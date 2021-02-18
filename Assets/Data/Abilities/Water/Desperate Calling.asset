@@ -20,16 +20,18 @@ MonoBehaviour:
   PrepareAbilityColliderObject: PrepareWaterSpell
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: sound_prepwaterspell
-  ExecuteAbilitySound: sound_watersplashs
-  HitAbilitySound: sound_heal
-  MissAbilitySound: sound_heal
+  PrepareAbilitySound: W_DesperatePrayer_Prepare
+  ExecuteAbilitySound: W_DesperatePrayer_Execute
+  HitAbilitySound: W_Heal
+  MissAbilitySound: 
   ScreenEffectObject: ScreenEffectDesperate
   CD: 25
   CastingTime: 1
   OnlyIfGrounded: 0
+  IsCastingExternal: 0
   PreparingAnimation: Cast5
   ExecuteAnimation: Execute4
+  TargetCap: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
