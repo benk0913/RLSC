@@ -26,11 +26,10 @@ public class PassiveAbilityCollider : HitCollider
                 {
                     ActorsTimers.Remove(actorVictim);
                 }
-                else if (!ActorSource.IsImpassive)
+                else if (AttemptHitAbility(actorVictim))
                 {
-                    AttemptHitAbility(actorVictim);
+                    ActorsTimers[actorVictim] = Interval;
                 }
-                ActorsTimers[actorVictim] = Interval;
             }
         }
     }
@@ -67,5 +66,10 @@ public class PassiveAbilityCollider : HitCollider
             if(ActorsContained.Contains(actorVictim))
                 ActorsContained.Remove(actorVictim);
         }
+    }
+    
+    protected override bool CanHitActor(Actor actorVictim)
+    {
+        return !ActorSource.IsImpassive && base.CanHitActor(actorVictim);
     }
 }

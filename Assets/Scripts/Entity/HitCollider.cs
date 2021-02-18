@@ -34,16 +34,16 @@ public class HitCollider : MonoBehaviour
         TimesHit = 0;
     }
 
-    public virtual void AttemptHitAbility(Actor actorVictim)
+    protected virtual bool AttemptHitAbility(Actor actorVictim)
     {
         if (!CanHitActor(actorVictim))
         {
-            return;
+            return false;
         }
         
         if (AbilitySource.TargetCap > 0 && TimesHit >= AbilitySource.TargetCap)
         {
-            return;
+            return false;
         }
 
         TimesHit++;
@@ -51,7 +51,7 @@ public class HitCollider : MonoBehaviour
 
         if (!CanSendEventForActor(actorVictim))
         {
-            return;
+            return true;
         }
 
         JSONNode node = new JSONClass();
@@ -60,6 +60,7 @@ public class HitCollider : MonoBehaviour
         node["abilityName"] = AbilitySource.name;
 
         SocketHandler.Instance.SendEvent("ability_hit", node);
+        return true;
     }
 
     public virtual void AttemptMissAbility()
@@ -82,7 +83,7 @@ public class HitCollider : MonoBehaviour
         {
             return false;
         }
-        
+
         bool isVictimAlly = ActorSource.State.Data.isMob == actorVictim.State.Data.isMob;
 
         if (targetType == TargetType.Self)
