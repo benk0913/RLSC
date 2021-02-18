@@ -241,16 +241,19 @@ public class Actor : MonoBehaviour
         this.State.Data.OnRefreshAbilities.RemoveListener(RefreshAbilities);
     }
 
-    protected void FixedUpdate()
+    private void Update()
     {
         if (!IsClientControl)
         {
             UpdateFromActorData();
         }
+    }
 
+    protected void FixedUpdate()
+    {
         if (IsFlying)
         {
-            Rigid.velocity = Vector2.Lerp(Rigid.velocity, Vector2.zero, Time.fixedDeltaTime);
+            Rigid.velocity = Vector2.Lerp(Rigid.velocity, Vector2.zero, Time.deltaTime);
         }
 
         if(IsAttached)
@@ -277,7 +280,7 @@ public class Actor : MonoBehaviour
     protected void LateUpdate()
     {
         RefreshVelocity();
-        
+
         RefreshActorState();
 
         RefreshGroundedState();
@@ -377,7 +380,7 @@ public class Actor : MonoBehaviour
         //}
 
 
-        Rigid.position = Vector3.Lerp(transform.position, targetPosition, Time.fixedDeltaTime * InterpolationSpeed);
+        Rigid.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * InterpolationSpeed);
 
         Body.localScale = State.Data.faceRight ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
     }
