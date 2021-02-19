@@ -864,6 +864,11 @@ public class Actor : MonoBehaviour
                     CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = nearestActor.Rigid.position; });
                     break;
                 }
+            case "TeleportToTarget":
+                {
+                    CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = casterActor.Rigid.position; });
+                    break;
+                }
 
         }
     }
