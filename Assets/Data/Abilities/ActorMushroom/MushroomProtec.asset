@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: PassiveHitMushroomSmall
+  m_Name: MushroomProtec
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 375250ac166e1ad4eaf2cfdbbaa0ca83, type: 3}
   Description: 
   HitAbilityColliderObject: 
   MissAbilityColliderObject: 
-  AbilityColliderObject: 
+  AbilityColliderObject: MushroomProtecCollider
   PrepareAbilityColliderObject: 
   HitConditionObject: 
   HitConditionObjectCondition: {fileID: 0}
@@ -25,17 +25,21 @@ MonoBehaviour:
   HitAbilitySound: 
   MissAbilitySound: 
   ScreenEffectObject: 
-  CD: 0
-  CastingTime: 0
+  CD: 12
+  CastingTime: 2
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: 
-  ExecuteAnimation: 
+  PreparingAnimation: Cast1
+  ExecuteAnimation: Execute1
   TargetCap: 0
-  OnExecuteParams: []
-  OnHitParams:
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+  OnExecuteParams:
+  - Type: {fileID: 11400000, guid: 925789fd29bf01b4794f3effafc40709, type: 2}
     Condition: {fileID: 0}
-    Targets: 0
-    Value: 1
+    Targets: 1
+    Value: ActorMushroomSmall
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    Targets: 1
+    Value: Mushroom Invulnerability
   OnMissParams: []

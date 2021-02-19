@@ -73,10 +73,10 @@ public class AISlime : ActorAI
                     patrolDirection = true;
                 }
 
-                CORE.Instance.DelayedInvokation(5f, patrolDirectionChangeAction);
+                CORE.Instance.DelayedInvokation(2f, patrolDirectionChangeAction);
             };
 
-            CORE.Instance.DelayedInvokation(5f, patrolDirectionChangeAction);
+            CORE.Instance.DelayedInvokation(2f, patrolDirectionChangeAction);
 
             patrolDirection = (Random.Range(0, 2) == 0);
             transform.position += transform.TransformDirection(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);

@@ -25,9 +25,19 @@ public class ActorAI : MonoBehaviour
     {
         get
         {
-            return GetCurrentTarget();
+            if(_currentTarget == null)
+            {
+                _currentTarget =  GetCurrentTarget();
+            }
+
+            return _currentTarget;
+        }
+        set
+        {
+             _currentTarget = value;
         }
     }
+    Actor _currentTarget;
 
 
     protected bool lastIsBitch;
@@ -42,28 +52,30 @@ public class ActorAI : MonoBehaviour
         CORE.Instance.SubscribeToEvent("BitchChanged", OnBitchChanged);
         
         OnBitchChanged();
+
     }
 
     protected virtual void Start()
     {
-        if (MonsterRef.ChaseBehaviour == AIChaseBehaviour.Patrol)
+        if(MonsterRef.ChaseBehaviour == AIChaseBehaviour.Patrol || MonsterRef.ChaseBehaviour == AIChaseBehaviour.Chase)
         {
             System.Action patrolDirectionChangeAction = null;
 
             patrolDirectionChangeAction = () => 
             {
-                if (!this.gameObject.activeInHierarchy)
+                if (this == null || !this.gameObject.activeInHierarchy)
                 {
                     return;
                 }
 
                 patrolDirection = (Random.Range(0, 2) == 0);
 
-                CORE.Instance.DelayedInvokation(5f, patrolDirectionChangeAction);
+                CORE.Instance.DelayedInvokation(3f, patrolDirectionChangeAction);
             };
 
-            CORE.Instance.DelayedInvokation(5f, patrolDirectionChangeAction);
+            CORE.Instance.DelayedInvokation(3f, patrolDirectionChangeAction);
         }
+        
     }
 
     public virtual Actor GetCurrentTarget()
@@ -184,6 +196,7 @@ public class ActorAI : MonoBehaviour
 
                     if (Vector2.Distance(transform.position, CurrentTarget.transform.position) < ChaseDistance)
                     {
+
                         break;
                     }
 
@@ -249,6 +262,8 @@ public class ActorAI : MonoBehaviour
                 yield return 0;
             }
             
+            yield return new WaitForSeconds(Random.Range(0f,0.2f));
+
             yield return StartCoroutine(UseAbilityRoutine(SelectedAbility));
             
 
