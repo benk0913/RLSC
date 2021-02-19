@@ -29,9 +29,6 @@ public class Actor : MonoBehaviour
     protected LayerMask GroundMask;
 
     [SerializeField]
-    protected RaycastHit2D Rhit;
-
-    [SerializeField]
     protected SpriteRenderer Shadow;
 
     [SerializeField]
@@ -339,26 +336,44 @@ public class Actor : MonoBehaviour
 
     void RefreshGroundedState()
     {
-        Rhit = Physics2D.Raycast(transform.position, Vector2.down, GroundCheckDistance, GroundMask);
+        float halfWidth = Collider.bounds.extents.x;
+        RaycastHit2D LeftEdgeRhit = Physics2D.Raycast(transform.position - Vector3.right * halfWidth, Vector2.down, GroundCheckDistance, GroundMask);
+        RaycastHit2D CenterRhit = Physics2D.Raycast(transform.position, Vector2.down, GroundCheckDistance, GroundMask);
+        RaycastHit2D RightEdgeRhit = Physics2D.Raycast(transform.position + Vector3.right * halfWidth, Vector2.down, GroundCheckDistance, GroundMask);
 
-        if (Rhit)
+        float distanceLeft = Mathf.Infinity;
+        float distanceCenter = Mathf.Infinity;
+        float distanceRight = Mathf.Infinity;
+
+        if (LeftEdgeRhit)
         {
-            float distance = Vector2.Distance(transform.position, Rhit.point);
+            distanceLeft = Vector2.Distance(transform.position - Vector3.right * halfWidth, LeftEdgeRhit.point);
+        }
+        if (CenterRhit)
+        {
+            distanceCenter = Vector2.Distance(transform.position, CenterRhit.point);
+        }
+        if (RightEdgeRhit)
+        {
+            distanceRight = Vector2.Distance(transform.position + Vector3.right * halfWidth, RightEdgeRhit.point);
+        }
 
-            if (distance < GroundedDistance)
-            {
-                IsGrounded = true;
-            }
-            else
-            {
-                IsGrounded = false;
-            }
-            Shadow.transform.position = Rhit.point;
-            Shadow.color = new Color(0f, 0f, 0f, Mathf.Lerp(0f, 0.75f, 1f - (distance / GroundCheckDistance)));
+        if (distanceLeft < GroundedDistance || distanceCenter < GroundedDistance || distanceRight < GroundedDistance)
+        {
+            IsGrounded = true;
         }
         else
         {
             IsGrounded = false;
+        }
+        
+        if (CenterRhit)
+        {
+            Shadow.transform.position = CenterRhit.point;
+            Shadow.color = new Color(0f, 0f, 0f, Mathf.Lerp(0f, 0.75f, 1f - (distanceCenter / GroundCheckDistance)));
+        }
+        else
+        {
             Shadow.color = Color.clear;
         }
 
