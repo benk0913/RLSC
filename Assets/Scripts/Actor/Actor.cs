@@ -50,7 +50,7 @@ public class Actor : MonoBehaviour
     private Coroutine DamageHistoryResetRoutine = null;
 
     public bool IsGrounded;
-    public GameObject CurrentGround;
+    public Collider2D CurrentGround;
 
     public bool IsImpassive
     {
@@ -291,13 +291,13 @@ public class Actor : MonoBehaviour
         {
             IsGrounded = true;
             Animer.SetBool("InAir", false);
-            CurrentGround = collision.gameObject;
+            CurrentGround = collision.collider;
         }
     }
     
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject == CurrentGround)
+        if (collision.collider == CurrentGround)
         {
             IsGrounded = false;
             Animer.SetBool("InAir", true);
@@ -950,6 +950,11 @@ public class Actor : MonoBehaviour
             return;
         }
         
+        if (CurrentGround && CurrentGround.GetComponent<PlatformEffector2D>() != null)
+        {
+            StartCoroutine(JumpDown(CurrentGround));
+            return;
+        }
         if(!IsFlying)
         {
             return;
@@ -1000,6 +1005,12 @@ public class Actor : MonoBehaviour
         AudioControl.Instance.PlayInPosition("_ound_bloop",transform.position);
     }
 
+    private IEnumerator JumpDown(Collider2D Ground)
+    {
+        Physics2D.IgnoreCollision(Ground, Collider, true);
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreCollision(Ground, Collider, false);
+    }
 
     public void AttemptPrepareAbility(int abilityIndex)
     {

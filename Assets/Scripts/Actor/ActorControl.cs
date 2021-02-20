@@ -10,8 +10,6 @@ public class ActorControl : MonoBehaviour
     [SerializeField]
     Actor CurrentActor;
 
-    float internalJumpCooldown = 0f;
-
     private void Reset()
     {
         CurrentActor = GetComponent<Actor>();
@@ -22,11 +20,6 @@ public class ActorControl : MonoBehaviour
         if(CurrentActor.ControlSource != ControlSourceType.Player)
         {
             return;
-        }
-
-        if(internalJumpCooldown > 0f)
-        {
-            internalJumpCooldown -= 1f * Time.deltaTime;
         }
         
         #if UNITY_EDITOR
@@ -76,13 +69,7 @@ public class ActorControl : MonoBehaviour
 
         if (Input.GetKeyDown(InputMap.Map["Jump"]) || Input.GetKeyDown(InputMap.Map["Move Up"]))
         {
-            if (internalJumpCooldown > 0f)
-            {
-                return;
-            }
-
             CurrentActor.AttemptJump();
-            internalJumpCooldown = 0.5f;
 
             if (CORE.Instance.MoveToHaltMode)
             {
