@@ -940,11 +940,6 @@ public class Actor : MonoBehaviour
 
     public void AttemptMoveDown()
     {
-        if (!CanLookAround)
-        {
-            return;
-        }
-
         if (!CanAttemptToMove)
         {
             return;
@@ -965,11 +960,6 @@ public class Actor : MonoBehaviour
 
     public void AttemptMoveUp()
     {
-        if (!CanLookAround)
-        {
-            return;
-        }
-
         if (!CanAttemptToMove)
         {
             return;
