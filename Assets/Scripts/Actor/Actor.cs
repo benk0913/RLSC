@@ -50,6 +50,7 @@ public class Actor : MonoBehaviour
     private Coroutine DamageHistoryResetRoutine = null;
 
     public bool IsGrounded;
+    public GameObject CurrentGround;
 
     public bool IsImpassive
     {
@@ -280,7 +281,28 @@ public class Actor : MonoBehaviour
 
         RefreshActorState();
 
-        RefreshGroundedState();
+        RefreshShadow();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        ContactPoint2D contact = collision.GetContact(0);
+        if(Vector3.Dot(contact.normal, Vector3.up) > 0.5)
+        {
+            IsGrounded = true;
+            Animer.SetBool("InAir", false);
+            CurrentGround = collision.gameObject;
+        }
+    }
+    
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject == CurrentGround)
+        {
+            IsGrounded = false;
+            Animer.SetBool("InAir", true);
+            CurrentGround = null;
+        }
     }
 
     void RefreshActorState()
@@ -334,41 +356,13 @@ public class Actor : MonoBehaviour
         ClientMovingTowardsDir = 0;
     }
 
-    void RefreshGroundedState()
+    void RefreshShadow()
     {
-        float halfWidth = Collider.bounds.extents.x;
-        RaycastHit2D LeftEdgeRhit = Physics2D.Raycast(transform.position - Vector3.right * halfWidth, Vector2.down, GroundCheckDistance, GroundMask);
         RaycastHit2D CenterRhit = Physics2D.Raycast(transform.position, Vector2.down, GroundCheckDistance, GroundMask);
-        RaycastHit2D RightEdgeRhit = Physics2D.Raycast(transform.position + Vector3.right * halfWidth, Vector2.down, GroundCheckDistance, GroundMask);
 
-        float distanceLeft = Mathf.Infinity;
-        float distanceCenter = Mathf.Infinity;
-        float distanceRight = Mathf.Infinity;
-
-        if (LeftEdgeRhit)
-        {
-            distanceLeft = Vector2.Distance(transform.position - Vector3.right * halfWidth, LeftEdgeRhit.point);
-        }
         if (CenterRhit)
         {
-            distanceCenter = Vector2.Distance(transform.position, CenterRhit.point);
-        }
-        if (RightEdgeRhit)
-        {
-            distanceRight = Vector2.Distance(transform.position + Vector3.right * halfWidth, RightEdgeRhit.point);
-        }
-
-        if (distanceLeft < GroundedDistance || distanceCenter < GroundedDistance || distanceRight < GroundedDistance)
-        {
-            IsGrounded = true;
-        }
-        else
-        {
-            IsGrounded = false;
-        }
-        
-        if (CenterRhit)
-        {
+            float distanceCenter = Vector2.Distance(transform.position, CenterRhit.point);
             Shadow.transform.position = CenterRhit.point;
             Shadow.color = new Color(0f, 0f, 0f, Mathf.Lerp(0f, 0.75f, 1f - (distanceCenter / GroundCheckDistance)));
         }
@@ -376,9 +370,8 @@ public class Actor : MonoBehaviour
         {
             Shadow.color = Color.clear;
         }
-
-        Animer.SetBool("InAir", !IsGrounded);
     }
+
 
     void UpdateFromActorData()
     {
