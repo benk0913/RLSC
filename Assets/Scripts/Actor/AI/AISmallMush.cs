@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class AISmallMush : ActorAI
 {
+    Actor _currentTarget;
     public override Actor GetCurrentTarget()
     {
-        ActorData target = CORE.Instance.Room.Actors.Find(x=>x.classJob == "ActorMushroomBig");
-
-        if(target == null)
+        if(_currentTarget == null)
         {
-            return null;
+            ActorData target = CORE.Instance.Room.Actors.Find(x=>x.classJob == "ActorMushroomBig");
+
+            if(target == null)
+            {
+                // purposely don't cache, to keep looking for big mush.
+                return null;
+            }
+
+            _currentTarget = target.ActorEntity;
         }
 
-        return target.ActorEntity;
+        return _currentTarget;
     }
 
 

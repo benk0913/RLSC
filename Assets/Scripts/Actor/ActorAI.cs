@@ -25,20 +25,9 @@ public class ActorAI : MonoBehaviour
     {
         get
         {
-            if(_currentTarget == null)
-            {
-                _currentTarget =  GetCurrentTarget();
-            }
-
-            return _currentTarget;
-        }
-        set
-        {
-             _currentTarget = value;
+            return GetCurrentTarget();
         }
     }
-    Actor _currentTarget;
-
 
     protected bool lastIsBitch;
 
