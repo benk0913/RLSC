@@ -377,7 +377,14 @@ public class Actor : MonoBehaviour
     {
         Vector3 targetPosition = new Vector2(State.Data.x, State.Data.y);
 
-        Rigid.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * InterpolationSpeed);
+        if (Mathf.Abs(Rigid.position.y - targetPosition.y) < 0.8 || Mathf.Abs(Rigid.position.x - targetPosition.x) < 0.2)
+        {
+            transform.position = targetPosition;
+        }
+        else 
+        {
+            Rigid.position = Vector3.Lerp(Rigid.position, targetPosition, Time.deltaTime * InterpolationSpeed);
+        }
 
         Body.localScale = State.Data.faceRight ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
     }
@@ -1188,8 +1195,8 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementPullRoutine(Actor caster)
     {
-
-        Vector2 Pullpoint = caster.transform.position;
+        // Pull slightly up to ensure they are on the same platform.
+        Vector2 Pullpoint = caster.transform.position + new Vector3(0, 0.01f);
 
         float t = 0f;
         while (t < 1f)
@@ -1199,9 +1206,9 @@ public class Actor : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+        transform.position = Pullpoint;
 
         MovementEffectRoutineInstance = null;
-
     }
 
     IEnumerator MovementEscapeRoutine()
