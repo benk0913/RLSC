@@ -13,10 +13,12 @@ public class CORE : MonoBehaviour
 
     public CanvasGroup GameUICG;
 
+    public Canvas ResolutionDialog;
+
     public CGDatabase Data;
 
     public RoomData Room;
-    
+
     public bool DEBUG = false;
 
     public bool DEBUG_SPAMMY_EVENTS = false;
@@ -55,6 +57,7 @@ public class CORE : MonoBehaviour
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
         DontDestroyOnLoad(this.gameObject);
+
     }
 
     private void Start()
@@ -63,6 +66,14 @@ public class CORE : MonoBehaviour
         SubscribeToEvent("ActorResurrected", () => {Room.RefreshThreat();});
         SubscribeToEvent("ActorAddedBuff", () => {Room.RefreshThreat();});
         SubscribeToEvent("ActorRemovedBuff", () => {Room.RefreshThreat();});
+
+#if !UNITY_EDITOR
+        DelayedInvokation(3f, () =>
+        {
+            ResolutionDialog.enabled = true;
+        });
+#endif
+
     }
 
     private void Update()
@@ -269,6 +280,12 @@ public class CORE : MonoBehaviour
         EnterGame();
 
         InvokeEvent("NewSceneLoaded");
+
+        if (sceneKey == "PRELOADER")
+        {
+            SocketHandler.Instance.SendDisconnectSocket();
+            Destroy(this.gameObject);
+        }
 
         LoadSceneRoutineInstance = null;
 
@@ -625,6 +642,8 @@ public class RoomData
             actor.y = float.Parse(data["actorPositions"][i]["y"]);
             actor.faceRight = bool.Parse(data["actorPositions"][i]["faceRight"]);
         }
+
+        CORE.Instance.InvokeEvent("ActorPositionUpdate");
     }
 
 }
