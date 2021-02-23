@@ -35,6 +35,11 @@ public class AiFruit : ActorAI
         {
             while(!IsTouched)
             {
+                if (Act.State.Data.hp < Act.State.Data.MaxHP / 3f)
+                {
+                    break;
+                }
+
                 WaitBehaviour();
                 yield return 0;
             }
@@ -45,11 +50,23 @@ public class AiFruit : ActorAI
             {
                 while (!IsTouched)
                 {
+                    if (Act.State.Data.hp < Act.State.Data.MaxHP / 3f)
+                    {
+                        break;
+                    }
+
                     WaitBehaviour();
                     yield return 0;
                 }
 
-                SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FruitPop" && x.CurrentCD <= 0f);
+                if (Act.State.Data.hp < Act.State.Data.MaxHP / 3f)
+                {
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FruitSuicide" && x.CurrentCD <= 0f);
+                }
+                else
+                {
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FruitPop" && x.CurrentCD <= 0f);
+                }
 
                 WaitBehaviour();
 
