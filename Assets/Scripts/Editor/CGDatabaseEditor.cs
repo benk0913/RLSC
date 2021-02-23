@@ -25,9 +25,10 @@ public class CGDatabaseEditor : Editor
         
         DrawDefaultInspector();
     }
-
+    
     public void AutofillCurrentSceneInfo(CGDatabase db)
     {
+
         SceneInfo currentInfo = db.content.Scenes.Find(x => x.sceneName == EditorSceneManager.GetActiveScene().name);
 
         if (currentInfo == null)
