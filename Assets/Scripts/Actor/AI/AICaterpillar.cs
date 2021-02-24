@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AICaterpillar : ActorAI
 {
+    public bool LeftCaterPillar;
+
     protected override void Start()
     {
-        if (CurrentTarget.transform.position.x > transform.position.x)
+        if (LeftCaterPillar)
         {
             Act.AttemptLookRight();
         }
@@ -20,7 +22,14 @@ public class AICaterpillar : ActorAI
 
     protected override IEnumerator AIBehaviourRoutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        if (LeftCaterPillar)
+        {
+            yield return new WaitForSeconds(5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
 
         while (true)
         {
