@@ -24,7 +24,7 @@ public class AICaterpillar : ActorAI
     {
         if (LeftCaterPillar)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(10f);
         }
         else
         {
@@ -45,7 +45,14 @@ public class AICaterpillar : ActorAI
                 }
                 else
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CaterBlow" && x.CurrentCD <= 0f);
+                    if (LeftCaterPillar)
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CaterBlowLeft" && x.CurrentCD <= 0f);
+                    }
+                    else
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CaterBlow" && x.CurrentCD <= 0f);
+                    }
                 }
 
                 WaitBehaviour();
