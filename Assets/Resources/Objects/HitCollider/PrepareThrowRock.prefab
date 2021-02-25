@@ -128,7 +128,9 @@ MonoBehaviour:
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
-  StickToActor: 0
+  CanMiss: 0
+  HitOnlyGroundedActors: 0
+  StickToActor: 1
   StickToSkilledShot: 0
   HitEventOnWalls: 0
   SkilledShotPoint: {fileID: 0}
@@ -138,7 +140,11 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
+  DuplicateBubbles: 0
+  IsBubble: 0
+  BubblesDuplicated: []
   AudioOnHit: 
+  HitInterval: 0
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,24 +4,13 @@ using UnityEngine;
 
 public class SpriteColorGroup : MonoBehaviour
 {
+    [SerializeField]
     SpriteRenderer[] Renderers;
 
 
     private void Awake()
     {
         Renderers = GetComponentsInChildren<SpriteRenderer>(true);
-
-        List<SpriteRenderer> newRenderers = new List<SpriteRenderer>();//TODO Optimize the part from this point onward?
-
-        foreach(SpriteRenderer renderer in Renderers)
-        {
-            if(renderer.material == CORE.Instance.Data.DefaultSpriteMaterial)
-            {
-                newRenderers.Add(renderer);
-            }
-        }
-
-        Renderers = newRenderers.ToArray();
     }
 
     public void SetColor(Color clr)
@@ -42,10 +31,7 @@ public class SpriteColorGroup : MonoBehaviour
 
     public void ResetMaterial()
     {
-        foreach (SpriteRenderer renderer in Renderers)
-        {
-            renderer.material = CORE.Instance.Data.DefaultSpriteMaterial;
-        }
+        SetMaterial(CORE.Instance.Data.DefaultSpriteMaterial);
     }
     
 }
