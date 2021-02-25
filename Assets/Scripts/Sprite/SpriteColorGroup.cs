@@ -6,8 +6,6 @@ public class SpriteColorGroup : MonoBehaviour
 {
     SpriteRenderer[] Renderers;
 
-    [SerializeField]
-    Material DefaultMaterial;
 
     private void Awake()
     {
@@ -17,7 +15,7 @@ public class SpriteColorGroup : MonoBehaviour
 
         foreach(SpriteRenderer renderer in Renderers)
         {
-            if(renderer.material == DefaultMaterial)
+            if(renderer.material == CORE.Instance.Data.DefaultSpriteMaterial)
             {
                 newRenderers.Add(renderer);
             }
@@ -44,14 +42,9 @@ public class SpriteColorGroup : MonoBehaviour
 
     public void ResetMaterial()
     {
-        if(DefaultMaterial == null)
-        {
-            DefaultMaterial = CORE.Instance.Data.DefaultSpriteMaterial;
-        }
-
         foreach (SpriteRenderer renderer in Renderers)
         {
-            renderer.material = DefaultMaterial;
+            renderer.material = CORE.Instance.Data.DefaultSpriteMaterial;
         }
     }
     

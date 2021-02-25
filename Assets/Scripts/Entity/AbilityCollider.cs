@@ -101,28 +101,24 @@ public class AbilityCollider : HitCollider
 
 
                     RaycastHit2D subrhit = Physics2D.Raycast(transform.position, transform.localScale.x > 0f ? Vector3.left : Vector3.right, Mathf.Infinity, SkilledshotLayermask);
-
-                    Debug.LogError("Skilledshot fix 1");
+                    
                     if (!subrhit)
                     {
                         return;
                     }
-
-                    Debug.LogError("Skilledshot fix 2");
+                    
                     rhit = Physics2D.Raycast(subrhit.point, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
 
                     if (!rhit)
                     {
                         return;
                     }
-
-                    Debug.LogError("Skilledshot fix 3");
+                    
                     if (Vector2.Distance(rhit.point, SkilledShotPoint.position) < 0.1f)
                     {
                         return;
                     }
-
-                    Debug.LogError("Skilledshot fix 4");
+                    
 
                 }
 
@@ -197,7 +193,10 @@ public class AbilityCollider : HitCollider
         {
             if(HitEventOnWalls)
             {
-                OnHitEvent?.Invoke();
+                if (other.GetComponent<PlatformEffector2D>() == null)
+                {
+                    OnHitEvent?.Invoke();
+                }
             }
         }
         else if (other.tag == "HitCollider" && other != this) //TODO Replace with something more generic?

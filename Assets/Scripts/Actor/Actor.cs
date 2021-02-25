@@ -533,6 +533,7 @@ public class Actor : MonoBehaviour
         IsDead = true;
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
+        Shadow.gameObject.SetActive(false);
     }
 
     public void Resurrect()
@@ -540,6 +541,7 @@ public class Actor : MonoBehaviour
         IsDead = false;
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
+        Shadow.gameObject.SetActive(true);
     }
 
     public void AddBuff(Buff buff, float duration)
