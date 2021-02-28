@@ -80,13 +80,17 @@ public class CORE : MonoBehaviour
     {
         if(InGame && !IsTyping)
         {
-            if(Input.GetKeyDown(InputMap.Map["Abilities Window"]))
+            if(Input.GetKeyDown(InputMap.Map["Abilities Window"]) && Room.PlayerActor.ActorEntity)
             {
                 AbilitiesUI.Instance.Toggle(Room.PlayerActor.ActorEntity);
             }
         }
     }
 
+    public void CloseAllUiWindows()
+    {
+        AbilitiesUI.Instance.Hide();
+    }
 
     public static void ClearContainer(Transform container)
     {
@@ -531,6 +535,7 @@ public class RoomData
         if(PlayerActor == actor)
         {
             PlayerActor = null;
+            CORE.Instance.CloseAllUiWindows();
         }
 
         Actors.Remove(actor);
@@ -628,8 +633,5 @@ public class RoomData
             actor.y = float.Parse(data["actorPositions"][i]["y"]);
             actor.faceRight = bool.Parse(data["actorPositions"][i]["faceRight"]);
         }
-
-        CORE.Instance.InvokeEvent("ActorPositionUpdate");
     }
-
 }

@@ -315,9 +315,6 @@ public class AbilitiesUI : MonoBehaviour
 
 
         CurrentIndex = 0;
-        RefreshHover();
+        ResetReplacement();
     }
-
-    
-
 }
