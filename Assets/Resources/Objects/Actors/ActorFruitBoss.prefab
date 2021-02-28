@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 8219526598135779216}
   - component: {fileID: 8219526598135779218}
   - component: {fileID: 1693578988514504344}
-  - component: {fileID: 3960693814084280237}
-  - component: {fileID: 2593813408631278414}
+  - component: {fileID: 3043164732051723604}
   m_Layer: 0
   m_Name: ActorFruitBoss
   m_TagString: Actor
@@ -72,10 +71,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06820142, y: 1.3318665}
+  m_Offset: {x: 0.052375793, y: 1.3559818}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -86,7 +85,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5183804, y: 2.5923243}
+  m_Size: {x: 8.608215, y: 8.62109}
   m_EdgeRadius: 0
 --- !u!114 &8219526598135779218
 MonoBehaviour:
@@ -150,7 +149,7 @@ MonoBehaviour:
   Rigid: {fileID: 8219526598135779223}
   Body: {fileID: 7363638327609054499}
   PlayerControl: {fileID: 1693578988514504344}
-  AIControl: {fileID: 0}
+  AIControl: {fileID: 3043164732051723604}
   Animer: {fileID: 7584830314648982535}
   GroundMask:
     serializedVersion: 2
@@ -186,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentActor: {fileID: 8219526598135779218}
---- !u!114 &3960693814084280237
+--- !u!114 &3043164732051723604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,37 +194,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2169111934447558204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69488e5e32b66f94a99b3d179172ff69, type: 3}
+  m_Script: {fileID: 11500000, guid: a092977ecadb3f349b9a41d4377cc9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Act: {fileID: 8219526598135779218}
-  MonsterRef: {fileID: 11400000, guid: add71c265b923c6448f19bb36dcd79a4, type: 2}
+  MonsterRef: {fileID: 11400000, guid: 6fc6361705d2840478954dc34ab5dd61, type: 2}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1
   ChaseDistance: 1
   FleeDistance: 10
-  FaceRenderer: {fileID: 7650909958284242040}
-  IsTouched: 0
---- !u!251 &2593813408631278414
-PlatformEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2169111934447558204}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RotationalOffset: 0
-  m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 90
-  m_UseSideFriction: 0
-  m_UseSideBounce: 0
-  m_SideArc: 1
 --- !u!1 &2628101685521171623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,23 +1109,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Size.x
-      value: 1.68
+      value: 8.608215
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Size.y
-      value: 2.610282
+      value: 8.62109
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Offset.x
-      value: -0.041264772
+      value: 0.052375793
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Offset.y
-      value: 1.215141
+      value: 1.3559818
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_IsTrigger
