@@ -389,11 +389,6 @@ public class Actor : MonoBehaviour
         Body.localScale = State.Data.faceRight ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
     }
 
-    public void SnapToPosition()
-    {
-        Rigid.position = new Vector2(State.Data.x, State.Data.y);
-    }
-
     public void PrepareAbility(Ability ability)
     {
         if (!string.IsNullOrEmpty(ability.PreparingAnimation))
@@ -649,7 +644,7 @@ public class Actor : MonoBehaviour
     {
         HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
         label.transform.position = transform.position;
-        label.SetLabel(Mathf.Abs(damage).ToString(), damage > 0 ? Color.yellow : Color.green);
+        label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green);
         HurtEffect();
     }
 

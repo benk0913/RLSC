@@ -598,18 +598,10 @@ public class SocketHandler : MonoBehaviour
 
     public void OnActorUpdateData(string eventName, JSONNode data)
     {
-        //TODO Add more?
         string givenActorId = data["actorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
-        if (!string.IsNullOrEmpty(data["hp"].ToString())) {
-            actorDat.hp = data["hp"].AsInt;
-        }
-        if (!string.IsNullOrEmpty(data["x"].ToString()) && !string.IsNullOrEmpty(data["y"].ToString())) {
-            actorDat.x = data["x"].AsFloat;
-            actorDat.y = data["y"].AsFloat;
-            actorDat.ActorEntity.SnapToPosition();
-        }
+        actorDat.hp = data["hp"].AsInt;
     }
 
     public void OnActorHurt(string eventName, JSONNode data)
