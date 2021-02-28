@@ -176,7 +176,7 @@ public class AbilitiesUI : MonoBehaviour
 
     }
 
-    private void Hide()
+    public void Hide()
     {
         IsOpen = false;
         this.gameObject.SetActive(false);
