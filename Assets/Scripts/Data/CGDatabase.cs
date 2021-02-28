@@ -45,6 +45,8 @@ public class DatabaseContent
     public List<SceneInfo> Scenes = new List<SceneInfo>();
 
     public List<InteractableData> Interactables = new List<InteractableData>();
+    
+    public List<Expedition> Expeditions = new List<Expedition>();
 
     public string StartingScene;
 
