@@ -141,6 +141,13 @@ public class CGDatabaseEditor : Editor
             db.content.Interactables.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(InteractableData)) as InteractableData);
         }
 
+        guids = AssetDatabase.FindAssets("t:Expedition", new[] { "Assets/" + db.DataPath });
+        db.content.Expeditions.Clear();
+        foreach (string guid in guids)
+        {
+            db.content.Expeditions.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(Expedition)) as Expedition);
+        }
+
         EditorUtility.SetDirty(db);
     }
 
