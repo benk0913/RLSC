@@ -8,6 +8,7 @@ public class AbilityCollider : HitCollider
 {
 
     public bool StickToActor;
+    public bool StickToActorFacing;
     public bool StickToSkilledShot;
     public bool HitEventOnWalls;
 
@@ -87,6 +88,10 @@ public class AbilityCollider : HitCollider
             }
 
             transform.position = ActorSource.transform.position;
+            if (StickToActorFacing)
+            {
+                transform.localScale = ActorSource.Body.localScale;
+            }
 
             if (StickToSkilledShot)
             {

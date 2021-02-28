@@ -772,16 +772,6 @@ public class Actor : MonoBehaviour
             MovementEffectRoutineInstance = null;
         }
 
-        // Abilities that move the caster
-        switch (movementKey)
-        {
-            case "Backstepped":
-                {
-                    MovementEffectRoutineInstance = StartCoroutine(MovementBacksteppedRoutine(casterActor));
-                    break;
-                }
-        }
-
         if (this.AIControl != null && this.AIControl.MonsterRef != null && this.AIControl.MonsterRef.ChaseBehaviour == AIChaseBehaviour.Static)
         {
             return;
@@ -853,10 +843,10 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementPounceRoutine());
                     break;
                 }
-            case "TeleportToFriendFar":
+            case "TeleportToPlayerFar":
                 {
 
-                    Actor furthestActor = CORE.Instance.Room.GetFurthestActor(this);
+                    Actor furthestActor = CORE.Instance.Room.GetFurthestActor(this, true);
 
                     if (furthestActor == null)
                     {
@@ -867,10 +857,10 @@ public class Actor : MonoBehaviour
                     CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = furthestActor.Rigid.position; });
                     break;
                 }
-            case "TeleportToFriendNear":
+            case "TeleportToPlayerNear":
                 {
 
-                    Actor nearestActor = CORE.Instance.Room.GetNearestActor(this);
+                    Actor nearestActor = CORE.Instance.Room.GetNearestActor(this, true);
 
                     if (nearestActor == null)
                     {
@@ -884,6 +874,25 @@ public class Actor : MonoBehaviour
             case "TeleportToTarget":
                 {
                     CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = casterActor.Rigid.position; });
+                    break;
+                }
+            case "Backstepped":
+                {
+                    Actor nearestTarget = CORE.Instance.Room.GetNearestActor(this, false);
+
+                    if (nearestTarget == null)
+                    {
+                        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No enemy actor to move towards...", Color.red, 3f));
+                        break;
+                    }
+                    
+                    Vector2 stepDir = nearestTarget.transform.position - transform.position;
+                    Vector2 targetPoint = new Vector2(nearestTarget.Rigid.position.x + nearestTarget.Collider.bounds.extents.x * stepDir.normalized.x + Collider.bounds.size.x * stepDir.normalized.x * 2f, nearestTarget.Rigid.position.y);
+
+                    CORE.Instance.DelayedInvokation(0.01f, () => { 
+                        transform.position = targetPoint;
+                        Body.localScale = new Vector3(stepDir.x > 0f ? 1f:-1f, 1f, 1f);
+                    });
                     break;
                 }
 
@@ -1241,31 +1250,6 @@ public class Actor : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
-
-        MovementEffectRoutineInstance = null;
-
-    }
-
-    IEnumerator MovementBacksteppedRoutine(Actor casterActor)
-    {
-        casterActor.Rigid.velocity = Vector2.zero;
-        Vector2 stepDir;
-
-        stepDir = transform.position - casterActor.transform.position;
-
-        Vector2 targetPoint = new Vector2(Rigid.position.x + (Collider.bounds.extents.x * (stepDir).normalized.x * 1.1f), Rigid.position.y);
-
-        float t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime * 4f;
-
-            casterActor.Rigid.position = Vector2.Lerp(casterActor.Rigid.position, targetPoint, t);
-
-            yield return new WaitForFixedUpdate();
-        }
-
-        casterActor.Body.localScale = new Vector3(stepDir.x > 0f? 1f:-1f, 1f, 1f);
 
         MovementEffectRoutineInstance = null;
 

@@ -450,41 +450,19 @@ public class RoomData
         return leastThreatAct;
     }
 
-    public Actor GetFurthestActor(Actor from)
+    public Actor GetFurthestActor(Actor from, bool LookForPlayer)
     {
-        float furthestDist = 0f;
-        Actor furthestActor = null;
-        for (int i = 0; i < CORE.Instance.Room.Actors.Count; i++)
-        {
-            if (CORE.Instance.Room.Actors[i].ActorEntity == from)
-            {
-                continue;
-            }
-
-            if (CORE.Instance.Room.Actors[i].ActorEntity.IsDead)
-            {
-                continue;
-            }
-
-            if (CORE.Instance.Room.Actors[i].isMob)
-            {
-                continue;
-            }
-
-            float currentDist = Vector2.Distance(from.transform.position, CORE.Instance.Room.Actors[i].ActorEntity.transform.position);
-            if (currentDist > furthestDist)
-            {
-                furthestDist = currentDist;
-                furthestActor = CORE.Instance.Room.Actors[i].ActorEntity;
-            }
-        }
-
-        return furthestActor;
+        return GetDistancedActor(from, LookForPlayer, false);
     }
 
-    public Actor GetNearestActor(Actor from)
+    public Actor GetNearestActor(Actor from, bool LookForPlayer)
     {
-        float nearestDist = Mathf.Infinity;
+        return GetDistancedActor(from, LookForPlayer, true);
+    }
+
+    public Actor GetDistancedActor(Actor from, bool LookForPlayer, bool IsNearest)
+    {
+        float nearestDist = IsNearest ? Mathf.Infinity : 0;
         Actor nearestActor = null;
         for (int i = 0; i < CORE.Instance.Room.Actors.Count; i++)
         {
@@ -498,13 +476,21 @@ public class RoomData
                 continue;
             }
 
-            if (CORE.Instance.Room.Actors[i].isMob)
+            // If need a player but found mob, or need a mob and found player - continue.
+            if (LookForPlayer == CORE.Instance.Room.Actors[i].isMob)
+            {
+                continue;
+            }
+
+            // The from actor must be facing the target.
+            bool IsActorToRight = from.transform.position.x < CORE.Instance.Room.Actors[i].ActorEntity.transform.position.x;
+            if (from.State.Data.faceRight != IsActorToRight)
             {
                 continue;
             }
 
             float currentDist = Vector2.Distance(from.transform.position, CORE.Instance.Room.Actors[i].ActorEntity.transform.position);
-            if (currentDist < nearestDist)
+            if (IsNearest = currentDist < nearestDist)
             {
                 nearestDist = currentDist;
                 nearestActor = CORE.Instance.Room.Actors[i].ActorEntity;
