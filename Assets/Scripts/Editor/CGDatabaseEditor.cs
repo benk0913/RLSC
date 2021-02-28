@@ -56,6 +56,7 @@ public class CGDatabaseEditor : Editor
             spawn.monsterName = spawner.MobKey;
             spawn.positionX = spawner.transform.position.x;
             spawn.positionY = spawner.transform.position.y;
+            spawn.respawnSeconds = spawner.RespawnSeconds;
 
             currentInfo.Mobs.Add(spawn);
         }

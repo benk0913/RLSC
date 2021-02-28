@@ -82,5 +82,5 @@ public class MobSpawn
     public string monsterName;
     public float positionX;
     public float positionY;
-    
+    public float respawnSeconds;
 }
