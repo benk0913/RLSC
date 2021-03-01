@@ -391,21 +391,21 @@ public class Actor : MonoBehaviour
 
     public void PrepareAbility(Ability ability)
     {
-        if (!string.IsNullOrEmpty(ability.PreparingAnimation))
+        if (!string.IsNullOrEmpty(ability.Visuals.PreparingAnimation))
         {
-            Animer.Play(ability.PreparingAnimation);
+            Animer.Play(ability.Visuals.PreparingAnimation);
         }
 
         State.IsPreparingAbility = true;
 
         State.PreparingAbilityCurrent = ability;
 
-        if (!string.IsNullOrEmpty(ability.PrepareAbilitySound))
-            AudioControl.Instance.PlayInPosition(ability.PrepareAbilitySound,transform.position);
+        if (!string.IsNullOrEmpty(ability.Sounds.PrepareAbilitySound))
+            AudioControl.Instance.PlayInPosition(ability.Sounds.PrepareAbilitySound,transform.position);
 
-        if (!string.IsNullOrEmpty(ability.PrepareAbilityColliderObject))
+        if (!string.IsNullOrEmpty(ability.Colliders.PrepareAbilityColliderObject))
         {
-            GameObject colliderObj = AddColliderOnPosition(ability.PrepareAbilityColliderObject);
+            GameObject colliderObj = AddColliderOnPosition(ability.Colliders.PrepareAbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
             State.PreparingAbiityColliderObject = colliderObj;
         }
@@ -431,19 +431,19 @@ public class Actor : MonoBehaviour
             }
         }
         
-        if (!string.IsNullOrEmpty(ability.ExecuteAbilitySound))
-            AudioControl.Instance.PlayInPosition(ability.ExecuteAbilitySound, transform.position);
+        if (!string.IsNullOrEmpty(ability.Sounds.ExecuteAbilitySound))
+            AudioControl.Instance.PlayInPosition(ability.Sounds.ExecuteAbilitySound, transform.position);
 
-        if (!string.IsNullOrEmpty(ability.ScreenEffectObject))
+        if (!string.IsNullOrEmpty(ability.Visuals.ScreenEffectObject))
         {
-            CORE.Instance.ShowScreenEffect(ability.ScreenEffectObject);
+            CORE.Instance.ShowScreenEffect(ability.Visuals.ScreenEffectObject);
         }
 
         if (!ability.IsCastingExternal)
         {
-            if (!string.IsNullOrEmpty(ability.ExecuteAnimation))
+            if (!string.IsNullOrEmpty(ability.Visuals.ExecuteAnimation))
             {
-                Animer.Play(ability.ExecuteAnimation);
+                Animer.Play(ability.Visuals.ExecuteAnimation);
             }
 
             transform.position = position;
@@ -453,9 +453,9 @@ public class Actor : MonoBehaviour
             State.PreparingAbiityColliderObject = null;
         }
 
-        if (!string.IsNullOrEmpty(ability.AbilityColliderObject))
+        if (!string.IsNullOrEmpty(ability.Colliders.AbilityColliderObject))
         {
-            GameObject colliderObj = AddColliderOnPosition(ability.AbilityColliderObject);
+            GameObject colliderObj = AddColliderOnPosition(ability.Colliders.AbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
     }
@@ -467,22 +467,22 @@ public class Actor : MonoBehaviour
             CORE.Instance.ActivateParams(ability.OnHitParams, casterActor, this);
         }
 
-        if (!string.IsNullOrEmpty(ability.HitAbilitySound))
+        if (!string.IsNullOrEmpty(ability.Sounds.HitAbilitySound))
         {
-            AudioControl.Instance.PlayInPosition(ability.HitAbilitySound, transform.position);
+            AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySound, transform.position);
         }
 
-        if (!string.IsNullOrEmpty(ability.HitAbilityColliderObject))
+        if (!string.IsNullOrEmpty(ability.Colliders.HitAbilityColliderObject))
         {
-            GameObject colliderObj = AddColliderOnPosition(ability.HitAbilityColliderObject);
+            GameObject colliderObj = AddColliderOnPosition(ability.Colliders.HitAbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
         
-        if(ability.HitConditionObjectCondition != null 
-            && ability.HitConditionObjectCondition.IsValid(this) 
-            && !string.IsNullOrEmpty(ability.HitConditionObject))
+        if(ability.Colliders.HitConditionObjectCondition != null 
+            && ability.Colliders.HitConditionObjectCondition.IsValid(this) 
+            && !string.IsNullOrEmpty(ability.Colliders.HitConditionObject))
         {
-            GameObject colliderObj = AddColliderOnPosition(ability.HitConditionObject);
+            GameObject colliderObj = AddColliderOnPosition(ability.Colliders.HitConditionObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
     }
@@ -494,14 +494,14 @@ public class Actor : MonoBehaviour
             CORE.Instance.ActivateParams(ability.OnMissParams, null, this);
         }
 
-        if (!string.IsNullOrEmpty(ability.MissAbilitySound))
+        if (!string.IsNullOrEmpty(ability.Sounds.MissAbilitySound))
         {
-            AudioControl.Instance.PlayInPosition(ability.MissAbilitySound, transform.position);
+            AudioControl.Instance.PlayInPosition(ability.Sounds.MissAbilitySound, transform.position);
         }
 
-        if (!string.IsNullOrEmpty(ability.MissAbilityColliderObject))
+        if (!string.IsNullOrEmpty(ability.Colliders.MissAbilityColliderObject))
         {
-            GameObject colliderObj = AddColliderOnPosition(ability.MissAbilityColliderObject);
+            GameObject colliderObj = AddColliderOnPosition(ability.Colliders.MissAbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
 

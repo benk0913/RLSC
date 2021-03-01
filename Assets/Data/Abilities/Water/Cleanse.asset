@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 6253c1699645948419bc1a6dbbd44475, type: 3}
   Description: Remove all debuffs on an ally or yourself
-  HitAbilityColliderObject: HealHit
-  MissAbilityColliderObject: 
-  AbilityColliderObject: CleanseCollider
-  PrepareAbilityColliderObject: PrepareCleanse
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: W_Cleanse_Prepare
-  ExecuteAbilitySound: W_Cleanse_Execute
-  HitAbilitySound: W_Cleanse_Hit
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: HealHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: CleanseCollider
+    PrepareAbilityColliderObject: PrepareCleanse
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: W_Cleanse_Prepare
+    ExecuteAbilitySound: W_Cleanse_Execute
+    HitAbilitySound: W_Cleanse_Hit
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 5
   CastingTime: 1
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast6
-  ExecuteAnimation: Execute7
+  Visuals:
+    PreparingAnimation: Cast6
+    ExecuteAnimation: Execute7
   TargetCap: 0
   OnExecuteParams: []
   OnHitParams:

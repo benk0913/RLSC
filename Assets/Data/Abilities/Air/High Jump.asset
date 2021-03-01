@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 5003e9d1f43c5794fa1853082606d43b, type: 3}
   Description: Dash and dodge upwards quickly without receiving any damage.
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: AirDodgeCollider
-  PrepareAbilityColliderObject: 
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: 
-  ExecuteAbilitySound: A_HighJump_Execute
-  HitAbilitySound: 
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: AirDodgeCollider
+    PrepareAbilityColliderObject: 
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: 
+    ExecuteAbilitySound: A_HighJump_Execute
+    HitAbilitySound: 
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 3
   CastingTime: 0.003
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast2
-  ExecuteAnimation: Execute2
+  Visuals:
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute2
   TargetCap: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}

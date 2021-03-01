@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 41861d6181d471d4292cb9c947cc50e4, type: 3}
   Description: Apply a disease which continuously spreads and hurts enemies
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: ContagiousFlamesCollider
-  PrepareAbilityColliderObject: PrepareFireSpell
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: sound_flamerelease
-  ExecuteAbilitySound: F_ContagiousFlames_Execute
-  HitAbilitySound: F_ContagiousFlames_Hit
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: ContagiousFlamesCollider
+    PrepareAbilityColliderObject: PrepareFireSpell
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: sound_flamerelease
+    ExecuteAbilitySound: F_ContagiousFlames_Execute
+    HitAbilitySound: F_ContagiousFlames_Hit
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 14
   CastingTime: 0.2
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast4
-  ExecuteAnimation: Execute4
+  Visuals:
+    PreparingAnimation: Cast4
+    ExecuteAnimation: Execute4
   TargetCap: 0
   OnExecuteParams: []
   OnHitParams:

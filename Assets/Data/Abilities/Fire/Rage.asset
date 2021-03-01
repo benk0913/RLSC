@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 91e1a53f89460e14d8e9c429b6e5aed5, type: 3}
   Description: Sacrifice some health to clear the cooldown of all abilities
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: RageCollider
-  PrepareAbilityColliderObject: 
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: 
-  ExecuteAbilitySound: F_Rage
-  HitAbilitySound: 
-  MissAbilitySound: 
-  ScreenEffectObject: ScreenEffectRage
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: RageCollider
+    PrepareAbilityColliderObject: 
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: 
+    ExecuteAbilitySound: F_Rage
+    HitAbilitySound: 
+    MissAbilitySound: 
   CD: 10
   CastingTime: 0.01
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast4
-  ExecuteAnimation: Execute4
+  Visuals:
+    ScreenEffectObject: ScreenEffectRage
+    PreparingAnimation: Cast4
+    ExecuteAnimation: Execute4
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 21153b12e7224514e8aa13fa8a2685ab, type: 2}
     Condition: {fileID: 0}

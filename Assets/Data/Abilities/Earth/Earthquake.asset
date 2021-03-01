@@ -18,23 +18,26 @@ MonoBehaviour:
 
     Unfortunately,
     you are stunned as well in this vast release of energy.'
-  HitAbilityColliderObject: MudshotHit
-  MissAbilityColliderObject: 
-  AbilityColliderObject: EarthquakeCollider
-  PrepareAbilityColliderObject: PrepareEarthquake
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: E_EarthQuake_Prepare
-  ExecuteAbilitySound: E_EarthQuake_Execute
-  HitAbilitySound: 
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: MudshotHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: EarthquakeCollider
+    PrepareAbilityColliderObject: PrepareEarthquake
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: E_EarthQuake_Prepare
+    ExecuteAbilitySound: E_EarthQuake_Execute
+    HitAbilitySound: 
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 25
   CastingTime: 3
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast5
-  ExecuteAnimation: Execute5
+  Visuals:
+    PreparingAnimation: Cast5
+    ExecuteAnimation: Execute5
   TargetCap: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}

@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: b78035c35a00b6d44b3798362b61a4d1, type: 3}
   Description: 
-  HitAbilityColliderObject: OrbHit
-  MissAbilityColliderObject: 
-  AbilityColliderObject: 
-  PrepareAbilityColliderObject: 
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: 
-  ExecuteAbilitySound: 
-  HitAbilitySound: F_FireOrbs_Hit
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: OrbHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: 
+    PrepareAbilityColliderObject: 
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: 
+    ExecuteAbilitySound: 
+    HitAbilitySound: F_FireOrbs_Hit
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 60
   CastingTime: 3
   OnlyIfGrounded: 0
   IsCastingExternal: 1
-  PreparingAnimation: Cast5
-  ExecuteAnimation: Execute5
+  Visuals:
+    PreparingAnimation: Cast5
+    ExecuteAnimation: Execute5
   TargetCap: 1
   OnExecuteParams: []
   OnHitParams:

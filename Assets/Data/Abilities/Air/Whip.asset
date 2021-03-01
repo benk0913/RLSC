@@ -15,23 +15,26 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 53f3a2bbba0603e43976124e8b954929, type: 3}
   Description: Use the lash of the wind to either hurt your enemies or hurry up your
     friends.
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: AirWhipCollider
-  PrepareAbilityColliderObject: 
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: A_Whip_Prepare
-  ExecuteAbilitySound: A_Whip_Execute
-  HitAbilitySound: A_Whip_Hit
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: AirWhipCollider
+    PrepareAbilityColliderObject: 
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: A_Whip_Prepare
+    ExecuteAbilitySound: A_Whip_Execute
+    HitAbilitySound: A_Whip_Hit
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 1.5
   CastingTime: 0.5
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast3
-  ExecuteAnimation: Execute5
+  Visuals:
+    PreparingAnimation: Cast3
+    ExecuteAnimation: Execute5
   TargetCap: 0
   OnExecuteParams: []
   OnHitParams:

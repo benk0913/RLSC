@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 3c088dabd8b4d464f8883382a02db6c1, type: 3}
   Description: Strike the enemy in a short distance while backing away from it.
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: AirKickCollider
-  PrepareAbilityColliderObject: 
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: A_Kick_Prepare
-  ExecuteAbilitySound: A_Kick_Execute
-  HitAbilitySound: _ound_hit_1
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: AirKickCollider
+    PrepareAbilityColliderObject: 
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: A_Kick_Prepare
+    ExecuteAbilitySound: A_Kick_Execute
+    HitAbilitySound: _ound_hit_1
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 4
   CastingTime: 0.5
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast1
-  ExecuteAnimation: Execute1
+  Visuals:
+    PreparingAnimation: Cast1
+    ExecuteAnimation: Execute1
   TargetCap: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}

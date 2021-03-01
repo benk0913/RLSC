@@ -18,37 +18,13 @@ public class Ability : ScriptableObject
     public string Description;
 
     [JsonIgnore]
-    public string HitAbilityColliderObject;
+    public AbilityColliders Colliders;
 
     [JsonIgnore]
-    public string MissAbilityColliderObject;
+    public AbilitySounds Sounds;
 
     [JsonIgnore]
-    public string AbilityColliderObject;
-
-    [JsonIgnore]
-    public string PrepareAbilityColliderObject;
-    
-    [JsonIgnore]
-    public string HitConditionObject;
-
-    [JsonIgnore]
-    public AbilityCondition HitConditionObjectCondition;
-
-    [JsonIgnore]
-    public string PrepareAbilitySound;
-
-    [JsonIgnore]
-    public string ExecuteAbilitySound;
-
-    [JsonIgnore]
-    public string HitAbilitySound;
-
-    [JsonIgnore]
-    public string MissAbilitySound;
-
-    [JsonIgnore]
-    public string ScreenEffectObject;
+    public AbilityVisuals Visuals;
 
     public float CD = 1f;
 
@@ -56,19 +32,13 @@ public class Ability : ScriptableObject
     public float CastingTime = 0.003f;//0.003f is the min (Lag Compensation).
 
     [JsonIgnore]
+    public int TargetCap;
+
+    [JsonIgnore]
     public bool OnlyIfGrounded;
 
     [JsonIgnore]
     public bool IsCastingExternal;
-
-    [JsonIgnore]
-    public string PreparingAnimation;
-
-    [JsonIgnore]
-    public string ExecuteAnimation;
-
-    [JsonIgnore]
-    public int TargetCap;
 
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();
@@ -88,6 +58,56 @@ public class AbilityParam
     public string Value;
 }
 
+[Serializable]
+public class AbilityColliders
+{
+    [JsonIgnore]
+    public string HitAbilityColliderObject;
+
+    [JsonIgnore]
+    public string MissAbilityColliderObject;
+
+    [JsonIgnore]
+    public string AbilityColliderObject;
+
+    [JsonIgnore]
+    public string PrepareAbilityColliderObject;
+    
+    [JsonIgnore]
+    public string HitConditionObject;
+
+    [JsonIgnore]
+    public AbilityCondition HitConditionObjectCondition;
+}
+
+[Serializable]
+public class AbilitySounds
+{
+    [JsonIgnore]
+    public string PrepareAbilitySound;
+
+    [JsonIgnore]
+    public string ExecuteAbilitySound;
+
+    [JsonIgnore]
+    public string HitAbilitySound;
+
+    [JsonIgnore]
+    public string MissAbilitySound;
+}
+
+[Serializable]
+public class AbilityVisuals
+{
+    [JsonIgnore]
+    public string ScreenEffectObject;
+
+    [JsonIgnore]
+    public string PreparingAnimation;
+
+    [JsonIgnore]
+    public string ExecuteAnimation;
+}
 
 [Serializable]
 public enum TargetType
@@ -99,6 +119,3 @@ public enum TargetType
     FriendsAndSelf,
     All
 }
-
-
-

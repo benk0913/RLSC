@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 7af819d8a4e96d34281b8ecb32cbcd2d, type: 3}
   Description: Panicly heal everyone
-  HitAbilityColliderObject: HealHit
-  MissAbilityColliderObject: HealHit
-  AbilityColliderObject: DesperateCallingCollider
-  PrepareAbilityColliderObject: PrepareWaterSpell
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: W_DesperatePrayer_Prepare
-  ExecuteAbilitySound: W_DesperatePrayer_Execute
-  HitAbilitySound: W_Heal
-  MissAbilitySound: 
-  ScreenEffectObject: ScreenEffectDesperate
+  Colliders:
+    HitAbilityColliderObject: HealHit
+    MissAbilityColliderObject: HealHit
+    AbilityColliderObject: DesperateCallingCollider
+    PrepareAbilityColliderObject: PrepareWaterSpell
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: W_DesperatePrayer_Prepare
+    ExecuteAbilitySound: W_DesperatePrayer_Execute
+    HitAbilitySound: W_Heal
+    MissAbilitySound: 
   CD: 25
   CastingTime: 1
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast5
-  ExecuteAnimation: Execute4
+  Visuals:
+    ScreenEffectObject: ScreenEffectDesperate
+    PreparingAnimation: Cast5
+    ExecuteAnimation: Execute4
   TargetCap: 0
   OnExecuteParams: []
   OnHitParams:

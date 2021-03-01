@@ -15,23 +15,26 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 124f0ab8f6a3a3243bb419962ef697de, type: 3}
   Description: Craft a Totem of Wind. It will supply, upon interaction, a temporary
     movement speed boost.
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: 
-  PrepareAbilityColliderObject: PrepareTrap
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: Totems
-  ExecuteAbilitySound: 
-  HitAbilitySound: 
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: 
+    PrepareAbilityColliderObject: PrepareTrap
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: Totems
+    ExecuteAbilitySound: 
+    HitAbilitySound: 
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 30
   CastingTime: 3
   OnlyIfGrounded: 1
   IsCastingExternal: 0
-  PreparingAnimation: Cast5
-  ExecuteAnimation: Execute5
+  Visuals:
+    PreparingAnimation: Cast5
+    ExecuteAnimation: Execute5
   TargetCap: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 2f3bcc93099b30545b1dc1397e16a5de, type: 2}

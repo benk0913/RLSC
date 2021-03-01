@@ -19,23 +19,26 @@ MonoBehaviour:
 
     - While non-ignited enemies may receive a very small
     amount.'
-  HitAbilityColliderObject: BolsterFlamesHit
-  MissAbilityColliderObject: 
-  AbilityColliderObject: BolsterFlamesCollider
-  PrepareAbilityColliderObject: PrepareFireSpell
-  HitConditionObject: BolsterFlamesHit
-  HitConditionObjectCondition: {fileID: 11400000, guid: 012b6f3eee5fa3a499fab2658281fd9f, type: 2}
-  PrepareAbilitySound: sound_flamerelease
-  ExecuteAbilitySound: F_BolsterFlames
-  HitAbilitySound: F_BolsterFlames_Hit
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: BolsterFlamesHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: BolsterFlamesCollider
+    PrepareAbilityColliderObject: PrepareFireSpell
+    HitConditionObject: BolsterFlamesHit
+    HitConditionObjectCondition: {fileID: 11400000, guid: 012b6f3eee5fa3a499fab2658281fd9f, type: 2}
+  Sounds:
+    PrepareAbilitySound: sound_flamerelease
+    ExecuteAbilitySound: F_BolsterFlames
+    HitAbilitySound: F_BolsterFlames_Hit
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 10
   CastingTime: 0.2
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast4
-  ExecuteAnimation: Execute4
+  Visuals:
+    PreparingAnimation: Cast4
+    ExecuteAnimation: Execute4
   TargetCap: 0
   OnExecuteParams: []
   OnHitParams:

@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: Throw Carrot
   m_EditorClassIdentifier: 
   Icon: {fileID: -1545704014630397440, guid: 049f30899d7182642b89c1843b2b6e7e, type: 3}
-  HitAbilityColliderObject: 
-  AbilityColliderObject: CarrotCollider
-  PrepareAbilityColliderObject: PrepareMudshot
-  PrepareAbilitySound: sound_earth_3
-  ExecuteAbilitySound: 
-  HitAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    AbilityColliderObject: CarrotCollider
+    PrepareAbilityColliderObject: PrepareMudshot
+  Sounds:
+    PrepareAbilitySound: sound_earth_3
+    ExecuteAbilitySound: 
+    HitAbilitySound: 
   CD: 4
   CastingTime: 0.5
-  PreparingAnimation: Cast1
-  ExecuteAnimation: Execute1
+  Visuals:
+    PreparingAnimation: Cast1
+    ExecuteAnimation: Execute1
   Attributes:
     Power: 2
     HP: 0

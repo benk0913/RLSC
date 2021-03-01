@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: efe72a3a4d8d58a49b3952c6c3552167, type: 3}
   Description: Teleport to the most distant and out of reach ally.
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: AirDodgeCollider
-  PrepareAbilityColliderObject: PrepareAirSpell
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: A_AerialReach_Prepare
-  ExecuteAbilitySound: 
-  HitAbilitySound: 
-  MissAbilitySound: 
+  Colliders:
+      HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: AirDodgeCollider
+    PrepareAbilityColliderObject: PrepareAirSpell
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: A_AerialReach_Prepare
+    ExecuteAbilitySound:
+    HitAbilitySound: 
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 3
   CastingTime: 0.003
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast2
-  ExecuteAnimation: Execute2
+  Visuals:
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute2
   TargetCap: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}

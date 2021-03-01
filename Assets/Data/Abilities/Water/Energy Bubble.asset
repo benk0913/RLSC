@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8d29b8ea0260bd643a02a8959ed9ec11, type: 3}
   Description: Float a bubble that on impact clears the cooldown of the last ability
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: SaturateBuffCollider
-  PrepareAbilityColliderObject: PrepareWaterSpell
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: W_Bless_Prepare
-  ExecuteAbilitySound: W_Bubble_Execute
-  HitAbilitySound: W_EnergyBubble_Hit
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: SaturateBuffCollider
+    PrepareAbilityColliderObject: PrepareWaterSpell
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: W_Bless_Prepare
+    ExecuteAbilitySound: W_Bubble_Execute
+    HitAbilitySound: W_EnergyBubble_Hit
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 5
   CastingTime: 1
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast2
-  ExecuteAnimation: Execute3
+  Visuals:
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute3
   TargetCap: 1
   OnExecuteParams: []
   OnHitParams:

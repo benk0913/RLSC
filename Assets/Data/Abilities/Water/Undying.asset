@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: c991693b50cd210419257b0518ee4e8d, type: 3}
   Description: Prevent an ally or you from dying for a while
-  HitAbilityColliderObject: HealHit
-  MissAbilityColliderObject: 
-  AbilityColliderObject: RefreshingRushCollider
-  PrepareAbilityColliderObject: PrepareCleanse
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: W_Undying_Prepare
-  ExecuteAbilitySound: sound_watersplashs
-  HitAbilitySound: W_Heal
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: HealHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: RefreshingRushCollider
+    PrepareAbilityColliderObject: PrepareCleanse
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: W_Undying_Prepare
+    ExecuteAbilitySound: sound_watersplashs
+    HitAbilitySound: W_Heal
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 25
   CastingTime: 1
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast2
-  ExecuteAnimation: Execute7
+  Visuals:
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute7
   TargetCap: 1
   OnExecuteParams: []
   OnHitParams:

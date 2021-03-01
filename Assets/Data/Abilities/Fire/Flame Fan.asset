@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 508224ac51a630e48b18e23c2fbb273f, type: 3}
   Description: Repeatedly damage a close enemy
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: FlameFanCollider
-  PrepareAbilityColliderObject: PrepareFireSpell
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: F_FlameFan_Prepare
-  ExecuteAbilitySound: F_FlameFan_Execute
-  HitAbilitySound: F_FlameFan_Hit
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: FlameFanCollider
+    PrepareAbilityColliderObject: PrepareFireSpell
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: F_FlameFan_Prepare
+    ExecuteAbilitySound: F_FlameFan_Execute
+    HitAbilitySound: F_FlameFan_Hit
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 0.25
   CastingTime: 0.25
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast1
-  ExecuteAnimation: Execute1
+  Visuals:
+    PreparingAnimation: Cast1
+    ExecuteAnimation: Execute1
   TargetCap: 1
   OnExecuteParams: []
   OnHitParams:

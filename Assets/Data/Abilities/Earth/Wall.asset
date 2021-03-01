@@ -18,23 +18,26 @@ MonoBehaviour:
 
     It may block
     enemies from advancing, stop projectiles and function as a platform.'
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: WallCollider
-  PrepareAbilityColliderObject: PrepareEarthSpell
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: E_Wall_Prepare
-  ExecuteAbilitySound: 
-  HitAbilitySound: 
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: WallCollider
+    PrepareAbilityColliderObject: PrepareEarthSpell
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: E_Wall_Prepare
+    ExecuteAbilitySound: 
+    HitAbilitySound: 
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 12
   CastingTime: 1
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast7
-  ExecuteAnimation: Execute8
+  Visuals:
+    PreparingAnimation: Cast7
+    ExecuteAnimation: Execute8
   TargetCap: 0
   OnExecuteParams: []
   OnHitParams: []

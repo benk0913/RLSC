@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 81c94dc1766060747a800f063c646772, type: 3}
   Description: Blind the enemy which prevents it from damaging anyone touching it.
-  HitAbilityColliderObject: 
-  MissAbilityColliderObject: 
-  AbilityColliderObject: ThrowSandCollider
-  PrepareAbilityColliderObject: 
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: E_ThrowSand_Prepare
-  ExecuteAbilitySound: E_ThrowSand_Execute
-  HitAbilitySound: 
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: ThrowSandCollider
+    PrepareAbilityColliderObject: 
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: E_ThrowSand_Prepare
+    ExecuteAbilitySound: E_ThrowSand_Execute
+    HitAbilitySound: 
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 12
   CastingTime: 0.8
   OnlyIfGrounded: 0
   IsCastingExternal: 0
-  PreparingAnimation: Cast2
-  ExecuteAnimation: Execute1
+  Visuals:
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute1
   TargetCap: 0
   OnExecuteParams: []
   OnHitParams:

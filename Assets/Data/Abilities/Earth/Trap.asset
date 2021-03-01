@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: b016f394dd0405744998b7fe2de0afd5, type: 3}
   Description: Set a trap which immobilizes enemies.
-  HitAbilityColliderObject: TrapHit
-  MissAbilityColliderObject: 
-  AbilityColliderObject: TrapCollider
-  PrepareAbilityColliderObject: PrepareTrap
-  HitConditionObject: 
-  HitConditionObjectCondition: {fileID: 0}
-  PrepareAbilitySound: E_Trap_Prepare
-  ExecuteAbilitySound: E_Trap_Execute
-  HitAbilitySound: E_Trap_Hit
-  MissAbilitySound: 
+  Colliders:
+    HitAbilityColliderObject: TrapHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: TrapCollider
+    PrepareAbilityColliderObject: PrepareTrap
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+  Sounds:
+    PrepareAbilitySound: E_Trap_Prepare
+    ExecuteAbilitySound: E_Trap_Execute
+    HitAbilitySound: E_Trap_Hit
+    MissAbilitySound: 
   ScreenEffectObject: 
   CD: 25
   CastingTime: 3
   OnlyIfGrounded: 1
   IsCastingExternal: 0
-  PreparingAnimation: Cast5
-  ExecuteAnimation: Execute5
+  Visuals:
+    PreparingAnimation: Cast5
+    ExecuteAnimation: Execute5
   TargetCap: 1
   OnExecuteParams: []
   OnHitParams:
