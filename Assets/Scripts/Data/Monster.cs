@@ -7,11 +7,11 @@ using UnityEngine;
 [Serializable]
 public class Monster : ScriptableObject
 {
-    public AIChaseBehaviour ChaseBehaviour;
+    public AIChaseBehaviourOld ChaseBehaviour;
 }
 
 [Serializable]
-public enum AIChaseBehaviour
+public enum AIChaseBehaviourOld
 {
     Static,
     Patrol,

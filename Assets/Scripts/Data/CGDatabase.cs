@@ -38,8 +38,6 @@ public class DatabaseContent
 
     public List<Ability> Abilities = new List<Ability>();
 
-    public List<Monster> Monsters = new List<Monster>();
-
     public List<Buff> Buffs = new List<Buff>();
 
     public List<SceneInfo> Scenes = new List<SceneInfo>();

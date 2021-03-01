@@ -10,7 +10,7 @@ public class ActorAI : MonoBehaviour
     public Actor Act;
 
     [SerializeField]
-    public Monster MonsterRef;
+    public AIChaseBehaviour ChaseBehaviour;
 
     [SerializeField]
     protected LayerMask groundLayerMask;
@@ -46,7 +46,7 @@ public class ActorAI : MonoBehaviour
 
     protected virtual void Start()
     {
-        if(MonsterRef.ChaseBehaviour == AIChaseBehaviour.Patrol || MonsterRef.ChaseBehaviour == AIChaseBehaviour.Chase)
+        if(ChaseBehaviour == AIChaseBehaviour.Patrol || ChaseBehaviour == AIChaseBehaviour.Chase)
         {
             System.Action patrolDirectionChangeAction = null;
 
@@ -75,11 +75,6 @@ public class ActorAI : MonoBehaviour
 
     protected virtual void OnBitchChanged()
     {
-        if(MonsterRef == null)
-        {
-            return;
-        }
-
         if (!CORE.Instance.IsBitch)
         {
             StopAllCoroutines();
@@ -167,7 +162,7 @@ public class ActorAI : MonoBehaviour
     
     protected virtual void WaitBehaviour()
     {
-        switch (MonsterRef.ChaseBehaviour)
+        switch (ChaseBehaviour)
         {
             case AIChaseBehaviour.Static:
                 {
@@ -261,4 +256,13 @@ public class ActorAI : MonoBehaviour
     }
     
     #endregion
+}
+
+[System.Serializable]
+public enum AIChaseBehaviour
+{
+    Static,
+    Patrol,
+    Chase,
+    Flee
 }

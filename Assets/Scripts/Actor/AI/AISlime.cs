@@ -53,7 +53,7 @@ public class AISlime : ActorAI
 
     protected override void Start()
     {
-        if (MonsterRef.ChaseBehaviour == AIChaseBehaviour.Patrol)
+        if (ChaseBehaviour == AIChaseBehaviour.Patrol)
         {
             System.Action patrolDirectionChangeAction = null;
 

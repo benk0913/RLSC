@@ -767,7 +767,7 @@ public class Actor : MonoBehaviour
             MovementEffectRoutineInstance = null;
         }
 
-        if (this.AIControl != null && this.AIControl.MonsterRef != null && this.AIControl.MonsterRef.ChaseBehaviour == AIChaseBehaviour.Static)
+        if (this.AIControl != null && this.AIControl.ChaseBehaviour == AIChaseBehaviour.Static)
         {
             return;
         }

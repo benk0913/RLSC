@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569d44504d9d8604199c1c9d5d03f1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultMaterial: {fileID: 0}
+  Renderers: []
 --- !u!1 &2345052355082723739
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +922,7 @@ MonoBehaviour:
   PassiveHitCollider: {fileID: 5445536399483497394}
   PlayerHalo: {fileID: 0}
   IsGrounded: 0
+  CurrentGround: {fileID: 0}
   IsFlying: 0
   IsAttached: 0
   IsDead: 0
@@ -959,7 +960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Act: {fileID: 1551737046}
-  MonsterRef: {fileID: 11400000, guid: 467f85f1d7fb5884fbdf47f35111d97e, type: 2}
+  ChaseBehaviour: 1
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1

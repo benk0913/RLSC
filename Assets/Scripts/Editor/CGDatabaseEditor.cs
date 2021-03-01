@@ -127,13 +127,6 @@ public class CGDatabaseEditor : Editor
             db.content.Buffs.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(Buff)) as Buff);
         }
 
-        guids = AssetDatabase.FindAssets("t:Monster", new[] { "Assets/" + db.DataPath });
-        db.content.Monsters.Clear();
-        foreach (string guid in guids)
-        {
-            db.content.Monsters.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(Monster)) as Monster);
-        }
-
         guids = AssetDatabase.FindAssets("t:InteractableData", new[] { "Assets/" + db.DataPath });
         db.content.Interactables.Clear();
         foreach (string guid in guids)
