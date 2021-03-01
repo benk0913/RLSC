@@ -25,11 +25,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219246357781257250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: 2.48, z: 0}
+  m_LocalPosition: {x: -35, y: 2.48, z: 0}
   m_LocalScale: {x: 2.9817846, y: 2.9817846, z: 2.9817846}
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &333971145048182982
 SpriteRenderer:
@@ -107,11 +107,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276092515902969752}
   m_LocalRotation: {x: -0, y: -0, z: 0.14310898, w: 0.989707}
-  m_LocalPosition: {x: 0.13, y: 4.82, z: 0}
+  m_LocalPosition: {x: -35, y: 4.82, z: 0}
   m_LocalScale: {x: 1.6415, y: 1.6415, z: 1.6415}
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 16.456}
 --- !u!212 &5905942602217210032
 SpriteRenderer:
@@ -197,7 +197,6 @@ Transform:
   m_Children:
   - {fileID: 1314719725301908297}
   - {fileID: 4401934230661434663}
-  - {fileID: 1392339480142145124}
   - {fileID: 697291260192723943}
   - {fileID: 8095250606648983734}
   m_Father: {fileID: 0}
@@ -262,7 +261,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08904123, y: 1.9139576}
+  m_Offset: {x: -35, y: 3.18}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -273,7 +272,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.8283014, y: 5}
+  m_Size: {x: 5.8283014, y: 6.4}
   m_EdgeRadius: 0
 --- !u!114 &1935860746220234754
 MonoBehaviour:
@@ -296,9 +295,10 @@ MonoBehaviour:
   CanMiss: 0
   HitOnlyGroundedActors: 0
   StickToActor: 0
-  StickToSkilledShot: 1
+  StickToActorFacing: 0
+  StickToSkilledShot: 0
   HitEventOnWalls: 0
-  SkilledShotPoint: {fileID: 1392339480142145124}
+  SkilledShotPoint: {fileID: 0}
   SkilledshotLayermask:
     serializedVersion: 2
     m_Bits: 1
@@ -309,6 +309,7 @@ MonoBehaviour:
   IsBubble: 0
   BubblesDuplicated: []
   AudioOnHit: 
+  HitInterval: 0
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314719725301908296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 8.24, z: 0}
+  m_LocalPosition: {x: -35, y: 8.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
@@ -416,7 +417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3225007825412963725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 1.64, z: 0}
+  m_LocalPosition: {x: -35, y: 1.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
@@ -463,33 +464,3 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!1 &8981346701639352507
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1392339480142145124}
-  m_Layer: 9
-  m_Name: SkilledShotStickPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1392339480142145124
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8981346701639352507}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35, y: 20.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1314719724268210268}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
