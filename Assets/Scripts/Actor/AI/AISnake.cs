@@ -49,7 +49,7 @@ public class AISnake : ActorAI
             while (SelectedAbility == null)
             {
 
-                if (Random.Range(0, 4) == 0)
+                if (Random.Range(0, 4) == 0 && Act.State.Data.hp < Act.State.Data.MaxHP /2f)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Snake Hypno 1" && x.CurrentCD <= 0f);
                 }
