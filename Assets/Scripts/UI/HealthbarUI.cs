@@ -7,36 +7,31 @@ public class HealthbarUI : MonoBehaviour
 {
 
     [SerializeField]
-    Actor CurrentActor;
+    protected Actor CurrentActor;
 
     [SerializeField]
-    Image ImageFill;
+    protected Image ImageFill;
 
     [SerializeField]
-    CanvasGroup CG;
+    protected CanvasGroup CG;
 
-    float LastHpPercent = 1f;
-    Coroutine UpdateBarFillRoutineInstance;
+    protected float LastHpPercent = 1f;
+    protected Coroutine UpdateBarFillRoutineInstance;
 
     public void SetCurrentActor(Actor actor)
     {
         CurrentActor = actor;
     }
 
-    void Update()
+    protected void Update()
     {
-        if(CurrentActor == null)
-        {
-            return;
-        }
-
-        if (CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP || CurrentActor.State.Data.hp <= 0)
+        if (ShouldHideBar())
         {
             CG.alpha = 0f;
+            return;
         }
         else
         {
-            
             CG.alpha = 1f;
         }
 
@@ -51,8 +46,13 @@ public class HealthbarUI : MonoBehaviour
             UpdateBarFillRoutineInstance = StartCoroutine(UpdateBarFillRoutine());
         }
     }
-    
-    IEnumerator UpdateBarFillRoutine()
+
+    protected virtual bool ShouldHideBar()
+    {
+        return CurrentActor == null || CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP || CurrentActor.State.Data.hp <= 0;
+    }
+
+    protected IEnumerator UpdateBarFillRoutine()
     {
         float initialHpPercent = ImageFill.fillAmount;
         float t = 0f;

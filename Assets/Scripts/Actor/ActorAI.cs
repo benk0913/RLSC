@@ -13,6 +13,9 @@ public class ActorAI : MonoBehaviour
     public AIChaseBehaviour ChaseBehaviour;
 
     [SerializeField]
+    public bool IsBoss;
+
+    [SerializeField]
     protected LayerMask groundLayerMask;
 
     [SerializeField]

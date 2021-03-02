@@ -233,6 +233,11 @@ public class Actor : MonoBehaviour
     }
 
 
+    void Start()
+    {
+        Initialize();
+    }
+
     private void OnDestroy()
     {
         this.State.Data.OnRefreshStates.RemoveListener(RefreshStates);
@@ -372,6 +377,14 @@ public class Actor : MonoBehaviour
         }
     }
 
+
+    void Initialize()
+    {
+        if(State.Data != null && State.Data.isMob && AIControl.IsBoss)
+        {
+            BossHealthbarUI.Instance.SetCurrentActor(this);
+        }
+    }
 
     void UpdateFromActorData()
     {
