@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8219526598135779216}
   - component: {fileID: 8219526598135779218}
   - component: {fileID: 1693578988514504344}
-  - component: {fileID: 3043164732051723604}
+  - component: {fileID: 8796961124638921410}
   m_Layer: 0
   m_Name: ActorFruitBoss
   m_TagString: Actor
@@ -149,7 +149,7 @@ MonoBehaviour:
   Rigid: {fileID: 8219526598135779223}
   Body: {fileID: 7363638327609054499}
   PlayerControl: {fileID: 1693578988514504344}
-  AIControl: {fileID: 3043164732051723604}
+  AIControl: {fileID: 8796961124638921410}
   Animer: {fileID: 7584830314648982535}
   GroundMask:
     serializedVersion: 2
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentActor: {fileID: 8219526598135779218}
---- !u!114 &3043164732051723604
+--- !u!114 &8796961124638921410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,11 +194,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2169111934447558204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a092977ecadb3f349b9a41d4377cc9c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a02505c79d3f724ea5fbbaaa89fdae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Act: {fileID: 8219526598135779218}
-  MonsterRef: {fileID: 11400000, guid: 6fc6361705d2840478954dc34ab5dd61, type: 2}
+  ChaseBehaviour: 0
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1

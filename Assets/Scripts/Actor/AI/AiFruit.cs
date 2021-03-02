@@ -59,14 +59,7 @@ public class AiFruit : ActorAI
                     yield return 0;
                 }
 
-                if (Act.State.Data.hp < Act.State.Data.MaxHP / 3f)
-                {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FruitSuicide" && x.CurrentCD <= 0f);
-                }
-                else
-                {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FruitPop" && x.CurrentCD <= 0f);
-                }
+                SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FruitPop" && x.CurrentCD <= 0f);
 
                 WaitBehaviour();
 
