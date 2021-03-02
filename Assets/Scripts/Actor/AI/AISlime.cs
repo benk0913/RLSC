@@ -15,7 +15,7 @@ public class AISlime : ActorAI
 
             while (SelectedAbility == null)
             {
-                if (Act.State.Data.hp < (Act.State.Data.MaxHP*0.5f))
+                if (CanSpawnMore)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Split Medium" && x.CurrentCD <= 0f);
 
@@ -23,14 +23,9 @@ public class AISlime : ActorAI
                     {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Split Large" && x.CurrentCD <= 0f);
                     }
-
-                    if (SelectedAbility == null)
-                    {
-                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Hop" && x.CurrentCD <= 0f);
-                        Debug.LogError("Chose Hop");
-                    }
                 }
-                else
+
+                if (SelectedAbility == null)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Hop" && x.CurrentCD <= 0f);
                 }
@@ -80,6 +75,15 @@ public class AISlime : ActorAI
 
             patrolDirection = (Random.Range(0, 2) == 0);
             transform.position += transform.TransformDirection(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+        }
+    }
+
+
+    bool CanSpawnMore
+    {
+        get
+        {
+            return CORE.Instance.Room.Actors.FindAll(x => x.isMob).Count < 15;
         }
     }
 

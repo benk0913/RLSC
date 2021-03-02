@@ -17,6 +17,11 @@ public class HitLabelEntityUI : MonoBehaviour
         int numResult;
         if(int.TryParse(text, out numResult))
         {
+            if(numResult == 0)
+            {
+                Label.text = "BLOCK";
+            }
+
             float t = ((float)numResult / 200f);
             Label.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 3, t);
             Label.color = Color.Lerp(clr, Color.red, t);
