@@ -9,19 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorCaterpillar
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Bubble Immobilize
   m_EditorClassIdentifier: 
-  Icon: {fileID: 796274226663142590, guid: 0bdc5737df4c4a542993afef0d4ae02a, type: 3}
-  Abilities:
-  - CaterBlow
-  - ImmobilizeBubble
-  - ImmobilizeBubble2
-  PassiveAbility: 
+  Icon: {fileID: 21300000, guid: 5372d9436059d6342b8098410fe5277c, type: 3}
+  Description: Cannot move
+  BuffColliderObject: ImmobilizeBuffEffect
+  BuffMaterial: {fileID: 0}
+  Length: 5
+  isDebuff: 1
+  ShowBuffIcon: 1
   Attributes:
     Power: 0
-    HP: 2
-    Defense: 200
+    HP: 0
+    Defense: 0
     CDReduction: 0
     CTReduction: 0
     Lifesteal: 0
@@ -37,4 +38,10 @@ MonoBehaviour:
     SmallerColliderSize: 0
     Threat: 0
     MovementSpeed: 0
-  Immunity: []
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States:
+  - {fileID: 11400000, guid: e7fceea113913be4fb95d1f64d2b4c22, type: 2}
+  OnStart: []
+  OnEnd: []

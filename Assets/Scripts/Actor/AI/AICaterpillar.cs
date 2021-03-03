@@ -39,9 +39,16 @@ public class AICaterpillar : ActorAI
             while (SelectedAbility == null)
             {
 
-                if (Act.State.Data.hp < Act.State.Data.MaxHP / 3f)
+                if (Random.Range(0,2) == 0)
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CaterRejuv" && x.CurrentCD <= 0f);
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "ImmobilizeBubble" && x.CurrentCD <= 0f);
+                    }
+                    else
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "ImmobilizeBubble2" && x.CurrentCD <= 0f);
+                    }
                 }
                 else
                 {
