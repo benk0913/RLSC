@@ -71,6 +71,8 @@ public class Actor : MonoBehaviour
 
     public bool IsAttached;
 
+    public bool IsCharmed;
+
     public bool IsSilenced
     {
         get
@@ -246,6 +248,7 @@ public class Actor : MonoBehaviour
 
     private void Update()
     {
+
         if (!IsClientControl)
         {
             UpdateFromActorData();
@@ -254,9 +257,42 @@ public class Actor : MonoBehaviour
 
     protected void FixedUpdate()
     {
+        if(!IsClientControl)
+        {
+            return;
+        }
+
         if (IsFlying)
         {
             Rigid.velocity = Vector2.Lerp(Rigid.velocity, Vector2.zero, Time.deltaTime);
+        }
+
+        if(IsCharmed)
+        {
+            ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Bind Charm"].linkedActorIds[0]);
+
+            if (actorDat == null || actorDat.ActorEntity == null)
+            {
+                CORE.Instance.LogMessageError("No actor with actorId " + CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Bind Charm"].linkedActorIds[0]));
+            }
+            else if (actorDat == this.State.Data)
+            {
+                //
+            }
+            else
+            {
+                if (Vector2.Distance(actorDat.ActorEntity.transform.position, transform.position) > 1f)
+                {
+                    if (actorDat.ActorEntity.transform.position.x > transform.position.x)
+                    {
+                        AttemptMoveRight();
+                    }
+                    else
+                    {
+                        AttemptMoveLeft();
+                    }
+                }
+            }
         }
 
         if(IsAttached)
@@ -722,6 +758,15 @@ public class Actor : MonoBehaviour
             StopAttach();
         }
 
+        if (State.Data.States.ContainsKey("Bind Charm") && !IsCharmed)
+        {
+            StartCharm();
+        }
+        else if (!State.Data.States.ContainsKey("Bind Charm") && IsCharmed)
+        {
+            StopCharm();
+        }
+
 
         if (State.Data.States.ContainsKey("Dead") && !IsDead)
         {
@@ -1109,6 +1154,16 @@ public class Actor : MonoBehaviour
     public void StopAttach()
     {
         IsAttached = false;
+    }
+
+    public void StartCharm()
+    {
+        IsCharmed = true;
+    }
+
+    public void StopCharm()
+    {
+        IsCharmed= false;
     }
 
     public void HaltAbility(int haltAbilityIndex)

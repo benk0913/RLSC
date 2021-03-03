@@ -42,4 +42,5 @@ public class Buff : ScriptableObject
 
     public List<AbilityParam> OnStart = new List<AbilityParam>();
     public List<AbilityParam> OnEnd = new List<AbilityParam>();
+    public List<AbilityParam> OnTakeDamage = new List<AbilityParam>();
 }

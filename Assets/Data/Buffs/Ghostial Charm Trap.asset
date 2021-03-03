@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
-  m_Name: Possess Bond
+  m_Name: Ghostial Charm Trap
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 4c52f84f8697c774e8d378b0b54dde57, type: 3}
-  Description: Share the same buffs, damage and heals with someone
-  BuffColliderObject: PossessBondBuffEffect
-  BuffMaterial: {fileID: 2100000, guid: 4fb6cc6201be25b4483cdecc2d312c04, type: 2}
-  Length: 20
-  isDebuff: 1
+  Icon: {fileID: 21300000, guid: 55813074ad72e354897d9443f90ccae5, type: 3}
+  Description: 'Ghostial Charm Trap
+
+'
+  BuffColliderObject: TauntBuffEffect
+  BuffMaterial: {fileID: 0}
+  Length: 10
+  isDebuff: 0
   ShowBuffIcon: 1
   Attributes:
     Power: 0
@@ -42,8 +44,15 @@ MonoBehaviour:
   OnStartSound: 
   OnEndSound: 
   States:
-  - {fileID: 11400000, guid: eff2c4975df7909478d0e8de06dc5760, type: 2}
-  - {fileID: 11400000, guid: 82f57ebc32d8c96419c4459efb528e48, type: 2}
-  - {fileID: 11400000, guid: 2bb3d8f0ff8e70d4fbc3f74b7b8803ce, type: 2}
+  - {fileID: 11400000, guid: c04f8231d4bd230479de91a0c9ed1332, type: 2}
   OnStart: []
   OnEnd: []
+  OnTakeDamage:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    Targets: 0
+    Value: Possess Bond
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    Targets: 0
+    Value: 10
