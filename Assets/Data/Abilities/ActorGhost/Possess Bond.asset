@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Share the same buffs, damage and heals with someone
   BuffColliderObject: PossessBondBuffEffect
   BuffMaterial: {fileID: 2100000, guid: 4fb6cc6201be25b4483cdecc2d312c04, type: 2}
-  Length: 20
+  Length: 8
   isDebuff: 1
   ShowBuffIcon: 1
   Attributes:
@@ -37,13 +37,12 @@ MonoBehaviour:
     KnockbackResistance: 0
     SmallerColliderSize: 0
     Threat: 0
-    MovementSpeed: 0
+    MovementSpeed: -0.5
   HitAbility: {fileID: 0}
   OnStartSound: 
   OnEndSound: 
   States:
-  - {fileID: 11400000, guid: eff2c4975df7909478d0e8de06dc5760, type: 2}
-  - {fileID: 11400000, guid: 82f57ebc32d8c96419c4459efb528e48, type: 2}
   - {fileID: 11400000, guid: 2bb3d8f0ff8e70d4fbc3f74b7b8803ce, type: 2}
   OnStart: []
   OnEnd: []
+  OnTakeDamage: []

@@ -38,7 +38,7 @@ public class AIGhost : ActorAI
                 }
                 else
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghostial Possess" && x.CurrentCD <= 0f);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghost Possess" && x.CurrentCD <= 0f);
 
                     if (SelectedAbility == null)
                     {

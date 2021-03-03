@@ -71,7 +71,13 @@ public class Actor : MonoBehaviour
 
     public bool IsAttached;
 
-    public bool IsCharmed;
+    public bool IsCharmed
+    {
+        get
+        {
+            return State.Data.States.ContainsKey("Charm");
+        }
+    }
 
     public bool IsSilenced
     {
@@ -269,11 +275,11 @@ public class Actor : MonoBehaviour
 
         if(IsCharmed)
         {
-            ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Bind Charm"].linkedActorIds[0]);
+            ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Charm"].linkedActorIds[0]);
 
             if (actorDat == null || actorDat.ActorEntity == null)
             {
-                CORE.Instance.LogMessageError("No actor with actorId " + CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Bind Charm"].linkedActorIds[0]));
+                CORE.Instance.LogMessageError("No actor with actorId " + State.Data.States["Charm"].linkedActorIds[0]);
             }
             else if (actorDat == this.State.Data)
             {
@@ -758,16 +764,6 @@ public class Actor : MonoBehaviour
             StopAttach();
         }
 
-        if (State.Data.States.ContainsKey("Bind Charm") && !IsCharmed)
-        {
-            StartCharm();
-        }
-        else if (!State.Data.States.ContainsKey("Bind Charm") && IsCharmed)
-        {
-            StopCharm();
-        }
-
-
         if (State.Data.States.ContainsKey("Dead") && !IsDead)
         {
             Ded();
@@ -1154,16 +1150,6 @@ public class Actor : MonoBehaviour
     public void StopAttach()
     {
         IsAttached = false;
-    }
-
-    public void StartCharm()
-    {
-        IsCharmed = true;
-    }
-
-    public void StopCharm()
-    {
-        IsCharmed= false;
     }
 
     public void HaltAbility(int haltAbilityIndex)
