@@ -33,6 +33,7 @@ public class CGDatabase : ScriptableObject
 [Serializable]
 public class DatabaseContent
 {
+    public VisualDatabase Visuals;
 
     public List<ClassJob> Classes = new List<ClassJob>();
 
@@ -53,6 +54,20 @@ public class DatabaseContent
     public AttributeData BaseAttributes;
     
     public AttributeData AttributesLimits;
+}
+
+[Serializable]
+public class VisualDatabase
+{
+    public List<BodyPart> BodyParts = new List<BodyPart>();
+
+    public List<SkinSet> DefaultSkin = new List<SkinSet>();
+
+    public List<SkinSet> SkinSets = new List<SkinSet>();
+
+    public List<Color> SkinColorPresets = new List<Color>();
+    public List<Color> HairColorPresets = new List<Color>();
+    public List<Color> IrisColorPresets = new List<Color>();
 }
 
 [Serializable]

@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 3423014092641374633}
   - component: {fileID: 5649511532896756891}
   m_Layer: 8
-  m_Name: ears
+  m_Name: Ears
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2583,6 +2583,7 @@ GameObject:
   - component: {fileID: 1551737044}
   - component: {fileID: 1551737045}
   - component: {fileID: 1551737046}
+  - component: {fileID: 443528492}
   m_Layer: 8
   m_Name: ActorHuman
   m_TagString: Actor
@@ -2693,6 +2694,16 @@ MonoBehaviour:
       actorType: 
       prefab: 
       hp: 0
+      Looks:
+        IsFemale: 0
+        Hair: 
+        Eyes: 
+        Ears: 
+        Nose: 
+        Mouth: 
+        SkinColor: 
+        HairColor: 
+        EyeColor: 
       Attributes:
         Power: 0
         HP: 0
@@ -2733,6 +2744,7 @@ MonoBehaviour:
   PlayerControl: {fileID: 1551737045}
   AIControl: {fileID: 0}
   Animer: {fileID: 832035075}
+  Skin: {fileID: 443528492}
   GroundMask:
     serializedVersion: 2
     m_Bits: 1
@@ -2754,6 +2766,66 @@ MonoBehaviour:
   JumpHeight: 23
   InterpolationSpeed: 25
   ControlSource: 0
+--- !u!114 &443528492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785496889078657400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e37185062605a0468da41280008d4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Act: {fileID: 1551737046}
+  SkinParts:
+  - Renderer: {fileID: 1847020129536903239}
+    Part: {fileID: 11400000, guid: c724513a7fc11444e88d5202e97fa246, type: 2}
+  - Renderer: {fileID: 5413539528116009545}
+    Part: {fileID: 11400000, guid: e2dc3c93409e0d1458932af2be25cc57, type: 2}
+  - Renderer: {fileID: 5413539527464831339}
+    Part: {fileID: 11400000, guid: 2fb10e3f6deb76d47b182bc392de6487, type: 2}
+  - Renderer: {fileID: 5413539526965914217}
+    Part: {fileID: 11400000, guid: 649372c07b6d86546a938e7cec56b292, type: 2}
+  - Renderer: {fileID: 5413539528594455649}
+    Part: {fileID: 11400000, guid: e7f800a4dceb6b445a28e417cd6c95d1, type: 2}
+  - Renderer: {fileID: 5413539527913603841}
+    Part: {fileID: 11400000, guid: 8b9d7a896cd934b488995492830571b9, type: 2}
+  - Renderer: {fileID: 5413539526986000301}
+    Part: {fileID: 11400000, guid: 00ee4ff22415d77489d142f71158c975, type: 2}
+  - Renderer: {fileID: 5413539527827967643}
+    Part: {fileID: 11400000, guid: 820acaf50314c624f9e65373a4827fc6, type: 2}
+  - Renderer: {fileID: 5413539527434551906}
+    Part: {fileID: 11400000, guid: 32ee07c7ab110ef4784bf4a599134b10, type: 2}
+  - Renderer: {fileID: 4621416673267679012}
+    Part: {fileID: 11400000, guid: f1fa6ee3cebd72f40b09fe975278b6aa, type: 2}
+  - Renderer: {fileID: 7787217831365142077}
+    Part: {fileID: 11400000, guid: 86c590d03e2138d4d84aed7ac7f6cbd1, type: 2}
+  - Renderer: {fileID: 5413539528972868111}
+    Part: {fileID: 11400000, guid: 3d21b81f455eea5429be4576b42bb871, type: 2}
+  - Renderer: {fileID: 5413539527585634316}
+    Part: {fileID: 11400000, guid: 69eca85b6a6343748b2de58641af34f2, type: 2}
+  - Renderer: {fileID: 5413539527758601144}
+    Part: {fileID: 11400000, guid: 35815d437ad58064792bc080a4d151ad, type: 2}
+  - Renderer: {fileID: 7299666506796821086}
+    Part: {fileID: 11400000, guid: cb629295f9089794288b344337a7c12a, type: 2}
+  - Renderer: {fileID: 8578294776930843965}
+    Part: {fileID: 11400000, guid: 01cb8171d0b3bf847b17551cf299d6c0, type: 2}
+  - Renderer: {fileID: 5413539528699038910}
+    Part: {fileID: 11400000, guid: c62d11634b7e5c44fbfb82df065edae9, type: 2}
+  - Renderer: {fileID: 5413539526987883242}
+    Part: {fileID: 11400000, guid: a1dd64f7e9d94614da676222bd99feb7, type: 2}
+  - Renderer: {fileID: 5649511532896756891}
+    Part: {fileID: 11400000, guid: 7ae003e54e00e794587d1233d5132ecb, type: 2}
+  - Renderer: {fileID: 5413539527796985782}
+    Part: {fileID: 11400000, guid: ead7de70d1399b14d917ffd43707cbe9, type: 2}
+  - Renderer: {fileID: 5413539528809752701}
+    Part: {fileID: 11400000, guid: e7daf2fc77e1f1c43831bc3ecd61329c, type: 2}
+  - Renderer: {fileID: 5413539527234562452}
+    Part: {fileID: 11400000, guid: 9e0b21bbd90a872429cd6a764c7e8cb7, type: 2}
+  - Renderer: {fileID: 5413539528967580227}
+    Part: {fileID: 11400000, guid: a229e9ec707bc46419fe5bbd00352841, type: 2}
 --- !u!1 &8608259621569069638
 GameObject:
   m_ObjectHideFlags: 0

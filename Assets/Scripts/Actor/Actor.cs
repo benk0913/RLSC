@@ -26,6 +26,9 @@ public class Actor : MonoBehaviour
     protected Animator Animer;
 
     [SerializeField]
+    protected ActorSkin Skin;
+
+    [SerializeField]
     protected LayerMask GroundMask;
 
     [SerializeField]
@@ -241,7 +244,7 @@ public class Actor : MonoBehaviour
     }
 
 
-    void Start()
+    void OnEnable()
     {
         Initialize();
     }
@@ -426,6 +429,8 @@ public class Actor : MonoBehaviour
         {
             BossHealthbarUI.Instance.SetCurrentActor(this);
         }
+
+        RefreshLooks();
     }
 
     void UpdateFromActorData()
@@ -784,6 +789,16 @@ public class Actor : MonoBehaviour
 
         if (State.Data.IsPlayer)
             ActorAbilitiesPanelUI.Instance.SetActor(this);
+    }
+
+    public void RefreshLooks()
+    {
+        if(Skin == null)
+        {
+            return;
+        }
+
+        Skin.RefreshLooks();
     }
 
     public void PutAbilitiesOnCooldown()

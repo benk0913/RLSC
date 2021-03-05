@@ -692,6 +692,8 @@ public class ActorData
     public string actorType;
     public string prefab;
     public int hp;
+    public ActorLooks Looks;
+
     public bool isMob
     {
         get
@@ -713,6 +715,13 @@ public class ActorData
             return actorType == "bot";
         }
     }
+    public bool IsPlayer
+    {
+        get
+        {
+            return actorId == SocketHandler.Instance.CurrentUser.actor.actorId;
+        }
+    }
 
     public AttributeData Attributes;
 
@@ -726,6 +735,15 @@ public class ActorData
         get
         {
             return CORE.Instance.Data.content.BaseAttributes.MovementSpeed + CORE.Instance.Data.content.BaseAttributes.MovementSpeed * Attributes.MovementSpeed;
+        }
+    }
+
+    [JsonIgnore]
+    public float MaxHP
+    {
+        get
+        {
+            return CORE.Instance.Data.content.BaseAttributes.HP + CORE.Instance.Data.content.BaseAttributes.HP * Attributes.HP;
         }
     }
 
@@ -751,28 +769,12 @@ public class ActorData
     }
     ClassJob _classjobRef;
 
-    [JsonIgnore]
-    public float MaxHP
-    {
-        get
-        {
-            return CORE.Instance.Data.content.BaseAttributes.HP + CORE.Instance.Data.content.BaseAttributes.HP * Attributes.HP;
-        }
-    }
 
     [JsonIgnore]
     public UnityEvent OnRefreshStates = new UnityEvent();
 
     [JsonIgnore]
     public UnityEvent OnRefreshAbilities = new UnityEvent();
-
-    public bool IsPlayer
-    {
-        get
-        {
-            return actorId == SocketHandler.Instance.CurrentUser.actor.actorId;
-        }
-    }
 
     public ActorData(string gScene, string gName, string gClassJob, GameObject gActorObject = null)
     {
@@ -785,6 +787,21 @@ public class ActorData
             this.ActorEntity = gActorObject.GetComponent<Actor>();
         }
     }
+}
+
+[Serializable]
+public class ActorLooks
+{
+    public bool IsFemale;
+    public string Hair;
+    public string Eyes;
+    public string Ears;
+    public string Nose;
+    public string Mouth;
+    
+    public string SkinColor;
+    public string HairColor;
+    public string EyeColor;
 }
 
 [Serializable]
