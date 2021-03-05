@@ -126,30 +126,52 @@ public class SocketHandler : MonoBehaviour
     public void SendLogin(Action OnComplete = null)
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Color.green, 3f, true));
+        
+        JSONNode node = new JSONClass();
+        node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
+
         SendWebRequest(HostUrl + "/login", (UnityWebRequest lreq) =>
         {
             OnLogin(lreq);
 
             OnComplete?.Invoke();
-        },"",null, true);
+        },
+        node.ToString(),
+        null,
+        true);
     }
 
     public void SendCreateCharacter(string element = "fire", Action OnComplete = null)
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Creating Character...", Color.green, 1f, true));
 
-        //Dictionary<string, string> urlParams = new Dictionary<string, string>();
-
-        //urlParams["unicorn"] = CurrentUser.Unicorn;
-        //urlParams["classJob"] = element;
-
         JSONNode node = new JSONClass();
-        node["unicorn"] = CurrentUser.Unicorn;
+        node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
         node["classJob"] = element;
 
         SendWebRequest(HostUrl + "/create-char", (UnityWebRequest ccreq) =>
         {
             OnCreateCharacter(ccreq);
+
+
+            OnComplete?.Invoke();
+        },
+        node.ToString(),
+        null,
+        true);
+    }
+
+    public void SendDeleteCharacter(string actorId, Action OnComplete = null)
+    {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Deleting Character...", Color.green, 1f, true));
+
+        JSONNode node = new JSONClass();
+        node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
+        node["actorId"] = actorId;
+
+        SendWebRequest(HostUrl + "/delete-char", (UnityWebRequest ccreq) =>
+        {
+            OnDeleteCharacter(ccreq);
 
 
             OnComplete?.Invoke();
@@ -186,7 +208,7 @@ public class SocketHandler : MonoBehaviour
 
         SocketOptions options = new SocketOptions();
         options.AdditionalQueryParams = new ObservableDictionary<string, string>();
-        options.AdditionalQueryParams.Add("unicorn", CurrentUser.Unicorn);
+        options.AdditionalQueryParams.Add("skipTutorial", SystemInfo.deviceUniqueIdentifier);
         options.AdditionalQueryParams.Add("charIndex", CurrentUser.SelectedCharacterIndex.ToString());
 
         #if UNITY_EDITOR
@@ -238,9 +260,7 @@ public class SocketHandler : MonoBehaviour
 
     public void OnLogin(UnityWebRequest response)
     {
-        JSONNode data = JSON.Parse(response.downloadHandler.text); //Using an irellevant datastructure for simplisity's sake
-
-        CurrentUser.Unicorn = data["unicorn"].Value;
+        // TODO show existing characters from data["chars"]
     }
 
     public void OnCreateCharacter(UnityWebRequest response)
@@ -249,6 +269,10 @@ public class SocketHandler : MonoBehaviour
         JSONNode data = JSON.Parse(response.downloadHandler.text);
 
         CurrentUser.actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
+    }
+    public void OnDeleteCharacter(UnityWebRequest response)
+    {
+        // TODO update characters list
     }
     
     
@@ -672,8 +696,6 @@ public class SocketHandler : MonoBehaviour
 [Serializable]
 public class UserData
 {
-    public string Unicorn;
-
     public ActorData actor;
 
     public int SelectedCharacterIndex;
