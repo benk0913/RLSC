@@ -31,6 +31,8 @@ public class AICaterpillar : ActorAI
             yield return new WaitForSeconds(0.5f);
         }
 
+        ActorData BorrowBlock = CORE.Instance.Room.Actors.Find(x=>x.classJob == "ActorBorrowBlock");
+
         while (true)
         {
        
@@ -38,8 +40,8 @@ public class AICaterpillar : ActorAI
 
             while (SelectedAbility == null)
             {
-
-                if (Random.Range(0,2) == 0)
+                bool CanUseBubbles = BorrowBlock != null && BorrowBlock.hp < BorrowBlock.MaxHP * 0.75;
+                if (CanUseBubbles && Random.Range(0,2) == 0)
                 {
                     if (Random.Range(0, 2) == 0)
                     {

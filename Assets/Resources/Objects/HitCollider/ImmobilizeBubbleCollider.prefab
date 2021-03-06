@@ -96,7 +96,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -10.294669, y: 1.4416327}
+  m_Offset: {x: -10.294669, y: -8.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
     m_Bits: 0
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: PainBubblePopHit
-  OnHitSource: {fileID: 0}
+  OnHitSource: {fileID: 4609928746302612412}
   DuplicateBubbles: 0
   IsBubble: 1
   BubblesDuplicated: []
@@ -222,6 +222,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3101231386280256201}
+  - {fileID: 4609928746302612412}
   m_Father: {fileID: 8445536448255949976}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
@@ -358,6 +359,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4843465298090742902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4609928746302612412}
+  m_Layer: 9
+  m_Name: popPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4609928746302612412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843465298090742902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.735, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9099706269625375137}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5275068298634994045
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7028724439810353157}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071064, w: -0.7071072}
-  m_LocalPosition: {x: -0.01, y: 1.47, z: 0}
+  m_LocalPosition: {x: -0.01, y: -8.5, z: 0}
   m_LocalScale: {x: 2.5203, y: 2.5203, z: 2.5203}
   m_Children:
   - {fileID: 9099706269625375137}
