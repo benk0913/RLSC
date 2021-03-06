@@ -20,11 +20,6 @@ public class AIGhost : ActorAI
                 if (Act.State.Data.hp < Act.State.Data.MaxHP /2f)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghost Possess" && x.CurrentCD <= 0f);
-                    
-                    if(SelectedAbility == null)
-                    {
-                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghostial Reach" && x.CurrentCD <= 0f);
-                    }
 
                     if (SelectedAbility == null)
                     {
