@@ -59,14 +59,20 @@ public class DatabaseContent
 [Serializable]
 public class VisualDatabase
 {
+    [JsonIgnore]
     public List<BodyPart> BodyParts = new List<BodyPart>();
 
+    [JsonIgnore]
     public List<SkinSet> DefaultSkin = new List<SkinSet>();
 
+    [JsonIgnore]
     public List<SkinSet> SkinSets = new List<SkinSet>();
 
+    [JsonIgnore]
     public List<Color> SkinColorPresets = new List<Color>();
+    [JsonIgnore]
     public List<Color> HairColorPresets = new List<Color>();
+    [JsonIgnore]
     public List<Color> IrisColorPresets = new List<Color>();
 }
 
