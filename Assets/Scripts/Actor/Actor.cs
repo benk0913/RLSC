@@ -293,11 +293,11 @@ public class Actor : MonoBehaviour
                 {
                     if (actorDat.ActorEntity.transform.position.x > transform.position.x)
                     {
-                        AttemptMoveRight();
+                        AttemptMoveRight(true);
                     }
                     else
                     {
-                        AttemptMoveLeft();
+                        AttemptMoveLeft(true);
                     }
                 }
             }
@@ -967,7 +967,7 @@ public class Actor : MonoBehaviour
     }
 
 
-    public void AttemptMoveLeft()
+    public void AttemptMoveLeft(bool throughCharm = false)
     {
         if(!AttemptLookLeft())
         {
@@ -979,12 +979,16 @@ public class Actor : MonoBehaviour
             return;
         }
 
+        if (!throughCharm && IsCharmed) {
+            return;
+        }
+
         ClientMovingTowardsDir = -1;
 
         Rigid.position += Vector2.left * Time.deltaTime * State.Data.MovementSpeed;
     }
 
-    public void AttemptMoveRight()
+    public void AttemptMoveRight(bool throughCharm = false)
     {
         if (!AttemptLookRight())
         {
@@ -993,6 +997,10 @@ public class Actor : MonoBehaviour
 
         if (!CanAttemptToMove)
         {
+            return;
+        }
+
+        if (!throughCharm && IsCharmed) {
             return;
         }
 
