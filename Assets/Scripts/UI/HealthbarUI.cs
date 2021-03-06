@@ -28,6 +28,7 @@ public class HealthbarUI : MonoBehaviour
         if (ShouldHideBar())
         {
             CG.alpha = 0f;
+
             return;
         }
         else

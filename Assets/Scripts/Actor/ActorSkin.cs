@@ -86,7 +86,7 @@ public class ActorSkin : MonoBehaviour
 
     public void SetSkinColor(RendererPart renderPart, Color clr)
     {
-        renderPart.color = clr;
+        renderPart.Renderer.color = clr;
     }
 
     public void SetSkin(string skinKey)
