@@ -140,7 +140,7 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return CanLookAround && MovementEffectRoutineInstance == null;
+            return CanLookAround && !IsImmobile && MovementEffectRoutineInstance == null;
         }
     }
 
@@ -157,8 +157,7 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return !IsImmobile
-            && !IsStunned
+            return !IsStunned
             && !State.IsPreparingAbility
             && IsInputEnabled
             && !IsDead;
