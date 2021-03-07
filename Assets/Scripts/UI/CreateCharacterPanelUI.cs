@@ -45,7 +45,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
         DisplayActor.State.Data.Looks.SkinColor = "#" + ColorUtility.ToHtmlStringRGB(DefaultSkinColor);
         DisplayActor.State.Data.Looks.HairColor = "#" + ColorUtility.ToHtmlStringRGB(DefaultHairColor);
-        DisplayActor.State.Data.Looks.EyeColor  = "#" + ColorUtility.ToHtmlStringRGB(DefaultEyeColor);
+        DisplayActor.State.Data.Looks.Iris  = "#" + ColorUtility.ToHtmlStringRGB(DefaultEyeColor);
 
         DisplayActor.RefreshLooks();
     }
@@ -59,6 +59,12 @@ public class CreateCharacterPanelUI : MonoBehaviour
     public void SetSkinColor(string clr)
     {
         DisplayActor.State.Data.Looks.SkinColor = clr;
+        DisplayActor.RefreshLooks();
+    }
+
+    public void SetHairColor(string clr)
+    {
+        DisplayActor.State.Data.Looks.HairColor = clr;
         DisplayActor.RefreshLooks();
     }
 

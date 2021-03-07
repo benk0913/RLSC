@@ -823,7 +823,7 @@ public class ActorLooks
     
     public string SkinColor;
     public string HairColor;
-    public string EyeColor;
+    public string Iris;
 }
 
 [Serializable]

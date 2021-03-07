@@ -18,6 +18,8 @@ public class SkinSet : ScriptableObject
 
     public bool BareSkin = false;
 
+    public bool Hair = false;
+
 
     public Sprite GetSprite(ActorData fromData)
     {

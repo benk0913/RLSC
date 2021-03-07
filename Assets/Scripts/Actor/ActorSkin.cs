@@ -21,10 +21,7 @@ public class ActorSkin : MonoBehaviour
         SetSkin(looks.Eyes);
         SetSkin(looks.Nose);
         SetSkin(looks.Mouth);
-
-        SetSkinColor("Hair",looks.HairColor);
-
-        SetSkinColor("Iris", looks.EyeColor);
+        SetSkin(looks.Iris);
 
         Color relevantColor = Color.clear;
         if (ColorUtility.TryParseHtmlString(looks.SkinColor, out relevantColor))
@@ -32,6 +29,24 @@ public class ActorSkin : MonoBehaviour
             foreach (RendererPart part in SkinParts)
             {
                 if (part.CurrentSkinSet == null || !part.CurrentSkinSet.BareSkin)
+                {
+                    continue;
+                }
+
+                SetSkinColor(part, relevantColor);
+            }
+        }
+        else
+        {
+            CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
+        }
+
+        relevantColor = Color.clear;
+        if (ColorUtility.TryParseHtmlString(looks.HairColor, out relevantColor))
+        {
+            foreach (RendererPart part in SkinParts)
+            {
+                if (part.CurrentSkinSet == null || !part.CurrentSkinSet.Hair)
                 {
                     continue;
                 }
