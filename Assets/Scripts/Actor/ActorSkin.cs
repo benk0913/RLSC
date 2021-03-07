@@ -22,6 +22,7 @@ public class ActorSkin : MonoBehaviour
         SetSkin(looks.Nose);
         SetSkin(looks.Mouth);
         SetSkin(looks.Iris);
+        SetSkin(looks.Eyebrows);
 
         Color relevantColor = Color.clear;
         if (ColorUtility.TryParseHtmlString(looks.SkinColor, out relevantColor))

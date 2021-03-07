@@ -44,6 +44,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.State.Data.Looks.Nose  = DefaultNose[0].name;
         DisplayActor.State.Data.Looks.Mouth = DefaultMouth[0].name;
         DisplayActor.State.Data.Looks.Iris  = DefaultIris[0].name;
+        DisplayActor.State.Data.Looks.Eyebrows = DefaultEyebrows[0].name;
 
         DisplayActor.State.Data.Looks.SkinColor = "#" + ColorUtility.ToHtmlStringRGB(DefaultSkinColor);
         DisplayActor.State.Data.Looks.HairColor = "#" + ColorUtility.ToHtmlStringRGB(DefaultHairColor);
