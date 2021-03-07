@@ -141,6 +141,14 @@ public class CGDatabaseEditor : Editor
             db.content.Expeditions.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(Expedition)) as Expedition);
         }
 
+        guids = AssetDatabase.FindAssets("t:SkinSet", new[] { "Assets/" + db.DataPath });
+        db.content.Visuals.SkinSets.Clear();
+        foreach (string guid in guids)
+        {
+            db.content.Visuals.SkinSets.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(SkinSet)) as SkinSet);
+        }
+
+
         EditorUtility.SetDirty(db);
     }
 
