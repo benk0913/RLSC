@@ -816,6 +816,7 @@ public class ActorLooks
 {
     public bool IsFemale;
     public string Hair;
+    public string Eyebrows;
     public string Eyes;
     public string Ears;
     public string Nose;
