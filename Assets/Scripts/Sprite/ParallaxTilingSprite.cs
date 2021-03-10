@@ -14,8 +14,16 @@ public class ParallaxTilingSprite : MonoBehaviour
 
     Vector3 LastPos;
 
+    public bool AutoMove = false;
+
     void Update()
     {
+        if(AutoMove)
+        {
+            Renderer.material.mainTextureOffset = new Vector2(Renderer.material.mainTextureOffset.x + (Time.deltaTime * Speed), Renderer.material.mainTextureOffset.y);
+            return;
+        }
+
         if (ReferenceObject == null)
         {
             ActorData foundActor = CORE.Instance.Room.Actors.Find(X => X.IsPlayer);
