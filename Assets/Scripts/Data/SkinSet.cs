@@ -25,6 +25,11 @@ public class SkinSet : ScriptableObject
     {
         if(fromData.Looks.IsFemale)
         {
+            if(TargetSpriteFemale == null)
+            {
+                return TargetSprite;
+            }
+
             return TargetSpriteFemale;
         }
 
