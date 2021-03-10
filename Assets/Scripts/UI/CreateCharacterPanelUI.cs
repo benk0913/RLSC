@@ -52,6 +52,11 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.RefreshLooks();
     }
 
+    public void Randomize()
+    {
+        
+    }
+
     public void SetGender(bool isFemale)
     {
         DisplayActor.State.Data.Looks.IsFemale = isFemale;
