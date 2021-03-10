@@ -141,13 +141,14 @@ public class SocketHandler : MonoBehaviour
         true);
     }
 
-    public void SendCreateCharacter(string element = "fire", Action OnComplete = null)
+    public void SendCreateCharacter(string element = "fire", ActorData actor = null,Action OnComplete = null)
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Creating Character...", Color.green, 1f, true));
 
         JSONNode node = new JSONClass();
         node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
         node["classJob"] = element;
+        node["actor"] = JsonConvert.SerializeObject(actor);
 
         SendWebRequest(HostUrl + "/create-char", (UnityWebRequest ccreq) =>
         {

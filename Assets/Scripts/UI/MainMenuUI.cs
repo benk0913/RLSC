@@ -21,7 +21,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void AutoCreateSelect(string element = "fire")
     {
-        SocketHandler.Instance.SendCreateCharacter(element,() => SocketHandler.Instance.SendSelectCharacter());
+        SocketHandler.Instance.SendCreateCharacter(element,null,() => SocketHandler.Instance.SendSelectCharacter());
     }
 
     public void SelectCharacter(int index)
@@ -35,7 +35,7 @@ public class MainMenuUI : MonoBehaviour
     {
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
-        SocketHandler.Instance.SendCreateCharacter("fire",() => ResourcesLoader.Instance.LoadingWindowObject.SetActive(false));
+        SocketHandler.Instance.SendCreateCharacter("fire",null,() => ResourcesLoader.Instance.LoadingWindowObject.SetActive(false));
     }
 
     public void QuitGame()

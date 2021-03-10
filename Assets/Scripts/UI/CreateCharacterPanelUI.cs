@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,9 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     [SerializeField]
     Actor DisplayActor;
+
+    [SerializeField]
+    TMP_InputField NameInputField;
 
     public List<SkinSet> DefaultEars = new List<SkinSet>();
     public List<SkinSet> DefaultEyebrows = new List<SkinSet>();
@@ -21,6 +25,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
     public Color DefaultSkinColor;
     public Color DefaultHairColor;
 
+    public string Job = "fire";
 
 
     private void Awake()
@@ -54,8 +59,35 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     public void Randomize()
     {
+        DisplayActor.State.Data.Looks.Ears = DefaultEars[Random.Range(0,DefaultEars.Count)].name;
+        DisplayActor.State.Data.Looks.Eyes = DefaultEyes[Random.Range(0, DefaultEyes.Count)].name;
+        DisplayActor.State.Data.Looks.Hair = DefaultHair[Random.Range(0, DefaultHair.Count)].name;
+        DisplayActor.State.Data.Looks.Nose = DefaultNose[Random.Range(0, DefaultNose.Count)].name;
+        DisplayActor.State.Data.Looks.Mouth = DefaultMouth[Random.Range(0, DefaultMouth.Count)].name;
+        DisplayActor.State.Data.Looks.Iris = DefaultIris[Random.Range(0, DefaultIris.Count)].name;
+        DisplayActor.State.Data.Looks.Eyebrows = DefaultEyebrows[Random.Range(0, DefaultEyebrows.Count)].name;
+
+        DisplayActor.State.Data.Looks.SkinColor = 
+            "#" + ColorUtility.ToHtmlStringRGB(CORE.Instance.Data.content.Visuals.SkinColorPresets[Random.Range(0, CORE.Instance.Data.content.Visuals.SkinColorPresets.Count)]);
+        DisplayActor.State.Data.Looks.HairColor =
+            "#" + ColorUtility.ToHtmlStringRGB(CORE.Instance.Data.content.Visuals.HairColorPresets[Random.Range(0, CORE.Instance.Data.content.Visuals.HairColorPresets.Count)]);
+
+        RandomizeName();
         
+        DisplayActor.RefreshLooks();
     }
+
+    public void RandomizeName()
+    {
+        NameInputField.text = "RANDOM NAME";
+    }
+
+    public void Confirm()
+    {
+        SocketHandler.Instance.SendCreateCharacter(Job, DisplayActor.State.Data, () => this.gameObject.SetActive(false));
+    }
+
+   
 
     public void SetGender(bool isFemale)
     {
