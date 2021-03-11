@@ -27,40 +27,46 @@ public class ActorSkin : MonoBehaviour
         SetSkin(looks.Iris);
         SetSkin(looks.Eyebrows);
 
-        Color relevantColor = Color.clear;
-        if (ColorUtility.TryParseHtmlString(looks.SkinColor, out relevantColor))
+        if (!string.IsNullOrEmpty(looks.SkinColor))
         {
-            foreach (RendererPart part in SkinParts)
+            Color relevantColor = Color.clear;
+            if (ColorUtility.TryParseHtmlString(looks.SkinColor, out relevantColor))
             {
-                if (part.CurrentSkinSet == null || !part.CurrentSkinSet.BareSkin)
+                foreach (RendererPart part in SkinParts)
                 {
-                    continue;
-                }
+                    if (part.CurrentSkinSet == null || !part.CurrentSkinSet.BareSkin)
+                    {
+                        continue;
+                    }
 
-                SetSkinColor(part, relevantColor);
+                    SetSkinColor(part, relevantColor);
+                }
+            }
+            else
+            {
+                CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
             }
         }
-        else
+        
+        if (!string.IsNullOrEmpty(looks.SkinColor))
         {
-            CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
-        }
-
-        relevantColor = Color.clear;
-        if (ColorUtility.TryParseHtmlString(looks.HairColor, out relevantColor))
-        {
-            foreach (RendererPart part in SkinParts)
+            Color relevantColor = Color.clear;
+            if (ColorUtility.TryParseHtmlString(looks.HairColor, out relevantColor))
             {
-                if (part.CurrentSkinSet == null || !part.CurrentSkinSet.Hair)
+                foreach (RendererPart part in SkinParts)
                 {
-                    continue;
-                }
+                    if (part.CurrentSkinSet == null || !part.CurrentSkinSet.Hair)
+                    {
+                        continue;
+                    }
 
-                SetSkinColor(part, relevantColor);
+                    SetSkinColor(part, relevantColor);
+                }
             }
-        }
-        else
-        {
-            CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
+            else
+            {
+                CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
+            }
         }
 
         Halo.color = CORE.Instance.Data.content.Classes.Find(x => x.name == Act.State.Data.classJob).ClassColor;
@@ -112,6 +118,10 @@ public class ActorSkin : MonoBehaviour
 
     public void SetSkin(string skinKey)
     {
+        if (string.IsNullOrEmpty(skinKey))
+        {
+            return;
+        }
         SkinSet set = CORE.Instance.Data.content.Visuals.SkinSets.Find(X => X.name == skinKey);
 
         if (set == null)
