@@ -366,15 +366,17 @@ public class SocketHandler : MonoBehaviour
 
         yield return request.SendWebRequest();
 
-        if (request.isNetworkError || request.isHttpError)
-        {
-            CORE.Instance.LogMessageError(request.error);
-            yield break;
-        }
-
         if (CORE.Instance.DEBUG)
         {
             CORE.Instance.LogMessage("Response: " + url + " | " + request.downloadHandler.text);
+        }
+
+        if (request.isNetworkError || request.isHttpError)
+        {
+            CORE.Instance.LogMessageError(request.error);
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(request.downloadHandler.text, Color.red, 2f, true));
+
+            yield break;
         }
 
 
