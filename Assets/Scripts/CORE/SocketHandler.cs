@@ -204,6 +204,7 @@ public class SocketHandler : MonoBehaviour
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Selecting Character", Color.green, 1f, true));
 
         CurrentUser.SelectedCharacterIndex = index;
+        CurrentUser.actor = CurrentUser.chars[index];
         SendConnectSocket(OnComplete);
     }
 
@@ -288,8 +289,6 @@ public class SocketHandler : MonoBehaviour
     {
         //CurrentUser.actor = JsonConvert.DeserializeObject<ActorData>(response.downloadHandler.text);
         JSONNode data = JSON.Parse(response.downloadHandler.text);
-
-        CurrentUser.actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
     }
     public void OnDeleteCharacter(UnityWebRequest response)
     {
