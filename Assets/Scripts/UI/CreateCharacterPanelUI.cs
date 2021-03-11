@@ -79,7 +79,14 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     public void RandomizeName()
     {
-        NameInputField.text = "RANDOM NAME";
+        NameInputField.text = "";
+        SocketHandler.Instance.SendGetRandomName(DisplayActor.State.Data.Looks.IsFemale, (string name) =>
+        {
+            if (NameInputField.text == "" && this.gameObject.activeInHierarchy) {
+                NameInputField.text = name;
+            }
+        });
+
     }
 
     public void Confirm()

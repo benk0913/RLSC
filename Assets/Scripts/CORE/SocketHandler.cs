@@ -162,6 +162,23 @@ public class SocketHandler : MonoBehaviour
         true);
     }
 
+    public void SendGetRandomName(bool IsFemale, Action<string> OnComplete)
+    {
+        JSONNode node = new JSONClass();
+        node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
+        node["isFemale"].AsBool = IsFemale;
+
+        SendWebRequest(HostUrl + "/random-name", (UnityWebRequest ccreq) =>
+        {
+            JSONNode data = JSON.Parse(ccreq.downloadHandler.text);
+
+            OnComplete.Invoke(data["name"]);
+        },
+        node.ToString(),
+        null,
+        true);
+    }
+
     public void SendDeleteCharacter(string actorId, Action OnComplete = null)
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Deleting Character...", Color.green, 1f, true));
