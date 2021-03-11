@@ -59,14 +59,14 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return State.Data.States.ContainsKey("Impassive");
+            return State.Data.states.ContainsKey("Impassive");
         }
     }
     public bool IsImmobile
     {
         get
         {
-            return State.Data.States.ContainsKey("Immobile");
+            return State.Data.states.ContainsKey("Immobile");
         }
     }
 
@@ -78,7 +78,7 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return State.Data.States.ContainsKey("Charm");
+            return State.Data.states.ContainsKey("Charm");
         }
     }
 
@@ -86,7 +86,7 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return State.Data.States.ContainsKey("Silenced");
+            return State.Data.states.ContainsKey("Silenced");
         }
     }
 
@@ -94,7 +94,7 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return State.Data.States.ContainsKey("Stunned");
+            return State.Data.states.ContainsKey("Stunned");
         }
     }
 
@@ -102,7 +102,7 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return State.Data.States.ContainsKey("Invulnerable");
+            return State.Data.states.ContainsKey("Invulnerable");
         }
     }
 
@@ -183,6 +183,7 @@ public class Actor : MonoBehaviour
 
         RefreshStates();
         RefreshAbilities();
+        RefreshLooks();
 
         // Mob abilities start with cooldown to give a breathing room.
         if (State.Data.isMob)
@@ -277,11 +278,11 @@ public class Actor : MonoBehaviour
 
         if(IsCharmed)
         {
-            ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Charm"].linkedActorIds[0]);
+            ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.states["Charm"].linkedActorIds[0]);
 
             if (actorDat == null || actorDat.ActorEntity == null)
             {
-                CORE.Instance.LogMessageError("No actor with actorId " + State.Data.States["Charm"].linkedActorIds[0]);
+                CORE.Instance.LogMessageError("No actor with actorId " + State.Data.states["Charm"].linkedActorIds[0]);
             }
             else if (actorDat == this.State.Data)
             {
@@ -305,11 +306,11 @@ public class Actor : MonoBehaviour
 
         if(IsAttached)
         {
-            ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Bind Attach"].linkedActorIds[0]);
+            ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.states["Bind Attach"].linkedActorIds[0]);
 
             if (actorDat == null || actorDat.ActorEntity == null)
             {
-                CORE.Instance.LogMessageError("No actor with actorId " + CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.States["Bind Buff"].linkedActorIds[0]));
+                CORE.Instance.LogMessageError("No actor with actorId " + CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.states["Bind Buff"].linkedActorIds[0]));
             }
             else if(actorDat == this.State.Data)
             {
@@ -750,29 +751,29 @@ public class Actor : MonoBehaviour
 
     public void RefreshStates()
     {
-        if (State.Data.States.ContainsKey("Flying") && !IsFlying)
+        if (State.Data.states.ContainsKey("Flying") && !IsFlying)
         {
             StartFlying();
         }
-        else if (!State.Data.States.ContainsKey("Flying") && IsFlying)
+        else if (!State.Data.states.ContainsKey("Flying") && IsFlying)
         {
             StopFlying();
         }
 
-        if(State.Data.States.ContainsKey("Bind Attach") && !IsAttached)
+        if(State.Data.states.ContainsKey("Bind Attach") && !IsAttached)
         {
             StartAttach();
         }
-        else if(!State.Data.States.ContainsKey("Bind Attach") && IsAttached)
+        else if(!State.Data.states.ContainsKey("Bind Attach") && IsAttached)
         {
             StopAttach();
         }
 
-        if (State.Data.States.ContainsKey("Dead") && !IsDead)
+        if (State.Data.states.ContainsKey("Dead") && !IsDead)
         {
             Ded();
         }
-        else if (!State.Data.States.ContainsKey("Dead") && IsDead)
+        else if (!State.Data.states.ContainsKey("Dead") && IsDead)
         {
             Resurrect();
         }
@@ -810,7 +811,7 @@ public class Actor : MonoBehaviour
 
     public void PutAbilityOnCooldown(AbilityState abilityState)
     {
-        abilityState.CurrentCD = abilityState.CurrentAbility.CD * (1f - State.Data.Attributes.CDReduction);
+        abilityState.CurrentCD = abilityState.CurrentAbility.CD * (1f - State.Data.attributes.CDReduction);
     }
 
     public bool IsColliderOnCooldown(string colliderName)
@@ -1104,7 +1105,7 @@ public class Actor : MonoBehaviour
 
         AbilityState abilityState = State.Abilities[abilityIndex];
 
-        abilityState.CurrentCastingTime = abilityState.CurrentAbility.CastingTime * (1f - State.Data.Attributes.CTReduction);
+        abilityState.CurrentCastingTime = abilityState.CurrentAbility.CastingTime * (1f - State.Data.attributes.CTReduction);
 
         PrepareAbility(abilityState.CurrentAbility);
 

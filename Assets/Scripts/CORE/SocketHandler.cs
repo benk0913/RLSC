@@ -148,7 +148,7 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
         node["classJob"] = element;
-        node["actor"] = JsonConvert.SerializeObject(actor);
+        node["actor"] = JSON.Parse(JsonConvert.SerializeObject(actor));
 
         SendWebRequest(HostUrl + "/create-char", (UnityWebRequest ccreq) =>
         {
@@ -638,7 +638,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        actorDat.Attributes = JsonConvert.DeserializeObject<AttributeData>(data["attributes"].ToString());
+        actorDat.attributes = JsonConvert.DeserializeObject<AttributeData>(data["attributes"].ToString());
     }
 
     public void OnActorUpdateData(string eventName, JSONNode data)
@@ -699,7 +699,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        actorDat.States = JsonConvert.DeserializeObject<Dictionary<string,StateData>>(data["states"].ToString());
+        actorDat.states = JsonConvert.DeserializeObject<Dictionary<string,StateData>>(data["states"].ToString());
 
         if(actorDat.ActorEntity == null)
         {
@@ -737,7 +737,7 @@ public class ActorData
     public string actorType;
     public string prefab;
     public int hp;
-    public ActorLooks Looks;
+    public ActorLooks looks;
 
     public bool isMob
     {
@@ -768,9 +768,9 @@ public class ActorData
         }
     }
 
-    public AttributeData Attributes;
+    public AttributeData attributes;
 
-    public Dictionary<string, StateData> States = new Dictionary<string, StateData>();
+    public Dictionary<string, StateData> states = new Dictionary<string, StateData>();
 
     public List<string> abilities;
 
@@ -779,7 +779,7 @@ public class ActorData
     {
         get
         {
-            return CORE.Instance.Data.content.BaseAttributes.MovementSpeed + CORE.Instance.Data.content.BaseAttributes.MovementSpeed * Attributes.MovementSpeed;
+            return CORE.Instance.Data.content.BaseAttributes.MovementSpeed + CORE.Instance.Data.content.BaseAttributes.MovementSpeed * attributes.MovementSpeed;
         }
     }
 
@@ -788,7 +788,7 @@ public class ActorData
     {
         get
         {
-            return CORE.Instance.Data.content.BaseAttributes.HP + CORE.Instance.Data.content.BaseAttributes.HP * Attributes.HP;
+            return CORE.Instance.Data.content.BaseAttributes.HP + CORE.Instance.Data.content.BaseAttributes.HP * attributes.HP;
         }
     }
 

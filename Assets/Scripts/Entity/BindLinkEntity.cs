@@ -35,15 +35,15 @@ public class BindLinkEntity : MonoBehaviour
         CORE.Instance.DelayedInvokation(0.5f, () =>
         {
             LinkedActors.Clear();
-            if (RelevantBuff.ActorSource.State.Data.States.ContainsKey("Bind Buff"))
+            if (RelevantBuff.ActorSource.State.Data.states.ContainsKey("Bind Buff"))
             {
-                for (int i = 0; i < RelevantBuff.ActorSource.State.Data.States["Bind Buff"].linkedActorIds.Length; i++)
+                for (int i = 0; i < RelevantBuff.ActorSource.State.Data.states["Bind Buff"].linkedActorIds.Length; i++)
                 {
-                    ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == RelevantBuff.ActorSource.State.Data.States["Bind Buff"].linkedActorIds[i]);
+                    ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == RelevantBuff.ActorSource.State.Data.states["Bind Buff"].linkedActorIds[i]);
 
                     if (actorDat == null || actorDat.ActorEntity == null)
                     {
-                        CORE.Instance.LogMessageError("No actor with actorId " + CORE.Instance.Room.Actors.Find(x => x.actorId == RelevantBuff.ActorSource.State.Data.States["Bind Buff"].linkedActorIds[i]));
+                        CORE.Instance.LogMessageError("No actor with actorId " + CORE.Instance.Room.Actors.Find(x => x.actorId == RelevantBuff.ActorSource.State.Data.states["Bind Buff"].linkedActorIds[i]));
                         continue;
                     }
                     LinkedActors.Add(actorDat.ActorEntity);

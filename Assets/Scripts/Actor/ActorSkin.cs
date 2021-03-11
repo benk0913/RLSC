@@ -12,7 +12,7 @@ public class ActorSkin : MonoBehaviour
 
     public void RefreshLooks()
     {
-        ActorLooks looks = Act.State.Data.Looks;
+        ActorLooks looks = Act.State.Data.looks;
 
         SetDefaultSkin();
 

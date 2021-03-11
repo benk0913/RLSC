@@ -23,7 +23,7 @@ public class SkinSet : ScriptableObject
 
     public Sprite GetSprite(ActorData fromData)
     {
-        if(fromData.Looks.IsFemale)
+        if(fromData.looks.IsFemale)
         {
             if(TargetSpriteFemale == null)
             {

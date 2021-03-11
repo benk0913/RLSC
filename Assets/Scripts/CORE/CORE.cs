@@ -418,7 +418,7 @@ public class RoomData
                 continue;
             }
 
-            float currentThreat = Actors[i].ActorEntity.State.Data.Attributes.Threat;
+            float currentThreat = Actors[i].ActorEntity.State.Data.attributes.Threat;
 
             if (currentThreat > mostThreat)
             {
@@ -442,7 +442,7 @@ public class RoomData
                 continue;
             }
 
-            float currentThreat = Actors[i].ActorEntity.State.Data.Attributes.Threat;
+            float currentThreat = Actors[i].ActorEntity.State.Data.attributes.Threat;
 
             if (currentThreat < leastThreat)
             {
