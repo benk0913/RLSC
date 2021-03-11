@@ -5,7 +5,16 @@ using UnityEngine;
 
 public class MainMenuUI : MonoBehaviour
 {
-    
+    public static MainMenuUI Instance;
+
+    [SerializeField]
+    Transform CharacterSelectionContainer;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         CORE.Instance.DelayedInvokation(1f,AutoLogin);
@@ -15,7 +24,11 @@ public class MainMenuUI : MonoBehaviour
     {
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
-        SocketHandler.Instance.SendLogin(() => ResourcesLoader.Instance.LoadingWindowObject.SetActive(false));
+        SocketHandler.Instance.SendLogin(() =>
+        {
+            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+            RefreshUserInfo();
+        });
 
     }
 
@@ -36,6 +49,25 @@ public class MainMenuUI : MonoBehaviour
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
         SocketHandler.Instance.SendCreateCharacter("fire",null,() => ResourcesLoader.Instance.LoadingWindowObject.SetActive(false));
+    }
+
+    public void RefreshUserInfo()
+    {
+        CORE.ClearContainer(CharacterSelectionContainer);
+
+        for(int i=0;i<SocketHandler.Instance.CurrentUser.chars.Length;i++)
+        {
+            ActorData character = SocketHandler.Instance.CurrentUser.chars[i];
+
+
+            DisplayCharacterUI disAct = ResourcesLoader.Instance.GetRecycledObject("DisplayActor").GetComponent<DisplayCharacterUI>();
+            disAct.transform.SetParent(CharacterSelectionContainer, false);
+            disAct.transform.localScale = Vector3.one;
+            disAct.transform.position = Vector3.one;
+            disAct.AttachedCharacter.transform.position = Vector3.one;
+            disAct.AttachedCharacter.SetActorInfo(character);
+            disAct.SetInfo(() => { SelectCharacter(i); });
+        }
     }
 
     public void QuitGame()

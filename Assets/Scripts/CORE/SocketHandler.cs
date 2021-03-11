@@ -261,7 +261,10 @@ public class SocketHandler : MonoBehaviour
 
     public void OnLogin(UnityWebRequest response)
     {
-        // TODO show existing characters from data["chars"]
+        JSONNode data = JSON.Parse(response.downloadHandler.text);
+
+        CurrentUser.chars = JsonConvert.DeserializeObject<ActorData[]>(data["chars"].ToString());
+        // TODO replace entire user data in repsonse?
     }
 
     public void OnCreateCharacter(UnityWebRequest response)
@@ -698,6 +701,8 @@ public class SocketHandler : MonoBehaviour
 public class UserData
 {
     public ActorData actor;
+
+    public ActorData[] chars;
 
     public int SelectedCharacterIndex;
 }
