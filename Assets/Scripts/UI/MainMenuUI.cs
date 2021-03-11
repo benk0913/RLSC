@@ -66,7 +66,8 @@ public class MainMenuUI : MonoBehaviour
             disAct.transform.position = Vector3.one;
             disAct.AttachedCharacter.transform.position = Vector3.one;
             disAct.AttachedCharacter.SetActorInfo(character);
-            disAct.SetInfo(() => { SelectCharacter(i); });
+            int index = i;
+            disAct.SetInfo(() => { SelectCharacter(index); });
         }
     }
 
