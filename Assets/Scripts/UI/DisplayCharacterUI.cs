@@ -13,6 +13,9 @@ public class DisplayCharacterUI : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     TooltipTargetUI TooltipTarget;
 
+    [SerializeField]
+    GameObject SelectionObject;
+
     public void SetInfo(Action onClick = null)
     {
         OnClick = onClick;
@@ -24,5 +27,13 @@ public class DisplayCharacterUI : MonoBehaviour, IPointerClickHandler
         OnClick?.Invoke();
     }
 
+    public void Select()
+    {
+        SelectionObject.SetActive(true);
+    }
 
+    public void Deselect()
+    {
+        SelectionObject.SetActive(false);
+    }
 }

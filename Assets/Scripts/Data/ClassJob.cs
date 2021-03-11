@@ -19,4 +19,7 @@ public class ClassJob : ScriptableObject
     public AttributeData Attributes;
     
     public List<State> Immunity;
+
+    [JsonIgnore]
+    public Color ClassColor;
 }

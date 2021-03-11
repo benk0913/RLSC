@@ -7,18 +7,15 @@ public class SpriteColorGroup : MonoBehaviour
     List<SpriteColorGroupInstance> Renderers = new List<SpriteColorGroupInstance>();
 
 
-    private void Awake()
+    private void Start()
     {
-        CORE.Instance.DelayedInvokation(1f, () => 
-        {
-            SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>(true);
+        SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>(true);
 
-            Renderers.Clear();
-            foreach (SpriteRenderer renderer in renderers)
-            {
-                Renderers.Add(new SpriteColorGroupInstance(renderer));
-            }
-        });
+        Renderers.Clear();
+        foreach (SpriteRenderer renderer in renderers)
+        {
+            Renderers.Add(new SpriteColorGroupInstance(renderer));
+        }
         
     }
 

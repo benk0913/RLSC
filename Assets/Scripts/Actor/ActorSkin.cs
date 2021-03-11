@@ -10,6 +10,9 @@ public class ActorSkin : MonoBehaviour
     [SerializeField]
     public List<RendererPart> SkinParts = new List<RendererPart>();
 
+    [SerializeField]
+    SpriteRenderer Halo;
+
     public void RefreshLooks()
     {
         ActorLooks looks = Act.State.Data.looks;
@@ -59,6 +62,8 @@ public class ActorSkin : MonoBehaviour
         {
             CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
         }
+
+        Halo.color = CORE.Instance.Data.content.Classes.Find(x => x.name == Act.State.Data.classJob).ClassColor;
     }
 
     public void SetSkinColor(string bodypart, string hexColor)

@@ -303,4 +303,10 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.State.Data.looks.Ears = DefaultEars[index].name;
         DisplayActor.RefreshLooks();
     }
+
+    public void SetClassJob(string classJob)
+    {
+        DisplayActor.State.Data.classJob = classJob;
+        DisplayActor.RefreshLooks();
+    }
 }

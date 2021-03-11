@@ -10,6 +10,9 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     Transform CharacterSelectionContainer;
 
+    [SerializeField]
+    DisplayCharacterUI SelectedDisplayActor;
+
     private void Awake()
     {
         Instance = this;
@@ -44,11 +47,30 @@ public class MainMenuUI : MonoBehaviour
         SocketHandler.Instance.SendSelectCharacter(()=> ResourcesLoader.Instance.LoadingWindowObject.SetActive(false), index);
     }
 
-    public void CreateCharacter()
+    public void DeleteCharacter (string actorId)
     {
-        ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+        WarningWindowUI.Instance.Show("Delete this character forever and ever!?", () =>
+        {
+            ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
-        SocketHandler.Instance.SendCreateCharacter("fire",null,() => ResourcesLoader.Instance.LoadingWindowObject.SetActive(false));
+            SocketHandler.Instance.SendDeleteCharacter(actorId, () =>
+            {
+                ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+                List<ActorData> characters = new List<ActorData>();
+                foreach(ActorData chara in SocketHandler.Instance.CurrentUser.chars)
+                {
+                    if(chara.actorId == actorId)
+                    {
+                        continue;
+                    }
+
+                    characters.Add(chara);
+                }
+
+                SocketHandler.Instance.CurrentUser.chars = characters.ToArray();
+                RefreshUserInfo();
+            });
+        });
     }
 
     public void RefreshUserInfo()
@@ -66,9 +88,48 @@ public class MainMenuUI : MonoBehaviour
             disAct.transform.position = Vector3.one;
             disAct.AttachedCharacter.transform.position = Vector3.one;
             disAct.AttachedCharacter.SetActorInfo(character);
-            int index = i;
-            disAct.SetInfo(() => { SelectCharacter(index); });
+            disAct.SetInfo(() => { SetCharacterSelected(disAct); });
         }
+    }
+
+    public void SetCharacterSelected(DisplayCharacterUI displayActor)
+    {
+        if(SelectedDisplayActor != null)
+        {
+            SelectedDisplayActor.Deselect();
+        }
+
+        SelectedDisplayActor = displayActor;
+        SelectedDisplayActor.Select();
+    }
+
+    public void ConfirmSelectedCharacter()
+    {
+        if(SelectedDisplayActor == null)
+        {
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No selected character...",Color.yellow,1f));
+            return;
+        }
+
+        for (int i = 0; i < SocketHandler.Instance.CurrentUser.chars.Length; i++)
+        {
+            if (SocketHandler.Instance.CurrentUser.chars[i].name == SelectedDisplayActor.AttachedCharacter.State.Data.name)
+            {
+                SelectCharacter(i);
+                break;
+            }
+        }
+    }
+
+    public void DeleteSelectedCharacter()
+    {
+        if (SelectedDisplayActor == null)
+        {
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No selected character...", Color.yellow, 1f));
+            return;
+        }
+
+        DeleteCharacter(SelectedDisplayActor.AttachedCharacter.State.Data.actorId);
     }
 
     public void QuitGame()
