@@ -578,7 +578,7 @@ public class Actor : MonoBehaviour
         spriteColorGroup.SetColor(Color.black);
         CORE.Instance.DelayedInvokation(0.1f, () =>
         {
-            spriteColorGroup.SetColor(Color.white);
+            spriteColorGroup.ResetColor();
         });
     }
 

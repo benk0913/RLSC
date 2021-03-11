@@ -4,34 +4,68 @@ using UnityEngine;
 
 public class SpriteColorGroup : MonoBehaviour
 {
-    [SerializeField]
-    SpriteRenderer[] Renderers;
+    List<SpriteColorGroupInstance> Renderers = new List<SpriteColorGroupInstance>();
 
 
     private void Awake()
     {
-        Renderers = GetComponentsInChildren<SpriteRenderer>(true);
+        CORE.Instance.DelayedInvokation(1f, () => 
+        {
+            SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>(true);
+
+            Renderers.Clear();
+            foreach (SpriteRenderer renderer in renderers)
+            {
+                Renderers.Add(new SpriteColorGroupInstance(renderer));
+            }
+        });
+        
     }
 
     public void SetColor(Color clr)
     {
-        foreach(SpriteRenderer renderer in Renderers)
+        foreach(SpriteColorGroupInstance inst in Renderers)
         {
-            renderer.color = clr;
+            inst.Renderer.color = clr;
         }
     }
 
     public void SetMaterial(Material mat)
     {
-        foreach (SpriteRenderer renderer in Renderers)
+        foreach (SpriteColorGroupInstance inst in Renderers)
         {
-            renderer.material = mat;
+            inst.Renderer.material = mat;
         }
     }
 
     public void ResetMaterial()
     {
-        SetMaterial(CORE.Instance.Data.DefaultSpriteMaterial);
+        foreach (SpriteColorGroupInstance inst in Renderers)
+        {
+            inst.Renderer.material = inst.OriginalMaterial;
+        }
     }
-    
+
+    public void ResetColor()
+    {
+        foreach (SpriteColorGroupInstance inst in Renderers)
+        {
+            inst.Renderer.color = inst.OriginalColor;
+        }
+    }
+
+
+    public class SpriteColorGroupInstance
+    {
+        public SpriteRenderer Renderer;
+        public Color OriginalColor;
+        public Material OriginalMaterial;
+
+        public SpriteColorGroupInstance(SpriteRenderer renderer)
+        {
+            this.Renderer = renderer;
+            this.OriginalColor = renderer.color;
+            this.OriginalMaterial = renderer.material;
+        }
+    }
 }
