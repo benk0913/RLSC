@@ -26,14 +26,14 @@ public class DisplayEXPEntityUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void Show(int gainEXP)
-    {
-        //TODO REPLACE WITH REAL 
-        CurrentExp = Random.Range(0, 300);
+    public void Show(int gainEXP, int currentEXP)
+    { 
+        CurrentExp = currentEXP;
         GainExp = gainEXP;
 
         ExpValueText.text = CurrentExp.ToString();
 
+        StopAllCoroutines();
         this.gameObject.SetActive(true);
     }
 
