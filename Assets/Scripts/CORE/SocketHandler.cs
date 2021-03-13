@@ -75,6 +75,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("interactable_spawn", OnInteractableSpawn));
         SocketEventListeners.Add(new SocketEventListener("interactable_despawn", OnInteractableDespawn));
         SocketEventListeners.Add(new SocketEventListener("interactable_use", OnInteractableUse));
+        SocketEventListeners.Add(new SocketEventListener("exp_update", OnExpUpdate));
+        SocketEventListeners.Add(new SocketEventListener("level_up", OnLevelUp));
+        SocketEventListeners.Add(new SocketEventListener("expedition_floor_complete", OnExpeditionFloorComplete));
 
 
 
@@ -468,6 +471,29 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.InteractableUse(data["interactableId"], data["actorId"]);
     }
 
+    public void OnExpUpdate(string eventName, JSONNode data)
+    {
+        CurrentUser.actor.exp = data["exp"].AsInt;
+    }
+
+    public void OnLevelUp(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if(actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+        actorDat.level++;
+    }
+
+    public void OnExpeditionFloorComplete(string eventName, JSONNode data)
+    {
+        // TODO show completion on the UI.
+    }
+
     public void OnMoveActors(string eventName, JSONNode data)
     {
         CORE.Instance.Room.ReceiveActorPositions(data);
@@ -739,6 +765,8 @@ public class ActorData
     public string prefab;
     public int hp;
     public ActorLooks looks;
+    public int exp;
+    public int level;
 
     public bool isMob
     {
