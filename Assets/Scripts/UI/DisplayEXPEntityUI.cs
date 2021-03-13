@@ -26,6 +26,11 @@ public class DisplayEXPEntityUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, ((float)CORE.Instance.Room.PlayerActor.exp / CORE.Instance.Data.content.ExpChart[CORE.Instance.Room.PlayerActor.level]), Time.deltaTime);
+    }
+
     public void Show(int gainEXP, int currentEXP)
     { 
         CurrentExp = currentEXP;

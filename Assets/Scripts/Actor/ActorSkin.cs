@@ -69,7 +69,12 @@ public class ActorSkin : MonoBehaviour
             }
         }
 
-        Halo.color = CORE.Instance.Data.content.Classes.Find(x => x.name == Act.State.Data.classJob).ClassColor;
+        ClassJob job = CORE.Instance.Data.content.Classes.Find(x => x.name == Act.State.Data.classJob);
+
+        if (job != null)
+        {
+            Halo.color = job.ClassColor;
+        }
     }
 
     public void SetSkinColor(string bodypart, string hexColor)

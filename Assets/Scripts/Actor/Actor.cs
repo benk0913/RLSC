@@ -246,7 +246,7 @@ public class Actor : MonoBehaviour
 
     void OnEnable()
     {
-        Initialize();
+        CORE.Instance.DelayedInvokation(0.1f, () => Initialize());
     }
 
     private void OnDestroy()
@@ -425,7 +425,7 @@ public class Actor : MonoBehaviour
 
     void Initialize()
     {
-        if(State.Data != null && State.Data.isMob && AIControl.IsBoss)
+        if (State.Data != null && State.Data.isMob && AIControl.IsBoss)
         {
             BossHealthbarUI.Instance.SetCurrentActor(this);
         }

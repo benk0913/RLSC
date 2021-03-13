@@ -23,6 +23,11 @@ public class SkinSet : ScriptableObject
 
     public Sprite GetSprite(ActorData fromData)
     {
+        if(fromData == null || fromData.looks == null)
+        {
+            return TargetSprite;
+        }
+
         if(fromData.looks.IsFemale)
         {
             if(TargetSpriteFemale == null)
