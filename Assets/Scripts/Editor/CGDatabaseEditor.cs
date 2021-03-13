@@ -148,8 +148,16 @@ public class CGDatabaseEditor : Editor
             db.content.Visuals.SkinSets.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(SkinSet)) as SkinSet);
         }
 
+        db.content.ExpChart.Clear();
+        for (int lvl = 1; lvl <= db.content.MaxLevel; lvl++) {
+            db.content.ExpChart.Add(calculateExpToTargetLevel(lvl));
+        }
 
         EditorUtility.SetDirty(db);
     }
 
+    private int calculateExpToTargetLevel(int lvl)
+    {
+        return (int)(50 * (Mathf.Pow(lvl, 3) - 6 * Mathf.Pow(lvl, 2) + 17 * lvl - 12) / 3);
+    }
 }

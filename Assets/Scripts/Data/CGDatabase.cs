@@ -46,6 +46,8 @@ public class DatabaseContent
     public List<InteractableData> Interactables = new List<InteractableData>();
     
     public List<Expedition> Expeditions = new List<Expedition>();
+    
+    public List<int> ExpChart = new List<int>();
 
     public string StartingScene;
 
@@ -54,6 +56,8 @@ public class DatabaseContent
     public AttributeData BaseAttributes;
     
     public AttributeData AttributesLimits;
+
+    public int MaxLevel;
 }
 
 [Serializable]
