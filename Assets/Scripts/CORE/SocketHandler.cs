@@ -474,6 +474,7 @@ public class SocketHandler : MonoBehaviour
     public void OnExpUpdate(string eventName, JSONNode data)
     {
         CurrentUser.actor.exp = data["exp"].AsInt;
+        // TODO update exp on the UI.
     }
 
     public void OnLevelUp(string eventName, JSONNode data)
@@ -487,11 +488,20 @@ public class SocketHandler : MonoBehaviour
             return;
         }
         actorDat.level++;
+        // TODO show level up effect.
     }
 
     public void OnExpeditionFloorComplete(string eventName, JSONNode data)
     {
         // TODO show completion on the UI.
+        // TODO unlock portals.
+    }
+
+    public void SendEnterPortal(Portal TargetPortal)
+    {
+        JSONNode node = new JSONClass();
+        node["portalId"] = TargetPortal.name;
+        SocketHandler.Instance.SendEvent("entered_portal", node);
     }
 
     public void OnMoveActors(string eventName, JSONNode data)

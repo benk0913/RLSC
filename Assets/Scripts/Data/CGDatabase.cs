@@ -88,6 +88,7 @@ public class SceneInfo
     public List<SceneInteractable> Interactables = new List<SceneInteractable>();
     public float playerSpawnX;
     public float playerSpawnY;
+    public List<Portal> Portals = new List<Portal>();
 
     [JsonIgnore]
     public string MusicTrack;
