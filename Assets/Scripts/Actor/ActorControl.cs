@@ -77,7 +77,8 @@ public class ActorControl : MonoBehaviour
             }
         }
         
-        for(int i=0;i<5;i++)
+        int abilitiesLength = CurrentActor.State.Data.abilities.Count;
+        for(int i = 0; i < abilitiesLength; i++)
         {
             if (Input.GetKeyDown(InputMap.Map["Ability"+i]))
             {

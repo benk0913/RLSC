@@ -496,6 +496,12 @@ public class SocketHandler : MonoBehaviour
             return;
         }
         actorDat.level++;
+        if (actorDat.abilities.Count < CORE.Instance.Data.content.AbilitiesMaxCount)
+        {
+            int newSpellPosition = actorDat.level - 2 + CORE.Instance.Data.content.AbilitiesInitCount;
+            actorDat.abilities.Add(actorDat.ClassJobReference.Abilities[newSpellPosition]);
+            actorDat.ActorEntity.RefreshAbilities();
+        }
 
         GameObject lvlUpEffect = ResourcesLoader.Instance.GetRecycledObject("LevelUpEffect");
         lvlUpEffect.transform.position = actorDat.ActorEntity.transform.position;

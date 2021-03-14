@@ -58,6 +58,10 @@ public class DatabaseContent
     public AttributeData AttributesLimits;
 
     public int MaxLevel;
+
+    public int AbilitiesInitCount;
+
+    public int AbilitiesMaxCount;
 }
 
 [Serializable]
