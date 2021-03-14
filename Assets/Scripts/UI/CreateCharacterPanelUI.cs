@@ -95,7 +95,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     public void Confirm()
     {
-        SocketHandler.Instance.SendCreateCharacter(Job, DisplayActor.State.Data, () =>
+        SocketHandler.Instance.SendCreateCharacter(DisplayActor.State.Data.classJob, DisplayActor.State.Data, () =>
         {
             this.gameObject.SetActive(false);
             MainMenuUI.Instance.AutoLogin();
