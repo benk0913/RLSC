@@ -181,6 +181,7 @@ public class Actor : MonoBehaviour
         State.Data.OnRefreshStates.AddListener(RefreshStates);
         State.Data.OnRefreshAbilities.AddListener(RefreshAbilities);
 
+        RefreshControlSource();
         RefreshStates();
         RefreshAbilities();
         RefreshLooks();
@@ -191,7 +192,6 @@ public class Actor : MonoBehaviour
             PutAbilitiesOnCooldown();
         }
  
-        RefreshControlSource();
 
         ClassJob classJob = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob);
 
