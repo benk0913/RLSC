@@ -477,12 +477,12 @@ public class SocketHandler : MonoBehaviour
 
         CurrentUser.actor.exp = data["exp"].AsInt;
 
-        if(prevExp > CurrentUser.actor.exp)
+        if (prevExp > CurrentUser.actor.exp)
         {
             return;
         }
 
-        DisplayEXPEntityUI.Instance.Show(CurrentUser.actor.exp - prevExp, prevExp);
+        DisplayEXPEntityUI.Instance.Show(CurrentUser.actor.exp);
     }
 
     public void OnLevelUp(string eventName, JSONNode data)

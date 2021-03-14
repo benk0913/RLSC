@@ -12,13 +12,12 @@ public class DisplayEXPEntityUI : MonoBehaviour
     Image FillImage;
 
     [SerializeField]
-    TextMeshProUGUI GainValueText;
-
-    [SerializeField]
     TextMeshProUGUI ExpValueText;
 
-    int GainExp;
     int CurrentExp;
+
+    [SerializeField]
+    CanvasGroup CG;
 
     private void Awake()
     {
@@ -26,20 +25,14 @@ public class DisplayEXPEntityUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    private void Update()
+    public void Show(int currentEXP)
     {
-        FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, ((float)CORE.Instance.Room.PlayerActor.exp / CORE.Instance.Data.content.ExpChart[CORE.Instance.Room.PlayerActor.level]), Time.deltaTime);
-    }
-
-    public void Show(int gainEXP, int currentEXP)
-    { 
-        CurrentExp = currentEXP;
-        GainExp = gainEXP;
-
-        ExpValueText.text = CurrentExp.ToString();
-
-        StopAllCoroutines();
         this.gameObject.SetActive(true);
+
+        
+        StopAllCoroutines();
+
+        StartCoroutine(ShowRoutine(currentEXP));
     }
 
     public void Hide()
@@ -47,25 +40,39 @@ public class DisplayEXPEntityUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public IEnumerator RollText(int fromNumber, int toNumber, TextMeshProUGUI label)
+    IEnumerator ShowRoutine(int currentExp)
     {
+        while(CG.alpha < 1f)
+        {
+            CG.alpha += 1f * Time.deltaTime;
+            yield return 0;
+        }
+        
         float t = 0f;
         while(t<1f)
         {
-            label.text = Mathf.RoundToInt(Mathf.Lerp(fromNumber, toNumber, t)).ToString();
+            t += Time.deltaTime;
 
+
+            CurrentExp = Mathf.RoundToInt(Mathf.Lerp(CurrentExp, currentExp, t));
+
+            ExpValueText.text = CurrentExp.ToString();
+
+            FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, ((float)CurrentExp / CORE.Instance.Data.content.ExpChart[CORE.Instance.Room.PlayerActor.level]), Time.deltaTime);
+
+            yield return 0;
+        }
+
+        CurrentExp = currentExp;
+
+        yield return new WaitForSeconds(1f);
+
+        while (CG.alpha > 0f)
+        {
+            CG.alpha -= 1f * Time.deltaTime;
             yield return 0;
         }
     }
 
-    public void RollGainText()
-    {
-        StartCoroutine(RollText(0, GainExp, GainValueText));
-    }
 
-    public void RollExpValueText()
-    {
-        StartCoroutine(RollText(GainExp, 0, GainValueText));
-        StartCoroutine(RollText(CurrentExp, CurrentExp+GainExp, ExpValueText));
-    }
 }
