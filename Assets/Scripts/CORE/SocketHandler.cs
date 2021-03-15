@@ -473,14 +473,14 @@ public class SocketHandler : MonoBehaviour
 
     public void OnExpUpdate(string eventName, JSONNode data)
     {
-        int prevExp = CurrentUser.actor.exp;
+        //int prevExp = CurrentUser.actor.exp;
 
         CurrentUser.actor.exp = data["exp"].AsInt;
 
-        if (prevExp > CurrentUser.actor.exp)
-        {
-            return;
-        }
+        //if (prevExp > CurrentUser.actor.exp)
+        //{
+        //    return;
+        //}
 
         DisplayEXPEntityUI.Instance.Show(CurrentUser.actor.exp);
     }
@@ -505,6 +505,7 @@ public class SocketHandler : MonoBehaviour
 
         GameObject lvlUpEffect = ResourcesLoader.Instance.GetRecycledObject("LevelUpEffect");
         lvlUpEffect.transform.position = actorDat.ActorEntity.transform.position;
+        lvlUpEffect.GetComponent<AbilityCollider>().SetInfo(null, actorDat.ActorEntity);
     }
 
     public void OnExpeditionFloorComplete(string eventName, JSONNode data)
@@ -516,7 +517,7 @@ public class SocketHandler : MonoBehaviour
     public void SendEnterPortal(Portal TargetPortal)
     {
         JSONNode node = new JSONClass();
-        node["portalId"] = TargetPortal.name;
+        node["portalId"] = TargetPortal.GateKey;
         SocketHandler.Instance.SendEvent("entered_portal", node);
     }
 

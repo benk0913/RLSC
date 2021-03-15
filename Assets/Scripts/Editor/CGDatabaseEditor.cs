@@ -61,6 +61,17 @@ public class CGDatabaseEditor : Editor
             currentInfo.Mobs.Add(spawn);
         }
 
+
+
+        PortalEntity[] portals = FindObjectsOfType<PortalEntity>();
+
+        currentInfo.Portals.Clear();
+
+        foreach (PortalEntity portal in portals)
+        {
+            currentInfo.Portals.Add(portal.PortalReference);
+        }
+
         EditorUtility.SetDirty(db);
     }
 

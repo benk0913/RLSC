@@ -18,6 +18,8 @@ public class InteractableEntity : MonoBehaviour
 
     public bool IsBusy;
 
+    public bool isClientOnly = false;
+
     public void SetInfo(Interactable data)
     {
         Data = data;
@@ -36,13 +38,19 @@ public class InteractableEntity : MonoBehaviour
             return;
         }
 
-        JSONNode node = new JSONClass();
-        node["interactableId"] = Data.interactableId;
-        SocketHandler.Instance.SendEvent("used_interactable",node);
-
         InteractableCooldown = 2f;
 
         IsBusy = true;
+
+        if (isClientOnly)
+        {
+            Interacted(NearbyActor.State.Data.actorId);
+            return;
+        }
+
+        JSONNode node = new JSONClass();
+        node["interactableId"] = Data.interactableId;
+        SocketHandler.Instance.SendEvent("used_interactable", node);
     }
 
     public void Interacted(string byActorID)

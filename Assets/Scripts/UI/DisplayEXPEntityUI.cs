@@ -14,10 +14,18 @@ public class DisplayEXPEntityUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI ExpValueText;
 
+    [SerializeField]
+    TextMeshProUGUI GainEXPText;
+
     int CurrentExp;
 
     [SerializeField]
     CanvasGroup CG;
+
+
+    public List<DisplayExpInstance> Que = new List<DisplayExpInstance>();
+
+    Coroutine ShowRoutineInstance;
 
     private void Awake()
     {
@@ -27,12 +35,39 @@ public class DisplayEXPEntityUI : MonoBehaviour
 
     public void Show(int currentEXP)
     {
+        int lvlExpSnapshot = CORE.Instance.Data.content.ExpChart[CORE.Instance.Room.PlayerActor.level];
+
+        DisplayExpInstance instance = new DisplayExpInstance(currentEXP, lvlExpSnapshot);
+
+
+    }
+
+    public void Show(DisplayExpInstance instance)
+    {
+        if(ShowRoutineInstance != null)
+        {
+            Que.Add(instance);
+            return;
+        }
+
         this.gameObject.SetActive(true);
 
-        
-        StopAllCoroutines();
+        ShowRoutineInstance = StartCoroutine(ShowRoutine(instance));
+    }
 
-        StartCoroutine(ShowRoutine(currentEXP));
+    void ContinueQue()
+    {
+        if(Que.Count == 0)
+        {
+            ShowRoutineInstance = null;
+            Hide();
+            return;
+        }
+
+        DisplayExpInstance instance = Que[0];
+        Que.RemoveAt(0);
+
+        Show(instance);
     }
 
     public void Hide()
@@ -40,12 +75,27 @@ public class DisplayEXPEntityUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    IEnumerator ShowRoutine(int currentExp)
+    IEnumerator ShowRoutine(DisplayExpInstance instance)
     {
-        while(CG.alpha < 1f)
+        GainEXPText.text = "";
+
+        while (CG.alpha < 1f)
         {
             CG.alpha += 1f * Time.deltaTime;
             yield return 0;
+        }
+
+        if(instance.CurrentEXP < CurrentExp)
+        {
+            while(FillImage.fillAmount < 1f)
+            {
+                FillImage.fillAmount += Time.deltaTime;
+                yield return 0;
+            }
+
+            CurrentExp = 0;
+            FillImage.fillAmount = 0f;
+
         }
         
         float t = 0f;
@@ -53,26 +103,47 @@ public class DisplayEXPEntityUI : MonoBehaviour
         {
             t += Time.deltaTime;
 
+            CurrentExp = Mathf.RoundToInt(Mathf.Lerp(CurrentExp, instance.CurrentEXP, t));
 
-            CurrentExp = Mathf.RoundToInt(Mathf.Lerp(CurrentExp, currentExp, t));
-
+            GainEXPText.text = "+" + (instance.CurrentEXP - CurrentExp);
             ExpValueText.text = CurrentExp.ToString();
 
-            FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, ((float)CurrentExp / CORE.Instance.Data.content.ExpChart[CORE.Instance.Room.PlayerActor.level]), Time.deltaTime);
+            FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, ((float)CurrentExp /(float)instance.LevelEXPSnapshot), Time.deltaTime);
 
             yield return 0;
         }
 
-        CurrentExp = currentExp;
+        GainEXPText.text = "";
 
-        yield return new WaitForSeconds(1f);
+        CurrentExp = instance.CurrentEXP;
 
-        while (CG.alpha > 0f)
+        if (Que.Count <= 0)
         {
-            CG.alpha -= 1f * Time.deltaTime;
-            yield return 0;
+            yield return new WaitForSeconds(1f);
+
+            while (CG.alpha > 0f)
+            {
+                CG.alpha -= 1f * Time.deltaTime;
+                yield return 0;
+            }
         }
+
+        ShowRoutineInstance = null;
+
+        GainEXPText.text = "";
+
+        ContinueQue();
     }
 
+    public class DisplayExpInstance
+    {
+        public int CurrentEXP;
+        public int LevelEXPSnapshot;
 
+        public DisplayExpInstance(int currentXP, int lvlXpSnap)
+        {
+            this.CurrentEXP = currentXP;
+            this.LevelEXPSnapshot = lvlXpSnap;
+        }
+    }
 }
