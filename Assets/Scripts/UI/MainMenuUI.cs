@@ -90,6 +90,8 @@ public class MainMenuUI : MonoBehaviour
             disAct.AttachedCharacter.SetActorInfo(character);
             disAct.SetInfo(() => { SetCharacterSelected(disAct); });
         }
+
+        SelectedDisplayActor = null;
     }
 
     public void SetCharacterSelected(DisplayCharacterUI displayActor)
@@ -130,6 +132,7 @@ public class MainMenuUI : MonoBehaviour
         }
 
         DeleteCharacter(SelectedDisplayActor.AttachedCharacter.State.Data.actorId);
+
     }
 
     public void QuitGame()
