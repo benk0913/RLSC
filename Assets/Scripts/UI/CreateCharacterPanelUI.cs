@@ -34,6 +34,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+
     public void Show()
     {
         this.gameObject.SetActive(true);
