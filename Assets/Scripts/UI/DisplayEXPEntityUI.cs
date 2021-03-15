@@ -96,7 +96,7 @@ public class DisplayEXPEntityUI : MonoBehaviour
 
             CurrentExp = 0;
             FillImage.fillAmount = 0f;
-
+            ExpValueText.text = 0 +"%";
         }
         GainEXPText.text = "+" + (instance.CurrentEXP - CurrentExp);
 
@@ -110,9 +110,9 @@ public class DisplayEXPEntityUI : MonoBehaviour
             CurrentExp = Mathf.RoundToInt(Mathf.Lerp(CurrentExp, instance.CurrentEXP, t));
 
             GainEXPText.text = "+" + (instance.CurrentEXP - CurrentExp);
-            ExpValueText.text = CurrentExp.ToString();
+            ExpValueText.text = Mathf.RoundToInt(Mathf.Min(100f, ((float)CurrentExp /(float)instance.LevelEXPSnapshot)*100f))+"%";
 
-            FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, ((float)CurrentExp /(float)instance.LevelEXPSnapshot), Time.deltaTime);
+            FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, ((float)CurrentExp /(float)instance.LevelEXPSnapshot), t);
 
             yield return 0;
         }
