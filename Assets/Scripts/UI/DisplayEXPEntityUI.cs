@@ -39,6 +39,7 @@ public class DisplayEXPEntityUI : MonoBehaviour
 
         DisplayExpInstance instance = new DisplayExpInstance(currentEXP, lvlExpSnapshot);
 
+        Show(instance);
 
     }
 
@@ -97,7 +98,10 @@ public class DisplayEXPEntityUI : MonoBehaviour
             FillImage.fillAmount = 0f;
 
         }
-        
+        GainEXPText.text = "+" + (instance.CurrentEXP - CurrentExp);
+
+        yield return new WaitForSeconds(1f);
+
         float t = 0f;
         while(t<1f)
         {
