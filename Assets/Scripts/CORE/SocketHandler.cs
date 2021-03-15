@@ -477,12 +477,6 @@ public class SocketHandler : MonoBehaviour
 
         CurrentUser.actor.exp = data["exp"].AsInt;
 
-        int addedExp = data["addedExp"].AsInt;
-        if (addedExp > 0)
-        {
-            // TODO show ui msg
-        }
-
         //if (prevExp > CurrentUser.actor.exp)
         //{
         //    return;
