@@ -580,6 +580,9 @@ public class Actor : MonoBehaviour
         {
             spriteColorGroup.ResetColor();
         });
+
+
+        Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f,(float)State.Data.hp/ (float)State.Data.MaxHP));
     }
 
     public void Ded()
