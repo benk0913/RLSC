@@ -92,6 +92,11 @@ public class MainMenuUI : MonoBehaviour
         }
 
         SelectedDisplayActor = null;
+
+        if (SocketHandler.Instance.CurrentUser.chars.Length <= 0)
+        {
+            CreateCharacterPanelUI.Instance.Show();
+        }
     }
 
     public void SetCharacterSelected(DisplayCharacterUI displayActor)

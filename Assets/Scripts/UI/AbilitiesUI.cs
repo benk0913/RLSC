@@ -224,6 +224,13 @@ public class AbilitiesUI : MonoBehaviour
             }
 
             // Swap the slots in the UI.
+
+            if(CORE.Instance.Room.HasEnemies)
+            {
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("You cannot switch abilities, Enemies are nearby!", Color.red));
+                return;
+            }
+
             Transform parent1 = SelectedAbility.transform.parent;
             int index1InParent = SelectedAbility.transform.GetSiblingIndex();
             Transform parent2 = HoveredAbility.transform.parent;

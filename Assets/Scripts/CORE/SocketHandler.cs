@@ -441,20 +441,24 @@ public class SocketHandler : MonoBehaviour
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering "+data["scene"].Value, Color.green, 1f, false));
 
-        CORE.Instance.LoadScene(data["scene"].Value, ()=>
+        ScreenFaderUI.Instance.FadeToBlack(()=> 
         {
-            SendEvent("scene_loaded");
-        });
-
-        SceneInfo info = CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == data["scene"].Value);
+            SceneInfo info = CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == data["scene"].Value);
         
-        if (info != null)
-        {
-            if(!string.IsNullOrEmpty(info.MusicTrack))
+            if (info != null)
             {
-                AudioControl.Instance.SetMusic(info.MusicTrack);
+                if(!string.IsNullOrEmpty(info.MusicTrack))
+                {
+                    AudioControl.Instance.SetMusic(info.MusicTrack);
+                }
             }
-        }
+
+            CORE.Instance.LoadScene(data["scene"].Value, () =>
+            {
+                ScreenFaderUI.Instance.FadeFromBlack();
+                SendEvent("scene_loaded");
+            });
+        });
     }
 
     public void OnInteractableSpawn(string eventName, JSONNode data)

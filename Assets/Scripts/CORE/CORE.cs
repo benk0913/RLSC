@@ -407,6 +407,15 @@ public class RoomData
     [JsonIgnore]
     public Actor LeastThreatheningActor;
 
+    [JsonIgnore]
+    public bool HasEnemies
+    {
+        get
+        {
+            return Actors.Find(x=>x.isMob && x.ActorEntity != null && !x.ActorEntity.IsDead) != null;
+        }
+    }
+
     public Actor GetMostThreateningActor()
     {
         Actor mostThreatAct = null;
