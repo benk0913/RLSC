@@ -444,10 +444,23 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.LoadScene(data["scene"].Value, ()=>
         {
             SendEvent("scene_loaded");
+            string targetSceneGateKey = data["TargetSceneGate"];
+
+            PortalEntity[] portals = FindObjectsOfType<PortalEntity>();
+
+            foreach(PortalEntity portal in portals)
+            {
+                if(portal.PortalReference.name == targetSceneGateKey)
+                {
+                    CurrentUser.actor.ActorEntity.transform.position = portal.transform.position;
+                    break;
+                }
+            }
         });
 
         SceneInfo info = CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == data["scene"].Value);
-        if(info != null)
+        
+        if (info != null)
         {
             if(!string.IsNullOrEmpty(info.MusicTrack))
             {
@@ -514,10 +527,11 @@ public class SocketHandler : MonoBehaviour
         // TODO unlock portals.
     }
 
-    public void SendEnterPortal(Portal TargetPortal)
+    public void SendEnterPortal(Portal portal)
     {
         JSONNode node = new JSONClass();
-        node["portalId"] = TargetPortal.GateKey;
+        node["portalId"] = portal.name;
+        
         SocketHandler.Instance.SendEvent("entered_portal", node);
     }
 

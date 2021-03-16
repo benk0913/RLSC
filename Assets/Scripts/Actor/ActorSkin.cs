@@ -73,7 +73,7 @@ public class ActorSkin : MonoBehaviour
 
         if (job != null)
         {
-            Halo.color = job.ClassColor;
+            Halo.color = new Color(job.ClassColor.r, job.ClassColor.g, job.ClassColor.b, 0.3f);
         }
     }
 
