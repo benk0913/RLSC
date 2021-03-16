@@ -444,17 +444,10 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.LoadScene(data["scene"].Value, ()=>
         {
             SendEvent("scene_loaded");
-            string targetSceneGateKey = data["TargetSceneGate"];
 
-            PortalEntity[] portals = FindObjectsOfType<PortalEntity>();
-
-            foreach(PortalEntity portal in portals)
+            if (!string.IsNullOrEmpty(data["targetX"]))
             {
-                if(portal.PortalReference.name == targetSceneGateKey)
-                {
-                    CurrentUser.actor.ActorEntity.transform.position = portal.transform.position;
-                    break;
-                }
+                CurrentUser.actor.ActorEntity.transform.position = new Vector2(data["targetX"].AsFloat, data["targetY"].AsFloat);
             }
         });
 
