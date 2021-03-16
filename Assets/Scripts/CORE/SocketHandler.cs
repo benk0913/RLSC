@@ -444,11 +444,6 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.LoadScene(data["scene"].Value, ()=>
         {
             SendEvent("scene_loaded");
-
-            if (!string.IsNullOrEmpty(data["targetX"]))
-            {
-                CurrentUser.actor.ActorEntity.transform.position = new Vector2(data["targetX"].AsFloat, data["targetY"].AsFloat);
-            }
         });
 
         SceneInfo info = CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == data["scene"].Value);
