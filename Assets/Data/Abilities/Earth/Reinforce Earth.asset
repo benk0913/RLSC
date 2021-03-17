@@ -33,19 +33,19 @@ MonoBehaviour:
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
-    PrepareAbilitySound: E_ReinforceEarth_Prepare
-    ExecuteAbilitySound: E_ReinforceEarth_Hit
-    HitAbilitySound: E_ReinforceEarth_Hit2
+    PrepareAbilitySound: E_ReinforceEarth_PrepareOGG
+    ExecuteAbilitySound: E_ReinforceEarth_HitOGG
+    HitAbilitySound: E_ReinforceEarth_Hit2OGG
     MissAbilitySound: 
-  ScreenEffectObject: 
-  CD: 14
-  CastingTime: 0.8
-  OnlyIfGrounded: 0
-  IsCastingExternal: 0
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: Cast3
     ExecuteAnimation: Execute3
+  CD: 14
+  CastingTime: 0.8
   TargetCap: 0
+  OnlyIfGrounded: 0
+  IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
