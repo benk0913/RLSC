@@ -580,6 +580,9 @@ public class Actor : MonoBehaviour
         {
             spriteColorGroup.ResetColor();
         });
+
+
+        Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f,(float)State.Data.hp/ (float)State.Data.MaxHP));
     }
 
     public void Ded()
@@ -784,7 +787,7 @@ public class Actor : MonoBehaviour
         this.State.Abilities.Clear();
         for (int i = 0; i < State.Data.abilities.Count; i++)
         {
-            this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.abilities[i])));
+            this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.abilities[i]),this));
         }
 
         if (State.Data.IsPlayer)
@@ -1402,17 +1405,28 @@ public class AbilityState
     public float CurrentCD;
     public float CurrentCastingTime;
 
+    public Actor OfActor;
+
     public bool IsCanDoAbility
     {
         get
         {
-            return CurrentCD <= 0f && CurrentCastingTime <= 0f;
+            return CurrentCD <= 0f && CurrentCastingTime <= 0f && !IsAbilityLocked;
         }
     }
 
-    public AbilityState(Ability ability)
+    public bool IsAbilityLocked
+    {
+        get
+        {
+            return OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name)) > (OfActor.State.Data.level + 1);
+        }
+    }
+
+    public AbilityState(Ability ability, Actor ofActor)
     {
         this.CurrentAbility = ability;
+        this.OfActor = ofActor;
     }
 
 

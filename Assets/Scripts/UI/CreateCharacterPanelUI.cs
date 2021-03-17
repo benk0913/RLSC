@@ -43,19 +43,9 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.State.Data = new ActorData("preloader", "", "fire", DisplayActor.gameObject);
         DisplayActor.State.Data.looks = new ActorLooks();
 
-        DisplayActor.State.Data.looks.IsFemale = false;
-        DisplayActor.State.Data.looks.Ears  = DefaultEars[0].name;
-        DisplayActor.State.Data.looks.Eyes  = DefaultEyes[0].name;
-        DisplayActor.State.Data.looks.Hair  = DefaultHair[0].name;
-        DisplayActor.State.Data.looks.Nose  = DefaultNose[0].name;
-        DisplayActor.State.Data.looks.Mouth = DefaultMouth[0].name;
-        DisplayActor.State.Data.looks.Iris  = DefaultIris[0].name;
-        DisplayActor.State.Data.looks.Eyebrows = DefaultEyebrows[0].name;
-
-        DisplayActor.State.Data.looks.SkinColor = "#" + ColorUtility.ToHtmlStringRGB(DefaultSkinColor);
-        DisplayActor.State.Data.looks.HairColor = "#" + ColorUtility.ToHtmlStringRGB(DefaultHairColor);
-
-        DisplayActor.RefreshLooks();
+        // Randomize whether a female or not only at the beginning.
+        DisplayActor.State.Data.looks.IsFemale = Random.Range(0,2) == 0;
+        Randomize();
     }
 
     public void Randomize()

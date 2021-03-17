@@ -14,6 +14,7 @@ public class AbilitiesUI : MonoBehaviour
     [SerializeField]
     Transform AllAbilitiesContainer;
 
+
     public AbilitySlotDraggableUI SelectedAbility;
     public AbilitySlotDraggableUI HoveredAbility;
 
@@ -211,6 +212,11 @@ public class AbilitiesUI : MonoBehaviour
             CORE.Instance.LogMessageError("NO HOVERED ABILITY!?");
             return;
         }
+        if (HoveredAbility.CurrentAbility.IsAbilityLocked)
+        {
+            // Don't allow selecting locked abilities.
+            return;
+        }
 
         if (IsSelectingReplacement)
         {
@@ -317,7 +323,7 @@ public class AbilitiesUI : MonoBehaviour
             slot.transform.SetParent(AllAbilitiesContainer, false);
             slot.transform.localScale = Vector3.one;
             slot.transform.position = Vector3.zero;
-            slot.SetAbilityState(new AbilityState(CORE.Instance.Data.content.Abilities.Find(X => X.name == abilityName)));
+            slot.SetAbilityState(new AbilityState(CORE.Instance.Data.content.Abilities.Find(X => X.name == abilityName), playerActor));
         }
 
 

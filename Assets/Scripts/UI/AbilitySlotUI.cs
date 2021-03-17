@@ -26,6 +26,9 @@ public class AbilitySlotUI : MonoBehaviour
     [SerializeField]
     TooltipTargetUI Tooltip;
 
+    [SerializeField]
+    GameObject AbilityLock;
+
 
     public virtual void SetAbilityState(AbilityState abilityState = null)
     {
@@ -44,7 +47,7 @@ public class AbilitySlotUI : MonoBehaviour
 
         tooltipString += "<color=yellow>"+abilityState.CurrentAbility.name+"</color>";
         tooltipString += System.Environment.NewLine + abilityState.CurrentAbility.Description;
-        
+
         // TODO do we want detailed tooltips?
         // tooltipString += System.Environment.NewLine + "CASTING TIME: "+abilityState.CurrentAbility.CastingTime;
         // tooltipString += System.Environment.NewLine + "COOLDOWN: " + abilityState.CurrentAbility.CD;
@@ -75,6 +78,17 @@ public class AbilitySlotUI : MonoBehaviour
         //         tooltipString += System.Environment.NewLine + param.Type.name + " | " + param.Targets.ToString() + " | " + param.Value;
         //     }
         // }
+
+
+        if (abilityState.IsAbilityLocked)
+        {
+            tooltipString += System.Environment.NewLine + "<color=red> - LOCKED - </color>";
+            AbilityLock.SetActive(true);
+        }
+        else
+        {
+            AbilityLock.SetActive(false);
+        }
 
         Tooltip.SetTooltip(tooltipString);
     }

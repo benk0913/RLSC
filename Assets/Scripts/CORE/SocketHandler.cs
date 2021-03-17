@@ -707,6 +707,7 @@ public class SocketHandler : MonoBehaviour
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
         actorDat.hp = data["hp"].AsInt;
+
     }
 
     public void OnActorHurt(string eventName, JSONNode data)
