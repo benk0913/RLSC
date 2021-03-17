@@ -22,19 +22,19 @@ MonoBehaviour:
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
-    PrepareAbilitySound: W_Bless_Prepare
+    PrepareAbilitySound: W_Bless_PrepareOGG
     ExecuteAbilitySound: sound_watersplashs
-    HitAbilitySound: W_Heal
-    MissAbilitySound: W_Heal
-  ScreenEffectObject: 
-  CD: 5
-  CastingTime: 1
-  OnlyIfGrounded: 0
-  IsCastingExternal: 0
+    HitAbilitySound: W_HealOGG
+    MissAbilitySound: W_HealOGG
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: Cast1
     ExecuteAnimation: Execute1
+  CD: 5
+  CastingTime: 1
   TargetCap: 0
+  OnlyIfGrounded: 0
+  IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}

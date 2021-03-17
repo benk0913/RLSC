@@ -22,17 +22,19 @@ MonoBehaviour:
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
-    PrepareAbilitySound: F_FireOrbs_Prepare
+    PrepareAbilitySound: F_FireOrbs_PrepareOGG
     ExecuteAbilitySound: 
-    HitAbilitySound: F_FireOrbs_Hit
+    HitAbilitySound: F_FireOrbs_HitOGG
     MissAbilitySound: 
-  ScreenEffectObject: 
-  CD: 25
-  CastingTime: 1
-  OnlyIfGrounded: 0
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: Cast2
     ExecuteAnimation: Execute8
+  CD: 25
+  CastingTime: 1
+  TargetCap: 0
+  OnlyIfGrounded: 0
+  IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
