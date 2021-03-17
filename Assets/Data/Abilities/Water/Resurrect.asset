@@ -22,19 +22,19 @@ MonoBehaviour:
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
-    PrepareAbilitySound: W_Resurrect_PrepareOGG
-    ExecuteAbilitySound: W_Resurrect_ExecuteOGG
+    PrepareAbilitySound: W_Ressurect_Prepare
+    ExecuteAbilitySound: W_Ressurect_Execute
     HitAbilitySound: sound_heal
     MissAbilitySound: 
-  Visuals:
-    ScreenEffectObject: 
-    PreparingAnimation: Cast4
-    ExecuteAnimation: Execute4
+  ScreenEffectObject: 
   CD: 30
   CastingTime: 10
-  TargetCap: 0
   OnlyIfGrounded: 0
   IsCastingExternal: 0
+  Visuals:
+    PreparingAnimation: Cast4
+    ExecuteAnimation: Execute4
+  TargetCap: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 99c27e6e516d6264192fff84fd5856c5, type: 2}

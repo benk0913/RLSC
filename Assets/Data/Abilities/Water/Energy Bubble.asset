@@ -22,19 +22,19 @@ MonoBehaviour:
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
-    PrepareAbilitySound: W_Bless_PrepareOGG
-    ExecuteAbilitySound: W_Bubble_ExecuteOGG
-    HitAbilitySound: W_EnergyBubble_HitOGG
+    PrepareAbilitySound: W_Bless_Prepare
+    ExecuteAbilitySound: W_Bubble_Execute
+    HitAbilitySound: W_EnergyBubble_Hit
     MissAbilitySound: 
-  Visuals:
-    ScreenEffectObject: 
-    PreparingAnimation: Cast2
-    ExecuteAnimation: Execute3
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 1
-  TargetCap: 1
   OnlyIfGrounded: 0
   IsCastingExternal: 0
+  Visuals:
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute3
+  TargetCap: 1
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 3a324772d7eee094a956d79f860f9248, type: 2}

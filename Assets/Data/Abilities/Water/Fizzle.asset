@@ -23,19 +23,19 @@ MonoBehaviour:
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
-    PrepareAbilitySound: W_Fizzle_PrepareOGG
-    ExecuteAbilitySound: W_Fizzle_ExecuteOGG
+    PrepareAbilitySound: W_Fizzle_Prepare
+    ExecuteAbilitySound: W_Fizzle_Execute
     HitAbilitySound: sound_heal
     MissAbilitySound: 
-  Visuals:
-    ScreenEffectObject: 
-    PreparingAnimation: Cast2
-    ExecuteAnimation: Execute2
+  ScreenEffectObject: 
   CD: 5
   CastingTime: 1
-  TargetCap: 0
   OnlyIfGrounded: 0
   IsCastingExternal: 0
+  Visuals:
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute2
+  TargetCap: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}

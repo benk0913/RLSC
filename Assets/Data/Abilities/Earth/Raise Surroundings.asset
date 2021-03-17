@@ -22,19 +22,19 @@ MonoBehaviour:
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
-    PrepareAbilitySound: E_RaiseSurroundings_PrepareOGG
+    PrepareAbilitySound: E_RaiseSurroundings_Prepare
     ExecuteAbilitySound: 
-    HitAbilitySound: E_RaiseSurroundings_HitOGG
+    HitAbilitySound: E_RaiseSurroundings_Hit
     MissAbilitySound: 
-  Visuals:
-    ScreenEffectObject: 
-    PreparingAnimation: Cast3
-    ExecuteAnimation: Execute4
+  ScreenEffectObject: 
   CD: 12
   CastingTime: 1
-  TargetCap: 0
   OnlyIfGrounded: 0
   IsCastingExternal: 0
+  Visuals:
+    PreparingAnimation: Cast3
+    ExecuteAnimation: Execute4
+  TargetCap: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
