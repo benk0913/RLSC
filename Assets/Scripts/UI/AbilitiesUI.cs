@@ -212,6 +212,11 @@ public class AbilitiesUI : MonoBehaviour
             CORE.Instance.LogMessageError("NO HOVERED ABILITY!?");
             return;
         }
+        if (HoveredAbility.CurrentAbility.IsAbilityLocked)
+        {
+            // Don't allow selecting locked abilities.
+            return;
+        }
 
         if (IsSelectingReplacement)
         {
