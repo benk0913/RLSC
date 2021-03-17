@@ -222,8 +222,6 @@ public class ResourcesLoader : MonoBehaviour {
 
     protected IEnumerator LoadResourcesRoutine()
     {
-        LoadingWindowObject.SetActive(true);
-
         float lastMiliSec = 0;
 
         m_bLoading = true;
@@ -362,8 +360,6 @@ public class ResourcesLoader : MonoBehaviour {
         {
             Debug.Log((Time.time) + "***WHOLE PROCCESS");
         }
-
-        LoadingWindowObject.SetActive(false);
 
         RunResourcesLoadedCallbacks();
     }

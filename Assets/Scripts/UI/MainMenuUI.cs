@@ -20,7 +20,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        CORE.Instance.DelayedInvokation(1f,AutoLogin);
+        AutoLogin();
     }
     
     public void AutoLogin()
@@ -29,8 +29,10 @@ public class MainMenuUI : MonoBehaviour
 
         SocketHandler.Instance.SendLogin(() =>
         {
-            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
-            RefreshUserInfo();
+            ResourcesLoader.Instance.RunWhenResourcesLoaded(() => {
+                ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+                RefreshUserInfo();
+            });
         });
 
     }
