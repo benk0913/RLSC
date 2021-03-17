@@ -20,6 +20,7 @@ public class DisplayCharacterUI : MonoBehaviour, IPointerClickHandler
     {
         OnClick = onClick;
         TooltipTarget.Text = "Select Character: " + AttachedCharacter.State.Data.name;
+        Deselect();
     }
 
     public void OnPointerClick(PointerEventData eventData)

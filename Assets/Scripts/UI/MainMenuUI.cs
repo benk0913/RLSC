@@ -76,6 +76,7 @@ public class MainMenuUI : MonoBehaviour
     public void RefreshUserInfo()
     {
         CORE.ClearContainer(CharacterSelectionContainer);
+        RemoveCharacterSelected();
 
         for(int i=0;i<SocketHandler.Instance.CurrentUser.chars.Length;i++)
         {
@@ -89,9 +90,11 @@ public class MainMenuUI : MonoBehaviour
             disAct.AttachedCharacter.transform.position = Vector3.one;
             disAct.AttachedCharacter.SetActorInfo(character);
             disAct.SetInfo(() => { SetCharacterSelected(disAct); });
+            if (i == 0)
+            {
+                SetCharacterSelected(disAct);
+            }
         }
-
-        SelectedDisplayActor = null;
 
         if (SocketHandler.Instance.CurrentUser.chars.Length <= 0)
         {
@@ -101,13 +104,19 @@ public class MainMenuUI : MonoBehaviour
 
     public void SetCharacterSelected(DisplayCharacterUI displayActor)
     {
-        if(SelectedDisplayActor != null)
-        {
-            SelectedDisplayActor.Deselect();
-        }
+        RemoveCharacterSelected();
 
         SelectedDisplayActor = displayActor;
         SelectedDisplayActor.Select();
+    }
+
+    public void RemoveCharacterSelected()
+    {
+        if(SelectedDisplayActor != null)
+        {
+            SelectedDisplayActor.Deselect();
+            SelectedDisplayActor = null;
+        }
     }
 
     public void ConfirmSelectedCharacter()
