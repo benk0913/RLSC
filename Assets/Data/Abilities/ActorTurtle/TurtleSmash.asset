@@ -23,16 +23,18 @@ MonoBehaviour:
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
     PrepareAbilitySound: 
-    ExecuteAbilitySound: 
+    ExecuteAbilitySound: TurtleSmash_Execute
     HitAbilitySound: 
     MissAbilitySound: 
-  ScreenEffectObject: 
-  CD: 10
-  CastingTime: 2
-  OnlyIfGrounded: 0
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: Cast1
     ExecuteAnimation: Execute1
+  CD: 10
+  CastingTime: 2
+  TargetCap: 0
+  OnlyIfGrounded: 0
+  IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
