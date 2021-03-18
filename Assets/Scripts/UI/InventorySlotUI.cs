@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventorySlotUI : MonoBehaviour
 {
-    Item currentItem;
+    ItemData currentItem;
 
     [SerializeField]
     Image IconImage;
@@ -13,7 +13,7 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField]
     TooltipTargetUI TooltipTarget;
 
-    public void SetItem(Item item)
+    public void SetItem(ItemData item)
     {
         currentItem = item;
 
@@ -22,7 +22,7 @@ public class InventorySlotUI : MonoBehaviour
 
     void RefreshUI()
     {
-        if(currentItem == null || currentItem.Data == null)
+        if(currentItem == null)
         {
             IconImage.enabled = false;
             TooltipTarget.Text = "Empty Inventory Space";
@@ -30,11 +30,11 @@ public class InventorySlotUI : MonoBehaviour
         }
         
         IconImage.enabled = true;
-        IconImage.sprite = currentItem.Data.Icon;
+        IconImage.sprite = currentItem.Icon;
 
-        TooltipTarget.Text = currentItem.Data.name;
-        TooltipTarget.Text += System.Environment.NewLine + currentItem.Data.Type.name;
-        TooltipTarget.Text += System.Environment.NewLine + "<color=#"+ColorUtility.ToHtmlStringRGBA(currentItem.Data.Rarity.RarityColor)+">"+ currentItem.Data.Rarity.name+"</color>";
-        TooltipTarget.Text += System.Environment.NewLine + currentItem.Data.Description;
+        TooltipTarget.Text = currentItem.name;
+        TooltipTarget.Text += System.Environment.NewLine + currentItem.Type.name;
+        TooltipTarget.Text += System.Environment.NewLine + "<color=#"+ColorUtility.ToHtmlStringRGBA(currentItem.Rarity.RarityColor)+">"+ currentItem.Rarity.name+"</color>";
+        TooltipTarget.Text += System.Environment.NewLine + currentItem.Description;
     }
 }

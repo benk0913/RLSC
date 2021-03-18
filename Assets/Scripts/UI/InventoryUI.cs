@@ -6,6 +6,21 @@ public class InventoryUI : MonoBehaviour
 {
     public static InventoryUI Instance;
 
+    private Dictionary<string, ItemData> _itemDataMap = new Dictionary<string, ItemData>();
+    public ItemData GetItemData(string itemName)
+    {
+        if (string.IsNullOrEmpty(itemName))
+        {
+            return null;
+        }
+        if(!_itemDataMap.ContainsKey(itemName))
+        {
+            _itemDataMap.Add(itemName, CORE.Instance.Data.content.Items.Find(X => X.name == itemName));
+        }
+
+        return _itemDataMap[itemName];
+    }
+
     ActorData currentActor;
 
     [SerializeField]
@@ -35,18 +50,23 @@ public class InventoryUI : MonoBehaviour
     {
         CORE.ClearContainer(ItemsContainer);
 
-        for(int i=0;i<currentActor.items.inventory.Count;i++)//TODO Need to make sure server sends a full inventory with "nulls" as free slots.
+        for(int i = 0; i < currentActor.items.Count; i++)
         {
             InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
-            slot.SetItem(currentActor.items.inventory[i]);
+            slot.SetItem(GetItemData(currentActor.items[i]));
             slot.transform.SetParent(ItemsContainer, false);
             slot.transform.localScale = Vector3.one;
             slot.transform.position = Vector3.zero;
         }
         
-        for (int i = 0; i < currentActor.items.equips.Count; i++)
+        for (int i = 0; i < EquipSlots.Count; i++)
         {
-            EquipSlots.Find(x => x.Type == currentActor.items.equips[i].type).Slot.SetItem(currentActor.items.equips[i].item);
+            string itemName = null;
+            if (currentActor.equips.ContainsKey(EquipSlots[i].Type.name))
+            {
+                itemName = currentActor.equips[EquipSlots[i].Type.name];
+            }
+            EquipSlots[i].Slot.SetItem(GetItemData(itemName));
         }
     }
 

@@ -798,9 +798,10 @@ public class ActorData
     public string prefab;
     public int hp;
     public ActorLooks looks;
-    public ActorItems items;
+    public List<string> items;
     public int exp;
     public int level;
+    public Dictionary<string, string> equips;
 
     public bool isMob
     {
@@ -895,23 +896,6 @@ public class ActorData
             this.ActorEntity = gActorObject.GetComponent<Actor>();
         }
     }
-}
-
-[Serializable]
-public class ActorItems
-{
-    //Expecting an always full list of inventory with "empty slots" set as null
-    public List<Item> inventory = new List<Item>();
-
-    //Expecting an always full list of inventory with "empty slots" set as null (here too)
-    public List<Equip> equips = new List<Equip>();
-}
-
-[Serializable]
-public class Equip
-{
-    public ItemType type;
-    public Item item;
 }
 
 [Serializable]
