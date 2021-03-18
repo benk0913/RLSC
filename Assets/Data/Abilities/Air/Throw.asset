@@ -23,19 +23,19 @@ MonoBehaviour:
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
-    PrepareAbilitySound: A_Whip_Prepare
-    ExecuteAbilitySound: A_Throw_Execute
-    HitAbilitySound: A_Throw_Hit
+    PrepareAbilitySound: A_Whip_PrepareOGG
+    ExecuteAbilitySound: A_Throw_ExecuteOGG
+    HitAbilitySound: A_Throw_HitOGG
     MissAbilitySound: 
-  ScreenEffectObject: 
-  CD: 2
-  CastingTime: 0.05
-  OnlyIfGrounded: 0
-  IsCastingExternal: 0
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: Cast3
     ExecuteAnimation: Execute3
+  CD: 2
+  CastingTime: 0.05
   TargetCap: 0
+  OnlyIfGrounded: 0
+  IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
