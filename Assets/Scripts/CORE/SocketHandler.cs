@@ -80,7 +80,6 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("expedition_floor_complete", OnExpeditionFloorComplete));
 
 
-
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -901,7 +900,18 @@ public class ActorData
 [Serializable]
 public class ActorItems
 {
-    public List<Item> Inventory = new List<Item>();
+    //Expecting an always full list of inventory with "empty slots" set as null
+    public List<Item> inventory = new List<Item>();
+
+    //Expecting an always full list of inventory with "empty slots" set as null (here too)
+    public List<Equip> equips = new List<Equip>();
+}
+
+[Serializable]
+public class Equip
+{
+    public ItemType type;
+    public Item item;
 }
 
 [Serializable]

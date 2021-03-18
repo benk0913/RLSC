@@ -43,6 +43,8 @@ public class DatabaseContent
 
     public List<ItemData> Items = new List<ItemData>();
 
+    public List<ItemType> Equips = new List<ItemType>();
+
     public List<SceneInfo> Scenes = new List<SceneInfo>();
 
     public List<InteractableData> Interactables = new List<InteractableData>();
