@@ -799,6 +799,7 @@ public class ActorData
     public string prefab;
     public int hp;
     public ActorLooks looks;
+    public ActorItems items;
     public int exp;
     public int level;
 
@@ -895,6 +896,12 @@ public class ActorData
             this.ActorEntity = gActorObject.GetComponent<Actor>();
         }
     }
+}
+
+[Serializable]
+public class ActorItems
+{
+    public List<Item> Inventory = new List<Item>();
 }
 
 [Serializable]

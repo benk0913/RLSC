@@ -64,6 +64,8 @@ public class DatabaseContent
     public int AbilitiesInitCount;
 
     public int AbilitiesMaxCount;
+
+    public int MaxInventorySlots;
 }
 
 [Serializable]
