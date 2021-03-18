@@ -521,6 +521,7 @@ public class RoomData
         if(actor.IsPlayer)
         {
             PlayerActor = actor;
+            DisplayEXPEntityUI.Instance.Init();
         }
 
         if (!actor.isMob)

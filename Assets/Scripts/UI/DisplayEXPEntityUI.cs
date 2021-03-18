@@ -33,9 +33,28 @@ public class DisplayEXPEntityUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    public void Init()
+    {
+        CurrentExp = CORE.Instance.Room.PlayerActor.exp;
+
+        int lvlExpSnapshot = getLvlExpSnapshot();
+        float expPercent = (float)CurrentExp / (float)lvlExpSnapshot;
+
+        ExpValueText.text = Mathf.RoundToInt(expPercent * 100f) + "%";
+        FillImage.fillAmount = expPercent;
+    }
+
+    private int getLvlExpSnapshot()
+    {
+        bool isMaxLevel = CORE.Instance.Room.PlayerActor.level >= CORE.Instance.Data.content.MaxLevel;
+        
+        int lvlExpSnapshot = isMaxLevel ? 1 : CORE.Instance.Data.content.ExpChart[CORE.Instance.Room.PlayerActor.level];
+        return lvlExpSnapshot;
+    }
+
     public void Show(int currentEXP)
     {
-        int lvlExpSnapshot = CORE.Instance.Data.content.ExpChart[CORE.Instance.Room.PlayerActor.level];
+        int lvlExpSnapshot = getLvlExpSnapshot();
 
         DisplayExpInstance instance = new DisplayExpInstance(currentEXP, lvlExpSnapshot);
 
