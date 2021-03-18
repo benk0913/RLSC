@@ -23,16 +23,18 @@ MonoBehaviour:
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
     PrepareAbilitySound: 
-    ExecuteAbilitySound: F_FireSurge
+    ExecuteAbilitySound: F_FireSurgeOGG
     HitAbilitySound: 
     MissAbilitySound: 
-  ScreenEffectObject: 
-  CD: 10
-  CastingTime: 0.01
-  OnlyIfGrounded: 0
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: Cast4
     ExecuteAnimation: Execute4
+  CD: 10
+  CastingTime: 0.01
+  TargetCap: 0
+  OnlyIfGrounded: 0
+  IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 3a324772d7eee094a956d79f860f9248, type: 2}
     Condition: {fileID: 0}

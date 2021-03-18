@@ -23,17 +23,18 @@ MonoBehaviour:
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
     PrepareAbilitySound: 
-    ExecuteAbilitySound: F_Rage
+    ExecuteAbilitySound: F_RageOGG
     HitAbilitySound: 
     MissAbilitySound: 
-  CD: 10
-  CastingTime: 0.01
-  OnlyIfGrounded: 0
-  IsCastingExternal: 0
   Visuals:
     ScreenEffectObject: ScreenEffectRage
     PreparingAnimation: Cast4
     ExecuteAnimation: Execute4
+  CD: 10
+  CastingTime: 0.01
+  TargetCap: 0
+  OnlyIfGrounded: 0
+  IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 21153b12e7224514e8aa13fa8a2685ab, type: 2}
     Condition: {fileID: 0}
