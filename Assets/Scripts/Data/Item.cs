@@ -7,8 +7,16 @@ using UnityEngine;
 [Serializable]
 public class Item
 {
+    public string itemId;
+    
+    public float x;
+    public float y;
+
     [SerializeField]
     protected string data;
+
+    [JsonIgnore]
+    public ItemEntity Entity;
 
     [JsonIgnore]
     public ItemData Data

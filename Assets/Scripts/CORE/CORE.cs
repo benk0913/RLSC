@@ -255,6 +255,23 @@ public class CORE : MonoBehaviour
         interactable.Entity.Interacted(byActorID);
     }
 
+    public void SpawnItem(Item item)
+    {
+        ///TODO ADD ENTITY
+
+        ItemEntity itemEntity =  ResourcesLoader.Instance.GetRecycledObject("ItemEntity").GetComponent<ItemEntity>();
+        itemEntity.transform.position = new Vector2(item.x, item.y);
+        item.Entity = itemEntity;
+        itemEntity.SetInfo(item);
+
+        Room.ItemJoined(item);
+    }
+
+    public void DespawnItem(string itemId)
+    {
+        Room.ItemLeft(itemId);
+    }
+
     Coroutine LoadSceneRoutineInstance;
     IEnumerator LoadSceneRoutine(string sceneKey, Action onComplete = null)
     {
@@ -398,6 +415,7 @@ public class RoomData
 {
     public List<ActorData> Actors = new List<ActorData>();
     public List<Interactable> Interactables = new List<Interactable>();
+    public List<Item> Items = new List<Item>();
 
     public ActorData PlayerActor;
 
@@ -583,6 +601,28 @@ public class RoomData
             CORE.Destroy(interactable.Entity.gameObject);
         });
     }
+
+    public void ItemJoined(Item item)
+    {
+        Items.Add(item);
+    }
+
+    public void ItemLeft(string itemId)
+    {
+        Item item = Items.Find(x => x.itemId == itemId);
+
+
+        if (item == null)
+        {
+            CORE.Instance.LogMessageError("No itemId " + itemId + " in room.");
+            return;
+        }
+
+        Items.Remove(item);
+
+        CORE.Destroy(item.Entity.gameObject);
+    }
+
 
     public void RefreshThreat()
     {

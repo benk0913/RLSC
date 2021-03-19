@@ -78,6 +78,24 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("exp_update", OnExpUpdate));
         SocketEventListeners.Add(new SocketEventListener("level_up", OnLevelUp));
         SocketEventListeners.Add(new SocketEventListener("expedition_floor_complete", OnExpeditionFloorComplete));
+        SocketEventListeners.Add(new SocketEventListener("item_spawn", OnItemSpawn));
+        SocketEventListeners.Add(new SocketEventListener("item_despawn", OnItemDespawn));
+        SocketEventListeners.Add(new SocketEventListener("inventory_add_item", OnInventorySwapSlots));
+        SocketEventListeners.Add(new SocketEventListener("inventory_remove_item", OnInventorySwapSlots));
+        SocketEventListeners.Add(new SocketEventListener("equip_add_item", OnInventorySwapSlots));
+        SocketEventListeners.Add(new SocketEventListener("equip_remove_item", OnInventorySwapSlots));
+        SocketEventListeners.Add(new SocketEventListener("inventory_swap_slots", OnInventorySwapSlots));
+        SocketEventListeners.Add(new SocketEventListener("actor_pick_item", OnActorPickItem));
+        SocketEventListeners.Add(new SocketEventListener("actor_equip_item", OnActorEquipItem));
+
+        //inventory_add_item
+        //inventory_remove_item
+        //equip_add_item
+        //equip_remove_item
+        //item_spawn
+        //item_despawn
+        //actor_pick_item
+
 
 
         foreach (SocketEventListener listener in SocketEventListeners)
@@ -769,7 +787,35 @@ public class SocketHandler : MonoBehaviour
 
         actorDat.OnRefreshStates?.Invoke();
     }
-    
+
+    public void OnItemSpawn(string eventName, JSONNode data)
+    {
+        Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
+
+        CORE.Instance.SpawnItem(item);
+    }
+
+    public void OnItemDespawn(string eventName, JSONNode data)
+    {
+        CORE.Instance.DespawnItem(data["itemId"].Value);
+    }
+
+    public void OnActorPickItem(string eventName, JSONNode data)
+    {
+
+    }
+
+    public void OnActorEquipItem(string eventName, JSONNode data)
+    {
+
+    }
+
+    public void OnInventorySwapSlots(string eventName, JSONNode data)
+    {
+
+    }
+
+
     #endregion
 }
 
