@@ -8,12 +8,9 @@ using UnityEngine;
 public class Item
 {
     public string itemId;
-    
+    public string itemName;
     public float x;
     public float y;
-
-    [SerializeField]
-    protected string data;
 
     [JsonIgnore]
     public ItemEntity Entity;
@@ -25,12 +22,12 @@ public class Item
         {
             if(_itemData == null)
             {
-                if (string.IsNullOrEmpty(data))
+                if (string.IsNullOrEmpty(itemName))
                 {
                     return null;
                 }
 
-                _itemData = CORE.Instance.Data.content.Items.Find(X => X.name == data);
+                _itemData = CORE.Instance.Data.content.Items.Find(X => X.name == itemName);
             }
 
             return _itemData;
@@ -39,15 +36,5 @@ public class Item
 
     [JsonIgnore]
     ItemData _itemData;
-
-    public Item(ItemData itemDat)
-    {
-        this.data = itemDat.name;
-    }
-
-    public Item(string itemDataKey)
-    {
-        this.data = itemDataKey;
-    }
 }
 

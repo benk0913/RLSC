@@ -56,47 +56,43 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("error", OnError));
         SocketEventListeners.Add(new SocketEventListener("event_error", OnError));
         SocketEventListeners.Add(new SocketEventListener("connect_timeout", OnError));
+
         SocketEventListeners.Add(new SocketEventListener("actor_spawn", OnActorSpawn));
         SocketEventListeners.Add(new SocketEventListener("actor_despawn", OnActorDespawn));
         SocketEventListeners.Add(new SocketEventListener("move_actors", OnMoveActors));
+
         SocketEventListeners.Add(new SocketEventListener("bitch_please", OnBitchPlease));
         SocketEventListeners.Add(new SocketEventListener("actor_bitch", OnActorBitch));
+
         SocketEventListeners.Add(new SocketEventListener("actor_prepare_ability", OnActorPrepareAbility));
         SocketEventListeners.Add(new SocketEventListener("actor_execute_ability", OnActorExecuteAbility));
         SocketEventListeners.Add(new SocketEventListener("actor_ability_hit", OnActorAbilityHit));
         SocketEventListeners.Add(new SocketEventListener("actor_ability_miss", OnActorAbilityMiss));
+
         SocketEventListeners.Add(new SocketEventListener("actor_add_buff", OnActorAddBuff));
         SocketEventListeners.Add(new SocketEventListener("actor_remove_buff", OnActorRemoveBuff));
         SocketEventListeners.Add(new SocketEventListener("actor_set_attributes", OnActorSetAttributes));
         SocketEventListeners.Add(new SocketEventListener("actor_set_states", OnActorSetStates));
         SocketEventListeners.Add(new SocketEventListener("actor_update_data", OnActorUpdateData));
+
         SocketEventListeners.Add(new SocketEventListener("actor_hurt", OnActorHurt));
         SocketEventListeners.Add(new SocketEventListener("actor_interrupt", OnActorInterrupt));
+
         SocketEventListeners.Add(new SocketEventListener("interactable_spawn", OnInteractableSpawn));
         SocketEventListeners.Add(new SocketEventListener("interactable_despawn", OnInteractableDespawn));
         SocketEventListeners.Add(new SocketEventListener("interactable_use", OnInteractableUse));
+
         SocketEventListeners.Add(new SocketEventListener("exp_update", OnExpUpdate));
         SocketEventListeners.Add(new SocketEventListener("level_up", OnLevelUp));
+
         SocketEventListeners.Add(new SocketEventListener("expedition_floor_complete", OnExpeditionFloorComplete));
+
+        // Items
         SocketEventListeners.Add(new SocketEventListener("item_spawn", OnItemSpawn));
         SocketEventListeners.Add(new SocketEventListener("item_despawn", OnItemDespawn));
-        SocketEventListeners.Add(new SocketEventListener("inventory_add_item", OnInventorySwapSlots));
-        SocketEventListeners.Add(new SocketEventListener("inventory_remove_item", OnInventorySwapSlots));
-        SocketEventListeners.Add(new SocketEventListener("equip_add_item", OnInventorySwapSlots));
-        SocketEventListeners.Add(new SocketEventListener("equip_remove_item", OnInventorySwapSlots));
-        SocketEventListeners.Add(new SocketEventListener("inventory_swap_slots", OnInventorySwapSlots));
+        SocketEventListeners.Add(new SocketEventListener("actor_update_item_slot", OnUpdateItemSlot));
+        SocketEventListeners.Add(new SocketEventListener("actor_update_equip_slot", OnActorUpdateEquipSlot));
         SocketEventListeners.Add(new SocketEventListener("actor_pick_item", OnActorPickItem));
-        SocketEventListeners.Add(new SocketEventListener("actor_equip_item", OnActorEquipItem));
-
-        //inventory_add_item
-        //inventory_remove_item
-        //equip_add_item
-        //equip_remove_item
-        //item_spawn
-        //item_despawn
-        //actor_pick_item
-
-
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -544,6 +540,56 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.SendEvent("entered_portal", node);
     }
 
+    public void SendPickedItem(string itemId)
+    {
+        JSONNode node = new JSONClass();
+        node["itemId"] = itemId;
+        
+        SocketHandler.Instance.SendEvent("picked_item", node);
+    }
+
+    public void SendDroppedItem(int slotIndex)
+    {
+        JSONNode node = new JSONClass();
+        node["slotIndex"].AsInt = slotIndex;
+        
+        SocketHandler.Instance.SendEvent("dropped_item", node);
+    }
+
+    public void SendEquippedItem(int slotIndex)
+    {
+        JSONNode node = new JSONClass();
+        node["slotIndex"].AsInt = slotIndex;
+        
+        SocketHandler.Instance.SendEvent("equipped_item", node);
+    }
+
+    public void SendUnequippedItem(string equipType)
+    {
+        JSONNode node = new JSONClass();
+        node["equipType"] = equipType;
+        
+        SocketHandler.Instance.SendEvent("unequipped_item", node);
+    }
+
+    public void SendSwappedItemSlots(int slotIndex1, int slotIndex2)
+    {
+        JSONNode node = new JSONClass();
+        node["slotIndex1"].AsInt = slotIndex1;
+        node["slotIndex2"].AsInt = slotIndex2;
+        
+        SocketHandler.Instance.SendEvent("swapped_item_slots", node);
+    }
+
+    public void SendSwappedItemAndEquipSlots(int slotIndex, string equipType)
+    {
+        JSONNode node = new JSONClass();
+        node["equipType"] = equipType;
+        node["slotIndex"].AsInt = slotIndex;
+        
+        SocketHandler.Instance.SendEvent("swapped_item_and_equip_slots", node);
+    }
+
     public void OnMoveActors(string eventName, JSONNode data)
     {
         CORE.Instance.Room.ReceiveActorPositions(data);
@@ -800,19 +846,61 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.DespawnItem(data["itemId"].Value);
     }
 
+    public void OnUpdateItemSlot(string eventName, JSONNode data)
+    {
+        int slotIndex = data["slotIndex"].AsInt;
+        string itemName = data["itemName"].Value;
+        if (string.IsNullOrEmpty(itemName))
+        {
+            CurrentUser.actor.items[slotIndex] = null;
+        }
+        else
+        {
+            CurrentUser.actor.items[slotIndex] = itemName;
+        }
+        InventoryUI.Instance.RefreshUI();
+    }
+
+    public void OnActorUpdateEquipSlot(string eventName, JSONNode data)
+    {
+        string actorId = data["actorId"].Value;
+        
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
+        if(actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+        
+        string equipType = data["equipType"].Value;
+        string itemName = data["itemName"].Value;
+        
+        if (string.IsNullOrEmpty(itemName))
+        {
+            CurrentUser.actor.equips[equipType] = null;
+        }
+        else
+        {
+            CurrentUser.actor.equips[equipType] = itemName;
+        }
+        InventoryUI.Instance.RefreshUI();
+
+        // TODO: update actor looks.
+    }
+
     public void OnActorPickItem(string eventName, JSONNode data)
     {
+        string actorId = data["actorId"].Value;
+        
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
+        if(actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
 
-    }
-
-    public void OnActorEquipItem(string eventName, JSONNode data)
-    {
-
-    }
-
-    public void OnInventorySwapSlots(string eventName, JSONNode data)
-    {
-
+        // TODO despawn item in an animation moving towards the actor.
+        CORE.Instance.DespawnItem(data["itemId"].Value);
     }
 
 

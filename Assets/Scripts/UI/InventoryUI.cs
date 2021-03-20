@@ -46,8 +46,12 @@ public class InventoryUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    void RefreshUI()
+    public void RefreshUI()
     {
+        if (!this.gameObject.activeInHierarchy)
+        {
+            return;
+        }
         CORE.ClearContainer(ItemsContainer);
 
         for(int i = 0; i < currentActor.items.Count; i++)
