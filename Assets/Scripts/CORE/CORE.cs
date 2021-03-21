@@ -84,6 +84,10 @@ public class CORE : MonoBehaviour
             {
                 AbilitiesUI.Instance.Toggle(Room.PlayerActor.ActorEntity);
             }
+            else if (Input.GetKeyDown(InputMap.Map["Character Window"]) && Room.PlayerActor.ActorEntity)
+            {
+                InventoryUI.Instance.Toggle(SocketHandler.Instance.CurrentUser.actor);
+            }
         }
     }
 
