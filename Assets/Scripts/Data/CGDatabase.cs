@@ -44,6 +44,8 @@ public class DatabaseContent
     public List<ItemData> Items = new List<ItemData>();
 
     public List<ItemType> Equips = new List<ItemType>();
+    
+    public List<ItemTypeOverride> EquipSlotOverrides = new List<ItemTypeOverride>();
 
     public List<SceneInfo> Scenes = new List<SceneInfo>();
 
@@ -119,4 +121,11 @@ public class MobSpawn
     public float positionX;
     public float positionY;
     public float respawnSeconds;
+}
+
+[Serializable]
+public class ItemTypeOverride
+{
+    public ItemType itemType;
+    public ItemType overrideType;
 }
