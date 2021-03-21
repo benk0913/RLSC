@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class InventoryUI : MonoBehaviour
     public static InventoryUI Instance;
 
     private Dictionary<string, ItemData> _itemDataMap = new Dictionary<string, ItemData>();
+
     public ItemData GetItemData(string itemName)
     {
         if (string.IsNullOrEmpty(itemName))
@@ -21,12 +23,34 @@ public class InventoryUI : MonoBehaviour
         return _itemDataMap[itemName];
     }
 
+    InventoryDraggedItemUI currentlyDraggedItem;
+
     ActorData currentActor;
 
     [SerializeField]
     Transform ItemsContainer;
 
     public List<EquippableSlot> EquipSlots = new List<EquippableSlot>();
+
+
+    internal void DragItem(InventorySlotUI inventorySlotUI)
+    {
+        if (currentlyDraggedItem != null)
+        {
+            currentlyDraggedItem.gameObject.SetActive(false);
+            currentlyDraggedItem = null;
+        }
+
+        currentlyDraggedItem = ResourcesLoader.Instance.GetRecycledObject("InventoryDraggedItemUI").GetComponent<InventoryDraggedItemUI>();
+        currentlyDraggedItem.transform.SetParent(transform);
+        currentlyDraggedItem.SetInfo(inventorySlotUI.CurrentItem);
+
+    }
+
+    internal void DropItem(InventorySlotUI inventorySlotUI)
+    {
+        throw new NotImplementedException();
+    }
 
     private void Awake()
     {
@@ -57,7 +81,7 @@ public class InventoryUI : MonoBehaviour
         for(int i = 0; i < currentActor.items.Count; i++)
         {
             InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
-            slot.SetItem(GetItemData(currentActor.items[i]));
+            slot.SetItem(currentActor.items[i]);
             slot.transform.SetParent(ItemsContainer, false);
             slot.transform.localScale = Vector3.one;
             slot.transform.position = Vector3.zero;
@@ -65,12 +89,12 @@ public class InventoryUI : MonoBehaviour
         
         for (int i = 0; i < EquipSlots.Count; i++)
         {
-            string itemName = null;
-            if (currentActor.equips.ContainsKey(EquipSlots[i].Type.name))
+            if (!currentActor.equips.ContainsKey(EquipSlots[i].Type.name))
             {
-                itemName = currentActor.equips[EquipSlots[i].Type.name];
+                return;
             }
-            EquipSlots[i].Slot.SetItem(GetItemData(itemName));
+
+            EquipSlots[i].Slot.SetItem(currentActor.equips[EquipSlots[i].Type.name]);
         }
     }
 

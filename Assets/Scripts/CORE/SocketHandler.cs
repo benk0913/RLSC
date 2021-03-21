@@ -849,15 +849,10 @@ public class SocketHandler : MonoBehaviour
     public void OnUpdateItemSlot(string eventName, JSONNode data)
     {
         int slotIndex = data["slotIndex"].AsInt;
-        string itemName = data["itemName"].Value;
-        if (string.IsNullOrEmpty(itemName))
-        {
-            CurrentUser.actor.items[slotIndex] = null;
-        }
-        else
-        {
-            CurrentUser.actor.items[slotIndex] = itemName;
-        }
+        Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
+
+        CurrentUser.actor.items[slotIndex] = item;
+
         InventoryUI.Instance.RefreshUI();
     }
 
@@ -873,16 +868,10 @@ public class SocketHandler : MonoBehaviour
         }
         
         string equipType = data["equipType"].Value;
-        string itemName = data["itemName"].Value;
+        Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
+
+        CurrentUser.actor.equips[equipType] = item;
         
-        if (string.IsNullOrEmpty(itemName))
-        {
-            CurrentUser.actor.equips[equipType] = null;
-        }
-        else
-        {
-            CurrentUser.actor.equips[equipType] = itemName;
-        }
         InventoryUI.Instance.RefreshUI();
 
         // TODO: update actor looks.
@@ -899,8 +888,16 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        // TODO despawn item in an animation moving towards the actor.
-        CORE.Instance.DespawnItem(data["itemId"].Value);
+        Item item = CORE.Instance.Room.Items.Find(x => x.itemId == data["itemId"].Value);
+
+        if(item == null)
+        {
+            CORE.Instance.LogMessageError("No item with ID " + data["itemId"].Value);
+            return;
+        }
+
+
+        item.Entity.BePickedBy(actorDat.ActorEntity);
     }
 
 
@@ -932,10 +929,10 @@ public class ActorData
     public string prefab;
     public int hp;
     public ActorLooks looks;
-    public List<string> items;
+    public List<Item> items;
     public int exp;
     public int level;
-    public Dictionary<string, string> equips;
+    public Dictionary<string, Item> equips;
 
     public bool isMob
     {

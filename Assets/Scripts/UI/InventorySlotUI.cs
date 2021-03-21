@@ -2,27 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InventorySlotUI : MonoBehaviour
+public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    ItemData currentItem;
+    public Item CurrentItem;
 
     [SerializeField]
     Image IconImage;
 
     [SerializeField]
     TooltipTargetUI TooltipTarget;
+    
 
-    public void SetItem(ItemData item)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        currentItem = item;
+        if(eventData.pointerId != 0)
+        {
+            return;
+        }
+
+        InventoryUI.Instance.DragItem(this);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (eventData.pointerId != 0)
+        {
+            return;
+        }
+
+        InventoryUI.Instance.DropItem(this);
+    }
+
+    public void SetItem(Item item)
+    {
+        CurrentItem = item;
 
         RefreshUI();
     }
 
     void RefreshUI()
     {
-        if(currentItem == null)
+        if(CurrentItem == null)
         {
             IconImage.enabled = false;
             TooltipTarget.Text = "Empty Inventory Space";
@@ -30,11 +52,11 @@ public class InventorySlotUI : MonoBehaviour
         }
         
         IconImage.enabled = true;
-        IconImage.sprite = currentItem.Icon;
+        IconImage.sprite = CurrentItem.Data.Icon;
 
-        TooltipTarget.Text = currentItem.name;
-        TooltipTarget.Text += System.Environment.NewLine + currentItem.Type.name;
-        TooltipTarget.Text += System.Environment.NewLine + "<color=#"+ColorUtility.ToHtmlStringRGBA(currentItem.Rarity.RarityColor)+">"+ currentItem.Rarity.name+"</color>";
-        TooltipTarget.Text += System.Environment.NewLine + currentItem.Description;
+        TooltipTarget.Text = CurrentItem.Data.name;
+        TooltipTarget.Text += System.Environment.NewLine + CurrentItem.Data.Type.name;
+        TooltipTarget.Text += System.Environment.NewLine + "<color=#"+ColorUtility.ToHtmlStringRGBA(CurrentItem.Data.Rarity.RarityColor)+">"+ CurrentItem.Data.Rarity.name+"</color>";
+        TooltipTarget.Text += System.Environment.NewLine + CurrentItem.Data.Description;
     }
 }
