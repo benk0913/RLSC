@@ -445,9 +445,14 @@ public class SocketHandler : MonoBehaviour
 
     public void OnError(string eventName, JSONNode data)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("ERROR "+data.ToString(), Color.red, 1f, true));
+        string error = data["error"].Value;
+        if (string.IsNullOrEmpty(error))
+        {
+            error = "Server Error: " + data.ToString();
+        }
 
-        CORE.Instance.LogMessageError("server error - " + data.ToString());
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(error, Color.red, 1f, true));
+        CORE.Instance.LogMessageError(error);
     }
 
     public void OnLoadScene(string eventName, JSONNode data)
