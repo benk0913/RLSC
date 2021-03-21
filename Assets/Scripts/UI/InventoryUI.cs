@@ -68,12 +68,9 @@ public class InventoryUI : MonoBehaviour
         
         for (int i = 0; i < EquipSlots.Count; i++)
         {
-            if (!currentActor.equips.ContainsKey(EquipSlots[i].Type.name))
-            {
-                return;
-            }
-
-            EquipSlots[i].Slot.SetItem(currentActor.equips[EquipSlots[i].Type.name]);
+            Item item = null;
+            currentActor.equips.TryGetValue(EquipSlots[i].Type.name, out item); 
+            EquipSlots[i].Slot.SetItem(item);
         }
     }
 
