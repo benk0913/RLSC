@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DisplayCharacterUI : MonoBehaviour, IPointerClickHandler
+public class DisplayCharacterUI : MonoBehaviour//, IPointerClickHandler
 {
     public Action OnClick;
 
@@ -23,7 +23,12 @@ public class DisplayCharacterUI : MonoBehaviour, IPointerClickHandler
         Deselect();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    //public void OnPointerClick(PointerEventData eventData)
+    //{
+    //    OnClick?.Invoke();
+    //}
+
+    public void InvokeOnClick()
     {
         OnClick?.Invoke();
     }

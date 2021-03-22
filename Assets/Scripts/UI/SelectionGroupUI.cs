@@ -7,13 +7,43 @@ using TMPro;
 
 public class SelectionGroupUI : MonoBehaviour
 {
+    public static SelectionGroupUI SelectionInControl;
+    SelectionGroupUI previousSelection;
+
     List<SelectionGroupInstance> instances = new List<SelectionGroupInstance>();
 
     public SelectionGroupInstance CurrentSelected;
 
     private void Start()
     {
+        previousSelection = SelectionInControl;
+        SelectionInControl = this;
+
         RefreshGroup();
+    }
+
+    private void OnDisable()
+    {
+        if(SelectionInControl == this)
+        {
+            if (previousSelection != null)
+            {
+                SelectionInControl = previousSelection;
+                Debug.LogError("KEK OUT" + this.gameObject.name);
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (SelectionInControl == this)
+        {
+            if (previousSelection != null)
+            {
+                SelectionInControl = previousSelection;
+                Debug.LogError("KEK OUT" + this.gameObject.name);
+            }
+        }
     }
 
     public void RefreshGroup()
@@ -126,6 +156,11 @@ public class SelectionGroupUI : MonoBehaviour
 
     private void Update()
     {
+        if(SelectionInControl != this)
+        {
+            return;
+        }
+
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             if(CurrentSelected.toUp == null)

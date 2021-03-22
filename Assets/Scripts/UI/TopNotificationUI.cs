@@ -45,6 +45,11 @@ public class TopNotificationUI : MonoBehaviour
 
         if(ShowRoutineInstance != null)
         {
+            if(NotificationQueue.Find(x=>x.Content == instance.Content) != null)
+            {
+                return;
+            }
+
             NotificationQueue.Add(instance);
             return;
         }

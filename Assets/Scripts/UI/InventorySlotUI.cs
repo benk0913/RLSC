@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -13,7 +14,13 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     [SerializeField]
     TooltipTargetUI TooltipTarget;
-    
+
+    [SerializeField]
+    GameObject SelectedFrame;
+
+    Action OnSelect;
+
+    public bool IsEquipmentSlot;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -32,12 +39,14 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             return;
         }
 
-        InventoryUI.Instance.DropItem(this);
+        InventoryUI.Instance.UndragItem(this);
     }
 
-    public void SetItem(Item item)
+    public void SetItem(Item item, Action onSelect = null)
     {
         CurrentItem = item;
+
+        this.OnSelect = onSelect;
 
         RefreshUI();
     }
@@ -58,5 +67,16 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         TooltipTarget.Text += System.Environment.NewLine + CurrentItem.Data.Type.name;
         TooltipTarget.Text += System.Environment.NewLine + "<color=#"+ColorUtility.ToHtmlStringRGBA(CurrentItem.Data.Rarity.RarityColor)+">"+ CurrentItem.Data.Rarity.name+"</color>";
         TooltipTarget.Text += System.Environment.NewLine + CurrentItem.Data.Description;
+    }
+
+    public void Select()
+    {
+        OnSelect?.Invoke();
+        SelectedFrame.SetActive(true);
+    }
+
+    public void Deselect()
+    {
+        SelectedFrame.SetActive(false);
     }
 }

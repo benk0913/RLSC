@@ -13,6 +13,10 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     DisplayCharacterUI SelectedDisplayActor;
 
+    [SerializeField]
+    SelectionGroupUI SelectionGroup;
+
+
     private void Awake()
     {
         Instance = this;
@@ -102,6 +106,8 @@ public class MainMenuUI : MonoBehaviour
         {
             CreateCharacterPanelUI.Instance.Show();
         }
+
+        CORE.Instance.DelayedInvokation(1f, SelectionGroup.RefreshGroup);
     }
 
     public void SetCharacterSelected(DisplayCharacterUI displayActor)
