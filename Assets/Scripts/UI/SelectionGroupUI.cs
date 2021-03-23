@@ -13,6 +13,7 @@ public class SelectionGroupUI : MonoBehaviour
     List<SelectionGroupInstance> instances = new List<SelectionGroupInstance>();
 
     public SelectionGroupInstance CurrentSelected;
+    public Selectable CurrentSelectedSelectable;
 
     private void Start()
     {
@@ -116,27 +117,37 @@ public class SelectionGroupUI : MonoBehaviour
 
         if (instances.Count > 0)
         {
-            Select(instances[0]);
+            SelectionGroupInstance targetInst = instances.Find(x => x.CS == CurrentSelectedSelectable);
+            if (targetInst != null)
+            {
+                Select(instances[instances.IndexOf(targetInst)]);
+            }
+            else
+            {
+                Select(instances[0]);
+            }
         }
     }
 
     public void Select(SelectionGroupInstance target)
     {
-        if(CurrentSelected != null && CurrentSelected.CS != null)
+        if(CurrentSelected != null && CurrentSelectedSelectable != null)
         {
-            Image originImg = CurrentSelected.CS.GetComponent<Image>();
+            Image originImg = CurrentSelectedSelectable.GetComponent<Image>();
             originImg.color = new Color(originImg.color.r, originImg.color.g, originImg.color.b, 1f);
             CurrentSelected = null;
         }
 
         CurrentSelected = target;
+        CurrentSelectedSelectable = CurrentSelected.CS;
+
         StopAllCoroutines();
         StartCoroutine(StrobeSelect());
     }
 
     IEnumerator StrobeSelect()
     {
-        Image img = CurrentSelected.CS.GetComponent<Image>();
+        Image img = CurrentSelectedSelectable.GetComponent<Image>();
 
         while(true)
         {
@@ -200,13 +211,13 @@ public class SelectionGroupUI : MonoBehaviour
 
         if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
-            if (CurrentSelected.CS.GetType() == typeof(Button))
+            if (CurrentSelectedSelectable.GetType() == typeof(Button))
             {
-                ((Button)CurrentSelected.CS).onClick.Invoke();
+                ((Button)CurrentSelectedSelectable).onClick.Invoke();
             }
-            else if (CurrentSelected.CS.GetType() == typeof(TMP_InputField))
+            else if (CurrentSelectedSelectable.GetType() == typeof(TMP_InputField))
             {
-                ((TMP_InputField)CurrentSelected.CS).Select();
+                ((TMP_InputField)CurrentSelectedSelectable).Select();
                 //TODO Implement text field selection
             }
         }

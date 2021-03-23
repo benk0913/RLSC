@@ -25,6 +25,7 @@ public class InventoryUI : MonoBehaviour
     public GridLayoutGroup InventoryGridLayout;
 
     InventorySlotUI SelectedSlot;
+    
 
 
     private void Awake()
