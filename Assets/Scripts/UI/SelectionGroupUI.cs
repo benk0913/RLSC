@@ -53,7 +53,10 @@ public class SelectionGroupUI : MonoBehaviour
         instances.Clear();
         foreach(Selectable selectable in selectables)
         {
-            instances.Add(new SelectionGroupInstance(selectable));
+            if (selectable.isActiveAndEnabled)
+            {
+                instances.Add(new SelectionGroupInstance(selectable));
+            }
         }
 
         foreach(SelectionGroupInstance instance in instances)

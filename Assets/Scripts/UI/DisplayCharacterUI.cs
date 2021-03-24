@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DisplayCharacterUI : MonoBehaviour//, IPointerClickHandler
 {
@@ -19,6 +20,7 @@ public class DisplayCharacterUI : MonoBehaviour//, IPointerClickHandler
     public void SetInfo(Action onClick = null)
     {
         OnClick = onClick;
+        GetComponent<Button>().enabled = true;
         TooltipTarget.Text = "Select Character: " + AttachedCharacter.State.Data.name;
         Deselect();
     }
