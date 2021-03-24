@@ -79,7 +79,7 @@ public class InventoryUI : MonoBehaviour
             EquipSlots[i].Slot.SetItem(item);
         }
 
-        CORE.Instance.DelayedInvokation(1f, () => SelectionGroup.RefreshGroup());
+        CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup());
     }
 
     internal void DragItem(InventorySlotUI inventorySlotUI)
