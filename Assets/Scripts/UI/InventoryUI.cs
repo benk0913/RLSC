@@ -26,22 +26,24 @@ public class InventoryUI : MonoBehaviour
 
     InventorySlotUI SelectedSlot;
     
+    public bool IsOpen;    
 
 
     private void Awake()
     {
         Instance = this;
-        this.gameObject.SetActive(false);
+        Hide();
     }
 
     public void Toggle(ActorData ofActor)
     {
-        if(this.gameObject.activeInHierarchy)
+        if(IsOpen)
         {
             Hide();
             return;
         }
 
+        IsOpen = true;
         this.gameObject.SetActive(true);
         currentActor = ofActor;
         RefreshUI();
@@ -49,12 +51,13 @@ public class InventoryUI : MonoBehaviour
 
     public void Hide()
     {
+        IsOpen = false;
         this.gameObject.SetActive(false);
     }
 
     public void RefreshUI()
     {
-        if (!this.gameObject.activeInHierarchy)
+        if (!IsOpen)
         {
             return;
         }

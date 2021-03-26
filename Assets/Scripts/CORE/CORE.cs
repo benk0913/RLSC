@@ -42,7 +42,7 @@ public class CORE : MonoBehaviour
     {
         get 
         {
-            return AbilitiesUI.Instance.IsOpen;
+            return AbilitiesUI.Instance.IsOpen || InventoryUI.Instance.IsOpen;
         }
     }
 

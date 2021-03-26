@@ -35,7 +35,8 @@ public class AbilitiesUI : MonoBehaviour
 
     private void Update()
     {
-        if (CORE.Instance.IsTyping) {
+        if (CORE.Instance.IsTyping)
+        {
             return;
         }
         

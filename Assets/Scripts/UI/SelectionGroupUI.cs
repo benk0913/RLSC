@@ -174,6 +174,11 @@ public class SelectionGroupUI : MonoBehaviour
         {
             return;
         }
+        
+        if (CORE.Instance.IsTyping)
+        {
+            return;
+        }
 
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
