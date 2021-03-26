@@ -24,7 +24,7 @@ public class AbilitySlotUI : MonoBehaviour
     protected TextMeshProUGUI CastingCooldownLabel;
 
     [SerializeField]
-    TooltipTargetUI Tooltip;
+    protected TooltipTargetUI Tooltip;
 
     [SerializeField]
     GameObject AbilityLock;

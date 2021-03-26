@@ -5224,6 +5224,7 @@ GameObject:
   - component: {fileID: 478441538}
   - component: {fileID: 478441537}
   - component: {fileID: 478441539}
+  - component: {fileID: 478441540}
   m_Layer: 5
   m_Name: AbilitiesUI
   m_TagString: Untagged
@@ -5307,10 +5308,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentAbilitiesContainer: {fileID: 1907774975}
   AllAbilitiesContainer: {fileID: 1005436236}
+  SelectionGroup: {fileID: 478441540}
   SelectedAbility: {fileID: 0}
   HoveredAbility: {fileID: 0}
   IsOpen: 0
   IsSelectingReplacement: 0
+--- !u!114 &478441540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478441535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8af4037231ed4943b1e725e5833124f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentSelected:
+    CS: {fileID: 0}
+  CurrentSelectedSelectable: {fileID: 0}
 --- !u!1 &488664136
 GameObject:
   m_ObjectHideFlags: 0

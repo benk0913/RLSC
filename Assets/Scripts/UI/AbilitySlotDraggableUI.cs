@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class AbilitySlotDraggableUI : AbilitySlotUI,IPointerEnterHandler,IPointerDownHandler
+public class AbilitySlotDraggableUI : AbilitySlotUI,IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     public UnityEvent OnSelect;
@@ -18,12 +18,23 @@ public class AbilitySlotDraggableUI : AbilitySlotUI,IPointerEnterHandler,IPointe
 
     public void Hover()
     {
+        AbilitiesUI.Instance.SetHover(this);
         OnHover?.Invoke();
     }
 
     public void Unhover()
     {
         OnUnhover?.Invoke();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Hover();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Unhover();
     }
 
     public void Deselect()
@@ -36,20 +47,30 @@ public class AbilitySlotDraggableUI : AbilitySlotUI,IPointerEnterHandler,IPointe
         OnSelect?.Invoke();
     }
     
+    public void OnSelectionEnter()
+    {
+        Tooltip.ShowOnPosition(transform.position);
+        Hover();
+    }
+
+    public void OnSelectionExit()
+    {
+        Tooltip.Hide();
+        Unhover();
+    }
+
+    public void OnSelection()
+    {
+        AbilitiesUI.Instance.SelectAbility();
+    }
 
     protected override void Update()
     {
         //Dont delete, this is done to terminate the inherited update.
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        AbilitiesUI.Instance.MouseEnter(this);
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
-        AbilitiesUI.Instance.MouseClick(this);
+        AbilitiesUI.Instance.SelectAbility();
     }
-    
 }

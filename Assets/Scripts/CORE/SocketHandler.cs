@@ -525,6 +525,7 @@ public class SocketHandler : MonoBehaviour
             actorDat.abilities.Add(actorDat.ClassJobReference.Abilities[newSpellPosition]);
             actorDat.ActorEntity.RefreshAbilities();
         }
+        AbilitiesUI.Instance.RefreshUI();
 
         GameObject lvlUpEffect = ResourcesLoader.Instance.GetRecycledObject("LevelUpEffect");
         lvlUpEffect.transform.position = actorDat.ActorEntity.transform.position;

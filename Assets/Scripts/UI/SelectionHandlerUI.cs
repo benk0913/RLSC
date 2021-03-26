@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SelectionHandlerUI: MonoBehaviour
+public class SelectionHandlerUI: UnityEngine.UI.Selectable
 {
     public UnityEvent OnEnterEvent;
     public UnityEvent OnExitEvent;
