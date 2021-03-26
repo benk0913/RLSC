@@ -30,7 +30,6 @@ public class SelectionGroupUI : MonoBehaviour
             if (previousSelection != null)
             {
                 SelectionInControl = previousSelection;
-                Debug.LogError("KEK OUT" + this.gameObject.name);
             }
         }
     }
@@ -42,7 +41,6 @@ public class SelectionGroupUI : MonoBehaviour
             if (previousSelection != null)
             {
                 SelectionInControl = previousSelection;
-                Debug.LogError("KEK OUT" + this.gameObject.name);
             }
         }
     }
