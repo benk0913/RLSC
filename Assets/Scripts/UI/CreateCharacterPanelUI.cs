@@ -41,7 +41,6 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
         DisplayActor.State = new ActorState();
         DisplayActor.State.Data = new ActorData("preloader", "", "fire", DisplayActor.gameObject);
-        DisplayActor.State.Data.looks = new ActorLooks();
 
         // Randomize whether a female or not only at the beginning.
         DisplayActor.State.Data.looks.IsFemale = Random.Range(0,2) == 0;

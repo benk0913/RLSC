@@ -937,7 +937,7 @@ public class ActorData
     public string actorType;
     public string prefab;
     public int hp;
-    public ActorLooks looks;
+    public ActorLooks looks = new ActorLooks();
     public List<Item> items;
     public int exp;
     public int level;
