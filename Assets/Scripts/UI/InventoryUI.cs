@@ -76,7 +76,8 @@ public class InventoryUI : MonoBehaviour
         {
             Item item = null;
             currentActor.equips.TryGetValue(EquipSlots[i].Type.name, out item); 
-            EquipSlots[i].Slot.SetItem(item);
+            InventorySlotUI slot = EquipSlots[i].Slot;
+            slot.SetItem(item, () => Select(slot));
         }
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup());
@@ -109,20 +110,29 @@ public class InventoryUI : MonoBehaviour
     {
         if(SelectedSlot != null)
         {
-            //REPLACE
-
-            if(SelectedSlot.IsEquipmentSlot & slot.IsEquipmentSlot)
+            if (SelectedSlot.CurrentItem == null && slot.CurrentItem == null)
+            {
+                // Do nothing, ignore swaps between 2 empty slots.
+            }
+            else if (!SelectedSlot.IsEquipmentSlot && SelectedSlot == slot)
+            {
+                SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex());
+            }
+            else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot)
+            {
+                SocketHandler.Instance.SendUnequippedItem(SelectedSlot.name);
+            }
+            else if (SelectedSlot.IsEquipmentSlot & slot.IsEquipmentSlot)
             {
                 TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("First unequip the item and then re equip it.", Color.red));
-                return;
             }
             else if (SelectedSlot.IsEquipmentSlot)
             {
-                SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.CurrentItem.Data.Type.name);
+                SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.name);
             }
             else if (slot.IsEquipmentSlot)
             {
-                SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.CurrentItem.Data.Type.name);
+                SocketHandler.Instance.SendSwappedItemAndEquipSlots(SelectedSlot.transform.GetSiblingIndex(), slot.name);
             }
             else
             {
@@ -131,10 +141,11 @@ public class InventoryUI : MonoBehaviour
 
             Deselect();
             slot.Deselect();
-            return;
         }
-
-        SelectedSlot = slot;
+        else
+        {
+            SelectedSlot = slot;
+        }
     }
 
     public void Deselect()
