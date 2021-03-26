@@ -27,6 +27,11 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        Hide();
+    }
+
+    public void Hide()
+    {
         PointAndClickTooltipUI.Instance.Hide();
     }
 
@@ -35,6 +40,11 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         this.Text = text;
 
         this.Bonuses = tooltipBonuses;
+    }
+
+    public void ShowOnPosition(Vector3 position)
+    {
+        PointAndClickTooltipUI.Instance.Show(Text, Bonuses, position);
     }
 
     void OnDisable()

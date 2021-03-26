@@ -115,7 +115,7 @@ MonoBehaviour:
   IconImage: {fileID: 1809425089064107197}
   TooltipTarget: {fileID: 4022331011380134952}
   SelectedFrame: {fileID: 8821404966776724043}
-  IsEquipmentSlot: 0
+  IsEquipmentSlot: 1
 --- !u!1 &6241507321370743840
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 6833484655022650309}
   - component: {fileID: 67685304683462244}
   - component: {fileID: 6782308094786906259}
+  - component: {fileID: 7950330187122334145}
   m_Layer: 5
   m_Name: slotbg
   m_TagString: Untagged
@@ -314,6 +315,48 @@ MonoBehaviour:
       - m_Target: {fileID: 2631943444614629730}
         m_TargetAssemblyTypeName: InventorySlotUI, Assembly-CSharp
         m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7950330187122334145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7431318435651792103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2631943444614629730}
+        m_TargetAssemblyTypeName: InventorySlotUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2631943444614629730}
+        m_TargetAssemblyTypeName: InventorySlotUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

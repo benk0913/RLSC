@@ -139,10 +139,22 @@ public class SelectionGroupUI : MonoBehaviour
             Image originImg = CurrentSelectedSelectable.GetComponent<Image>();
             originImg.color = new Color(originImg.color.r, originImg.color.g, originImg.color.b, 1f);
             CurrentSelected = null;
+
+            SelectionHandlerUI selectionExitHandler = CurrentSelectedSelectable.GetComponent<SelectionHandlerUI>();
+            if (selectionExitHandler != null)
+            {
+                selectionExitHandler.OnExitEvent?.Invoke();
+            }
         }
 
         CurrentSelected = target;
         CurrentSelectedSelectable = CurrentSelected.CS;
+
+        SelectionHandlerUI selectionEnterHandler = CurrentSelectedSelectable.GetComponent<SelectionHandlerUI>();
+        if (selectionEnterHandler != null)
+        {
+            selectionEnterHandler.OnEnterEvent?.Invoke();
+        }
 
         StopAllCoroutines();
         StartCoroutine(StrobeSelect());
@@ -227,6 +239,12 @@ public class SelectionGroupUI : MonoBehaviour
             {
                 ((TMP_InputField)CurrentSelectedSelectable).Select();
                 //TODO Implement text field selection
+            }
+                
+            SelectionHandlerUI selectionHandler = CurrentSelectedSelectable.GetComponent<SelectionHandlerUI>();
+            if (selectionHandler != null)
+            {
+                selectionHandler.OnSelectEvent?.Invoke();
             }
         }
     }

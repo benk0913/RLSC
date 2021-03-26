@@ -17,6 +17,8 @@ public class PointAndClickTooltipUI : MonoBehaviour
     [SerializeField]
     RectTransform rectT;
 
+    private Vector3? AnchorPosition;
+
     Coroutine ShowRoutineInstance;
 
     private void Awake()
@@ -40,12 +42,13 @@ public class PointAndClickTooltipUI : MonoBehaviour
         transform.SetAsLastSibling();
     }
 
-    public void Show(string message, List<TooltipBonus> bonuses = null)
+    public void Show(string message, List<TooltipBonus> bonuses = null, Vector3? position = null)
     {
         if(string.IsNullOrEmpty(message))
         {
             return;
         }
+        AnchorPosition = position;
 
         PositionTooltip();
 
@@ -70,15 +73,16 @@ public class PointAndClickTooltipUI : MonoBehaviour
 
     void PositionTooltip()
     {
-        bool xInRightSide = Input.mousePosition.x > Screen.width / 2;
-        bool yInUpperSide = Input.mousePosition.y > Screen.height / 2;
+        Vector3 BasePosition = AnchorPosition != null ? (Vector3)AnchorPosition : Input.mousePosition;
+        bool xInRightSide = BasePosition.x > Screen.width / 2;
+        bool yInUpperSide = BasePosition.y > Screen.height / 2;
         bool topLeftCorner = !xInRightSide && yInUpperSide;
 
         rectT.anchorMin = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
         rectT.anchorMax = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
         rectT.pivot = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
 
-        transform.position = Input.mousePosition + new Vector3(topLeftCorner ? 12 : 0, 0, 0);
+        transform.position = BasePosition + new Vector3(topLeftCorner ? 12 : 0, 0, 0);
     }
 
     void ClearBonuses()

@@ -79,4 +79,14 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         SelectedFrame.SetActive(false);
     }
+
+    public void OnSelectionEnter()
+    {
+        TooltipTarget.ShowOnPosition(transform.position);
+    }
+
+    public void OnSelectionExit()
+    {
+        TooltipTarget.Hide();
+    }
 }
