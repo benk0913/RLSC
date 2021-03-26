@@ -25,6 +25,7 @@ public class InventoryUI : MonoBehaviour
     public GridLayoutGroup InventoryGridLayout;
 
     InventorySlotUI SelectedSlot;
+    float SelectedTime;
     
     public bool IsOpen;    
 
@@ -117,6 +118,10 @@ public class InventoryUI : MonoBehaviour
             {
                 // Do nothing, ignore swaps between 2 empty slots.
             }
+            else if (SelectedSlot == slot && Time.time - SelectedTime > 1f)
+            {
+                // If the user selects the same slot but after a delay, instead of equip/unequip, just deselect it.
+            }
             else if (!SelectedSlot.IsEquipmentSlot && SelectedSlot == slot)
             {
                 SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex());
@@ -148,6 +153,7 @@ public class InventoryUI : MonoBehaviour
         else
         {
             SelectedSlot = slot;
+            SelectedTime = Time.time;
         }
     }
 
