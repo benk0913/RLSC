@@ -28,6 +28,9 @@ public class CGDatabase : ScriptableObject
 
     [JsonIgnore]
     public Material DefaultSpriteMaterial;
+
+    [JsonIgnore]
+    public Sprite ErrorIcon;
 }
 
 [Serializable]

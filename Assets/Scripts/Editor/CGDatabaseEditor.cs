@@ -166,6 +166,12 @@ public class CGDatabaseEditor : Editor
             db.content.Items.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(ItemData)) as ItemData);
         }
 
+        guids = AssetDatabase.FindAssets("t:BodyPart", new[] { "Assets/" + db.DataPath });
+        db.content.Visuals.BodyParts.Clear();
+        foreach (string guid in guids)
+        {
+            db.content.Visuals.BodyParts.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(BodyPart)) as BodyPart);
+        }
 
         db.content.ExpChart.Clear();
         for (int lvl = 1; lvl <= db.content.MaxLevel; lvl++) {

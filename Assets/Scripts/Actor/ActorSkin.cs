@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ActorSkin : MonoBehaviour
@@ -74,6 +75,22 @@ public class ActorSkin : MonoBehaviour
         if (job != null)
         {
             Halo.color = new Color(job.ClassColor.r, job.ClassColor.g, job.ClassColor.b, 0.3f);
+        }
+
+
+        for(int i=0;i<Act.State.Data.equips.Keys.Count;i++)
+        {
+            Item equip = Act.State.Data.equips[Act.State.Data.equips.Keys.ElementAt(i)];
+
+            if(equip == null)
+            {
+                continue;
+            }
+
+            foreach(SkinSet set in equip.Data.SkinOverride)
+            {
+                SetSkin(set);
+            }
         }
     }
 

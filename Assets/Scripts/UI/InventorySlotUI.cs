@@ -53,10 +53,17 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     void RefreshUI()
     {
-        if(CurrentItem == null)
+        if(CurrentItem == null) 
         {
             IconImage.enabled = false;
             TooltipTarget.Text = "Empty Inventory Space";
+            return;
+        }
+
+        if(CurrentItem.Data == null)
+        {
+            IconImage.enabled = false;
+            TooltipTarget.Text = "-ITEM REMOVED- (Sorry...)";
             return;
         }
         

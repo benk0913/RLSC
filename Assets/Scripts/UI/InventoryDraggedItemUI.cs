@@ -15,6 +15,12 @@ public class InventoryDraggedItemUI : MonoBehaviour
     {
         currentItem = item;
 
+        if( currentItem.Data == null)
+        {
+            ItemIcon.sprite = CORE.Instance.Data.ErrorIcon;
+            return;
+        }
+
         ItemIcon.sprite = currentItem.Data.Icon;
     }
 
