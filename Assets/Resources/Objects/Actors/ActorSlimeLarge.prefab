@@ -42,6 +42,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -126,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569d44504d9d8604199c1c9d5d03f1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Renderers: []
 --- !u!1 &2345052355082723739
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +169,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -566,6 +567,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -723,6 +725,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -873,7 +876,21 @@ MonoBehaviour:
       actorType: 
       prefab: 
       hp: 0
-      Attributes:
+      looks:
+        IsFemale: 0
+        Hair: 
+        Eyebrows: 
+        Eyes: 
+        Ears: 
+        Nose: 
+        Mouth: 
+        SkinColor: 
+        HairColor: 
+        Iris: 
+      items: []
+      exp: 0
+      level: 0
+      attributes:
         Power: 0
         HP: 0
         Defense: 0
@@ -911,8 +928,9 @@ MonoBehaviour:
   Rigid: {fileID: 1551737043}
   Body: {fileID: 1450574624275921511}
   PlayerControl: {fileID: 7318722103061463516}
-  AIControl: {fileID: 0}
+  AIControl: {fileID: 8836419218533274499}
   Animer: {fileID: 1968958247804861251}
+  Skin: {fileID: 0}
   GroundMask:
     serializedVersion: 2
     m_Bits: 1
@@ -1009,6 +1027,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
