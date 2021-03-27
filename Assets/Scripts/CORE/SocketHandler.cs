@@ -459,6 +459,8 @@ public class SocketHandler : MonoBehaviour
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering "+data["scene"].Value, Color.green, 1f, false));
 
+        CORE.Instance.IsLoading = true;
+        CORE.Instance.CloseCurrentWindow();
         ScreenFaderUI.Instance.FadeToBlack(()=> 
         {
             SceneInfo info = CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == data["scene"].Value);
@@ -475,6 +477,7 @@ public class SocketHandler : MonoBehaviour
             {
                 ScreenFaderUI.Instance.FadeFromBlack();
                 SendEvent("scene_loaded");
+                CORE.Instance.IsLoading = false;
             });
         });
     }

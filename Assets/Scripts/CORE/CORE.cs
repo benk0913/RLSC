@@ -27,6 +27,7 @@ public class CORE : MonoBehaviour
 
     public bool IsBitch;
     public bool InGame = false;
+    public bool IsLoading = false;
     public bool IsTyping
     {
         get 
@@ -42,9 +43,12 @@ public class CORE : MonoBehaviour
     {
         get 
         {
-            return AbilitiesUI.Instance.IsOpen || InventoryUI.Instance.IsOpen;
+            return CurrentWindow != null;
         }
     }
+
+    public WindowInterface CurrentWindow;
+    public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
 
     public bool LongPressMode;
     public bool MoveToHaltMode;
@@ -57,7 +61,6 @@ public class CORE : MonoBehaviour
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
         DontDestroyOnLoad(this.gameObject);
-
     }
 
     private void Start()
@@ -74,26 +77,42 @@ public class CORE : MonoBehaviour
         });
 #endif
 
+        WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
+        WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
     }
 
     private void Update()
     {
-        if(InGame && !IsTyping)
+        if(InGame && !IsLoading && !IsTyping)
         {
-            if(Input.GetKeyDown(InputMap.Map["Abilities Window"]) && Room.PlayerActor.ActorEntity)
+            foreach (var windowToKeyCode in WindowToKeyMap)
             {
-                AbilitiesUI.Instance.Toggle(Room.PlayerActor.ActorEntity);
+                if(Input.GetKeyDown(windowToKeyCode.Value))
+                {
+                    bool isTargetWindowClosed = CurrentWindow != windowToKeyCode.Key;
+                    CloseCurrentWindow();
+                    if (isTargetWindowClosed)
+                    {
+                        CurrentWindow = windowToKeyCode.Key;
+                        CurrentWindow.Show(SocketHandler.Instance.CurrentUser.actor);
+                    }
+                }
             }
-            else if (Input.GetKeyDown(InputMap.Map["Character Window"]) && Room.PlayerActor.ActorEntity)
+            
+            if (Input.GetKeyDown(InputMap.Map["Exit"]))
             {
-                InventoryUI.Instance.Toggle(SocketHandler.Instance.CurrentUser.actor);
+                CloseCurrentWindow();
             }
         }
     }
 
-    public void CloseAllUiWindows()
+    public void CloseCurrentWindow()
     {
-        AbilitiesUI.Instance.Hide();
+        if (CurrentWindow != null)
+        {
+            CurrentWindow.Hide();
+            CurrentWindow = null;
+        }
     }
 
     public static void ClearContainer(Transform container)
@@ -563,12 +582,6 @@ public class RoomData
         }
 
         CORE.Destroy(actor.ActorEntity.gameObject);
-
-        if(PlayerActor == actor)
-        {
-            PlayerActor = null;
-            CORE.Instance.CloseAllUiWindows();
-        }
 
         Actors.Remove(actor);
 

@@ -74,6 +74,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         TooltipTarget.Text += System.Environment.NewLine + CurrentItem.Data.Type.name;
         TooltipTarget.Text += System.Environment.NewLine + "<color=#"+ColorUtility.ToHtmlStringRGBA(CurrentItem.Data.Rarity.RarityColor)+">"+ CurrentItem.Data.Rarity.name+"</color>";
         TooltipTarget.Text += System.Environment.NewLine + CurrentItem.Data.Description;
+        Deselect();
     }
 
     public void Select()

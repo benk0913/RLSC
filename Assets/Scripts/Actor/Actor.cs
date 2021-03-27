@@ -149,7 +149,7 @@ public class Actor : MonoBehaviour
         get
         {
             return State.Data.isMob ||
-                (!CORE.Instance.IsTyping && !CORE.Instance.HasWindowOpen);
+                (!CORE.Instance.IsLoading && !CORE.Instance.IsTyping && !CORE.Instance.HasWindowOpen);
         }
     }
 

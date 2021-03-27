@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : MonoBehaviour, WindowInterface
 {
     public static InventoryUI Instance;
 
@@ -36,14 +36,8 @@ public class InventoryUI : MonoBehaviour
         Hide();
     }
 
-    public void Toggle(ActorData ofActor)
+    public void Show(ActorData ofActor)
     {
-        if(IsOpen)
-        {
-            Hide();
-            return;
-        }
-
         IsOpen = true;
         this.gameObject.SetActive(true);
         currentActor = ofActor;
@@ -85,6 +79,7 @@ public class InventoryUI : MonoBehaviour
         }
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup());
+        Deselect();
     }
 
     internal void DragItem(InventorySlotUI inventorySlotUI)
@@ -159,8 +154,11 @@ public class InventoryUI : MonoBehaviour
 
     public void Deselect()
     {
-        SelectedSlot.Deselect();
-        SelectedSlot = null;
+        if (SelectedSlot != null)
+        {
+            SelectedSlot.Deselect();
+            SelectedSlot = null;
+        }
     }
 
     public void AttemptDrop()
@@ -180,19 +178,6 @@ public class InventoryUI : MonoBehaviour
 
         Deselect();
     }
-
-    ////// TEST!
-    //public bool Test;
-
-    //private void Update()
-    //{
-    //    if(Test)
-    //    {
-    //        Toggle(SocketHandler.Instance.CurrentUser.actor);
-    //        Test = false;
-    //    }
-    //}
-    //////
 }
 
 [System.Serializable]

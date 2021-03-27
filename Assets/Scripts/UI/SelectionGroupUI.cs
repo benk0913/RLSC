@@ -17,9 +17,6 @@ public class SelectionGroupUI : MonoBehaviour
 
     private void Start()
     {
-        previousSelection = SelectionInControl;
-        SelectionInControl = this;
-
         RefreshGroup();
     }
 
@@ -47,6 +44,9 @@ public class SelectionGroupUI : MonoBehaviour
 
     public void RefreshGroup()
     {
+        previousSelection = SelectionInControl;
+        SelectionInControl = this;
+
         Selectable[] selectables = GetComponentsInChildren<Selectable>();
         instances.Clear();
         foreach(Selectable selectable in selectables)
@@ -185,7 +185,7 @@ public class SelectionGroupUI : MonoBehaviour
             return;
         }
         
-        if (CORE.Instance.IsTyping)
+        if (CORE.Instance.IsTyping || CORE.Instance.IsLoading)
         {
             return;
         }

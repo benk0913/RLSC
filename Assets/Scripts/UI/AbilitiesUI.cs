@@ -3,7 +3,7 @@ using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class AbilitiesUI : MonoBehaviour
+public class AbilitiesUI : MonoBehaviour, WindowInterface
 {
     public static AbilitiesUI Instance;
 
@@ -31,34 +31,14 @@ public class AbilitiesUI : MonoBehaviour
         Hide();
     }
 
-    private void Update()
+    public void Show(ActorData actorData)
     {
-        if (CORE.Instance.IsTyping)
-        {
-            return;
-        }
-        
-        if (Input.GetKeyDown(InputMap.Map["Exit"]))
-        {
-            Hide();
-        }
-    }
+        IsOpen = true;
+        playerActor = actorData.ActorEntity;
 
-    public void Toggle(Actor actor)
-    {
-        if(IsOpen)
-        {
-            Hide();
-        }
-        else
-        {
-            IsOpen = true;
-            playerActor = actor;
+        this.gameObject.SetActive(true);
 
-            this.gameObject.SetActive(true);
-
-            RefreshUI();
-        }
+        RefreshUI();
 
     }
 
