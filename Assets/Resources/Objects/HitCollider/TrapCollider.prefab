@@ -42,6 +42,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -223,7 +224,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  CanMiss: 0
+  HitOnlyGroundedActors: 0
   StickToActor: 0
+  StickToActorFacing: 0
   StickToSkilledShot: 1
   HitEventOnWalls: 0
   SkilledShotPoint: {fileID: 1392339480142145124}
@@ -233,7 +237,11 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
-  AudioOnHit: TrapHit
+  DuplicateBubbles: 0
+  IsBubble: 0
+  BubblesDuplicated: []
+  AudioOnHit: E_Trap_HitOGG
+  HitInterval: 0
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +284,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -358,6 +367,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -440,6 +450,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
