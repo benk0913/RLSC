@@ -212,6 +212,8 @@ public class Actor : MonoBehaviour
             PlayerHalo.SetActive(State.Data.IsPlayer);
 
         State.OnInterrupt.AddListener(Interrupted);
+
+        SetIsInAir();
     }
 
     public void Interrupted()
@@ -339,9 +341,7 @@ public class Actor : MonoBehaviour
         ContactPoint2D contact = collision.GetContact(0);
         if(Vector3.Dot(contact.normal, Vector3.up) > 0.5)
         {
-            IsGrounded = true;
-            Animer.SetBool("InAir", false);
-            CurrentGround = collision.collider;
+            SetIsInAir(collision.collider);
         }
     }
     
@@ -349,10 +349,15 @@ public class Actor : MonoBehaviour
     {
         if (collision.collider == CurrentGround)
         {
-            IsGrounded = false;
-            Animer.SetBool("InAir", true);
-            CurrentGround = null;
+            SetIsInAir();
         }
+    }
+
+    private void SetIsInAir(Collider2D collider = null)
+    {
+        CurrentGround = collider;
+        IsGrounded = collider != null;
+        Animer.SetBool("InAir", !IsGrounded);
     }
 
     void RefreshActorState()
