@@ -926,11 +926,10 @@ public class Actor : MonoBehaviour
 
                     if (furthestActor == null)
                     {
-                        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No friendly actor to move towards...", Color.red, 3f));
                         break;
                     }
-
                     CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = furthestActor.Rigid.position; });
+
                     break;
                 }
             case "TeleportToPlayerNear":
@@ -940,11 +939,10 @@ public class Actor : MonoBehaviour
 
                     if (nearestActor == null)
                     {
-                        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No friendly actor to move towards...", Color.red, 3f));
                         break;
                     }
-
                     CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = nearestActor.Rigid.position; });
+
                     break;
                 }
             case "TeleportToTarget":
@@ -958,17 +956,26 @@ public class Actor : MonoBehaviour
 
                     if (nearestTarget == null)
                     {
-                        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No enemy actor to move towards...", Color.red, 3f));
                         break;
                     }
-                    
                     Vector2 stepDir = nearestTarget.transform.position - transform.position;
-                    Vector2 targetPoint = new Vector2(nearestTarget.Rigid.position.x + nearestTarget.Collider.bounds.extents.x * stepDir.normalized.x + Collider.bounds.size.x * stepDir.normalized.x * 2f, nearestTarget.Rigid.position.y);
-
+                    float actorEdge = nearestTarget.Rigid.position.x + nearestTarget.Collider.bounds.extents.x * stepDir.normalized.x;
+                    float targetOffset = Collider.bounds.size.x * 2f;
+                    Vector2 targetPoint = new Vector2(actorEdge + targetOffset * stepDir.normalized.x, nearestTarget.Rigid.position.y);
+                    Vector2 actorEdgePoint = new Vector2(actorEdge, nearestTarget.Rigid.position.y);
+                    
+                    // Verify there aren't walls
+                    RaycastHit2D raycastHit = Physics2D.Raycast(actorEdgePoint, stepDir, targetOffset, GroundMask);
+                    Debug.DrawRay(actorEdgePoint, stepDir, Color.green);
+                    if (raycastHit)
+                    {
+                        break;
+                    }
                     CORE.Instance.DelayedInvokation(0.01f, () => { 
                         transform.position = targetPoint;
                         Body.localScale = new Vector3(stepDir.x > 0f ? 1f:-1f, 1f, 1f);
                     });
+                    
                     break;
                 }
 
