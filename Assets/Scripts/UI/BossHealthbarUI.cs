@@ -13,4 +13,8 @@ public class BossHealthbarUI : HealthbarUI
         
     }
     
+    protected override bool ShouldHideBar()
+    {
+        return CurrentActor == null || CurrentActor.State.Data.hp <= 0;
+    }
 }

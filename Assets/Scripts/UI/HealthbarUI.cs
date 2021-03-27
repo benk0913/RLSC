@@ -21,6 +21,7 @@ public class HealthbarUI : MonoBehaviour
     public void SetCurrentActor(Actor actor)
     {
         CurrentActor = actor;
+        LastHpPercent = 1f;
     }
 
     protected void Update()
