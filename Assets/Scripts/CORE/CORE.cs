@@ -526,7 +526,7 @@ public class RoomData
                 continue;
             }
 
-            if (to.IsDead)
+            if (to.IsDead || to.State.Data.MaxHP == 0)
             {
                 continue;
             }

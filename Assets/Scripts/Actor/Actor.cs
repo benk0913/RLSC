@@ -958,16 +958,19 @@ public class Actor : MonoBehaviour
                     {
                         break;
                     }
-                    Vector2 stepDir = nearestTarget.transform.position - transform.position;
-                    float actorEdge = nearestTarget.Rigid.position.x + nearestTarget.Collider.bounds.extents.x * stepDir.normalized.x;
+                    Vector2 stepDir = (nearestTarget.transform.position - transform.position).normalized;
+                    float actorEdge = nearestTarget.Rigid.position.x + nearestTarget.Collider.bounds.extents.x * stepDir.x;
                     float targetOffset = Collider.bounds.size.x * 2f;
-                    Vector2 targetPoint = new Vector2(actorEdge + targetOffset * stepDir.normalized.x, nearestTarget.Rigid.position.y);
-                    Vector2 actorEdgePoint = new Vector2(actorEdge, nearestTarget.Rigid.position.y);
+                    float targetHeight = Collider.bounds.size.y;
+                    Vector2 targetPoint = new Vector2(actorEdge + targetOffset * stepDir.x, nearestTarget.Rigid.position.y);
+                    float actorBottom = nearestTarget.Rigid.position.y - nearestTarget.Collider.bounds.extents.y;
+                    Vector2 actorEdgeBottomPoint = new Vector2(actorEdge, actorBottom + GroundCheckDistance);
+                    Vector2 actorEdgeTopPoint = new Vector2(actorEdge, actorBottom + targetHeight);
                     
                     // Verify there aren't walls
-                    RaycastHit2D raycastHit = Physics2D.Raycast(actorEdgePoint, stepDir, targetOffset, GroundMask);
-                    Debug.DrawRay(actorEdgePoint, stepDir, Color.green);
-                    if (raycastHit)
+                    RaycastHit2D raycastBottomHit = Physics2D.Raycast(actorEdgeBottomPoint, stepDir, targetOffset, GroundMask);
+                    RaycastHit2D raycastTopHit = Physics2D.Raycast(actorEdgeTopPoint, stepDir, targetOffset, GroundMask);
+                    if (raycastBottomHit || raycastTopHit)
                     {
                         break;
                     }
