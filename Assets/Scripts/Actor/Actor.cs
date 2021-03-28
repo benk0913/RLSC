@@ -958,25 +958,22 @@ public class Actor : MonoBehaviour
                     {
                         break;
                     }
-                    Vector2 stepDir = (nearestTarget.transform.position - transform.position).normalized;
-                    float actorEdge = nearestTarget.Rigid.position.x + nearestTarget.Collider.bounds.extents.x * stepDir.x;
+                    float direction = (nearestTarget.transform.position - transform.position).normalized.x;
+                    float actorEdge = nearestTarget.Rigid.position.x + nearestTarget.Collider.bounds.extents.x * direction;
                     float targetOffset = Collider.bounds.size.x * 2f;
-                    float targetHeight = Collider.bounds.size.y;
-                    Vector2 targetPoint = new Vector2(actorEdge + targetOffset * stepDir.x, nearestTarget.Rigid.position.y);
+                    Vector2 targetPoint = new Vector2(actorEdge + targetOffset * direction, nearestTarget.Rigid.position.y);
                     float actorBottom = nearestTarget.Rigid.position.y - nearestTarget.Collider.bounds.extents.y;
                     Vector2 actorEdgeBottomPoint = new Vector2(actorEdge, actorBottom + GroundCheckDistance);
-                    Vector2 actorEdgeTopPoint = new Vector2(actorEdge, actorBottom + targetHeight);
                     
                     // Verify there aren't walls
-                    RaycastHit2D raycastBottomHit = Physics2D.Raycast(actorEdgeBottomPoint, stepDir, targetOffset, GroundMask);
-                    RaycastHit2D raycastTopHit = Physics2D.Raycast(actorEdgeTopPoint, stepDir, targetOffset, GroundMask);
-                    if (raycastBottomHit || raycastTopHit)
+                    RaycastHit2D raycastBottomHit = Physics2D.Raycast(actorEdgeBottomPoint, Vector2.right * direction, targetOffset, GroundMask);
+                    if (raycastBottomHit)
                     {
                         break;
                     }
                     CORE.Instance.DelayedInvokation(0.01f, () => { 
                         transform.position = targetPoint;
-                        Body.localScale = new Vector3(stepDir.x > 0f ? 1f:-1f, 1f, 1f);
+                        Body.localScale = new Vector3(direction, 1f, 1f);
                     });
                     
                     break;
