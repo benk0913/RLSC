@@ -22,6 +22,7 @@ public class HealthbarUI : MonoBehaviour
     {
         CurrentActor = actor;
         LastHpPercent = 1f;
+        ImageFill.fillAmount = 1f;
     }
 
     protected void Update()
