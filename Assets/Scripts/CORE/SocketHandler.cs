@@ -88,7 +88,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("expedition_floor_complete", OnExpeditionFloorComplete));
 
         // Items
-        SocketEventListeners.Add(new SocketEventListener("item_spawn", OnItemSpawn));
+        SocketEventListeners.Add(new SocketEventListener("items_spawn", OnItemsSpawn));
         SocketEventListeners.Add(new SocketEventListener("item_despawn", OnItemDespawn));
         SocketEventListeners.Add(new SocketEventListener("actor_update_item_slot", OnUpdateItemSlot));
         SocketEventListeners.Add(new SocketEventListener("actor_update_equip_slot", OnActorUpdateEquipSlot));
@@ -843,11 +843,12 @@ public class SocketHandler : MonoBehaviour
         actorDat.OnRefreshStates?.Invoke();
     }
 
-    public void OnItemSpawn(string eventName, JSONNode data)
+    public void OnItemsSpawn(string eventName, JSONNode data)
     {
-        Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
+        List<Item> items = JsonConvert.DeserializeObject<List<Item>>(data["items"].ToString());
 
-        CORE.Instance.SpawnItem(item);
+        // TODO spawn all items
+        CORE.Instance.SpawnItem(items[0]);
     }
 
     public void OnItemDespawn(string eventName, JSONNode data)
