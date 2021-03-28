@@ -1273,7 +1273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8570,13 +8570,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1756633160}
         m_TargetAssemblyTypeName: CreateCharacterPanelUI, Assembly-CSharp
         m_MethodName: SetClassJob
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: fire
+          m_StringArgument: 0
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &711910436
@@ -16152,13 +16152,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1756633160}
         m_TargetAssemblyTypeName: CreateCharacterPanelUI, Assembly-CSharp
         m_MethodName: SetClassJob
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: water
+          m_StringArgument: 1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1226588866
@@ -22563,6 +22563,16 @@ MonoBehaviour:
   DefaultSkinColor: {r: 1, g: 1, b: 1, a: 1}
   DefaultHairColor: {r: 0.81960785, g: 0.79607844, b: 0.6313726, a: 1}
   Job: fire
+  JobFrames:
+  - {fileID: 685051368}
+  - {fileID: 1201678660}
+  - {fileID: 507587146}
+  - {fileID: 132683462}
+  Jobs:
+  - fire
+  - water
+  - earth
+  - air
 --- !u!114 &1756633161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23279,13 +23289,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1756633160}
         m_TargetAssemblyTypeName: CreateCharacterPanelUI, Assembly-CSharp
         m_MethodName: SetClassJob
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: earth
+          m_StringArgument: 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1001 &1811597739
@@ -23661,13 +23671,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1756633160}
         m_TargetAssemblyTypeName: CreateCharacterPanelUI, Assembly-CSharp
         m_MethodName: SetClassJob
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: air
+          m_StringArgument: 3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1852959469

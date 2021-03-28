@@ -26,6 +26,8 @@ public class CreateCharacterPanelUI : MonoBehaviour
     public Color DefaultHairColor;
 
     public string Job = "fire";
+    public List<Image> JobFrames = new List<Image>();
+    public List<string> Jobs = new List<string>{"fire", "water", "earth", "air"};
 
 
     private void Awake()
@@ -43,7 +45,8 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.State.Data = new ActorData("preloader", "", "fire", DisplayActor.gameObject);
 
         // Randomize whether a female or not only at the beginning.
-        DisplayActor.State.Data.looks.IsFemale = Random.Range(0,2) == 0;
+        DisplayActor.State.Data.looks.IsFemale = Random.Range(0, 2) == 0;
+        UpdateClassJob(Random.Range(0, 4));
         Randomize();
     }
 
@@ -294,9 +297,18 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.RefreshLooks();
     }
 
-    public void SetClassJob(string classJob)
+    public void SetClassJob(int index)
     {
-        DisplayActor.State.Data.classJob = classJob;
+        UpdateClassJob(index);
         DisplayActor.RefreshLooks();
+    }
+
+    private void UpdateClassJob(int index)
+    {
+        DisplayActor.State.Data.classJob = Jobs[index];
+        for (int i = 0; i < JobFrames.Count; i++)
+        {
+            JobFrames[i].color = i == index ? Color.red : Color.white;
+        }
     }
 }
