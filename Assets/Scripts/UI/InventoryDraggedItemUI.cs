@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class InventoryDraggedItemUI : MonoBehaviour
 {
+    [SerializeField]
     Image ItemIcon;
 
     Item currentItem;
-
-    public int InventoryIndex;
 
     public void SetInfo(Item item)
     {
         currentItem = item;
 
-        if( currentItem.Data == null)
+        if(currentItem == null || currentItem.Data == null)
         {
             ItemIcon.sprite = CORE.Instance.Data.ErrorIcon;
             return;

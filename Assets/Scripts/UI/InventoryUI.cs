@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,14 +21,24 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     [SerializeField]
     SelectionGroupUI SelectionGroup;
 
-    public List<EquippableSlot> EquipSlots = new List<EquippableSlot>();
+    [SerializeField]
+    GameObject SelectedPanel;
 
-    public GridLayoutGroup InventoryGridLayout;
+    [SerializeField]
+    TextMeshProUGUI IsSelectedDropText;
+
+    [SerializeField]
+    TextMeshProUGUI IsSelectedUseText;
+
+    public List<EquippableSlot> EquipSlots = new List<EquippableSlot>();
+    
 
     InventorySlotUI SelectedSlot;
     float SelectedTime;
     
-    public bool IsOpen;    
+    public bool IsOpen;
+
+
 
 
     private void Awake()
@@ -36,12 +47,33 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         Hide();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(InputMap.Map["Drop Inventory Item"]))
+        {
+            AttemptDrop();
+        }
+        else if (Input.GetKeyDown(InputMap.Map["Use Inventory Item"]))
+        {
+            UseSelected();
+        }
+
+        if(currentlyDraggedItem != null)
+        {
+            currentlyDraggedItem.transform.position = Input.mousePosition;
+        }
+    }
+
     public void Show(ActorData ofActor)
     {
         IsOpen = true;
         this.gameObject.SetActive(true);
         currentActor = ofActor;
         RefreshUI();
+
+
+        IsSelectedDropText.text = "<color=red>"+InputMap.Map["Drop Inventory Item"].ToString()+" - Drop</color>";
+        IsSelectedUseText.text = "<color=yellow>" + InputMap.Map["Use Inventory Item"].ToString() + " - Use</color>";
     }
 
     public void Hide()
@@ -93,6 +125,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         currentlyDraggedItem = ResourcesLoader.Instance.GetRecycledObject("InventoryDraggedItemUI").GetComponent<InventoryDraggedItemUI>();
         currentlyDraggedItem.transform.SetParent(transform);
         currentlyDraggedItem.SetInfo(inventorySlotUI.CurrentItem);
+        //Select(inventorySlotUI);
 
     }
 
@@ -100,9 +133,11 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     { 
         if(currentlyDraggedItem != null)
         {
-            Select(inventorySlotUI);
+            //Select(inventorySlotUI);
             currentlyDraggedItem.gameObject.SetActive(false);
         }
+
+        //Deselect();
     }
 
     public void Select(InventorySlotUI slot)
@@ -149,13 +184,37 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         {
             SelectedSlot = slot;
             SelectedTime = Time.time;
+
+            SelectedPanel.SetActive(true);
+            DragItem(SelectedSlot);
+        }
+    }
+
+    public void UseSelected()
+    {
+        if(SelectedSlot == null || SelectedSlot.CurrentItem == null)
+        {
+            return;
+        }
+
+        if (!SelectedSlot.IsEquipmentSlot)
+        {
+            SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex());
+        }
+        else
+        {
+            SocketHandler.Instance.SendUnequippedItem(SelectedSlot.name);
         }
     }
 
     public void Deselect()
     {
+        SelectedPanel.SetActive(false);
+
         if (SelectedSlot != null)
         {
+            UndragItem(SelectedSlot);
+
             SelectedSlot.Deselect();
             SelectedSlot = null;
         }
@@ -163,12 +222,12 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     public void AttemptDrop()
     {
-        if(SelectedSlot == null)
+        if (SelectedSlot == null || SelectedSlot.CurrentItem == null)
         {
             return;
         }
 
-        if(SelectedSlot.IsEquipmentSlot)
+        if (SelectedSlot.IsEquipmentSlot)
         {
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("First unequip the item and only then, you may drop it.", Color.red));
             return;

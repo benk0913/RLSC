@@ -282,7 +282,7 @@ public class CORE : MonoBehaviour
     {
         ///TODO ADD ENTITY
 
-        ItemEntity itemEntity =  ResourcesLoader.Instance.GetRecycledObject("ItemEntity").GetComponent<ItemEntity>();
+        ItemEntity itemEntity =  ResourcesLoader.Instance.GetRecycledObject("WorldItem").GetComponent<ItemEntity>();
         itemEntity.transform.position = new Vector2(item.x, item.y);
         item.Entity = itemEntity;
         itemEntity.SetInfo(item);

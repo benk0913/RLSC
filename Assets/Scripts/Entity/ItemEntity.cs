@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemEntity : MonoBehaviour
 {
@@ -9,10 +10,10 @@ public class ItemEntity : MonoBehaviour
     bool IsPickable;
 
     [SerializeField]
-    SpriteRenderer ItemIcon;
+    Image ItemIcon;
 
     [SerializeField]
-    SpriteRenderer RarityGradient;
+    Image RarityGradient;
 
     Actor NearbyActor;
 
