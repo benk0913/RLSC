@@ -20,6 +20,12 @@ public class SelectionGroupUI : MonoBehaviour
         RefreshGroup();
     }
 
+    private void OnEnable()
+    {
+        previousSelection = SelectionInControl;
+        SelectionInControl = this;
+    }
+    
     private void OnDisable()
     {
         if(SelectionInControl == this)
@@ -44,9 +50,6 @@ public class SelectionGroupUI : MonoBehaviour
 
     public void RefreshGroup()
     {
-        previousSelection = SelectionInControl;
-        SelectionInControl = this;
-
         Selectable[] selectables = GetComponentsInChildren<Selectable>();
         instances.Clear();
         foreach(Selectable selectable in selectables)
