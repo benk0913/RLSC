@@ -61,6 +61,7 @@ public class CORE : MonoBehaviour
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
         DontDestroyOnLoad(this.gameObject);
+        LeaveGame();
     }
 
     private void Start()

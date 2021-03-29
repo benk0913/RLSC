@@ -11,6 +11,8 @@ public class Item
     public string itemName;
     public float x;
     public float y;
+    public float spawnX;
+    public float spawnY;
 
     [JsonIgnore]
     public ItemEntity Entity;

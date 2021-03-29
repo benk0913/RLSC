@@ -15,6 +15,9 @@ public class ItemEntity : MonoBehaviour
     [SerializeField]
     Image RarityGradient;
 
+    [SerializeField]
+    Rigidbody2D Rigid;
+
     Actor NearbyActor;
 
     float InteractableCooldown = 0f;
@@ -51,6 +54,8 @@ public class ItemEntity : MonoBehaviour
         IsPickable = true;
 
         RefreshUI();
+
+        StartCoroutine(InterpolateToSpawn());
     }
 
     public void BePickedBy(Actor actor)
@@ -63,6 +68,21 @@ public class ItemEntity : MonoBehaviour
         IsPickable = false;
 
         StartCoroutine(PickRoutine(actor));
+    }
+
+    IEnumerator InterpolateToSpawn()
+    {
+        Vector2 targetPoint = new Vector2(CurrentItem.spawnX, CurrentItem.spawnY);
+
+        float t = 0f;
+        while(t<1f)
+        {
+            t += Time.deltaTime;
+
+            Rigid.position += (Rigid.position-targetPoint)*Time.deltaTime;
+
+            yield return 0;
+        }
     }
 
     IEnumerator PickRoutine(Actor actor)

@@ -848,7 +848,12 @@ public class SocketHandler : MonoBehaviour
         List<Item> items = JsonConvert.DeserializeObject<List<Item>>(data["items"].ToString());
 
         // TODO spawn all items
-        CORE.Instance.SpawnItem(items[0]);
+        for(int i=0;i<items.Count;i++)
+        {
+            items[i].spawnX = items[i].x + i;
+            items[i].spawnY = items[i].y;
+            CORE.Instance.SpawnItem(items[i]);
+        }
     }
 
     public void OnItemDespawn(string eventName, JSONNode data)
