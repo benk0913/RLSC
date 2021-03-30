@@ -23,5 +23,5 @@ public class ClassJob : ScriptableObject
     [JsonIgnore]
     public Color ClassColor;
 
-    public List<string> DropsOnDeath = new List<string>();
+    public List<ItemData> DropsOnDeath = new List<ItemData>();
 }
