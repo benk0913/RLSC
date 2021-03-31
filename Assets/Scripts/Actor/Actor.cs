@@ -115,8 +115,8 @@ public class Actor : MonoBehaviour
 
     public float VelocityMinimumThreshold = 0.1f;
 
-    protected Vector3 deltaPosition;
-    protected Vector3 lastPosition;
+    protected Vector2 deltaPosition;
+    protected Vector2 lastPosition;
 
 
     public Ability LastAbility;
@@ -393,10 +393,12 @@ public class Actor : MonoBehaviour
         Animer.SetBool("Dead", IsDead);
     }
 
+    float velocityNoiseTimer;
+
     void RefreshVelocity()
     {
-        deltaPosition = transform.position - lastPosition;
-        lastPosition = transform.position;
+        deltaPosition = Rigid.position - lastPosition;
+        lastPosition = Rigid.position;
 
         if (IsClientControl)
         {
@@ -443,14 +445,7 @@ public class Actor : MonoBehaviour
     {
         Vector3 targetPosition = new Vector2(State.Data.x, State.Data.y);
 
-        if (Mathf.Abs(Rigid.position.y - targetPosition.y) < 0.8 || Mathf.Abs(Rigid.position.x - targetPosition.x) < 0.2)
-        {
-            transform.position = targetPosition;
-        }
-        else 
-        {
-            Rigid.position = Vector3.Lerp(Rigid.position, targetPosition, Time.deltaTime * InterpolationSpeed);
-        }
+        Rigid.position = Vector3.Lerp(Rigid.position, targetPosition, Time.deltaTime * InterpolationSpeed);
 
         Body.localScale = State.Data.faceRight ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
     }
