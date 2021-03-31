@@ -16,7 +16,8 @@ public class AiFruitBoss : ActorAI
 
             while (SelectedAbility == null)
             {
-                if (Act.State.Data.hp < Act.State.Data.MaxHP *0.7f)
+                if ((Act.State.ExecutingAbilityCollider == null || !Act.State.ExecutingAbilityCollider.gameObject.activeInHierarchy)//Am I not already executing and am I below 70% HP?
+                    && Act.State.Data.hp < Act.State.Data.MaxHP *0.7f)
                 {
                     if (Random.Range(0, 2) == 0)
                     {
