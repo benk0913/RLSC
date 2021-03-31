@@ -18,7 +18,14 @@ public class AiFruitBoss : ActorAI
             {
                 if (Act.State.Data.hp < Act.State.Data.MaxHP *0.7f)
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FruitBossSpit" && x.CurrentCD <= 0f);
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FruitBossSpit" && x.CurrentCD <= 0f);
+                    }
+                    else
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FruitBossSpit2" && x.CurrentCD <= 0f);
+                    }
                 }
 
                 WaitBehaviour();
@@ -28,15 +35,6 @@ public class AiFruitBoss : ActorAI
 
             yield return 0;
 
-            if(Random.Range(0,2) == 0)
-            {
-                Act.AttemptLookRight();
-            }
-            else
-            {
-                Act.AttemptLookLeft();
-            }
-            
             yield return StartCoroutine(UseAbilityRoutine(SelectedAbility));
         }
     }

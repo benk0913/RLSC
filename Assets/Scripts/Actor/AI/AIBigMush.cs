@@ -72,7 +72,7 @@ public class AIBigMush : ActorAI
     {
         get
         {
-            return CORE.Instance.Room.Actors.FindAll(x => x.isMob).Count < 10;
+            return CORE.Instance.Room.Actors.FindAll(x => x.isMob && x.ActorEntity != null && !x.ActorEntity.IsDead).Count < 10;
         }
     }
 

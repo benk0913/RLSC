@@ -8,6 +8,26 @@ public class AIGhost : ActorAI
 
 
 
+    protected override void Update()
+    {
+        base.Update();
+
+        if (Act.State.Data.hp < Act.State.Data.MaxHP / 2f)
+        {
+            if (!EnragedEffect.activeInHierarchy)
+            {
+                EnragedEffect.SetActive(true);
+            }
+        }
+        else
+        {
+            if (EnragedEffect.activeInHierarchy)
+            {
+                EnragedEffect.SetActive(false);
+            }
+        }
+    }
+
     protected override IEnumerator AIBehaviourRoutine()
     {
         yield return 0;
@@ -17,7 +37,7 @@ public class AIGhost : ActorAI
 
             while (SelectedAbility == null)
             {
-                if (Act.State.Data.hp < Act.State.Data.MaxHP /2f)
+                if (Act.State.Data.hp < Act.State.Data.MaxHP / 2f)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghost Possess" && x.CurrentCD <= 0f);
 
@@ -26,10 +46,6 @@ public class AIGhost : ActorAI
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghostial Pull" && x.CurrentCD <= 0f);
                     }
 
-                    if (!EnragedEffect.activeInHierarchy)
-                    {
-                        EnragedEffect.SetActive(true);
-                    }
                 }
                 else
                 {
@@ -38,11 +54,6 @@ public class AIGhost : ActorAI
                     if (SelectedAbility == null)
                     {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghostial Pull" && x.CurrentCD <= 0f);
-                    }
-
-                    if (EnragedEffect.activeInHierarchy)
-                    {
-                        EnragedEffect.SetActive(false);
                     }
                 }
 
