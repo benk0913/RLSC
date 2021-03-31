@@ -393,8 +393,6 @@ public class Actor : MonoBehaviour
         Animer.SetBool("Dead", IsDead);
     }
 
-    float velocityNoiseTimer;
-
     void RefreshVelocity()
     {
         deltaPosition = Rigid.position - lastPosition;
