@@ -224,6 +224,7 @@ public class Actor : MonoBehaviour
         }
 
         Animer.SetTrigger("Interrupted");
+        Rigid.velocity = Vector2.zero;
     }
 
     public void RefreshControlSource()
@@ -1021,6 +1022,7 @@ public class Actor : MonoBehaviour
             return;
         }
 
+        
         ClientMovingTowardsDir = 1;
 
         Rigid.position += Vector2.right * Time.deltaTime * State.Data.MovementSpeed;

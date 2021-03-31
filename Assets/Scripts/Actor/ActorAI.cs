@@ -131,6 +131,11 @@ public class ActorAI : MonoBehaviour
             return;
         }
 
+        if(Mathf.Abs(CurrentTarget.transform.position.x - transform.position.x) < Act.GroundedDistance)
+        {
+            return;
+        }
+
         if (CurrentTarget.transform.position.x > transform.position.x && !rhitRight)
         {
             Act.AttemptMoveRight();

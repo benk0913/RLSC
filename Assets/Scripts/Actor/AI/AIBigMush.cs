@@ -6,7 +6,25 @@ public class AIBigMush : ActorAI
 {
     public GameObject EnragedEffect;
 
+    protected override void Update()
+    {
+        base.Update();
 
+        if (Act.State.Data.hp < Act.State.Data.MaxHP / 2f)
+        {
+            if (!EnragedEffect.activeInHierarchy)
+            {
+                EnragedEffect.SetActive(true);
+            }
+        }
+        else
+        {
+            if (EnragedEffect.activeInHierarchy)
+            {
+                EnragedEffect.SetActive(false);
+            }
+        }
+    }
 
     protected override IEnumerator AIBehaviourRoutine()
     {
@@ -17,18 +35,13 @@ public class AIBigMush : ActorAI
 
             while (SelectedAbility == null)
             {
-                if (Act.State.Data.hp < Act.State.Data.MaxHP /2f)
+                if (Act.State.Data.hp < Act.State.Data.MaxHP / 2f)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "MushroomSpore" && x.CurrentCD <= 0f);
-                    
-                    if(SelectedAbility == null && CanSpawnMore)
+
+                    if (SelectedAbility == null && CanSpawnMore)
                     {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "MushroomProtecX2" && x.CurrentCD <= 0f);
-                    }
-
-                    if(!EnragedEffect.activeInHierarchy)
-                    {
-                        EnragedEffect.SetActive(true);
                     }
                 }
                 else
@@ -38,11 +51,6 @@ public class AIBigMush : ActorAI
                     if (SelectedAbility == null && CanSpawnMore)
                     {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "MushroomProtec" && x.CurrentCD <= 0f);
-                    }
-
-                    if (EnragedEffect.activeInHierarchy)
-                    {
-                        EnragedEffect.SetActive(false);
                     }
                 }
 
