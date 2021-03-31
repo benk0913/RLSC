@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorSlimeMedium
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Muck Slow
   m_EditorClassIdentifier: 
-  Icon: {fileID: -1933679314495529430, guid: 304f7d21b29981d40a86157d2f3d3f31, type: 3}
-  Abilities:
-  - Slime Hop
-  - Slime Split Medium
-  - SlimeMuck
-  PassiveAbility: PassiveSlimeBoss
+  Icon: {fileID: 21300000, guid: a3617e29cb805e343a0c0e53a9cf17fd, type: 3}
+  Description: Move slowly
+  BuffColliderObject: SlowBuffEffect
+  BuffMaterial: {fileID: 0}
+  Length: 1.5
+  isDebuff: 1
+  ShowBuffIcon: 1
   Attributes:
     Power: 0
-    HP: 4
+    HP: 0
     Defense: 0
     CDReduction: 0
     CTReduction: 0
@@ -36,7 +37,11 @@ MonoBehaviour:
     KnockbackResistance: 0
     SmallerColliderSize: 0
     Threat: 0
-    MovementSpeed: 0
-  Immunity: []
-  ClassColor: {r: 0, g: 0, b: 0, a: 0}
-  DropsOnDeath: []
+    MovementSpeed: -0.95
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States: []
+  OnStart: []
+  OnEnd: []
+  OnTakeDamage: []

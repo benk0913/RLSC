@@ -10,39 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Slime Split Large
+  m_Name: SlimeMuck
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 3c088dabd8b4d464f8883382a02db6c1, type: 3}
-  Description: Strike the enemy in a short distance while backing away from it.
+  Icon: {fileID: 21300000, guid: 61063bdfbc8e6024fb2782d846fc154a, type: 3}
+  Description: Throw a large rock forward, it will stun as well as damage the enemy.
   Colliders:
-    HitAbilityColliderObject: 
-    MissAbilityColliderObject: 
-    AbilityColliderObject: SlimeSplitEffect
+    HitAbilityColliderObject: MuckHit
+    MissAbilityColliderObject: MuckHit
+    AbilityColliderObject: 
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
     PrepareAbilitySound: 
-    ExecuteAbilitySound: _ound_throw
-    HitAbilitySound: 
-    MissAbilitySound: 
+    ExecuteAbilitySound: sound_earth_3
+    HitAbilitySound: sound_earth_4
+    MissAbilitySound: sound_earth_4
   Visuals:
     ScreenEffectObject: 
-    PreparingAnimation: Cast1
-    ExecuteAnimation: Execute1
-  CD: 5
+    PreparingAnimation: Hurt1
+    ExecuteAnimation: Hurt2
+  CD: 10
   CastingTime: 1
-  TargetCap: 0
+  TargetCap: 1
   OnlyIfGrounded: 0
   IsCastingExternal: 0
   OnExecuteParams:
-  - Type: {fileID: 11400000, guid: 925789fd29bf01b4794f3effafc40709, type: 2}
-    Condition: {fileID: 0}
-    Targets: 2
-    Value: ActorSlime
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: Engage
+  - Type: {fileID: 11400000, guid: 925789fd29bf01b4794f3effafc40709, type: 2}
+    Condition: {fileID: 0}
+    Targets: 2
+    Value: ActorMuck
   OnHitParams: []
   OnMissParams: []
