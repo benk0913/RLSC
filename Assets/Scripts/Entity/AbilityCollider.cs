@@ -37,6 +37,8 @@ public class AbilityCollider : HitCollider
     // Interval that colliders of the same type should hit the same actor. 
     public int HitInterval = 0;
 
+    public bool RemoveOnInterrupt;
+
     private void Awake()
     {
         if (!string.IsNullOrEmpty(onHitObject))

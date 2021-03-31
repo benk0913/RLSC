@@ -2119,7 +2119,7 @@ GameObject:
   - component: {fileID: 1551737044}
   - component: {fileID: 1551737046}
   - component: {fileID: 7318722103061463516}
-  - component: {fileID: 1579926654672133679}
+  - component: {fileID: 8264504073849522723}
   m_Layer: 8
   m_Name: ActorBorrowBlock
   m_TagString: Actor
@@ -2261,13 +2261,14 @@ MonoBehaviour:
     IsPreparingAbility: 0
     PreparingAbilityCurrent: {fileID: 0}
     PreparingAbiityColliderObject: {fileID: 0}
+    ExecutingAbilityCollider: {fileID: 0}
     OnInterrupt:
       m_PersistentCalls:
         m_Calls: []
   Rigid: {fileID: 1551737043}
   Body: {fileID: 1450574624275921511}
   PlayerControl: {fileID: 7318722103061463516}
-  AIControl: {fileID: 1579926654672133679}
+  AIControl: {fileID: 8264504073849522723}
   Animer: {fileID: 1968958247804861251}
   Skin: {fileID: 0}
   GroundMask:
@@ -2304,7 +2305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentActor: {fileID: 1551737046}
---- !u!114 &1579926654672133679
+--- !u!114 &8264504073849522723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2313,7 +2314,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7785496889078657400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a092977ecadb3f349b9a41d4377cc9c5, type: 3}
+  m_Script: {fileID: 11500000, guid: f38df1168f01a394e93a65b028098d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Act: {fileID: 1551737046}
@@ -2321,7 +2322,7 @@ MonoBehaviour:
   IsBoss: 1
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 4097
+    m_Bits: 0
   ChaseDistance: 1
   FleeDistance: 10
 --- !u!1001 &1382260785445379380
