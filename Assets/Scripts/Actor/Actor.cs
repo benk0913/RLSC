@@ -470,8 +470,9 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void ExecuteAbility(Ability ability, Vector3 position = default, bool faceRight = default)
+    public void ExecuteAbility(Ability ability, Vector3 position = default, bool faceRight = default, bool castingExternal = false)
     {
+        bool isCastingExternal = castingExternal || ability.IsCastingExternal;
         if(IsClientControl)
         {
 
@@ -479,7 +480,7 @@ public class Actor : MonoBehaviour
 
             AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
-            if (!ability.IsCastingExternal)
+            if (!isCastingExternal)
             {
                 if (abilityState != null)
                 {
@@ -498,7 +499,7 @@ public class Actor : MonoBehaviour
             CORE.Instance.ShowScreenEffect(ability.Visuals.ScreenEffectObject);
         }
 
-        if (!ability.IsCastingExternal)
+        if (!isCastingExternal)
         {
             if (!string.IsNullOrEmpty(ability.Visuals.ExecuteAnimation))
             {

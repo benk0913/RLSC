@@ -668,8 +668,9 @@ public class SocketHandler : MonoBehaviour
         Ability ability = CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName);
         Vector2 position = new Vector2(data["x"].AsFloat, data["y"].AsFloat);
         bool faceRight = data["faceRight"].AsBool;
+        bool castingExternal = data["castingExternal"].AsBool;
 
-        actorDat.ActorEntity.ExecuteAbility(ability,position,faceRight);
+        actorDat.ActorEntity.ExecuteAbility(ability,position,faceRight, castingExternal);
 
         
     }
