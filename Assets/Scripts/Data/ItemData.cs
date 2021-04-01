@@ -28,7 +28,5 @@ public class ItemData : ScriptableObject
     public List<SkinSet> SkinOverride = new List<SkinSet>();
     
     public List<State> States = new List<State>();
-    
-    public OrbBonusesData OrbBonuses;
 }
 
