@@ -27,7 +27,8 @@ public class ItemData : ScriptableObject
     [JsonIgnore]
     public List<SkinSet> SkinOverride = new List<SkinSet>();
     
-    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public List<State> States = new List<State>();
+    
     public OrbBonusesData OrbBonuses;
 }
 
