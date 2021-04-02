@@ -19,6 +19,7 @@ public class ActorBuffsPanelUI : MonoBehaviour
     private void Start()
     {
         CORE.Instance.SubscribeToEvent("BuffStateChanged", ResetActor);
+        CORE.Instance.SubscribeToEvent("OrbsChanged", ResetActor);
     }
 
     public void LateUpdate()
@@ -43,14 +44,25 @@ public class ActorBuffsPanelUI : MonoBehaviour
 
         CORE.ClearContainer(buffsContainer);
 
+        foreach(Item orb in playerActor.State.Data.orbs)
+        {
+            BuffSlotUI slot = GetSlot();
+            slot.SetOrb(orb);
+        }
         foreach(BuffState buffState in playerActor.State.Buffs)
         {
-            BuffSlotUI slot = ResourcesLoader.Instance.GetRecycledObject("BuffSlotUI").GetComponent<BuffSlotUI>();
-            slot.transform.SetParent(buffsContainer, false);
-            slot.transform.localScale = Vector3.one;
-            slot.transform.position = Vector3.zero;
+            BuffSlotUI slot = GetSlot();
             slot.SetBuffState(buffState);
         }
+    }
+
+    BuffSlotUI GetSlot()
+    {
+        BuffSlotUI slot = ResourcesLoader.Instance.GetRecycledObject("BuffSlotUI").GetComponent<BuffSlotUI>();
+        slot.transform.SetParent(buffsContainer, false);
+        slot.transform.localScale = Vector3.one;
+        slot.transform.position = Vector3.zero;
+        return slot;
     }
 
     void ResetActor()

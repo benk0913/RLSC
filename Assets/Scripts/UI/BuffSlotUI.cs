@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BuffSlotUI : MonoBehaviour
 {
-    BuffState ActiveBuff;
+    BuffSlotEffect ActiveBuffEffect;
 
     [SerializeField]
     Image IconImage;
@@ -19,50 +19,101 @@ public class BuffSlotUI : MonoBehaviour
 
     [SerializeField]
     TooltipTargetUI Tooltip;
-
-
-    public void SetBuffState(BuffState buffState = null)
+ 
+    public void SetBuffState(BuffState buffState)
     {
-        ActiveBuff = buffState;
+        ActiveBuffEffect = new BuffSlotEffect(buffState);
+        UpdateBuffEffect();
+    }
+ 
+    public void SetOrb(Item orb)
+    {
+        ActiveBuffEffect = new BuffSlotEffect(orb);
+        UpdateBuffEffect();
+    }
 
-        if(ActiveBuff == null)
-        {
-            IconImage.sprite = ResourcesLoader.Instance.GetSprite("emptySlot");
-            return;
-        }
-
-        IconImage.sprite = ActiveBuff.CurrentBuff.Icon;
+    private void UpdateBuffEffect()
+    {
+        IconImage.sprite = ActiveBuffEffect.Icon;
 
         string tooltipString = "";
 
-        tooltipString += "<color=yellow>"+ActiveBuff.CurrentBuff.name+"</color>";
-        tooltipString += System.Environment.NewLine + ActiveBuff.CurrentBuff.Description;
+        tooltipString += "<color=yellow>"+ActiveBuffEffect.Name+"</color>";
+        tooltipString += System.Environment.NewLine + ActiveBuffEffect.Description;
         Tooltip.SetTooltip(tooltipString);
     }
 
     private void Update()
     {
-        if(ActiveBuff == null)
+        if(ActiveBuffEffect == null)
         {
             return;
         }
 
-        if(ActiveBuff.CurrentLength <= 0 && CooldownImage.gameObject.activeInHierarchy)
+        if(ActiveBuffEffect.CurrentLength <= 0 && CooldownImage.gameObject.activeInHierarchy)
         {
             CooldownImage.gameObject.SetActive(false);
         }
-        else if(ActiveBuff.CurrentLength > 0)
+        else if(ActiveBuffEffect.CurrentLength > 0)
         {
             if (!CooldownImage.gameObject.activeInHierarchy)
             {
                 CooldownImage.gameObject.SetActive(true);
             }
 
-            CooldownImage.fillAmount = ActiveBuff.CurrentLength / ActiveBuff.Length;
-            CooldownImage.color = ActiveBuff.CurrentBuff.isDebuff ? Color.red : Color.green;
+            CooldownImage.fillAmount = ActiveBuffEffect.CurrentLength / ActiveBuffEffect.Length;
+            CooldownImage.color = ActiveBuffEffect.IsNegativeEffect ? Color.red : Color.green;
 
-            CooldownLabel.text = Mathf.RoundToInt(ActiveBuff.CurrentLength).ToString();
+            CooldownLabel.text = Mathf.RoundToInt(ActiveBuffEffect.CurrentLength).ToString();
             CooldownLabel.color = CooldownImage.color;
         }
+    }
+}
+
+public class BuffSlotEffect
+{
+    public BuffState BuffState;
+    public Sprite Icon;
+    public string Name;
+    public string Description;
+    public float Length
+    {
+        get
+        {
+            if (BuffState == null)
+            {
+                return 0;
+            }
+            return BuffState.Length;
+        }
+    }
+    public float CurrentLength
+    {
+        get
+        {
+            if (BuffState == null)
+            {
+                return 0;
+            }
+            return BuffState.CurrentLength;
+        }
+    }
+    public bool IsNegativeEffect;
+
+    public BuffSlotEffect(BuffState buffState)
+    {
+        BuffState = buffState;
+        Icon = buffState.CurrentBuff.Icon;
+        Name = buffState.CurrentBuff.name;
+        Description = buffState.CurrentBuff.Description;
+        IsNegativeEffect = buffState.CurrentBuff.isDebuff;
+    }
+
+    public BuffSlotEffect(Item orb)
+    {
+        BuffState = null;
+        Icon = orb.Data.Icon;
+        Name = orb.Data.name;
+        Description = orb.Data.Description;
     }
 }

@@ -93,6 +93,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_update_item_slot", OnUpdateItemSlot));
         SocketEventListeners.Add(new SocketEventListener("actor_update_equip_slot", OnActorUpdateEquipSlot));
         SocketEventListeners.Add(new SocketEventListener("actor_pick_item", OnActorPickItem));
+        SocketEventListeners.Add(new SocketEventListener("orb_added", OnOrbAdded));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -919,6 +920,13 @@ public class SocketHandler : MonoBehaviour
         item.Entity.BePickedBy(actorDat.ActorEntity);
     }
 
+    public void OnOrbAdded(string eventName, JSONNode data)
+    {
+        Item orb = JsonConvert.DeserializeObject<Item>(data["orb"].ToString());
+
+        CurrentUser.actor.orbs.Add(orb);
+        CORE.Instance.InvokeEvent("OrbsChanged");
+    }
 
     #endregion
 }
@@ -952,6 +960,7 @@ public class ActorData
     public int exp;
     public int level;
     public Dictionary<string, Item> equips = new Dictionary<string, Item>();
+    public List<Item> orbs = new List<Item>();
 
     public bool isMob
     {
