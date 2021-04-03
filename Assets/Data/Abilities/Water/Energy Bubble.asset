@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Energy Bubble
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8d29b8ea0260bd643a02a8959ed9ec11, type: 3}
-  Description: Float a bubble that on impact clears the cooldown of the last ability
+  Description: Float a bubble that heals on impact
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -37,8 +37,8 @@ MonoBehaviour:
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
-  - Type: {fileID: 11400000, guid: 3a324772d7eee094a956d79f860f9248, type: 2}
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     Targets: 1
-    Value: 
+    Value: -30
   OnMissParams: []
