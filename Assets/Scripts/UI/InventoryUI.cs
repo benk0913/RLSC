@@ -53,10 +53,6 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         {
             AttemptDrop();
         }
-        else if (Input.GetKeyDown(InputMap.Map["Use Inventory Item"]))
-        {
-            UseSelected();
-        }
 
         if(currentlyDraggedItem != null)
         {
@@ -120,6 +116,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         {
             currentlyDraggedItem.gameObject.SetActive(false);
             currentlyDraggedItem = null;
+        }
+        if (inventorySlotUI.CurrentItem == null || inventorySlotUI.CurrentItem.Data == null)
+        {
+            return;
         }
 
         currentlyDraggedItem = ResourcesLoader.Instance.GetRecycledObject("InventoryDraggedItemUI").GetComponent<InventoryDraggedItemUI>();
@@ -185,7 +185,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             SelectedSlot = slot;
             SelectedTime = Time.time;
 
-            SelectedPanel.SetActive(true);
+            if (!SelectedSlot.IsEquipmentSlot && SelectedSlot.CurrentItem != null)
+            {
+                SelectedPanel.SetActive(true);
+            }
             DragItem(SelectedSlot);
         }
     }
