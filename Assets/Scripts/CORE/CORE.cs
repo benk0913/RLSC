@@ -358,12 +358,13 @@ public class CORE : MonoBehaviour
         }
     }
 
-    public void ShowScreenEffect(string screenEffectObject)
+    public void ShowScreenEffect(string screenEffectObject, object data = null)
     {
         GameObject obj = ResourcesLoader.Instance.GetRecycledObject(screenEffectObject);
         obj.transform.SetParent(GameUICG.transform, true);
         obj.transform.position = GameUICG.transform.position;
         obj.transform.localScale = Vector3.one;
+        obj.GetComponent<ScreenEffectUI>().Show(data);
 
         RectTransform rt = obj.GetComponent<RectTransform>();
         rt.anchorMin = Vector2.zero;
