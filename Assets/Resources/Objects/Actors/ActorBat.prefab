@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &401683987
 Transform:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ Transform:
   m_GameObject: {fileID: 4767943913729968351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4765091477523444141}
   m_Father: {fileID: 1450574624275921511}
@@ -670,10 +670,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00999999, y: 1.5994699}
+  m_Offset: {x: -0.06678581, y: 0.7855407}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -684,7 +684,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.16742, y: 3.2380567}
+  m_Size: {x: 2.7667046, y: 2.5944846}
   m_EdgeRadius: 0
 --- !u!114 &1551737046
 MonoBehaviour:
@@ -822,9 +822,10 @@ MonoBehaviour:
   IsBoss: 0
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 4097
+    m_Bits: 0
   ChaseDistance: 1
-  FleeDistance: 10
+  FleeDistance: 2
+  ChaseDistanceMax: 0
 --- !u!1 &8689996440765242110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,11 +1132,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Size.x
-      value: 4.16742
+      value: 2.8045619
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Size.y
-      value: 3.2380567
+      value: 2.5566278
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Enabled
@@ -1143,11 +1144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Offset.x
-      value: -0.00999999
+      value: -0.047857165
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_Offset.y
-      value: 1.5994699
+      value: 0.80446935
       objectReference: {fileID: 0}
     - target: {fileID: 4383124835874899818, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_IsTrigger

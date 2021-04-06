@@ -5,6 +5,14 @@ using UnityEngine;
 public class AIBat : ActorAI
 {
 
+    public float ChaseDistanceMax;
+
+    protected override void Start()
+    {
+        base.Start();
+        ChaseDistance = Random.Range(ChaseDistance, ChaseDistanceMax);
+    }
+
     protected override IEnumerator AIBehaviourRoutine()
     {
         yield return new WaitForSeconds(0.5f);
