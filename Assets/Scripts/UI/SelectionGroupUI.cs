@@ -137,8 +137,8 @@ public class SelectionGroupUI : MonoBehaviour
     {
         if(CurrentSelected != null && CurrentSelectedSelectable != null)
         {
-            Image originImg = CurrentSelectedSelectable.GetComponent<Image>();
-            originImg.color = new Color(originImg.color.r, originImg.color.g, originImg.color.b, 1f);
+            CanvasGroup canvasGroup = CurrentSelectedSelectable.GetComponent<CanvasGroup>();
+            canvasGroup.alpha = 1;
             CurrentSelected = null;
 
             SelectionHandlerUI selectionExitHandler = CurrentSelectedSelectable.GetComponent<SelectionHandlerUI>();
@@ -163,19 +163,23 @@ public class SelectionGroupUI : MonoBehaviour
 
     IEnumerator StrobeSelect()
     {
-        Image img = CurrentSelectedSelectable.GetComponent<Image>();
+        CanvasGroup canvasGroup = CurrentSelectedSelectable.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = CurrentSelectedSelectable.gameObject.AddComponent<CanvasGroup>();   
+        }
 
         while(true)
         {
-            while(img.color.a > 0f)
+            while(canvasGroup.alpha > 0.2f)
             {
-                img.color = new Color(img.color.r, img.color.g, img.color.b, img.color.a - (Time.deltaTime * 4f));
+                canvasGroup.alpha -= (Time.deltaTime * 4f);
                 yield return 0;
             }
 
-            while (img.color.a < 1f)
+            while (canvasGroup.alpha < 1f)
             {
-                img.color = new Color(img.color.r, img.color.g, img.color.b, img.color.a + (Time.deltaTime * 4f));
+                canvasGroup.alpha += (Time.deltaTime * 4f);
                 yield return 0;
             }
         }
