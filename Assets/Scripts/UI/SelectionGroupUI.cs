@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class SelectionGroupUI : MonoBehaviour
@@ -11,6 +12,7 @@ public class SelectionGroupUI : MonoBehaviour
     SelectionGroupUI previousSelection;
 
     List<SelectionGroupInstance> instances = new List<SelectionGroupInstance>();
+    Dictionary<Selectable, SelectionGroupInstance> instancesBySelectable = new Dictionary<Selectable, SelectionGroupInstance>();
 
     public SelectionGroupInstance CurrentSelected;
     public Selectable CurrentSelectedSelectable;
@@ -52,11 +54,31 @@ public class SelectionGroupUI : MonoBehaviour
     {
         Selectable[] selectables = GetComponentsInChildren<Selectable>();
         instances.Clear();
+        instancesBySelectable.Clear();
         foreach(Selectable selectable in selectables)
         {
             if (selectable.isActiveAndEnabled)
             {
-                instances.Add(new SelectionGroupInstance(selectable));
+                SelectionGroupInstance instance = new SelectionGroupInstance(selectable);
+                instances.Add(instance);
+                instancesBySelectable.Add(selectable, instance);
+
+                Button button = selectable.GetComponent<Button>();
+                if(button != null)
+                {
+                    button.onClick.RemoveAllListeners();
+                    button.onClick.AddListener(() => {
+                        Select(instance);
+                    });
+                }
+                TMP_InputField input = selectable.GetComponent<TMP_InputField>();
+                if (input != null)
+                {
+                    input.onSelect.RemoveAllListeners();
+                    input.onSelect.AddListener((string value) => {
+                        Select(instance);
+                    });
+                }
             }
         }
 
@@ -138,7 +160,10 @@ public class SelectionGroupUI : MonoBehaviour
         if(CurrentSelected != null && CurrentSelectedSelectable != null)
         {
             CanvasGroup canvasGroup = CurrentSelectedSelectable.GetComponent<CanvasGroup>();
-            canvasGroup.alpha = 1;
+            if (canvasGroup != null)
+            {
+                canvasGroup.alpha = 1;
+            }
             CurrentSelected = null;
 
             SelectionHandlerUI selectionExitHandler = CurrentSelectedSelectable.GetComponent<SelectionHandlerUI>();
@@ -177,15 +202,15 @@ public class SelectionGroupUI : MonoBehaviour
                 yield return 0;
             }
 
-            while(canvasGroup.alpha > 0.2f)
+            while(canvasGroup.alpha > 0.4f)
             {
-                canvasGroup.alpha -= (Time.deltaTime * 4f);
+                canvasGroup.alpha -= (Time.deltaTime * 3f);
                 yield return 0;
             }
 
             while (canvasGroup.alpha < 1f)
             {
-                canvasGroup.alpha += (Time.deltaTime * 4f);
+                canvasGroup.alpha += (Time.deltaTime * 3f);
                 yield return 0;
             }
         }
@@ -249,13 +274,6 @@ public class SelectionGroupUI : MonoBehaviour
             else if (CurrentSelectedSelectable.GetType() == typeof(TMP_InputField))
             {
                 ((TMP_InputField)CurrentSelectedSelectable).Select();
-                //TODO Implement text field selection
-            }
-                
-            SelectionHandlerUI selectionHandler = CurrentSelectedSelectable.GetComponent<SelectionHandlerUI>();
-            if (selectionHandler != null)
-            {
-                selectionHandler.OnSelectEvent?.Invoke();
             }
         }
     }

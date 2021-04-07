@@ -17,7 +17,6 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
     SelectionGroupUI SelectionGroup;
 
     public AbilitySlotDraggableUI SelectedAbility;
-    public AbilitySlotDraggableUI HoveredAbility;
 
     Actor playerActor;
 
@@ -57,17 +56,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         }
     }
 
-    public void SetHover(AbilitySlotDraggableUI ability)
-    {
-        if (HoveredAbility != null)
-        {
-            HoveredAbility.Unhover();
-        }
-
-        HoveredAbility = ability;
-    }
-
-    public void SelectAbility()
+    public void SelectAbility(AbilitySlotDraggableUI HoveredAbility)
     {
         if (HoveredAbility.CurrentAbility.IsAbilityLocked)
         {
