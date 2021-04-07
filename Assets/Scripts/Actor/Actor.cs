@@ -792,8 +792,32 @@ public class Actor : MonoBehaviour
             this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.abilities[i]),this));
         }
 
-        if (State.Data.IsPlayer)
+        if (State.Data.IsPlayer) {
+            RefreshLockedSlots();
             ActorAbilitiesPanelUI.Instance.SetActor(this);
+        }
+    }
+
+    private void RefreshLockedSlots()
+    {
+        int slotsLocked = 0;
+        
+        foreach(Item orb in State.Data.orbs)
+        {
+            foreach (State state in orb.Data.States)
+            {
+                if (state.name == "LockSlot")
+                {
+                    slotsLocked++;
+                }
+            }
+        }
+        slotsLocked = Mathf.Min(slotsLocked, State.Abilities.Count);
+
+        for (int i = 0; i < slotsLocked; i++)
+        {
+            State.Abilities[State.Abilities.Count - 1 - i].IsOrbLocked = true;
+        }
     }
 
     public void RefreshLooks()
@@ -1145,8 +1169,6 @@ public class Actor : MonoBehaviour
 
     public bool IsAbleToUseAbility(Ability ability)
     {
-        AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
-
         if(!CanCastAbility)
         {
             return false;
@@ -1158,7 +1180,8 @@ public class Actor : MonoBehaviour
             return false;
         }
 
-        return abilityState.CurrentCD <= 0f && abilityState.CurrentCastingTime <= 0f && !State.IsPreparingAbility;
+        AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
+        return abilityState.IsCanDoAbility;
     }
 
 
@@ -1186,28 +1209,6 @@ public class Actor : MonoBehaviour
     public void StopAttach()
     {
         IsAttached = false;
-    }
-
-    public void HaltAbility(int haltAbilityIndex)
-    {
-
-        if (State.Abilities[haltAbilityIndex].CurrentAbility != State.PreparingAbilityCurrent)
-        {
-            return;
-        }
-
-        HaltAbility();
-    }
-
-    public void HaltAbility()
-    {
-        if (!State.IsPreparingAbility)
-        {
-            return;
-        }
-
-        State.IsPreparingAbility = false;
-        State.PreparingAbiityColliderObject = null;
     }
 
     #region MovementRoutines
@@ -1424,6 +1425,8 @@ public class AbilityState
 
     public Actor OfActor;
 
+    public bool IsOrbLocked = false;
+
     public bool IsCanDoAbility
     {
         get
@@ -1436,7 +1439,7 @@ public class AbilityState
     {
         get
         {
-            return OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name)) > (OfActor.State.Data.level + 1);
+            return OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name)) > (OfActor.State.Data.level + 1) || IsOrbLocked;
         }
     }
 
