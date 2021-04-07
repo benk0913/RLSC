@@ -79,8 +79,12 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void Select()
     {
-        SelectedFrame.SetActive(true);
         OnSelect?.Invoke();
+    }
+
+    public void SetSelected()
+    {
+        SelectedFrame.SetActive(true);
     }
 
     public void Deselect()

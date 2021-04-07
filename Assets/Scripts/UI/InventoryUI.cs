@@ -144,11 +144,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     {
         if(SelectedSlot != null)
         {
-            if (SelectedSlot.CurrentItem == null && slot.CurrentItem == null)
-            {
-                // Do nothing, ignore swaps between 2 empty slots.
-            }
-            else if (SelectedSlot == slot && Time.time - SelectedTime > 1f)
+            if (SelectedSlot == slot && Time.time - SelectedTime > 1f)
             {
                 // If the user selects the same slot but after a delay, instead of equip/unequip, just deselect it.
             }
@@ -178,17 +174,17 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }
 
             Deselect();
-            slot.Deselect();
         }
-        else
+        else if (slot.CurrentItem != null)
         {
             SelectedSlot = slot;
             SelectedTime = Time.time;
 
-            if (!SelectedSlot.IsEquipmentSlot && SelectedSlot.CurrentItem != null)
+            if (!SelectedSlot.IsEquipmentSlot)
             {
                 SelectedPanel.SetActive(true);
             }
+            SelectedSlot.SetSelected();
             DragItem(SelectedSlot);
         }
     }
