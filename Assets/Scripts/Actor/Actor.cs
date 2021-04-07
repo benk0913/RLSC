@@ -344,6 +344,11 @@ public class Actor : MonoBehaviour
         {
             SetIsInAir(collision.collider);
         }
+        // Ignore all other colliders except ground when you are dead.
+        else if (IsDead)
+        {
+            Physics2D.IgnoreCollision(collision.collider, Collider);
+        }
     }
     
     void OnCollisionExit2D(Collision2D collision)
@@ -593,8 +598,6 @@ public class Actor : MonoBehaviour
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
         Shadow.gameObject.SetActive(false);
-        Collider.enabled = false;
-        Rigid.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void Resurrect()
@@ -603,8 +606,6 @@ public class Actor : MonoBehaviour
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
         Shadow.gameObject.SetActive(true);
-        Collider.enabled = true;
-        Rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void AddBuff(Buff buff, float duration)
