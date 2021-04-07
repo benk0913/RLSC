@@ -107,7 +107,7 @@ public class MainMenuUI : MonoBehaviour
             CreateCharacterPanelUI.Instance.Show();
         }
 
-        CORE.Instance.DelayedInvokation(0f, SelectionGroup.RefreshGroup);
+        CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(false));
     }
 
     public void SetCharacterSelected(DisplayCharacterUI displayActor)

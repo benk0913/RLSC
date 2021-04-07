@@ -65,7 +65,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         IsOpen = true;
         this.gameObject.SetActive(true);
         currentActor = ofActor;
-        RefreshUI();
+        RefreshUI(false);
 
 
         IsSelectedDropText.text = "<color=red>"+InputMap.Map["Drop Inventory Item"].ToString()+" - Drop</color>";
@@ -78,7 +78,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         this.gameObject.SetActive(false);
     }
 
-    public void RefreshUI()
+    public void RefreshUI(bool restoreSelectionPlacement = true)
     {
         if (!IsOpen)
         {
@@ -106,7 +106,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             slot.SetItem(item, () => Select(slot));
         }
 
-        CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup());
+        CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));
         Deselect();
     }
 

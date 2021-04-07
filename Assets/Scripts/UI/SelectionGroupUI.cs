@@ -19,7 +19,7 @@ public class SelectionGroupUI : MonoBehaviour
 
     private void Start()
     {
-        RefreshGroup();
+        RefreshGroup(false);
     }
 
     private void OnEnable()
@@ -50,7 +50,7 @@ public class SelectionGroupUI : MonoBehaviour
         }
     }
 
-    public void RefreshGroup()
+    public void RefreshGroup(bool restorePlacement = true)
     {
         Selectable[] selectables = GetComponentsInChildren<Selectable>();
         instances.Clear();
@@ -144,7 +144,7 @@ public class SelectionGroupUI : MonoBehaviour
         if (instances.Count > 0)
         {
             SelectionGroupInstance targetInst = instances.Find(x => x.CS == CurrentSelectedSelectable);
-            if (targetInst != null)
+            if (restorePlacement && targetInst != null)
             {
                 Select(instances[instances.IndexOf(targetInst)]);
             }

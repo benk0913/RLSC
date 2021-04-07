@@ -14,6 +14,9 @@ public class CreateCharacterPanelUI : MonoBehaviour
     [SerializeField]
     TMP_InputField NameInputField;
 
+    [SerializeField]
+    SelectionGroupUI SelectionGroup;
+
     public List<SkinSet> DefaultEars = new List<SkinSet>();
     public List<SkinSet> DefaultEyebrows = new List<SkinSet>();
     public List<SkinSet> DefaultEyes = new List<SkinSet>();
@@ -48,6 +51,8 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.State.Data.looks.IsFemale = Random.Range(0, 2) == 0;
         UpdateClassJob(Random.Range(0, 4));
         Randomize();
+        
+        CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(false));
     }
 
     public void Randomize()

@@ -37,7 +37,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
         this.gameObject.SetActive(true);
 
-        RefreshUI();
+        RefreshUI(false);
 
     }
 
@@ -120,7 +120,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         SocketHandler.Instance.SendEvent("swapped_ability", node);
     }
 
-    public void RefreshUI()
+    public void RefreshUI(bool restoreSelectionPlacement = true)
     {
         if (!IsOpen)
         {
@@ -154,7 +154,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
             slot.SetAbilityState(new AbilityState(CORE.Instance.Data.content.Abilities.Find(X => X.name == abilityName), playerActor));
         }
 
-        CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup());
+        CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));
 
         ResetReplacement();
     }
