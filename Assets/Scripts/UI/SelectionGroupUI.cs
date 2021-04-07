@@ -171,6 +171,12 @@ public class SelectionGroupUI : MonoBehaviour
 
         while(true)
         {
+            while (CORE.Instance.IsTyping)
+            {
+                canvasGroup.alpha = 1;
+                yield return 0;
+            }
+
             while(canvasGroup.alpha > 0.2f)
             {
                 canvasGroup.alpha -= (Time.deltaTime * 4f);

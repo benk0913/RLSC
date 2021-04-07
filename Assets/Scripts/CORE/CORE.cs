@@ -3,8 +3,10 @@ using SimpleJSON;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class CORE : MonoBehaviour
@@ -32,6 +34,18 @@ public class CORE : MonoBehaviour
     {
         get 
         {
+            GameObject currentSelectedGameObject = EventSystem.current.currentSelectedGameObject;
+            if (currentSelectedGameObject != null)
+            {
+                TMP_InputField inputField = currentSelectedGameObject.GetComponent<TMP_InputField>();
+                if (inputField != null)
+                {
+                    if (inputField.isFocused)
+                    {
+                        return true;
+                    }
+                }
+            }
             return false
             #if UNITY_EDITOR
             || ConsoleInputUI.Instance.IsTyping
