@@ -56,11 +56,11 @@ public class AIBat : ActorAI
             return;
         }
 
-        if (CurrentTarget.transform.position.x > transform.position.x)
+        if (CurrentTarget.transform.position.x > transform.position.x && !rhitRight)
         {
             Act.AttemptMoveRight();
         }
-        else if (CurrentTarget.transform.position.x < transform.position.x)
+        else if (CurrentTarget.transform.position.x < transform.position.x && !rhitLeft)
         {
             Act.AttemptMoveLeft();
         }

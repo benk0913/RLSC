@@ -57,11 +57,17 @@ public class AISmallMush : ActorAI
             
             if(patrolDirection)
             {
-                Act.AttemptMoveLeft();
+                if (!rhitLeft)
+                {
+                    Act.AttemptMoveLeft();
+                }
             }
             else
             {
-                Act.AttemptMoveRight();
+                if (!rhitRight)
+                {
+                    Act.AttemptMoveRight();
+                }
             }
 
             yield return 0;
