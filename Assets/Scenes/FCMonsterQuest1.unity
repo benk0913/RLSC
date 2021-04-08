@@ -300,6 +300,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushrooms 02
       objectReference: {fileID: 0}
+    - target: {fileID: 4088586501735316, guid: 5650bbe7417b1d64a951c81848eb9302, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088586501735316, guid: 5650bbe7417b1d64a951c81848eb9302, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353741065523132, guid: 5650bbe7417b1d64a951c81848eb9302, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353741065523132, guid: 5650bbe7417b1d64a951c81848eb9302, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.62
+      objectReference: {fileID: 0}
     - target: {fileID: 4603482311390118, guid: 5650bbe7417b1d64a951c81848eb9302, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -2579,7 +2595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MobKey: ActorMushroomSmall
+  MobKey: ActorMushroomSmall2
   PlayersSpawner: 0
   RespawnSeconds: 0
   IrellevantMob: 0
@@ -4581,7 +4597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MobKey: ActorMushroomSmall
+  MobKey: ActorMushroomSmall2
   PlayersSpawner: 0
   RespawnSeconds: 0
   IrellevantMob: 0
@@ -4714,7 +4730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MobKey: ActorMushroomSmall
+  MobKey: ActorMushroomSmall2
   PlayersSpawner: 0
   RespawnSeconds: 0
   IrellevantMob: 0
@@ -6599,7 +6615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MobKey: ActorMushroomSmall
+  MobKey: ActorMushroomSmall2
   PlayersSpawner: 0
   RespawnSeconds: 0
   IrellevantMob: 0
@@ -7661,7 +7677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MobKey: ActorMushroomSmall
+  MobKey: ActorMushroomSmall2
   PlayersSpawner: 0
   RespawnSeconds: 0
   IrellevantMob: 0
@@ -16978,7 +16994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MobKey: ActorMushroomSmall
+  MobKey: ActorMushroomSmall2
   PlayersSpawner: 0
   RespawnSeconds: 0
   IrellevantMob: 0
@@ -18798,7 +18814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MobKey: ActorMushroomSmall
+  MobKey: ActorMushroomSmall2
   PlayersSpawner: 0
   RespawnSeconds: 0
   IrellevantMob: 0
@@ -19558,6 +19574,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4723775971903774, guid: fc35c122c5841544dbd44a9699f80512, type: 3}
   m_PrefabInstance: {fileID: 2121166621}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2125567978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2125567980}
+  - component: {fileID: 2125567979}
+  m_Layer: 0
+  m_Name: SPAWNER_fruit (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2125567979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125567978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobKey: ActorFruit
+  PlayersSpawner: 0
+  RespawnSeconds: 60
+  IrellevantMob: 1
+--- !u!4 &2125567980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125567978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 245.1, y: -54.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 112
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2130861856
 PrefabInstance:
   m_ObjectHideFlags: 0
