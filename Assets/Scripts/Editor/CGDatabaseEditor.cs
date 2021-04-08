@@ -57,6 +57,7 @@ public class CGDatabaseEditor : Editor
             spawn.positionX = spawner.transform.position.x;
             spawn.positionY = spawner.transform.position.y;
             spawn.respawnSeconds = spawner.RespawnSeconds;
+            spawn.IrellevantMob = spawner.IrellevantMob;
 
             currentInfo.Mobs.Add(spawn);
         }

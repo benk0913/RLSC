@@ -64,10 +64,6 @@ public class CORE : MonoBehaviour
     public WindowInterface CurrentWindow;
     public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
 
-    public bool LongPressMode;
-    public bool MoveToHaltMode;
-    public bool RepressToHaltMode;
-
     private void Awake()
     {
         Instance = this;

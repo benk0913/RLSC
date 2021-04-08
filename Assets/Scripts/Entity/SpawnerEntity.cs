@@ -9,4 +9,6 @@ public class SpawnerEntity : MonoBehaviour
     public bool PlayersSpawner;
     
     public float RespawnSeconds;
+
+    public bool IrellevantMob;
 }

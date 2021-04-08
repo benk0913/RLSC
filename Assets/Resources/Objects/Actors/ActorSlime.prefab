@@ -890,6 +890,7 @@ MonoBehaviour:
       items: []
       exp: 0
       level: 0
+      orbs: []
       attributes:
         Power: 0
         HP: 0
@@ -909,6 +910,10 @@ MonoBehaviour:
         SmallerColliderSize: 0
         Threat: 0
         MovementSpeed: 0
+        DoubleCast: 0
+        StunOnDmg: 0
+        SpawnSlime: 0
+        HpRegen: 0
       abilities: []
       ActorEntity: {fileID: 0}
       OnRefreshStates:
@@ -922,6 +927,7 @@ MonoBehaviour:
     IsPreparingAbility: 0
     PreparingAbilityCurrent: {fileID: 0}
     PreparingAbiityColliderObject: {fileID: 0}
+    ExecutingAbilityCollider: {fileID: 0}
     OnInterrupt:
       m_PersistentCalls:
         m_Calls: []
@@ -982,7 +988,7 @@ MonoBehaviour:
   IsBoss: 0
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4097
   ChaseDistance: 1
   FleeDistance: 10
 --- !u!1 &8260461275819796243

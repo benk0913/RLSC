@@ -124,6 +124,7 @@ public class MobSpawn
     public float positionX;
     public float positionY;
     public float respawnSeconds;
+    public bool IrellevantMob;
 }
 
 [Serializable]
