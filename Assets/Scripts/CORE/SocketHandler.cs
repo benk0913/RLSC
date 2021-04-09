@@ -539,6 +539,7 @@ public class SocketHandler : MonoBehaviour
     public void OnExpeditionFloorComplete(string eventName, JSONNode data)
     {
         CORE.Instance.ShowScreenEffect("ScreenEffectChamberComplete");
+        CORE.Instance.InvokeEvent("ChamberComplete");
         // TODO unlock portals.
     }
 

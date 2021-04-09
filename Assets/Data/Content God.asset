@@ -453,14 +453,20 @@ MonoBehaviour:
     - sceneName: ChamberA1Block
       Mobs:
       - monsterName: ActorBlock
-        positionX: 35
-        positionY: 10
+        positionX: 30.6
+        positionY: -3.84
         respawnSeconds: 0
         IrellevantMob: 0
       Interactables: []
       playerSpawnX: -35
       playerSpawnY: 0
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: music_RockBossOrientalBap
     - sceneName: TestEmptyChamber
       Mobs: []
@@ -476,16 +482,17 @@ MonoBehaviour:
         portalPositionY: -6.680851
       MusicTrack: music_CliffRelaxedBaP
     - sceneName: ChamberA2Ghost
-      Mobs:
-      - monsterName: ActorGhost
-        positionX: 13
-        positionY: 0
-        respawnSeconds: 0
-        IrellevantMob: 0
+      Mobs: []
       Interactables: []
       playerSpawnX: 0
       playerSpawnY: 0
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: GhostMusic
     - sceneName: ChamberA3Slime
       Mobs:
@@ -497,7 +504,13 @@ MonoBehaviour:
       Interactables: []
       playerSpawnX: 87.7
       playerSpawnY: -13.1
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: music_SlimeLevel
     - sceneName: ChamberC1Snake
       Mobs:
@@ -509,7 +522,13 @@ MonoBehaviour:
       Interactables: []
       playerSpawnX: -27.3
       playerSpawnY: 18.5
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: SNEKMusicFinal
     - sceneName: PRELOADER
       Mobs: []
@@ -524,32 +543,32 @@ MonoBehaviour:
         positionX: -28.2
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 33.890003
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -102.1
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -48.080006
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 41.1
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -39.7
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorCatGuard
         positionX: 6.9
         positionY: 2.4
@@ -559,61 +578,72 @@ MonoBehaviour:
         positionX: -44.24
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -110.48
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 25.509998
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -36.2
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -94.89
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 37.390003
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -98.6
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -32.49
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -106.64
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 29.350002
         positionY: -11.17
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       Interactables: []
       playerSpawnX: -86.5
       playerSpawnY: 2.4
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     - sceneName: ChamberC3Mushroom
       Mobs:
+      - monsterName: ActorMushroomBig
+        positionX: -54.6
+        positionY: -22.8
+        respawnSeconds: 0
+        IrellevantMob: 0
       - monsterName: ActorMushroomSmall
-        positionX: -44.5
+        positionX: -61.2
         positionY: -22.8
         respawnSeconds: 0
         IrellevantMob: 0
@@ -623,107 +653,108 @@ MonoBehaviour:
         respawnSeconds: 0
         IrellevantMob: 0
       - monsterName: ActorMushroomSmall
-        positionX: -61.2
-        positionY: -22.8
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorMushroomBig
-        positionX: -54.6
+        positionX: -44.5
         positionY: -22.8
         respawnSeconds: 0
         IrellevantMob: 0
       Interactables: []
       playerSpawnX: -150.6
       playerSpawnY: -22.8
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: MushroomMusic
     - sceneName: ChamberD1FruitTree
       Mobs:
       - monsterName: ActorFruit
-        positionX: -90.85
-        positionY: -52
-        respawnSeconds: 10
-        IrellevantMob: 0
-      - monsterName: ActorFruit
         positionX: -94.87
         positionY: -42.88
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -124.64
         positionY: -22.81
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -104.67
         positionY: -50.79
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -75.53
         positionY: -47.6
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -89.06
         positionY: -23.29
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -70.92
         positionY: -24.61
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -106.59
         positionY: -39.21
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -90.85
+        positionY: -52
+        respawnSeconds: 10
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -93.2
         positionY: -12.31
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -107.94
         positionY: -34.28
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -79.6
         positionY: -36.31
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -130.31
         positionY: -17.92
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -104.66
         positionY: -20.62
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -102.6
         positionY: -44.9
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -88.96
         positionY: -38.77
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -120.35
         positionY: -46.42
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -85.46
         positionY: -33.82
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruitBoss
         positionX: -96.74
         positionY: -32.62
@@ -733,146 +764,152 @@ MonoBehaviour:
         positionX: -111.74
         positionY: -47.16
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -124
         positionY: -13.49
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -76.72
         positionY: -28.38
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -79.54
         positionY: -14.19
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -67.67
         positionY: -30.69
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -86.23
         positionY: -47.86
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -113.46
         positionY: -42.04
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -119.47
         positionY: -38.45
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -73.2
         positionY: -41.99
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -80.98
         positionY: -51.17
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -120.1
         positionY: -27.69
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -82.99
         positionY: -42.17
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -119.21
         positionY: -19.29
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -113.76
         positionY: -31.59
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -86.64
         positionY: -17.07
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -71.85
         positionY: -19.59
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -95.31
         positionY: -49.7
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -112.32
         positionY: -14.75
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -72.9
         positionY: -33.66
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -114.19
         positionY: -8.99
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -83.84
         positionY: -27.45
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -100.42
         positionY: -8.01
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -85.72
         positionY: -8.77
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -79.62
         positionY: -21.63
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -66.45
         positionY: -37.97
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -84.4
         positionY: 88.6
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -96.46
         positionY: -18.58
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -110.85
         positionY: -25.1
         respawnSeconds: 10
-        IrellevantMob: 0
+        IrellevantMob: 1
       Interactables: []
       playerSpawnX: -66.1
       playerSpawnY: -44.7
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     - sceneName: ChamberD2Borrow
       Mobs:
@@ -880,102 +917,102 @@ MonoBehaviour:
         positionX: -108.29
         positionY: 46.21
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -149.61
         positionY: -30.06
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -110.52
         positionY: 25.52
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.69
         positionY: 16.05
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -110.2
         positionY: 40.16
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.77
         positionY: -31.46
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.6
         positionY: 0.87
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.65
         positionY: -38.55
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorCaterpillarLeft
         positionX: -149.8
         positionY: -51.83
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -149.71
         positionY: -22.03
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.68
         positionY: 9.7
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -151.56
         positionY: 45.73
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -109.69
         positionY: -20.04
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -112.51
         positionY: 32.36
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -151.08
         positionY: 26.08
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -111.39
         positionY: 8.89
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -151.8
         positionY: 34.83
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.8
         positionY: -37.2
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.92
         positionY: 19.4
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -109.4
         positionY: -7.58
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorBorrowBlock
         positionX: -130.52103
         positionY: 34.579308
@@ -985,21 +1022,27 @@ MonoBehaviour:
         positionX: -104.31406
         positionY: -50.333305
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.4
         positionY: -8.15
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -110.04
         positionY: 1.01
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       Interactables: []
       playerSpawnX: -129.5
       playerSpawnY: -42.7
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     - sceneName: TestEmptyChamberB
       Mobs: []
@@ -1019,433 +1062,458 @@ MonoBehaviour:
       Interactables: []
       playerSpawnX: -11.8
       playerSpawnY: -9.1
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     - sceneName: IntermissionChamber2
       Mobs: []
       Interactables: []
       playerSpawnX: -10.8
       playerSpawnY: -10
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     - sceneName: IntermissionChamber3
       Mobs: []
       Interactables: []
       playerSpawnX: -92.87
       playerSpawnY: -41.1
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     - sceneName: FCJumpQuest1
       Mobs:
-      - monsterName: ActorSlime
-        positionX: -123.8
-        positionY: 17.4
-        respawnSeconds: 60
-        IrellevantMob: 0
-      - monsterName: ActorSlime
-        positionX: -141.8
-        positionY: -13.3
-        respawnSeconds: 60
-        IrellevantMob: 0
-      - monsterName: ActorSlime
-        positionX: -112.2
-        positionY: -50.7
-        respawnSeconds: 60
-        IrellevantMob: 0
       - monsterName: ActorSpikes
         positionX: -108.29
         positionY: 46.21
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -149.61
         positionY: -30.06
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -109.1
         positionY: 75.8
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -107.2
         positionY: 95.9
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -109.5
         positionY: 113.4
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -110.52
         positionY: 25.52
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -107.5
         positionY: 87.2
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.69
         positionY: 16.05
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -148.1
         positionY: 135
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -110.2
         positionY: 40.16
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.77
         positionY: -31.46
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -124.14
         positionY: 13.77
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: -141.8
+        positionY: -13.3
+        respawnSeconds: 60
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -113.58
         positionY: 137.89
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -109
         positionY: 126.1
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.6
         positionY: 0.87
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.65
         positionY: -38.55
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -146.8
         positionY: 172.6
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -149.71
         positionY: -22.03
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -109.8
         positionY: 118.8
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -137.51
         positionY: 146.92
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.68
         positionY: 9.7
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -109.4
         positionY: 160
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.8
         positionY: 104.6
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -146.5
         positionY: 75.6
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -147.2
         positionY: 60.8
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -151.56
         positionY: 45.73
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -147
         positionY: 121.2
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -133.88
         positionY: 146.92
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -109.69
         positionY: -20.04
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -134.89
         positionY: -46.79
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -149
         positionY: 148.8
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -112.51
         positionY: 32.36
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -151.08
         positionY: 26.08
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.2
         positionY: 135.6
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -111.39
         positionY: 8.89
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -151.8
         positionY: 34.83
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -126.4
         positionY: 104.54
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.8
         positionY: -37.2
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.92
         positionY: 19.4
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -111.4
         positionY: 64.9
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -146.2
         positionY: 69
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -145.9
         positionY: 90.7
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: -123.8
+        positionY: 17.4
+        respawnSeconds: 60
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -125.68
         positionY: 41.82
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -109.4
         positionY: -7.58
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.2
         positionY: 143.2
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: -112.2
+        positionY: -50.7
+        respawnSeconds: 60
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -147.9
         positionY: 107.9
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -124.79
         positionY: -15.33
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -148.7
         positionY: 53.1
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -148.2
         positionY: 142.5
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSlime
         positionX: -115.6
         positionY: -39.9
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -147.4
         positionY: 128
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -139.26
         positionY: 40.12
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -148.3
         positionY: 157.8
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -148.1
         positionY: 115.1
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -114.44
         positionY: 62.51
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -146.9
         positionY: 82.1
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -144.5
         positionY: 100.4
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -149.9
         positionY: 167.3
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.4
         positionY: -8.15
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -106.8
         positionY: 169
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -111.1
         positionY: 55.5
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -110.04
         positionY: 1.01
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorMuck
         positionX: -133.11
         positionY: 93.06
         respawnSeconds: 60
-        IrellevantMob: 0
+        IrellevantMob: 1
       Interactables: []
       playerSpawnX: -151.1
       playerSpawnY: -46.7
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     - sceneName: FCJumpQuest2
       Mobs:
-      - monsterName: ActorBat
-        positionX: 243.4
-        positionY: 89.7
-        respawnSeconds: 60
-        IrellevantMob: 0
-      - monsterName: ActorBat
-        positionX: 85.8
-        positionY: 50.2
-        respawnSeconds: 55
-        IrellevantMob: 0
-      - monsterName: ActorBat
-        positionX: 76.2
-        positionY: 53.3
-        respawnSeconds: 45
-        IrellevantMob: 0
-      - monsterName: ActorBat
-        positionX: -5.9
-        positionY: 49.1
-        respawnSeconds: 30
-        IrellevantMob: 0
       - monsterName: ActorSpikes
         positionX: 177.97
         positionY: -23.33
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: -5.9
+        positionY: 49.1
+        respawnSeconds: 30
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 191.24
         positionY: -18.27
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 185.7
         positionY: -20.94
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 85.8
+        positionY: 50.2
+        respawnSeconds: 55
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 249.33
         positionY: 23.42
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 267.88
         positionY: 31.7
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 243.4
+        positionY: 89.7
+        respawnSeconds: 60
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 236.06
         positionY: 23.52
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 241.95
         positionY: 23.42
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 76.2
+        positionY: 53.3
+        respawnSeconds: 45
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 169.95
         positionY: -20.75
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       Interactables: []
       playerSpawnX: -103.5
       playerSpawnY: -5.7
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: 265.28
+        portalPositionY: 41.12
       MusicTrack: 
     - sceneName: FCMonsterQuest1
       Mobs:
-      - monsterName: ActorFruit
-        positionX: 245.1
-        positionY: -54.41
-        respawnSeconds: 60
-        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: 221.46
         positionY: -27.86
@@ -1651,10 +1719,21 @@ MonoBehaviour:
         positionY: -22.8
         respawnSeconds: 0
         IrellevantMob: 0
+      - monsterName: ActorFruit
+        positionX: 245.1
+        positionY: -54.41
+        respawnSeconds: 60
+        IrellevantMob: 1
       Interactables: []
       playerSpawnX: -155.5
       playerSpawnY: -23.9
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     - sceneName: FCMonsterQuest2
       Mobs:
@@ -1671,589 +1750,601 @@ MonoBehaviour:
       Interactables: []
       playerSpawnX: -383.33
       playerSpawnY: 8.73
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     - sceneName: FCJumpQuest3
       Mobs:
       - monsterName: ActorFruit
-        positionX: -146.61
-        positionY: 236.32
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -139.94
-        positionY: 219.7
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -102.67
-        positionY: 130.97
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -93.12
-        positionY: 129.74
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -81.86
-        positionY: 131.18
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -84.22
-        positionY: 125.52
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -79.54
-        positionY: 116.78
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -71.36
-        positionY: 111.07
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -67.21
-        positionY: 104.34
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -78.16
-        positionY: 101.28
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -76.6
-        positionY: 97.39
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -71.87
-        positionY: 89.39
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
-        positionX: -68.38
-        positionY: 85.86
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFruit
         positionX: -59.15
         positionY: 55.15
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -72.97
         positionY: 102.52
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -63.12
         positionY: 74.68
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -62.81
         positionY: -1.83
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -134.86
         positionY: 234.49
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -145.23
         positionY: 156.01
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -96.73
         positionY: -14.69
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -71.69
         positionY: 11.98
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -124.97
         positionY: 207.2
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -76.01
         positionY: 113.22
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -93.12
+        positionY: 129.74
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -81.14
         positionY: 95.83
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -125.82
         positionY: 234.71
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -67.51
         positionY: 107.85
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -66.45
         positionY: 91.06
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -134.39
         positionY: 145.67
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -73.69
         positionY: 82.7
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -71.36
+        positionY: 111.07
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -73.02
         positionY: 70.3
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -68.38
+        positionY: 85.86
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -116.24
         positionY: 207.98
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -119.18
         positionY: 193.65
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -128.12
         positionY: 142.52
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -67.1
         positionY: 17.65
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -69.1
         positionY: 2.94
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -152.03
         positionY: 152.29
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -59.24
         positionY: 79.11
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -131.49
         positionY: 173.76
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -69.44
         positionY: 29.16
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -61.97
         positionY: 12.6
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -150.51
         positionY: 170.78
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -156.83
         positionY: 169.22
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -79.54
+        positionY: 116.78
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -81.78
         positionY: -2.91
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -60.53
         positionY: 41.5
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -135.17
         positionY: 215.99
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -142.26
         positionY: 171.02
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -107.69
         positionY: 141.56
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -71.55
         positionY: 48.34
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -51.42
         positionY: 43.69
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -127.96
         positionY: 170.43
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -156.78
         positionY: 235.86
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -96.29
         positionY: -24.55
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -78.45
         positionY: 6.75
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -54.17
         positionY: 82.54
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -78.21
         positionY: 128.14
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -132.44
         positionY: 225.24
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -64.35
         positionY: 59.07
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -97
         positionY: 133.33
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -122.41
         positionY: 187.81
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -57.09
         positionY: 37.02
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -64.14
         positionY: -9.51
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -102.67
+        positionY: 130.97
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -67.5
         positionY: 64.34
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -90.74
         positionY: -20.09
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -163.97
         positionY: 168.44
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -146.22
         positionY: 221.95
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -114.37
         positionY: 231.08
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -153.67
         positionY: 161.68
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -141.99
         positionY: 179.32
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -170.68
         positionY: 162.33
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -127.07
         positionY: 184.02
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -81.86
+        positionY: 131.18
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -64.51
         positionY: 51.1
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -117.72
         positionY: 204.33
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -136.23
         positionY: 176.67
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -82.39
         positionY: -16.59
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -147.32
         positionY: 149.43
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -94.36
         positionY: -8.48
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -79.1
         positionY: -9.78
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -167.4
         positionY: 229.84
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -64.15
         positionY: 7.62
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -140.4
         positionY: 144.93
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -102.93
         positionY: -29.14
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -122.64
         positionY: 138.78
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -145.53
         positionY: 161.38
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -140.78
         positionY: 151.64
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -76.6
+        positionY: 97.39
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -146.61
+        positionY: 236.32
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -86.66
         positionY: 132.41
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -114.51
         positionY: 143.61
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -134.83
         positionY: 169.89
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -65.11
         positionY: 33.22
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -121.77
         positionY: 237.48
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -84.22
+        positionY: 125.52
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -124.05
         positionY: 178.86
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -132.03
         positionY: 180.37
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -71.5
         positionY: -4.45
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -139.94
+        positionY: 219.7
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -116.67
         positionY: 176.54
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -101.14
         positionY: -21.22
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -78.16
+        positionY: 101.28
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -153.06
         positionY: 157.61
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -161.5
         positionY: 162.07
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -99.85
         positionY: 146.89
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -170.64
         positionY: 165.97
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -81.86
         positionY: 121.58
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -71.13
         positionY: -12.59
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -67.21
+        positionY: 104.34
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorFruit
+        positionX: -71.87
+        positionY: 89.39
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -73.83
         positionY: 93.88
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -53.67
         positionY: 71.01
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -88.32
         positionY: -14.09
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -173.71
         positionY: 172.29
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -57.93
         positionY: 47.1
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -150.82
         positionY: 230.33
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -129.32
         positionY: 150.86
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -126.73
         positionY: 213.13
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -121.96
         positionY: 199.63
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -70.71
         positionY: 23.24
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -98.01
         positionY: 139.09
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -61.420002
         positionY: 68.93
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -105.05
         positionY: 135.35
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -126.61
         positionY: 191.55
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorFruit
         positionX: -84.99
         positionY: -10.93
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       Interactables: []
       playerSpawnX: -200
       playerSpawnY: -30
-      Portals: []
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       MusicTrack: 
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
