@@ -35,6 +35,8 @@ public class AIBat : ActorAI
                     }
                 }
 
+                yield return StartCoroutine(AreaPatrolRoutine());
+
                 WaitBehaviour();
 
                 yield return 0;

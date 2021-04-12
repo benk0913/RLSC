@@ -235,10 +235,48 @@ public class ActorAI : MonoBehaviour
         yield return new WaitForSeconds(selectedAbility.CurrentAbility.CastingTime);
     }
 
+    protected IEnumerator AreaPatrolRoutine()
+    {
+
+        float t = Random.Range(0.5f, 1.5f);
+        while (t > 0f)
+        {
+            t -= Time.deltaTime;
+
+            if (patrolDirection)
+            {
+                if (!rhitLeft)
+                {
+                    Act.AttemptMoveLeft();
+                }
+            }
+            else
+            {
+                if (!rhitRight)
+                {
+                    Act.AttemptMoveRight();
+                }
+            }
+
+            yield return 0;
+        }
+
+        if (CurrentTarget == null)
+        {
+            yield break;
+        }
+
+        while (Vector2.Distance(transform.position, CurrentTarget.transform.position) > ChaseDistance)
+        {
+            MoveToTarget();
+            yield return 0;
+        }
+
+    }
     #endregion
 
     #region Highest Layer
-    
+
     protected virtual IEnumerator AIBehaviourRoutine()
     {
         yield return 0;
@@ -262,6 +300,7 @@ public class ActorAI : MonoBehaviour
             yield return 0;
         }
     }
+
     
     #endregion
 }

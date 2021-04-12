@@ -49,7 +49,7 @@ public class CameraChaseEntity : MonoBehaviour
         
         transform.position = Vector3.Lerp(transform.position,
             targetPosition, 
-            Speed * Time.deltaTime);
+            (Speed * Time.deltaTime * Vector2.Distance(transform.position,targetPosition))*0.5f);
     }
 
     public void Shake(float power = 3f, float duration = 1f)

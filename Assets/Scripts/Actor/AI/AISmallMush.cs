@@ -35,7 +35,7 @@ public class AISmallMush : ActorAI
             {
                 SelectedAbility = GetAvailableAbilityState();
                 
-                yield return StartCoroutine(MushroomPatrolRoutine());
+                yield return StartCoroutine(AreaPatrolRoutine());
             }
             
             yield return new WaitForSeconds(Random.Range(0f,0.2f));
@@ -47,43 +47,5 @@ public class AISmallMush : ActorAI
         }
     }
 
-    private IEnumerator MushroomPatrolRoutine()
-    {
-
-        float t=Random.Range(0.5f,1.5f);
-        while(t>0f)
-        {
-            t-= Time.deltaTime;
-            
-            if(patrolDirection)
-            {
-                if (!rhitLeft)
-                {
-                    Act.AttemptMoveLeft();
-                }
-            }
-            else
-            {
-                if (!rhitRight)
-                {
-                    Act.AttemptMoveRight();
-                }
-            }
-
-            yield return 0;
-        }
-
-        if (CurrentTarget == null)
-        {
-            yield break;
-        }
-
-        while (Vector2.Distance(transform.position, CurrentTarget.transform.position) > ChaseDistance)
-        {
-            MoveToTarget();
-            yield return 0;
-        }
-
-    }
 
 }
