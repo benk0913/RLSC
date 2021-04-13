@@ -115,6 +115,8 @@ public class Actor : MonoBehaviour
 
     public float VelocityMinimumThreshold = 0.1f;
 
+    public float KnockbackAmount = 4f;
+
     protected Vector2 deltaPosition;
     protected Vector2 lastPosition;
 
@@ -574,7 +576,7 @@ public class Actor : MonoBehaviour
         
     }
 
-    public void HurtEffect()
+    public void HurtEffect(Actor source = null)
     {
         if (!State.IsPreparingAbility && !IsDead)
         {
@@ -589,6 +591,11 @@ public class Actor : MonoBehaviour
 
 
         Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f,(float)State.Data.hp/ (float)State.Data.MaxHP));
+
+        if (IsClientControl && ((AIControl != null && !AIControl.IsBoss) || State.Data.IsPlayer))
+        {
+            Rigid.AddForce(((transform.position - source.transform.position).normalized)*KnockbackAmount, ForceMode2D.Impulse);
+        }
     }
 
     public void Ded()
@@ -598,6 +605,11 @@ public class Actor : MonoBehaviour
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
         Shadow.gameObject.SetActive(false);
+
+        if(!State.Data.IsPlayer && !AIControl.IsBoss)
+        {
+            StartCoroutine(FadeAwayRoutine());
+        }
     }
 
     public void Resurrect()
@@ -709,12 +721,12 @@ public class Actor : MonoBehaviour
         CORE.Instance.InvokeEvent("ActorRemovedBuff");
     }
     
-    public void ShowHurtLabel(int damage)
+    public void ShowHurtLabel(int damage, Actor source = null)
     {
         HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
         label.transform.position = transform.position;
         label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green);
-        HurtEffect();
+        HurtEffect(source);
     }
 
     public void AddDps(int damage)
@@ -746,6 +758,28 @@ public class Actor : MonoBehaviour
             sum += Mathf.Abs(row.Damage);
         }
         return (int)(sum / durationInSeconds);
+    }
+
+    IEnumerator FadeAwayRoutine()
+    {
+        yield return new WaitForSeconds(3f);
+
+        if (!IsDead)
+        {
+            yield break;
+        }
+
+        float t = 1f;
+        while(t>0f)
+        {
+            t -= 0.5f * Time.deltaTime;
+
+            spriteColorGroup.SetAlpha(t);
+
+            yield return 0;
+        }
+
+        Destroy(this.gameObject);
     }
 
     IEnumerator ResetDpsRoutine()
@@ -1171,16 +1205,19 @@ public class Actor : MonoBehaviour
     {
         if(!CanCastAbility)
         {
+            Debug.LogError("PROB A ");
             return false;
         }
 
         if(ability.OnlyIfGrounded && !IsGrounded)
         {
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(ability.name + " can only be cast from the ground!",Color.red));
+            Debug.LogError("PROB B ");
             return false;
         }
 
         AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
+        Debug.LogError("PROB C ");
         return abilityState.IsCanDoAbility;
     }
 
@@ -1439,7 +1476,8 @@ public class AbilityState
     {
         get
         {
-            return OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name)) > (OfActor.State.Data.level + 1) || IsOrbLocked;
+            return (OfActor.State.Data.IsPlayer && OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name)) > (OfActor.State.Data.level + 1))
+                || IsOrbLocked;
         }
     }
 

@@ -229,7 +229,7 @@ public class ActorAI : MonoBehaviour
         MoveToTarget();
 
         yield return 0;
-        
+
         Act.AttemptPrepareAbility(Act.State.Abilities.IndexOf(selectedAbility));
 
         yield return new WaitForSeconds(selectedAbility.CurrentAbility.CastingTime);

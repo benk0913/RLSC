@@ -18,7 +18,7 @@ public class AISlime : ActorAI
                 if (CanSpawnMore && Act.State.Data.hp < (Act.State.Data.MaxHP/2f))
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Split Medium" && x.CurrentCD <= 0f);
-                    Debug.LogError("SPLIT ");
+
                     if (SelectedAbility == null)
                     {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Split Large" && x.CurrentCD <= 0f);
@@ -26,16 +26,14 @@ public class AISlime : ActorAI
                 }
 
 
-                if (SelectedAbility == null)
+                if (SelectedAbility == null && CanSpawnMore)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "SlimeMuck" && x.CurrentCD <= 0f);
-                    Debug.LogError("MUCK"); 
                 }
 
                 if (SelectedAbility == null)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Slime Hop" && x.CurrentCD <= 0f);
-                    Debug.LogError("HOP");
                 }
 
                 WaitBehaviour();

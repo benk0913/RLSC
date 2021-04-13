@@ -27,6 +27,14 @@ public class SpriteColorGroup : MonoBehaviour
         }
     }
 
+    public void SetAlpha(float alpha)
+    {
+        foreach (SpriteColorGroupInstance inst in Renderers)
+        {
+            inst.Renderer.color = new Color(inst.OriginalColor.r, inst.OriginalColor.g, inst.OriginalColor.b,alpha);
+        }
+    }
+
     public void SetMaterial(Material mat)
     {
         foreach (SpriteColorGroupInstance inst in Renderers)
