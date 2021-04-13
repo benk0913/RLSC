@@ -697,6 +697,7 @@ MonoBehaviour:
       items: []
       exp: 0
       level: 0
+      orbs: []
       attributes:
         Power: 0
         HP: 0
@@ -716,6 +717,10 @@ MonoBehaviour:
         SmallerColliderSize: 0
         Threat: 0
         MovementSpeed: 0
+        DoubleCast: 0
+        StunOnDmg: 0
+        SpawnSlime: 0
+        HpRegen: 0
       abilities: []
       ActorEntity: {fileID: 0}
       OnRefreshStates:
@@ -756,6 +761,7 @@ MonoBehaviour:
   GroundCheckDistance: 5
   GroundedDistance: 1
   VelocityMinimumThreshold: 0.1
+  KnockbackAmount: 0
   LastAbility: {fileID: 0}
   JumpHeight: 20
   InterpolationSpeed: 25
