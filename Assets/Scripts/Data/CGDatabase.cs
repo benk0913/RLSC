@@ -99,6 +99,10 @@ public class VisualDatabase
 public class SceneInfo
 {
     public string sceneName;
+
+    [JsonIgnore]
+    public string objectiveDescription;
+
     public List<MobSpawn> Mobs = new List<MobSpawn>();
     public List<SceneInteractable> Interactables = new List<SceneInteractable>();
     public float playerSpawnX;
