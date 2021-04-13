@@ -1205,19 +1205,16 @@ public class Actor : MonoBehaviour
     {
         if(!CanCastAbility)
         {
-            Debug.LogError("PROB A ");
             return false;
         }
 
         if(ability.OnlyIfGrounded && !IsGrounded)
         {
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(ability.name + " can only be cast from the ground!",Color.red));
-            Debug.LogError("PROB B ");
             return false;
         }
 
         AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
-        Debug.LogError("PROB C ");
         return abilityState.IsCanDoAbility;
     }
 
