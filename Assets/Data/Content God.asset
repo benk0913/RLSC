@@ -220,6 +220,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8d2f6181d5e7ab04b9675713ad79ad01, type: 2}
     - {fileID: 11400000, guid: 3edba430d20d54242ab1a287f7fe74bb, type: 2}
     - {fileID: 11400000, guid: 7b270cedd4f04314786bc11d0262df52, type: 2}
+    - {fileID: 11400000, guid: 4ebb8a46180c06d46bc9ca92babcd8a9, type: 2}
     - {fileID: 11400000, guid: 9504da0d874c2d94fb2730f14940f3f7, type: 2}
     - {fileID: 11400000, guid: 49c602e6c729140448b39b94440a561a, type: 2}
     - {fileID: 11400000, guid: c7acc5fc5c3d3324fa9dafa892bd7689, type: 2}
@@ -324,6 +325,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b3b8474bc530dcc47a90f5febe18cdb3, type: 2}
     - {fileID: 11400000, guid: 3cdfa668b0257d64ca83949329d6dc17, type: 2}
     - {fileID: 11400000, guid: b094afe26e3796a4b825d4a747be30df, type: 2}
+    - {fileID: 11400000, guid: b3af736332df7ce48bf155c4db2cbf00, type: 2}
     - {fileID: 11400000, guid: f835c53cddf36664d80e46725b80fdeb, type: 2}
     - {fileID: 11400000, guid: c77522f8141ba784a97986b79902e13f, type: 2}
     - {fileID: 11400000, guid: ec9b9dc36eba3c343adb1948b890a491, type: 2}
@@ -487,10 +489,15 @@ MonoBehaviour:
       MusicTrack: music_CliffRelaxedBaP
     - sceneName: ChamberA2Ghost
       objectiveDescription: Eliminate The Tormenting Ghost!
-      Mobs: []
+      Mobs:
+      - monsterName: ActorGhost
+        positionX: -1.1
+        positionY: -7.8
+        respawnSeconds: 0
+        IrellevantMob: 0
       Interactables: []
-      playerSpawnX: 0
-      playerSpawnY: 0
+      playerSpawnX: -29.5
+      playerSpawnY: 0.1
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -503,12 +510,12 @@ MonoBehaviour:
       objectiveDescription: Evaporate this wild slime out of existence!
       Mobs:
       - monsterName: ActorSlimeLarge
-        positionX: 40.28
+        positionX: 88.1
         positionY: -13.1
         respawnSeconds: 0
         IrellevantMob: 0
       Interactables: []
-      playerSpawnX: 87.7
+      playerSpawnX: 6.9
       playerSpawnY: -13.1
       Portals:
       - name: EndPortalA
@@ -1102,8 +1109,8 @@ MonoBehaviour:
       objectiveDescription: Enjoy the respite this camp provides.
       Mobs: []
       Interactables: []
-      playerSpawnX: -92.87
-      playerSpawnY: -41.1
+      playerSpawnX: -134.28
+      playerSpawnY: -47.38
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -1763,13 +1770,13 @@ MonoBehaviour:
         respawnSeconds: 0
         IrellevantMob: 0
       - monsterName: ActorBlockSmall
-        positionX: -133.1
+        positionX: -143.7
         positionY: 42.4
         respawnSeconds: 0
         IrellevantMob: 0
       Interactables: []
-      playerSpawnX: -383.33
-      playerSpawnY: 8.73
+      playerSpawnX: -275.2
+      playerSpawnY: 45.8
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -2395,6 +2402,20 @@ MonoBehaviour:
       Interactables: []
       playerSpawnX: -200
       playerSpawnY: -30
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      MusicTrack: 
+    - sceneName: FCMonsterQuest3
+      objectiveDescription: 
+      Mobs: []
+      Interactables: []
+      playerSpawnX: -383.33
+      playerSpawnY: 8.73
       Portals:
       - name: EndPortalA
         TargetScene: 

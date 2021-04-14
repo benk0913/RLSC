@@ -9,19 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorCatGuard
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Cat Enrage
   m_EditorClassIdentifier: 
-  Icon: {fileID: 3413451862118824628, guid: 524f28d50a9d6af499ce7d588e67d865, type: 3}
-  Abilities:
-  - CatShielding
-  - CatShieldBash
-  - CatSmash
-  - CatEnrage
-  PassiveAbility: PassiveHitCatBoss
+  Icon: {fileID: 21300000, guid: 1f37cecb711e9f94da42ef17cd3c5177, type: 3}
+  Description: Increased movement speed
+  BuffColliderObject: ThreatSwitchEffect
+  BuffMaterial: {fileID: 0}
+  Length: 15
+  isDebuff: 0
+  ShowBuffIcon: 1
   Attributes:
     Power: 0
-    HP: 10
+    HP: 0
     Defense: 0
     CDReduction: 0
     CTReduction: 0
@@ -37,15 +37,16 @@ MonoBehaviour:
     KnockbackResistance: 0
     SmallerColliderSize: 0
     Threat: 0
-    MovementSpeed: -0.7
+    MovementSpeed: 0.25
     DoubleCast: 0
     StunOnDmg: 0
     SpawnSlime: 0
     HpRegen: 0
-  Immunity: []
-  States: []
-  ClassColor: {r: 0, g: 0, b: 0, a: 0}
-  DropsOnDeath:
-  - {fileID: 11400000, guid: d5861268431760b429068cdbb74baad6, type: 2}
-  - {fileID: 11400000, guid: e983b9babb1449947a380e65beb70d65, type: 2}
-  - {fileID: 11400000, guid: d49369f845bb4834cbe50194c2d5881d, type: 2}
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States:
+  - {fileID: 11400000, guid: 8972a89217d211f4f9cd8c48d6f98451, type: 2}
+  OnStart: []
+  OnEnd: []
+  OnTakeDamage: []

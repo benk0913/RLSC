@@ -8,6 +8,9 @@ public class ZoneEntity : MonoBehaviour
     public UnityEvent OnEnter;
     public UnityEvent OnExit;
 
+    public UnityEvent<Collider2D> OnEnterCol;
+    public UnityEvent<Collider2D> OnExitCol;
+
     Actor NearbyActor;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +39,7 @@ public class ZoneEntity : MonoBehaviour
 
         NearbyActor = nearActor;
         OnEnter?.Invoke();
+        OnEnterCol?.Invoke(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -61,5 +65,6 @@ public class ZoneEntity : MonoBehaviour
 
         OnExit?.Invoke();
 
+        OnExitCol?.Invoke(collision);
     }
 }

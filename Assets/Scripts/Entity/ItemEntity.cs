@@ -60,7 +60,7 @@ public class ItemEntity : MonoBehaviour
 
     public void BePickedBy(Actor actor)
     {
-        if(!IsPickable)
+        if (!IsPickable)
         {
             return;
         }
@@ -75,11 +75,11 @@ public class ItemEntity : MonoBehaviour
         Vector2 targetPoint = new Vector2(CurrentItem.spawnX, CurrentItem.spawnY);
 
         float t = 0f;
-        while(t<1f)
+        while (t < 1f)
         {
             t += Time.deltaTime;
 
-            Rigid.position += (Rigid.position-targetPoint)*Time.deltaTime;
+            Rigid.position += (Rigid.position - targetPoint) * Time.deltaTime;
 
             yield return 0;
         }
@@ -90,9 +90,9 @@ public class ItemEntity : MonoBehaviour
         Vector2 initPos = transform.position;
 
         float t = 0f;
-        while(t<1f)
+        while (t < 1f)
         {
-            t += t+Time.deltaTime;
+            t += t + Time.deltaTime;
 
             transform.position = Vector2.Lerp(initPos, actor.transform.position, t);
 
@@ -114,7 +114,7 @@ public class ItemEntity : MonoBehaviour
         RarityGradient.color = CurrentItem.Data.Rarity.RarityColor;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnEnter(Collider2D collision)
     {
         if (NearbyActor != null)
         {
@@ -139,11 +139,12 @@ public class ItemEntity : MonoBehaviour
         }
 
         NearbyActor = nearActor;
-        
+
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnExit(Collider2D collision)
     {
+
         if (collision.tag != "Actor")
         {
             return;
@@ -162,5 +163,15 @@ public class ItemEntity : MonoBehaviour
         }
 
         NearbyActor = null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnEnter(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        OnExit(collision);
     }
 }

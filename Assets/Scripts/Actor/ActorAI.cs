@@ -24,6 +24,8 @@ public class ActorAI : MonoBehaviour
     [SerializeField]
     protected float FleeDistance = 10f;
 
+    public bool IsJumping = false;
+
     public Actor CurrentTarget
     {
         get
@@ -136,11 +138,44 @@ public class ActorAI : MonoBehaviour
             return;
         }
 
-        if (CurrentTarget.transform.position.x > transform.position.x && !rhitRight)
+        if (IsJumping)
         {
-            Act.AttemptMoveRight();
+            if (CurrentTarget.transform.position.x > transform.position.x)
+            {
+                if (rhitRight)
+                {
+                    Act.AttemptJump();
+                }
+
+                Act.AttemptMoveRight();
+                return;
+            }
+            else if (CurrentTarget.transform.position.x < transform.position.x)
+            {
+                if (rhitLeft)
+                {
+                    Act.AttemptJump();
+                }
+
+                Act.AttemptMoveLeft();
+                return;
+            }
         }
-        else if (CurrentTarget.transform.position.x < transform.position.x && !rhitLeft)
+        else
+        {
+            if (CurrentTarget.transform.position.x > transform.position.x && !rhitRight)
+            {
+                Act.AttemptMoveRight();
+                return;
+            }
+            else if (CurrentTarget.transform.position.x < transform.position.x && !rhitLeft)
+            {
+                Act.AttemptMoveLeft();
+                return;
+            }
+        }
+
+        if (rhitLeft && rhitRight)
         {
             Act.AttemptMoveLeft();
         }

@@ -16,26 +16,31 @@ public class AICat : ActorAI
 
             while (SelectedAbility == null)
             {
-                
-
-                if (!Act.State.Data.states.ContainsKey("Shielded"))
+                if (Act.State.Data.hp < Act.State.Data.MaxHP / 2f &&  !Act.State.Data.states.ContainsKey("Threat Trickery"))
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShielding" && x.CurrentCD <= 0f);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatEnrage" && x.CurrentCD <= 0f);
+                }
+                else
+                {
+                    if (!Act.State.Data.states.ContainsKey("Shielded"))
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShielding" && x.CurrentCD <= 0f);
 
-                    if(SelectedAbility != null)
+                        if (SelectedAbility != null)
+                        {
+                            break;
+                        }
+                    }
+
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShieldBash" && x.CurrentCD <= 0f);
+
+                    if (SelectedAbility != null)
                     {
                         break;
                     }
+
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatSmash" && x.CurrentCD <= 0f);
                 }
-
-                SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShieldBash" && x.CurrentCD <= 0f);
-
-                if (SelectedAbility != null)
-                {
-                    break;
-                }
-
-                SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatSmash" && x.CurrentCD <= 0f);
 
                 WaitBehaviour();
 
@@ -52,39 +57,25 @@ public class AICat : ActorAI
 
     public override Actor GetCurrentTarget()
     {
-        if(TheSecondCat)
+        if (TheSecondCat)
         {
+            if (Act.State.Data.states.ContainsKey("Threat Trickery"))
+            {
+                return base.GetCurrentTarget();
+            }
+
             return CORE.Instance.Room.LeastThreatheningActor;
         }
-
-        return base.GetCurrentTarget();
-    }
-
-    protected override void MoveToTarget()
-    {
-        if (CurrentTarget == null)
+        else
         {
-            return;
-        }
-
-        if (CurrentTarget.transform.position.x > transform.position.x)
-        {
-            if(rhitRight)
+            if (Act.State.Data.states.ContainsKey("Threat Trickery"))
             {
-                Act.AttemptJump();
+                return CORE.Instance.Room.LeastThreatheningActor;
             }
 
-            Act.AttemptMoveRight();
-        }
-        else if (CurrentTarget.transform.position.x < transform.position.x)
-        {
-            if (rhitLeft)
-            {
-                Act.AttemptJump();
-            }
-
-            Act.AttemptMoveLeft();
+            return base.GetCurrentTarget();
         }
 
     }
+
 }

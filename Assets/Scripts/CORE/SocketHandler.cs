@@ -542,6 +542,7 @@ public class SocketHandler : MonoBehaviour
             CORE.Instance.ShowScreenEffect("ScreenEffectChamberComplete");
         }
         CORE.Instance.InvokeEvent("ChamberComplete");
+        ObjectiveUI.Instance.SetInfo("Proceed to the next stage.");
     }
 
     public void SendEnterPortal(Portal portal)

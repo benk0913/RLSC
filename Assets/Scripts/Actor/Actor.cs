@@ -598,6 +598,19 @@ public class Actor : MonoBehaviour
         }
     }
 
+
+    public void HealEffect(Actor source = null)
+    {
+        spriteColorGroup.SetColor(Color.green);
+        CORE.Instance.DelayedInvokation(0.1f, () =>
+        {
+            spriteColorGroup.ResetColor();
+        });
+        
+        Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f, (float)State.Data.hp / (float)State.Data.MaxHP));
+    }
+
+
     public void Ded()
     {
         Animer.Play("Dead1");
@@ -726,7 +739,15 @@ public class Actor : MonoBehaviour
         HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
         label.transform.position = transform.position;
         label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green);
-        HurtEffect(source);
+
+        if (damage > 0)
+        {
+            HurtEffect(source);
+        }
+        else if (damage < 0)
+        {
+            HealEffect(source);
+        }
     }
 
     public void AddDps(int damage)
