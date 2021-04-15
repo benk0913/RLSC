@@ -841,10 +841,13 @@ public class Actor : MonoBehaviour
 
     public void RefreshAbilities()
     {
-        this.State.Abilities.Clear();
+        // Interrupt before refreshing abilities, to ensure you don't prepare an ability that you can't execute because it's not there anymore. 
+        State.Interrupt(false);
+
+        State.Abilities.Clear();
         for (int i = 0; i < State.Data.abilities.Count; i++)
         {
-            this.State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.abilities[i]),this));
+            State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.abilities[i]),this));
         }
 
         if (State.Data.IsPlayer) {
