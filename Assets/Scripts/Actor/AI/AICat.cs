@@ -16,31 +16,33 @@ public class AICat : ActorAI
 
             while (SelectedAbility == null)
             {
-                if (Act.State.Data.hp < Act.State.Data.MaxHP / 2f &&  !Act.State.Data.states.ContainsKey("Threat Trickery"))
+                if (!Act.State.Data.states.ContainsKey("Shielded"))
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatEnrage" && x.CurrentCD <= 0f);
-                }
-                else
-                {
-                    if (!Act.State.Data.states.ContainsKey("Shielded"))
-                    {
-                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShielding" && x.CurrentCD <= 0f);
-
-                        if (SelectedAbility != null)
-                        {
-                            break;
-                        }
-                    }
-
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShieldBash" && x.CurrentCD <= 0f);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShielding" && x.CurrentCD <= 0f);
 
                     if (SelectedAbility != null)
                     {
                         break;
                     }
-
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatSmash" && x.CurrentCD <= 0f);
                 }
+                
+                if (Act.State.Data.hp < Act.State.Data.MaxHP / 2f &&  !Act.State.Data.states.ContainsKey("Threat Trickery"))
+                {
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatEnrage" && x.CurrentCD <= 0f);
+                    if (SelectedAbility != null)
+                    {
+                        break;
+                    }
+                }
+
+                SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShieldBash" && x.CurrentCD <= 0f);
+
+                if (SelectedAbility != null)
+                {
+                    break;
+                }
+
+                SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatSmash" && x.CurrentCD <= 0f);
 
                 WaitBehaviour();
 
