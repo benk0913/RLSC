@@ -198,6 +198,7 @@ public class RendererPart
     public BodyPart Part;
 
     public SkinSet CurrentSkinSet;
+    
 
     public void SetSkin(SkinSet set, ActorData actor)
     {
