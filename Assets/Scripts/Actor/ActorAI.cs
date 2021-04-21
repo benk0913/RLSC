@@ -84,11 +84,12 @@ public class ActorAI : MonoBehaviour
         if (ChaseBehaviour == AIChaseBehaviour.Chase && NoticeDistance > 0f) //TODO Should probably replace with a less performance heavy implementation
         {
             List<ActorData> potentialActors = CORE.Instance.Room.Actors.FindAll(X =>
-                Vector2.Distance(X.ActorEntity.transform.position, transform.transform.position) < NoticeDistance
-                && !X.isMob
+                !X.isMob
+                && X.ActorEntity != null 
+                && Vector2.Distance(X.ActorEntity.transform.position, transform.transform.position) < NoticeDistance
                 && !X.ActorEntity.IsDead);
 
-            if (potentialActors.Count > 0)
+            if (potentialActors != null && potentialActors.Count > 0)
             {
                 float mostThreat = 0f;
                 ActorData mostThreatAct = potentialActors[0];
@@ -104,6 +105,8 @@ public class ActorAI : MonoBehaviour
 
                 return mostThreatAct.ActorEntity;
             }
+
+            return null;
         }
 
         return CORE.Instance.Room.MostThreateningActor;
