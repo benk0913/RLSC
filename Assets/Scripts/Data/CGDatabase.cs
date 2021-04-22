@@ -119,6 +119,13 @@ public class SceneInteractable
     public string interactableName;
     public int positionX;
     public int positionY;
+
+    public SceneInteractable(string name, int x, int y)
+    {
+        this.interactableName = name;
+        this.positionX = x;
+        this.positionY = y;
+    }
 }
 
 [Serializable]

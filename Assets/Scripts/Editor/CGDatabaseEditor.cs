@@ -73,6 +73,14 @@ public class CGDatabaseEditor : Editor
             currentInfo.Portals.Add(portal.PortalReference);
         }
 
+        InteractableEntity[] interactables = FindObjectsOfType<InteractableEntity>();
+
+        currentInfo.Interactables.Clear();
+
+        foreach (InteractableEntity interactable in interactables)
+        {
+            currentInfo.Interactables.Add(new SceneInteractable(interactable.Data.interactableName,Mathf.RoundToInt(interactable.transform.position.x), Mathf.RoundToInt(interactable.transform.position.y)));
+        }
         EditorUtility.SetDirty(db);
     }
 
