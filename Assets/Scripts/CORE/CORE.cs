@@ -135,6 +135,124 @@ public class CORE : MonoBehaviour
         }
     }
 
+    public static string GetTooltipTextFromAttributes(AttributeData data)
+    {
+        string result = "";
+
+
+        if (data.HP > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_0\"> +" + Mathf.RoundToInt(data.HP * 100)+"%" + "</color>";
+        }
+        else if (data.HP < 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_0\" tint=1> " + Mathf.RoundToInt( data.HP * 100)+"%" + "</color>";
+        }
+
+
+        if (data.MovementSpeed > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_1\"> +" + Mathf.RoundToInt(data.MovementSpeed * 100)+"%" + "</color>";
+        }
+        else if (data.MovementSpeed < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_1\" tint=1> " + Mathf.RoundToInt(data.MovementSpeed * 100)+"%" + "</color>";
+        }
+
+
+        if (data.Threat > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_2\"> +" + Mathf.RoundToInt(data.Threat * 100)+"%" + "</color>";
+        }
+        else if (data.Threat < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_2\" tint=1> " + Mathf.RoundToInt(data.Threat * 100)+"%" + "</color>";
+        }
+        
+        if (data.AntiDebuff > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_3\"> +" + Mathf.RoundToInt(data.AntiDebuff * 100)+"%" + "</color>";
+        }
+        else if (data.AntiDebuff < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_3\" tint=1> " + Mathf.RoundToInt(data.AntiDebuff * 100)+"%" + "</color>";
+        }
+
+
+        if (data.SpellDuration > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_4\"> +" + Mathf.RoundToInt(data.SpellDuration * 100)+"%" + "</color>";
+        }
+        else if (data.SpellDuration < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_4\" tint=1> " + Mathf.RoundToInt(data.SpellDuration * 100)+"%" + "</color>";
+        }
+
+
+        if (data.WildMagicChance > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_5\"> +" + Mathf.RoundToInt(data.WildMagicChance * 100)+"%" + "</color>";
+        }
+        else if (data.WildMagicChance < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_5\" tint=1> " + Mathf.RoundToInt(data.WildMagicChance * 100)+"%" + "</color>";
+        }
+
+
+        if (data.ShortRangeMultiplier > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_6\"> +" + Mathf.RoundToInt(data.ShortRangeMultiplier * 100)+"%" + "</color>";
+        }
+        else if (data.ShortRangeMultiplier < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_6\" tint=1> " + Mathf.RoundToInt(data.ShortRangeMultiplier * 100)+"%" + "</color>";
+        }
+
+
+        if (data.CTReduction > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_7\"> +" + Mathf.RoundToInt(data.CTReduction * 100)+"%" + "</color>";
+        }
+        else if (data.CTReduction < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_7\" tint=1> " + Mathf.RoundToInt(data.CTReduction * 100)+"%" + "</color>";
+        }
+
+
+        if (data.CDReduction > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_8\"> +" + Mathf.RoundToInt(data.CDReduction * 100)+"%" + "</color>";
+        }
+        else if (data.CDReduction < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_8\" tint=1> " + Mathf.RoundToInt(data.CDReduction * 100)+"%" + "</color>";
+        }
+
+        if (data.Power > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_9\"> +" + Mathf.RoundToInt(data.Power * 100)+"%" + "</color>";
+        }
+        else if (data.Power < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_9\" tint=1> " + Mathf.RoundToInt(data.Power * 100)+"%" + "</color>";
+        }
+
+
+        if (data.Defense > 0)
+        {
+            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_10\"> +" + Mathf.RoundToInt(data.Defense * 100)+"%" + "</color>";
+        }
+        else if (data.Defense < 0)
+        {
+            result += Environment.NewLine + "<color=red><sprite name=\"icat_10\" tint=1> " + Mathf.RoundToInt(data.Defense * 100)+"%" + "</color>";
+        }
+
+
+
+
+        return result;
+    }
+
     public void SubscribeToEvent(string eventKey, UnityAction action)
     {
         if (!DynamicEvents.ContainsKey(eventKey))
