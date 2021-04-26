@@ -71,6 +71,15 @@ public class AICaterpillar : ActorAI
 
             yield return 0;
 
+            if (LeftCaterPillar)
+            {
+                Act.AttemptLookRight();
+            }
+            else
+            {
+                Act.AttemptLookLeft();
+            }
+
             yield return StartCoroutine(UseAbilityRoutine(SelectedAbility));
         }
     }

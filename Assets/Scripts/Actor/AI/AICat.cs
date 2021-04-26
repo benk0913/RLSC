@@ -63,19 +63,20 @@ public class AICat : ActorAI
         {
             if (Act.State.Data.states.ContainsKey("Threat Trickery"))
             {
-                return base.GetCurrentTarget();
+                return CORE.Instance.Room.LeastThreatheningActor;
+                
             }
 
-            return CORE.Instance.Room.LeastThreatheningActor;
+            return base.GetCurrentTarget();
         }
         else
         {
             if (Act.State.Data.states.ContainsKey("Threat Trickery"))
             {
-                return CORE.Instance.Room.LeastThreatheningActor;
+                return base.GetCurrentTarget();
             }
 
-            return base.GetCurrentTarget();
+            return CORE.Instance.Room.LeastThreatheningActor;
         }
 
     }

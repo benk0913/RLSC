@@ -11,6 +11,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class SocketHandler : MonoBehaviour
 {
@@ -538,8 +539,18 @@ public class SocketHandler : MonoBehaviour
 
     public void OnExpeditionFloorComplete(string eventName, JSONNode data)
     {
-        if (data["showEffect"].AsBool) {
-            CORE.Instance.ShowScreenEffect("ScreenEffectChamberComplete");
+        if (data["showEffect"].AsBool)
+        {
+            SceneInfo currentInfo = CORE.Instance.Data.content.Scenes.Find(X => SceneManager.GetActiveScene().name == X.sceneName);
+            if (!string.IsNullOrEmpty(currentInfo.UniqueCompletionScreenEffect))
+            {
+                CORE.Instance.ShowScreenEffect(currentInfo.UniqueCompletionScreenEffect);
+            }
+            else
+            {
+                CORE.Instance.ShowScreenEffect("ScreenEffectChamberComplete");
+            }
+
         }
         CORE.Instance.InvokeEvent("ChamberComplete");
         ObjectiveUI.Instance.SetInfo("Proceed to the next stage.");

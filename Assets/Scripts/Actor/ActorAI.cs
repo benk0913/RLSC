@@ -21,6 +21,8 @@ public class ActorAI : MonoBehaviour
     [SerializeField]
     protected float NoticeDistance = 0f;
 
+    public bool Asleep = true;
+
     [SerializeField]
     protected float ChaseDistance = 1f;
 
@@ -81,29 +83,16 @@ public class ActorAI : MonoBehaviour
 
     public virtual Actor GetCurrentTarget()
     {
-        if (ChaseBehaviour == AIChaseBehaviour.Chase && NoticeDistance > 0f) //TODO Should probably replace with a less performance heavy implementation
+        if (ChaseBehaviour == AIChaseBehaviour.Chase && NoticeDistance > 0f && Asleep) //TODO Should probably replace with a less performance heavy implementation
         {
-            List<ActorData> potentialActors = CORE.Instance.Room.Actors.FindAll(X =>
+            if(CORE.Instance.Room.Actors.Find(X =>
                 !X.isMob
                 && X.ActorEntity != null 
                 && Vector2.Distance(X.ActorEntity.transform.position, transform.transform.position) < NoticeDistance
-                && !X.ActorEntity.IsDead);
-
-            if (potentialActors != null && potentialActors.Count > 0)
+                && !X.ActorEntity.IsDead) != null)
             {
-                float mostThreat = 0f;
-                ActorData mostThreatAct = potentialActors[0];
-
-                foreach (ActorData actor in potentialActors)
-                {
-                    if (mostThreat > actor.attributes.Threat)
-                    {
-                        mostThreat = actor.attributes.Threat;
-                        mostThreatAct = actor;
-                    }
-                }
-
-                return mostThreatAct.ActorEntity;
+                Asleep = false;
+                return null;
             }
 
             return null;

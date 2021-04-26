@@ -302,6 +302,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 65fac193292e2e14d91194e9ca1f260e, type: 2}
     - {fileID: 11400000, guid: 80a7a416d1cafc84ca8455498667f97f, type: 2}
     - {fileID: 11400000, guid: 0089b72f450b1fa4ca3b4458e9a7ec49, type: 2}
+    - {fileID: 11400000, guid: e35989922faf0f64c98d9a4784f87b41, type: 2}
     - {fileID: 11400000, guid: 59f0a939912db544897377842d7cdc3e, type: 2}
     - {fileID: 11400000, guid: c6150352cd9f5db42b34b4d249e5bd71, type: 2}
     - {fileID: 11400000, guid: 4f30f0753b0fdb6479c058f168861cfb, type: 2}
@@ -528,6 +529,7 @@ MonoBehaviour:
     Scenes:
     - sceneName: TestScene2
       objectiveDescription: 
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorRabbit
         positionX: 10
@@ -546,6 +548,7 @@ MonoBehaviour:
       MusicTrack: music_CliffRelaxedBaP
     - sceneName: TestBossChamber
       objectiveDescription: 
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorBlock
         positionX: 35
@@ -562,6 +565,7 @@ MonoBehaviour:
       MusicTrack: music_RockBossOrientalBap
     - sceneName: ChamberA1Block
       objectiveDescription: Destroy The Giant Golem!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorBlock
         positionX: 30.6
@@ -581,6 +585,7 @@ MonoBehaviour:
       MusicTrack: music_RockBossOrientalBap
     - sceneName: TestEmptyChamber
       objectiveDescription: 
+      UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables: []
       playerSpawnX: 0
@@ -595,6 +600,7 @@ MonoBehaviour:
       MusicTrack: music_CliffRelaxedBaP
     - sceneName: ChamberA2Ghost
       objectiveDescription: Eliminate The Tormenting Ghost!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorGhost
         positionX: -1.1
@@ -614,6 +620,7 @@ MonoBehaviour:
       MusicTrack: GhostMusic
     - sceneName: ChamberA3Slime
       objectiveDescription: Evaporate this wild slime out of existence!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorSlimeLarge
         positionX: 88.1
@@ -633,6 +640,7 @@ MonoBehaviour:
       MusicTrack: music_SlimeLevel
     - sceneName: ChamberC1Snake
       objectiveDescription: Destroy the snake before it destroys you!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorSnake
         positionX: -2.14
@@ -652,6 +660,7 @@ MonoBehaviour:
       MusicTrack: SNEKMusicFinal
     - sceneName: PRELOADER
       objectiveDescription: 
+      UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables: []
       playerSpawnX: 0
@@ -660,6 +669,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: ChamberC2CatGuard
       objectiveDescription: Show this cat how useless his shield may be!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorSpikes
         positionX: -28.2
@@ -759,6 +769,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: ChamberC3Mushroom
       objectiveDescription: Smack that hat off of this mushrooms head!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorMushroomBig
         positionX: -54.6
@@ -793,6 +804,7 @@ MonoBehaviour:
       MusicTrack: MushroomMusic
     - sceneName: ChamberD1FruitTree
       objectiveDescription: Punch a hole in this oval and juicy fruit!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorFruit
         positionX: -94.87
@@ -1037,6 +1049,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: ChamberD2Borrow
       objectiveDescription: Destroy the obstruction that blocks the way out!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorSpikes
         positionX: -108.29
@@ -1171,6 +1184,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: TestEmptyChamberB
       objectiveDescription: 
+      UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables: []
       playerSpawnX: 0
@@ -1185,6 +1199,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: IntermissionChamber1
       objectiveDescription: Enjoy the respite this camp provides.
+      UniqueCompletionScreenEffect: ScreenEffectChamberCompleteSubtle
       Mobs:
       - monsterName: ActorTreasureChest
         positionX: 8.74
@@ -1204,6 +1219,7 @@ MonoBehaviour:
       MusicTrack: IntermissionSong
     - sceneName: IntermissionChamber2
       objectiveDescription: Enjoy the respite this camp provides.
+      UniqueCompletionScreenEffect: ScreenEffectChamberCompleteSubtle
       Mobs:
       - monsterName: ActorTreasureChest
         positionX: -5.92
@@ -1223,13 +1239,17 @@ MonoBehaviour:
       MusicTrack: IntermissionSong
     - sceneName: IntermissionChamber3
       objectiveDescription: Enjoy the respite this camp provides.
+      UniqueCompletionScreenEffect: ScreenEffectChamberCompleteSubtle
       Mobs:
-      - monsterName: ActorTreasureChest
+      - monsterName: ActorTreasureChestFinal
         positionX: -131.37567
         positionY: -49.290813
         respawnSeconds: 0
         IrellevantMob: 0
-      Interactables: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        positionX: -99
+        positionY: -44
       playerSpawnX: -134.28
       playerSpawnY: -47.38
       Portals:
@@ -1242,6 +1262,7 @@ MonoBehaviour:
       MusicTrack: IntermissionSong
     - sceneName: FCJumpQuest1
       objectiveDescription: Climb trough this borrow of dangers!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorSpikes
         positionX: -108.29
@@ -1586,6 +1607,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: FCJumpQuest2
       objectiveDescription: Reach the other side of the pass.
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorSpikes
         positionX: 177.97
@@ -1660,6 +1682,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: FCMonsterQuest1
       objectiveDescription: Destroy each and every monster in the area!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorFruit
         positionX: 221.46
@@ -1884,6 +1907,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: FCMonsterQuest2
       objectiveDescription: Eliminate all monsters in the zone!
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorBlockSmall
         positionX: -218.2
@@ -1909,6 +1933,7 @@ MonoBehaviour:
     - sceneName: FCJumpQuest3
       objectiveDescription: Use and abuse the hanging fruit to reach the top of the
         tree.
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorFruit
         positionX: -59.15
@@ -2533,6 +2558,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: FCMonsterQuest3
       objectiveDescription: 
+      UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables: []
       playerSpawnX: -383.33
@@ -2547,6 +2573,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: FCMonsterQuest4
       objectiveDescription: Cleanse and purify this area from haunting ghosts.
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorGhostSmall
         positionX: -55.8
@@ -2606,6 +2633,7 @@ MonoBehaviour:
       MusicTrack: 
     - sceneName: FCMonsterQuest5
       objectiveDescription: 
+      UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorSpikes
         positionX: -295.7

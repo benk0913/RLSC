@@ -103,6 +103,8 @@ public class SceneInfo
     [JsonIgnore]
     public string objectiveDescription;
 
+    public string UniqueCompletionScreenEffect;
+
     public List<MobSpawn> Mobs = new List<MobSpawn>();
     public List<SceneInteractable> Interactables = new List<SceneInteractable>();
     public float playerSpawnX;

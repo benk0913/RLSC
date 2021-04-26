@@ -158,7 +158,7 @@ public class CORE : MonoBehaviour
         { "CDReduction", new DisplayAttribute(typeof(AttributeData).GetField("CDReduction"), "icat_8", "Cooldown Reduction","")},
         { "CTReduction", new DisplayAttribute(typeof(AttributeData).GetField("CTReduction"), "icat_7", "Casting Time Reduction","")},
         { "Lifesteal", new DisplayAttribute(typeof(AttributeData).GetField("Lifesteal"), "", "Lifesteal","")},
-        { "LongRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("LongRangeMultiplier"), "icat_6", "Long Range Damage","")},
+        { "LongRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("LongRangeMultiplier"), "crosshair", "Long Range Damage","")},
         { "ShortRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("ShortRangeMultiplier"), "icat_6", "Short Range Damage","")},
         { "WildMagicChance", new DisplayAttribute(typeof(AttributeData).GetField("WildMagicChance"), "icat_5", "Wild Magic","")},
         { "SpellDuration", new DisplayAttribute(typeof(AttributeData).GetField("SpellDuration"), "icat_4", "Casted Buffs Duration","")},
@@ -298,9 +298,12 @@ public class CORE : MonoBehaviour
 
         actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.prefab);
        
-        actorObject.transform.position = new Vector3(actorData.x,actorData.y,0f);
+        Vector3 startPos = new Vector3(actorData.x, actorData.y, 0f);
+        actorObject.transform.position = startPos;
         actorData.ActorEntity = actorObject.GetComponent<Actor>();
-        actorObject.GetComponent<Actor>().SetActorInfo(actorData);
+        actorData.ActorEntity.Rigid.position = startPos;
+
+        actorData.ActorEntity.SetActorInfo(actorData);
 
         Room.ActorJoined(actorData);
     }
