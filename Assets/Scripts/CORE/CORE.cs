@@ -3,6 +3,7 @@ using SimpleJSON;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -135,120 +136,64 @@ public class CORE : MonoBehaviour
         }
     }
 
+    private class DisplayAttribute
+    {
+        public FieldInfo FieldInfo;
+        public string SpriteName;
+        public string Name;
+        public string Description;
+
+        public DisplayAttribute(FieldInfo fieldInfo, string spriteName, string name, string description) {
+            this.FieldInfo = fieldInfo;
+            this.SpriteName = spriteName;
+            this.Name = name;
+            this.Description = description;
+        }
+    }
+    private static Dictionary<string, DisplayAttribute> displayAttributes = new Dictionary<string, DisplayAttribute>()
+    {
+        { "Power", new DisplayAttribute(typeof(AttributeData).GetField("Power"), "icat_9", "Damage","")},
+        { "HP", new DisplayAttribute(typeof(AttributeData).GetField("HP"), "icat_0", "HP","")},
+        { "Defense", new DisplayAttribute(typeof(AttributeData).GetField("Defense"), "icat_10", "Defense","")},
+        { "CDReduction", new DisplayAttribute(typeof(AttributeData).GetField("CDReduction"), "icat_8", "Cooldown Reduction","")},
+        { "CTReduction", new DisplayAttribute(typeof(AttributeData).GetField("CTReduction"), "icat_7", "Casting Time Reduction","")},
+        { "Lifesteal", new DisplayAttribute(typeof(AttributeData).GetField("Lifesteal"), "", "Lifesteal","")},
+        { "LongRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("LongRangeMultiplier"), "icat_6", "Long Range Damage","")},
+        { "ShortRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("ShortRangeMultiplier"), "icat_6", "Short Range Damage","")},
+        { "WildMagicChance", new DisplayAttribute(typeof(AttributeData).GetField("WildMagicChance"), "icat_5", "Wild Magic","")},
+        { "SpellDuration", new DisplayAttribute(typeof(AttributeData).GetField("SpellDuration"), "icat_4", "Casted Buffs Duration","")},
+        { "AntiDebuff", new DisplayAttribute(typeof(AttributeData).GetField("AntiDebuff"), "icat_3", "Anti Debuff","")},
+        { "Threat", new DisplayAttribute(typeof(AttributeData).GetField("Threat"), "icat_2", "Threat","")},
+        { "MovementSpeed", new DisplayAttribute(typeof(AttributeData).GetField("MovementSpeed"), "icat_1", "Movement Speed","")},
+        { "DoubleCast", new DisplayAttribute(typeof(AttributeData).GetField("DoubleCast"), "", "Double Cast","")},
+        { "StunOnDmg", new DisplayAttribute(typeof(AttributeData).GetField("StunOnDmg"), "", "Stun On Dmg","")},
+        { "SpawnSlime", new DisplayAttribute(typeof(AttributeData).GetField("SpawnSlime"), "", "Spawn A Slime","")},
+        { "HpRegen", new DisplayAttribute(typeof(AttributeData).GetField("HpRegen"), "", "HP Regen","")},
+    };
+
     public static string GetTooltipTextFromAttributes(AttributeData data)
     {
         string result = "";
 
-
-        if (data.HP > 0)
+        // First get all the positives, then the negatives.
+        foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in displayAttributes)
         {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_0\"> +" + Mathf.RoundToInt(data.HP * 100)+"%" + "</color>";
+            float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(data);
+            
+            if (propertyValue > 0)
+            {
+                result += Environment.NewLine + "<color=#8AFD97><sprite name=\"" + keyValuePair.Value.SpriteName + "\">  " + keyValuePair.Value.Name + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
+            }
         }
-        else if (data.HP < 0)
+        foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in displayAttributes)
         {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_0\" tint=1> " + Mathf.RoundToInt( data.HP * 100)+"%" + "</color>";
+            float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(data);
+            
+            if (propertyValue < 0)
+            {
+                result += Environment.NewLine + "<color=#F28B7D><sprite name=\"" + keyValuePair.Value.SpriteName + "\" tint=1>  " + keyValuePair.Value.Name + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
+            }
         }
-
-
-        if (data.MovementSpeed > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_1\"> +" + Mathf.RoundToInt(data.MovementSpeed * 100)+"%" + "</color>";
-        }
-        else if (data.MovementSpeed < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_1\" tint=1> " + Mathf.RoundToInt(data.MovementSpeed * 100)+"%" + "</color>";
-        }
-
-
-        if (data.Threat > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_2\"> +" + Mathf.RoundToInt(data.Threat * 100)+"%" + "</color>";
-        }
-        else if (data.Threat < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_2\" tint=1> " + Mathf.RoundToInt(data.Threat * 100)+"%" + "</color>";
-        }
-        
-        if (data.AntiDebuff > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_3\"> +" + Mathf.RoundToInt(data.AntiDebuff * 100)+"%" + "</color>";
-        }
-        else if (data.AntiDebuff < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_3\" tint=1> " + Mathf.RoundToInt(data.AntiDebuff * 100)+"%" + "</color>";
-        }
-
-
-        if (data.SpellDuration > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_4\"> +" + Mathf.RoundToInt(data.SpellDuration * 100)+"%" + "</color>";
-        }
-        else if (data.SpellDuration < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_4\" tint=1> " + Mathf.RoundToInt(data.SpellDuration * 100)+"%" + "</color>";
-        }
-
-
-        if (data.WildMagicChance > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_5\"> +" + Mathf.RoundToInt(data.WildMagicChance * 100)+"%" + "</color>";
-        }
-        else if (data.WildMagicChance < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_5\" tint=1> " + Mathf.RoundToInt(data.WildMagicChance * 100)+"%" + "</color>";
-        }
-
-
-        if (data.ShortRangeMultiplier > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_6\"> +" + Mathf.RoundToInt(data.ShortRangeMultiplier * 100)+"%" + "</color>";
-        }
-        else if (data.ShortRangeMultiplier < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_6\" tint=1> " + Mathf.RoundToInt(data.ShortRangeMultiplier * 100)+"%" + "</color>";
-        }
-
-
-        if (data.CTReduction > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_7\"> +" + Mathf.RoundToInt(data.CTReduction * 100)+"%" + "</color>";
-        }
-        else if (data.CTReduction < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_7\" tint=1> " + Mathf.RoundToInt(data.CTReduction * 100)+"%" + "</color>";
-        }
-
-
-        if (data.CDReduction > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_8\"> +" + Mathf.RoundToInt(data.CDReduction * 100)+"%" + "</color>";
-        }
-        else if (data.CDReduction < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_8\" tint=1> " + Mathf.RoundToInt(data.CDReduction * 100)+"%" + "</color>";
-        }
-
-        if (data.Power > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_9\"> +" + Mathf.RoundToInt(data.Power * 100)+"%" + "</color>";
-        }
-        else if (data.Power < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_9\" tint=1> " + Mathf.RoundToInt(data.Power * 100)+"%" + "</color>";
-        }
-
-
-        if (data.Defense > 0)
-        {
-            result += Environment.NewLine + "<color=#8AFD97><sprite name=\"icat_10\"> +" + Mathf.RoundToInt(data.Defense * 100)+"%" + "</color>";
-        }
-        else if (data.Defense < 0)
-        {
-            result += Environment.NewLine + "<color=red><sprite name=\"icat_10\" tint=1> " + Mathf.RoundToInt(data.Defense * 100)+"%" + "</color>";
-        }
-
-
-
 
         return result;
     }

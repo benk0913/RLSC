@@ -24,9 +24,6 @@ public class AttributeData// : ScriptableObject
     public float Lifesteal;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-    public float CriticalChance;
-
-    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
     public float LongRangeMultiplier;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
@@ -36,22 +33,10 @@ public class AttributeData// : ScriptableObject
     public float WildMagicChance;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-    public float SingleTargetDamage;
-
-    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-    public float AOEDamage;
-
-    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
     public float SpellDuration;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
     public float AntiDebuff;
-
-    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-    public float KnockbackResistance;
-
-    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-    public float SmallerColliderSize;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
     public float Threat;
