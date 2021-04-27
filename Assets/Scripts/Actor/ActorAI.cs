@@ -47,6 +47,19 @@ public class ActorAI : MonoBehaviour
 
     protected bool patrolDirection;
 
+    protected TargetingEntity targetingEntity;
+
+    protected void OnEnable()
+    {
+        if(ChaseBehaviour == AIChaseBehaviour.Static)
+        {
+            return;
+        }
+
+        targetingEntity = ResourcesLoader.Instance.GetRecycledObject("MonsterTargetingEffect").GetComponent<TargetingEntity>();
+        targetingEntity.SetInfo(this);
+    }
+
     protected virtual void Awake()
     {
         CORE.Instance.SubscribeToEvent("BitchChanged", OnBitchChanged);
@@ -83,6 +96,7 @@ public class ActorAI : MonoBehaviour
 
     public virtual Actor GetCurrentTarget()
     {
+
         if (ChaseBehaviour == AIChaseBehaviour.Chase && NoticeDistance > 0f && Asleep) //TODO Should probably replace with a less performance heavy implementation
         {
             if(CORE.Instance.Room.Actors.Find(X =>
