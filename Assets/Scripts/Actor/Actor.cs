@@ -596,6 +596,11 @@ public class Actor : MonoBehaviour
         {
             Rigid.AddForce(((transform.position - source.transform.position).normalized)*KnockbackAmount, ForceMode2D.Impulse);
         }
+
+        if(State.Data.IsPlayer)
+        {
+            CORE.Instance.ShowScreenEffect("ScreenEffectHurt");
+        }
     }
 
 
@@ -1210,6 +1215,7 @@ public class Actor : MonoBehaviour
         SocketHandler.Instance.SendEvent("prepared_ability", node);
 
         State.IsPreparingAbility = true;
+
         State.PreparingAbilityCurrent = abilityState.CurrentAbility;
     }
 
