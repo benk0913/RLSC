@@ -157,6 +157,11 @@ public class ActorAI : MonoBehaviour
             return;
         }
 
+        if(ChaseBehaviour == AIChaseBehaviour.Static)
+        {
+            return;
+        }
+
         if(Mathf.Abs(CurrentTarget.transform.position.x - transform.position.x) < Act.GroundedDistance)
         {
             return;

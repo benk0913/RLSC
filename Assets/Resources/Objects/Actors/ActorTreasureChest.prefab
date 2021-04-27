@@ -707,7 +707,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &1551737044
@@ -782,16 +782,11 @@ MonoBehaviour:
         CDReduction: 0
         CTReduction: 0
         Lifesteal: 0
-        CriticalChance: 0
         LongRangeMultiplier: 0
         ShortRangeMultiplier: 0
         WildMagicChance: 0
-        SingleTargetDamage: 0
-        AOEDamage: 0
         SpellDuration: 0
         AntiDebuff: 0
-        KnockbackResistance: 0
-        SmallerColliderSize: 0
         Threat: 0
         MovementSpeed: 0
         DoubleCast: 0
@@ -875,6 +870,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4097
   NoticeDistance: 0
+  Asleep: 1
   ChaseDistance: 3
   FleeDistance: 10
   IsJumping: 0
