@@ -38,5 +38,6 @@ public class Item
 
     [JsonIgnore]
     ItemData _itemData;
+
 }
 

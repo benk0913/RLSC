@@ -80,7 +80,8 @@ public class ActorSkin : MonoBehaviour
 
         for(int i=0;i<Act.State.Data.equips.Keys.Count;i++)
         {
-            Item equip = Act.State.Data.equips[Act.State.Data.equips.Keys.ElementAt(i)];
+            string key = Act.State.Data.equips.Keys.ElementAt(i);
+            Item equip = Act.State.Data.equips[key];
 
             if(equip == null)
             {
@@ -89,7 +90,16 @@ public class ActorSkin : MonoBehaviour
 
             foreach(SkinSet set in equip.Data.SkinOverride)
             {
-                SetSkin(set);
+                SkinSet typeBasedOverride = equip.Data.SkinTypeOverride(key);
+
+                if (typeBasedOverride != null)
+                {
+                    SetSkin(typeBasedOverride);
+                }
+                else
+                {
+                    SetSkin(set);
+                }
             }
         }
     }

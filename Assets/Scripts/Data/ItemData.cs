@@ -28,5 +28,28 @@ public class ItemData : ScriptableObject
     public List<SkinSet> SkinOverride = new List<SkinSet>();
     
     public List<State> States = new List<State>();
+    
+    [JsonIgnore]
+    public List<TypeBasedOverride> TypeBasedOverrides = new List<TypeBasedOverride>();
+
+    public SkinSet SkinTypeOverride(string typeKey)
+    {
+        TypeBasedOverride result = TypeBasedOverrides.Find(x => x.TypeKey == typeKey);
+
+        if (result != null)
+        {
+            return result.Skinset;
+        }
+
+        return null;
+    }
+
+    [Serializable]
+    public class TypeBasedOverride
+    {
+        public string TypeKey;
+
+        public SkinSet Skinset;
+    }
 }
 
