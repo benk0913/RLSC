@@ -55,6 +55,8 @@ public class Actor : MonoBehaviour
     public bool IsGrounded;
     public Collider2D CurrentGround;
 
+    public ActorControlClient Ghost;
+
     public bool IsImpassive
     {
         get
@@ -624,9 +626,28 @@ public class Actor : MonoBehaviour
         CORE.Instance.InvokeEvent("ActorDied");
         Shadow.gameObject.SetActive(false);
 
-        if(!State.Data.IsPlayer && !AIControl.IsBoss)
+        if (!State.Data.IsPlayer)
         {
-            StartCoroutine(FadeAwayRoutine());
+            if (!AIControl.IsBoss)
+            {
+                StartCoroutine(FadeAwayRoutine());
+            }
+        }
+        else
+        {
+            CORE.Instance.ShowScreenEffect("ScreenEffectDeath");
+
+            if (Ghost != null)
+            {
+                Destroy(Ghost.gameObject);
+            }
+            
+            CORE.Instance.DelayedInvokation(3f, () => 
+            {
+                Ghost = Instantiate(ResourcesLoader.Instance.GetObject("ActorGhostPlayer")).GetComponent<ActorControlClient>();
+                Ghost.transform.position = transform.position;
+                CameraChaseEntity.Instance.ReferenceObject = Ghost.transform;
+            });
         }
     }
 
@@ -636,6 +657,13 @@ public class Actor : MonoBehaviour
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
         Shadow.gameObject.SetActive(true);
+
+        if (Ghost != null)
+        {
+            Destroy(Ghost.gameObject);
+            Ghost = null;
+            CameraChaseEntity.Instance.ReferenceObject = this.transform;
+        }
     }
 
     public void AddBuff(Buff buff, float duration)

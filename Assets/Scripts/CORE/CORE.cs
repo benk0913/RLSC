@@ -436,7 +436,7 @@ public class CORE : MonoBehaviour
         }
     }
 
-    public void ShowScreenEffect(string screenEffectObject, object data = null)
+    public GameObject ShowScreenEffect(string screenEffectObject, object data = null)
     {
         GameObject obj = ResourcesLoader.Instance.GetRecycledObject(screenEffectObject);
         obj.transform.SetParent(GameUICG.transform, true);
@@ -448,6 +448,8 @@ public class CORE : MonoBehaviour
         rt.anchorMin = Vector2.zero;
         rt.anchorMax = Vector2.one;
         rt.sizeDelta = Vector2.zero;
+
+        return obj;
 
     }
 

@@ -8,7 +8,7 @@ public class CameraChaseEntity : MonoBehaviour
     public static CameraChaseEntity Instance;
 
     [SerializeField]
-    Transform ReferenceObject;
+    public Transform ReferenceObject;
 
 
     public float Speed = 1f;
