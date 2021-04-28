@@ -22,12 +22,10 @@ public class ActorControl : MonoBehaviour
             return;
         }
         
-        #if UNITY_EDITOR
         if(Input.GetKeyDown(InputMap.Map["Console"]))
         {
             ConsoleInputUI.Instance.Show();
         }
-        #endif
 
         if(Input.GetKey(InputMap.Map["Move Left"]))
         {

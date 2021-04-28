@@ -48,9 +48,7 @@ public class CORE : MonoBehaviour
                 }
             }
             return false
-            #if UNITY_EDITOR
             || ConsoleInputUI.Instance.IsTyping
-            #endif
             ;
         }
     }

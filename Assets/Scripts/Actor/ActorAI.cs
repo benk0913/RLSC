@@ -29,6 +29,8 @@ public class ActorAI : MonoBehaviour
     [SerializeField]
     protected float FleeDistance = 10f;
 
+    public bool HasTargetingLine;
+
     public bool IsJumping = false;
 
     public Actor CurrentTarget
@@ -51,13 +53,14 @@ public class ActorAI : MonoBehaviour
 
     protected void OnEnable()
     {
-        if(ChaseBehaviour == AIChaseBehaviour.Static)
+        if(ChaseBehaviour == AIChaseBehaviour.Static || !HasTargetingLine)
         {
             return;
         }
 
         targetingEntity = ResourcesLoader.Instance.GetRecycledObject("MonsterTargetingEffect").GetComponent<TargetingEntity>();
         targetingEntity.SetInfo(this);
+        
     }
 
     protected virtual void Awake()

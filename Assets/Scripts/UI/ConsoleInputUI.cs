@@ -22,17 +22,16 @@ public class ConsoleInputUI : MonoBehaviour
 
     public void Show()
     {
+        if (this.gameObject.activeInHierarchy && string.IsNullOrEmpty(inputField.text))
+        {
+            Hide();
+            return;
+        }
+
         if (!CORE.Instance.IsTyping) {
             this.gameObject.SetActive(true);
             inputField.ActivateInputField();
             IsTyping = true;
-        }
-        else
-        {
-            if(string.IsNullOrEmpty(inputField.text))
-            {
-                Hide();
-            }
         }
     }
 
