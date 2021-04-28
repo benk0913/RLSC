@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
-  m_Name: Torch
+  m_Name: Mark of Protection
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: b78035c35a00b6d44b3798362b61a4d1, type: 3}
-  Description: Allowes you to light the way but prevents you from doing any abilities...
-  BuffColliderObject: TorchBuffEffect
-  BuffMaterial: {fileID: 2100000, guid: 55781bda53788aa48a034e646edcb834, type: 2}
+  Icon: {fileID: 21300000, guid: 6578f8976a78b884399640c855c9a1e8, type: 3}
+  Description: Makes you invulnerable while being unable to cast any abilities...
+  BuffColliderObject: MarkOfProtectionBuffEffect
+  BuffMaterial: {fileID: 2100000, guid: fe5345a3a38e3af42a6eaddb9ac0f9da, type: 2}
   Length: 1800
   isDebuff: 1
   ShowBuffIcon: 1
@@ -42,6 +42,7 @@ MonoBehaviour:
   OnEndSound: 
   States:
   - {fileID: 11400000, guid: a0c8c64f3d109e64c840160f5e873e9e, type: 2}
+  - {fileID: 11400000, guid: 3e8a9ede5d286654f912327fdf8ae35f, type: 2}
   OnStart: []
   OnEnd: []
   OnTakeDamage: []
