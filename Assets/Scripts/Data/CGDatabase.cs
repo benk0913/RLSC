@@ -73,6 +73,7 @@ public class DatabaseContent
     public int AbilitiesMaxCount;
 
     public int MaxInventorySlots;
+    public int MaxChatLength;
 }
 
 [Serializable]
