@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,30 +17,29 @@ public class TextBubbleUI : MonoBehaviour
 
     Transform CurrentAnchor;
 
-    public void Show(Transform anchor, string message)
+    Action OnHide;
+
+    public void Show(Transform anchor, string message, Action onHide = null)
     {
         CurrentAnchor = anchor;
         StartCoroutine(ShowRoutine(message));
+
+        OnHide = onHide;
     }
 
     private void Update()
     {
-        transform.position = Vector2.Lerp(transform.position, CurrentAnchor.position, Time.deltaTime * 6f);
+        transform.position = Vector2.Lerp(transform.position, CurrentAnchor.position, Time.deltaTime * 8f);
     }
 
     IEnumerator ShowRoutine(string message)
     {
         ContentText.text = "";
 
-        CG.alpha = 0f;
-        while(CG.alpha < 1f)
-        {
-            CG.alpha += Time.deltaTime * 3f;
-            yield return 0;
-        }
+        CG.alpha = 1f;
 
         //TODO Replace with character pitch?
-        float randomPitch = Random.Range(0.5f, 1.5f);
+        float randomPitch = UnityEngine.Random.Range(0.5f, 1.5f);
 
         while (ContentText.text.Length < message.Length)
         {
@@ -64,5 +64,8 @@ public class TextBubbleUI : MonoBehaviour
         }
 
         this.gameObject.SetActive(false);
+
+
+        OnHide?.Invoke();
     }
 }

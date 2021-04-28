@@ -961,7 +961,7 @@ public class Actor : MonoBehaviour
         }
 
         CurrentBubble = ResourcesLoader.Instance.GetRecycledObject("TextBubbleUI").GetComponent<TextBubbleUI>();
-        CurrentBubble.Show(transform,message);
+        CurrentBubble.Show(transform,message,()=> { CurrentBubble = null; });
         CurrentBubble.transform.position = transform.position;
     }
 
