@@ -29,15 +29,16 @@ public class TextBubbleUI : MonoBehaviour
         }
 
         //TODO Replace with character pitch?
-        float randomPitch = Random.Range(0.1f, 2f);
+        float randomPitch = Random.Range(0.5f, 1.5f);
 
+        ContentText.text = "";
         while (ContentText.text.Length < message.Length)
         {
             ContentText.text += message[ContentText.text.Length];
 
             if (ContentText.text.Length % 3 == 0)
             {
-                AudioControl.Instance.PlayWithPitch("talksound", randomPitch);
+                AudioControl.Instance.PlayInPosition("talksound",transform.position,200f, randomPitch);
             }
 
             yield return 0;
