@@ -9,6 +9,9 @@ public class ScreenEffectUI : MonoBehaviour
 
     public virtual void Show(object data)
     {
-        AudioControl.Instance.Play(SoundEffect);
+        if (!string.IsNullOrEmpty(SoundEffect))
+        {
+            AudioControl.Instance.Play(SoundEffect);
+        }
     }
 }
