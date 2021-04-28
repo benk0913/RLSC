@@ -23,7 +23,7 @@ public class ActorControl : MonoBehaviour
         }
         
         #if UNITY_EDITOR
-        if(Input.GetKey(InputMap.Map["Console"]))
+        if(Input.GetKeyDown(InputMap.Map["Console"]))
         {
             ConsoleInputUI.Instance.Show();
         }

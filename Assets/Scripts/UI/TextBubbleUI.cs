@@ -14,13 +14,23 @@ public class TextBubbleUI : MonoBehaviour
     CanvasGroup CG;
 
 
-    public void Show(string message)
+    Transform CurrentAnchor;
+
+    public void Show(Transform anchor, string message)
     {
+        CurrentAnchor = anchor;
         StartCoroutine(ShowRoutine(message));
+    }
+
+    private void Update()
+    {
+        transform.position = Vector2.Lerp(transform.position, CurrentAnchor.position, Time.deltaTime * 6f);
     }
 
     IEnumerator ShowRoutine(string message)
     {
+        ContentText.text = "";
+
         CG.alpha = 0f;
         while(CG.alpha < 1f)
         {
@@ -31,7 +41,6 @@ public class TextBubbleUI : MonoBehaviour
         //TODO Replace with character pitch?
         float randomPitch = Random.Range(0.5f, 1.5f);
 
-        ContentText.text = "";
         while (ContentText.text.Length < message.Length)
         {
             ContentText.text += message[ContentText.text.Length];
@@ -42,9 +51,10 @@ public class TextBubbleUI : MonoBehaviour
             }
 
             yield return 0;
+            yield return 0;
         }
 
-        yield return new WaitForSeconds(1f + (message.Length * DELAY_PER_LETTER));
+        yield return new WaitForSeconds(2f + (message.Length * DELAY_PER_LETTER));
 
         CG.alpha = 1f;
         while (CG.alpha > 0f)
