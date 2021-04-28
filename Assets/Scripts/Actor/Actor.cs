@@ -960,7 +960,7 @@ public class Actor : MonoBehaviour
             CurrentBubble = null;
         }
 
-        CurrentBubble = ResourcesLoader.Instance.GetRecycledObject("TextBubble").GetComponent<TextBubbleUI>();
+        CurrentBubble = ResourcesLoader.Instance.GetRecycledObject("TextBubbleUI").GetComponent<TextBubbleUI>();
         CurrentBubble.Show(message);
         CurrentBubble.transform.position = transform.position;
     }
