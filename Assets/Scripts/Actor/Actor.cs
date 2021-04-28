@@ -125,6 +125,8 @@ public class Actor : MonoBehaviour
 
     public Ability LastAbility;
 
+    TextBubbleUI CurrentBubble;
+
 
 
     public float JumpHeight = 1f;
@@ -948,6 +950,19 @@ public class Actor : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         ColliderCooldowns.Remove(colliderName);
+    }
+
+    public void ShowTextBubble(string message)
+    {
+        if(CurrentBubble != null)
+        {
+            CurrentBubble.gameObject.SetActive(false);
+            CurrentBubble = null;
+        }
+
+        CurrentBubble = ResourcesLoader.Instance.GetRecycledObject("TextBubble").GetComponent<TextBubbleUI>();
+        CurrentBubble.Show(message);
+        CurrentBubble.transform.position = transform.position;
     }
 
     #region ClientControl

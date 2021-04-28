@@ -96,6 +96,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_pick_item", OnActorPickItem));
         SocketEventListeners.Add(new SocketEventListener("orb_added", OnOrbAdded));
 
+        //Chat
+        SocketEventListeners.Add(new SocketEventListener("actor_chat_message", OnActorChatMessage));
+
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -953,6 +956,25 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.ShowScreenEffect("ScreenEffectGainOrb", orb.Data);
     }
 
+    public void OnActorChatMessage(string eventName, JSONNode data)
+    {
+        string actorId = data["actorId"].Value;
+
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+
+        if(actorDat.ActorEntity == null)
+        {
+            CORE.Instance.LogMessageError("No entity to actor with ID " + data["actorId"].Value);
+            return;
+        }
+
+        actorDat.ActorEntity.ShowTextBubble(data["message"].Value);
+    }
     #endregion
 }
 
