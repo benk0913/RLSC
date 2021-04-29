@@ -408,7 +408,7 @@ public class CORE : MonoBehaviour
 
         LoadSceneRoutineInstance = null;
 
-        ObjectiveUI.Instance.SetInfo(Data.content.Scenes.Find(X => X.sceneName == sceneKey).objectiveDescription);
+    //    ObjectiveUI.Instance.SetInfo(Data.content.Scenes.Find(X => X.sceneName == sceneKey).objectiveDescription);
 
     }
 

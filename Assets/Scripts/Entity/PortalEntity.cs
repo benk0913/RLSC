@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PortalEntity : MonoBehaviour
 {
@@ -41,7 +42,11 @@ public class PortalEntity : MonoBehaviour
     {
         if(IsLocked)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("The chamber is not complete!", Color.yellow, 3));
+            TopNotificationUI.Instance.Show(
+                new TopNotificationUI.TopNotificationInstance("The chamber is not complete! "
+                + CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == SceneManager.GetActiveScene().name).objectiveDescription, 
+                Color.yellow,
+                3));
             return;
         }
 

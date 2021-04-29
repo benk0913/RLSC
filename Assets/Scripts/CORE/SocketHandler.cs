@@ -556,7 +556,7 @@ public class SocketHandler : MonoBehaviour
 
         }
         CORE.Instance.InvokeEvent("ChamberComplete");
-        ObjectiveUI.Instance.SetInfo("Proceed to the next stage.");
+        //ObjectiveUI.Instance.SetInfo("Proceed to the next stage.");
     }
 
     public void SendEnterPortal(Portal portal)
