@@ -33,6 +33,8 @@ public class ActorAI : MonoBehaviour
 
     public bool IsJumping = false;
 
+    public bool PatrolTargetArea = false;
+
     public Actor CurrentTarget
     {
         get
@@ -368,7 +370,15 @@ public class ActorAI : MonoBehaviour
             while (SelectedAbility == null)
             {
                 SelectedAbility = GetAvailableAbilityState();
-                WaitBehaviour();
+
+                if (PatrolTargetArea)
+                {
+                    yield return StartCoroutine(AreaPatrolRoutine());
+                }
+                else
+                {
+                    WaitBehaviour();
+                }
 
                 yield return 0;
             }
