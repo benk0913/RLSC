@@ -17,32 +17,49 @@ public class ConsoleInputUI : MonoBehaviour
     {
         Instance = this;
         Hide();
+        
+    #if UNITY_EDITOR
+        inputField.placeholder.GetComponent<Text>().text = "/help";
+    #endif
     }
 
 
-    public void Show()
+    public void EnterPressed()
     {
-        if (this.gameObject.activeInHierarchy && string.IsNullOrEmpty(inputField.text))
+        if (IsTyping)
         {
-            Hide();
-            return;
+            if (string.IsNullOrEmpty(inputField.text))
+            {
+                Hide();
+            }
+            else
+            {
+                SendConsoleMessage();
+            }
         }
-
-        if (!CORE.Instance.IsTyping) {
+        else
+        {
             this.gameObject.SetActive(true);
             inputField.ActivateInputField();
             IsTyping = true;
         }
     }
 
-    public void Submit()
+    public void HideIfEmpty()
     {
-        bool wasEnterPressed = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter);
-        if (wasEnterPressed && !string.IsNullOrEmpty(inputField.text))
+        if (IsTyping && string.IsNullOrEmpty(inputField.text))
         {
-            SendConsoleMessage();
+            Hide();
         }
-        Hide();
+    }
+
+    public void OnEndEdit()
+    {
+        bool wasEnterPressed = Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]);
+        if (!wasEnterPressed)
+        {
+            Hide();
+        }
     }
 
     private void SendConsoleMessage()
@@ -58,11 +75,12 @@ public class ConsoleInputUI : MonoBehaviour
             node["message"] = inputField.text;
             SocketHandler.Instance.SendEvent("console_message", node);
         }
+        inputField.text = "";
+        inputField.ActivateInputField();
     }
 
     public void Hide()
     {
-        inputField.text = "";
         this.gameObject.SetActive(false);
         IsTyping = false;
     }

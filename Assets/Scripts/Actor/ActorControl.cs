@@ -22,17 +22,19 @@ public class ActorControl : MonoBehaviour
             return;
         }
         
-        if(Input.GetKeyDown(InputMap.Map["Console"]))
+        if(Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]))
         {
-            ConsoleInputUI.Instance.Show();
+            ConsoleInputUI.Instance.EnterPressed();
         }
 
         if(Input.GetKey(InputMap.Map["Move Left"]))
         {
+            ConsoleInputUI.Instance.HideIfEmpty();
             CurrentActor.AttemptMoveLeft();
         }
         else if(Input.GetKey(InputMap.Map["Move Right"]))
         {
+            ConsoleInputUI.Instance.HideIfEmpty();
             CurrentActor.AttemptMoveRight();
         }
 

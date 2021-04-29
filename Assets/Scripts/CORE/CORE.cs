@@ -47,9 +47,7 @@ public class CORE : MonoBehaviour
                     }
                 }
             }
-            return false
-            || ConsoleInputUI.Instance.IsTyping
-            ;
+            return ConsoleInputUI.Instance.IsTyping;
         }
     }
     public bool HasWindowOpen
