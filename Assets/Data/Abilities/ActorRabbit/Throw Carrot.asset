@@ -13,39 +13,32 @@ MonoBehaviour:
   m_Name: Throw Carrot
   m_EditorClassIdentifier: 
   Icon: {fileID: -1545704014630397440, guid: 049f30899d7182642b89c1843b2b6e7e, type: 3}
+  Description: 
   Colliders:
     HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
     AbilityColliderObject: CarrotCollider
     PrepareAbilityColliderObject: PrepareMudshot
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
   Sounds:
     PrepareAbilitySound: sound_earth_3
     ExecuteAbilitySound: 
     HitAbilitySound: 
-  CD: 4
-  CastingTime: 0.5
+    MissAbilitySound: 
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: Cast1
     ExecuteAnimation: Execute1
-  Attributes:
-    Power: 2
-    HP: 0
-    Defense: 0
-    CDReduction: 0
-    Lifesteal: 0
-    CriticalChance: 0
-    LongRangeMultiplier: 0
-    ShortRangeMultiplier: 0
-    WildMagicChance: 0
-    SingleTargetDamage: 0
-    AOEDamage: 0
-    SpellDuration: 0
-    AntiDebuff: 0
-    KnockbackResistance: 0
-    SmallerColliderSize: 0
-    Threat: 0
-    MovementSpeed: 0
+  CD: 4
+  CastingTime: 0.5
+  TargetCap: 0
+  OnlyIfGrounded: 0
+  IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
     Targets: 0
-    Value: 60
+    Value: 5
+  OnMissParams: []

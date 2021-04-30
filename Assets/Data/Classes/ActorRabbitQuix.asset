@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorFlowerbeingMimic
+  m_Name: ActorRabbitQuix
   m_EditorClassIdentifier: 
-  Icon: {fileID: -4996060153450700387, guid: 61d3ef9eab4b3894b9ad412cdf344ed7, type: 3}
-  Abilities: []
-  PassiveAbility: PassiveHitFlowerBeing
+  Icon: {fileID: 21300002, guid: 65b783eed2a9de64c8394133a31977e7, type: 3}
+  Abilities:
+  - Escape
+  - Throw Carrot Double
+  PassiveAbility: PassiveHitRabbit
   Attributes:
     Power: 0
-    HP: 0
+    HP: 2
     Defense: 0
     CDReduction: 0
     CTReduction: 0
@@ -28,13 +30,12 @@ MonoBehaviour:
     SpellDuration: 0
     AntiDebuff: 0
     Threat: 0
-    MovementSpeed: -0.5
-    DoubleCast: 0
+    MovementSpeed: 2
+    DoubleCast: 0.5
     StunOnDmg: 0
     SpawnSlime: 0
     HpRegen: 0
   Immunity: []
-  States:
-  - {fileID: 11400000, guid: 1e23eca48ae01954ca65056b99f77377, type: 2}
+  States: []
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
   DropsOnDeath: []

@@ -302,6 +302,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 48b9fdea90960ca40900089ba7c0f050, type: 2}
     - {fileID: 11400000, guid: 122e1dac6d3b0354c88c54582c8aeb61, type: 2}
     - {fileID: 11400000, guid: 0232275aa0d277c488941f40ae46cfc2, type: 2}
+    - {fileID: 11400000, guid: ea51e382b530d6b48ba216b0a6a3c44d, type: 2}
     - {fileID: 11400000, guid: 4d8248fe38dafba4597372c4e7c3cab5, type: 2}
     - {fileID: 11400000, guid: 43d46a51e477b24418d8405b5f2e2db8, type: 2}
     - {fileID: 11400000, guid: 5f3c1485ff1d8d34fb9e8d6b71afb612, type: 2}
@@ -351,6 +352,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c18f1593b56d5be4997250a67a842255, type: 2}
     - {fileID: 11400000, guid: b0d5be31382a90546bf016a55aca8ffe, type: 2}
     - {fileID: 11400000, guid: 539935ce1ad6f2943a4f7a2816c2de26, type: 2}
+    - {fileID: 11400000, guid: d15000ef0223f3449aa864a6bfaa883b, type: 2}
     - {fileID: 11400000, guid: cf28bb3650589b642bd9e154c5c4f964, type: 2}
     - {fileID: 11400000, guid: c068e23d6ebf31640b856b7ef69751ca, type: 2}
     - {fileID: 11400000, guid: 4d1d6cf2a9012ec4c9abae71ed7c6672, type: 2}
@@ -535,42 +537,6 @@ MonoBehaviour:
     - itemType: {fileID: 11400000, guid: 0a6b57bec39d0234882b6eefee4851fb, type: 2}
       overrideType: {fileID: 11400000, guid: 5bbe9426183acef449d9c64dda953cf9, type: 2}
     Scenes:
-    - sceneName: TestScene2
-      objectiveDescription: 
-      UniqueCompletionScreenEffect: 
-      Mobs:
-      - monsterName: ActorRabbit
-        positionX: 10
-        positionY: 10
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorRabbit
-        positionX: 20
-        positionY: 10
-        respawnSeconds: 0
-        IrellevantMob: 0
-      Interactables: []
-      playerSpawnX: 0
-      playerSpawnY: 0
-      Portals: []
-      MusicTrack: music_CliffRelaxedBaP
-    - sceneName: TestBossChamber
-      objectiveDescription: 
-      UniqueCompletionScreenEffect: 
-      Mobs:
-      - monsterName: ActorBlock
-        positionX: 35
-        positionY: 10
-        respawnSeconds: 0
-        IrellevantMob: 0
-      Interactables:
-      - interactableName: Test Interactable
-        positionX: 1
-        positionY: -10
-      playerSpawnX: -35
-      playerSpawnY: 0
-      Portals: []
-      MusicTrack: music_RockBossOrientalBap
     - sceneName: ChamberA1Block
       objectiveDescription: Destroy The Giant Golem!
       UniqueCompletionScreenEffect: 
@@ -1292,346 +1258,155 @@ MonoBehaviour:
         portalPositionX: -122.36
         portalPositionY: 171.77
       MusicTrack: IntermissionSong
-    - sceneName: FCJumpQuest1
-      objectiveDescription: Climb trough this borrow of dangers!
+    - sceneName: FCMonsterQuest_RabbitsA
+      objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorSpikes
-        positionX: -108.29
-        positionY: 46.21
+      - monsterName: ActorRabbit
+        positionX: -218.2
+        positionY: 45.8
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -149.61
-        positionY: -30.06
+        IrellevantMob: 0
+      - monsterName: ActorRabbit
+        positionX: -163
+        positionY: 42.4
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -109.1
-        positionY: 75.8
+        IrellevantMob: 0
+      - monsterName: ActorRabbit
+        positionX: -142.8
+        positionY: 42.4
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -107.2
-        positionY: 95.9
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        positionX: -99
+        positionY: 34
+      playerSpawnX: -275.2
+      playerSpawnY: 45.8
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      MusicTrack: 
+    - sceneName: FCMonsterQuest_RabbitsB
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorRabbitQuix
+        positionX: -156.9
+        positionY: 66.1
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -109.5
-        positionY: 113.4
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        positionX: -96
+        positionY: 134
+      playerSpawnX: -277.2
+      playerSpawnY: 64.3
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      MusicTrack: 
+    - sceneName: FCMonsterQuest_FlowersB
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorFlowerbeing
+        positionX: -209.89
+        positionY: -7.23
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -110.52
-        positionY: 25.52
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeingMimic
+        positionX: -7.5
+        positionY: 1.5
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -107.5
-        positionY: 87.2
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeingMimic
+        positionX: -216.5
+        positionY: -4.9
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -108.69
-        positionY: 16.05
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeing
+        positionX: -86
+        positionY: 2.3
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -148.1
-        positionY: 135
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeing
+        positionX: -134
+        positionY: 3.5
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -110.2
-        positionY: 40.16
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeing
+        positionX: 15.4
+        positionY: 2.4
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -108.77
-        positionY: -31.46
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeing
+        positionX: -36.8
+        positionY: 4.2
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -124.14
-        positionY: 13.77
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: -141.8
-        positionY: -13.3
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -113.58
-        positionY: 137.89
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -109
-        positionY: 126.1
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        positionX: 33
+        positionY: -7
+      playerSpawnX: -249.95
+      playerSpawnY: -7.16
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      MusicTrack: 
+    - sceneName: FCMonsterQuest_Flowersa
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorFlowerbeing
+        positionX: -209.89
+        positionY: -7.23
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -150.6
-        positionY: 0.87
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeingMimic
+        positionX: -7.5
+        positionY: 1.5
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -108.65
-        positionY: -38.55
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeing
+        positionX: -86
+        positionY: 2.3
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -146.8
-        positionY: 172.6
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -149.71
-        positionY: -22.03
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -109.8
-        positionY: 118.8
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -137.51
-        positionY: 146.92
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -150.68
-        positionY: 9.7
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -109.4
-        positionY: 160
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -108.8
-        positionY: 104.6
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -146.5
-        positionY: 75.6
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -147.2
-        positionY: 60.8
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -151.56
-        positionY: 45.73
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -147
-        positionY: 121.2
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -133.88
-        positionY: 146.92
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -109.69
-        positionY: -20.04
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -134.89
-        positionY: -46.79
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -149
-        positionY: 148.8
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -112.51
-        positionY: 32.36
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -151.08
-        positionY: 26.08
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -108.2
-        positionY: 135.6
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -111.39
-        positionY: 8.89
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -151.8
-        positionY: 34.83
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -126.4
-        positionY: 104.54
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -150.8
-        positionY: -37.2
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -150.92
-        positionY: 19.4
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -111.4
-        positionY: 64.9
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -146.2
-        positionY: 69
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -145.9
-        positionY: 90.7
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: -123.8
-        positionY: 17.4
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -125.68
-        positionY: 41.82
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -109.4
-        positionY: -7.58
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -108.2
-        positionY: 143.2
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: -112.2
-        positionY: -50.7
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -147.9
-        positionY: 107.9
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -124.79
-        positionY: -15.33
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -148.7
-        positionY: 53.1
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeing
         positionX: -148.2
-        positionY: 142.5
+        positionY: -0.4
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: -115.6
-        positionY: -39.9
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -147.4
-        positionY: 128
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeing
+        positionX: 15.4
+        positionY: 2.4
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -139.26
-        positionY: 40.12
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -148.3
-        positionY: 157.8
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeing
+        positionX: -36.8
+        positionY: 4.2
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -148.1
-        positionY: 115.1
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -114.44
-        positionY: 62.51
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -146.9
-        positionY: 82.1
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -144.5
-        positionY: 100.4
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -149.9
-        positionY: 167.3
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -150.4
-        positionY: -8.15
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -106.8
-        positionY: 169
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -111.1
-        positionY: 55.5
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: -110.04
-        positionY: 1.01
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorMuck
-        positionX: -133.11
-        positionY: 93.06
-        respawnSeconds: 60
-        IrellevantMob: 1
+        IrellevantMob: 0
       Interactables:
       - interactableName: GateRightInteractable
-        positionX: -122
-        positionY: 172
-      playerSpawnX: -151.1
-      playerSpawnY: -46.7
+        positionX: 30
+        positionY: -8
+      playerSpawnX: -249.95
+      playerSpawnY: -7.16
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -1640,76 +1415,61 @@ MonoBehaviour:
         portalPositionX: -122.36
         portalPositionY: 171.77
       MusicTrack: 
-    - sceneName: FCJumpQuest2
-      objectiveDescription: Reach the other side of the pass.
+    - sceneName: FCMonsterQuest_GhostsA
+      objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorSpikes
-        positionX: 177.97
-        positionY: -23.33
+      - monsterName: ActorGhostSmall
+        positionX: -50.3
+        positionY: -8.8
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorBat
-        positionX: -5.9
-        positionY: 49.1
-        respawnSeconds: 30
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 191.24
-        positionY: -18.27
+        IrellevantMob: 0
+      - monsterName: ActorGhostSmall
+        positionX: -228.3
+        positionY: -47.7
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 185.7
-        positionY: -20.94
+        IrellevantMob: 0
+      - monsterName: ActorGhostSmall
+        positionX: 18.2
+        positionY: -8.8
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorBat
-        positionX: 85.8
-        positionY: 50.2
-        respawnSeconds: 55
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 249.33
-        positionY: 23.42
+        IrellevantMob: 0
+      - monsterName: ActorGhostSmall
+        positionX: -57.8
+        positionY: -8.8
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 267.88
-        positionY: 31.7
+        IrellevantMob: 0
+      - monsterName: ActorGhostSmall
+        positionX: -263.6
+        positionY: -57.8
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorBat
-        positionX: 243.4
-        positionY: 89.7
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 236.06
-        positionY: 23.52
+        IrellevantMob: 0
+      - monsterName: ActorGhostSmall
+        positionX: -55.8
+        positionY: -11.9
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 241.95
-        positionY: 23.42
+        IrellevantMob: 0
+      - monsterName: ActorGhostSmall
+        positionX: -117
+        positionY: -17.7
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorBat
-        positionX: 76.2
-        positionY: 53.3
-        respawnSeconds: 45
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 169.95
-        positionY: -20.75
+        IrellevantMob: 0
+      - monsterName: ActorGhostSmall
+        positionX: -330.8
+        positionY: -59.5
         respawnSeconds: 0
-        IrellevantMob: 1
+        IrellevantMob: 0
+      - monsterName: ActorGhostSmall
+        positionX: -222.1
+        positionY: -11.5
+        respawnSeconds: 0
+        IrellevantMob: 0
       Interactables:
       - interactableName: GateRightInteractable
-        positionX: 265
-        positionY: 37
-      playerSpawnX: -103.5
-      playerSpawnY: -5.7
+        positionX: 63
+        positionY: -17
+      playerSpawnX: -354.6
+      playerSpawnY: -56.2
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -1718,8 +1478,54 @@ MonoBehaviour:
         portalPositionX: -122.36
         portalPositionY: 171.77
       MusicTrack: 
-    - sceneName: FCMonsterQuest1
-      objectiveDescription: Destroy each and every monster in the area!
+    - sceneName: FCMonsterQuest_BlocksA
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        positionX: 76
+        positionY: 38
+      playerSpawnX: -383.33
+      playerSpawnY: 8.73
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      MusicTrack: 
+    - sceneName: FCMonsterQuest_BlocksB
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorBlockSmall
+        positionX: -218.2
+        positionY: 45.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorBlockSmall
+        positionX: -143.7
+        positionY: 42.4
+        respawnSeconds: 0
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        positionX: -99
+        positionY: 34
+      playerSpawnX: -275.2
+      playerSpawnY: 45.8
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      MusicTrack: 
+    - sceneName: FCMonsterQuest_MushroomsA
+      objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorFruit
@@ -1946,23 +1752,22 @@ MonoBehaviour:
         portalPositionX: -122.36
         portalPositionY: 171.77
       MusicTrack: 
-    - sceneName: FCMonsterQuest2
-      objectiveDescription: Eliminate all monsters in the zone!
+    - sceneName: FCJumpQuest_DarknessA
+      objectiveDescription: 
       UniqueCompletionScreenEffect: 
-      Mobs:
-      - monsterName: ActorBlockSmall
-        positionX: -218.2
-        positionY: 45.8
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorBlockSmall
-        positionX: -143.7
-        positionY: 42.4
-        respawnSeconds: 0
-        IrellevantMob: 0
-      Interactables: []
-      playerSpawnX: -275.2
-      playerSpawnY: 45.8
+      Mobs: []
+      Interactables:
+      - interactableName: FireTottemDarkRoom
+        positionX: -138
+        positionY: -51
+      - interactableName: MarkOfProtecitonDarkRoom
+        positionX: -118
+        positionY: -51
+      - interactableName: GateRightInteractable
+        positionX: -122
+        positionY: 172
+      playerSpawnX: -151.1
+      playerSpawnY: -46.7
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -1971,9 +1776,8 @@ MonoBehaviour:
         portalPositionX: -122.36
         portalPositionY: 171.77
       MusicTrack: 
-    - sceneName: FCJumpQuest3
-      objectiveDescription: Use and abuse the hanging fruit to reach the top of the
-        tree.
+    - sceneName: FCJumpQuest_FruitA
+      objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorFruit
@@ -2600,79 +2404,76 @@ MonoBehaviour:
         portalPositionX: -122.36
         portalPositionY: 171.77
       MusicTrack: 
-    - sceneName: FCMonsterQuest3
+    - sceneName: FCJumpQuest_RocksA
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
-      Mobs: []
-      Interactables:
-      - interactableName: GateRightInteractable
-        positionX: 76
-        positionY: 38
-      playerSpawnX: -383.33
-      playerSpawnY: 8.73
-      Portals:
-      - name: EndPortalA
-        TargetScene: 
-        TargetSceneGate: 
-        IsExpeditionLocked: 1
-        portalPositionX: -122.36
-        portalPositionY: 171.77
-      MusicTrack: 
-    - sceneName: FCMonsterQuest4
-      objectiveDescription: Cleanse and purify this area from haunting ghosts.
-      UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorGhostSmall
-        positionX: -50.3
-        positionY: -8.8
+      - monsterName: ActorSpikes
+        positionX: 177.97
+        positionY: -23.33
         respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorGhostSmall
-        positionX: -228.3
-        positionY: -47.7
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: -5.9
+        positionY: 49.1
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 191.24
+        positionY: -18.27
         respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorGhostSmall
-        positionX: 18.2
-        positionY: -8.8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 185.7
+        positionY: -20.94
         respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorGhostSmall
-        positionX: -57.8
-        positionY: -8.8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 85.8
+        positionY: 50.2
+        respawnSeconds: 55
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 249.33
+        positionY: 23.42
         respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorGhostSmall
-        positionX: -263.6
-        positionY: -57.8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 267.88
+        positionY: 31.7
         respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorGhostSmall
-        positionX: -55.8
-        positionY: -11.9
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 243.4
+        positionY: 89.7
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 236.06
+        positionY: 23.52
         respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorGhostSmall
-        positionX: -117
-        positionY: -17.7
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 241.95
+        positionY: 23.42
         respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorGhostSmall
-        positionX: -330.8
-        positionY: -59.5
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 76.2
+        positionY: 53.3
+        respawnSeconds: 45
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 169.95
+        positionY: -20.75
         respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorGhostSmall
-        positionX: -222.1
-        positionY: -11.5
-        respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       Interactables:
       - interactableName: GateRightInteractable
-        positionX: 63
-        positionY: -17
-      playerSpawnX: -354.6
-      playerSpawnY: -56.2
+        positionX: 265
+        positionY: 37
+      playerSpawnX: -103.5
+      playerSpawnY: -5.7
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -2681,229 +2482,346 @@ MonoBehaviour:
         portalPositionX: -122.36
         portalPositionY: 171.77
       MusicTrack: 
-    - sceneName: FCJumpQuestTEMP
-      objectiveDescription: Objective
+    - sceneName: FCJumpQuest_BorrowA
+      objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorSpikes
-        positionX: -129.5
-        positionY: -97.4
+        positionX: -108.29
+        positionY: 46.21
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -178.7
-        positionY: -151
+        positionX: -149.61
+        positionY: -30.06
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -209.3
-        positionY: -90.7
+        positionX: -109.1
+        positionY: 75.8
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -260.2
-        positionY: -191.9
+        positionX: -107.2
+        positionY: 95.9
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -124.1
-        positionY: -180.9
+        positionX: -109.5
+        positionY: 113.4
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -133.5
-        positionY: -182.2
+        positionX: -110.52
+        positionY: 25.52
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -142.3
-        positionY: -101.2
+        positionX: -107.5
+        positionY: 87.2
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -240.9
-        positionY: -91.5
+        positionX: -108.69
+        positionY: 16.05
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -277.4
-        positionY: -184.3
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorGhostSmall
-        positionX: -62.5
-        positionY: -125.2
+        positionX: -148.1
+        positionY: 135
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -211.5
-        positionY: -143.5
+        positionX: -110.2
+        positionY: 40.16
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -295.7
-        positionY: -232.9
+        positionX: -108.77
+        positionY: -31.46
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -124.14
+        positionY: 13.77
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: -141.8
+        positionY: -13.3
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -113.58
+        positionY: 137.89
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -109
+        positionY: 126.1
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -285.9
-        positionY: -225.3
+        positionX: -150.6
+        positionY: 0.87
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -260.2
-        positionY: -153.7
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorGhostSmall
-        positionX: -155.1
-        positionY: -140.3
+        positionX: -108.65
+        positionY: -38.55
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -161.7
-        positionY: -157.4
+        positionX: -146.8
+        positionY: 172.6
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -155.1
-        positionY: -93.7
+        positionX: -149.71
+        positionY: -22.03
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -121.4
-        positionY: -175.1
+        positionX: -109.8
+        positionY: 118.8
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -137.51
+        positionY: 146.92
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.68
+        positionY: 9.7
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -170
-        positionY: -155.9
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorGhostSmall
-        positionX: -41.1
-        positionY: -155.7
+        positionX: -109.4
+        positionY: 160
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -232.6
-        positionY: -97.9
+        positionX: -108.8
+        positionY: 104.6
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -122.3
-        positionY: -88.4
+        positionX: -146.5
+        positionY: 75.6
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -159.6
-        positionY: -83.9
+        positionX: -147.2
+        positionY: 60.8
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -260.2
-        positionY: -177.4
+        positionX: -151.56
+        positionY: 45.73
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -112
-        positionY: -180.9
+        positionX: -147
+        positionY: 121.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -133.88
+        positionY: 146.92
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -109.69
+        positionY: -20.04
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -134.89
+        positionY: -46.79
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -149
+        positionY: 148.8
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSpikes
-        positionX: -260.2
-        positionY: -164.6
+        positionX: -112.51
+        positionY: 32.36
         respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151.08
+        positionY: 26.08
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -108.2
+        positionY: 135.6
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -111.39
+        positionY: 8.89
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151.8
+        positionY: 34.83
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -126.4
+        positionY: 104.54
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.8
+        positionY: -37.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.92
+        positionY: 19.4
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -111.4
+        positionY: 64.9
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -146.2
+        positionY: 69
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -145.9
+        positionY: 90.7
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: -123.8
+        positionY: 17.4
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -125.68
+        positionY: 41.82
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -109.4
+        positionY: -7.58
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -108.2
+        positionY: 143.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: -112.2
+        positionY: -50.7
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -147.9
+        positionY: 107.9
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -124.79
+        positionY: -15.33
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -148.7
+        positionY: 53.1
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -148.2
+        positionY: 142.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: -115.6
+        positionY: -39.9
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -147.4
+        positionY: 128
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -139.26
+        positionY: 40.12
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -148.3
+        positionY: 157.8
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -148.1
+        positionY: 115.1
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -114.44
+        positionY: 62.51
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -146.9
+        positionY: 82.1
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -144.5
+        positionY: 100.4
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -149.9
+        positionY: 167.3
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.4
+        positionY: -8.15
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -106.8
+        positionY: 169
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -111.1
+        positionY: 55.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -110.04
+        positionY: 1.01
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMuck
+        positionX: -133.11
+        positionY: 93.06
+        respawnSeconds: 60
         IrellevantMob: 1
       Interactables:
-      - interactableName: FireTottemDarkRoom
-        positionX: -342
-        positionY: -79
-      - interactableName: MarkOfProtecitonDarkRoom
-        positionX: -330
-        positionY: -79
-      - interactableName: GateRightInteractable
-        positionX: -364
-        positionY: -230
-      playerSpawnX: -337.4
-      playerSpawnY: -77.6
-      Portals:
-      - name: EndPortalA
-        TargetScene: 
-        TargetSceneGate: 
-        IsExpeditionLocked: 1
-        portalPositionX: -122.36
-        portalPositionY: 171.77
-      MusicTrack: 
-    - sceneName: FCJumpQuest4
-      objectiveDescription: Description
-      UniqueCompletionScreenEffect: 
-      Mobs: []
-      Interactables:
-      - interactableName: MarkOfProtecitonDarkRoom
-        positionX: -118
-        positionY: -51
-      - interactableName: FireTottemDarkRoom
-        positionX: -138
-        positionY: -51
       - interactableName: GateRightInteractable
         positionX: -122
         positionY: 172
       playerSpawnX: -151.1
       playerSpawnY: -46.7
-      Portals:
-      - name: EndPortalA
-        TargetScene: 
-        TargetSceneGate: 
-        IsExpeditionLocked: 1
-        portalPositionX: -122.36
-        portalPositionY: 171.77
-      MusicTrack: 
-    - sceneName: FCMonsterQuest5
-      objectiveDescription: 
-      UniqueCompletionScreenEffect: 
-      Mobs:
-      - monsterName: ActorFlowerbeing
-        positionX: -209.89
-        positionY: -7.23
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFlowerbeingMimic
-        positionX: -7.5
-        positionY: 1.5
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFlowerbeing
-        positionX: -86
-        positionY: 2.3
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFlowerbeing
-        positionX: -134
-        positionY: 3.5
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFlowerbeing
-        positionX: 15.4
-        positionY: 2.4
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFlowerbeingMimic
-        positionX: -152.7
-        positionY: 9.7
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFlowerbeing
-        positionX: -36.8
-        positionY: 4.2
-        respawnSeconds: 0
-        IrellevantMob: 0
-      Interactables:
-      - interactableName: GateRightInteractable
-        positionX: 33
-        positionY: -7
-      playerSpawnX: -249.95
-      playerSpawnY: -7.16
       Portals:
       - name: EndPortalA
         TargetScene: 

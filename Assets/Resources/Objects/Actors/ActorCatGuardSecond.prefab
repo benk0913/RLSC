@@ -1444,16 +1444,11 @@ MonoBehaviour:
         CDReduction: 0
         CTReduction: 0
         Lifesteal: 0
-        CriticalChance: 0
         LongRangeMultiplier: 0
         ShortRangeMultiplier: 0
         WildMagicChance: 0
-        SingleTargetDamage: 0
-        AOEDamage: 0
         SpellDuration: 0
         AntiDebuff: 0
-        KnockbackResistance: 0
-        SmallerColliderSize: 0
         Threat: 0
         MovementSpeed: 0
         DoubleCast: 0
@@ -1493,6 +1488,7 @@ MonoBehaviour:
   PlayerHalo: {fileID: 0}
   IsGrounded: 0
   CurrentGround: {fileID: 0}
+  Ghost: {fileID: 0}
   IsFlying: 0
   IsAttached: 0
   IsDead: 0
@@ -1536,9 +1532,13 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 4097
+  NoticeDistance: 0
+  Asleep: 1
   ChaseDistance: 1
   FleeDistance: 10
+  HasTargetingLine: 1
   IsJumping: 1
+  PatrolTargetArea: 0
   TheSecondCat: 1
 --- !u!1 &8297894871374039361
 GameObject:
