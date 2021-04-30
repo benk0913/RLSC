@@ -34,6 +34,8 @@ public class ActorAI : MonoBehaviour
     public bool IsJumping = false;
 
     public bool PatrolTargetArea = false;
+    [SerializeField]
+    protected float PatrolElapseSpeed = 1f;
 
     public Actor CurrentTarget
     {
@@ -324,7 +326,7 @@ public class ActorAI : MonoBehaviour
         float t = Random.Range(0.5f, 1.5f);
         while (t > 0f)
         {
-            t -= Time.deltaTime;
+            t -= PatrolElapseSpeed * Time.deltaTime;
 
             if (patrolDirection)
             {
