@@ -714,6 +714,7 @@ public class Actor : MonoBehaviour
     public GameObject AddColliderOnPosition(string colliderKey)
     {
         GameObject colliderObj = ResourcesLoader.Instance.GetRecycledObject(colliderKey);
+        colliderObj.SetActive(true);
         colliderObj.transform.position = transform.position;
         colliderObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         colliderObj.transform.localScale = new Vector3(Body.localScale.x, 1f, 1f);
