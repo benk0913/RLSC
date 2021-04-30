@@ -664,7 +664,7 @@ public class SocketHandler : MonoBehaviour
 
         string abilityName = data["abilityName"];
 
-        if (!actorDat.IsPlayer)
+        if (!actorDat.ActorEntity.IsClientControl)
         {
             actorDat.ActorEntity.PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
         }
