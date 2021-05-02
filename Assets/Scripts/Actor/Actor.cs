@@ -529,6 +529,17 @@ public class Actor : MonoBehaviour
             GameObject colliderObj = AddColliderOnPosition(ability.Colliders.AbilityColliderObject);
             State.ExecutingAbilityCollider = colliderObj.GetComponent<AbilityCollider>();
             State.ExecutingAbilityCollider.SetInfo(ability, this);
+
+            if (State.Data.isCharacter)
+            {
+                if(colliderObj.layer == 15)
+                    colliderObj.layer = 9;
+            }
+            else
+            {
+                if (colliderObj.layer == 9)
+                    colliderObj.layer = 15;
+            }
         }
     }
 
