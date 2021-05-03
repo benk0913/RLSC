@@ -120,12 +120,14 @@ public class SceneInfo
 public class SceneInteractable
 {
     public string interactableName;
+    public string interactableId;
     public int positionX;
     public int positionY;
 
-    public SceneInteractable(string name, int x, int y)
+    public SceneInteractable(string name, string id, int x, int y)
     {
         this.interactableName = name;
+        this.interactableId = id;
         this.positionX = x;
         this.positionY = y;
     }

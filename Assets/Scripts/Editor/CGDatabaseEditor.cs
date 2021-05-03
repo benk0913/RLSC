@@ -79,7 +79,7 @@ public class CGDatabaseEditor : Editor
 
         foreach (InteractableEntity interactable in interactables)
         {
-            currentInfo.Interactables.Add(new SceneInteractable(interactable.Data.interactableName,Mathf.RoundToInt(interactable.transform.position.x), Mathf.RoundToInt(interactable.transform.position.y)));
+            currentInfo.Interactables.Add(new SceneInteractable(interactable.Data.interactableName, interactable.Data.interactableId,Mathf.RoundToInt(interactable.transform.position.x), Mathf.RoundToInt(interactable.transform.position.y)));
         }
         EditorUtility.SetDirty(db);
     }
