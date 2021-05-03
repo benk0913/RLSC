@@ -53,40 +53,25 @@ public class LootRollItemUI : MonoBehaviour
 
     public void Decline()
     {
-        this.gameObject.SetActive(false);
-
         JSONClass node = new JSONClass();
         node["itemId"] = Slot.CurrentItem.itemId;
-        SocketHandler.Instance.SendEvent("item_roll_decline",node);
+        node["choice"] = "skip";
+        SocketHandler.Instance.SendEvent("rolled_item_choice",node);
     }
 
     public void Need()
     {
-        if(SocketHandler.Instance.CurrentUser.actor.items.Count >= CORE.Instance.Data.content.MaxInventorySlots)
-        {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Inventory Is Full!", Color.red, 2f));
-            return;
-        }
-
-        this.gameObject.SetActive(false);
-
         JSONClass node = new JSONClass();
         node["itemId"] = Slot.CurrentItem.itemId;
-        SocketHandler.Instance.SendEvent("item_roll_need", node);
+        node["choice"] = "need";
+        SocketHandler.Instance.SendEvent("rolled_item_choice", node);
     }
 
     public void Greed()
     {
-        if (SocketHandler.Instance.CurrentUser.actor.items.Count >= CORE.Instance.Data.content.MaxInventorySlots)
-        {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Inventory Is Full!", Color.red, 2f));
-            return;
-        }
-
-        this.gameObject.SetActive(false);
-
         JSONClass node = new JSONClass();
         node["itemId"] = Slot.CurrentItem.itemId;
-        SocketHandler.Instance.SendEvent("item_roll_greed", node);
+        node["choice"] = "greed";
+        SocketHandler.Instance.SendEvent("rolled_item_choice", node);
     }
 }

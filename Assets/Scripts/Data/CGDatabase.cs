@@ -74,6 +74,7 @@ public class DatabaseContent
 
     public int MaxInventorySlots;
     public int MaxChatLength;
+    public int RollDurationSeconds;
 }
 
 [Serializable]
