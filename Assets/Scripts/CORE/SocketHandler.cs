@@ -82,6 +82,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("interactable_spawn", OnInteractableSpawn));
         SocketEventListeners.Add(new SocketEventListener("interactable_despawn", OnInteractableDespawn));
         SocketEventListeners.Add(new SocketEventListener("interactable_use", OnInteractableUse));
+        SocketEventListeners.Add(new SocketEventListener("room_state", OnRoomState));
+        SocketEventListeners.Add(new SocketEventListener("room_states", OnRoomStates));
 
         SocketEventListeners.Add(new SocketEventListener("exp_update", OnExpUpdate));
         SocketEventListeners.Add(new SocketEventListener("level_up", OnLevelUp));
@@ -505,6 +507,21 @@ public class SocketHandler : MonoBehaviour
     public void OnInteractableUse(string eventName, JSONNode data)
     {
         CORE.Instance.InteractableUse(data["interactableId"], data["actorId"]);
+    }
+
+    public void OnRoomState(string eventName, JSONNode data)
+    {
+        string State = data["state"].Value;
+        int Value = data["value"].AsInt;
+        
+        // TODO BNEB update room states dictionary with the new state and value.
+    }
+
+    public void OnRoomStates(string eventName, JSONNode data)
+    {
+        Dictionary<string, int> RoomStates = JsonConvert.DeserializeObject<Dictionary<string, int>>(data["states"].ToString());
+
+        // TODO BNEB update room states with the room states dictionary.
     }
 
     public void OnExpUpdate(string eventName, JSONNode data)
