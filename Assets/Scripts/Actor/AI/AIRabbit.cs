@@ -123,8 +123,6 @@ public class AIRabbit : ActorAI
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Throw Carrot" && x.CurrentCD <= 0f);
                 }
 
-                yield return StartCoroutine(AreaPatrolRoutine());
-
                 WaitBehaviour();
 
                 yield return 0;
