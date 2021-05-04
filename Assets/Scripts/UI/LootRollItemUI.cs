@@ -16,12 +16,21 @@ public class LootRollItemUI : MonoBehaviour
     [SerializeField]
     Image TimerFillImage;
 
+    [SerializeField]
+    CanvasGroup CG;
+
     Coroutine TimerRoutineInstance;
+
+    public Item CurrentItem;
 
     public void SetInfo(Item item, float TimeLeft)
     {
-        ItemTitleText.text = item.itemName;
-        Slot.SetItem(item, null);
+        this.CurrentItem = item;
+
+        Release();
+
+        ItemTitleText.text = CurrentItem.itemName;
+        Slot.SetItem(CurrentItem, null);
 
 
         if(TimerRoutineInstance != null)
@@ -57,6 +66,7 @@ public class LootRollItemUI : MonoBehaviour
         node["itemId"] = Slot.CurrentItem.itemId;
         node["choice"] = "skip";
         SocketHandler.Instance.SendEvent("rolled_item_choice",node);
+        CG.interactable = false;
     }
 
     public void Need()
@@ -65,6 +75,7 @@ public class LootRollItemUI : MonoBehaviour
         node["itemId"] = Slot.CurrentItem.itemId;
         node["choice"] = "need";
         SocketHandler.Instance.SendEvent("rolled_item_choice", node);
+        CG.interactable = false;
     }
 
     public void Greed()
@@ -73,5 +84,11 @@ public class LootRollItemUI : MonoBehaviour
         node["itemId"] = Slot.CurrentItem.itemId;
         node["choice"] = "greed";
         SocketHandler.Instance.SendEvent("rolled_item_choice", node);
+        CG.interactable = false;
+    }
+
+    public void Release()
+    {
+        CG.interactable = true;
     }
 }

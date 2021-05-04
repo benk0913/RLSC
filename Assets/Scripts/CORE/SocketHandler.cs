@@ -993,7 +993,15 @@ public class SocketHandler : MonoBehaviour
     public void OnActorChoseRolledItem(string eventName, JSONNode data)
     {
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
+
+        if(item == null)
+        {
+            CORE.Instance.LogMessageError("No item!");
+            return;
+        }
         string choice = data["choice"].Value;
+
+        LootRollPanelUI.Instance.RemoveLootRollItem(item);
     }
 
     public void OnActorRolls(string eventName, JSONNode data)
