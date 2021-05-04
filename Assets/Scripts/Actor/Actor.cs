@@ -550,9 +550,16 @@ public class Actor : MonoBehaviour
             CORE.Instance.ActivateParams(ability.OnHitParams, casterActor, this);
         }
 
-        if (!string.IsNullOrEmpty(ability.Sounds.HitAbilitySound))
+        if (ability.Sounds.HitAbilitySoundVarriants.Count > 0)
         {
-            AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySound, transform.position);
+            AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySoundVarriants[UnityEngine.Random.Range(0,ability.Sounds.HitAbilitySoundVarriants.Count)], transform.position);
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(ability.Sounds.HitAbilitySound))
+            {
+                AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySound, transform.position);
+            }
         }
 
         if (!string.IsNullOrEmpty(ability.Colliders.HitAbilityColliderObject))

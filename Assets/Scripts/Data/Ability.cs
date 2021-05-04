@@ -43,6 +43,7 @@ public class Ability : ScriptableObject
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();
     public List<AbilityParam> OnMissParams = new List<AbilityParam>();
+
 }
 
 [Serializable]
@@ -93,7 +94,12 @@ public class AbilitySounds
     public string HitAbilitySound;
 
     [JsonIgnore]
+    public List<string> HitAbilitySoundVarriants = new List<string>();
+
+    [JsonIgnore]
     public string MissAbilitySound;
+
+
 }
 
 [Serializable]

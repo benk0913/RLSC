@@ -513,15 +513,19 @@ public class SocketHandler : MonoBehaviour
     {
         string State = data["state"].Value;
         int Value = data["value"].AsInt;
-        
-        // TODO BNEB update room states dictionary with the new state and value.
+
+        if (!CORE.Instance.Room.RoomStates.ContainsKey(State))
+        {
+            CORE.Instance.Room.RoomStates.Add(State,Value);
+            return;
+        }
+
+        CORE.Instance.Room.RoomStates[State] = Value;
     }
 
     public void OnRoomStates(string eventName, JSONNode data)
     {
-        Dictionary<string, int> RoomStates = JsonConvert.DeserializeObject<Dictionary<string, int>>(data["states"].ToString());
-
-        // TODO BNEB update room states with the room states dictionary.
+        CORE.Instance.Room.RoomStates = JsonConvert.DeserializeObject<Dictionary<string, int>>(data["states"].ToString());
     }
 
     public void OnExpUpdate(string eventName, JSONNode data)
@@ -982,20 +986,27 @@ public class SocketHandler : MonoBehaviour
     {
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
         float durationInSeconds = data["durationInSeconds"].AsFloat;
-        
-        // TODO BNEB show LootRollItemUI for this item.
+
+        LootRollPanelUI.Instance.AddLootRollItem(item, durationInSeconds);
     }
 
     public void OnActorChoseRolledItem(string eventName, JSONNode data)
     {
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
         string choice = data["choice"].Value;
-        
-        // TODO BNEB update the LootRollItemUI: disable the buttons and show what u chose in 'choice'
     }
 
     public void OnActorRolls(string eventName, JSONNode data)
     {
+        ItemData rolledItem = CORE.Instance.Data.content.Items.Find(x => x.name == data["itemName"].Value);
+        if (rolledItem == null)
+        {
+            CORE.Instance.LogMessageError("No item with name " + data["itemName"].Value);
+            return;
+        }
+
+        ActorRollResultUI result;
+
         for (int i = 0; i < data["rollsWithActors"].Count; i++)
         {
             int rollNumber = data["rollsWithActors"]["roll"].AsInt;
@@ -1004,26 +1015,37 @@ public class SocketHandler : MonoBehaviour
             ActorData rollingActorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == rollActorId);
             if (rollingActorDat == null)
             {
-                CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+                CORE.Instance.LogMessageError("No actor with ID " + data["rollsWithActors"]["actorId"].Value);
                 continue;
             }
-            // TODO BNEB show the rolling number above the actor for a few seconds. Note that rollNumber can be greater than 6 in case of many people in party so handle that case as well.
+
+            
+            result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnChar").GetComponent<ActorRollResultUI>();
+            result.SetInfo(rollingActorDat.ActorEntity, rolledItem, rollNumber);
         }
 
         // Telling who picked the item.
         string winningActorId = data["winningActorId"].Value;
         if (string.IsNullOrEmpty(winningActorId))
         {
-            // TODO BNEB show a message that the item wasn't picked by anyone.
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No one has picked the item " + rolledItem.name, Color.red, 3f));
             return;
         }
+
+
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == winningActorId);
         if (actorDat == null)
         {
-            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            CORE.Instance.LogMessageError("No actor with ID " + data["winningActorId"].Value);
             return;
         }
-        // TODO BNEB show a message that the item was picked by actor.
+
+
+        CORE.Instance.DelayedInvokation(2f, () => 
+        {
+            result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnCharWinner").GetComponent<ActorRollResultUI>();
+            result.SetInfo(actorDat.ActorEntity, rolledItem, 0);
+        });
     }
 
     public void OnActorChatMessage(string eventName, JSONNode data)

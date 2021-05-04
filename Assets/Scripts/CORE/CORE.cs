@@ -520,6 +520,8 @@ public class RoomData
 
     public ActorData PlayerActor;
 
+    public Dictionary<string, int> RoomStates = new Dictionary<string, int>();
+
     [JsonIgnore]
     public Actor MostThreateningActor;
 
@@ -787,4 +789,5 @@ public class RoomData
             actor.faceRight = bool.Parse(data["actorPositions"][i]["faceRight"]);
         }
     }
+
 }
