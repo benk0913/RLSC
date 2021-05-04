@@ -19,9 +19,36 @@ public class LootRollItemUI : MonoBehaviour
     [SerializeField]
     CanvasGroup CG;
 
+    [SerializeField]
+    TextMeshProUGUI KeyOption1Label;
+
+    [SerializeField]
+    TextMeshProUGUI KeyOption2Label;
+
+    [SerializeField]
+    TextMeshProUGUI KeyOption3Label;
+
     Coroutine TimerRoutineInstance;
 
     public Item CurrentItem;
+    
+    public bool IsTopActiveRoll
+    {
+        get
+        {
+            for (int i = 0; i < LootRollPanelUI.Instance.transform.childCount; i++)
+            {
+                if (LootRollPanelUI.Instance.transform.GetChild(i).gameObject.activeInHierarchy)
+                {
+                    if (LootRollPanelUI.Instance.transform.GetChild(i).gameObject == this.gameObject)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            return false;
+        }
+    }
 
     public void SetInfo(Item item, float TimeLeft)
     {
@@ -39,6 +66,10 @@ public class LootRollItemUI : MonoBehaviour
         }
 
         TimerRoutineInstance = StartCoroutine(TimerRoutine(TimeLeft));
+
+        KeyOption1Label.text = InputMap.Map["Vote Option 1"].ToString();
+        KeyOption2Label.text = InputMap.Map["Vote Option 2"].ToString();
+        KeyOption3Label.text = InputMap.Map["Vote Option 3"].ToString();
     }
 
     IEnumerator TimerRoutine(float timeLeft)
@@ -58,6 +89,30 @@ public class LootRollItemUI : MonoBehaviour
         Decline();
 
         TimerRoutineInstance = null;
+    }
+
+    private void Update()
+    {
+        if(!CG.interactable)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(InputMap.Map["Vote Option 1"]))
+        {
+            if (IsTopActiveRoll)
+                Need();
+        }
+        else if (Input.GetKeyDown(InputMap.Map["Vote Option 2"]))
+        {
+            if (IsTopActiveRoll)
+                Greed();
+        }
+        else if (Input.GetKeyDown(InputMap.Map["Vote Option 3"]))
+        {
+            if (IsTopActiveRoll)
+                Decline();
+        }
     }
 
     public void Decline()
