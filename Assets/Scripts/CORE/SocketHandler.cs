@@ -1017,13 +1017,13 @@ public class SocketHandler : MonoBehaviour
 
         for (int i = 0; i < data["rollsWithActors"].Count; i++)
         {
-            int rollNumber = data["rollsWithActors"]["roll"].AsInt;
-            string rollActorId = data["rollsWithActors"]["actorId"].Value;
+            int rollNumber = data["rollsWithActors"][i]["roll"].AsInt;
+            string rollActorId = data["rollsWithActors"][i]["actorId"].Value;
             
             ActorData rollingActorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == rollActorId);
             if (rollingActorDat == null)
             {
-                CORE.Instance.LogMessageError("No actor with ID " + data["rollsWithActors"]["actorId"].Value);
+                CORE.Instance.LogMessageError("No actor with ID " + data["rollsWithActors"][i]["actorId"].Value);
                 continue;
             }
 
