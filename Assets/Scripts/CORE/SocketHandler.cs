@@ -1036,7 +1036,7 @@ public class SocketHandler : MonoBehaviour
         string winningActorId = data["winningActorId"].Value;
         if (string.IsNullOrEmpty(winningActorId))
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No one has picked the item " + rolledItem.name, Color.red, 3f));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No one has picked the item " + rolledItem.Data.name, Color.red, 3f));
             return;
         }
 
@@ -1052,7 +1052,7 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.DelayedInvokation(2f, () => 
         {
             result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnCharWinner").GetComponent<ActorRollResultUI>();
-            result.SetInfo(actorDat.ActorEntity, rolledItem, 0);
+            result.SetInfo(actorDat.ActorEntity, rolledItem.Data, 0);
         });
     }
 
