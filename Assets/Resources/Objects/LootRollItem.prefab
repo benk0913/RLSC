@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 7876425342020889109}
   - component: {fileID: 7876425342020889099}
   - component: {fileID: 1660920911}
+  - component: {fileID: 8276801527636017889}
   m_Layer: 5
   m_Name: LootRollItem
   m_TagString: Untagged
@@ -173,6 +174,15 @@ MonoBehaviour:
   ItemTitleText: {fileID: 7876425343186656198}
   Slot: {fileID: 5316540592178943921}
   TimerFillImage: {fileID: 7876425341938507284}
+  CG: {fileID: 8276801527636017889}
+  CurrentItem:
+    itemId: 
+    itemName: 
+    x: 0
+    y: 0
+    spawnX: 0
+    spawnY: 0
+    Entity: {fileID: 0}
 --- !u!95 &1660920911
 Animator:
   serializedVersion: 3
@@ -192,6 +202,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &8276801527636017889
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7876425342020889111}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7876425342152334505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,11 +1382,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5473138621324737562, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
---- !u!224 &2712386001670978167 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5254288634801956004, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
-  m_PrefabInstance: {fileID: 7876425343109242579}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5316540592178943921 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2631943444614629730, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
@@ -1376,3 +1393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8142ea0fd638cb24db45f2b9d3d24c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2712386001670978167 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5254288634801956004, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
+  m_PrefabInstance: {fileID: 7876425343109242579}
+  m_PrefabAsset: {fileID: 0}
