@@ -1006,10 +1006,10 @@ public class SocketHandler : MonoBehaviour
 
     public void OnActorRolls(string eventName, JSONNode data)
     {
-        ItemData rolledItem = CORE.Instance.Data.content.Items.Find(x => x.name == data["itemName"].Value);
+        Item rolledItem = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
         if (rolledItem == null)
         {
-            CORE.Instance.LogMessageError("No item with name " + data["itemName"].Value);
+            CORE.Instance.LogMessageError("No rolled item");
             return;
         }
 
@@ -1029,7 +1029,7 @@ public class SocketHandler : MonoBehaviour
 
             
             result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnChar").GetComponent<ActorRollResultUI>();
-            result.SetInfo(rollingActorDat.ActorEntity, rolledItem, rollNumber);
+            result.SetInfo(rollingActorDat.ActorEntity, rolledItem.Data, rollNumber);
         }
 
         // Telling who picked the item.
