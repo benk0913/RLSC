@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextBubbleUI : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class TextBubbleUI : MonoBehaviour
 
     [SerializeField]
     CanvasGroup CG;
+
+    [SerializeField]
+    RectTransform RectTrans;
 
 
     Transform CurrentAnchor;
@@ -35,6 +39,8 @@ public class TextBubbleUI : MonoBehaviour
     IEnumerator ShowRoutine(string message)
     {
         ContentText.text = "";
+
+        yield return 0; 
 
         CG.alpha = 1f;
 

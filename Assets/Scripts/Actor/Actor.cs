@@ -664,6 +664,11 @@ public class Actor : MonoBehaviour
             
             CORE.Instance.DelayedInvokation(3f, () => 
             {
+                if(this.gameObject == null || !IsDead || CORE.Instance.Room.Actors.Find(x=>x.actorId == State.Data.actorId) == null)
+                {
+                    return;
+                }
+                
                 Ghost = Instantiate(ResourcesLoader.Instance.GetObject("ActorGhostPlayer")).GetComponent<ActorControlClient>();
                 Ghost.transform.position = transform.position;
                 CameraChaseEntity.Instance.ReferenceObject = Ghost.transform;
