@@ -1003,7 +1003,6 @@ public class SocketHandler : MonoBehaviour
         
         if(choice == "Inventory is full")
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Inventory is full", Color.red, 3f, true));
             LootRollPanelUI.Instance.ReleaseLootRollItem(item);
             return;
         }
