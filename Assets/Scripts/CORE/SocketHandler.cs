@@ -517,15 +517,16 @@ public class SocketHandler : MonoBehaviour
         if (!CORE.Instance.Room.RoomStates.ContainsKey(State))
         {
             CORE.Instance.Room.RoomStates.Add(State,Value);
-            return;
         }
 
         CORE.Instance.Room.RoomStates[State] = Value;
+        CORE.Instance.InvokeEvent("RoomStatesChanged");
     }
 
     public void OnRoomStates(string eventName, JSONNode data)
     {
         CORE.Instance.Room.RoomStates = JsonConvert.DeserializeObject<Dictionary<string, int>>(data["states"].ToString());
+        CORE.Instance.InvokeEvent("RoomStatesChanged");
     }
 
     public void OnExpUpdate(string eventName, JSONNode data)

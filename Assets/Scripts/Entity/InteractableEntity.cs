@@ -29,7 +29,6 @@ public class InteractableEntity : MonoBehaviour
     {
         if(InteractableCooldown > 0f)
         {
-            IsBusy = false;
             return;
         }
 
@@ -55,6 +54,8 @@ public class InteractableEntity : MonoBehaviour
 
     public void Interacted(string byActorID)
     {
+        IsBusy = false;
+
         OnInteract?.Invoke();
 
         if(Data.Data.OnInteractParams.Count > 0)
