@@ -73,7 +73,7 @@ public class CGDatabaseEditor : Editor
             currentInfo.Portals.Add(portal.PortalReference);
         }
 
-        InteractableEntity[] interactables = FindObjectsOfType<InteractableEntity>();
+        InteractableEntity[] interactables = FindObjectsOfType<InteractableEntity>(true);
 
         currentInfo.Interactables.Clear();
 
