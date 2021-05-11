@@ -295,6 +295,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 46dda8e43211f3b40a5b934bd5fac208, type: 2}
     - {fileID: 11400000, guid: 3e193edf800c2ac45acdfd74cbed34e3, type: 2}
     - {fileID: 11400000, guid: 269142fa6c7af094a841f576f1882156, type: 2}
+    - {fileID: 11400000, guid: 7b7a2cecb5fdcd34a9bf3bfa50d1d11b, type: 2}
     - {fileID: 11400000, guid: 373c29fc7bd8a614da8d1b6fecb73728, type: 2}
     - {fileID: 11400000, guid: 025839fb6962da94c8a449a4a92bfd96, type: 2}
     - {fileID: 11400000, guid: 00f69df16a3a19e458225f34073254de, type: 2}
@@ -337,6 +338,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2233657f4f47ace4faa64e43f3b76b0d, type: 2}
     - {fileID: 11400000, guid: 61c32f0517ad87d4789b7980f6a4cb30, type: 2}
     - {fileID: 11400000, guid: eb496437bb5985e45a1eebc6333990a8, type: 2}
+    - {fileID: 11400000, guid: 1d0cb1943a6e6d748925052c76b284f2, type: 2}
     - {fileID: 11400000, guid: e160b8ac1bfb79744af66492a598fa58, type: 2}
     - {fileID: 11400000, guid: c8ef1498ee1461540b21858122c76e8d, type: 2}
     - {fileID: 11400000, guid: 58db497593745244f945b581783444b6, type: 2}
@@ -479,6 +481,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e7d53dfc2ab37ee48a0f6c82849c88ca, type: 2}
     - {fileID: 11400000, guid: 6702e603e7fec7044af845c33a3da1af, type: 2}
     - {fileID: 11400000, guid: c0d43faf83335184aadea7362eabb036, type: 2}
+    - {fileID: 11400000, guid: b5f92c9f9a81cef4ea682b20596ae707, type: 2}
+    - {fileID: 11400000, guid: 36ae7797e3063c7459df1c482e8dfafb, type: 2}
+    - {fileID: 11400000, guid: ce8a3f81ece1f314b8ee82557aab88ff, type: 2}
+    - {fileID: 11400000, guid: b152595e341368a46997761c35bd3bd6, type: 2}
+    - {fileID: 11400000, guid: f0ff3b972622b6b45afb1ad99bf39d35, type: 2}
+    - {fileID: 11400000, guid: 8008aa4c64dcdd64393d59526aeaf6ed, type: 2}
+    - {fileID: 11400000, guid: 2d7b65b91386deb408b3735292ea6b73, type: 2}
+    - {fileID: 11400000, guid: 6ea77b9fc7a8c2440a816d9b2a1c20c8, type: 2}
     - {fileID: 11400000, guid: ed72b45b7dcd47a49a42f9aa83f90ea0, type: 2}
     - {fileID: 11400000, guid: 6d3ba50099fe917449ad1dba77fa6d08, type: 2}
     - {fileID: 11400000, guid: 0831217147d6a734e9ecd9001f5e8052, type: 2}
@@ -1910,6 +1920,10 @@ MonoBehaviour:
         respawnSeconds: 0
         IrellevantMob: 1
       Interactables:
+      - interactableName: MarkOfProtectionDarkRoom
+        interactableId: TorchBrazier2
+        positionX: -115
+        positionY: -51
       - interactableName: DarknessGateInteractable2
         interactableId: DarknessGateInteractable2
         positionX: -138
@@ -3151,6 +3165,50 @@ MonoBehaviour:
         portalPositionX: -122.36
         portalPositionY: 171.77
       MusicTrack: 
+    - sceneName: FCMonsterQuest_FlowersWild
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorFlowerbeingWild
+        positionX: -209.89
+        positionY: -7.23
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeingWild
+        positionX: -7.5
+        positionY: 1.5
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeingWild
+        positionX: -148.2
+        positionY: -0.4
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeingWild
+        positionX: 15.4
+        positionY: 2.4
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeingWild
+        positionX: -36.8
+        positionY: 4.2
+        respawnSeconds: 0
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 30
+        positionY: -8
+      playerSpawnX: -245.69
+      playerSpawnY: -7.79
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      MusicTrack: 
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -3213,6 +3271,8 @@ MonoBehaviour:
     AbilitiesMaxCount: 5
     MaxInventorySlots: 24
     MaxChatLength: 100
-    RollDurationSeconds: 0
+    RollDurationSeconds: 15
+    LongRangeDistance: 25
+    ShortRangeDistance: 10
   DefaultSpriteMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   ErrorIcon: {fileID: 21300000, guid: 88cc93b9033d1014f8728abbd467af91, type: 3}

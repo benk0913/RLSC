@@ -9,17 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
-  m_Name: Torch
+  m_Script: {fileID: 11500000, guid: f95219eb7d644f142a40a738ada1fec8, type: 3}
+  m_Name: Cursed Touch
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: b78035c35a00b6d44b3798362b61a4d1, type: 3}
-  Description: Allowes you to light the way but prevents you from doing any abilities...
-  BuffColliderObject: TorchBuffEffect
-  BuffMaterial: {fileID: 2100000, guid: 55781bda53788aa48a034e646edcb834, type: 2}
-  Length: 1800
-  isDebuff: 0
-  ShowBuffIcon: 1
-  Attributes:
+  Icon: {fileID: 21300000, guid: 86ccf9d2729a3a941924e5290c57d51d, type: 3}
+  Description: Painful to touch...
+  Stats:
     Power: 0
     HP: 0
     Defense: 0
@@ -37,11 +32,10 @@ MonoBehaviour:
     StunOnDmg: 0
     SpawnSlime: 0
     HpRegen: 0
-  HitAbility: {fileID: 0}
-  OnStartSound: 
-  OnEndSound: 
+  DropChance: 0
+  Type: {fileID: 11400000, guid: 1c42537e6bad1ea4daeca010bca74272, type: 2}
+  Rarity: {fileID: 11400000, guid: baabb382b59569040ad933405aa6eec3, type: 2}
+  SkinOverride: []
   States:
-  - {fileID: 11400000, guid: a0c8c64f3d109e64c840160f5e873e9e, type: 2}
-  OnStart: []
-  OnEnd: []
-  OnTakeDamage: []
+  - {fileID: 11400000, guid: 8412507f4740b0748b0ce051b758b07f, type: 2}
+  TypeBasedOverrides: []
