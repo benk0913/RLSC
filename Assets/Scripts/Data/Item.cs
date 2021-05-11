@@ -14,8 +14,6 @@ public class Item
     public float spawnX;
     public float spawnY;
 
-    public List<Item> Pool = new List<Item>();
-
     [JsonIgnore]
     public ItemEntity Entity;
 
