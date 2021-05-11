@@ -32,6 +32,8 @@ public class ItemData : ScriptableObject
     [JsonIgnore]
     public List<TypeBasedOverride> TypeBasedOverrides = new List<TypeBasedOverride>();
 
+    public List<ItemData> Pool = new List<ItemData>();
+
     public SkinSet SkinTypeOverride(string typeKey)
     {
         TypeBasedOverride result = TypeBasedOverrides.Find(x => x.TypeKey == typeKey);

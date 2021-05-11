@@ -57,6 +57,8 @@ public class AbilityParam
     public TargetType Targets;
 
     public string Value;
+
+    public ScriptableObject ObjectValue;
 }
 
 [Serializable]
