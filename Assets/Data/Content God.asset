@@ -292,6 +292,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c390f7879186fba40ab83b1b20ac3e6c, type: 2}
     - {fileID: 11400000, guid: e4b9b19552374d244aa8f52777524542, type: 2}
     - {fileID: 11400000, guid: 3c69d477fd7e9fb4fb2584b45e940d3b, type: 2}
+    - {fileID: 11400000, guid: 46dda8e43211f3b40a5b934bd5fac208, type: 2}
     - {fileID: 11400000, guid: 3e193edf800c2ac45acdfd74cbed34e3, type: 2}
     - {fileID: 11400000, guid: 269142fa6c7af094a841f576f1882156, type: 2}
     - {fileID: 11400000, guid: 373c29fc7bd8a614da8d1b6fecb73728, type: 2}
@@ -334,6 +335,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f6bee5d7825963b4f9ea0fcb70fa541b, type: 2}
     - {fileID: 11400000, guid: 60827fb66363f784a91648869ed29b5b, type: 2}
     - {fileID: 11400000, guid: 2233657f4f47ace4faa64e43f3b76b0d, type: 2}
+    - {fileID: 11400000, guid: 61c32f0517ad87d4789b7980f6a4cb30, type: 2}
     - {fileID: 11400000, guid: eb496437bb5985e45a1eebc6333990a8, type: 2}
     - {fileID: 11400000, guid: e160b8ac1bfb79744af66492a598fa58, type: 2}
     - {fileID: 11400000, guid: c8ef1498ee1461540b21858122c76e8d, type: 2}
@@ -1908,34 +1910,30 @@ MonoBehaviour:
         respawnSeconds: 0
         IrellevantMob: 1
       Interactables:
-      - interactableName: MarkOfProtecitonDarkRoom
-        interactableId: TorchBrazier2
-        positionX: -115
-        positionY: -51
+      - interactableName: DarknessGateInteractable2
+        interactableId: DarknessGateInteractable2
+        positionX: -138
+        positionY: 35
       - interactableName: GateInteractable1DarknessDouble
         interactableId: GateInteractable1
         positionX: -150
         positionY: 4
+      - interactableName: DarknessGateInteractable3
+        interactableId: DarknessGateInteractable3
+        positionX: -117
+        positionY: 51
       - interactableName: ResetTotemInteractableDarkRoom
         interactableId: TorchBrazier3
         positionX: -128
         positionY: -51
+      - interactableName: DarknessGateInteractable4
+        interactableId: DarknessGateInteractable4
+        positionX: -129
+        positionY: 45
       - interactableName: FireTottemDarkRoom
         interactableId: TorchBrazier1
         positionX: -141
         positionY: -51
-      - interactableName: GateInteractable
-        interactableId: GateInteractable5
-        positionX: -129
-        positionY: 45
-      - interactableName: GateInteractable
-        interactableId: GateInteractable3
-        positionX: -138
-        positionY: 35
-      - interactableName: GateInteractable
-        interactableId: GateInteractable4
-        positionX: -117
-        positionY: 48
       - interactableName: GateRightInteractable
         interactableId: 
         positionX: -125
@@ -3059,7 +3057,62 @@ MonoBehaviour:
     - sceneName: FCJumpQuest_Curse
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
-      Mobs: []
+      Mobs:
+      - monsterName: ActorDungeonSpikes
+        positionX: 367.9
+        positionY: -47.74
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 377.9
+        positionY: -47.74
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 372.9
+        positionY: -47.74
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 379.4
+        positionY: -47.74
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 309.3
+        positionY: -47.74
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 319.3
+        positionY: -47.74
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorGhostSmall
+        positionX: 237.2
+        positionY: -54.4
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 324.3
+        positionY: -47.74
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorGhostSmall
+        positionX: 196.4
+        positionY: -54.3
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 314.3
+        positionY: -47.74
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 362.9
+        positionY: -47.74
+        respawnSeconds: 0
+        IrellevantMob: 1
       Interactables:
       - interactableName: SacraficialAltarInteractable
         interactableId: SacraficialAltarInteractable1
@@ -3100,6 +3153,9 @@ MonoBehaviour:
       MusicTrack: 
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
+    - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
+    - {fileID: 11400000, guid: 2beb2bcfa755d2c41ac835716aa394d2, type: 2}
+    - {fileID: 11400000, guid: a1f60ed8bccb3354ebbd2fe126d45d45, type: 2}
     - {fileID: 11400000, guid: a813d85b71908cd44954d1f790e8a645, type: 2}
     - {fileID: 11400000, guid: e14d6cbe1368bc5459e07d4d762d2a67, type: 2}
     - {fileID: 11400000, guid: 5e85dc017be7a314392caeb253ba6ab9, type: 2}
