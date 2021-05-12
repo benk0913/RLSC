@@ -351,7 +351,7 @@ public class ActorAI : MonoBehaviour
             yield break;
         }
 
-        while (Vector2.Distance(transform.position, CurrentTarget.transform.position) > ChaseDistance)
+        while (ChaseBehaviour == AIChaseBehaviour.Chase && ChaseDistance > 0 && Vector2.Distance(transform.position, CurrentTarget.transform.position) > ChaseDistance)
         {
             MoveToTarget();
             yield return 0;
