@@ -109,7 +109,7 @@ public class ActorAI : MonoBehaviour
             if(CORE.Instance.Room.Actors.Find(X =>
                 !X.isMob
                 && X.ActorEntity != null 
-                && Vector2.Distance(X.ActorEntity.transform.position, transform.transform.position) < NoticeDistance
+                && Vector2.Distance(X.ActorEntity.transform.position, transform.position) < NoticeDistance
                 && !X.ActorEntity.IsDead) != null)
             {
                 Asleep = false;
@@ -161,7 +161,12 @@ public class ActorAI : MonoBehaviour
     {
         List<AbilityState> abilities = new List<AbilityState>();
 
-        abilities.AddRange(Act.State.Abilities.FindAll(x => x.CurrentCD <= 0));
+        abilities.AddRange(Act.State.Abilities.FindAll(
+            x => x.CurrentCD <= 0 
+            && CurrentTarget != null
+            &&              
+                        (x.CurrentAbility.AIViableRange == 0
+                        || (x.CurrentAbility.AIViableRange > 0f && Vector2.Distance(transform.position, CurrentTarget.transform.position) < x.CurrentAbility.AIViableRange))));
 
         if(abilities.Count == 0)
         {

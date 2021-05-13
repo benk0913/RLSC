@@ -38,6 +38,9 @@ public class Ability : ScriptableObject
     public bool OnlyIfGrounded;
 
     [JsonIgnore]
+    public float AIViableRange = 0f;
+
+    [JsonIgnore]
     public bool IsCastingExternal;
 
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
