@@ -306,6 +306,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 122e1dac6d3b0354c88c54582c8aeb61, type: 2}
     - {fileID: 11400000, guid: 0232275aa0d277c488941f40ae46cfc2, type: 2}
     - {fileID: 11400000, guid: ea51e382b530d6b48ba216b0a6a3c44d, type: 2}
+    - {fileID: 11400000, guid: ed6c23549776b5141a833822dba03896, type: 2}
+    - {fileID: 11400000, guid: 6c894797d0742fd48bb61bce067cb4ed, type: 2}
+    - {fileID: 11400000, guid: eb1a1c06de5d40545b1ea89337c1665f, type: 2}
     - {fileID: 11400000, guid: 4d8248fe38dafba4597372c4e7c3cab5, type: 2}
     - {fileID: 11400000, guid: 43d46a51e477b24418d8405b5f2e2db8, type: 2}
     - {fileID: 11400000, guid: 5f3c1485ff1d8d34fb9e8d6b71afb612, type: 2}
@@ -338,6 +341,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2233657f4f47ace4faa64e43f3b76b0d, type: 2}
     - {fileID: 11400000, guid: 61c32f0517ad87d4789b7980f6a4cb30, type: 2}
     - {fileID: 11400000, guid: eb496437bb5985e45a1eebc6333990a8, type: 2}
+    - {fileID: 11400000, guid: ee1012f6673004d4eafa68d3b67930df, type: 2}
     - {fileID: 11400000, guid: 1d0cb1943a6e6d748925052c76b284f2, type: 2}
     - {fileID: 11400000, guid: e160b8ac1bfb79744af66492a598fa58, type: 2}
     - {fileID: 11400000, guid: c8ef1498ee1461540b21858122c76e8d, type: 2}
@@ -361,6 +365,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 539935ce1ad6f2943a4f7a2816c2de26, type: 2}
     - {fileID: 11400000, guid: d15000ef0223f3449aa864a6bfaa883b, type: 2}
     - {fileID: 11400000, guid: cf28bb3650589b642bd9e154c5c4f964, type: 2}
+    - {fileID: 11400000, guid: d35e837e89e209b4fab008f7f6b2df01, type: 2}
     - {fileID: 11400000, guid: c068e23d6ebf31640b856b7ef69751ca, type: 2}
     - {fileID: 11400000, guid: 4d1d6cf2a9012ec4c9abae71ed7c6672, type: 2}
     - {fileID: 11400000, guid: 6219c991027a4e041a4e745bef602efc, type: 2}
@@ -3020,7 +3025,7 @@ MonoBehaviour:
         portalPositionY: 171.77
       MusicTrack: 
     - sceneName: FCMonsterQuest_FlowersAfixed
-      objectiveDescription: 
+      objectiveDescription: Defeat All Of The Flowers!
       UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorFlowerbeing
@@ -3069,9 +3074,34 @@ MonoBehaviour:
         portalPositionY: 171.77
       MusicTrack: 
     - sceneName: FCJumpQuest_Curse
-      objectiveDescription: 
+      objectiveDescription: Sacrifice a friend.
       UniqueCompletionScreenEffect: 
       Mobs:
+      - monsterName: ActorSkeleton3
+        positionX: 230.2
+        positionY: -56.6
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton2
+        positionX: 223.4
+        positionY: -58.1
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton2
+        positionX: 216.8
+        positionY: -56.7
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 207.3
+        positionY: -56.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 202
+        positionY: -56.4
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorDungeonSpikes
         positionX: 367.9
         positionY: -47.74
@@ -3102,9 +3132,9 @@ MonoBehaviour:
         positionY: -47.74
         respawnSeconds: 0
         IrellevantMob: 1
-      - monsterName: ActorGhostSmall
-        positionX: 237.2
-        positionY: -54.4
+      - monsterName: ActorSkeleton
+        positionX: 195.5
+        positionY: -56.2
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorDungeonSpikes
@@ -3147,7 +3177,7 @@ MonoBehaviour:
         portalPositionY: 171.77
       MusicTrack: 
     - sceneName: FCJumpQuest_CurseTest
-      objectiveDescription: 
+      objectiveDescription: Wha
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
@@ -3166,7 +3196,7 @@ MonoBehaviour:
         portalPositionY: 171.77
       MusicTrack: 
     - sceneName: FCMonsterQuest_FlowersWild
-      objectiveDescription: 
+      objectiveDescription: Destroy these wildly magical flower creatures!
       UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorFlowerbeingWild
@@ -3201,6 +3231,225 @@ MonoBehaviour:
         positionY: -8
       playerSpawnX: -245.69
       playerSpawnY: -7.79
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      MusicTrack: 
+    - sceneName: FCMonsterQuest_Dungeon
+      objectiveDescription: Defeat all the skeletons!
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSpikesDeadly
+        positionX: 211.12
+        positionY: -58.82
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 227.55
+        positionY: -58.9
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 285.42
+        positionY: -58.99
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 157.3
+        positionY: -13.6
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 172.4
+        positionY: -13.6
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSpikesDeadly
+        positionX: 244.94
+        positionY: -58.9
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 219.16
+        positionY: -58.99
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 76.4
+        positionY: -37.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 162.8
+        positionY: -13.6
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 147.3
+        positionY: -13.6
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSpikesDeadly
+        positionX: 249.18
+        positionY: -58.9
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 304.5
+        positionY: -53.5
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 324.2
+        positionY: -16.1
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 202.9
+        positionY: -51.5
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSpikesDeadly
+        positionX: 203.08
+        positionY: -58.13
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 278.42
+        positionY: -57.52
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 268.1
+        positionY: -15.3
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSpikesDeadly
+        positionX: 307.56
+        positionY: -60.03
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 183.9
+        positionY: -13.6
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 262.4
+        positionY: -14.2
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 66.4
+        positionY: -37.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 253.3
+        positionY: -14.2
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton3
+        positionX: 111.9
+        positionY: -37.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 190.5
+        positionY: -13.6
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 224.8
+        positionY: -47.1
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 117.2
+        positionY: -37.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 299
+        positionY: -47.9
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSpikesDeadly
+        positionX: 235.77
+        positionY: -59.07
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton2
+        positionX: 104.4
+        positionY: -37.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 286.8
+        positionY: -49
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSpikesDeadly
+        positionX: 293.72
+        positionY: -60.11
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 197.8
+        positionY: -57.7
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 98.3
+        positionY: -36.1
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 85.7
+        positionY: -37.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 241
+        positionY: -50.9
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSpikesDeadly
+        positionX: 301.25
+        positionY: -59.68
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 319.8
+        positionY: -15
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 50.1
+        positionY: -37.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton
+        positionX: 55.6
+        positionY: -37.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSkeleton2
+        positionX: 96.5
+        positionY: -37.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 320
+        positionY: -11
+      playerSpawnX: -131.1
+      playerSpawnY: -14.7
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -3247,6 +3496,7 @@ MonoBehaviour:
       DoubleCast: 0
       StunOnDmg: 0
       SpawnSlime: 0
+      Explode: 0
       HpRegen: 0
     AttributesLimits:
       Power: 0
@@ -3265,6 +3515,7 @@ MonoBehaviour:
       DoubleCast: 0
       StunOnDmg: 0
       SpawnSlime: 0
+      Explode: 0
       HpRegen: 0
     MaxLevel: 10
     AbilitiesInitCount: 3
