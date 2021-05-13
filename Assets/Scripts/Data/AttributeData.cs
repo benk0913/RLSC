@@ -54,5 +54,8 @@ public class AttributeData// : ScriptableObject
     public float SpawnSlime;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public float Explode;
+
+    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
     public float HpRegen;
 }

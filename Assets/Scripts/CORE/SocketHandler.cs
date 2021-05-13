@@ -872,7 +872,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        actorDat.ActorEntity.State.Interrupt(data["putAbilityOnCd"].AsBool);
+        actorDat.ActorEntity.State.Interrupt(data["putAbilityOnCd"].AsBool, data["putAllAbilitiesOnCd"].AsBool);
     }
 
     public void OnActorSetStates(string eventName, JSONNode data)

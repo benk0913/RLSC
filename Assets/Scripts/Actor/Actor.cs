@@ -901,7 +901,7 @@ public class Actor : MonoBehaviour
     public void RefreshAbilities()
     {
         // Interrupt before refreshing abilities, to ensure you don't prepare an ability that you can't execute because it's not there anymore. 
-        State.Interrupt(false);
+        State.Interrupt(false, false);
 
         State.Abilities.Clear();
         for (int i = 0; i < State.Data.abilities.Count; i++)
@@ -1510,7 +1510,7 @@ public class ActorState
         }
     }
     
-    public void Interrupt(bool putAbilityOnCd)
+    public void Interrupt(bool putAbilityOnCd, bool putAllAbilitiesOnCd)
     {
         foreach (AbilityState state in Abilities)
         {
@@ -1520,6 +1520,9 @@ public class ActorState
                 if (putAbilityOnCd) {
                     Data.ActorEntity.PutAbilityOnCooldown(state);
                 }
+            }
+            if (putAllAbilitiesOnCd) {
+                Data.ActorEntity.PutAbilityOnCooldown(state);
             }
         }
 

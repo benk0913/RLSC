@@ -164,6 +164,7 @@ public class CORE : MonoBehaviour
         { "DoubleCast", new DisplayAttribute(typeof(AttributeData).GetField("DoubleCast"), "", "Double Cast","")},
         { "StunOnDmg", new DisplayAttribute(typeof(AttributeData).GetField("StunOnDmg"), "", "Stun On Dmg","")},
         { "SpawnSlime", new DisplayAttribute(typeof(AttributeData).GetField("SpawnSlime"), "", "Spawn A Slime","")},
+        { "Explode", new DisplayAttribute(typeof(AttributeData).GetField("Explode"), "", "Explode","")},
         { "HpRegen", new DisplayAttribute(typeof(AttributeData).GetField("HpRegen"), "", "HP Regen","")},
     };
 
