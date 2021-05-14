@@ -179,7 +179,8 @@ public class CORE : MonoBehaviour
             
             if (propertyValue > 0)
             {
-                result += Environment.NewLine + "<color=#8AFD97><sprite name=\"" + keyValuePair.Value.SpriteName + "\">  " + keyValuePair.Value.Name + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
+                string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\">  ";
+                result += Environment.NewLine + "<color=#8AFD97>" + icon + keyValuePair.Value.Name + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
             }
         }
         foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in displayAttributes)
@@ -188,7 +189,8 @@ public class CORE : MonoBehaviour
             
             if (propertyValue < 0)
             {
-                result += Environment.NewLine + "<color=#F28B7D><sprite name=\"" + keyValuePair.Value.SpriteName + "\" tint=1>  " + keyValuePair.Value.Name + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
+                string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\" tint=1>  ";
+                result += Environment.NewLine + "<color=#F28B7D>" + icon + keyValuePair.Value.Name + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
             }
         }
 
