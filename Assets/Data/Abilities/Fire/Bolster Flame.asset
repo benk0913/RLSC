@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 34d3c354760f3f04db86c9daa9454829, type: 3}
   Description: 'Surrounding enemies which are already Ignited, will suffer a significant
-    amount of damage.
+    amount of damage, consuming the ignite.
 
 
-    - While non-ignited enemies may receive a very small
-    amount.'
+    - While non-ignited enemies may
+    receive a very small amount.'
   Colliders:
     HitAbilityColliderObject: BolsterFlamesHit
     MissAbilityColliderObject: 
@@ -30,6 +30,7 @@ MonoBehaviour:
     PrepareAbilitySound: sound_flamerelease
     ExecuteAbilitySound: F_BolsterFlamesOGG
     HitAbilitySound: F_BolsterFlames_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -39,6 +40,7 @@ MonoBehaviour:
   CastingTime: 0.2
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -46,12 +48,15 @@ MonoBehaviour:
     Condition: {fileID: 11400000, guid: 9a418fb78fefdcc4d9d2c4fd04298e7f, type: 2}
     Targets: 0
     Value: 10
+    ObjectValue: {fileID: 0}
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 11400000, guid: 012b6f3eee5fa3a499fab2658281fd9f, type: 2}
     Targets: 0
     Value: 80
+    ObjectValue: {fileID: 0}
   - Type: {fileID: 11400000, guid: 9808926be5a20354592163dcf83d54da, type: 2}
     Condition: {fileID: 11400000, guid: 012b6f3eee5fa3a499fab2658281fd9f, type: 2}
     Targets: 0
     Value: Ignited
+    ObjectValue: {fileID: 0}
   OnMissParams: []
