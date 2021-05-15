@@ -39,7 +39,7 @@ public class BuffSlotUI : MonoBehaviour
         string tooltipString = "";
 
         tooltipString += "<color=yellow>"+ActiveBuffEffect.Name+"</color>";
-        tooltipString += System.Environment.NewLine + ActiveBuffEffect.Description;
+        tooltipString += ActiveBuffEffect.Description;
         Tooltip.SetTooltip(tooltipString);
     }
 
@@ -105,7 +105,7 @@ public class BuffSlotEffect
         BuffState = buffState;
         Icon = buffState.CurrentBuff.Icon;
         Name = buffState.CurrentBuff.name;
-        Description = buffState.CurrentBuff.Description;
+        Description = System.Environment.NewLine + buffState.CurrentBuff.Description;
         IsNegativeEffect = buffState.CurrentBuff.isDebuff;
     }
 
@@ -114,6 +114,6 @@ public class BuffSlotEffect
         BuffState = null;
         Icon = orb.Data.Icon;
         Name = orb.Data.name;
-        Description = orb.Data.Description;
+        Description = CORE.GetTooltipTextFromAttributes(orb.Data.Stats);
     }
 }
