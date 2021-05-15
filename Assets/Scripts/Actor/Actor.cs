@@ -104,7 +104,15 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            return State.Data.states.ContainsKey("Invulnerable");
+            return State.Data.states.ContainsKey("Invulnerable") || IsInvulnerableOnIdle;
+        }
+    }
+
+    public bool IsInvulnerableOnIdle
+    {
+        get
+        {
+            return State.Data.states.ContainsKey("InvulnerableOnIdle") && deltaPosition == Vector2.zero;
         }
     }
 

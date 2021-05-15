@@ -994,8 +994,8 @@ public class SocketHandler : MonoBehaviour
     public void OnActorChoseRolledItem(string eventName, JSONNode data)
     {
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
-
-        if(item == null)
+        
+        if (item == null)
         {
             CORE.Instance.LogMessageError("No item!");
             return;
@@ -1007,18 +1007,19 @@ public class SocketHandler : MonoBehaviour
             LootRollPanelUI.Instance.ReleaseLootRollItem(item);
             return;
         }
-
-        LootRollPanelUI.Instance.RemoveLootRollItem(item);
     }
 
     public void OnActorRolls(string eventName, JSONNode data)
     {
         Item rolledItem = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
+        
         if (rolledItem == null)
         {
             CORE.Instance.LogMessageError("No rolled item");
             return;
         }
+
+        LootRollPanelUI.Instance.RemoveLootRollItem(rolledItem);
 
         ActorRollResultUI result;
 

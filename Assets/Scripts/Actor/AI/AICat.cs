@@ -28,11 +28,22 @@ public class AICat : ActorAI
                 
                 if (Act.State.Data.hp < Act.State.Data.MaxHP / 2f &&  !Act.State.Data.states.ContainsKey("Threat Trickery"))
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatEnrage" && x.CurrentCD <= 0f);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatEnrageThreat" && x.CurrentCD <= 0f);
                     if (SelectedAbility != null)
                     {
                         break;
                     }
+
+                    if (Act.State.Buffs.Find(x => x.CurrentBuff.name == "CatEnrage") == null)
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatEnrage" && x.CurrentCD <= 0f);
+                        if (SelectedAbility != null)
+                        {
+                            break;
+                        }
+                    }
+
+                    
                 }
 
                 SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatShieldBash" && x.CurrentCD <= 0f);
