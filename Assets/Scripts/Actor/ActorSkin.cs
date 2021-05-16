@@ -14,6 +14,9 @@ public class ActorSkin : MonoBehaviour
     [SerializeField]
     SpriteRenderer Halo;
 
+    [SerializeField]
+    public List<GameObject> OrbEffects = new List<GameObject>();
+
     public void RefreshLooks()
     {
         ActorLooks looks = Act.State.Data.looks;
@@ -101,6 +104,37 @@ public class ActorSkin : MonoBehaviour
                     SetSkin(set);
                 }
             }
+        }
+
+        RefreshOrbs();
+    }
+
+    public void RefreshOrbs()
+    {
+        while(OrbEffects.Count > 0)
+        {
+            OrbEffects[0].SetActive(false);
+            OrbEffects.RemoveAt(0);
+        }
+
+        foreach(Item orb in Act.State.Data.orbs)
+        {
+            AddOrb(orb);
+        }
+    }
+
+    public void AddOrb(Item orb)
+    {
+        if (!string.IsNullOrEmpty(orb.OrbColliderObject))
+        {
+            GameObject colliderObj = Act.AddColliderOnPosition(orb.OrbColliderObject);
+            colliderObj.GetComponent<OrbCollider>().SetInfo(orb, Act);
+
+        }
+
+        if (orb.OrbMaterial != null)
+        {
+            Act.spriteColorGroup.SetMaterial(orb.OrbMaterial);
         }
     }
 

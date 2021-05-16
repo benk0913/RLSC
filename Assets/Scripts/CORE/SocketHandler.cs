@@ -979,6 +979,7 @@ public class SocketHandler : MonoBehaviour
         CurrentUser.actor.orbs.Add(orb);
         CORE.Instance.InvokeEvent("OrbsChanged");
         CurrentUser.actor.OnRefreshAbilities.Invoke();
+        CurrentUser.actor.ActorEntity.RefreshOrbs();
 
         CORE.Instance.ShowScreenEffect("ScreenEffectGainOrb", orb.Data);
     }
