@@ -1103,7 +1103,8 @@ public class Actor : MonoBehaviour
                 }
             case "Backstepped":
                 {
-                    Actor nearestTarget = CORE.Instance.Room.GetNearestActor(this, false);
+
+                    Actor nearestTarget = CORE.Instance.Room.GetNearestActor(this, CORE.Instance.ActiveSceneInfo.enablePvp);
 
                     if (nearestTarget == null)
                     {
