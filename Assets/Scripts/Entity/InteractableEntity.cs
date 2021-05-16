@@ -20,8 +20,15 @@ public class InteractableEntity : MonoBehaviour
 
     public bool isClientOnly = false;
 
+    private void Awake()
+    {
+        // Ensure that room interactables are disabled.
+        this.gameObject.SetActive(false);
+    }
+
     public void SetInfo(Interactable data)
     {
+        this.gameObject.SetActive(true);
         Data = data;
     }
 
