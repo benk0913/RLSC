@@ -118,6 +118,7 @@ public class SceneInfo
 
     [JsonIgnore]
     public string MusicTrack;
+    public bool enablePvp;
 }
 
 [Serializable]
