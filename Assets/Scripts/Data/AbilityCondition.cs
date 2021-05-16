@@ -43,4 +43,5 @@ public enum ConditionType
     HasBuff,
     HasState,
     Staring,
+    Chance,
 }

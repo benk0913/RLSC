@@ -26,4 +26,6 @@ public class ClassJob : ScriptableObject
     public Color ClassColor;
 
     public List<ItemData> DropsOnDeath = new List<ItemData>();
+    
+    public List<AbilityParam> OnDeathParams = new List<AbilityParam>();
 }
