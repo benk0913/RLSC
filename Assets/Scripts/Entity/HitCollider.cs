@@ -100,7 +100,7 @@ public class HitCollider : MonoBehaviour
                 return false;
             }
 
-            if (isVictimAlly)
+            if (!CORE.Instance.ActiveSceneInfo.enablePvp && isVictimAlly)
             {
                 return false;
             }

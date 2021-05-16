@@ -77,6 +77,7 @@ public class DatabaseContent
     public int RollDurationSeconds;
     public float LongRangeDistance;
     public float ShortRangeDistance;
+    public float IdleSecondsForInvulnerability;
 }
 
 [Serializable]
@@ -117,6 +118,7 @@ public class SceneInfo
 
     [JsonIgnore]
     public string MusicTrack;
+    public bool enablePvp;
 }
 
 [Serializable]

@@ -20,6 +20,14 @@ public class CORE : MonoBehaviour
 
     public CGDatabase Data;
 
+    public SceneInfo ActiveSceneInfo
+    {
+        get
+        {
+            return CORE.Instance.Data.content.Scenes.Find(X => SceneManager.GetActiveScene().name == X.sceneName);
+        }
+    }
+
     public RoomData Room;
 
     public bool DEBUG = false;
