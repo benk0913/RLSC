@@ -35,7 +35,7 @@ public class Actor : MonoBehaviour
     protected SpriteRenderer Shadow;
 
     [SerializeField]
-    SpriteColorGroup spriteColorGroup;
+    public SpriteColorGroup spriteColorGroup;
 
     [SerializeField]
     public Collider2D Collider;
@@ -953,6 +953,16 @@ public class Actor : MonoBehaviour
         }
 
         Skin.RefreshLooks();
+    }
+
+    public void RefreshOrbs()
+    {
+        if (Skin == null)
+        {
+            return;
+        }
+
+        Skin.RefreshOrbs();
     }
 
     public void PutAbilitiesOnCooldown()
