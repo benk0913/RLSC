@@ -1001,9 +1001,9 @@ public class SocketHandler : MonoBehaviour
             CORE.Instance.LogMessageError("No item!");
             return;
         }
-        string choice = data["choice"].Value;
-        
-        if(choice == "Inventory is full")
+
+        string error = data["error"].Value;
+        if(error == "Inventory is full")
         {
             LootRollPanelUI.Instance.ReleaseLootRollItem(item);
             return;
