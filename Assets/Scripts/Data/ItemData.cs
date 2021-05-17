@@ -34,6 +34,10 @@ public class ItemData : ScriptableObject
 
     public List<ItemData> Pool = new List<ItemData>();
 
+    public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
+    
+    public List<AbilityParam> OnHitParams = new List<AbilityParam>();
+
     public SkinSet SkinTypeOverride(string typeKey)
     {
         TypeBasedOverride result = TypeBasedOverrides.Find(x => x.TypeKey == typeKey);

@@ -48,12 +48,6 @@ public class AttributeData// : ScriptableObject
     public float DoubleCast;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-    public float StunOnDmg;
-
-    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-    public float SpawnSlime;
-
-    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
     public float Explode;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
