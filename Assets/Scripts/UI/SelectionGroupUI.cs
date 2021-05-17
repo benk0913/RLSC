@@ -157,6 +157,11 @@ public class SelectionGroupUI : MonoBehaviour
 
     public void Select(SelectionGroupInstance target)
     {
+        if (!this.gameObject.activeInHierarchy)
+        {
+            return;
+        }
+        
         if(CurrentSelected != null && CurrentSelectedSelectable != null)
         {
             CanvasGroup canvasGroup = CurrentSelectedSelectable.GetComponent<CanvasGroup>();
