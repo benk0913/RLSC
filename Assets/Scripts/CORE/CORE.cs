@@ -495,27 +495,6 @@ public class CORE : MonoBehaviour
                     originCaster.State.Abilities.ForEach(x => x.CurrentCD = 0f);
                 }
             }
-            else if (param.Type.name == "Start Flying")
-            {
-                if (originCaster != null)
-                {
-                    originCaster.StartFlying();
-                }
-            }
-            else if (param.Type.name == "Stop Flying")
-            {
-                if (originCaster != null)
-                {
-                    originCaster.StopFlying();
-                }
-            }
-            else if (param.Type.name == "Execute Ability")
-            {
-                if (originCaster != null)
-                {
-                    originCaster.AttemptExecuteAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == param.Value), casterActor);
-                }
-            }
         }
     }
 }
