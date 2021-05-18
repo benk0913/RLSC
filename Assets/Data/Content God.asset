@@ -306,6 +306,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 122e1dac6d3b0354c88c54582c8aeb61, type: 2}
     - {fileID: 11400000, guid: 0232275aa0d277c488941f40ae46cfc2, type: 2}
     - {fileID: 11400000, guid: ea51e382b530d6b48ba216b0a6a3c44d, type: 2}
+    - {fileID: 11400000, guid: 3036b22cc4aee574d8d49f2d9a67635b, type: 2}
     - {fileID: 11400000, guid: ed6c23549776b5141a833822dba03896, type: 2}
     - {fileID: 11400000, guid: 6c894797d0742fd48bb61bce067cb4ed, type: 2}
     - {fileID: 11400000, guid: eb1a1c06de5d40545b1ea89337c1665f, type: 2}
@@ -360,12 +361,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ff8a195482e4a1f47ab1eecc2e6d0acf, type: 2}
     - {fileID: 11400000, guid: 5323d5cc487b2f340a5d52fefa29832e, type: 2}
     - {fileID: 11400000, guid: b57f0ff9d2b8deb4684d59aff774467a, type: 2}
+    - {fileID: 11400000, guid: 3a2249e8fdbbd044b9fb45e46b878ae1, type: 2}
     - {fileID: 11400000, guid: 8f78e72393829ae4cbb37d8afdd0ec5a, type: 2}
     - {fileID: 11400000, guid: c18f1593b56d5be4997250a67a842255, type: 2}
     - {fileID: 11400000, guid: b0d5be31382a90546bf016a55aca8ffe, type: 2}
     - {fileID: 11400000, guid: 539935ce1ad6f2943a4f7a2816c2de26, type: 2}
     - {fileID: 11400000, guid: d15000ef0223f3449aa864a6bfaa883b, type: 2}
     - {fileID: 11400000, guid: cf28bb3650589b642bd9e154c5c4f964, type: 2}
+    - {fileID: 11400000, guid: 335051bb704d08a4f8aeb34b9aef219e, type: 2}
     - {fileID: 11400000, guid: d35e837e89e209b4fab008f7f6b2df01, type: 2}
     - {fileID: 11400000, guid: c068e23d6ebf31640b856b7ef69751ca, type: 2}
     - {fileID: 11400000, guid: 4d1d6cf2a9012ec4c9abae71ed7c6672, type: 2}
@@ -1501,6 +1504,11 @@ MonoBehaviour:
       - monsterName: ActorBat
         positionX: -200.52998
         positionY: 87.02
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSalamander
+        positionX: -7.3
+        positionY: 40
         respawnSeconds: 0
         IrellevantMob: 0
       - monsterName: ActorBat
@@ -3487,6 +3495,36 @@ MonoBehaviour:
         positionY: -11
       playerSpawnX: -131.1
       playerSpawnY: -14.7
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      MusicTrack: 
+      enablePvp: 0
+    - sceneName: FCMonsterQuest_SalamanderA
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSalamander
+        positionX: -218.2
+        positionY: 45.8
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSalamander
+        positionX: -143.7
+        positionY: 42.4
+        respawnSeconds: 0
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: -99
+        positionY: 34
+      playerSpawnX: -275.2
+      playerSpawnY: 45.8
       Portals:
       - name: EndPortalA
         TargetScene: 
