@@ -17,14 +17,14 @@ MonoBehaviour:
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
-    AbilityColliderObject: 
+    AbilityColliderObject: SalamanderChargeCollider
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
     PrepareAbilitySound: _ound_throw
-    ExecuteAbilitySound: _ound_throw
-    HitAbilitySound: Passive Hit Spikes 3
+    ExecuteAbilitySound: A_Throw_HitOGG
+    HitAbilitySound: _ound_hit_4
     HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
@@ -35,13 +35,23 @@ MonoBehaviour:
   CastingTime: 2
   TargetCap: 0
   OnlyIfGrounded: 0
-  AIViableRange: 5
+  AIViableRange: 20
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
     Targets: 2
-    Value: DashForward
+    Value: SalamanderDash
     ObjectValue: {fileID: 0}
-  OnHitParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    Targets: 0
+    Value: 30
+    ObjectValue: {fileID: 0}
+  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
+    Condition: {fileID: 0}
+    Targets: 0
+    Value: Wind Push
+    ObjectValue: {fileID: 0}
   OnMissParams: []

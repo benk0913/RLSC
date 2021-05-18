@@ -1060,6 +1060,16 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine());
                     break;
                 }
+            case "DashForwardX2":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f));
+                    break;
+                }
+            case "SalamanderDash":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f,1.25f));
+                    break;
+                }
             case "DashUpwards":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashUpwardsRoutine());
@@ -1397,8 +1407,8 @@ public class Actor : MonoBehaviour
         MovementEffectRoutineInstance = null;
 
     }
-    
-    IEnumerator MovementDashRoutine()
+
+    IEnumerator MovementDashRoutine(float duration = 1f, float speed = 1f)
     {
         
         Vector2 initDir= (Body.localScale.x < 0 ? Vector3.right : Vector3.left);
@@ -1406,8 +1416,8 @@ public class Actor : MonoBehaviour
         float t = 0f;
         while(t<1f)
         {
-            t += Time.deltaTime  * 2f;
-            Rigid.position += initDir * State.Data.MovementSpeed * 4f * Time.deltaTime;
+            t += Time.deltaTime  * 2f * (1f/duration);
+            Rigid.position += initDir * State.Data.MovementSpeed * speed * 4f * Time.deltaTime;
 
             yield return new WaitForFixedUpdate();
         }

@@ -11,14 +11,20 @@ public class RandomSpriteEntity : MonoBehaviour
     SpriteRenderer Renderer;
 
     [SerializeField]
+    bool AdjustScale = true;
+
+    [SerializeField]
     float targetHeight = 1f;
 
     private void OnEnable()
     {
         Renderer.sprite = Varriety[Random.Range(0, Varriety.Length)];
 
-        Bounds bounds = Renderer.sprite.bounds;
-        float factor = targetHeight / bounds.size.y;
-        transform.localScale = new Vector3(factor, factor, factor);
+        if (AdjustScale)
+        {
+            Bounds bounds = Renderer.sprite.bounds;
+            float factor = targetHeight / bounds.size.y;
+            transform.localScale = new Vector3(factor, factor, factor);
+        }
     }
 }
