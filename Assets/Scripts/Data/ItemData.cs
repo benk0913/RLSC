@@ -25,6 +25,9 @@ public class ItemData : ScriptableObject
     public ItemRarity Rarity;
 
     [JsonIgnore]
+    public string OrbColliderObject;
+
+    [JsonIgnore]
     public List<SkinSet> SkinOverride = new List<SkinSet>();
     
     public List<State> States = new List<State>();

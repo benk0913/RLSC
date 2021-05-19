@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1314719724268210271}
   - component: {fileID: 1314719724268210270}
   - component: {fileID: 6091865643249420805}
-  - component: {fileID: 6675563160516856569}
+  - component: {fileID: -6272239423539018546}
   m_Layer: 9
-  m_Name: CatchFlamesBuffEffect
+  m_Name: CatchFlamesOrbEffect
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.068332, y: 4.0020504}
   m_EdgeRadius: 0
---- !u!114 &6675563160516856569
+--- !u!114 &-6272239423539018546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1314719724268210257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf51ca97ea092944698ba886be5e745b, type: 3}
+  m_Script: {fileID: 11500000, guid: 42c9d5fb707a6bd4ea27a24bcf7dafb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ActorSource: {fileID: 0}
@@ -127,11 +127,15 @@ MonoBehaviour:
       m_Calls: []
   CanMiss: 0
   HitOnlyGroundedActors: 0
-  BuffSource:
-    CurrentBuff: {fileID: 0}
-    Length: 0
-    CurrentLength: 0
-    EffectObject: {fileID: 0}
+  OrbSource:
+    itemId: 
+    itemName: 
+    x: 0
+    y: 0
+    spawnX: 0
+    spawnY: 0
+    Entity: {fileID: 0}
+    OrbMaterial: {fileID: 0}
   StickToActor: 1
   HitCollider: 0
   Anim: {fileID: 0}

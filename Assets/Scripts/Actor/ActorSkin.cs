@@ -125,9 +125,9 @@ public class ActorSkin : MonoBehaviour
 
     public void AddOrb(Item orb)
     {
-        if (!string.IsNullOrEmpty(orb.OrbColliderObject))
+        if (!string.IsNullOrEmpty(orb.Data.OrbColliderObject))
         {
-            GameObject colliderObj = Act.AddColliderOnPosition(orb.OrbColliderObject);
+            GameObject colliderObj = Act.AddColliderOnPosition(orb.Data.OrbColliderObject);
             colliderObj.GetComponent<OrbCollider>().SetInfo(orb, Act);
 
         }

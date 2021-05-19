@@ -40,9 +40,6 @@ public class Item
     ItemData _itemData;
 
     [JsonIgnore]
-    public string OrbColliderObject;
-
-    [JsonIgnore]
     public Material OrbMaterial;
 
 }
