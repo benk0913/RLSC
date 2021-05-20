@@ -974,14 +974,26 @@ public class SocketHandler : MonoBehaviour
 
     public void OnOrbAdded(string eventName, JSONNode data)
     {
+        string actorId = data["actorId"].Value;
+        
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
+        if(actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+
         Item orb = JsonConvert.DeserializeObject<Item>(data["orb"].ToString());
 
-        CurrentUser.actor.orbs.Add(orb);
-        CORE.Instance.InvokeEvent("OrbsChanged");
-        CurrentUser.actor.OnRefreshAbilities.Invoke();
-        CurrentUser.actor.ActorEntity.RefreshOrbs();
+        actorDat.orbs.Add(orb);
+        actorDat.OnRefreshAbilities.Invoke();
+        actorDat.ActorEntity.RefreshOrbs();
 
-        CORE.Instance.ShowScreenEffect("ScreenEffectGainOrb", orb.Data);
+        if (actorDat.IsPlayer)
+        {
+            CORE.Instance.InvokeEvent("OrbsChanged");
+            CORE.Instance.ShowScreenEffect("ScreenEffectGainOrb", orb.Data);
+        }
     }
 
     public void OnChooseItemRoll(string eventName, JSONNode data)
