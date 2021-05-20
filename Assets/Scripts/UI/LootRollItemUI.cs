@@ -31,6 +31,12 @@ public class LootRollItemUI : MonoBehaviour
     [SerializeField]
     public GameObject LockedPanel;
 
+    [SerializeField]
+    TooltipTargetUI TooltipTarget;
+
+    [SerializeField]
+    Transform TooltipPosition;
+
     Coroutine TimerRoutineInstance;
 
     public Item CurrentItem;
@@ -61,6 +67,9 @@ public class LootRollItemUI : MonoBehaviour
 
         ItemTitleText.text = CurrentItem.itemName;
         Slot.SetItem(CurrentItem, null);
+        CORE.Instance.DelayedInvokation(0.1f, () => {
+            TooltipTarget.ShowOnPosition(TooltipPosition.position);
+        });
 
 
         if(TimerRoutineInstance != null)
