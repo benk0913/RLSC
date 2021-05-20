@@ -750,7 +750,6 @@ public class Actor : MonoBehaviour
 
         if (state == null)
         {
-            CORE.Instance.LogMessageError("No active buff with the name: " + buff.name);
             return;
         }
 
