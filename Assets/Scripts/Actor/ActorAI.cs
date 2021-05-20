@@ -109,7 +109,7 @@ public class ActorAI : MonoBehaviour
             if(CORE.Instance.Room.Actors.Find(X =>
                 !X.isMob
                 && X.ActorEntity != null 
-                && Vector2.Distance(X.ActorEntity.transform.position, transform.position) < NoticeDistance
+                && (Vector2.Distance(X.ActorEntity.transform.position, transform.position) < NoticeDistance || Act.State.Data.hp < Act.State.Data.MaxHP)
                 && !X.ActorEntity.IsDead) != null)
             {
                 Asleep = false;

@@ -78,8 +78,7 @@ public class AIRabbit : ActorAI
         }
         else if (selectedAbility.CurrentAbility.name == "Escape")
         {
-
-            if(Random.Range(0,2) == 0)
+            if(CurrentTarget.transform.position.x < transform.position.x)
             {
                 Act.AttemptMoveLeft();
             }

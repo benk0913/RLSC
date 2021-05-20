@@ -75,7 +75,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 25.097492, y: 10.525026}
+  m_Offset: {x: 25.097492, y: 21.578056}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 39.44889, y: 4.872978}
+  m_Size: {x: 39.44889, y: 26.979034}
   m_EdgeRadius: 0
 --- !u!114 &552000459485045367
 MonoBehaviour:
@@ -109,6 +109,7 @@ MonoBehaviour:
   CanMiss: 0
   HitOnlyGroundedActors: 0
   StickToActor: 0
+  StickToActorFacing: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 0
   SkilledShotPoint: {fileID: 0}
@@ -122,6 +123,8 @@ MonoBehaviour:
   IsBubble: 0
   BubblesDuplicated: []
   AudioOnHit: 
+  HitInterval: 0
+  RemoveOnInterrupt: 0
 --- !u!95 &458345710737348588
 Animator:
   serializedVersion: 3
@@ -184,6 +187,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -266,6 +270,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

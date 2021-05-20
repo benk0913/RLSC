@@ -28,6 +28,9 @@ public class LootRollItemUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI KeyOption3Label;
 
+    [SerializeField]
+    public GameObject LockedPanel;
+
     Coroutine TimerRoutineInstance;
 
     public Item CurrentItem;
@@ -122,6 +125,7 @@ public class LootRollItemUI : MonoBehaviour
         node["choice"] = "skip";
         SocketHandler.Instance.SendEvent("rolled_item_choice",node);
         CG.interactable = false;
+        LockedPanel.gameObject.SetActive(true);
     }
 
     public void Need()
@@ -131,6 +135,7 @@ public class LootRollItemUI : MonoBehaviour
         node["choice"] = "need";
         SocketHandler.Instance.SendEvent("rolled_item_choice", node);
         CG.interactable = false;
+        LockedPanel.gameObject.SetActive(true);
     }
 
     public void Greed()
@@ -140,10 +145,12 @@ public class LootRollItemUI : MonoBehaviour
         node["choice"] = "greed";
         SocketHandler.Instance.SendEvent("rolled_item_choice", node);
         CG.interactable = false;
+        LockedPanel.gameObject.SetActive(true);
     }
 
     public void Release()
     {
         CG.interactable = true;
+        LockedPanel.gameObject.SetActive(false);
     }
 }
