@@ -6,13 +6,16 @@ using UnityEngine;
 public class HitLabelEntityUI : MonoBehaviour
 {
     [SerializeField]
+    CanvasGroup canvasGroup;
+
+    [SerializeField]
     TextMeshProUGUI Label;
 
-    public void SetLabel(string text, Color clr = default, bool isPlayerRelevant = false)
+    public void SetLabel(string text, Color clr = default, float alpha = 1f)
     {
         Label.text = text;
-        
         Label.color = clr;
+        canvasGroup.alpha = alpha;
 
         int numResult;
         if(int.TryParse(text, out numResult))
@@ -25,7 +28,6 @@ public class HitLabelEntityUI : MonoBehaviour
             float t = ((float)numResult / 200f);
             Label.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 3, t);
             Label.color = Color.Lerp(clr, Color.red, t);
-            Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, isPlayerRelevant ? 1f : 0.5f);
 
             if ((t > 0.5f))
             {

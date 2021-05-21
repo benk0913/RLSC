@@ -802,7 +802,13 @@ public class Actor : MonoBehaviour
 
         HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
         label.transform.position = transform.position;
-        label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green, isPlayerRelevant);
+
+        float alpha = 0.4f;
+        if (State.Data.IsPlayer || (source != null && source.State.Data.IsPlayer))
+        {
+            alpha = 1f;
+        }
+        label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green, alpha);
 
         if (damage > 0)
         {
