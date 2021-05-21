@@ -619,6 +619,13 @@ public class RoomData
                 continue;
             }
 
+            // The to actor is too far left/right
+            float xDistance = Mathf.Abs(from.transform.position.x - to.transform.position.x);
+            if (xDistance > 50)
+            {
+                continue;
+            }
+
             float currentDist = Vector2.Distance(from.transform.position, to.transform.position);
             if (IsNearest == currentDist < nearestDist)
             {
