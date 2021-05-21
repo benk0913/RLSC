@@ -15,6 +15,9 @@ public class AttributeData// : ScriptableObject
     public float Defense;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public float Block;
+
+    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
     public float CDReduction;
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]

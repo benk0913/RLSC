@@ -159,6 +159,7 @@ public class CORE : MonoBehaviour
         { "Power", new DisplayAttribute(typeof(AttributeData).GetField("Power"), "icat_9", "Damage","")},
         { "HP", new DisplayAttribute(typeof(AttributeData).GetField("HP"), "icat_0", "HP","")},
         { "Defense", new DisplayAttribute(typeof(AttributeData).GetField("Defense"), "icat_10", "Defense","")},
+        { "Block", new DisplayAttribute(typeof(AttributeData).GetField("Block"), "icat_10", "Block","")},
         { "CDReduction", new DisplayAttribute(typeof(AttributeData).GetField("CDReduction"), "icat_8", "Lower Cooldowns","")},
         { "CTReduction", new DisplayAttribute(typeof(AttributeData).GetField("CTReduction"), "icat_7", "Faster Spells","")},
         { "Lifesteal", new DisplayAttribute(typeof(AttributeData).GetField("Lifesteal"), "", "Lifesteal","")},
