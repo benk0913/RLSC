@@ -911,6 +911,7 @@ public class Actor : MonoBehaviour
         if (State.Data.IsPlayer) {
             RefreshLockedSlots();
             ActorAbilitiesPanelUI.Instance.SetActor(this);
+            AbilitiesUI.Instance.RefreshUI();
         }
     }
 
@@ -1589,12 +1590,19 @@ public class AbilityState
         }
     }
 
+    public bool IsLevelLocked
+    {
+        get
+        {
+            return OfActor.State.Data.IsPlayer && OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name)) > OfActor.State.Data.level + 1;
+        }
+    }
+
     public bool IsAbilityLocked
     {
         get
         {
-            return (OfActor.State.Data.IsPlayer && OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name)) > (OfActor.State.Data.level + 1))
-                || IsOrbLocked;
+            return IsLevelLocked || IsOrbLocked;
         }
     }
 

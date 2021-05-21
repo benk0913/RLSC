@@ -58,9 +58,9 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
     public void SelectAbility(AbilitySlotDraggableUI HoveredAbility)
     {
-        if (HoveredAbility.CurrentAbility.IsAbilityLocked)
+        if (HoveredAbility.CurrentAbility.IsLevelLocked)
         {
-            // Don't allow selecting locked abilities.
+            // Don't allow selecting abilities that aren't unlocked yet through levels.
             return;
         }
 
@@ -80,10 +80,6 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
             }
             else
             {
-                AbilityState temp = SelectedAbility.CurrentAbility;
-                SelectedAbility.SetAbilityState(HoveredAbility.CurrentAbility);
-                HoveredAbility.SetAbilityState(temp);
-
                 int index1ToReplace = playerActor.State.Data.abilities.IndexOf(ability1Name);
                 int index2ToReplace = playerActor.State.Data.abilities.IndexOf(ability2Name);
                 if (index1ToReplace >= 0)
