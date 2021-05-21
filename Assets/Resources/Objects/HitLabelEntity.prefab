@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5544646770677017172}
+  - component: {fileID: 4946643623138990163}
   - component: {fileID: 5544646770677017173}
   - component: {fileID: 5544646770677017170}
   - component: {fileID: 5544646770677017175}
@@ -40,6 +41,18 @@ RectTransform:
   m_AnchoredPosition: {x: 16.435022, y: -49.2}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &4946643623138990163
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544646770677017171}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!223 &5544646770677017173
 Canvas:
   m_ObjectHideFlags: 0
@@ -119,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d4d4e508182ec49965c4c68fa70f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 4946643623138990163}
   Label: {fileID: 5544646770842691476}
 --- !u!1 &5544646770842691474
 GameObject:
@@ -194,7 +208,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285263359
+    rgba: 7073279
   m_fontColor: {r: 1, g: 0.9312439, b: 0.4198113, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
