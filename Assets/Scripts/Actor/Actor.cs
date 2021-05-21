@@ -640,6 +640,8 @@ public class Actor : MonoBehaviour
 
     public void Ded()
     {
+        gameObject.layer = 16;
+        
         Animer.Play("Dead1");
         IsDead = true;
         Animer.SetBool("IsDead", true);
@@ -678,6 +680,8 @@ public class Actor : MonoBehaviour
 
     public void Resurrect()
     {
+        gameObject.layer = 8;
+
         IsDead = false;
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
@@ -794,9 +798,11 @@ public class Actor : MonoBehaviour
     
     public void ShowHurtLabel(int damage, Actor source = null)
     {
+        bool isPlayerRelevant = source.State.Data.IsPlayer || this.State.Data.IsPlayer;
+
         HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
         label.transform.position = transform.position;
-        label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green);
+        label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green, isPlayerRelevant);
 
         if (damage > 0)
         {
