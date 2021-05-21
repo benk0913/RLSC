@@ -37,7 +37,7 @@ public class AICat : ActorAI
                         }
                     }
 
-                    if (Act.State.Buffs.Find(x => x.CurrentBuff.name == "CatEnrageThreat") == null)
+                    if (Act.State.Buffs.Find(x => x.CurrentBuff.name == "CatEnrage") == null)
                     {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "CatEnrage" && x.CurrentCD <= 0f);
                         if (SelectedAbility != null)
