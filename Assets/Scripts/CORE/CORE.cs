@@ -252,19 +252,25 @@ public class CORE : MonoBehaviour
         action.Invoke();
     }
 
-    public void ConditionalInvokation(Predicate<object> condition, Action action)
+    public void ConditionalInvokation(Predicate<object> condition, Action action, float interval = 1f, bool repeat = false)
     {
-        StartCoroutine(ConditionalInvokationRoutine(condition, action));    
+        StartCoroutine(ConditionalInvokationRoutine(condition, action, interval));    
     }
 
-    IEnumerator ConditionalInvokationRoutine(Predicate<object> condition, Action action)
+    IEnumerator ConditionalInvokationRoutine(Predicate<object> condition, Action action, float interval = 1f, bool repeat = false)
     {
+
         while(!condition(null))
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(interval);
         }
 
         action.Invoke();
+
+        if (repeat)
+        {
+            StartCoroutine(ConditionalInvokationRoutine(condition, action, interval, repeat));
+        }
     }
 
     public void LogMessage(string message)

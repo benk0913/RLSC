@@ -34,6 +34,10 @@ public class Item
 
             return _itemData;
         }
+        set
+        {
+            _itemData = value;
+        }
     }
 
     [JsonIgnore]
