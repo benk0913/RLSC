@@ -53,6 +53,9 @@ public class Actor : MonoBehaviour
     private Coroutine DamageHistoryResetRoutine = null;
 
     public bool IsGrounded;
+
+    public Coroutine JumpCooldownRoutine = null;
+
     public Collider2D CurrentGround;
 
     public ActorControlClient Ghost;
@@ -114,6 +117,7 @@ public class Actor : MonoBehaviour
 
     public float GroundCheckDistance = 10f;
     public float GroundedDistance= 1f;
+    public float JumpCooldown = 0.5f;
 
     public float VelocityMinimumThreshold = 0.1f;
 
@@ -346,7 +350,7 @@ public class Actor : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         ContactPoint2D contact = collision.GetContact(0);
-        if(Vector3.Dot(contact.normal, Vector3.up) > 0.5)
+        if (Vector3.Dot(contact.normal, Vector3.up) > 0.5)
         {
             SetIsInAir(collision.collider);
         }
@@ -354,6 +358,16 @@ public class Actor : MonoBehaviour
         else if (IsDead)
         {
             Physics2D.IgnoreCollision(collision.collider, Collider);
+        }
+    }
+    
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        ContactPoint2D contact = collision.GetContact(0);
+        // If you touched a platform from the size but somehow got on top of it (like touching its corner), check if you are suddenly above it.
+        if (!CurrentGround && Vector3.Dot(contact.normal, Vector3.up) > 0.5)
+        {
+            SetIsInAir(collision.collider);
         }
     }
     
@@ -1269,6 +1283,10 @@ public class Actor : MonoBehaviour
 
     public void AttemptJump()
     {
+        if (JumpCooldownRoutine != null)
+        {
+            return;
+        }
         if (!CanAttemptToMove)
         {
             return;
@@ -1284,9 +1302,15 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        Rigid.AddForce(Vector2.up * JumpHeight, ForceMode2D.Impulse);
+        JumpCooldownRoutine = StartCoroutine(JumpRoutine());
+    }
 
+    private IEnumerator JumpRoutine()
+    {
+        Rigid.AddForce(Vector2.up * JumpHeight, ForceMode2D.Impulse);
         AudioControl.Instance.PlayInPosition("_ound_bloop",transform.position);
+        yield return new WaitForSeconds(JumpCooldown);
+        JumpCooldownRoutine = null;
     }
 
     private IEnumerator JumpDown(Collider2D Ground)
