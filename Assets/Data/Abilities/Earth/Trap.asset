@@ -25,15 +25,17 @@ MonoBehaviour:
     PrepareAbilitySound: E_Trap_PrepareOGG
     ExecuteAbilitySound: E_Trap_ExecuteOGG
     HitAbilitySound: E_Trap_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
     PreparingAnimation: Cast5
     ExecuteAnimation: Execute5
-  CD: 25
+  CD: 15
   CastingTime: 2
   TargetCap: 1
   OnlyIfGrounded: 1
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -41,8 +43,10 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 0
     Value: Trap Immobilize
+    ObjectValue: {fileID: 0}
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     Targets: 0
     Value: 10
+    ObjectValue: {fileID: 0}
   OnMissParams: []

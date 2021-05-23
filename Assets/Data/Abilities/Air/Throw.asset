@@ -26,6 +26,7 @@ MonoBehaviour:
     PrepareAbilitySound: A_Whip_PrepareOGG
     ExecuteAbilitySound: A_Throw_ExecuteOGG
     HitAbilitySound: A_Throw_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -35,6 +36,7 @@ MonoBehaviour:
   CastingTime: 0.05
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -42,8 +44,15 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: Wind Push
+    ObjectValue: {fileID: 0}
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 1
     Value: Pushed By Wind
+    ObjectValue: {fileID: 0}
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    Targets: 1
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 0e02fe5e1a71afb40b335b3775c95175, type: 2}
   OnMissParams: []

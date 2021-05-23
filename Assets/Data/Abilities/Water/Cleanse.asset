@@ -25,15 +25,17 @@ MonoBehaviour:
     PrepareAbilitySound: W_Cleanse_PrepareOGG
     ExecuteAbilitySound: W_Cleanse_ExecuteOGG
     HitAbilitySound: W_Cleanse_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
     PreparingAnimation: Cast6
     ExecuteAnimation: Execute7
-  CD: 5
-  CastingTime: 1
+  CD: 0.5
+  CastingTime: 0.2
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -41,4 +43,5 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: 
+    ObjectValue: {fileID: 0}
   OnMissParams: []
