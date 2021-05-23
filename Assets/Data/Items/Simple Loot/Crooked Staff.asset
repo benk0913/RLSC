@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95219eb7d644f142a40a738ada1fec8, type: 3}
-  m_Name: Cloth Pants
+  m_Name: Crooked Staff
   m_EditorClassIdentifier: 
-  Icon: {fileID: 645113497176174287, guid: 39b9fee4d83be9d438536fddddafbd51, type: 3}
+  Icon: {fileID: -8704432551459831161, guid: 20c700328a6e07243b7bf464daa51bd0, type: 3}
   Description: '
 
 '
@@ -20,25 +20,30 @@ MonoBehaviour:
     Power: 0
     HP: 0
     Defense: 0
+    Block: 0
     CDReduction: 0
     CTReduction: 0
     Lifesteal: 0
-    CriticalChance: 0
     LongRangeMultiplier: 0
     ShortRangeMultiplier: 0
     WildMagicChance: 0
-    SingleTargetDamage: 0
-    AOEDamage: 0
     SpellDuration: 0
     AntiDebuff: 0
-    KnockbackResistance: 0
-    SmallerColliderSize: 0
     Threat: 0
     MovementSpeed: 0
+    DoubleCast: 0
+    Explode: 0
+    HpRegen: 0
   DropChance: 1
-  Type: {fileID: 11400000, guid: 3ec66d3561bba1548aa66424e1b81823, type: 2}
-  Rarity: {fileID: 11400000, guid: 3c421321ee602c345b0785d93f279b15, type: 2}
+  Type: {fileID: 11400000, guid: 5bbe9426183acef449d9c64dda953cf9, type: 2}
+  Rarity: {fileID: 11400000, guid: 3c7a55160e621724b964830f1f1c5b24, type: 2}
+  OrbColliderObject: 
   SkinOverride:
-  - {fileID: 11400000, guid: bc5a85983dfc3474fae43fed0db3b7f6, type: 2}
-  - {fileID: 11400000, guid: 06d55dd077bd0b7479e57b67f2c02dff, type: 2}
-  - {fileID: 11400000, guid: ea0d73a7c971c334aa4744de1c8683ee, type: 2}
+  - {fileID: 11400000, guid: ae0c5caa2d7eca940bafb258823b6eac, type: 2}
+  States: []
+  TypeBasedOverrides:
+  - TypeKey: Hand Right
+    Skinset: {fileID: 11400000, guid: af02516817bab0d4e97c72ac8252eff8, type: 2}
+  Pool: []
+  OnExecuteParams: []
+  OnHitParams: []
