@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DEV_ItemsView : MonoBehaviour
@@ -27,6 +28,13 @@ public class DEV_ItemsView : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
 
     public void Show()
     {
@@ -41,7 +49,9 @@ public class DEV_ItemsView : MonoBehaviour
 
     IEnumerator ShowRoutine()
     {
-        foreach (ItemData itemData in CORE.Instance.Data.content.Items)
+        List<ItemData> items = CORE.Instance.Data.content.Items.OrderBy(x => x.Type.name.ToString()).ToList();
+
+        foreach (ItemData itemData in items)
         {
             InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
             Item item = new Item();
