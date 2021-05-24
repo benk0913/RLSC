@@ -561,6 +561,8 @@ public class SocketHandler : MonoBehaviour
                 int newSpellPosition = actorDat.level - 2 + CORE.Instance.Data.content.AbilitiesInitCount;
                 actorDat.abilities.Add(actorDat.ClassJobReference.Abilities[newSpellPosition]);
                 actorDat.ActorEntity.RefreshAbilities();
+
+                CORE.Instance.ShowScreenEffect("ScreenEffectGainSpell", CORE.Instance.Data.content.Abilities.Find(x => x.name == actorDat.ClassJobReference.Abilities[newSpellPosition]));
             }
             else
             {

@@ -441,15 +441,34 @@ public class CORE : MonoBehaviour
     Coroutine RoomUpdateRoutineInstance;
     IEnumerator RoomUpdateRoutine()
     {
-        while(true)
+        while (true)
         {
             Room.SendActorsPositions();
             yield return 0;
         }
     }
 
+    #region Screen Effects
+
+    public class ScreenEffectQueInstance
+    {
+        public string Key;
+        public object Data;
+    }
+
+    GameObject LastScreenEffect;
+    List<ScreenEffectQueInstance> screenEffectQue = new List<ScreenEffectQueInstance>();
+
     public GameObject ShowScreenEffect(string screenEffectObject, object data = null)
     {
+        if(LastScreenEffect != null)
+        {
+            ScreenEffectQueInstance queInst = new ScreenEffectQueInstance();
+            queInst.Key = screenEffectObject;
+            queInst.Data = data;
+            screenEffectQue.Add(queInst);
+            return null;//TODO Make sure it doesnt break ActorControlClient.cs
+        }
         GameObject obj = ResourcesLoader.Instance.GetRecycledObject(screenEffectObject);
         obj.transform.SetParent(GameUICG.transform, true);
         obj.transform.position = GameUICG.transform.position;
@@ -461,9 +480,38 @@ public class CORE : MonoBehaviour
         rt.anchorMax = Vector2.one;
         rt.sizeDelta = Vector2.zero;
 
+        LastScreenEffect = obj;
+
+        DelayedInvokation(1f, () => 
+        {
+            ConditionalInvokation(x => !LastScreenEffect.gameObject.activeInHierarchy, () =>
+            {
+                NextScreenEffect();
+            });
+        });
+
         return obj;
 
     }
+
+    public void NextScreenEffect()
+    {
+
+
+        LastScreenEffect = null;
+
+        if (screenEffectQue.Count == 0)
+        {
+            return;
+        }
+
+        ScreenEffectQueInstance inst = screenEffectQue[0];
+        screenEffectQue.RemoveAt(0);
+        ShowScreenEffect(inst.Key,inst.Data);
+        
+    }
+
+    #endregion
 
     public void ActivateParams(List<AbilityParam> onExecuteParams, Actor casterActor = null, Actor originCaster = null)
     {
