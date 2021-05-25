@@ -1596,6 +1596,11 @@ public class ActorState
 
         if(ExecutingAbilityCollider != null && ExecutingAbilityCollider.RemoveOnInterrupt)
         {
+            if (!string.IsNullOrEmpty(ExecutingAbilityCollider.AbilitySource.Sounds.ExecuteAbilitySound))
+            {
+                AudioControl.Instance.StopSound(ExecutingAbilityCollider.AbilitySource.Sounds.ExecuteAbilitySound);
+            }
+
             ExecutingAbilityCollider.gameObject.SetActive(false);
             ExecutingAbilityCollider = null;
         }

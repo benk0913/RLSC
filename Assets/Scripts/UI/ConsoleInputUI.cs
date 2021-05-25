@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using SimpleJSON;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,13 @@ public class ConsoleInputUI : MonoBehaviour
     InputField inputField;
 
     public bool IsTyping;
-    
+
+    public List<string> LogMessages = new List<string>();
+
+    public int LogCap = 10;
+
+    public Transform ChatLogContainer;
+
     private void Awake()
     {
         Instance = this;
@@ -23,6 +30,33 @@ public class ConsoleInputUI : MonoBehaviour
     #endif
     }
 
+    public void AddLogMessage(string message)
+    {
+        LogMessages.Add(message);
+        if (LogMessages.Count > LogCap)
+        {
+            LogMessages.RemoveAt(0);
+        }
+
+        if (this.gameObject.activeInHierarchy)
+        {
+            RefreshChatLog();
+        }
+    }
+
+    public void RefreshChatLog()
+    {
+        CORE.ClearContainer(ChatLogContainer);
+
+        for (int i = 0; i < LogMessages.Count; i++)
+        {
+            TextMeshProUGUI logPiece = ResourcesLoader.Instance.GetRecycledObject("LogMessagePiece").GetComponent<TextMeshProUGUI>();
+            logPiece.transform.SetParent(ChatLogContainer, false);
+            logPiece.transform.localScale = Vector3.one;
+            logPiece.transform.position = Vector3.zero;
+            logPiece.text = LogMessages[i];
+        }
+    }
 
     public void EnterPressed()
     {
@@ -39,10 +73,25 @@ public class ConsoleInputUI : MonoBehaviour
         }
         else
         {
-            this.gameObject.SetActive(true);
-            inputField.ActivateInputField();
-            IsTyping = true;
+            Show();
         }
+    }
+
+    public void Show()
+    {
+        this.gameObject.SetActive(true);
+
+        inputField.ActivateInputField();
+        IsTyping = true;
+
+        RefreshChatLog();
+    }
+
+
+    public void Hide()
+    {
+        this.gameObject.SetActive(false);
+        IsTyping = false;
     }
 
     public void HideIfEmpty()
@@ -79,9 +128,5 @@ public class ConsoleInputUI : MonoBehaviour
         inputField.ActivateInputField();
     }
 
-    public void Hide()
-    {
-        this.gameObject.SetActive(false);
-        IsTyping = false;
-    }
+
 }

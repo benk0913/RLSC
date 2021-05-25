@@ -1103,6 +1103,10 @@ public class SocketHandler : MonoBehaviour
         }
 
         actorDat.ActorEntity.ShowTextBubble(data["message"].Value);
+
+        string chatlogMessage = actorDat.name + ": " + data["message"].Value;
+        DefaultChatLogUI.Instance.AddLogMessage(chatlogMessage);
+        ConsoleInputUI.Instance.AddLogMessage(chatlogMessage);
     }
     #endregion
 }
