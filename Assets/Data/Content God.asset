@@ -351,6 +351,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c390f7879186fba40ab83b1b20ac3e6c, type: 2}
     - {fileID: 11400000, guid: e4b9b19552374d244aa8f52777524542, type: 2}
     - {fileID: 11400000, guid: 3c69d477fd7e9fb4fb2584b45e940d3b, type: 2}
+    - {fileID: 11400000, guid: 11fbdea4c4841934da1f88b2b1c69df2, type: 2}
     - {fileID: 11400000, guid: 46dda8e43211f3b40a5b934bd5fac208, type: 2}
     - {fileID: 11400000, guid: 3e193edf800c2ac45acdfd74cbed34e3, type: 2}
     - {fileID: 11400000, guid: 269142fa6c7af094a841f576f1882156, type: 2}
@@ -681,9 +682,13 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
-      Interactables: []
-      playerSpawnX: 0
-      playerSpawnY: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 42
+        positionY: -7
+      playerSpawnX: -11.4
+      playerSpawnY: -8.94
       Portals:
       - name: Empty Chamber Right Entry
         TargetScene: TestEmptyChamberB
@@ -1312,8 +1317,22 @@ MonoBehaviour:
     - sceneName: TestEmptyChamberB
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
-      Mobs: []
-      Interactables: []
+      Mobs:
+      - monsterName: ActorDummy
+        positionX: 16.64
+        positionY: -10.34
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDummy
+        positionX: 20.26
+        positionY: -10.34
+        respawnSeconds: 0
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: -39
+        positionY: -7
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
