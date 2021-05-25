@@ -17,27 +17,27 @@ MonoBehaviour:
 
 '
   Stats:
-    Power: 0.05
-    HP: -0.15
-    Defense: -0.15
+    Power: 0
+    HP: 0
+    Defense: 0
+    Block: 0
     CDReduction: 0
     CTReduction: 0
     Lifesteal: 0
     LongRangeMultiplier: 0
-    ShortRangeMultiplier: 0.2
+    ShortRangeMultiplier: 0
     WildMagicChance: 0
     SpellDuration: 0
     AntiDebuff: 0
     Threat: 0
     MovementSpeed: 0
     DoubleCast: 0
-    StunOnDmg: 0
-    SpawnSlime: 0
     Explode: 0
     HpRegen: 0
   DropChance: 1
   Type: {fileID: 11400000, guid: 82a8c8bb66fef0c419ec81194aedbd36, type: 2}
   Rarity: {fileID: 11400000, guid: 3c421321ee602c345b0785d93f279b15, type: 2}
+  OrbColliderObject: 
   SkinOverride:
   - {fileID: 11400000, guid: 1645f7bb6104a4148b39a625974d2fe3, type: 2}
   - {fileID: 11400000, guid: 8cf5ec0e268fa4c4f812e319f40ac2b2, type: 2}
@@ -46,3 +46,15 @@ MonoBehaviour:
   States: []
   TypeBasedOverrides: []
   Pool: []
+  OnExecuteParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    Targets: 0
+    Value: 2
+    ObjectValue: {fileID: 0}
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    Targets: 1
+    Value: 2
+    ObjectValue: {fileID: 0}
