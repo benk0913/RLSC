@@ -19,9 +19,10 @@ MonoBehaviour:
   Stats:
     Power: 0
     HP: 0
-    Defense: 0.2
+    Defense: 0
+    Block: 0.2
     CDReduction: 0
-    CTReduction: -0.05
+    CTReduction: 0
     Lifesteal: 0
     LongRangeMultiplier: 0
     ShortRangeMultiplier: 0
@@ -29,17 +30,20 @@ MonoBehaviour:
     SpellDuration: 0
     AntiDebuff: 0
     Threat: 0
-    MovementSpeed: -0.1
+    MovementSpeed: -0.15
     DoubleCast: 0
-    StunOnDmg: 0
-    SpawnSlime: 0
+    Explode: 0
     HpRegen: 0
   DropChance: 1
   Type: {fileID: 11400000, guid: 5bbe9426183acef449d9c64dda953cf9, type: 2}
   Rarity: {fileID: 11400000, guid: 3c421321ee602c345b0785d93f279b15, type: 2}
+  OrbColliderObject: 
   SkinOverride:
   - {fileID: 11400000, guid: 871d0639582ffcd4fa654c1483d96b57, type: 2}
   States: []
   TypeBasedOverrides:
   - TypeKey: Hand Right
     Skinset: {fileID: 11400000, guid: c48be816de50f0b4688383e73135d737, type: 2}
+  Pool: []
+  OnExecuteParams: []
+  OnHitParams: []

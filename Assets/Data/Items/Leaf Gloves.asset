@@ -18,9 +18,10 @@ MonoBehaviour:
 '
   Stats:
     Power: 0
-    HP: -0.1
-    Defense: -0.1
-    CDReduction: 0.1
+    HP: 0.1
+    Defense: 0
+    Block: 0
+    CDReduction: 0
     CTReduction: 0
     Lifesteal: 0
     LongRangeMultiplier: 0
@@ -31,13 +32,12 @@ MonoBehaviour:
     Threat: 0
     MovementSpeed: 0
     DoubleCast: 0
-    StunOnDmg: 0
-    SpawnSlime: 0
     Explode: 0
     HpRegen: 0
   DropChance: 1
   Type: {fileID: 11400000, guid: 82a8c8bb66fef0c419ec81194aedbd36, type: 2}
   Rarity: {fileID: 11400000, guid: 3c421321ee602c345b0785d93f279b15, type: 2}
+  OrbColliderObject: 
   SkinOverride:
   - {fileID: 11400000, guid: c36c064754f89aa4393f1c40124a63c4, type: 2}
   - {fileID: 11400000, guid: 173454c9f8a31a14aa990be27d9ae3a0, type: 2}
@@ -46,3 +46,5 @@ MonoBehaviour:
   States: []
   TypeBasedOverrides: []
   Pool: []
+  OnExecuteParams: []
+  OnHitParams: []
