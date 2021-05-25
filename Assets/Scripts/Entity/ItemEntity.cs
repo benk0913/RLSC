@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ItemEntity : MonoBehaviour
@@ -17,6 +19,12 @@ public class ItemEntity : MonoBehaviour
 
     [SerializeField]
     Rigidbody2D Rigid;
+
+    [SerializeField]
+    Animator Animer;
+
+    [SerializeField]
+    TextMeshProUGUI NameLabel;
 
     Actor NearbyActor;
 
@@ -67,6 +75,8 @@ public class ItemEntity : MonoBehaviour
 
         IsPickable = false;
 
+        Animer.SetTrigger("Pick");
+
         StartCoroutine(PickRoutine(actor));
     }
 
@@ -110,6 +120,7 @@ public class ItemEntity : MonoBehaviour
 
     void RefreshUI()
     {
+        NameLabel.text = CurrentItem.itemName;
         ItemIcon.sprite = CurrentItem.Data.Icon;
         RarityGradient.color = CurrentItem.Data.Rarity.RarityColor;
     }
@@ -137,7 +148,8 @@ public class ItemEntity : MonoBehaviour
         {
             return;
         }
-
+        
+        Animer.SetBool("Hover", true);
         NearbyActor = nearActor;
 
     }
@@ -161,7 +173,8 @@ public class ItemEntity : MonoBehaviour
         {
             return;
         }
-
+        
+        Animer.SetBool("Hover", false);
         NearbyActor = null;
     }
 

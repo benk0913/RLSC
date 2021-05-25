@@ -978,6 +978,7 @@ public class SocketHandler : MonoBehaviour
 
 
         item.Entity.BePickedBy(actorDat.ActorEntity);
+        CORE.Instance.AddChatMessage("<color=yellow>"+actorDat.name+" has picked up the item: '"+item.itemName+"'</color>");
     }
 
     public void OnOrbAdded(string eventName, JSONNode data)
@@ -1104,9 +1105,9 @@ public class SocketHandler : MonoBehaviour
 
         actorDat.ActorEntity.ShowTextBubble(data["message"].Value);
 
-        string chatlogMessage = actorDat.name + ": " + data["message"].Value;
-        DefaultChatLogUI.Instance.AddLogMessage(chatlogMessage);
-        ConsoleInputUI.Instance.AddLogMessage(chatlogMessage);
+        string chatlogMessage = "<color=yellow>"+actorDat.name + "</color>: " + data["message"].Value;
+
+        CORE.Instance.AddChatMessage(chatlogMessage);
     }
     #endregion
 }

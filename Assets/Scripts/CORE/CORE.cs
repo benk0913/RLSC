@@ -513,6 +513,12 @@ public class CORE : MonoBehaviour
 
     #endregion
 
+    public void AddChatMessage(string chatlogMessage)
+    {
+        DefaultChatLogUI.Instance.AddLogMessage(chatlogMessage);
+        ConsoleInputUI.Instance.AddLogMessage(chatlogMessage);
+    }
+
     public void ActivateParams(List<AbilityParam> onExecuteParams, Actor casterActor = null, Actor originCaster = null)
     {
         foreach (AbilityParam param in onExecuteParams)
