@@ -77,6 +77,14 @@ public class Actor : MonoBehaviour
 
     public bool IsFlying;
 
+    public bool IsGliding
+    {
+        get
+        {
+            return State.Data.states.ContainsKey("Gliding");
+        }
+    }
+
     public bool IsAttached;
 
     public bool IsCharmed
@@ -289,6 +297,14 @@ public class Actor : MonoBehaviour
             Rigid.velocity = Vector2.Lerp(Rigid.velocity, Vector2.zero, Time.deltaTime);
         }
 
+        if(IsGliding)
+        {
+            if(Rigid.velocity.y < 0)
+            {
+                Rigid.velocity += Vector2.up;//Compensate a little...
+            }
+        }
+        
         if(IsCharmed)
         {
             ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.states["Charm"].linkedActorIds[0]);
@@ -1307,9 +1323,14 @@ public class Actor : MonoBehaviour
 
     private IEnumerator JumpRoutine()
     {
-        Rigid.AddForce(Vector2.up * JumpHeight, ForceMode2D.Impulse);
+        Vector2 jumpVector = Vector2.up * JumpHeight;
+        jumpVector += jumpVector * State.Data.attributes.JumpHeight;
+        Rigid.AddForce(jumpVector, ForceMode2D.Impulse);
+
         AudioControl.Instance.PlayInPosition("_ound_bloop",transform.position);
+
         yield return new WaitForSeconds(JumpCooldown);
+
         JumpCooldownRoutine = null;
     }
 

@@ -46,7 +46,10 @@ public class AttributeData// : ScriptableObject
 
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
     public float MovementSpeed;
-    
+
+    [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public float JumpHeight;
+
     [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
     public float DoubleCast;
 
