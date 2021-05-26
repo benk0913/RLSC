@@ -88,8 +88,8 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     public void UpdateNameValue()
     {
-        if (NameInputField.text.Length > 16) {
-            NameInputField.text = NameInputField.text.Substring(0, 16);
+        if (NameInputField.text.Length > CORE.Instance.Data.content.MaxNameLength) {
+            NameInputField.text = NameInputField.text.Substring(0, CORE.Instance.Data.content.MaxNameLength);
         }
         DisplayActor.State.Data.name = NameInputField.text;
         DisplayActor.RefreshName();

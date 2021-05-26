@@ -78,6 +78,9 @@ public class DatabaseContent
     public float LongRangeDistance;
     public float ShortRangeDistance;
     public float IdleSecondsForInvulnerability;
+    public int MaxCharacters;
+    public int MaxNameLength;
+    public int MinNameLength;
 }
 
 [Serializable]

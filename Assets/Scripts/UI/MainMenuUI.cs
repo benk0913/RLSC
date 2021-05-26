@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     SelectionGroupUI SelectionGroup;
 
+    [SerializeField]
+    Button CreateCharButton;
+
+    [SerializeField]
+    TooltipTargetUI CreateCharTooltip;
 
     private void Awake()
     {
@@ -106,6 +112,8 @@ public class MainMenuUI : MonoBehaviour
         {
             CreateCharacterPanelUI.Instance.Show();
         }
+        CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Length < CORE.Instance.Data.content.MaxCharacters;
+        CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : "Cannot have more than " + CORE.Instance.Data.content.MaxCharacters + " characters.");
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(false));
     }

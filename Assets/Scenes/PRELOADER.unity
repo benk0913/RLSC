@@ -2793,6 +2793,7 @@ MonoBehaviour:
         AntiDebuff: 0
         Threat: 0
         MovementSpeed: 0
+        JumpHeight: 0
         DoubleCast: 0
         Explode: 0
         HpRegen: 0
@@ -2882,6 +2883,7 @@ MonoBehaviour:
         AntiDebuff: 0
         Threat: 0
         MovementSpeed: 0
+        JumpHeight: 0
         DoubleCast: 0
         Explode: 0
         HpRegen: 0
@@ -14110,7 +14112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 95, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 190, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068534205
@@ -19766,6 +19768,8 @@ MonoBehaviour:
   CharacterSelectionContainer: {fileID: 542852901}
   SelectedDisplayActor: {fileID: 0}
   SelectionGroup: {fileID: 1133495206}
+  CreateCharButton: {fileID: 1868701167}
+  CreateCharTooltip: {fileID: 1868701166}
 --- !u!1 &1429898508
 GameObject:
   m_ObjectHideFlags: 0
@@ -24849,7 +24853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737b48a166fcbd849b062b1a7d076b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: Create a new character!
+  Text: 
 --- !u!114 &1868701167
 MonoBehaviour:
   m_ObjectHideFlags: 0
