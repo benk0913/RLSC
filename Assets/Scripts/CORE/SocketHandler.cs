@@ -53,10 +53,7 @@ public class SocketHandler : MonoBehaviour
         
 
         SocketEventListeners.Add(new SocketEventListener("load_scene", OnLoadScene));
-        SocketEventListeners.Add(new SocketEventListener("connect_error", OnError));
-        SocketEventListeners.Add(new SocketEventListener("error", OnError));
         SocketEventListeners.Add(new SocketEventListener("event_error", OnError));
-        SocketEventListeners.Add(new SocketEventListener("connect_timeout", OnError));
 
         SocketEventListeners.Add(new SocketEventListener("actor_spawn", OnActorSpawn));
         SocketEventListeners.Add(new SocketEventListener("actor_despawn", OnActorDespawn));
@@ -441,17 +438,16 @@ public class SocketHandler : MonoBehaviour
 
     public void OnErrorRawCallback(Socket socket, Packet packet, params object[] args)
     {
+        Error error = args[0] as Error;
 
-        JSONNode data;
-
-        try
+        switch (error.Code)
         {
-            data = (JSONNode)args[0];
-            CORE.Instance.LogMessageError("Socket IO error - "+packet.EventName+" | " + data.ToString());
-        }
-        catch
-        {
-            CORE.Instance.LogMessageError(string.Format("Casting Data to JSON Error... {0}", args[0]));
+            case SocketIOErrors.User:
+                CORE.Instance.LogMessageError("Exception in an event handler! Message: " + error.Message);
+                break;
+            default:
+                CORE.Instance.LogMessageError("Server error! Message: " + error.Message);
+                break;
         }
     }
 
@@ -1305,19 +1301,8 @@ public class SocketEventListener
 
     public void Callback(Socket socket, Packet packet, params object[] args)
     {
-        JSONNode data;
-
-        //try
-        //{
-            data = JSON.Parse(args[0].ToString());
-            //data = (JSONNode)args[0];
-            InternalCallback.Invoke(packet.EventName,data);
-        //}
-        //catch
-        //{
-        //    CORE.Instance.LogMessageError(string.Format("Casting Data to JSON Error... {0}", args[0]));
-        //}
+        JSONNode data = JSON.Parse(args[0].ToString());
+        InternalCallback.Invoke(packet.EventName,data);
     }
-
 }
 
