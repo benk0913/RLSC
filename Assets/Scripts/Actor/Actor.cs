@@ -227,7 +227,7 @@ public class Actor : MonoBehaviour
         }
 
         if(PlayerHalo != null)
-            PlayerHalo.SetActive(State.Data.IsPlayer);
+            PlayerHalo.SetActive(State.Data.IsPlayer || !CORE.Instance.InGame);
 
         State.OnInterrupt.AddListener(Interrupted);
 
