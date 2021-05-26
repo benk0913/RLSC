@@ -9,12 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f95219eb7d644f142a40a738ada1fec8, type: 3}
-  m_Name: Cursed Touch
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Cursed Touch Pain Buff
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 86ccf9d2729a3a941924e5290c57d51d, type: 3}
-  Description: Painful to touch...
-  Stats:
+  Icon: {fileID: 21300000, guid: 34d3c354760f3f04db86c9daa9454829, type: 3}
+  Description: Nearby enemies will become weaker  and continue to spread the desease
+    to each other as long as they are close together.
+  BuffColliderObject: CursedTouchBuffEffect
+  BuffMaterial: {fileID: 0}
+  Length: 1
+  isDebuff: 1
+  ShowBuffIcon: 1
+  Attributes:
     Power: 0
     HP: 0
     Defense: 0
@@ -33,18 +39,15 @@ MonoBehaviour:
     DoubleCast: 0
     Explode: 0
     HpRegen: 0
-  DropChance: 0
-  Type: {fileID: 11400000, guid: 1c42537e6bad1ea4daeca010bca74272, type: 2}
-  Rarity: {fileID: 11400000, guid: baabb382b59569040ad933405aa6eec3, type: 2}
-  OrbColliderObject: CursedTouchOrbEffect
-  SkinOverride: []
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
   States: []
-  TypeBasedOverrides: []
-  Pool: []
-  OnExecuteParams:
+  OnStart: []
+  OnEnd:
   - Type: {fileID: 11400000, guid: 702f92c8f9d60634e9a401d7e7e4af3f, type: 2}
-    Condition: {fileID: 11400000, guid: 95de674a6b41225438a0498573687458, type: 2}
+    Condition: {fileID: 0}
     Targets: 2
-    Value: 
-    ObjectValue: {fileID: 11400000, guid: 9e0dca60ff550ed4c9817a3b9df88338, type: 2}
-  OnHitParams: []
+    Value: Cursed Touch Contage
+    ObjectValue: {fileID: 0}
+  OnTakeDamage: []
