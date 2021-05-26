@@ -7,13 +7,10 @@ using UnityEngine.UI;
 public class NamePanelUI : MonoBehaviour
 {
     [SerializeField]
-    Actor CurrentActor;
-
-    [SerializeField]
     TextMeshProUGUI TextLabel;
     
 
-    void Start()
+    public void Refresh(Actor CurrentActor)
     {
         TextLabel.text = CurrentActor.State.Data.name;
     }

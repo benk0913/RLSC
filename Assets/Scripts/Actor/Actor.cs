@@ -46,6 +46,9 @@ public class Actor : MonoBehaviour
 
     [SerializeField]
     GameObject PlayerHalo;
+
+    [SerializeField]
+    NamePanelUI NamePanel;
     
     private Dictionary<string, Coroutine> ColliderCooldowns = new Dictionary<string, Coroutine>();
     
@@ -203,6 +206,7 @@ public class Actor : MonoBehaviour
         RefreshStates();
         RefreshAbilities();
         RefreshLooks();
+        RefreshName();
 
         // Mob abilities start with cooldown to give a breathing room.
         if (State.Data.isMob)
@@ -997,6 +1001,16 @@ public class Actor : MonoBehaviour
         }
 
         Skin.RefreshOrbs();
+    }
+
+    public void RefreshName()
+    {
+        if (NamePanel == null)
+        {
+            return;
+        }
+
+        NamePanel.Refresh(this);
     }
 
     public void PutAbilitiesOnCooldown()
