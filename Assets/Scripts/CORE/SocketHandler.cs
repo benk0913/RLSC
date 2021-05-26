@@ -1079,6 +1079,7 @@ public class SocketHandler : MonoBehaviour
         {
             result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnCharWinner").GetComponent<ActorRollResultUI>();
             result.SetInfo(actorDat.ActorEntity, rolledItem.Data, 0);
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorDat.name + " has won the item: '" + rolledItem.itemName + "'</color>");
         });
     }
 
