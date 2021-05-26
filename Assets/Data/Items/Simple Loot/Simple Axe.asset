@@ -31,6 +31,7 @@ MonoBehaviour:
     AntiDebuff: 0
     Threat: 0
     MovementSpeed: 0
+    JumpHeight: 0
     DoubleCast: 0
     Explode: 0
     HpRegen: 0
@@ -46,4 +47,9 @@ MonoBehaviour:
     Skinset: {fileID: 11400000, guid: 47fa3bb8829af1e4a93af0461e45f3d5, type: 2}
   Pool: []
   OnExecuteParams: []
-  OnHitParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 11400000, guid: e90d405a6fe5c484db8a6e6133ea19f3, type: 2}
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 0cfc3cd79fc8d5b4d88cf621ff36af2c, type: 2}
