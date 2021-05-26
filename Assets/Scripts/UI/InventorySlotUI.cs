@@ -78,7 +78,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             TooltipTarget.Text += System.Environment.NewLine + description;
         }
 
-        TooltipTarget.Text += CORE.GetTooltipTextFromAttributes(CurrentItem.Data.Stats);
+        TooltipTarget.Text += ItemsLogic.GetTooltipTextFromItem(CurrentItem.Data);
 
         Deselect();
     }

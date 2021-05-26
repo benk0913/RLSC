@@ -3,7 +3,6 @@ using SimpleJSON;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -138,70 +137,6 @@ public class CORE : MonoBehaviour
             container.GetChild(0).gameObject.SetActive(false);
             container.GetChild(0).SetParent(Instance.transform);
         }
-    }
-
-    private class DisplayAttribute
-    {
-        public FieldInfo FieldInfo;
-        public string SpriteName;
-        public string Name;
-        public string Description;
-
-        public DisplayAttribute(FieldInfo fieldInfo, string spriteName, string name, string description) {
-            this.FieldInfo = fieldInfo;
-            this.SpriteName = spriteName;
-            this.Name = name;
-            this.Description = description;
-        }
-    }
-    private static Dictionary<string, DisplayAttribute> displayAttributes = new Dictionary<string, DisplayAttribute>()
-    {
-        { "Power", new DisplayAttribute(typeof(AttributeData).GetField("Power"), "icat_9", "Damage","")},
-        { "HP", new DisplayAttribute(typeof(AttributeData).GetField("HP"), "icat_0", "HP","")},
-        { "Defense", new DisplayAttribute(typeof(AttributeData).GetField("Defense"), "icat_10", "Defense","")},
-        { "Block", new DisplayAttribute(typeof(AttributeData).GetField("Block"), "icat_10", "Block","")},
-        { "CDReduction", new DisplayAttribute(typeof(AttributeData).GetField("CDReduction"), "icat_8", "Lower Cooldowns","")},
-        { "CTReduction", new DisplayAttribute(typeof(AttributeData).GetField("CTReduction"), "icat_7", "Faster Spells","")},
-        { "Lifesteal", new DisplayAttribute(typeof(AttributeData).GetField("Lifesteal"), "", "Lifesteal","")},
-        { "LongRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("LongRangeMultiplier"), "crosshair", "Distance Damage","")},
-        { "ShortRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("ShortRangeMultiplier"), "icat_6", "Close Damage","")},
-        { "WildMagicChance", new DisplayAttribute(typeof(AttributeData).GetField("WildMagicChance"), "icat_5", "Wild Magic","")},
-        { "SpellDuration", new DisplayAttribute(typeof(AttributeData).GetField("SpellDuration"), "icat_4", "Buffs Duration","")},
-        { "AntiDebuff", new DisplayAttribute(typeof(AttributeData).GetField("AntiDebuff"), "icat_3", "Debuffs Resistance","")},
-        { "Threat", new DisplayAttribute(typeof(AttributeData).GetField("Threat"), "icat_2", "Threat","")},
-        { "MovementSpeed", new DisplayAttribute(typeof(AttributeData).GetField("MovementSpeed"), "icat_1", "Speed","")},
-        { "DoubleCast", new DisplayAttribute(typeof(AttributeData).GetField("DoubleCast"), "", "Double Cast","")},
-        { "Explode", new DisplayAttribute(typeof(AttributeData).GetField("Explode"), "", "Explode","")},
-        { "HpRegen", new DisplayAttribute(typeof(AttributeData).GetField("HpRegen"), "", "HP Regen","")},
-    };
-
-    public static string GetTooltipTextFromAttributes(AttributeData data)
-    {
-        string result = "";
-
-        // First get all the positives, then the negatives.
-        foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in displayAttributes)
-        {
-            float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(data);
-            
-            if (propertyValue > 0)
-            {
-                string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\">  ";
-                result += Environment.NewLine + "<color=#8AFD97>" + icon + keyValuePair.Value.Name + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
-            }
-        }
-        foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in displayAttributes)
-        {
-            float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(data);
-            
-            if (propertyValue < 0)
-            {
-                string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\" tint=1>  ";
-                result += Environment.NewLine + "<color=#F28B7D>" + icon + keyValuePair.Value.Name + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
-            }
-        }
-
-        return result;
     }
 
     public void SubscribeToEvent(string eventKey, UnityAction action)

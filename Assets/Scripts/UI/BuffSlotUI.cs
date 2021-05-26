@@ -114,6 +114,6 @@ public class BuffSlotEffect
         BuffState = null;
         Icon = orb.Data.Icon;
         Name = orb.Data.name;
-        Description = CORE.GetTooltipTextFromAttributes(orb.Data.Stats);
+        Description = ItemsLogic.GetTooltipTextFromItem(orb.Data);
     }
 }
