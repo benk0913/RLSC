@@ -17,7 +17,7 @@ MonoBehaviour:
 
 '
   Stats:
-    Power: 0
+    Power: 0.1
     HP: 0
     Defense: 0
     Block: 0
@@ -31,6 +31,7 @@ MonoBehaviour:
     AntiDebuff: 0
     Threat: 0
     MovementSpeed: 0
+    JumpHeight: 0
     DoubleCast: 0
     Explode: 0
     HpRegen: 0
@@ -45,5 +46,10 @@ MonoBehaviour:
   - TypeKey: Hand Right
     Skinset: {fileID: 11400000, guid: af02516817bab0d4e97c72ac8252eff8, type: 2}
   Pool: []
-  OnExecuteParams: []
+  OnExecuteParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 11400000, guid: e90d405a6fe5c484db8a6e6133ea19f3, type: 2}
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: a2256444a74c1964093d475fe90348d4, type: 2}
   OnHitParams: []
