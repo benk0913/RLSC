@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorBorrowBlock
+  m_Script: {fileID: 11500000, guid: f95219eb7d644f142a40a738ada1fec8, type: 3}
+  m_Name: Old Poncho
   m_EditorClassIdentifier: 
-  Icon: {fileID: 796274226663142590, guid: 0bdc5737df4c4a542993afef0d4ae02a, type: 3}
-  Abilities:
-  - BorrowHolePoison
-  PassiveAbility: 
-  Attributes:
+  Icon: {fileID: -7714773346425999597, guid: 1a8ea338ee88d89458d846c45b597531, type: 3}
+  Description: '
+
+'
+  Stats:
     Power: 0
-    HP: 40
-    Defense: 0
+    HP: 0
+    Defense: 0.1
     Block: 0
     CDReduction: 0
     CTReduction: 0
@@ -35,11 +35,14 @@ MonoBehaviour:
     DoubleCast: 0
     Explode: 0
     HpRegen: 0
-  Immunity: []
+  DropChance: 1
+  Type: {fileID: 11400000, guid: 39fc52796fa19de4da108994cca99ae0, type: 2}
+  Rarity: {fileID: 11400000, guid: 3c7a55160e621724b964830f1f1c5b24, type: 2}
+  OrbColliderObject: 
+  SkinOverride:
+  - {fileID: 11400000, guid: afcccc7fbf1b4294a80dca4bb34014b9, type: 2}
   States: []
-  ClassColor: {r: 0, g: 0, b: 0, a: 0}
-  DropsOnDeath:
-  - {fileID: 11400000, guid: 30927857cc6404447b5e99416cdba68e, type: 2}
-  - {fileID: 11400000, guid: 6702e603e7fec7044af845c33a3da1af, type: 2}
-  - {fileID: 11400000, guid: 6992578e483cac84ea064d73c4215707, type: 2}
-  OnDeathParams: []
+  TypeBasedOverrides: []
+  Pool: []
+  OnExecuteParams: []
+  OnHitParams: []

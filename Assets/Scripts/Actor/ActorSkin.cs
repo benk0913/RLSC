@@ -223,13 +223,13 @@ public class ActorSkin : MonoBehaviour
         {
             SkinSet set = CORE.Instance.Data.content.Visuals.DefaultSkin.Find(X => X.Part == rendererPart.Part);
 
-            if (set == null)
-            {
-                rendererPart.Renderer.enabled = false;
-                return;
-            }
+            //if (set == null)
+            //{
+            //    rendererPart.Renderer.enabled = false;
+            //    return;
+            //}
 
-            rendererPart.Renderer.enabled = true;
+            //rendererPart.Renderer.enabled = true;
             rendererPart.SetSkin(set,Act.State.Data);
         }
     }
@@ -246,7 +246,17 @@ public class RendererPart
 
     public void SetSkin(SkinSet set, ActorData actor)
     {
+        
+
         CurrentSkinSet = set;
-        Renderer.sprite = CurrentSkinSet.GetSprite(actor); ;
+
+        if (set == null)
+        {
+            Renderer.sprite = null;
+        }
+        else
+        {
+            Renderer.sprite = CurrentSkinSet.GetSprite(actor);
+        }
     }
 }
