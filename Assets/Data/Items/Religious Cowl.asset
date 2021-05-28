@@ -18,7 +18,7 @@ MonoBehaviour:
 '
   Stats:
     Power: 0
-    HP: 0.1
+    HP: 0
     Defense: 0
     Block: 0
     CDReduction: 0
@@ -45,4 +45,9 @@ MonoBehaviour:
   TypeBasedOverrides: []
   Pool: []
   OnExecuteParams: []
-  OnHitParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 11400000, guid: e90d405a6fe5c484db8a6e6133ea19f3, type: 2}
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: d7293f9faa0679348a180dec120f3b5d, type: 2}
