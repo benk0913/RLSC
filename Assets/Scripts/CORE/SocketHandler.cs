@@ -821,6 +821,7 @@ public class SocketHandler : MonoBehaviour
         }
 
         actorDat.attributes = JsonConvert.DeserializeObject<AttributeData>(data["attributes"].ToString());
+        CORE.Instance.InvokeEvent("StatsChanged");
     }
 
     public void OnActorUpdateData(string eventName, JSONNode data)

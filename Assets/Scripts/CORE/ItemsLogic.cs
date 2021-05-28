@@ -8,7 +8,7 @@ public class ItemsLogic
     private static string GOOD_LINE_COLOR = "#8AFD97";
     private static string BAD_LINE_COLOR = "#F28B7D";
 
-    private static Dictionary<string, DisplayAttribute> displayAttributes = new Dictionary<string, DisplayAttribute>()
+    public static Dictionary<string, DisplayAttribute> DisplayAttributes = new Dictionary<string, DisplayAttribute>()
     {
         { "Power", new DisplayAttribute(typeof(AttributeData).GetField("Power"), "icat_9", "Damage","")},
         { "HP", new DisplayAttribute(typeof(AttributeData).GetField("HP"), "icat_0", "HP","")},
@@ -43,7 +43,7 @@ public class ItemsLogic
         string result = "";
 
         // First get all the positives, then the negatives.
-        foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in displayAttributes)
+        foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in DisplayAttributes)
         {
             float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(data);
             
@@ -53,7 +53,7 @@ public class ItemsLogic
                 result += Environment.NewLine + "<color=" + GOOD_LINE_COLOR + ">" + icon + keyValuePair.Value.Name + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
             }
         }
-        foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in displayAttributes)
+        foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in DisplayAttributes)
         {
             float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(data);
             
@@ -92,7 +92,7 @@ public class ItemsLogic
         return text;
     }
 
-    private class DisplayAttribute
+    public class DisplayAttribute
     {
         public FieldInfo FieldInfo;
         public string SpriteName;
