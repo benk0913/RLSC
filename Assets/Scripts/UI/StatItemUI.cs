@@ -12,11 +12,11 @@ public class StatItemUI : MonoBehaviour
     {
         if (ItemsLogic.DisplayAttributes.ContainsKey(attribute) && !string.IsNullOrEmpty(ItemsLogic.DisplayAttributes[attribute].SpriteName))
         {
-            StatLabel.text = "<sprite name=\"" + ItemsLogic.DisplayAttributes[attribute].SpriteName + "\"> " + attribute + ": " + value;
+            StatLabel.text = "<color="+(value > 0 ? ItemsLogic.GOOD_LINE_COLOR : ItemsLogic.BAD_LINE_COLOR )+"><sprite name=\"" + ItemsLogic.DisplayAttributes[attribute].SpriteName + "\"> "+ (value > 0 ? "+" : "") + Mathf.RoundToInt(value * 100f) + "% " + attribute+"</color>";
         }
         else
         {
-            StatLabel.text = attribute + ": " + value;
+            StatLabel.text = "<color=" + (value > 0 ? ItemsLogic.GOOD_LINE_COLOR : ItemsLogic.BAD_LINE_COLOR) + ">" + (value > 0 ? "+" : "") + Mathf.RoundToInt(value * 100f) + "% " + attribute + "</color>";
         }
     }
 }

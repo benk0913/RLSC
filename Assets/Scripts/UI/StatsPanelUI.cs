@@ -28,73 +28,42 @@ public class StatsPanelUI : MonoBehaviour
         }
 
         CORE.ClearContainer(Container);
-        StatItemUI statItem;
 
-        statItem = GenerateStatItem();
-        statItem.SetStat("Power", CORE.Instance.Room.PlayerActor.attributes.Power);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("HP", CORE.Instance.Room.PlayerActor.attributes.HP);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("Defense", CORE.Instance.Room.PlayerActor.attributes.Defense);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("Block", CORE.Instance.Room.PlayerActor.attributes.Block);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("CDReduction", CORE.Instance.Room.PlayerActor.attributes.CDReduction);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("CTReduction", CORE.Instance.Room.PlayerActor.attributes.CTReduction);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("Lifesteal", CORE.Instance.Room.PlayerActor.attributes.Lifesteal);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("LongRangeMultiplier", CORE.Instance.Room.PlayerActor.attributes.LongRangeMultiplier);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("ShortRangeMultiplier", CORE.Instance.Room.PlayerActor.attributes.ShortRangeMultiplier);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("WildMagicChance", CORE.Instance.Room.PlayerActor.attributes.WildMagicChance);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("SpellDuration", CORE.Instance.Room.PlayerActor.attributes.SpellDuration);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("AntiDebuff", CORE.Instance.Room.PlayerActor.attributes.AntiDebuff);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("Threat", CORE.Instance.Room.PlayerActor.attributes.Threat);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("MovementSpeed", CORE.Instance.Room.PlayerActor.attributes.MovementSpeed);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("JumpHeight", CORE.Instance.Room.PlayerActor.attributes.JumpHeight);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("DoubleCast", CORE.Instance.Room.PlayerActor.attributes.DoubleCast);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("Explode", CORE.Instance.Room.PlayerActor.attributes.Explode);
-
-        statItem = GenerateStatItem();
-        statItem.SetStat("HpRegen", CORE.Instance.Room.PlayerActor.attributes.HpRegen);
+        GenerateStatItem("Power", CORE.Instance.Room.PlayerActor.attributes.Power);
+        GenerateStatItem("HP", CORE.Instance.Room.PlayerActor.attributes.HP);
+        GenerateStatItem("Defense", CORE.Instance.Room.PlayerActor.attributes.Defense);
+        GenerateStatItem("Block", CORE.Instance.Room.PlayerActor.attributes.Block);
+        GenerateStatItem("CDReduction", CORE.Instance.Room.PlayerActor.attributes.CDReduction);
+        GenerateStatItem("CTReduction", CORE.Instance.Room.PlayerActor.attributes.CTReduction);
+        GenerateStatItem("Lifesteal", CORE.Instance.Room.PlayerActor.attributes.Lifesteal);
+        GenerateStatItem("LongRangeMultiplier", CORE.Instance.Room.PlayerActor.attributes.LongRangeMultiplier);
+        GenerateStatItem("ShortRangeMultiplier", CORE.Instance.Room.PlayerActor.attributes.ShortRangeMultiplier);
+        GenerateStatItem("WildMagicChance", CORE.Instance.Room.PlayerActor.attributes.WildMagicChance);
+        GenerateStatItem("SpellDuration", CORE.Instance.Room.PlayerActor.attributes.SpellDuration);
+        GenerateStatItem("AntiDebuff", CORE.Instance.Room.PlayerActor.attributes.AntiDebuff);
+        GenerateStatItem("Threat", CORE.Instance.Room.PlayerActor.attributes.Threat);
+        GenerateStatItem("MovementSpeed", CORE.Instance.Room.PlayerActor.attributes.MovementSpeed);
+        GenerateStatItem("JumpHeight", CORE.Instance.Room.PlayerActor.attributes.JumpHeight);
+        GenerateStatItem("DoubleCast", CORE.Instance.Room.PlayerActor.attributes.DoubleCast);
+        GenerateStatItem("Explode", CORE.Instance.Room.PlayerActor.attributes.Explode);
+        GenerateStatItem("HpRegen", CORE.Instance.Room.PlayerActor.attributes.HpRegen);
 
 
     }
 
-    public StatItemUI GenerateStatItem()
+    public void GenerateStatItem(string statName, float statValue)
     {
+        if(statValue == 0f)
+        {
+            return;
+        }
+
         StatItemUI item = ResourcesLoader.Instance.GetRecycledObject("StatItemUI").GetComponent<StatItemUI>();
 
         item.transform.SetParent(Container, false);
         item.transform.localScale = Vector3.one;
         item.transform.position = Vector3.zero;
 
-        return item;
+        item.SetStat(statName, statValue);
     }
 }

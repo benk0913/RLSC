@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ItemsLogic
 {
-    private static string GOOD_LINE_COLOR = "#8AFD97";
-    private static string BAD_LINE_COLOR = "#F28B7D";
+    public static string GOOD_LINE_COLOR = "#8AFD97";
+    public static string BAD_LINE_COLOR = "#F28B7D";
 
     public static Dictionary<string, DisplayAttribute> DisplayAttributes = new Dictionary<string, DisplayAttribute>()
     {
