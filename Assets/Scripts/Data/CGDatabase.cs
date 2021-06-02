@@ -121,6 +121,10 @@ public class SceneInfo
 
     [JsonIgnore]
     public string MusicTrack;
+
+    [JsonIgnore]
+    public string Soundscape;
+
     public bool enablePvp;
 }
 
