@@ -39,7 +39,7 @@ public class InteractableEntity : MonoBehaviour
             return;
         }
 
-        InteractableCooldown = 2f;
+        InteractableCooldown = 1f;
 
         IsBusy = true;
 
@@ -60,7 +60,7 @@ public class InteractableEntity : MonoBehaviour
 
         OnInteract?.Invoke();
 
-        if(Data.Data.OnInteractParams.Count > 0)
+        if(Data.Data != null && Data.Data.OnInteractParams.Count > 0)
         {
             
             

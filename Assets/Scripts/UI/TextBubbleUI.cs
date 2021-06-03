@@ -25,6 +25,8 @@ public class TextBubbleUI : MonoBehaviour
 
     public void Show(Transform anchor, string message, Action onHide = null)
     {
+        StopAllCoroutines();
+
         CurrentAnchor = anchor;
         StartCoroutine(ShowRoutine(message));
 
