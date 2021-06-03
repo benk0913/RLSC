@@ -29,6 +29,8 @@ public class CORE : MonoBehaviour
 
     public RoomData Room;
 
+    public string CurrentTimePhase;
+
     public bool DEBUG = false;
 
     public bool DEBUG_SPAMMY_EVENTS = false;
@@ -492,6 +494,12 @@ public class CORE : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SetTimePhase(string current)
+    {
+        CurrentTimePhase = current;
+        InvokeEvent("TimePhaseChanged");
     }
 }
 

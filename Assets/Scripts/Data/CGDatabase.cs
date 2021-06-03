@@ -58,6 +58,8 @@ public class DatabaseContent
     
     public List<int> ExpChart = new List<int>();
 
+    public List<string> TimePhases = new List<string>();
+
     public string StartingScene;
 
     public string HumanPrefab;
