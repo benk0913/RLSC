@@ -24,7 +24,7 @@ public class ItemsLogic
         { "AntiDebuff", new DisplayAttribute(typeof(AttributeData).GetField("AntiDebuff"), "icat_3", "Debuffs Resistance","")},
         { "Threat", new DisplayAttribute(typeof(AttributeData).GetField("Threat"), "icat_2", "Threat","")},
         { "MovementSpeed", new DisplayAttribute(typeof(AttributeData).GetField("MovementSpeed"), "icat_1", "Speed","")},
-        { "JumpHeight", new DisplayAttribute(typeof(AttributeData).GetField("JumpHeight"), "icat_1", "Speed","")},
+        { "JumpHeight", new DisplayAttribute(typeof(AttributeData).GetField("JumpHeight"), "icat_1", "Jump","")},
         { "DoubleCast", new DisplayAttribute(typeof(AttributeData).GetField("DoubleCast"), "", "Double Cast","")},
         { "Explode", new DisplayAttribute(typeof(AttributeData).GetField("Explode"), "", "Explode","")},
         { "HpRegen", new DisplayAttribute(typeof(AttributeData).GetField("HpRegen"), "", "HP Regen","")},
