@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PassiveAbilityCollider : HitCollider
 {
-    public float Interval = 1f;
+    public float Interval = 2f;
 
     public Dictionary<Actor, float> ActorsTimers = new Dictionary<Actor, float>();
 
