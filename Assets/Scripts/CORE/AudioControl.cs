@@ -68,6 +68,7 @@ public class AudioControl : MonoBehaviour {
         currentInstance.GetComponent<AudioSource>().spatialBlend = 1f;
         currentInstance.GetComponent<AudioSource>().maxDistance = MaxDistance;
         currentInstance.GetComponent<AudioSource>().pitch = pitch;
+        currentInstance.GetComponent<AudioSource>().loop = false;
         currentInstance.GetComponent<AudioSource>().clip = m_res.GetClip(gClip);
         currentInstance.GetComponent<AudioSource>().Play();
 
@@ -102,6 +103,7 @@ public class AudioControl : MonoBehaviour {
 
         currentInstance.GetComponent<AudioSource>().spatialBlend = 0f;
         currentInstance.GetComponent<AudioSource>().pitch = 1f;
+        currentInstance.GetComponent<AudioSource>().loop = false;
         currentInstance.GetComponent<AudioSource>().clip = m_res.GetClip(gClip);
         currentInstance.GetComponent<AudioSource>().Play();
 

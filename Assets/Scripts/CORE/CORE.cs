@@ -421,25 +421,25 @@ public class CORE : MonoBehaviour
 
         DelayedInvokation(1f, () => 
         {
-            ConditionalInvokation(x => !LastScreenEffect.gameObject.activeInHierarchy, () =>
-            {
-                NextScreenEffect();
-            });
+            StartCoroutine(NextScreenEffect());
         });
 
         return obj;
 
     }
 
-    public void NextScreenEffect()
+    public IEnumerator NextScreenEffect()
     {
-
+        while(LastScreenEffect.gameObject.activeInHierarchy)
+        {
+            yield return 0;
+        }
 
         LastScreenEffect = null;
 
         if (screenEffectQue.Count == 0)
         {
-            return;
+            yield break;
         }
 
         ScreenEffectQueInstance inst = screenEffectQue[0];

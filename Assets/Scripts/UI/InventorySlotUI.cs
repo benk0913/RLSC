@@ -22,6 +22,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public bool IsEquipmentSlot;
 
+    public ItemType SlotType = null;
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if(eventData.pointerId != 0)
@@ -42,9 +44,11 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         InventoryUI.Instance.UndragItem(this);
     }
 
-    public void SetItem(Item item, Action onSelect = null)
+    public void SetItem(Item item, Action onSelect = null, ItemType slotType = null)
     {
         CurrentItem = item;
+
+        this.SlotType = slotType;
 
         this.OnSelect = onSelect;
 
@@ -56,7 +60,15 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if(CurrentItem == null) 
         {
             IconImage.enabled = false;
-            TooltipTarget.Text = "Empty Inventory Space";
+
+            if (IsEquipmentSlot)
+            {
+                TooltipTarget.Text = "Empty Equipment Slot ("+SlotType.name+")";
+            }
+            else
+            {
+                TooltipTarget.Text = "Empty Inventory Space";
+            }
             return;
         }
 

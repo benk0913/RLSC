@@ -103,7 +103,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             Item item = null;
             currentActor.equips.TryGetValue(EquipSlots[i].Type.name, out item); 
             InventorySlotUI slot = EquipSlots[i].Slot;
-            slot.SetItem(item, () => Select(slot));
+            slot.SetItem(item, () => Select(slot), EquipSlots[i].Type);
         }
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));

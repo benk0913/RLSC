@@ -305,7 +305,7 @@ public class Actor : MonoBehaviour
         {
             if(Rigid.velocity.y < 0)
             {
-                Rigid.velocity += Vector2.up;//Compensate a little...
+                Rigid.velocity += Vector2.up/2f;//Compensate a little...
             }
         }
         
