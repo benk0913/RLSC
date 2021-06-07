@@ -79,6 +79,13 @@ public class HitCollider : MonoBehaviour
 
     protected virtual bool CanHitActor(Actor actorVictim)
     {
+
+        //TODO - This is just a null check - didnt solve why theres no "State.Data" sometimes...
+        if(ActorSource.State.Data == null ||  actorVictim.State.Data == null)
+        {
+            return false;
+        }
+
         if (ActorSource.IsDead)
         {
             return false;

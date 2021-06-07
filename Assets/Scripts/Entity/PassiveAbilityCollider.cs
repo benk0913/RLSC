@@ -49,7 +49,16 @@ public class PassiveAbilityCollider : HitCollider
         {
             Actor actorVictim = other.GetComponent<Actor>();
 
+            //TODO Added null check, but didnt solve the issue from the start.
+            if (actorVictim == null)
+            {
+                Debug.LogError("No Actor component on " + other.gameObject.name);
+
+                return;
+            }
+
             ActorsContained.Add(actorVictim);
+            
             if (!ActorsTimers.ContainsKey(actorVictim))
             {
                 ActorsTimers[actorVictim] = 0;

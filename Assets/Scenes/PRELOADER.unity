@@ -5986,7 +5986,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1119599857}
   m_HandleRect: {fileID: 1119599856}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -14336,7 +14336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 95, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 190, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068534205
@@ -25392,6 +25392,7 @@ GameObject:
   - component: {fileID: 1866123300}
   - component: {fileID: 1866123299}
   - component: {fileID: 1866123298}
+  - component: {fileID: 1866123301}
   m_Layer: 5
   m_Name: HairLeft
   m_TagString: Untagged
@@ -25514,6 +25515,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866123296}
   m_CullTransparentMesh: 0
+--- !u!114 &1866123301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866123296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035560b9a40aa1d4da727472eeabeba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointerDownSound: FruitPop_Execute
+  PointerUpSound: Passive Hit Spikes 2
+  PointerHoverSound: newFlameFan_HitOGG
+  PointerUnhoverSound: sound_bubblepop
 --- !u!1 &1866487029
 GameObject:
   m_ObjectHideFlags: 0
