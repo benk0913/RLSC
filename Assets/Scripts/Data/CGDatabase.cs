@@ -83,6 +83,7 @@ public class DatabaseContent
     public int MaxCharacters;
     public int MaxNameLength;
     public int MinNameLength;
+    public int HpRegenSeconds;
 }
 
 [Serializable]
