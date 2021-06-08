@@ -59,6 +59,11 @@ public class TimePhaseEntity : MonoBehaviour
             }
         }
 
+        if (!CORE.Instance.Room.RoomStates.ContainsKey("TimePhase"))
+        {
+            return;
+        }
+
         TimePhaseScenario scenario = TimePhaseScenarios.Find(x => (int)x.TimePhase == CORE.Instance.Room.RoomStates["TimePhase"]);
 
         if(scenario == null)
