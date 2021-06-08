@@ -34,7 +34,7 @@ public class TimePhaseEntity : MonoBehaviour
         }
 
 
-        CORE.Instance.SubscribeToEvent("TimePhaseChanged", RefreshState);
+        CORE.Instance.SubscribeToEvent("RoomStatesChanged", RefreshState);
         RefreshState();
     }
 
@@ -42,17 +42,24 @@ public class TimePhaseEntity : MonoBehaviour
     {
         if(DefaultHandler && DefaultSun != null)
         {
-            if(CORE.Instance.CurrentTimePhase == "Day")
+            if (CORE.Instance.Room.RoomStates.ContainsKey("TimePhase"))
+            {
+                if (CORE.Instance.Room.RoomStates["TimePhase"] == (int)TimePhase.Day)
+                {
+                    DefaultSun.color = DefaultSunColor;
+                }
+                else if (CORE.Instance.Room.RoomStates["TimePhase"] == (int)TimePhase.Day)
+                {
+                    DefaultSun.color = DefaultNightSunColor;
+                }
+            }
+            else
             {
                 DefaultSun.color = DefaultSunColor;
             }
-            else if (CORE.Instance.CurrentTimePhase == "Night")
-            {
-                DefaultSun.color = DefaultNightSunColor;
-            }
         }
 
-        TimePhaseScenario scenario = TimePhaseScenarios.Find(x => x.TimePhase == CORE.Instance.CurrentTimePhase);
+        TimePhaseScenario scenario = TimePhaseScenarios.Find(x => (int)x.TimePhase == CORE.Instance.Room.RoomStates["TimePhase"]);
 
         if(scenario == null)
         {
@@ -66,6 +73,12 @@ public class TimePhaseEntity : MonoBehaviour
 [System.Serializable]
 public class TimePhaseScenario
 {
-    public string TimePhase;
+    public TimePhase TimePhase;
     public UnityEvent OnPhase;
+}
+
+public enum TimePhase
+{
+    Day,
+    Night
 }

@@ -81,6 +81,17 @@ public class CGDatabaseEditor : Editor
         {
             currentInfo.Interactables.Add(new SceneInteractable(interactable.Data.interactableName, interactable.Data.interactableId,Mathf.RoundToInt(interactable.transform.position.x), Mathf.RoundToInt(interactable.transform.position.y)));
         }
+
+
+
+        VendorEntity[] vendors = FindObjectsOfType<VendorEntity>();
+
+        currentInfo.Vendors.Clear();
+
+        foreach (VendorEntity vendor in vendors)
+        {
+            currentInfo.Vendors.Add(vendor.VendorReference);
+        }
         EditorUtility.SetDirty(db);
     }
 

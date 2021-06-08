@@ -81,6 +81,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("interactable_use", OnInteractableUse));
         SocketEventListeners.Add(new SocketEventListener("room_state", OnRoomState));
         SocketEventListeners.Add(new SocketEventListener("room_states", OnRoomStates));
+        SocketEventListeners.Add(new SocketEventListener("room_vendors", OnVendorUpdate));
 
         SocketEventListeners.Add(new SocketEventListener("exp_update", OnExpUpdate));
         SocketEventListeners.Add(new SocketEventListener("level_up", OnLevelUp));
@@ -530,6 +531,11 @@ public class SocketHandler : MonoBehaviour
 
         CORE.Instance.Room.RoomStates[State] = Value;
         CORE.Instance.InvokeEvent("RoomStatesChanged");
+    }
+
+    public void OnVendorUpdate(string eventName, JSONNode data)
+    {
+        CORE.Instance.Room.RefreshVendors(JsonConvert.DeserializeObject<List<Vendor>>(data["vendors"].ToString()));
     }
 
     public void OnRoomStates(string eventName, JSONNode data)

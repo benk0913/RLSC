@@ -709,6 +709,8 @@ public class Actor : MonoBehaviour
                 Ghost.transform.position = transform.position;
                 CameraChaseEntity.Instance.ReferenceObject = Ghost.transform;
             });
+
+
         }
     }
 
@@ -720,6 +722,8 @@ public class Actor : MonoBehaviour
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
         Shadow.gameObject.SetActive(true);
+
+        CORE.Instance.ShowScreenEffect("ScreenEffectRevived");
 
         if (Ghost != null)
         {

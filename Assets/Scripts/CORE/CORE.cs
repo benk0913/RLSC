@@ -29,8 +29,6 @@ public class CORE : MonoBehaviour
 
     public RoomData Room;
 
-    public string CurrentTimePhase;
-
     public bool DEBUG = false;
 
     public bool DEBUG_SPAMMY_EVENTS = false;
@@ -496,11 +494,6 @@ public class CORE : MonoBehaviour
         }
     }
 
-    public void SetTimePhase(string current)
-    {
-        CurrentTimePhase = current;
-        InvokeEvent("TimePhaseChanged");
-    }
 }
 
 [Serializable]
@@ -509,6 +502,7 @@ public class RoomData
     public List<ActorData> Actors = new List<ActorData>();
     public List<Interactable> Interactables = new List<Interactable>();
     public List<Item> Items = new List<Item>();
+    public Dictionary<string, List<ItemData>> Vendors = new Dictionary<string, List<ItemData>>();
 
     public ActorData PlayerActor;
 
@@ -727,6 +721,23 @@ public class RoomData
         CORE.Destroy(item.Entity.gameObject);
     }
 
+    public void RefreshVendors(List<Vendor> vendors)
+    {
+        foreach (Vendor vendor in vendors)
+        {
+            if (!Vendors.ContainsKey(vendor.ID))
+            {
+                Vendors.Add(vendor.ID, vendor.Items);
+            }
+            else
+            {
+                Vendors[vendor.ID] = vendor.Items;
+            }
+
+            CORE.Instance.InvokeEvent("VendorsUpdate"+vendor.ID);
+        }
+    }
+
 
     public void RefreshThreat()
     {
@@ -789,4 +800,11 @@ public class RoomData
         }
     }
 
+}
+
+[Serializable]
+public class Vendor
+{
+    public string ID;
+    public List<ItemData> Items = new List<ItemData>();
 }
