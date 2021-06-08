@@ -459,7 +459,9 @@ public class SocketHandler : MonoBehaviour
             error = "Server Error: " + data.ToString();
         }
 
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(error, Color.red, 1f, true));
+        int durationInSeconds = data["durationInSeconds"].AsInt > 0 ? data["durationInSeconds"].AsInt : 1;
+
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(error, Color.red, durationInSeconds, true));
         CORE.Instance.LogMessageError(error);
     }
 
