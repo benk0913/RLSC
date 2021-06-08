@@ -24,6 +24,11 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
     public bool IsOpen;
 
+    public string OpenSound;
+    public string HideSound;
+    public string SelectAbilitySound;
+    public string AbilitySwapSound;
+
     private void Awake()
     {
         Instance = this;
@@ -39,12 +44,16 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
         RefreshUI(false);
 
+
+        AudioControl.Instance.Play(OpenSound);
     }
 
     public void Hide()
     {
         IsOpen = false;
         this.gameObject.SetActive(false);
+
+        AudioControl.Instance.Play(HideSound);
     }
 
     public void ResetReplacement()
@@ -106,6 +115,8 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
             SelectedAbility = HoveredAbility;
             SelectedAbility.Select();
         }
+
+        AudioControl.Instance.Play(SelectAbilitySound);
     }
 
     private void SendSwapAbilityEvent(int index, string abilityName)
@@ -114,6 +125,8 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         node["index"].AsInt = index;
         node["abilityName"] = abilityName;
         SocketHandler.Instance.SendEvent("swapped_ability", node);
+
+        AudioControl.Instance.Play(AbilitySwapSound);
     }
 
     public void RefreshUI(bool restoreSelectionPlacement = true)

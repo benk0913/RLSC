@@ -693,6 +693,13 @@ public class Actor : MonoBehaviour
         {
             CORE.Instance.ShowScreenEffect("ScreenEffectDeath");
 
+
+            CORE.Instance.ConditionalInvokation(X => CORE.Instance.Room.PlayerActor.ActorEntity == null || !IsDead, () =>
+            {
+                CORE.Instance.InvokeEvent("RemoveGhostEffect");
+            });
+
+
             if (Ghost != null)
             {
                 Destroy(Ghost.gameObject);
@@ -721,6 +728,7 @@ public class Actor : MonoBehaviour
         IsDead = false;
         Animer.SetBool("IsDead", false);
         CORE.Instance.InvokeEvent("ActorResurrected");
+
         Shadow.gameObject.SetActive(true);
 
         CORE.Instance.ShowScreenEffect("ScreenEffectRevived");

@@ -5938,7 +5938,6 @@ GameObject:
   - component: {fileID: 478441537}
   - component: {fileID: 478441539}
   - component: {fileID: 478441540}
-  - component: {fileID: 478441541}
   m_Layer: 5
   m_Name: AbilitiesUI
   m_TagString: Untagged
@@ -6025,6 +6024,10 @@ MonoBehaviour:
   SelectionGroup: {fileID: 478441540}
   SelectedAbility: {fileID: 0}
   IsOpen: 0
+  OpenSound: IconEnter
+  HideSound: MenuOpen
+  SelectAbilitySound: MouseClickDown
+  AbilitySwapSound: IconEnter
 --- !u!114 &478441540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6040,22 +6043,6 @@ MonoBehaviour:
   CurrentSelected:
     CS: {fileID: 0}
   CurrentSelectedSelectable: {fileID: 0}
---- !u!114 &478441541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478441535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 035560b9a40aa1d4da727472eeabeba6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PointerDownSound: 
-  PointerUpSound: 
-  PointerHoverSound: 
-  PointerUnhoverSound: 
 --- !u!1 &483267233
 GameObject:
   m_ObjectHideFlags: 0
@@ -6138,7 +6125,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1119599857}
   m_HandleRect: {fileID: 1119599856}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7284,7 +7271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -13.4999695}
+  m_AnchoredPosition: {x: 0, y: -13.5}
   m_SizeDelta: {x: -321.42, y: -334.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &542852902
@@ -17951,6 +17938,14 @@ MonoBehaviour:
   SelectedPanel: {fileID: 1910236223}
   IsSelectedDropText: {fileID: 1608189597}
   IsSelectedUseText: {fileID: 2104687271}
+  ShowSound: talksound
+  HideSound: MenuOpen
+  DragItemSound: MouseClickDown
+  UndragItemSound: MouseClickUp
+  SelectSound: IconEnter
+  UseSelectedSound: DiceRoll
+  DeselectSound: FruitPop_Execute
+  DropSound: E_ThrowSand_ExecuteOGG
   EquipSlots:
   - Slot: {fileID: 1386928153}
     Type: {fileID: 11400000, guid: 1e7f4f4e0c6a7e94da1fe66e4bec4710, type: 2}

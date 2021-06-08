@@ -30,6 +30,30 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     [SerializeField]
     TextMeshProUGUI IsSelectedUseText;
 
+    [SerializeField]
+    public string ShowSound;
+
+    [SerializeField]
+    public string HideSound;
+
+    [SerializeField]
+    public string DragItemSound;
+
+    [SerializeField]
+    public string UndragItemSound;
+
+    [SerializeField]
+    public string SelectSound;
+
+    [SerializeField]
+    public string UseSelectedSound;
+
+    [SerializeField]
+    public string DeselectSound;
+
+    [SerializeField]
+    public string DropSound;
+
     public List<EquippableSlot> EquipSlots = new List<EquippableSlot>();
     
 
@@ -70,12 +94,16 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         IsSelectedDropText.text = "<color=red>"+InputMap.Map["Drop Inventory Item"].ToString()+" - Drop</color>";
         IsSelectedUseText.text = "<color=yellow>" + InputMap.Map["Use Inventory Item"].ToString() + " - Use</color>";
+
+        AudioControl.Instance.Play(ShowSound);
     }
 
     public void Hide()
     {
         IsOpen = false;
         this.gameObject.SetActive(false);
+
+        AudioControl.Instance.Play(HideSound);
     }
 
     public void RefreshUI(bool restoreSelectionPlacement = true)
@@ -125,6 +153,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         currentlyDraggedItem = ResourcesLoader.Instance.GetRecycledObject("InventoryDraggedItemUI").GetComponent<InventoryDraggedItemUI>();
         currentlyDraggedItem.transform.SetParent(transform);
         currentlyDraggedItem.SetInfo(inventorySlotUI.CurrentItem);
+
+        AudioControl.Instance.Play(DragItemSound);
         //Select(inventorySlotUI);
 
     }
@@ -137,12 +167,16 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             currentlyDraggedItem.gameObject.SetActive(false);
         }
 
+        AudioControl.Instance.Play(UndragItemSound);
+
         //Deselect();
     }
 
     public void Select(InventorySlotUI slot)
     {
-        if(SelectedSlot != null)
+        AudioControl.Instance.Play(SelectSound);
+
+        if (SelectedSlot != null)
         {
             if (SelectedSlot == slot && Time.time - SelectedTime > 1f)
             {
@@ -204,6 +238,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         {
             SocketHandler.Instance.SendUnequippedItem(SelectedSlot.name);
         }
+
+        AudioControl.Instance.Play(UseSelectedSound);
     }
 
     public void Deselect()
@@ -217,6 +253,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             SelectedSlot.Deselect();
             SelectedSlot = null;
         }
+
+        AudioControl.Instance.Play(DeselectSound);
     }
 
     public void AttemptDrop()
@@ -235,6 +273,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         SocketHandler.Instance.SendDroppedItem(SelectedSlot.transform.GetSiblingIndex());
 
         Deselect();
+
+        AudioControl.Instance.Play(DropSound);
     }
 }
 
