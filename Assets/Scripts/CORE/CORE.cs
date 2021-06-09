@@ -116,7 +116,21 @@ public class CORE : MonoBehaviour
             
             if (Input.GetKeyDown(InputMap.Map["Exit"]))
             {
-                CloseCurrentWindow();
+                if (CurrentWindow != null)
+                {
+                    CloseCurrentWindow();
+                }
+                else
+                {
+                    if(SideButtonUI.Instance.isVisible)
+                    {
+                        SideButtonUI.Instance.Hide();
+                    }
+                    else
+                    {
+                        SideButtonUI.Instance.Show(Room.PlayerActor);
+                    }
+                }
             }
         }
     }
@@ -371,6 +385,14 @@ public class CORE : MonoBehaviour
     {
         GameUICG.alpha = 0f;
         InGame = false;
+    }
+
+    public void ReturnToMainMenu()
+    {
+        LeaveGame();
+        SocketHandler.Instance.SendDisconnectSocket();
+        LoadScene("PRELOADER");
+        Destroy(this.gameObject);
     }
 
     Coroutine RoomUpdateRoutineInstance;

@@ -35,6 +35,12 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         Hide();
     }
 
+
+    public void Show()
+    {
+        Show(CORE.Instance.Room.PlayerActor);
+    }
+
     public void Show(ActorData actorData)
     {
         IsOpen = true;

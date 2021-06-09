@@ -161,9 +161,19 @@ public class SelectionGroupUI : MonoBehaviour
         {
             return;
         }
-        
-        if(CurrentSelected != null && CurrentSelectedSelectable != null)
+
+        AudioEntityUIHandle audioEntity;
+
+
+
+        if (CurrentSelected != null && CurrentSelectedSelectable != null)
         {
+            audioEntity = CurrentSelected.CS.GetComponent<AudioEntityUIHandle>();
+            if (audioEntity != null)
+            {
+                audioEntity.PlaySound(audioEntity.PointerUnhoverSound);
+            }
+
             CanvasGroup canvasGroup = CurrentSelectedSelectable.GetComponent<CanvasGroup>();
             if (canvasGroup != null)
             {
@@ -185,6 +195,12 @@ public class SelectionGroupUI : MonoBehaviour
         if (selectionEnterHandler != null)
         {
             selectionEnterHandler.OnEnterEvent?.Invoke();
+        }
+
+        audioEntity = CurrentSelected.CS.GetComponent<AudioEntityUIHandle>();
+        if (audioEntity != null)
+        {
+            audioEntity.PlaySound(audioEntity.PointerHoverSound);
         }
 
         StopAllCoroutines();
@@ -272,6 +288,13 @@ public class SelectionGroupUI : MonoBehaviour
 
         if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
+            AudioEntityUIHandle audioEntity = CurrentSelected.CS.GetComponent<AudioEntityUIHandle>();
+            if (audioEntity != null)
+            {
+                audioEntity.PlaySound(audioEntity.PointerDownSound);
+                CORE.Instance.DelayedInvokation(0.1f, ()=>audioEntity.PlaySound(audioEntity.PointerUpSound));
+            }
+
             if (CurrentSelectedSelectable.GetType() == typeof(Button))
             {
                 ((Button)CurrentSelectedSelectable).onClick.Invoke();

@@ -84,6 +84,11 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         }
     }
 
+    public void Show()
+    {
+        Show(CORE.Instance.Room.PlayerActor);
+    }
+
     public void Show(ActorData ofActor)
     {
         IsOpen = true;
