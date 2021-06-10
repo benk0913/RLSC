@@ -571,13 +571,23 @@ public class SocketHandler : MonoBehaviour
         actorDat.level++;
         if (actorDat.IsPlayer)
         {
+            int newSpellPosition = actorDat.level - 2 + CORE.Instance.Data.content.AbilitiesInitCount;
+            Ability newAbility = CORE.Instance.Data.content.Abilities.Find(x => x.name == actorDat.ClassJobReference.Abilities[newSpellPosition]);
+
+            if (newAbility != null)
+            {
+                CORE.Instance.ShowScreenEffect("ScreenEffectGainSpell", newAbility);
+
+            }
+
             if (actorDat.abilities.Count < CORE.Instance.Data.content.AbilitiesMaxCount)
             {
-                int newSpellPosition = actorDat.level - 2 + CORE.Instance.Data.content.AbilitiesInitCount;
-                actorDat.abilities.Add(actorDat.ClassJobReference.Abilities[newSpellPosition]);
-                actorDat.ActorEntity.RefreshAbilities();
+                if (newAbility != null)
+                {
+                    actorDat.abilities.Add(newAbility.name);
+                }
 
-                CORE.Instance.ShowScreenEffect("ScreenEffectGainSpell", CORE.Instance.Data.content.Abilities.Find(x => x.name == actorDat.ClassJobReference.Abilities[newSpellPosition]));
+                actorDat.ActorEntity.RefreshAbilities();
             }
             else
             {

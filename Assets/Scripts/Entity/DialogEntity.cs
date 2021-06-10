@@ -41,13 +41,17 @@ public class DialogEntity : MonoBehaviour
             return;
         }
 
-        ShowIndex(CurrentIndex);
+        CORE.Instance.DelayedInvokation(0.1f, () => 
+        {
+            ShowIndex(CurrentIndex);
+        });
+        
     }
 
     public void ShowIndex(int index)
     {
         string content = DialogPieces[index].Content;
-        CurrentBubble.Show(transform, content, Continue);
+        CurrentBubble.Show(CurrentBubble.transform, content, Continue);
         DialogPieces[index].OnDialogPiece?.Invoke();
     }
 
