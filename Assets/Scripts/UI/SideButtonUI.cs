@@ -32,11 +32,11 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
     {
         if(isVisible)
         {
-            Hide();
+            CORE.Instance.CloseCurrentWindow();
         }
         else
         {
-            Show(null);
+            CORE.Instance.ShowSideButtonUiWindow();
         }
     }
 }

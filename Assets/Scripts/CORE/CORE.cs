@@ -94,6 +94,7 @@ public class CORE : MonoBehaviour
 
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
+        WindowToKeyMap.Add(SideButtonUI.Instance, InputMap.Map["Exit"]);
     }
 
     private void Update()
@@ -104,44 +105,48 @@ public class CORE : MonoBehaviour
             {
                 if(Input.GetKeyDown(windowToKeyCode.Value))
                 {
-                    bool isTargetWindowClosed = CurrentWindow != windowToKeyCode.Key;
-                    CloseCurrentWindow();
-                    if (isTargetWindowClosed)
-                    {
-                        CurrentWindow = windowToKeyCode.Key;
-                        CurrentWindow.Show(SocketHandler.Instance.CurrentUser.actor);
-                    }
-                }
-            }
-            
-            if (Input.GetKeyDown(InputMap.Map["Exit"]))
-            {
-                if (CurrentWindow != null)
-                {
-                    CloseCurrentWindow();
-                }
-                else
-                {
-                    if(SideButtonUI.Instance.isVisible)
-                    {
-                        SideButtonUI.Instance.Hide();
-                    }
-                    else
-                    {
-                        SideButtonUI.Instance.Show(Room.PlayerActor);
-                    }
+                    ShowWindow(windowToKeyCode.Key, windowToKeyCode.Value);
                 }
             }
         }
     }
 
-    public void CloseCurrentWindow()
+    public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed)
+    {
+        bool isTargetWindowClosed = CurrentWindow != WindowToShow;
+        bool closedAWindow = CloseCurrentWindow();
+        bool isClosingAWindowWithExit = closedAWindow && keyPressed == InputMap.Map["Exit"];
+        if (isTargetWindowClosed && !isClosingAWindowWithExit)
+        {
+            CurrentWindow = WindowToShow;
+            CurrentWindow.Show(SocketHandler.Instance.CurrentUser.actor);
+        }
+    }
+
+    public void ShowAbilitiesUiWindow()
+    {
+        ShowWindow(AbilitiesUI.Instance, null);
+    }
+
+    public void ShowInventoryUiWindow()
+    {
+        ShowWindow(InventoryUI.Instance, null);
+    }
+
+    public void ShowSideButtonUiWindow()
+    {
+        ShowWindow(SideButtonUI.Instance, null);
+    }
+
+    public bool CloseCurrentWindow()
     {
         if (CurrentWindow != null)
         {
             CurrentWindow.Hide();
             CurrentWindow = null;
+            return true;
         }
+        return false;
     }
 
     public static void ClearContainer(Transform container)
