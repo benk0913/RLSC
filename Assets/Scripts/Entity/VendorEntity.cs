@@ -55,7 +55,7 @@ public class VendorEntity : MonoBehaviour
 
         tooltipTarget.Text += ItemsLogic.GetTooltipTextFromItem(CurrentItem);
 
-        tooltipTarget.ShowOnPosition(Camera.main.WorldToScreenPoint(ItemsEntities[ItemIndex].transform.position));
+        tooltipTarget.ShowOnPosition(Camera.main.WorldToScreenPoint(ItemsEntities[ItemIndex].transform.position ) + new Vector3(-20f, 0f,0f));
     }
 
     public void StopFocusing()

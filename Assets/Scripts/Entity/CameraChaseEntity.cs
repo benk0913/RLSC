@@ -110,8 +110,11 @@ public class CameraChaseEntity : MonoBehaviour
         {
             t += 1f * Time.deltaTime;
 
-            transform.position = FocusCam.transform.position = Vector3.Lerp(transform.position, endPoint, t);
-            CurrentCam.orthographicSize = FocusCam.orthographicSize = Mathf.Lerp(DefaultSize, CurrentFocus.CustomSize, t);
+            transform.position  = Vector3.Lerp(transform.position, endPoint, t);
+            FocusCam.transform.position = transform.position;
+
+            CurrentCam.orthographicSize = Mathf.Lerp(CurrentCam.orthographicSize, CurrentFocus.CustomSize, t);
+            FocusCam.orthographicSize = CurrentCam.orthographicSize;
 
             yield return 0;
         }
