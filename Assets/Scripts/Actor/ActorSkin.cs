@@ -86,7 +86,7 @@ public class ActorSkin : MonoBehaviour
             string key = Act.State.Data.equips.Keys.ElementAt(i);
             Item equip = Act.State.Data.equips[key];
 
-            if(equip == null)
+            if(equip == null || equip.Data == null)
             {
                 continue;
             }
