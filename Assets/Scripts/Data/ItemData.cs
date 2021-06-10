@@ -17,6 +17,8 @@ public class ItemData : ScriptableObject
 
     public AttributeData Stats;
 
+    public int VendorPrice = 2;
+
     //Between 0 to 1.
     public float DropChance = 1f;
 

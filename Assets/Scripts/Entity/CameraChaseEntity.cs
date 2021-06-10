@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CameraChaseEntity : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CameraChaseEntity : MonoBehaviour
     [SerializeField]
     public Transform ReferenceObject;
 
+    [SerializeField]
+    Camera FocusCam;
 
     public float Speed = 1f;
 
@@ -17,6 +20,8 @@ public class CameraChaseEntity : MonoBehaviour
     public float YOffset = 3f;
 
     public float Extrapolation = 1f;
+
+    public bool IsFocusing = false;
 
     float DefaultSize;
 
@@ -26,7 +31,7 @@ public class CameraChaseEntity : MonoBehaviour
     Vector3 lastPosition;
 
     FocusInstance CurrentFocus;
-    Camera FocusCam;
+
     Coroutine FocusRoutineInstance;
     
 
@@ -78,10 +83,18 @@ public class CameraChaseEntity : MonoBehaviour
 
     public void FocusOn(FocusInstance focus)
     {
-        if(CurrentFocus != null)
+        IsFocusing = true;
+
+        if (FocusRoutineInstance != null)
         {
-            Unfocus();
+            StopCoroutine(FocusRoutineInstance);
+            FocusRoutineInstance = null;
         }
+
+        FocusCam.gameObject.SetActive(true);
+
+        UniversalAdditionalCameraData cameraData = CurrentCam.GetUniversalAdditionalCameraData();
+        cameraData.cameraStack.Add(FocusCam);
 
         CurrentFocus = focus;
 
@@ -90,13 +103,6 @@ public class CameraChaseEntity : MonoBehaviour
 
     IEnumerator FocusRoutine()
     {
-        FocusCam = Instantiate(ResourcesLoader.Instance.GetObject("FocusCamera")).GetComponent<Camera>();
-
-        FocusCam.transform.SetParent(transform);
-        FocusCam.transform.localScale = Vector3.one;
-        FocusCam.transform.position = Vector3.zero;
-
-        Vector2 startPoint = transform.position;
         Vector3 endPoint = new Vector3(CurrentFocus.FocusObj.position.x, CurrentFocus.FocusObj.position.y, transform.position.z);
 
         float t = 0f;
@@ -104,7 +110,7 @@ public class CameraChaseEntity : MonoBehaviour
         {
             t += 1f * Time.deltaTime;
 
-            transform.position = FocusCam.transform.position = Vector3.Lerp(startPoint, endPoint, t);
+            transform.position = FocusCam.transform.position = Vector3.Lerp(transform.position, endPoint, t);
             CurrentCam.orthographicSize = FocusCam.orthographicSize = Mathf.Lerp(DefaultSize, CurrentFocus.CustomSize, t);
 
             yield return 0;
@@ -112,7 +118,7 @@ public class CameraChaseEntity : MonoBehaviour
 
         while(true)
         {
-            if(Input.GetKeyDown(InputMap.Map["Escape"]))
+            if(Input.GetKeyDown(InputMap.Map["Exit"]))
             {
                 break;
             }
@@ -125,11 +131,13 @@ public class CameraChaseEntity : MonoBehaviour
     public void Unfocus()
     {
         CurrentFocus = null;
-        Destroy(FocusCam.gameObject);
-        FocusCam = null;
+        FocusCam.gameObject.SetActive(false);
+        
         CurrentCam.orthographicSize = DefaultSize;
         StopCoroutine(FocusRoutineInstance);
         FocusRoutineInstance = null;
+
+        IsFocusing = false;
     }
 }
 

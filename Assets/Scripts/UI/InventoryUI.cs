@@ -31,6 +31,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     TextMeshProUGUI IsSelectedUseText;
 
     [SerializeField]
+    public StatsPanelUI StatsPanel;
+
+    [SerializeField]
     public string ShowSound;
 
     [SerializeField]
@@ -53,6 +56,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     public string DropSound;
+
+
 
     public List<EquippableSlot> EquipSlots = new List<EquippableSlot>();
     
@@ -90,6 +95,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         this.gameObject.SetActive(true);
         currentActor = ofActor;
         RefreshUI(false);
+
+        StatsPanel.SetActor(ofActor);
 
 
         IsSelectedDropText.text = "<color=red>"+InputMap.Map["Drop Inventory Item"].ToString()+" - Drop</color>";

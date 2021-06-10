@@ -1165,6 +1165,7 @@ public class ActorData
     public int hp;
     public ActorLooks looks = new ActorLooks();
     public List<Item> items;
+    public int money;
     public int exp;
     public int level;
     public Dictionary<string, Item> equips = new Dictionary<string, Item>();

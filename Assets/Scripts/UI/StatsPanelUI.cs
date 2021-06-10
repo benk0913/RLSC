@@ -6,6 +6,8 @@ public class StatsPanelUI : MonoBehaviour
 {
     public Transform Container;
 
+    ActorData CurrentActor;
+
     private void Start()
     {
         CORE.Instance.SubscribeToEvent("StatsChanged", () =>
@@ -15,6 +17,16 @@ public class StatsPanelUI : MonoBehaviour
         });
     }
 
+    public void SetActor()
+    {
+        SetActor(CORE.Instance.Room.PlayerActor);
+    }
+
+    public void SetActor(ActorData actor)
+    {
+        CurrentActor = actor;
+    }
+
     private void OnEnable()
     {
         RefreshStats();
@@ -22,31 +34,36 @@ public class StatsPanelUI : MonoBehaviour
 
     public void RefreshStats()
     {
-        if (CORE.Instance == null)
+        if (CurrentActor == null)
         {
-            return;
+            if (CORE.Instance == null)
+            {
+                return;
+            }
+
+            CurrentActor = CORE.Instance.Room.PlayerActor;
         }
 
         CORE.ClearContainer(Container);
 
-        GenerateStatItem("Power", CORE.Instance.Room.PlayerActor.attributes.Power);
-        GenerateStatItem("HP", CORE.Instance.Room.PlayerActor.attributes.HP);
-        GenerateStatItem("Defense", CORE.Instance.Room.PlayerActor.attributes.Defense);
-        GenerateStatItem("Block", CORE.Instance.Room.PlayerActor.attributes.Block);
-        GenerateStatItem("CDReduction", CORE.Instance.Room.PlayerActor.attributes.CDReduction);
-        GenerateStatItem("CTReduction", CORE.Instance.Room.PlayerActor.attributes.CTReduction);
-        GenerateStatItem("Lifesteal", CORE.Instance.Room.PlayerActor.attributes.Lifesteal);
-        GenerateStatItem("LongRangeMultiplier", CORE.Instance.Room.PlayerActor.attributes.LongRangeMultiplier);
-        GenerateStatItem("ShortRangeMultiplier", CORE.Instance.Room.PlayerActor.attributes.ShortRangeMultiplier);
-        GenerateStatItem("WildMagicChance", CORE.Instance.Room.PlayerActor.attributes.WildMagicChance);
-        GenerateStatItem("SpellDuration", CORE.Instance.Room.PlayerActor.attributes.SpellDuration);
-        GenerateStatItem("AntiDebuff", CORE.Instance.Room.PlayerActor.attributes.AntiDebuff);
-        GenerateStatItem("Threat", CORE.Instance.Room.PlayerActor.attributes.Threat);
-        GenerateStatItem("MovementSpeed", CORE.Instance.Room.PlayerActor.attributes.MovementSpeed);
-        GenerateStatItem("JumpHeight", CORE.Instance.Room.PlayerActor.attributes.JumpHeight);
-        GenerateStatItem("DoubleCast", CORE.Instance.Room.PlayerActor.attributes.DoubleCast);
-        GenerateStatItem("Explode", CORE.Instance.Room.PlayerActor.attributes.Explode);
-        GenerateStatItem("HpRegen", CORE.Instance.Room.PlayerActor.attributes.HpRegen);
+        GenerateStatItem("Power", CurrentActor.attributes.Power);
+        GenerateStatItem("HP", CurrentActor.attributes.HP);
+        GenerateStatItem("Defense", CurrentActor.attributes.Defense);
+        GenerateStatItem("Block", CurrentActor.attributes.Block);
+        GenerateStatItem("CDReduction", CurrentActor.attributes.CDReduction);
+        GenerateStatItem("CTReduction", CurrentActor.attributes.CTReduction);
+        GenerateStatItem("Lifesteal", CurrentActor.attributes.Lifesteal);
+        GenerateStatItem("LongRangeMultiplier", CurrentActor.attributes.LongRangeMultiplier);
+        GenerateStatItem("ShortRangeMultiplier", CurrentActor.attributes.ShortRangeMultiplier);
+        GenerateStatItem("WildMagicChance", CurrentActor.attributes.WildMagicChance);
+        GenerateStatItem("SpellDuration", CurrentActor.attributes.SpellDuration);
+        GenerateStatItem("AntiDebuff", CurrentActor.attributes.AntiDebuff);
+        GenerateStatItem("Threat", CurrentActor.attributes.Threat);
+        GenerateStatItem("MovementSpeed", CurrentActor.attributes.MovementSpeed);
+        GenerateStatItem("JumpHeight", CurrentActor.attributes.JumpHeight);
+        GenerateStatItem("DoubleCast", CurrentActor.attributes.DoubleCast);
+        GenerateStatItem("Explode", CurrentActor.attributes.Explode);
+        GenerateStatItem("HpRegen", CurrentActor.attributes.HpRegen);
 
 
     }
