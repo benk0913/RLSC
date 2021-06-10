@@ -421,9 +421,9 @@ public class CORE : MonoBehaviour
     GameObject LastScreenEffect;
     List<ScreenEffectQueInstance> screenEffectQue = new List<ScreenEffectQueInstance>();
 
-    public GameObject ShowScreenEffect(string screenEffectObject, object data = null)
+    public GameObject ShowScreenEffect(string screenEffectObject, object data = null, bool skipQue = false)
     {
-        if(LastScreenEffect != null)
+        if(!skipQue && LastScreenEffect != null)
         {
             ScreenEffectQueInstance queInst = new ScreenEffectQueInstance();
             queInst.Key = screenEffectObject;
@@ -441,13 +441,16 @@ public class CORE : MonoBehaviour
         rt.anchorMin = Vector2.zero;
         rt.anchorMax = Vector2.one;
         rt.sizeDelta = Vector2.zero;
-
-        LastScreenEffect = obj;
-
-        DelayedInvokation(1f, () => 
+        
+        if (!skipQue)
         {
-            StartCoroutine(NextScreenEffect());
-        });
+            LastScreenEffect = obj;
+
+            DelayedInvokation(1f, () =>
+            {
+                StartCoroutine(NextScreenEffect());
+            });
+        }
 
         return obj;
 

@@ -655,7 +655,7 @@ public class Actor : MonoBehaviour
 
         if(State.Data.IsPlayer)
         {
-            CORE.Instance.ShowScreenEffect("ScreenEffectHurt");
+            CORE.Instance.ShowScreenEffect("ScreenEffectHurt",null,true);
         }
     }
 
@@ -694,12 +694,6 @@ public class Actor : MonoBehaviour
             CORE.Instance.ShowScreenEffect("ScreenEffectDeath");
 
 
-            CORE.Instance.ConditionalInvokation(X => CORE.Instance.Room.PlayerActor.ActorEntity == null || !IsDead, () =>
-            {
-                CORE.Instance.InvokeEvent("RemoveGhostEffect");
-            });
-
-
             if (Ghost != null)
             {
                 Destroy(Ghost.gameObject);
@@ -707,7 +701,7 @@ public class Actor : MonoBehaviour
             
             CORE.Instance.DelayedInvokation(3f, () => 
             {
-                if(this.gameObject == null || !IsDead || CORE.Instance.Room.Actors.Find(x=>x.actorId == State.Data.actorId) == null)
+                if(this.gameObject == null || !CORE.Instance.Room.PlayerActor.ActorEntity.IsDead || CORE.Instance.Room.Actors.Find(x=>x.actorId == State.Data.actorId) == null)
                 {
                     return;
                 }

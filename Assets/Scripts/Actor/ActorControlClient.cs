@@ -23,7 +23,7 @@ public class ActorControlClient : MonoBehaviour
     {
         if(!string.IsNullOrEmpty(UniqueScreenEffect))
         {
-            UniqueScreenEffectObject = CORE.Instance.ShowScreenEffect(UniqueScreenEffect);
+            UniqueScreenEffectObject = CORE.Instance.ShowScreenEffect(UniqueScreenEffect,null,true);
         }
     }
 

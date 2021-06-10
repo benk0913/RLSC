@@ -14,6 +14,7 @@ public class ScreenEffectUIOrbGain : ScreenEffectUI
 
     public override void Show(object data)
     {
+        base.Show(data);
         ItemData itemData = (ItemData)data;
 
         this.OrbIcon.sprite = itemData.Icon;

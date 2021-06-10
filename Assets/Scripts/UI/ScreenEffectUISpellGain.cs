@@ -18,6 +18,8 @@ public class ScreenEffectUISpellGain : ScreenEffectUI
 
     public override void Show(object data)
     {
+        base.Show(data);
+
         Ability abilityData = (Ability)data;
 
         this.OrbIcon.sprite = abilityData.Icon;
