@@ -1,3 +1,4 @@
+using SimpleJSON;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +30,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     TextMeshProUGUI IsSelectedUseText;
+
+    [SerializeField]
+    TextMeshProUGUI MoneyLabel;
 
     [SerializeField]
     public StatsPanelUI StatsPanel;
@@ -119,6 +123,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         {
             return;
         }
+
+        MoneyLabel.text = currentActor.money.ToString()+"c";
 
         CORE.ClearContainer(ItemsContainer);
 
@@ -282,6 +288,39 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         Deselect();
 
         AudioControl.Instance.Play(DropSound);
+    }
+
+    public void AttemptDropMoney()
+    {
+        InputLabelWindow.Instance.Show("Throw Away Money", "Amount Of Money", (string setAmount) => 
+        {
+            int result = 0;
+            if(int.TryParse(setAmount, out result))
+            {
+                if (result == 0)
+                {
+                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Invalid amount of money...", Color.red));
+                    return;
+                }
+
+                if (result > CORE.Instance.Room.PlayerActor.money)
+                {
+                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Not enough money at your disposal!", Color.red));
+                    return;
+                }
+
+                JSONClass node = new JSONClass();
+
+                node["money"].AsInt = result;
+                
+                SocketHandler.Instance.SendEvent("drop_money",node);
+            }
+            else
+            {
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Invalid amount of money!", Color.red));
+                return;
+            }
+        });
     }
 }
 

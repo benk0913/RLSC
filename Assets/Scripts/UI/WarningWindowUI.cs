@@ -49,12 +49,11 @@ public class WarningWindowUI : MonoBehaviour
 
     private void Update()
     {
-
-        if (!CantHide && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space)))
+        if (!CantHide && Input.GetKeyDown(InputMap.Map["Exit"]))
         {
             Hide();
         }
-        else if(Input.GetKeyDown(KeyCode.Return))
+        else if (Input.GetKeyDown(InputMap.Map["Confirm"]))
         {
             Accept();
         }
