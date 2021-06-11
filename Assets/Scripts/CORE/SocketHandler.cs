@@ -82,6 +82,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("room_state", OnRoomState));
         SocketEventListeners.Add(new SocketEventListener("room_states", OnRoomStates));
         SocketEventListeners.Add(new SocketEventListener("room_vendors", OnVendorUpdate));
+        
+        SocketEventListeners.Add(new SocketEventListener("game_states", OnGameStates));
 
         SocketEventListeners.Add(new SocketEventListener("exp_update", OnExpUpdate));
         SocketEventListeners.Add(new SocketEventListener("level_up", OnLevelUp));
@@ -553,6 +555,13 @@ public class SocketHandler : MonoBehaviour
     {
         CORE.Instance.Room.RoomStates = JsonConvert.DeserializeObject<Dictionary<string, int>>(data["states"].ToString());
         CORE.Instance.InvokeEvent("RoomStatesChanged");
+    }
+
+    public void OnGameStates(string eventName, JSONNode data)
+    {
+        Dictionary<string, string> GameStates = JsonConvert.DeserializeObject<Dictionary<string, string>>(data["states"].ToString());
+        string TimePhase = GameStates["phase"];
+        // TODO update the UI on game states. Notice this will happen even if scene hasn't loaded yet.
     }
 
     public void OnExpUpdate(string eventName, JSONNode data)
