@@ -86,6 +86,7 @@ public class DatabaseContent
     public int HpRegenSeconds;
     public int MaxPartyMembers;
     public int PartyInviteTimeoutSeconds;
+    public int TimePhasesDurationMinutes;
 }
 
 [Serializable]
