@@ -101,8 +101,19 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_chose_rolled_item", OnActorChoseRolledItem));
         SocketEventListeners.Add(new SocketEventListener("actor_rolls", OnActorRolls));
 
-        //Chat
+        // Chat
         SocketEventListeners.Add(new SocketEventListener("actor_chat_message", OnActorChatMessage));
+        
+        // Party
+        SocketEventListeners.Add(new SocketEventListener("party_invite", OnPartyInvite));
+        SocketEventListeners.Add(new SocketEventListener("party_invite_timeout", OnPartyInviteTimeout));
+        SocketEventListeners.Add(new SocketEventListener("party_join", OnPartyJoin));
+        SocketEventListeners.Add(new SocketEventListener("party_decline", OnPartyDecline));
+        SocketEventListeners.Add(new SocketEventListener("party_leave", OnPartyLeave));
+        SocketEventListeners.Add(new SocketEventListener("party_leader", OnPartyLeader));
+        SocketEventListeners.Add(new SocketEventListener("party_toggle_offline", OnPartyToggleOffline));
+        SocketEventListeners.Add(new SocketEventListener("party_status", OnPartyStatus));
+
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -1135,6 +1146,121 @@ public class SocketHandler : MonoBehaviour
         string chatlogMessage = "<color=yellow>"+actorDat.name + "</color>: " + data["message"].Value;
 
         CORE.Instance.AddChatMessage(chatlogMessage);
+    }
+
+    // Party
+    
+    public void SendPartyInvite(string actorName)
+    {
+        JSONNode node = new JSONClass();
+        node["actorName"] = actorName;
+        
+        SocketHandler.Instance.SendEvent("party_invite", node);
+    }
+
+    public void SendPartyInviteResponse(bool accept)
+    {
+        JSONNode node = new JSONClass();
+        node["accept"].AsBool = accept;
+        
+        SocketHandler.Instance.SendEvent("party_invite_response", node);
+    }
+
+    public void SendPartyLeave()
+    {
+        JSONNode node = new JSONClass();
+        
+        SocketHandler.Instance.SendEvent("party_leave", node);
+    }
+
+    public void SendPartyKick(string actorName)
+    {
+        JSONNode node = new JSONClass();
+        node["actorName"] = actorName;
+        
+        SocketHandler.Instance.SendEvent("party_kick", node);
+    }
+
+    public void SendPartyLeader(string actorName)
+    {
+        JSONNode node = new JSONClass();
+        node["actorName"] = actorName;
+        
+        SocketHandler.Instance.SendEvent("party_leader", node);
+    }
+
+    public void OnPartyInvite(string eventName, JSONNode data)
+    {
+        string leaderName = data["leaderName"].Value;
+        
+        // TODO show invite with leader name.
+    }
+
+    public void OnPartyInviteTimeout(string eventName, JSONNode data)
+    {
+        // TODO hide party invitation
+        // TODO log that party invitation has timed out
+    }
+
+    public void OnPartyJoin(string eventName, JSONNode data)
+    {
+        string actorName = data["actorName"].Value;
+
+        // TODO log that the actor has joined the party
+        // TODO refresh party with actorName
+    }
+
+    public void OnPartyDecline(string eventName, JSONNode data)
+    {
+        string actorName = data["actorName"].Value;
+        string reason = data["reason"].Value;
+
+        if (reason == "decline") {
+            // TODO log that the actor declined party invitation
+        } else if (reason == "timeout") {
+            // TODO log that the actor party invitation timed out
+        } else if (reason == "disconnected") {
+            // TODO log that the actor party invitation is invalid because they disconnected
+        }
+    }
+
+    public void OnPartyLeave(string eventName, JSONNode data)
+    {
+        string actorName = data["actorName"].Value;
+        string reason = data["reason"].Value;
+        
+        if (reason == "leave") {
+            // TODO log that the actor left the party
+        } else if (reason == "kicked") {
+            // TODO log that the actor was kicked from the party
+        }
+        // TODO refresh the party without the actor
+    }
+
+    public void OnPartyLeader(string eventName, JSONNode data)
+    {
+        string leaderName = data["leaderName"].Value;
+
+        // TODO log that the leader has changed
+        // TODO refresh the party with the party leader
+    }
+
+    public void OnPartyToggleOffline(string eventName, JSONNode data)
+    {
+        string actorName = data["actorName"].Value;
+        bool isOffline = data["offline"].AsBool;
+
+        // TODO log that the actor is online/offline
+        // TODO refresh the party with the offline status
+    }
+
+    public void OnPartyStatus(string eventName, JSONNode data)
+    {
+        string leaderName = data["leaderName"].Value;
+        string[] members = JsonConvert.DeserializeObject<string[]>(data["members"].ToString());
+        string[] membersOffline = JsonConvert.DeserializeObject<string[]>(data["membersOffline"].ToString());
+
+        // TODO refresh the party
     }
     #endregion
 }
