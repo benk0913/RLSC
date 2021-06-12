@@ -25,6 +25,7 @@ public class TextBubbleUI : MonoBehaviour
 
     public void Show(Transform anchor, string message, Action onHide = null)
     {
+        this.gameObject.SetActive(true);
         StopAllCoroutines();
 
         CurrentAnchor = anchor;

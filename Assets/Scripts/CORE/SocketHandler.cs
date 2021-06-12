@@ -559,9 +559,8 @@ public class SocketHandler : MonoBehaviour
 
     public void OnGameStates(string eventName, JSONNode data)
     {
-        Dictionary<string, string> GameStates = JsonConvert.DeserializeObject<Dictionary<string, string>>(data["states"].ToString());
-        string TimePhase = GameStates["phase"];
-        // TODO update the UI on game states. Notice this will happen even if scene hasn't loaded yet.
+        CORE.Instance.GameStates = JsonConvert.DeserializeObject<Dictionary<string, string>>(data["states"].ToString());
+        CORE.Instance.InvokeEvent("GameStatesChanged");
     }
 
     public void OnExpUpdate(string eventName, JSONNode data)

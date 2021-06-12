@@ -8,6 +8,8 @@ public class TimePhaseEntity : MonoBehaviour
 {
     public List<TimePhaseScenario> TimePhaseScenarios = new List<TimePhaseScenario>();
 
+    public bool HasFader =true;
+
     #region DefaultBehaviour
     public bool DefaultHandler = false;
     public Light2D DefaultSun;
@@ -17,7 +19,6 @@ public class TimePhaseEntity : MonoBehaviour
 
     private void Start()
     {
-        
         if (DefaultHandler && DefaultSun == null)
         {
             Light2D[] lights = FindObjectsOfType<Light2D>();
@@ -34,21 +35,37 @@ public class TimePhaseEntity : MonoBehaviour
         }
 
 
-        CORE.Instance.SubscribeToEvent("RoomStatesChanged", RefreshState);
+        CORE.Instance.SubscribeToEvent("GameStatesChanged", SwitchState);
         RefreshState();
+    }
+
+    public void SwitchState()
+    {
+        if (HasFader)
+        {
+            ScreenFaderUI.Instance.FadeToBlack(() =>
+            {
+                RefreshState();
+                ScreenFaderUI.Instance.FadeFromBlack();
+            });
+        }
+        else
+        {
+            RefreshState();
+        }
     }
 
     public void RefreshState()
     {
         if(DefaultHandler && DefaultSun != null)
         {
-            if (CORE.Instance.Room.RoomStates.ContainsKey("TimePhase"))
+            if (CORE.Instance.GameStates.ContainsKey("phase"))
             {
-                if (CORE.Instance.Room.RoomStates["TimePhase"] == (int)TimePhase.Day)
+                if (CORE.Instance.GameStates["phase"] == "Day")
                 {
                     DefaultSun.color = DefaultSunColor;
                 }
-                else if (CORE.Instance.Room.RoomStates["TimePhase"] == (int)TimePhase.Day)
+                else if (CORE.Instance.GameStates["phase"] == "Night")
                 {
                     DefaultSun.color = DefaultNightSunColor;
                 }
@@ -59,12 +76,12 @@ public class TimePhaseEntity : MonoBehaviour
             }
         }
 
-        if (!CORE.Instance.Room.RoomStates.ContainsKey("TimePhase"))
+        if (!CORE.Instance.GameStates.ContainsKey("phase"))
         {
             return;
         }
 
-        TimePhaseScenario scenario = TimePhaseScenarios.Find(x => (int)x.TimePhase == CORE.Instance.Room.RoomStates["TimePhase"]);
+        TimePhaseScenario scenario = TimePhaseScenarios.Find(x => x.TimePhase.ToString() == CORE.Instance.GameStates["phase"]);
 
         if(scenario == null)
         {
@@ -78,12 +95,6 @@ public class TimePhaseEntity : MonoBehaviour
 [System.Serializable]
 public class TimePhaseScenario
 {
-    public TimePhase TimePhase;
+    public string TimePhase;
     public UnityEvent OnPhase;
-}
-
-public enum TimePhase
-{
-    Day,
-    Night
 }

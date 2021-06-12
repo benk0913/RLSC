@@ -29,6 +29,8 @@ public class CORE : MonoBehaviour
 
     public RoomData Room;
 
+    public Dictionary<string, string> GameStates = new Dictionary<string, string>();
+
     public bool DEBUG = false;
 
     public bool DEBUG_SPAMMY_EVENTS = false;

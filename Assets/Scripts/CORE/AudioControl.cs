@@ -46,6 +46,11 @@ public class AudioControl : MonoBehaviour {
 
     public void PlayInPosition(string gClip, Vector3 pos, float MaxDistance = 200f, float pitch = 1f)
     {
+        if (ResourcesLoader.Instance.m_bLoading)
+        {
+            return;
+        }
+
         GameObject currentInstance = null;
 
         for (int i = 0; i < m_listInstances.Count; i++)
@@ -83,6 +88,11 @@ public class AudioControl : MonoBehaviour {
 
     public void Play(string gClip)
     {
+        if(ResourcesLoader.Instance.m_bLoading)
+        {
+            return;
+        }
+
         GameObject currentInstance = null;
 
         for (int i=0;i<m_listInstances.Count;i++)
@@ -115,6 +125,11 @@ public class AudioControl : MonoBehaviour {
 
     public void Play(string gClip, bool gLoop)
     {
+        if (ResourcesLoader.Instance.m_bLoading)
+        {
+            return;
+        }
+
         GameObject currentInstance = null;
 
         for (int i = 0; i < m_listInstances.Count; i++)
@@ -148,6 +163,11 @@ public class AudioControl : MonoBehaviour {
 
     public void Play(string gClip, bool gLoop, string gTag)
     {
+        if (ResourcesLoader.Instance.m_bLoading)
+        {
+            return;
+        }
+
         GameObject currentInstance = null;
 
         for (int i = 0; i < m_listInstances.Count; i++)
@@ -217,6 +237,11 @@ public class AudioControl : MonoBehaviour {
 
     public void PlayWithPitch(string gClip,float fPitch)
     {
+        if (ResourcesLoader.Instance.m_bLoading)
+        {
+            return;
+        }
+
         GameObject currentInstance = null;
 
         for (int i = 0; i < m_listInstances.Count; i++)
@@ -248,6 +273,11 @@ public class AudioControl : MonoBehaviour {
 
     public void SetMusic(string gClip, float fPitch = 1f)
     {
+        if (ResourcesLoader.Instance.m_bLoading)
+        {
+            return;
+        }
+
         MusicSource.volume = m_dicVolumeGroup["Music"];
 
         if (string.IsNullOrEmpty(gClip))
