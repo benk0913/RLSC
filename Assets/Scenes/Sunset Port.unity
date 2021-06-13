@@ -50268,6 +50268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1089435460}
   - component: {fileID: 1089435459}
+  - component: {fileID: 1089435461}
   m_Layer: 0
   m_Name: DayNightManager
   m_TagString: Untagged
@@ -50316,6 +50317,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1089435461}
+          m_TargetAssemblyTypeName: AudioEntity, Assembly-CSharp
+          m_MethodName: SetMusicToSceneDefault
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1089435461}
+          m_TargetAssemblyTypeName: AudioEntity, Assembly-CSharp
+          m_MethodName: SetSoundscapeSceneDefault
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - TimePhase: Night
     OnPhase:
       m_PersistentCalls:
@@ -50344,6 +50369,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1089435461}
+          m_TargetAssemblyTypeName: AudioEntity, Assembly-CSharp
+          m_MethodName: SetMusic
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PLACEHOLDER_town_night
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1089435461}
+          m_TargetAssemblyTypeName: AudioEntity, Assembly-CSharp
+          m_MethodName: SetSoundscape
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PLACEHOLDER_soundscape_night
+            m_BoolArgument: 0
+          m_CallState: 2
   HasFader: 1
   DefaultHandler: 0
   DefaultSun: {fileID: 0}
@@ -50367,6 +50416,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1089435461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089435458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5521f6d2d281cc744ab547b0244ab2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1106477186
 GameObject:
   m_ObjectHideFlags: 0
@@ -95762,6 +95823,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4659344112601062244, guid: 85a19c7f03160ab40baa0a59f150a04f, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 9131906245715575169, guid: 85a19c7f03160ab40baa0a59f150a04f, type: 3}
       propertyPath: m_Name
       value: Main Camera
