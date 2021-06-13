@@ -18,7 +18,7 @@ public class ScreenEffectUIOrbGain : ScreenEffectUI
         ItemData itemData = (ItemData)data;
 
         this.OrbIcon.sprite = itemData.Icon;
-        this.OrbNameLabel.text = itemData.name;
+        this.OrbNameLabel.text = itemData.DisplayName;
     }
 
 }

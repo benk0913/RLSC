@@ -82,7 +82,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         IconImage.enabled = true;
         IconImage.sprite = CurrentItem.Data.Icon;
 
-        TooltipTarget.Text = CurrentItem.Data.name;
+        TooltipTarget.Text = CurrentItem.Data.DisplayName;
         TooltipTarget.Text += System.Environment.NewLine + CurrentItem.Data.Type.name;
         //TooltipTarget.Text += System.Environment.NewLine + "<color=#"+ColorUtility.ToHtmlStringRGBA(CurrentItem.Data.Rarity.RarityColor)+">"+ CurrentItem.Data.Rarity.name+"</color>";
         string description = CurrentItem.Data.Description.Trim();

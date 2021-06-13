@@ -12,6 +12,8 @@ public class ItemData : ScriptableObject
     [PreviewSprite]
     public Sprite Icon;
 
+    public string DisplayName;
+
     [TextArea(3,6)]
     public string Description;
 

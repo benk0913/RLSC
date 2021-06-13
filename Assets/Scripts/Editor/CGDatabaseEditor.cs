@@ -183,7 +183,12 @@ public class CGDatabaseEditor : Editor
         db.content.Items.Clear();
         foreach (string guid in guids)
         {
-            db.content.Items.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(ItemData)) as ItemData);
+            ItemData item = AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(ItemData)) as ItemData;
+            if(string.IsNullOrEmpty(item.DisplayName))
+            {
+                item.DisplayName = item.name;
+            }
+            db.content.Items.Add(item);
         }
 
         guids = AssetDatabase.FindAssets("t:BodyPart", new[] { "Assets/" + db.DataPath });
