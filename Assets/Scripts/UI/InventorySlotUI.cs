@@ -24,8 +24,15 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public ItemType SlotType = null;
 
+    public bool IsInspecting = false;
+
     public void OnPointerDown(PointerEventData eventData)
     {
+        if(IsInspecting)
+        {
+            return;
+        }
+
         if(eventData.pointerId != 0)
         {
             return;
@@ -36,6 +43,11 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (IsInspecting)
+        {
+            return;
+        }
+
         if (eventData.pointerId != 0)
         {
             return;
@@ -44,9 +56,11 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         InventoryUI.Instance.UndragItem(this);
     }
 
-    public void SetItem(Item item, Action onSelect = null, ItemType slotType = null)
+    public void SetItem(Item item, Action onSelect = null, ItemType slotType = null, bool isInspecting = false)
     {
         CurrentItem = item;
+
+        IsInspecting = isInspecting;
 
         this.SlotType = slotType;
 

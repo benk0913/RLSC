@@ -27,11 +27,6 @@ public class StatsPanelUI : MonoBehaviour
         CurrentActor = actor;
     }
 
-    private void OnEnable()
-    {
-        RefreshStats();
-    }
-
     public void RefreshStats()
     {
         if (CurrentActor == null)

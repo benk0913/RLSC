@@ -19,6 +19,9 @@ public class AudioControl : MonoBehaviour {
     [SerializeField]
     protected AudioSource MusicSource;
 
+    [SerializeField]
+    protected AudioSource SoundscapeSource;
+
     void Awake()
     {
         m_res = GetComponent<ResourcesLoader>();
@@ -26,10 +29,12 @@ public class AudioControl : MonoBehaviour {
 
         m_dicVolumeGroup.Add("Untagged", PlayerPrefs.GetFloat("Untagged", 1f));
         m_dicVolumeGroup.Add("Music", PlayerPrefs.GetFloat("Music", 0.6f));
+        m_dicVolumeGroup.Add("Soundscape", PlayerPrefs.GetFloat("Soundscape", 0.6f));
 
         SetMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1f));
 
         MusicSource.volume = m_dicVolumeGroup["Music"];
+        SoundscapeSource.volume = m_dicVolumeGroup["Soundscape"];
 
     }
 
@@ -209,8 +214,14 @@ public class AudioControl : MonoBehaviour {
         {
             MusicSource.volume = gVolume;
         }
-        
-        if(!m_dicVolumeGroup.ContainsKey(gTag))
+
+        if (gTag == "Soundscape")
+        {
+            SoundscapeSource.volume = gVolume;
+        }
+
+
+        if (!m_dicVolumeGroup.ContainsKey(gTag))
         {
             m_dicVolumeGroup.Add(gTag, gVolume);
         }
@@ -294,6 +305,32 @@ public class AudioControl : MonoBehaviour {
             MusicSource.Stop();
             MusicSource.clip = ResourcesLoader.Instance.GetClip(gClip);
             MusicSource.Play();
+        }
+    }
+
+    public void SetSoundscape(string gClip, float fPitch = 1f)
+    {
+        if (ResourcesLoader.Instance.m_bLoading)
+        {
+            return;
+        }
+
+        SoundscapeSource.volume = m_dicVolumeGroup["Soundscape"];
+
+        if (string.IsNullOrEmpty(gClip))
+        {
+            SoundscapeSource.Stop();
+            SoundscapeSource.clip = null;
+            return;
+        }
+
+        SoundscapeSource.pitch = fPitch;
+
+        if (SoundscapeSource.clip == null || SoundscapeSource.clip.name != gClip)
+        {
+            SoundscapeSource.Stop();
+            SoundscapeSource.clip = ResourcesLoader.Instance.GetClip(gClip);
+            SoundscapeSource.Play();
         }
     }
 

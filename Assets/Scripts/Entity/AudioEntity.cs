@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AudioEntity : MonoBehaviour
 {
-    string lastSoundscapeSet;
-
     public void PlaySound(string soundKey)
     {
         if(string.IsNullOrEmpty(soundKey))
@@ -38,33 +36,13 @@ public class AudioEntity : MonoBehaviour
 
     public void SetSoundscape(string soundscapeKey)
     {
-        if(!string.IsNullOrEmpty(lastSoundscapeSet))
-        {
-            AudioControl.Instance.StopSound(lastSoundscapeSet);
-            lastSoundscapeSet = "";
-        }
-
-        if (!string.IsNullOrEmpty(CORE.Instance.ActiveSceneInfo.Soundscape))
-        {
-            AudioControl.Instance.StopSound(CORE.Instance.ActiveSceneInfo.Soundscape);
-        }
-
-        lastSoundscapeSet = soundscapeKey;
-        AudioControl.Instance.Play(soundscapeKey,true);
+        AudioControl.Instance.SetSoundscape(soundscapeKey);
     }
 
-    public void SetSoundscapeSceneDefault()
+    public void SetSoundscapeToSceneDefault()
     {
-        if (!string.IsNullOrEmpty(lastSoundscapeSet))
-        {
-            AudioControl.Instance.StopSound(lastSoundscapeSet);
-        }
-
-        if(string.IsNullOrEmpty(CORE.Instance.ActiveSceneInfo.Soundscape))
-        {
-            return;
-        }
-
-        AudioControl.Instance.Play(CORE.Instance.ActiveSceneInfo.Soundscape, true);
+        AudioControl.Instance.SetSoundscape(CORE.Instance.ActiveSceneInfo.Soundscape);
     }
+
+
 }

@@ -487,12 +487,6 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.CloseCurrentWindow();
         ScreenFaderUI.Instance.FadeToBlack(()=> 
         {
-
-            if (CORE.Instance.ActiveSceneInfo != null && !string.IsNullOrEmpty(CORE.Instance.ActiveSceneInfo.Soundscape))
-            {
-                AudioControl.Instance.StopSound(CORE.Instance.ActiveSceneInfo.Soundscape);
-            }
-
             SceneInfo info = CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == data["scene"].Value);
         
             if (info != null)
@@ -504,7 +498,11 @@ public class SocketHandler : MonoBehaviour
 
                 if (!string.IsNullOrEmpty(info.Soundscape))
                 {
-                    AudioControl.Instance.Play(info.Soundscape,true);
+                    AudioControl.Instance.SetSoundscape(info.Soundscape);
+                }
+                else
+                {
+                    AudioControl.Instance.SetSoundscape(null);
                 }
             }
 

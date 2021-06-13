@@ -61,6 +61,12 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     [SerializeField]
     public string DropSound;
 
+    [SerializeField]
+    GameObject InventoryPanel;
+
+    [SerializeField]
+    GameObject InspectPanel;
+
 
 
     public List<EquippableSlot> EquipSlots = new List<EquippableSlot>();
@@ -70,6 +76,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     float SelectedTime;
     
     public bool IsOpen;
+
+    bool isInspecting;
 
 
 
@@ -98,15 +106,25 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         IsOpen = true;
         this.gameObject.SetActive(true);
         currentActor = ofActor;
-        RefreshUI(false);
+
+
+        isInspecting = ofActor != CORE.Instance.Room.PlayerActor;
 
         StatsPanel.SetActor(ofActor);
+        StatsPanel.RefreshStats();
+
+        InventoryPanel.SetActive(!isInspecting);
+        InspectPanel.SetActive(isInspecting);
+
+        RefreshUI(false);
+
 
 
         IsSelectedDropText.text = "<color=red>"+InputMap.Map["Drop Inventory Item"].ToString()+" - Drop</color>";
         IsSelectedUseText.text = "<color=yellow>" + InputMap.Map["Use Inventory Item"].ToString() + " - Use</color>";
 
         AudioControl.Instance.Play(ShowSound);
+
     }
 
     public void Hide()
@@ -124,18 +142,21 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             return;
         }
 
-        MoneyLabel.text = currentActor.money.ToString()+"c";
-
-        CORE.ClearContainer(ItemsContainer);
-
-        for(int i = 0; i < currentActor.items.Count; i++)
+        if (!isInspecting)
         {
-            InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
-            slot.SetItem(currentActor.items[i], ()=> Select(slot));
-            slot.transform.SetParent(ItemsContainer, false);
-            slot.transform.localScale = Vector3.one;
-            slot.transform.position = Vector3.zero;
+            MoneyLabel.text = currentActor.money.ToString() + "c";
 
+            CORE.ClearContainer(ItemsContainer);
+
+            for (int i = 0; i < currentActor.items.Count; i++)
+            {
+                InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
+                slot.SetItem(currentActor.items[i], () => Select(slot));
+                slot.transform.SetParent(ItemsContainer, false);
+                slot.transform.localScale = Vector3.one;
+                slot.transform.position = Vector3.zero;
+
+            }
         }
 
         
