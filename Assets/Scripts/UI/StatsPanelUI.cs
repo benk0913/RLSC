@@ -46,6 +46,10 @@ public class StatsPanelUI : MonoBehaviour
 
         CORE.ClearContainer(Container);
 
+        GenerateStatItem("Name", CurrentActor.name);
+        GenerateStatItem("Class", CurrentActor.ClassJobReference.name);
+        GenerateStatItem("Level", CurrentActor.level.ToString());
+        GenerateStatItem("EXP", CurrentActor.exp.ToString());
         GenerateStatItem("Power", CurrentActor.attributes.Power);
         GenerateStatItem("HP", CurrentActor.attributes.HP);
         GenerateStatItem("Defense", CurrentActor.attributes.Defense);
@@ -66,6 +70,17 @@ public class StatsPanelUI : MonoBehaviour
         GenerateStatItem("HpRegen", CurrentActor.attributes.HpRegen);
 
 
+    }
+
+    public void GenerateStatItem(string statName, string statValue)
+    {
+        StatItemUI item = ResourcesLoader.Instance.GetRecycledObject("StatItemUI").GetComponent<StatItemUI>();
+
+        item.transform.SetParent(Container, false);
+        item.transform.localScale = Vector3.one;
+        item.transform.position = Vector3.zero;
+
+        item.SetStat(statName, statValue);
     }
 
     public void GenerateStatItem(string statName, float statValue)

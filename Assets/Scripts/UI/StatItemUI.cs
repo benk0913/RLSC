@@ -8,6 +8,11 @@ public class StatItemUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI StatLabel;
 
+    public void SetStat(string attribute, string value)
+    {
+        StatLabel.text = "<color=white>"+attribute+ "</color>: "+ "<color=yellow>" + value+ "</color>";
+    }
+
     public void SetStat(string attribute, float value)
     {
         if (ItemsLogic.DisplayAttributes.ContainsKey(attribute) && !string.IsNullOrEmpty(ItemsLogic.DisplayAttributes[attribute].SpriteName))

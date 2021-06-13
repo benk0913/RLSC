@@ -56,6 +56,7 @@ public class InspectTipUI : MonoBehaviour
                 CG.alpha += 3f * Time.deltaTime;
             }
 
+
             if (Input.GetKeyDown(InputMap.Map["Inspect"]))
             {
                 InventoryUI.Instance.Show(currentActor.State.Data);
