@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Caterpillar Shoulders
   m_EditorClassIdentifier: 
   Icon: {fileID: 5731900375489565383, guid: d509e172be9d3a84f8183fd2300fc5fe, type: 3}
+  DisplayName: Caterpillar Shoulders
   Description: '
 
 '
@@ -20,6 +21,7 @@ MonoBehaviour:
     Power: 0
     HP: -0.3
     Defense: 0.3
+    Block: 0
     CDReduction: 0
     CTReduction: 0
     Lifesteal: 0
@@ -30,17 +32,20 @@ MonoBehaviour:
     AntiDebuff: 0
     Threat: 0.3
     MovementSpeed: 0
+    JumpHeight: 0
     DoubleCast: 0
-    StunOnDmg: 0
-    SpawnSlime: 0
     Explode: 0
     HpRegen: 0
+  VendorPrice: 2
   DropChance: 1
   Type: {fileID: 11400000, guid: 5572e32c21bc69d439b39ff7ca82f1fc, type: 2}
   Rarity: {fileID: 11400000, guid: 3c421321ee602c345b0785d93f279b15, type: 2}
+  OrbColliderObject: 
   SkinOverride:
   - {fileID: 11400000, guid: fc836671398953344bd927180ec9abc3, type: 2}
   - {fileID: 11400000, guid: 868bacdad968c844b85131a9bc666d18, type: 2}
   States: []
   TypeBasedOverrides: []
   Pool: []
+  OnExecuteParams: []
+  OnHitParams: []

@@ -187,6 +187,7 @@ public class CGDatabaseEditor : Editor
             if(string.IsNullOrEmpty(item.DisplayName))
             {
                 item.DisplayName = item.name;
+                EditorUtility.SetDirty(item);
             }
             db.content.Items.Add(item);
         }
