@@ -1198,22 +1198,28 @@ public class SocketHandler : MonoBehaviour
     public void OnPartyInvite(string eventName, JSONNode data)
     {
         string leaderName = data["leaderName"].Value;
-        
+
+        CORE.Instance.AddChatMessage("<color=yellow>"+ leaderName+" had invited you to a party!</color>");
         // TODO show invite with leader name.
     }
 
     public void OnPartyInviteTimeout(string eventName, JSONNode data)
     {
+        CORE.Instance.AddChatMessage("<color=yellow> The party invitation had timed out...</color>");
         // TODO hide party invitation
-        // TODO log that party invitation has timed out
     }
 
     public void OnPartyJoin(string eventName, JSONNode data)
     {
         string actorName = data["actorName"].Value;
 
-        // TODO log that the actor has joined the party
-        // TODO refresh party with actorName
+        CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has joined the party!</color>");
+
+        List<string> members = CORE.Instance.CurrentParty.members.OfType<string>().ToList();
+        members.Add(actorName);
+        CORE.Instance.CurrentParty.members = members.ToArray();
+
+        CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
     public void OnPartyDecline(string eventName, JSONNode data)
@@ -1221,12 +1227,17 @@ public class SocketHandler : MonoBehaviour
         string actorName = data["actorName"].Value;
         string reason = data["reason"].Value;
 
-        if (reason == "decline") {
-            // TODO log that the actor declined party invitation
-        } else if (reason == "timeout") {
-            // TODO log that the actor party invitation timed out
-        } else if (reason == "disconnected") {
-            // TODO log that the actor party invitation is invalid because they disconnected
+        if (reason == "decline")
+        {
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has declined the invitation.</color>");
+        }
+        else if (reason == "timeout")
+        {
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + "'s invitation timed out.</color>");
+        }
+        else if (reason == "disconnected")
+        {
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " was rude enough to disconnect.</color>");
         }
     }
 
@@ -1236,19 +1247,30 @@ public class SocketHandler : MonoBehaviour
         string reason = data["reason"].Value;
         
         if (reason == "leave") {
-            // TODO log that the actor left the party
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has left the party.</color>");
         } else if (reason == "kicked") {
-            // TODO log that the actor was kicked from the party
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " was kicked out of the party.</color>");
         }
-        // TODO refresh the party without the actor
+
+
+        CORE.Instance.CurrentParty.members  = CORE.Instance.CurrentParty.members.Where(val => val != actorName).ToArray();
+        CORE.Instance.CurrentParty.membersOffline = CORE.Instance.CurrentParty.membersOffline.Where(val => val != actorName).ToArray();
+
+
+        CORE.Instance.InvokeEvent("PartyUpdated");
+
     }
 
     public void OnPartyLeader(string eventName, JSONNode data)
     {
         string leaderName = data["leaderName"].Value;
 
-        // TODO log that the leader has changed
-        // TODO refresh the party with the party leader
+        CORE.Instance.AddChatMessage("<color=yellow>" + leaderName + " is now the party leader!</color>");
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(leaderName + " is now the party leader!"));
+        CORE.Instance.CurrentParty.leaderName = leaderName;
+
+
+        CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
     public void OnPartyToggleOffline(string eventName, JSONNode data)
@@ -1256,18 +1278,40 @@ public class SocketHandler : MonoBehaviour
         string actorName = data["actorName"].Value;
         bool isOffline = data["offline"].AsBool;
 
-        // TODO log that the actor is online/offline
-        // TODO refresh the party with the offline status
+        List<string> offlineMembers = CORE.Instance.CurrentParty.membersOffline.OfType<string>().ToList();
+        List<string> members = CORE.Instance.CurrentParty.members.OfType<string>().ToList();
+
+        if (isOffline)
+        {
+            
+            members.Remove(actorName);
+            offlineMembers.Add(actorName);
+
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has gone offline</color>");
+        }
+        else
+        {
+            offlineMembers.Remove(actorName);
+            members.Add(actorName);
+
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has come online! offline</color>");
+        }
+
+
+        CORE.Instance.CurrentParty.members = members.ToArray();
+        CORE.Instance.CurrentParty.membersOffline = offlineMembers.ToArray();
+
+
+        CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
     public void OnPartyStatus(string eventName, JSONNode data)
     {
-        string leaderName = data["leaderName"].Value;
-        string[] members = JsonConvert.DeserializeObject<string[]>(data["members"].ToString());
-        string[] membersOffline = JsonConvert.DeserializeObject<string[]>(data["membersOffline"].ToString());
+        CORE.Instance.CurrentParty = JsonConvert.DeserializeObject<PartyData>(data["party"].ToString());
 
-        // TODO refresh the party
+        CORE.Instance.InvokeEvent("PartyUpdated");
     }
+
     #endregion
 }
 

@@ -29,6 +29,8 @@ public class CORE : MonoBehaviour
 
     public RoomData Room;
 
+    public PartyData CurrentParty;
+
     public Dictionary<string, string> GameStates = new Dictionary<string, string>();
 
     public bool DEBUG = false;
@@ -525,7 +527,14 @@ public class CORE : MonoBehaviour
             }
         }
     }
+}
 
+[Serializable]
+public class PartyData
+{
+    public string leaderName;
+    public string[] members;
+    public string[] membersOffline;
 }
 
 [Serializable]
