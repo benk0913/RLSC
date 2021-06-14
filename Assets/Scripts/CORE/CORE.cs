@@ -98,6 +98,7 @@ public class CORE : MonoBehaviour
 
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
+        WindowToKeyMap.Add(PartyWindowUI.Instance, InputMap.Map["Party Window"]);
         WindowToKeyMap.Add(SideButtonUI.Instance, InputMap.Map["Exit"]);
     }
 
@@ -535,6 +536,15 @@ public class PartyData
     public string leaderName;
     public string[] members;
     public string[] membersOffline;
+
+    [JsonIgnore]
+    public bool IsPlayerLeader
+    {
+        get
+        {
+            return CORE.Instance.Room.PlayerActor.name == leaderName;
+        }
+    }
 }
 
 [Serializable]

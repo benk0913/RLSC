@@ -27,16 +27,79 @@ public class PartyMemberDisplayUI : MonoBehaviour
     [SerializeField]
     GameObject InspectButton;
 
+    [SerializeField]
+    GameObject LeaderMarker;
+
     Actor CurrentActor;
 
     string CurrentMemberName;
 
     public bool IsPlayer;
+    public bool IsOffline;
+    public bool IsInRoom;
+    public bool IsLeader;
 
-    PartyMemberState State;
 
-    public void SetInfo(string memberName)
+    void OnEnable()
     {
+        CORE.Instance.SubscribeToEvent("PartyUpdated", OnPartyUpdated);
+        OnPartyUpdated();
+    }
+
+    private void OnDisable()
+    {
+        CORE.Instance.UnsubscribeFromEvent("PartyUpdated", OnPartyUpdated);
+    }
+
+    public void OnPartyUpdated()
+    {
+        if (string.IsNullOrEmpty(CurrentMemberName))
+        {
+            RemoveSelf();
+            return;
+        }
+
+        if (CORE.Instance.CurrentParty == null)
+        {
+            RemoveSelf();
+            return;
+        }
+
+        bool isOnline = false;
+        bool isInParty = false;
+
+        for (int i = 0; i < CORE.Instance.CurrentParty.members.Length; i++)
+        {
+            if (CORE.Instance.CurrentParty.members[i] == CurrentMemberName)
+            {
+                isOnline = true;
+                break;
+            }
+        }
+
+        if (!isOnline)
+        {
+            for (int i = 0; i < CORE.Instance.CurrentParty.membersOffline.Length; i++)
+            {
+                if (CORE.Instance.CurrentParty.membersOffline[i] == CurrentMemberName)
+                {
+                    isInParty = true;
+                    break;
+                }
+            }
+        }
+
+        if (!isInParty)
+        {
+            RemoveSelf();
+        }
+
+        SetInfo(CurrentMemberName);
+    }
+
+    public void SetInfo(string memberName, bool isOffline = false)
+    {
+        this.IsOffline = isOffline;
         CurrentMemberName = memberName;
         CurrentActor = null;
         RefreshUI();
@@ -46,43 +109,83 @@ public class PartyMemberDisplayUI : MonoBehaviour
     {
         NameLabel.text = CurrentMemberName;
 
-
-        ActorData actor = CORE.Instance.Room.Actors.Find(x => x.name == CurrentMemberName);
-
-        if(actor == null)
+        if (IsOffline)
         {
-            SetFaraway();
-            return;
+            IsInRoom = false;
+        }
+        else
+        {
+            ActorData actor = CORE.Instance.Room.Actors.Find(x => x.name == CurrentMemberName);
+
+            if (actor == null)
+            {
+                IsInRoom = false;
+            }
+
+            if (IsInRoom)
+            {
+                CurrentActor = actor.ActorEntity;
+
+                if (CurrentActor == null)
+                {
+                    IsInRoom = false;
+                }
+            }
         }
 
-        IsPlayer = actor == CORE.Instance.Room.PlayerActor;
+        IsPlayer = CurrentMemberName == CORE.Instance.Room.PlayerActor.name;
+        IsLeader = CORE.Instance.CurrentParty.leaderName != CurrentMemberName;
+
 
         LeaveButton.SetActive(IsPlayer);
-        KickButton.SetActive(!IsPlayer);
+        KickButton.SetActive(CORE.Instance.CurrentParty.IsPlayerLeader && !IsPlayer);
+        InspectButton.SetActive(!IsOffline && IsInRoom);
+        PromoteButton.SetActive(!IsPlayer && !IsLeader && CORE.Instance.CurrentParty.IsPlayerLeader);
+        LeaderMarker.SetActive(IsLeader);
 
-        CurrentActor = actor.ActorEntity;
-
-        if(CurrentActor == null)
+        if (IsInRoom)
         {
-            SetFaraway();
+            ClassIcon.gameObject.SetActive(true);
+            ClassIcon.sprite = CurrentActor.State.Data.ClassJobReference.Icon;
+            Background.color = CurrentActor.State.Data.ClassJobReference.ClassColor;
+        }
+        else
+        {
+            ClassIcon.gameObject.SetActive(false);
+            Background.color = Color.grey;
+        }
+    }
+    
+    public void RemoveSelf()
+    {
+        PartyWindowUI.Instance.RemoveMember(this);
+    }
+
+    public void KickPlayer()
+    {
+        SocketHandler.Instance.SendPartyKick(CurrentMemberName);
+    }
+
+    public void LeaveParty()
+    {
+        SocketHandler.Instance.SendPartyLeave();
+        //TODO Remove self()?
+    }
+
+    public void PromotePlayer()
+    {
+        SocketHandler.Instance.SendPartyLeader(CurrentMemberName);
+    }
+
+    public void InspectPlayer()
+    {
+        if (IsOffline || !IsInRoom)
+        {
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Player is not nearby...", Color.red));
             return;
         }
 
-
-        ClassIcon.sprite = CurrentActor.State.Data.ClassJobReference.Icon;
-        Background.color = CurrentActor.State.Data.ClassJobReference.ClassColor;
+        InventoryUI.Instance.Show(CORE.Instance.Room.Actors.Find(X => X.name == CurrentMemberName));
     }
 
-    public void SetFaraway()
-    {
-        State = PartyMemberState.FarAway;
-    }
-
-}
-
-public enum PartyMemberState
-{
-    Nearby,
-    FarAway,
-    Offline
 }

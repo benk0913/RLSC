@@ -1161,7 +1161,7 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["actorName"] = actorName;
         
-        SocketHandler.Instance.SendEvent("party_invite", node);
+        SendEvent("party_invite", node);
     }
 
     public void SendPartyInviteResponse(bool accept)
@@ -1169,14 +1169,17 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["accept"].AsBool = accept;
         
-        SocketHandler.Instance.SendEvent("party_invite_response", node);
+        SendEvent("party_invite_response", node);
+        LootRollPanelUI.Instance.RemovePartyInvitation();
     }
 
     public void SendPartyLeave()
     {
         JSONNode node = new JSONClass();
         
-        SocketHandler.Instance.SendEvent("party_leave", node);
+        SendEvent("party_leave", node);
+        CORE.Instance.CurrentParty = null;
+        CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
     public void SendPartyKick(string actorName)
@@ -1184,7 +1187,7 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["actorName"] = actorName;
         
-        SocketHandler.Instance.SendEvent("party_kick", node);
+        SendEvent("party_kick", node);
     }
 
     public void SendPartyLeader(string actorName)
@@ -1192,7 +1195,7 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["actorName"] = actorName;
         
-        SocketHandler.Instance.SendEvent("party_leader", node);
+        SendEvent("party_leader", node);
     }
 
     public void OnPartyInvite(string eventName, JSONNode data)
@@ -1200,13 +1203,13 @@ public class SocketHandler : MonoBehaviour
         string leaderName = data["leaderName"].Value;
 
         CORE.Instance.AddChatMessage("<color=yellow>"+ leaderName+" had invited you to a party!</color>");
-        // TODO show invite with leader name.
+        LootRollPanelUI.Instance.AddPartyInvitation(leaderName);
     }
 
     public void OnPartyInviteTimeout(string eventName, JSONNode data)
     {
         CORE.Instance.AddChatMessage("<color=yellow> The party invitation had timed out...</color>");
-        // TODO hide party invitation
+        LootRollPanelUI.Instance.RemovePartyInvitation();
     }
 
     public void OnPartyJoin(string eventName, JSONNode data)
@@ -1294,7 +1297,7 @@ public class SocketHandler : MonoBehaviour
             offlineMembers.Remove(actorName);
             members.Add(actorName);
 
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has come online! offline</color>");
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has come online!</color>");
         }
 
 

@@ -8,6 +8,8 @@ public class LootRollPanelUI : MonoBehaviour
 
     List<LootRollItemUI> Items = new List<LootRollItemUI>();
 
+    List<PartyInvitePanelUI> Invites = new List<PartyInvitePanelUI>();
+
     private void Awake()
     {
         Instance = this;
@@ -48,6 +50,43 @@ public class LootRollPanelUI : MonoBehaviour
         }
 
         itm.Release();
+    }
+
+    public void AddPartyInvitation(string fromPlayer)
+    {
+        PartyInvitePanelUI partyInviteUI = ResourcesLoader.Instance.GetRecycledObject("PartyInvitePanelUI").GetComponent<PartyInvitePanelUI>();
+
+        partyInviteUI.SetInfo(fromPlayer);
+        partyInviteUI.transform.SetParent(transform, false);
+        Invites.Add(partyInviteUI);
+    }
+
+    public void RemovePartyInvitation(string fromPlayer = "")
+    {
+        if(Invites.Count == 0)
+        {
+            return;
+        }
+
+        PartyInvitePanelUI partyInviteUI;
+        if (string.IsNullOrEmpty(fromPlayer))
+        {
+            partyInviteUI = Invites[0];
+        }
+        else
+        {
+            partyInviteUI = Invites.Find(x => x.CurrentFromPlayer == fromPlayer);
+        }
+        
+
+        if (partyInviteUI == null)
+        {
+            CORE.Instance.LogMessageError("NO PARTY INVITE FROM " + fromPlayer);
+            return;
+        }
+
+        partyInviteUI.gameObject.SetActive(false);
+        Invites.Remove(partyInviteUI);
     }
 
 }
