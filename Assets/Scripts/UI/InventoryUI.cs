@@ -145,7 +145,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (!isInspecting)
         {
-            MoneyLabel.text = currentActor.money.ToString() + "c";
+            MoneyLabel.text = currentActor.money.ToString();
 
             CORE.ClearContainer(ItemsContainer);
 
@@ -166,7 +166,13 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             Item item = null;
             currentActor.equips.TryGetValue(EquipSlots[i].Type.name, out item); 
             InventorySlotUI slot = EquipSlots[i].Slot;
-            slot.SetItem(item, () => Select(slot), EquipSlots[i].Type);
+            
+                slot.SetItem(item, () => {
+                    if (!isInspecting)
+                    {
+                        Select(slot);
+                    }
+                }, EquipSlots[i].Type);
         }
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));
