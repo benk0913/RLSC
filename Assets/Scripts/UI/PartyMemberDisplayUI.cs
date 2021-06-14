@@ -152,7 +152,16 @@ public class PartyMemberDisplayUI : MonoBehaviour
         else
         {
             ClassIcon.gameObject.SetActive(false);
-            Background.color = Color.grey;
+
+            if (IsOffline)
+            {
+                NameLabel.text = CurrentMemberName + " (OFFLINE)";
+                Background.color = Color.black;
+            }
+            else
+            {
+                Background.color = Color.grey;
+            }
         }
     }
     
