@@ -110,13 +110,13 @@ public class CORE : MonoBehaviour
             {
                 if(Input.GetKeyDown(windowToKeyCode.Value))
                 {
-                    ShowWindow(windowToKeyCode.Key, windowToKeyCode.Value);
+                    ShowWindow(windowToKeyCode.Key, windowToKeyCode.Value, null);
                 }
             }
         }
     }
 
-    public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed)
+    public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed, ActorData ofActor)
     {
         bool isTargetWindowClosed = CurrentWindow != WindowToShow;
         bool closedAWindow = CurrentWindow != null;
@@ -125,23 +125,28 @@ public class CORE : MonoBehaviour
         if (isTargetWindowClosed && !isClosingAWindowWithExit)
         {
             CurrentWindow = WindowToShow;
-            CurrentWindow.Show(SocketHandler.Instance.CurrentUser.actor);
+            CurrentWindow.Show(ofActor == null ? SocketHandler.Instance.CurrentUser.actor : ofActor);
         }
     }
 
     public void ShowAbilitiesUiWindow()
     {
-        ShowWindow(AbilitiesUI.Instance, null);
+        ShowWindow(AbilitiesUI.Instance, null, null);
     }
 
     public void ShowInventoryUiWindow()
     {
-        ShowWindow(InventoryUI.Instance, null);
+        ShowWindow(InventoryUI.Instance, null, null);
+    }
+
+    public void ShowInventoryUiWindow(ActorData ofActor)
+    {
+        ShowWindow(InventoryUI.Instance, null, ofActor);
     }
 
     public void ShowSideButtonUiWindow()
     {
-        ShowWindow(SideButtonUI.Instance, null);
+        ShowWindow(SideButtonUI.Instance, null, null);
     }
 
     public void CloseCurrentWindow()

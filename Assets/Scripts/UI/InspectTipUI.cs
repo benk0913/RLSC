@@ -59,7 +59,7 @@ public class InspectTipUI : MonoBehaviour
 
             if (!CORE.Instance.IsTyping && Input.GetKeyDown(InputMap.Map["Inspect"]))
             {
-                InventoryUI.Instance.Show(currentActor.State.Data);
+                CORE.Instance.ShowInventoryUiWindow(currentActor.State.Data);
             }
         }
     }

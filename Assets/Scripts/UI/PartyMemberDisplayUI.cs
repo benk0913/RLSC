@@ -181,7 +181,7 @@ public class PartyMemberDisplayUI : MonoBehaviour
             return;
         }
 
-        InventoryUI.Instance.Show(CORE.Instance.Room.Actors.Find(X => X.name == CurrentMemberName));
+        CORE.Instance.ShowInventoryUiWindow(CORE.Instance.Room.Actors.Find(X => X.name == CurrentMemberName));
     }
 
 }

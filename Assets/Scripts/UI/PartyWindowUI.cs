@@ -48,11 +48,6 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         CORE.Instance.UnsubscribeFromEvent("PartyUpdated", RefreshUI);
     }
 
-    public void Show()
-    {
-        this.Show(null);
-    }
-
     public void Show(ActorData actorData)
     {
         IsOpen = true;
