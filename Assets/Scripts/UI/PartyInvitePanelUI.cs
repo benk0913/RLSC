@@ -47,10 +47,8 @@ public class PartyInvitePanelUI : MonoBehaviour
     {
         this.CurrentFromPlayer = fromPlayer;
         
-
         TitleText.text = "Join "+CurrentFromPlayer+"'s Party?";
-
-
+        CG.interactable = true;
 
         if (TimerRoutineInstance != null)
         {

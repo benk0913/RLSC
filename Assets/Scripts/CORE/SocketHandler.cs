@@ -1170,7 +1170,6 @@ public class SocketHandler : MonoBehaviour
         node["accept"].AsBool = accept;
         
         SendEvent("party_invite_response", node);
-        LootRollPanelUI.Instance.RemovePartyInvitation();
     }
 
     public void SendPartyLeave()
