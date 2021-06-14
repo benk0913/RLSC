@@ -1178,8 +1178,6 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         
         SendEvent("party_leave", node);
-        CORE.Instance.CurrentParty = null;
-        CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
     public void SendPartyKick(string actorName)
@@ -1217,12 +1215,6 @@ public class SocketHandler : MonoBehaviour
         string actorName = data["actorName"].Value;
 
         CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has joined the party!</color>");
-
-        List<string> members = CORE.Instance.CurrentParty.members.OfType<string>().ToList();
-        members.Add(actorName);
-        CORE.Instance.CurrentParty.members = members.ToArray();
-
-        CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
     public void OnPartyDecline(string eventName, JSONNode data)
@@ -1254,14 +1246,6 @@ public class SocketHandler : MonoBehaviour
         } else if (reason == "kicked") {
             CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " was kicked out of the party.</color>");
         }
-
-
-        CORE.Instance.CurrentParty.members  = CORE.Instance.CurrentParty.members.Where(val => val != actorName).ToArray();
-        CORE.Instance.CurrentParty.membersOffline = CORE.Instance.CurrentParty.membersOffline.Where(val => val != actorName).ToArray();
-
-
-        CORE.Instance.InvokeEvent("PartyUpdated");
-
     }
 
     public void OnPartyLeader(string eventName, JSONNode data)
@@ -1270,10 +1254,6 @@ public class SocketHandler : MonoBehaviour
 
         CORE.Instance.AddChatMessage("<color=yellow>" + leaderName + " is now the party leader!</color>");
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(leaderName + " is now the party leader!"));
-        CORE.Instance.CurrentParty.leaderName = leaderName;
-
-
-        CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
     public void OnPartyToggleOffline(string eventName, JSONNode data)
@@ -1281,31 +1261,14 @@ public class SocketHandler : MonoBehaviour
         string actorName = data["actorName"].Value;
         bool isOffline = data["offline"].AsBool;
 
-        List<string> offlineMembers = CORE.Instance.CurrentParty.membersOffline.OfType<string>().ToList();
-        List<string> members = CORE.Instance.CurrentParty.members.OfType<string>().ToList();
-
         if (isOffline)
         {
-            
-            members.Remove(actorName);
-            offlineMembers.Add(actorName);
-
             CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has gone offline</color>");
         }
         else
         {
-            offlineMembers.Remove(actorName);
-            members.Add(actorName);
-
             CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has come online!</color>");
         }
-
-
-        CORE.Instance.CurrentParty.members = members.ToArray();
-        CORE.Instance.CurrentParty.membersOffline = offlineMembers.ToArray();
-
-
-        CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
     public void OnPartyStatus(string eventName, JSONNode data)

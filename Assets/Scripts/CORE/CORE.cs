@@ -535,7 +535,7 @@ public class PartyData
 {
     public string leaderName;
     public string[] members;
-    public string[] membersOffline;
+    public Dictionary<string, bool> membersOffline;
 
     [JsonIgnore]
     public bool IsPlayerLeader

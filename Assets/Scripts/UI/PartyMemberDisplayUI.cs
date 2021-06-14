@@ -65,27 +65,14 @@ public class PartyMemberDisplayUI : MonoBehaviour
             return;
         }
 
-        bool isOnline = false;
         bool isInParty = false;
 
         for (int i = 0; i < CORE.Instance.CurrentParty.members.Length; i++)
         {
             if (CORE.Instance.CurrentParty.members[i] == CurrentMemberName)
             {
-                isOnline = true;
+                isInParty = true;
                 break;
-            }
-        }
-
-        if (!isOnline)
-        {
-            for (int i = 0; i < CORE.Instance.CurrentParty.membersOffline.Length; i++)
-            {
-                if (CORE.Instance.CurrentParty.membersOffline[i] == CurrentMemberName)
-                {
-                    isInParty = true;
-                    break;
-                }
             }
         }
 

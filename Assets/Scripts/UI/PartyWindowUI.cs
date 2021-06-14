@@ -63,7 +63,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         
         AudioControl.Instance.Play(OpenSound);
 
-        if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length + CORE.Instance.CurrentParty.membersOffline.Length >= CORE.Instance.Data.content.MaxPartyMembers)
+        if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length >= CORE.Instance.Data.content.MaxPartyMembers)
         {
             AddButton.SetActive(false);
         }
@@ -100,16 +100,8 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         foreach (string member in CORE.Instance.CurrentParty.members)
         {
             PartyMemberDisplayUI element = ResourcesLoader.Instance.GetRecycledObject("PartyMemberDisplay").GetComponent<PartyMemberDisplayUI>();
-            element.SetInfo(member, false);
-            element.transform.SetParent(PartyMembersContainer, false);
-            element.transform.localScale = Vector3.one;
-            element.transform.position = Vector3.zero;
-        }
-
-        foreach (string member in CORE.Instance.CurrentParty.membersOffline)
-        {
-            PartyMemberDisplayUI element = ResourcesLoader.Instance.GetRecycledObject("PartyMemberDisplay").GetComponent<PartyMemberDisplayUI>();
-            element.SetInfo(member, true);
+            bool isOffline = CORE.Instance.CurrentParty.membersOffline.ContainsKey(member);
+            element.SetInfo(member, isOffline);
             element.transform.SetParent(PartyMembersContainer, false);
             element.transform.localScale = Vector3.one;
             element.transform.position = Vector3.zero;

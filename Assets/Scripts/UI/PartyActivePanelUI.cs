@@ -44,15 +44,6 @@ public class PartyActivePanelUI : MonoBehaviour
             element.transform.localScale = Vector3.one;
             element.transform.position = Vector3.zero;
         }
-
-        foreach (string member in CORE.Instance.CurrentParty.membersOffline)
-        {
-            PartyMemberActivePanelUI element = ResourcesLoader.Instance.GetRecycledObject("PartyMemberActivePanelUI").GetComponent<PartyMemberActivePanelUI>();
-            element.SetCurrentActor(member);
-            element.transform.SetParent(MembersContainer, false);
-            element.transform.localScale = Vector3.one;
-            element.transform.position = Vector3.zero;
-        }
     }
 
 
