@@ -119,7 +119,8 @@ public class CORE : MonoBehaviour
     public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed)
     {
         bool isTargetWindowClosed = CurrentWindow != WindowToShow;
-        bool closedAWindow = CloseCurrentWindow();
+        bool closedAWindow = CurrentWindow != null;
+        CloseCurrentWindow();
         bool isClosingAWindowWithExit = closedAWindow && keyPressed == InputMap.Map["Exit"];
         if (isTargetWindowClosed && !isClosingAWindowWithExit)
         {
@@ -143,15 +144,13 @@ public class CORE : MonoBehaviour
         ShowWindow(SideButtonUI.Instance, null);
     }
 
-    public bool CloseCurrentWindow()
+    public void CloseCurrentWindow()
     {
         if (CurrentWindow != null)
         {
             CurrentWindow.Hide();
             CurrentWindow = null;
-            return true;
         }
-        return false;
     }
 
     public static void ClearContainer(Transform container)
