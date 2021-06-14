@@ -77,8 +77,6 @@ public class PartyInvitePanelUI : MonoBehaviour
             yield return 0;
         }
 
-        Decline();
-
         TimerRoutineInstance = null;
     }
 
