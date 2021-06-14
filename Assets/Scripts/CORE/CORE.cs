@@ -144,6 +144,11 @@ public class CORE : MonoBehaviour
         ShowWindow(InventoryUI.Instance, null, ofActor);
     }
 
+    public void ShowPartyUiWindow()
+    {
+        ShowWindow(PartyWindowUI.Instance, null, null);
+    }
+
     public void ShowSideButtonUiWindow()
     {
         ShowWindow(SideButtonUI.Instance, null, null);
