@@ -65,7 +65,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     GameObject InventoryPanel;
 
     [SerializeField]
-    GameObject InspectPanel;
+    InspectionPanelUI InspectPanel;
 
 
 
@@ -112,9 +112,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         StatsPanel.SetActor(ofActor);
         StatsPanel.RefreshStats();
+        InspectPanel.SetActor(ofActor);
 
         InventoryPanel.SetActive(!isInspecting);
-        InspectPanel.SetActive(isInspecting);
+        InspectPanel.gameObject.SetActive(isInspecting);
 
         RefreshUI(false);
 

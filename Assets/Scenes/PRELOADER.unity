@@ -654,7 +654,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 33794697}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 316043827}
+        m_TargetAssemblyTypeName: InspectionPanelUI, Assembly-CSharp
+        m_MethodName: SendPartyInvite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &33794697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4750,6 +4762,7 @@ GameObject:
   - component: {fileID: 316043824}
   - component: {fileID: 316043826}
   - component: {fileID: 316043825}
+  - component: {fileID: 316043827}
   m_Layer: 5
   m_Name: InspectionPanel
   m_TagString: Untagged
@@ -4819,6 +4832,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316043823}
   m_CullTransparentMesh: 1
+--- !u!114 &316043827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316043823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb7cbe3c9f17d3438825f74a085aeb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &342533475
 GameObject:
   m_ObjectHideFlags: 0
@@ -22376,7 +22401,7 @@ MonoBehaviour:
   DeselectSound: Deselect
   DropSound: DropItem
   InventoryPanel: {fileID: 2031940290}
-  InspectPanel: {fileID: 316043823}
+  InspectPanel: {fileID: 316043827}
   EquipSlots:
   - Slot: {fileID: 1386928153}
     Type: {fileID: 11400000, guid: 1e7f4f4e0c6a7e94da1fe66e4bec4710, type: 2}
