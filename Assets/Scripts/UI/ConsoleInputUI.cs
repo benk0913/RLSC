@@ -71,7 +71,7 @@ public class ConsoleInputUI : MonoBehaviour
                 SendConsoleMessage();
             }
         }
-        else
+        else if (!CORE.Instance.HasWindowOpen)
         {
             Show();
         }
