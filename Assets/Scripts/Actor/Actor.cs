@@ -725,13 +725,16 @@ public class Actor : MonoBehaviour
 
         Shadow.gameObject.SetActive(true);
 
-        CORE.Instance.ShowScreenEffect("ScreenEffectRevived");
-
-        if (Ghost != null)
+        if (State.Data.IsPlayer)
         {
-            Destroy(Ghost.gameObject);
-            Ghost = null;
-            CameraChaseEntity.Instance.ReferenceObject = this.transform;
+            CORE.Instance.ShowScreenEffect("ScreenEffectRevived");
+
+            if (Ghost != null)
+            {
+                Destroy(Ghost.gameObject);
+                Ghost = null;
+                CameraChaseEntity.Instance.ReferenceObject = this.transform;
+            }
         }
     }
 

@@ -274,6 +274,14 @@ public class CORE : MonoBehaviour
 
     public void SpawnActor(ActorData actorData)
     {
+        ActorData existingActor = Room.Actors.Find(X => X.actorId == actorData.actorId);
+
+        if(existingActor != null && existingActor.ActorEntity != null && existingActor.ActorEntity.IsDead)
+        {
+            existingActor.ActorEntity.Resurrect();
+            return;
+        }
+
         GameObject actorObject;
 
         actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.prefab);

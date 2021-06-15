@@ -53,35 +53,7 @@ public class PartyMemberDisplayUI : MonoBehaviour
 
     public void OnPartyUpdated()
     {
-        if (string.IsNullOrEmpty(CurrentMemberName))
-        {
-            RemoveSelf();
-            return;
-        }
-
-        if (CORE.Instance.CurrentParty == null)
-        {
-            RemoveSelf();
-            return;
-        }
-
-        bool isInParty = false;
-
-        for (int i = 0; i < CORE.Instance.CurrentParty.members.Length; i++)
-        {
-            if (CORE.Instance.CurrentParty.members[i] == CurrentMemberName)
-            {
-                isInParty = true;
-                break;
-            }
-        }
-
-        if (!isInParty)
-        {
-            RemoveSelf();
-        }
-
-        SetInfo(CurrentMemberName);
+        RefreshUI();
     }
 
     public void SetInfo(string memberName, bool isOffline = false)
@@ -121,7 +93,7 @@ public class PartyMemberDisplayUI : MonoBehaviour
         }
 
         IsPlayer = CurrentMemberName == CORE.Instance.Room.PlayerActor.name;
-        IsLeader = CORE.Instance.CurrentParty.leaderName != CurrentMemberName;
+        IsLeader = CORE.Instance.CurrentParty.leaderName == CurrentMemberName;
 
 
         LeaveButton.SetActive(IsPlayer);
@@ -151,11 +123,7 @@ public class PartyMemberDisplayUI : MonoBehaviour
             }
         }
     }
-    
-    public void RemoveSelf()
-    {
-        PartyWindowUI.Instance.RemoveMember(this);
-    }
+   
 
     public void KickPlayer()
     {

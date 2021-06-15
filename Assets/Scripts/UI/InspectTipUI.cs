@@ -27,11 +27,26 @@ public class InspectTipUI : MonoBehaviour
 
         Actor playerActor = CORE.Instance.Room.PlayerActor.ActorEntity;
 
-        currentActor = CORE.Instance.Room.GetNearestActor(playerActor, true);
-
-        if (currentActor != null && Vector2.Distance(currentActor.transform.position, playerActor.transform.position) > 20)
+        float smallestDist = 10;
+        currentActor = null;
+        for (int i = 0; i < CORE.Instance.Room.Actors.Count; i++)
         {
-            currentActor = null;
+            if(CORE.Instance.Room.Actors[i].IsPlayer)
+            {
+                continue;
+            }
+
+            if(CORE.Instance.Room.Actors[i].ActorEntity == null)
+            {
+                continue;
+            }
+
+            float dist = Vector2.Distance(playerActor.transform.position, CORE.Instance.Room.Actors[i].ActorEntity.transform.position);
+            if (dist < smallestDist)
+            {
+                currentActor = CORE.Instance.Room.Actors[i].ActorEntity;
+                smallestDist = dist;
+            }
         }
 
 
@@ -44,7 +59,7 @@ public class InspectTipUI : MonoBehaviour
         }
         else
         {
-            string targetString = "to inspect " + currentActor.name; ;
+            string targetString = "to inspect " + currentActor.State.Data.name; ;
             if (ContentLabel.text != targetString)
             {
                 KeyLabel.text = InputMap.Map["Inspect"].ToString();

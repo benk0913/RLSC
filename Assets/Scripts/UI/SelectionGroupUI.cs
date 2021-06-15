@@ -286,7 +286,7 @@ public class SelectionGroupUI : MonoBehaviour
             Select(CurrentSelected.toRight);
         }
 
-        if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return))
         {
             AudioEntityUIHandle audioEntity = CurrentSelected.CS.GetComponent<AudioEntityUIHandle>();
             if (audioEntity != null)

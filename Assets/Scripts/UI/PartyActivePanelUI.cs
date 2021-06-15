@@ -28,6 +28,7 @@ public class PartyActivePanelUI : MonoBehaviour
         if(CORE.Instance.CurrentParty == null)
         {
             HideActivePanel();
+            return;
         }
         else
         {

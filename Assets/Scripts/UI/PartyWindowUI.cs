@@ -27,7 +27,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         Hide();
     }
 
-    void OnEnable()
+    void Start()
     {
         if(Instance == null)
         {
@@ -38,15 +38,6 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         RefreshUI();
     }
 
-    private void OnDisable()
-    {
-        if (Instance == null)
-        {
-            return;
-        }
-
-        CORE.Instance.UnsubscribeFromEvent("PartyUpdated", RefreshUI);
-    }
 
     public void Show(ActorData actorData)
     {
@@ -54,11 +45,13 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
         this.gameObject.SetActive(true);
         
-        RefreshUI();
         
         AudioControl.Instance.Play(OpenSound);
 
-        if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length >= CORE.Instance.Data.content.MaxPartyMembers)
+        
+        RefreshUI();
+        
+        if (CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length >= CORE.Instance.Data.content.MaxPartyMembers)
         {
             AddButton.SetActive(false);
         }
@@ -66,6 +59,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         {
             AddButton.SetActive(true);
         }
+        
     }
 
     public void Hide()
@@ -79,7 +73,6 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
     public void RefreshUI()
     {
-        
         if (!IsOpen)
         {
             return;
@@ -87,7 +80,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
         CORE.ClearContainer(PartyMembersContainer);
 
-        if(CORE.Instance.CurrentParty == null)
+        if (CORE.Instance.CurrentParty == null)
         {
             return;
         }
