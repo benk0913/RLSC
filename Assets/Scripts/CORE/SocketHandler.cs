@@ -146,16 +146,6 @@ public class SocketHandler : MonoBehaviour
         SocketManager.Socket.On(SocketIOEventTypes.Error, OnErrorRawCallback);
     }
 
-    public void RemoveListeners()
-    {
-        foreach (SocketEventListener listener in SocketEventListeners)
-        {
-            SocketManager.Socket.Off(listener.EventKey, listener.Callback);
-        }
-
-        SocketManager.Socket.Off(SocketIOEventTypes.Error, OnErrorRawCallback);
-    }
-
     #endregion
 
 
@@ -275,6 +265,8 @@ public class SocketHandler : MonoBehaviour
 
         options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
 
+        DisconnectSocket();
+
         SocketManager = new SocketManager(new Uri(SocketUrl),options);
         SocketManager.Encoder = new SimpleJsonEncoder();
 
@@ -307,17 +299,18 @@ public class SocketHandler : MonoBehaviour
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Rejecting Humanity... Returning to MONKE...", Color.green, 3f, true));
 
-        if (SocketManager != null)
-        {
-            SocketManager.Socket.Off();
-            //RemoveListeners();
-            SocketManager.Socket.Disconnect();
-        }
-        //SocketManager.Close();
-
-        
+        DisconnectSocket();
 
         CORE.Instance.LogMessage("Disconnected From Socket.");
+    }
+
+    private void DisconnectSocket()
+    {
+        if (SocketManager != null)
+        {
+            SocketManager.Close();
+            SocketManager = null;
+        }
     }
 
 
@@ -421,7 +414,7 @@ public class SocketHandler : MonoBehaviour
         if (request.isNetworkError || request.isHttpError)
         {
             CORE.Instance.LogMessageError(request.error);
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(request.downloadHandler.text, Color.red, 2f, true));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(request.error, Color.red, 2f, true));
 
             yield break;
         }
@@ -468,8 +461,16 @@ public class SocketHandler : MonoBehaviour
             case SocketIOErrors.User:
                 CORE.Instance.LogMessageError("Exception in an event handler! Message: " + error.Message);
                 break;
+            case SocketIOErrors.Custom:
+                // This error case is when having issues connecting to the game, e.g. when you're already connected on another PC.
+                JSONNode errorData = JSON.Parse(error.Message.ToString());
+                string errorMessage = errorData["message"];
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(errorMessage, Color.red, 2, true));
+                CORE.Instance.LogMessageError("Server custom error. Message: " + errorMessage);
+                DisconnectSocket();
+                break;
             default:
-                CORE.Instance.LogMessageError("Server error! Message: " + error.Message);
+                CORE.Instance.LogMessageError("Server error!"  + " Code: " + error.Code + ". Message: " + error.Message);
                 break;
         }
     }
