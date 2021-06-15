@@ -31,7 +31,12 @@ public class InspectTipUI : MonoBehaviour
         currentActor = null;
         for (int i = 0; i < CORE.Instance.Room.Actors.Count; i++)
         {
-            if(CORE.Instance.Room.Actors[i].IsPlayer)
+            if (CORE.Instance.Room.Actors[i].isMob)
+            {
+                continue;
+            }
+
+            if (CORE.Instance.Room.Actors[i].IsPlayer)
             {
                 continue;
             }
