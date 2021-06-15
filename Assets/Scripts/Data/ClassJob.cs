@@ -28,4 +28,10 @@ public class ClassJob : ScriptableObject
     public List<ItemData> DropsOnDeath = new List<ItemData>();
     
     public List<AbilityParam> OnDeathParams = new List<AbilityParam>();
+
+    [JsonIgnore]
+    public List<string> UniqueHurtSounds = new List<string>();
+
+    [JsonIgnore]
+    public string UniqueDeathSound;
 }

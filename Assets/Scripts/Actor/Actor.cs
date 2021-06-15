@@ -657,6 +657,11 @@ public class Actor : MonoBehaviour
         {
             CORE.Instance.ShowScreenEffect("ScreenEffectHurt",null,true);
         }
+
+        if(State.Data.ClassJobReference.UniqueHurtSounds.Count > 0)
+        {
+            AudioControl.Instance.PlayInPosition(State.Data.ClassJobReference.UniqueHurtSounds[UnityEngine.Random.Range(0, State.Data.ClassJobReference.UniqueHurtSounds.Count)],transform.position);
+        }
     }
 
 
@@ -681,6 +686,11 @@ public class Actor : MonoBehaviour
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
         Shadow.gameObject.SetActive(false);
+
+        if (!string.IsNullOrEmpty(State.Data.ClassJobReference.UniqueDeathSound))
+        {
+            AudioControl.Instance.PlayInPosition(State.Data.ClassJobReference.UniqueDeathSound, transform.position);
+        }
 
         if (!State.Data.IsPlayer)
         {
