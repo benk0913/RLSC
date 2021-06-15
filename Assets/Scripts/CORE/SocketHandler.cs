@@ -167,7 +167,7 @@ public class SocketHandler : MonoBehaviour
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Color.green, 3f, true));
         
         JSONNode node = new JSONClass();
-        node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
+        node["skipTutorial"] = SkippedTutorial();
 
         SendWebRequest(HostUrl + "/login", (UnityWebRequest lreq) =>
         {
@@ -185,7 +185,7 @@ public class SocketHandler : MonoBehaviour
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Creating Character...", Color.green, 1f, true));
 
         JSONNode node = new JSONClass();
-        node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
+        node["skipTutorial"] = SkippedTutorial();
         node["classJob"] = element;
         node["actor"] = JSON.Parse(JsonConvert.SerializeObject(actor));
 
@@ -204,7 +204,7 @@ public class SocketHandler : MonoBehaviour
     public void SendGetRandomName(bool IsFemale, Action<string> OnComplete)
     {
         JSONNode node = new JSONClass();
-        node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
+        node["skipTutorial"] = SkippedTutorial();
         node["isFemale"].AsBool = IsFemale;
 
         SendWebRequest(HostUrl + "/random-name", (UnityWebRequest ccreq) =>
@@ -223,7 +223,7 @@ public class SocketHandler : MonoBehaviour
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Deleting Character...", Color.green, 1f, true));
 
         JSONNode node = new JSONClass();
-        node["skipTutorial"] = SystemInfo.deviceUniqueIdentifier;
+        node["skipTutorial"] = SkippedTutorial();
         node["actorId"] = actorId;
 
         SendWebRequest(HostUrl + "/delete-char", (UnityWebRequest ccreq) =>
@@ -266,7 +266,7 @@ public class SocketHandler : MonoBehaviour
 
         SocketOptions options = new SocketOptions();
         options.AdditionalQueryParams = new ObservableDictionary<string, string>();
-        options.AdditionalQueryParams.Add("skipTutorial", SystemInfo.deviceUniqueIdentifier);
+        options.AdditionalQueryParams.Add("skipTutorial", SkippedTutorial());
         options.AdditionalQueryParams.Add("charIndex", CurrentUser.SelectedCharacterIndex.ToString());
 
         #if UNITY_EDITOR
@@ -292,6 +292,15 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.LogMessage("Connected To Socket.");
 
         ConnectSocketRoutineInstance = null;
+    }
+
+    private string SkippedTutorial()
+    {
+        return SystemInfo.deviceUniqueIdentifier
+            #if UNITY_EDITOR
+            + "-editor"
+            #endif
+        ;
     }
 
     public void SendDisconnectSocket()
