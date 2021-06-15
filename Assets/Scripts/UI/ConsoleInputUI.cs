@@ -107,7 +107,7 @@ public class ConsoleInputUI : MonoBehaviour
         bool wasEnterPressed = Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]);
         if (!wasEnterPressed)
         {
-            Hide();
+            CORE.Instance.DelayedInvokation(0, () => Hide());
         }
     }
 
