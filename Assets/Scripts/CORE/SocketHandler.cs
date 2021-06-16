@@ -413,8 +413,8 @@ public class SocketHandler : MonoBehaviour
 
         if (request.isNetworkError || request.isHttpError)
         {
-            CORE.Instance.LogMessageError(request.error);
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(request.error, Color.red, 2f, true));
+            CORE.Instance.LogMessageError(request.error + " | " + request.downloadHandler.text);
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(request.downloadHandler.text, Color.red, 2f, true));
 
             yield break;
         }

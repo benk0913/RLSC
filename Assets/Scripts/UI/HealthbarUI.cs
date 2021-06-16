@@ -27,11 +27,11 @@ public class HealthbarUI : MonoBehaviour
 
     protected void Update()
     {
-
-        float hpPercent = 1;
-        if (CurrentActor != null) {
-            hpPercent = (float)CurrentActor.State.Data.hp / CurrentActor.State.Data.MaxHP;
+        if (CurrentActor == null || CurrentActor.State == null || CurrentActor.State.Data == null || CurrentActor.State.Data.attributes == null) {
+            return;
         }
+
+        float hpPercent = (float)CurrentActor.State.Data.hp / CurrentActor.State.Data.MaxHP;
 
         if (ShouldHideBar())
         {
