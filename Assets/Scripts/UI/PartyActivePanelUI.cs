@@ -46,7 +46,7 @@ public class PartyActivePanelUI : MonoBehaviour
         string tempString = "";
         foreach(string member in CORE.Instance.CurrentParty.members)
         {
-            tempString += member;
+            tempString += member + (CORE.Instance.CurrentParty.membersOffline.ContainsKey(member) ? "1" : "0");
         }
 
         if(tempString == checksumString)
