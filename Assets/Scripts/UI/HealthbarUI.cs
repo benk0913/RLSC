@@ -59,7 +59,7 @@ public class HealthbarUI : MonoBehaviour
 
     protected virtual bool ShouldHideBar()
     {
-        return CurrentActor == null || CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP || CurrentActor.State.Data.hp <= 0;
+        return CurrentActor == null || (CurrentActor.State.Data.isCharacter && !CurrentActor.InParty);
     }
 
     protected IEnumerator UpdateBarFillRoutine()

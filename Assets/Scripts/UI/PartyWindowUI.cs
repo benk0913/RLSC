@@ -88,7 +88,10 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         foreach (string member in CORE.Instance.CurrentParty.members)
         {
             PartyMemberDisplayUI element = ResourcesLoader.Instance.GetRecycledObject("PartyMemberDisplay").GetComponent<PartyMemberDisplayUI>();
-            bool isOffline = CORE.Instance.CurrentParty.membersOffline.ContainsKey(member);
+
+            //TODO change to this when membersOffline is working:
+            //bool isOffline = CORE.Instance.CurrentParty.membersOffline  != null &&  CORE.Instance.CurrentParty.membersOffline.ContainsKey(member);
+            bool isOffline = CORE.Instance.Room.Actors.Find(X => X.name == member) == null;
             element.SetInfo(member, isOffline);
             element.transform.SetParent(PartyMembersContainer, false);
             element.transform.localScale = Vector3.one;

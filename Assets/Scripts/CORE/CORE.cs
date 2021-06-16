@@ -405,12 +405,14 @@ public class CORE : MonoBehaviour
     void EnterGame()
     {
         GameUICG.alpha = 1f;
+        GameUICG.interactable = true;
         InGame = true;
     }
 
     void LeaveGame()
     {
         GameUICG.alpha = 0f;
+        GameUICG.interactable = false;
         InGame = false;
     }
 

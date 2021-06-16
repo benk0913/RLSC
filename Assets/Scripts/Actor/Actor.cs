@@ -124,6 +124,8 @@ public class Actor : MonoBehaviour
 
     public bool IsDead;
 
+    public bool InParty;
+
     public int ClientMovingTowardsDir;
 
     public float GroundCheckDistance = 10f;

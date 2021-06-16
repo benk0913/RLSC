@@ -14,25 +14,34 @@ public class PartyMemberActivePanelUI : MonoBehaviour
     protected Image ImageFill;
 
     [SerializeField]
+    protected Image ClassIcon;
+
+    [SerializeField]
     TextMeshProUGUI NameLabel;
+
+    [SerializeField]
+    GameObject DeadIcon;
 
 
     protected float LastHpPercent = 1f;
     protected Coroutine UpdateBarFillRoutineInstance;
 
-    string CurrentActorName;
+    public string CurrentActorName = "";
 
     public bool IsOffline;
 
     void OnEnable()
     {
         CORE.Instance.SubscribeToEvent("PartyUpdated", OnPartyUpdated);
-        OnPartyUpdated();
+        //OnPartyUpdated();
     }
 
     private void OnDisable()
     {
         CORE.Instance.UnsubscribeFromEvent("PartyUpdated", OnPartyUpdated);
+        CurrentActorName = "";
+        CurrentActor = null;
+        DeadIcon.gameObject.SetActive(false);
     }
     
     private void OnPartyUpdated()
@@ -54,7 +63,17 @@ public class PartyMemberActivePanelUI : MonoBehaviour
             {
                 IsOffline = true;
             }
+            else
+            {
+                ClassIcon.sprite = CurrentActor.State.Data.ClassJobReference.Icon;
+            }
         }
+        else 
+        {
+            ClassIcon.sprite = CurrentActor.State.Data.ClassJobReference.Icon;
+            //NameLabel.color = CurrentActor.State.Data.ClassJobReference.ClassColor;
+        }
+        
     }
 
     public void SetCurrentActor(string partyMemberName)
@@ -82,6 +101,16 @@ public class PartyMemberActivePanelUI : MonoBehaviour
         if (hpPercent != LastHpPercent)
         {
             LastHpPercent = hpPercent;
+
+            if(LastHpPercent <= 0)
+            {
+                DeadIcon.gameObject.SetActive(true);
+            }
+            else
+            {
+                DeadIcon.gameObject.SetActive(false);
+            }
+
             if (UpdateBarFillRoutineInstance != null)
             {
                 StopCoroutine(UpdateBarFillRoutineInstance);

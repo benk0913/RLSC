@@ -1284,6 +1284,18 @@ public class SocketHandler : MonoBehaviour
     {
         CORE.Instance.CurrentParty = JsonConvert.DeserializeObject<PartyData>(data["party"].ToString());
 
+        if (CORE.Instance.CurrentParty != null)
+        {
+
+            List<ActorData> partyMembers = CORE.Instance.Room.Actors.FindAll(X => X.ActorEntity.InParty);
+            partyMembers.ForEach(x => x.ActorEntity.InParty = false);
+
+            foreach (string member in CORE.Instance.CurrentParty.members)
+            {
+                CORE.Instance.Room.Actors.Find(x => x.name == member).ActorEntity.InParty = true;
+            }
+        }
+
         CORE.Instance.InvokeEvent("PartyUpdated");
     }
 

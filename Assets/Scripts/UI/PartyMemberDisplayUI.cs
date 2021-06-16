@@ -32,7 +32,7 @@ public class PartyMemberDisplayUI : MonoBehaviour
 
     Actor CurrentActor;
 
-    string CurrentMemberName;
+    string CurrentMemberName = "";
 
     public bool IsPlayer;
     public bool IsOffline;
@@ -53,6 +53,14 @@ public class PartyMemberDisplayUI : MonoBehaviour
 
     public void OnPartyUpdated()
     {
+        if(CORE.Instance.CurrentParty == null)
+        {
+            return;
+        }
+
+        //IsOffline = CORE.Instance.CurrentParty.membersOffline == null || CORE.Instance.CurrentParty.membersOffline.ContainsKey(CurrentMemberName);
+        IsOffline = false;
+
         RefreshUI();
     }
 
@@ -79,6 +87,10 @@ public class PartyMemberDisplayUI : MonoBehaviour
             if (actor == null)
             {
                 IsInRoom = false;
+            }
+            else
+            {
+                IsInRoom = true;
             }
 
             if (IsInRoom)
