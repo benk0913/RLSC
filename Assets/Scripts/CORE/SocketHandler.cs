@@ -1292,7 +1292,13 @@ public class SocketHandler : MonoBehaviour
 
             foreach (string member in CORE.Instance.CurrentParty.members)
             {
-                CORE.Instance.Room.Actors.Find(x => x.name == member).ActorEntity.InParty = true;
+                ActorData actor = CORE.Instance.Room.Actors.Find(x => x.name == member);
+                if(actor == null)
+                {
+                    continue;
+                }
+                
+                actor.ActorEntity.InParty = true;
             }
         }
 

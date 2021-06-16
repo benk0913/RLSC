@@ -29,6 +29,7 @@ public class PartyMemberActivePanelUI : MonoBehaviour
     public string CurrentActorName = "";
 
     public bool IsOffline;
+    public bool IsInRoom;
 
     void OnEnable()
     {
@@ -46,32 +47,29 @@ public class PartyMemberActivePanelUI : MonoBehaviour
     
     private void OnPartyUpdated()
     {
-        IsOffline = false;
+        IsOffline = CORE.Instance.CurrentParty.membersOffline.ContainsKey(CurrentActorName);
 
-        if(CurrentActor == null)
+        if(!IsOffline)
         {
             ActorData actor = CORE.Instance.Room.Actors.Find(x => x.name == CurrentActorName);
-            if(actor == null)
-            {
-                IsOffline = true;
-                return;
-            }
 
-            CurrentActor = actor.ActorEntity;
-
-            if (CurrentActor == null)
+            if(actor != null)
             {
-                IsOffline = true;
-            }
-            else
-            {
+                CurrentActor = actor.ActorEntity;
+                ClassIcon.enabled = true;
                 ClassIcon.sprite = CurrentActor.State.Data.ClassJobReference.Icon;
             }
+            else 
+            {
+                ClassIcon.enabled = false;
+            }
+
+            NameLabel.text = CurrentActorName;
         }
-        else 
+        else
         {
-            ClassIcon.sprite = CurrentActor.State.Data.ClassJobReference.Icon;
-            //NameLabel.color = CurrentActor.State.Data.ClassJobReference.ClassColor;
+            ClassIcon.enabled = false;
+            NameLabel.text = CurrentActorName + " (OFFLINE)";
         }
         
     }
