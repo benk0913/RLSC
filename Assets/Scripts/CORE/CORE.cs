@@ -86,8 +86,7 @@ public class CORE : MonoBehaviour
     {
         SubscribeToEvent("ActorDied", () => {Room.RefreshThreat();});
         SubscribeToEvent("ActorResurrected", () => {Room.RefreshThreat();});
-        SubscribeToEvent("ActorAddedBuff", () => {Room.RefreshThreat();});
-        SubscribeToEvent("ActorRemovedBuff", () => {Room.RefreshThreat();});
+        SubscribeToEvent("ActorChangedStates", () => {Room.RefreshThreat();});
 
 #if !UNITY_EDITOR
         DelayedInvokation(3f, () =>
@@ -599,7 +598,7 @@ public class RoomData
         float mostThreat = Mathf.NegativeInfinity;
         for(int i=0;i<Actors.Count;i++)
         {
-            if (Actors[i].ActorEntity.IsDead || Actors[i].isMob)
+            if (Actors[i].ActorEntity.IsDead || Actors[i].isMob || Actors[i].states.ContainsKey("Untargetable"))
             {
                 continue;
             }
@@ -623,7 +622,7 @@ public class RoomData
         float leastThreat = Mathf.Infinity;
         for (int i = 0; i < Actors.Count; i++)
         {
-            if (Actors[i].ActorEntity.IsDead || Actors[i].isMob)
+            if (Actors[i].ActorEntity.IsDead || Actors[i].isMob || Actors[i].states.ContainsKey("Untargetable"))
             {
                 continue;
             }

@@ -44,6 +44,8 @@ public class DatabaseContent
 
     public List<Buff> Buffs = new List<Buff>();
 
+    public List<State> States = new List<State>();
+
     public List<ItemData> Items = new List<ItemData>();
 
     public List<ItemType> Equips = new List<ItemType>();

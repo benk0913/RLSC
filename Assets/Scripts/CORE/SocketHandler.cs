@@ -956,6 +956,7 @@ public class SocketHandler : MonoBehaviour
         }
 
         actorDat.OnRefreshStates?.Invoke();
+        CORE.Instance.InvokeEvent("ActorChangedStates");
     }
 
     public void OnItemsSpawn(string eventName, JSONNode data)
