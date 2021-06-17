@@ -81,14 +81,18 @@ public class PartyActivePanelUI : MonoBehaviour
 
             if (memberPanel == null)
             {
-                PartyMemberActivePanelUI element = ResourcesLoader.Instance.GetRecycledObject("PartyMemberActivePanelUI").GetComponent<PartyMemberActivePanelUI>();
-                element.SetCurrentActor(member);
-                element.transform.SetParent(MembersContainer, false);
-                element.transform.localScale = Vector3.one;
-                element.transform.position = Vector3.zero;
-                Members.Add(element);
+                memberPanel = ResourcesLoader.Instance.GetRecycledObject("PartyMemberActivePanelUI").GetComponent<PartyMemberActivePanelUI>();
+                memberPanel.SetCurrentActor(member);
+                memberPanel.transform.SetParent(MembersContainer, false);
+                memberPanel.transform.localScale = Vector3.one;
+                memberPanel.transform.position = Vector3.zero;
+                Members.Add(memberPanel);
             }
+
+            memberPanel.transform.SetAsLastSibling();
         }
+
+        
 
         checksumString = tempString;
     }
