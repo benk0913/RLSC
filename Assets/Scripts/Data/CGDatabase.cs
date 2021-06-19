@@ -61,6 +61,8 @@ public class DatabaseContent
     public List<int> ExpChart = new List<int>();
 
     public List<string> TimePhases = new List<string>();
+    
+    public List<MoneyValueMap> MoneyValueMaps = new List<MoneyValueMap>();
 
     public string StartingScene;
 
@@ -169,4 +171,12 @@ public class ItemTypeOverride
 {
     public ItemType itemType;
     public ItemType overrideType;
+}
+
+[Serializable]
+public class MoneyValueMap
+{
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public ItemData moneyItem;
+    public int minAmount;
 }
