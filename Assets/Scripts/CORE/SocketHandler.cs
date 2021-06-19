@@ -91,7 +91,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("expedition_floor_complete", OnExpeditionFloorComplete));
 
         // Items
-        SocketEventListeners.Add(new SocketEventListener("items_spawn", OnItemsSpawn));
+        SocketEventListeners.Add(new SocketEventListener("item_spawn", OnItemsSpawn));
         SocketEventListeners.Add(new SocketEventListener("item_despawn", OnItemDespawn));
         SocketEventListeners.Add(new SocketEventListener("actor_update_item_slot", OnUpdateItemSlot));
         SocketEventListeners.Add(new SocketEventListener("actor_update_equip_slot", OnActorUpdateEquipSlot));
@@ -962,15 +962,9 @@ public class SocketHandler : MonoBehaviour
 
     public void OnItemsSpawn(string eventName, JSONNode data)
     {
-        List<Item> items = JsonConvert.DeserializeObject<List<Item>>(data["items"].ToString());
+        Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
 
-        // TODO spawn all items
-        for(int i=0;i<items.Count;i++)
-        {
-            items[i].spawnX = items[i].x + i;
-            items[i].spawnY = items[i].y;
-            CORE.Instance.SpawnItem(items[i]);
-        }
+        CORE.Instance.SpawnItem(item);
     }
 
     public void OnItemDespawn(string eventName, JSONNode data)
@@ -1065,7 +1059,7 @@ public class SocketHandler : MonoBehaviour
         int money = data["money"].AsInt;
         
         CORE.Instance.Room.PlayerActor.money = money;
-        
+
         InventoryUI.Instance.RefreshUI();
     }
 
