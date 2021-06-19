@@ -1323,7 +1323,6 @@ public class UserData
 public class ActorData
 {
     public string actorId;
-    public string scene;
     public float x;
     public float y;
     public bool faceRight;
@@ -1422,9 +1421,8 @@ public class ActorData
     [JsonIgnore]
     public UnityEvent OnRefreshAbilities = new UnityEvent();
 
-    public ActorData(string gScene, string gName, string gClassJob, GameObject gActorObject = null)
+    public ActorData(string gName, string gClassJob, GameObject gActorObject = null)
     {
-        this.scene = gScene;
         this.name = gName;
         this.classJob = gClassJob;
 
