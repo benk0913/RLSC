@@ -205,8 +205,11 @@ public class Actor : MonoBehaviour
         State.Data.OnRefreshAbilities.AddListener(RefreshAbilities);
 
         RefreshControlSource();
-        RefreshStates();
-        RefreshAbilities();
+        if (CORE.Instance.InGame)
+        {
+            RefreshStates();
+            RefreshAbilities();
+        }
         RefreshLooks();
         RefreshName();
 
@@ -696,7 +699,7 @@ public class Actor : MonoBehaviour
 
         if (!State.Data.IsPlayer)
         {
-            if (!AIControl.IsBoss)
+            if (State.Data.isMob && !AIControl.IsBoss)
             {
                 StartCoroutine(FadeAwayRoutine());
             }
