@@ -47,6 +47,11 @@ public class PartyMemberActivePanelUI : MonoBehaviour
     
     private void OnPartyUpdated()
     {
+        if(CORE.Instance.CurrentParty == null)
+        {
+            return;
+        }
+
         IsOffline = CORE.Instance.CurrentParty.membersOffline.ContainsKey(CurrentActorName);
 
         if(!IsOffline)
