@@ -325,7 +325,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             int result = 0;
             if(int.TryParse(setAmount, out result))
             {
-                if (result == 0)
+                if (result <= 0)
                 {
                     TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Invalid amount of money...", Color.red));
                     return;
@@ -341,7 +341,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
                 node["money"].AsInt = result;
                 
-                SocketHandler.Instance.SendEvent("drop_money",node);
+                SocketHandler.Instance.SendEvent("dropped_money",node);
             }
             else
             {

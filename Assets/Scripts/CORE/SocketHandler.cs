@@ -97,6 +97,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_update_equip_slot", OnActorUpdateEquipSlot));
         SocketEventListeners.Add(new SocketEventListener("actor_pick_item", OnActorPickItem));
         SocketEventListeners.Add(new SocketEventListener("orb_added", OnOrbAdded));
+        SocketEventListeners.Add(new SocketEventListener("money_refresh", OnMoneyRefresh));
         
         // Rolls
         SocketEventListeners.Add(new SocketEventListener("choose_item_roll", OnChooseItemRoll));
@@ -1057,6 +1058,15 @@ public class SocketHandler : MonoBehaviour
             CORE.Instance.InvokeEvent("OrbsChanged");
             CORE.Instance.ShowScreenEffect("ScreenEffectGainOrb", orb.Data);
         }
+    }
+
+    public void OnMoneyRefresh(string eventName, JSONNode data)
+    {
+        int money = data["money"].AsInt;
+        
+        CORE.Instance.Room.PlayerActor.money = money;
+        
+        InventoryUI.Instance.RefreshUI();
     }
 
     public void OnChooseItemRoll(string eventName, JSONNode data)
