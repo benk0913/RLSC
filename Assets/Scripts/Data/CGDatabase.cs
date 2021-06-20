@@ -130,7 +130,7 @@ public class SceneInfo
     public float playerSpawnX;
     public float playerSpawnY;
     public List<Portal> Portals = new List<Portal>();
-    public List<Vendor> Vendors = new List<Vendor>();
+    public List<VendorData> Vendors = new List<VendorData>();
 
     [JsonIgnore]
     public string MusicTrack;
@@ -181,4 +181,18 @@ public class MoneyValueMap
     [JsonConverter(typeof(ObjectNameConverter))]
     public ItemData moneyItem;
     public int minAmount;
+}
+
+[Serializable]
+public class VendorData
+{
+    public string ID;
+    public List<ItemData> Items = new List<ItemData>();
+}
+
+[Serializable]
+public class Vendor
+{
+    public string id;
+    public List<Item> itemsPool = new List<Item>();
 }

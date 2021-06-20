@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class VendorEntity : MonoBehaviour
 {
-    public Vendor VendorReference;
+    public VendorData VendorReference;
 
     public List<VendorWorldItem> ItemsEntities = new List<VendorWorldItem>();
 
@@ -133,8 +133,17 @@ public class VendorEntity : MonoBehaviour
             this.gameObject.SetActive(false);
             return;
         }
+        
+        List<ItemData> Items = new List<ItemData>();
+        foreach (var item in CORE.Instance.Room.Vendors[VendorReference.ID])
+        {
+            if (item.Data != null)
+            {
+                Items.Add(item.Data);
+            }
+        }
 
-        VendorReference.Items = CORE.Instance.Room.Vendors[VendorReference.ID];
+        VendorReference.Items = Items;
 
         this.gameObject.SetActive(true);
 

@@ -594,7 +594,7 @@ public class RoomData
     public List<ActorData> Actors = new List<ActorData>();
     public List<Interactable> Interactables = new List<Interactable>();
     public List<Item> Items = new List<Item>();
-    public Dictionary<string, List<ItemData>> Vendors = new Dictionary<string, List<ItemData>>();
+    public Dictionary<string, List<Item>> Vendors = new Dictionary<string, List<Item>>();
 
     public ActorData PlayerActor;
 
@@ -817,16 +817,16 @@ public class RoomData
     {
         foreach (Vendor vendor in vendors)
         {
-            if (!Vendors.ContainsKey(vendor.ID))
+            if (!Vendors.ContainsKey(vendor.id))
             {
-                Vendors.Add(vendor.ID, vendor.Items);
+                Vendors.Add(vendor.id, vendor.itemsPool);
             }
             else
             {
-                Vendors[vendor.ID] = vendor.Items;
+                Vendors[vendor.id] = vendor.itemsPool;
             }
 
-            CORE.Instance.InvokeEvent("VendorsUpdate"+vendor.ID);
+            CORE.Instance.InvokeEvent("VendorsUpdate"+vendor.id);
         }
     }
 
@@ -892,11 +892,4 @@ public class RoomData
         }
     }
 
-}
-
-[Serializable]
-public class Vendor
-{
-    public string ID;
-    public List<ItemData> Items = new List<ItemData>();
 }
