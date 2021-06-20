@@ -118,10 +118,10 @@ public class VendorEntity : MonoBehaviour
         }
 
         JSONNode node = new JSONClass();
-        node["vendor_id"] = VendorReference.ID;
-        node["item"] = item.name;
+        node["vendorId"] = VendorReference.ID;
+        node["itemName"] = item.name;
 
-        SocketHandler.Instance.SendEvent("purchase_item", node);
+        SocketHandler.Instance.SendEvent("purchased_item", node);
 
         StopFocusing();
     }
@@ -133,7 +133,7 @@ public class VendorEntity : MonoBehaviour
             this.gameObject.SetActive(false);
             return;
         }
-        
+
         List<ItemData> Items = new List<ItemData>();
         foreach (var item in CORE.Instance.Room.Vendors[VendorReference.ID])
         {
