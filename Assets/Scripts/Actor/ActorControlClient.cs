@@ -19,6 +19,7 @@ public class ActorControlClient : MonoBehaviour
     [SerializeField]
     GameObject UniqueScreenEffectObject;
 
+
     private void OnEnable()
     {
         if(!string.IsNullOrEmpty(UniqueScreenEffect))
@@ -47,6 +48,11 @@ public class ActorControlClient : MonoBehaviour
 
     private void Update()
     {
+        if(!CORE.Instance.IsInputEnabled)
+        {
+            return;
+        }
+
         if(Input.GetKey(InputMap.Map["Move Left"]))
         {
             Rigid.position += Vector2.left * Time.deltaTime * MovementSpeed;

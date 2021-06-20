@@ -1025,9 +1025,10 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-
         item.Entity.BePickedBy(actorDat.ActorEntity);
         CORE.Instance.AddChatMessage("<color=yellow>"+actorDat.name+" has picked up the item: '"+item.itemName+"'</color>");
+
+        CORE.Instance.IsPickingUpItem = false;
     }
 
     public void OnOrbAdded(string eventName, JSONNode data)

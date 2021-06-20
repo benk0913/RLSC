@@ -50,10 +50,9 @@ public class ItemEntity : MonoBehaviour
             return;
         }
 
-        InteractableCooldown = 2f;
+        InteractableCooldown = 0.5f;
 
-
-        SocketHandler.Instance.SendPickedItem(CurrentItem.itemId);
+        CORE.Instance.AttemptPickUpItem(CurrentItem);
     }
 
     public void SetInfo(Item item)

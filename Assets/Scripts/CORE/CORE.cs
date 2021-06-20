@@ -42,6 +42,9 @@ public class CORE : MonoBehaviour
     public bool IsBitch;
     public bool InGame = false;
     public bool IsLoading = false;
+
+    public bool IsPickingUpItem = false;
+
     public bool IsTyping
     {
         get 
@@ -68,6 +71,15 @@ public class CORE : MonoBehaviour
             return CurrentWindow != null;
         }
     }
+
+    public bool IsInputEnabled
+    {
+        get
+        {
+            return !CORE.Instance.IsLoading && !CORE.Instance.IsTyping && !CORE.Instance.HasWindowOpen && !CameraChaseEntity.Instance.IsFocusing;
+        }
+    }
+
 
     public WindowInterface CurrentWindow;
     public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
@@ -399,6 +411,17 @@ public class CORE : MonoBehaviour
 
     //    ObjectiveUI.Instance.SetInfo(Data.content.Scenes.Find(X => X.sceneName == sceneKey).objectiveDescription);
 
+    }
+
+    public void AttemptPickUpItem(Item item)
+    {
+        if(IsPickingUpItem)
+        {
+            return;
+        }
+
+        SocketHandler.Instance.SendPickedItem(item.itemId);
+        IsPickingUpItem = true;
     }
 
     void EnterGame()

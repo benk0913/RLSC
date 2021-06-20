@@ -27,16 +27,10 @@ public class HealthbarUI : MonoBehaviour
 
     protected void Update()
     {
-        if (CurrentActor == null || CurrentActor.State == null || CurrentActor.State.Data == null || CurrentActor.State.Data.attributes == null) {
-            return;
-        }
-
-        float hpPercent = (float)CurrentActor.State.Data.hp / CurrentActor.State.Data.MaxHP;
-
-        if (ShouldHideBar())
+        if (ShouldHideBar() || CurrentActor == null || CurrentActor.State == null || CurrentActor.State.Data == null || CurrentActor.State.Data.attributes == null)
         {
             CG.alpha = 0f;
-            LastHpPercent = hpPercent;
+            LastHpPercent = 0f;
             ImageFill.fillAmount = LastHpPercent;
 
             return;
@@ -45,6 +39,8 @@ public class HealthbarUI : MonoBehaviour
         {
             CG.alpha = 1f;
         }
+
+        float hpPercent = (float)CurrentActor.State.Data.hp / CurrentActor.State.Data.MaxHP;
 
         if (hpPercent != LastHpPercent)
         {
@@ -59,7 +55,12 @@ public class HealthbarUI : MonoBehaviour
 
     protected virtual bool ShouldHideBar()
     {
-        return CurrentActor == null || (CurrentActor.State.Data.isCharacter && !CurrentActor.InParty) ||( CurrentActor.State.Data.isMob && CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP) ;
+        bool isHPFull = CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP;
+
+        return CurrentActor == null
+            || (CurrentActor.State.Data.isCharacter && CurrentActor.State.Data.IsPlayer && isHPFull)
+            || (CurrentActor.State.Data.isCharacter && !CurrentActor.State.Data.IsPlayer && !CurrentActor.InParty) 
+            || (CurrentActor.State.Data.isMob && isHPFull || CurrentActor.State.Data.hp <= 0);
     }
 
     protected IEnumerator UpdateBarFillRoutine()
