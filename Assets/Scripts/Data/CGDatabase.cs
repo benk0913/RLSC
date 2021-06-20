@@ -138,6 +138,7 @@ public class SceneInfo
 
     public bool enablePvp;
 
+    [JsonIgnore]
     public bool displayTitleOnEnter = false;
 }
 
