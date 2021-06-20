@@ -91,6 +91,8 @@ public class DatabaseContent
     public int MaxPartyMembers;
     public int PartyInviteTimeoutSeconds;
     public int TimePhasesDurationMinutes;
+    public int NpcItemsPoolLength;
+    public int NpcItemsRefreshMinutes;
 }
 
 [Serializable]
