@@ -139,6 +139,9 @@ public class SceneInfo
     public string Soundscape;
 
     public bool enablePvp;
+
+    [JsonIgnore]
+    public bool displayTitleOnEnter = false;
 }
 
 [Serializable]

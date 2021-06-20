@@ -45,6 +45,8 @@ public class CORE : MonoBehaviour
 
     public bool IsPickingUpItem = false;
 
+    public bool IsFirstGameState = true;
+
     public bool IsTyping
     {
         get 
@@ -99,6 +101,7 @@ public class CORE : MonoBehaviour
         SubscribeToEvent("ActorDied", () => {Room.RefreshThreat();});
         SubscribeToEvent("ActorResurrected", () => {Room.RefreshThreat();});
         SubscribeToEvent("ActorChangedStates", () => {Room.RefreshThreat();});
+        SubscribeToEvent("GameStatesChanged", () => { GameStatesChanges(); });
 
 #if !UNITY_EDITOR
         DelayedInvokation(3f, () =>
@@ -111,6 +114,25 @@ public class CORE : MonoBehaviour
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
         WindowToKeyMap.Add(PartyWindowUI.Instance, InputMap.Map["Party Window"]);
         WindowToKeyMap.Add(SideButtonUI.Instance, InputMap.Map["Exit"]);
+    }
+
+    private void GameStatesChanges()
+    {
+        if(IsFirstGameState)
+        {
+            IsFirstGameState = false;
+            return;
+        }
+        //TODO Make sure it wont appear on start of game.
+
+        if (CORE.Instance.GameStates["phase"] == "Day")
+        {
+            CORE.Instance.ShowScreenEffect("ScreenEffectChamberToDay");
+        }
+        else if (CORE.Instance.GameStates["phase"] == "Night")
+        {
+            CORE.Instance.ShowScreenEffect("ScreenEffectChamberToNight");
+        }
     }
 
     private void Update()
