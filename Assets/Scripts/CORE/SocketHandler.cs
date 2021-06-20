@@ -522,6 +522,15 @@ public class SocketHandler : MonoBehaviour
                 ScreenFaderUI.Instance.FadeFromBlack();
                 SendEvent("scene_loaded");
                 CORE.Instance.IsLoading = false;
+
+                SceneInfo sceneInfo = CORE.Instance.ActiveSceneInfo;
+
+                if (sceneInfo.displayTitleOnEnter)
+                {
+                    CORE.Instance.ShowScreenEffect("ScreenEffectLocation", sceneInfo.sceneName);
+                }
+
+                CORE.Instance.IsFirstGameState = true;
             });
         });
     }
