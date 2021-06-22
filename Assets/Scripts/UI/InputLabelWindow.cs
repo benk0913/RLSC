@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputLabelWindow : MonoBehaviour
 {
@@ -18,7 +19,12 @@ public class InputLabelWindow : MonoBehaviour
 
     [SerializeField]
     TMP_InputField Field;
-    
+
+    [SerializeField]
+    Selectable SelectableFocusOnStart;
+
+    [SerializeField]
+    SelectionGroupUI SGroup;
 
 
     private void Awake()
@@ -47,6 +53,8 @@ public class InputLabelWindow : MonoBehaviour
         TitleLabel.text = title;
         FieldLabel.text = fieldLabel;
         AcceptAction = acceptCallback;
+
+        SGroup.Select(SelectableFocusOnStart);
     }
 
     public void Accept()

@@ -207,6 +207,11 @@ public class SelectionGroupUI : MonoBehaviour
         StartCoroutine(StrobeSelect());
     }
 
+    public void Select(Selectable selectable)
+    {
+        Select(instancesBySelectable[selectable]);
+    }
+
     IEnumerator StrobeSelect()
     {
         CanvasGroup canvasGroup = CurrentSelectedSelectable.GetComponent<CanvasGroup>();
@@ -305,6 +310,8 @@ public class SelectionGroupUI : MonoBehaviour
             }
         }
     }
+
+
 
     [Serializable]
     public class SelectionGroupInstance

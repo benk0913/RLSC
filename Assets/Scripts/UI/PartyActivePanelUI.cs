@@ -13,6 +13,7 @@ public class PartyActivePanelUI : MonoBehaviour
     [SerializeField]
     Transform MembersContainer;
 
+
     public List<PartyMemberActivePanelUI> Members = new List<PartyMemberActivePanelUI>();
 
     public string checksumString;
@@ -95,6 +96,7 @@ public class PartyActivePanelUI : MonoBehaviour
         
 
         checksumString = tempString;
+
     }
 
 

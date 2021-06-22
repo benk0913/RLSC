@@ -16,6 +16,10 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
     [SerializeField]
     public GameObject AddButton;
 
+
+    [SerializeField]
+    SelectionGroupUI SGroup;
+
     public bool IsOpen;
 
     public string OpenSound;
@@ -59,7 +63,9 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         {
             AddButton.SetActive(true);
         }
-        
+
+
+        SGroup.RefreshGroup(true);
     }
 
     public void Hide()
@@ -97,6 +103,9 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
             element.transform.localScale = Vector3.one;
             element.transform.position = Vector3.zero;
         }
+
+
+        SGroup.RefreshGroup(true);
     }
 
     public void RemoveMember(PartyMemberDisplayUI partyMemberDisplayUI)

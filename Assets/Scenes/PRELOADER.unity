@@ -3613,6 +3613,8 @@ MonoBehaviour:
   IsBitch: 0
   InGame: 0
   IsLoading: 0
+  IsPickingUpItem: 0
+  IsFirstGameState: 1
 --- !u!114 &231128634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4133,6 +4135,7 @@ MonoBehaviour:
   PartyMembersContainer: {fileID: 1949373986}
   SelectionGroup: {fileID: 265385965}
   AddButton: {fileID: 1072437275}
+  SGroup: {fileID: 265385965}
   IsOpen: 0
   OpenSound: MenuOpen
   HideSound: MenuOpen
@@ -13638,6 +13641,8 @@ MonoBehaviour:
   TitleLabel: {fileID: 1268707392}
   FieldLabel: {fileID: 705538468}
   Field: {fileID: 1287149793}
+  SelectableFocusOnStart: {fileID: 1287149793}
+  SGroup: {fileID: 714552523}
 --- !u!114 &714552523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21025,7 +21030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 95, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 190, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068534205
