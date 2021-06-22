@@ -145,6 +145,7 @@ public class SocketHandler : MonoBehaviour
         }
 
         SocketManager.Socket.On(SocketIOEventTypes.Error, OnErrorRawCallback);
+        SocketManager.Socket.On(SocketIOEventTypes.Disconnect, OnDisconnect);
     }
 
     #endregion
@@ -474,6 +475,11 @@ public class SocketHandler : MonoBehaviour
                 CORE.Instance.LogMessageError("Server error!"  + " Code: " + error.Code + ". Message: " + error.Message);
                 break;
         }
+    }
+    
+    public void OnDisconnect(Socket socket, Packet packet, params object[] args)
+    {
+        CORE.Instance.ReturnToMainMenu();
     }
 
     public void OnError(string eventName, JSONNode data)
