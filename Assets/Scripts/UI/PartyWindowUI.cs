@@ -1,4 +1,5 @@
 ﻿using System;
+using EdgeworldBase;
 using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Events;

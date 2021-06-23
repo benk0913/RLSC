@@ -43,5 +43,7 @@ public class DialogDecisionUI : MonoBehaviour
         }
 
         DecisionLabel.text = CurrentDecision.Content;
+
+        
     }
 }

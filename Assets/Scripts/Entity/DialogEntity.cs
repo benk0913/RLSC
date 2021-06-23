@@ -1,7 +1,9 @@
+using EdgeworldBase;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class DialogEntity : MonoBehaviour
 {
@@ -112,6 +114,13 @@ public class DialogEntity : MonoBehaviour
                 decisionUI.transform.position = Vector3.zero;
                 decisionUI.transform.localScale = Vector3.one;
             }
+
+            DecisionContainer.gameObject.SetActive(false);
+            CORE.Instance.DelayedInvokation(0.1f, () => 
+            {
+                DecisionContainer.gameObject.SetActive(true);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(DecisionContainer.GetComponent<RectTransform>());
+            });
         });
     }
 

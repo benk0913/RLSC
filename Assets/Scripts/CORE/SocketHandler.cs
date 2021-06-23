@@ -1,5 +1,6 @@
 ﻿using BestHTTP.SocketIO;
 using BestHTTP.SocketIO.Events;
+using EdgeworldBase;
 using Newtonsoft.Json;
 using PlatformSupport.Collections.ObjectModel;
 using SimpleJSON;

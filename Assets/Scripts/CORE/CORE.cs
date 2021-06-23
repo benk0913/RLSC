@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using EdgeworldBase;
+using Newtonsoft.Json;
 using SimpleJSON;
 using System;
 using System.Collections;
@@ -49,6 +50,11 @@ public class CORE : MonoBehaviour
     {
         get 
         {
+            if(EventSystem.current == null)
+            {
+                return false;
+            }
+
             GameObject currentSelectedGameObject = EventSystem.current.currentSelectedGameObject;
             if (currentSelectedGameObject != null)
             {
@@ -86,6 +92,11 @@ public class CORE : MonoBehaviour
 
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+
         Instance = this;
         Application.targetFrameRate = 60;
         Time.fixedDeltaTime = 0.01666667f;
@@ -417,7 +428,6 @@ public class CORE : MonoBehaviour
         if (sceneKey == "PRELOADER")
         {
             SocketHandler.Instance.SendDisconnectSocket();
-            Destroy(this.gameObject);
         }
 
         LoadSceneRoutineInstance = null;

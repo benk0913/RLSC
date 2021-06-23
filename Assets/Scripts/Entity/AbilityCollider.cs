@@ -1,4 +1,5 @@
-﻿using SimpleJSON;
+﻿using EdgeworldBase;
+using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

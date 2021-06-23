@@ -1,4 +1,5 @@
-﻿using SimpleJSON;
+﻿using EdgeworldBase;
+using SimpleJSON;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -247,10 +248,11 @@ public class Actor : MonoBehaviour
         if(TooltipTarget != null)
         {
             TooltipTarget.SetTooltip(this.State.Data.name
-                + System.Environment.NewLine + "<size=10><color=yellow>" + "Class: " + State.Data.ClassJobReference.name + "</color></size>"
-                + System.Environment.NewLine + "<size=10><color=yellow>" + "Level: " + State.Data.level+ "</color></size>"
-                +( InParty? System.Environment.NewLine + "<size=10><color=yellow>" + "Class: " + State.Data.ClassJobReference.name + "</color></size>" : "")
-                + System.Environment.NewLine + "<size=10><color=grey>(Double Click - To Inspect)</color></size>");
+                + System.Environment.NewLine + "<size=7><color=teal>" + "Class: " + State.Data.ClassJobReference.name + "</color></size>"
+                + System.Environment.NewLine + "<size=7><color=teal>" + "Level: " + State.Data.level+ "</color></size>"
+                +( InParty? System.Environment.NewLine + "<size=7><color=yellow>" + "In Party</color></size>" : "")
+                + (State.Data.IsPlayer? System.Environment.NewLine + "<size=7><color=yellow>" + "This is YOU!</color></size>" : "")
+                + System.Environment.NewLine + "<size=7><color=grey>(Double Click - To Inspect)</color></size>");
         }
     }
 

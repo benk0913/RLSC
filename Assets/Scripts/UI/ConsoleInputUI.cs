@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EdgeworldBase;
 using SimpleJSON;
 using TMPro;
 using UnityEngine;
