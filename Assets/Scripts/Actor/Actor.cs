@@ -49,6 +49,9 @@ public class Actor : MonoBehaviour
 
     [SerializeField]
     NamePanelUI NamePanel;
+
+    [SerializeField]
+    TooltipTargetUI TooltipTarget;
     
     private Dictionary<string, Coroutine> ColliderCooldowns = new Dictionary<string, Coroutine>();
     
@@ -240,6 +243,15 @@ public class Actor : MonoBehaviour
         State.OnInterrupt.AddListener(Interrupted);
 
         SetIsInAir();
+
+        if(TooltipTarget != null)
+        {
+            TooltipTarget.SetTooltip(this.State.Data.name
+                + System.Environment.NewLine + "<size=10><color=yellow>" + "Class: " + State.Data.ClassJobReference.name + "</color></size>"
+                + System.Environment.NewLine + "<size=10><color=yellow>" + "Level: " + State.Data.level+ "</color></size>"
+                +( InParty? System.Environment.NewLine + "<size=10><color=yellow>" + "Class: " + State.Data.ClassJobReference.name + "</color></size>" : "")
+                + System.Environment.NewLine + "<size=10><color=grey>(Double Click - To Inspect)</color></size>");
+        }
     }
 
     public void Interrupted()
@@ -272,6 +284,10 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public void Inspect()
+    {
+        CORE.Instance.ShowInventoryUiWindow(this.State.Data);
+    }
 
     void OnEnable()
     {

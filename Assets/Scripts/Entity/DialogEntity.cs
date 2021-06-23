@@ -5,7 +5,10 @@ using UnityEngine.Events;
 
 public class DialogEntity : MonoBehaviour
 {
-    public List<DialogPiece> DialogPieces = new List<DialogPiece>();
+    public static DialogEntity CurrentInstance;
+
+    public Dialog DefaultDialog;
+    public Dialog CurrentDialog;
 
     public int CurrentIndex = 0;
 
@@ -14,30 +17,67 @@ public class DialogEntity : MonoBehaviour
 
     public bool isActiveDialog;
 
+    public Transform DecisionContainer;
+
     public void StartDialog()
     {
-        if(isActiveDialog)
+        StartDialog(DefaultDialog);
+    }
+
+    public void StartDialog(Dialog dialog)
+    {
+        if(CurrentDialog == dialog &&  isActiveDialog)
         {
             Continue();
             return;
         }
 
+        CurrentDialog = dialog;
+
+        CurrentInstance = this;
+
         CurrentBubble.gameObject.SetActive(true);
 
+        CORE.ClearContainer(DecisionContainer);
+
         CurrentIndex = 0;
-
-        ShowIndex(CurrentIndex);
-
+        
         isActiveDialog = true;
+
+        if (CurrentIndex >= CurrentDialog.DialogPieces.Count)
+        {
+            if (CurrentDialog.Decisions.Count > 0)
+            {
+                ShowDecisions();
+                return;
+            }
+            else
+            {
+                EndDialog();
+                return;
+            }
+        }
+        else
+        {
+            ShowIndex(CurrentIndex);
+        }
     }
 
     public void Continue()
     {
         CurrentIndex++;
 
-        if (CurrentIndex >= DialogPieces.Count)
+        if (CurrentIndex >= CurrentDialog.DialogPieces.Count)
         {
-            EndDialog();
+            if (CurrentDialog.Decisions.Count > 0)
+            {
+                ShowDecisions();
+            }
+            else
+            {
+                EndDialog();
+            }
+
             return;
         }
 
@@ -50,9 +90,29 @@ public class DialogEntity : MonoBehaviour
 
     public void ShowIndex(int index)
     {
-        string content = DialogPieces[index].Content;
+
+        CORE.ClearContainer(DecisionContainer);
+
+        string content = CurrentDialog.DialogPieces[index].Content;
         CurrentBubble.Show(CurrentBubble.transform, content, Continue);
-        DialogPieces[index].OnDialogPiece?.Invoke();
+        CurrentDialog.DialogPieces[index].OnDialogPiece?.Invoke();
+    }
+
+    public void ShowDecisions()
+    {
+        CORE.ClearContainer(DecisionContainer);
+
+        CORE.Instance.DelayedInvokation(0.1f, () => 
+        {
+            foreach (DialogDecision decision in CurrentDialog.Decisions)
+            {
+                DialogDecisionUI decisionUI = ResourcesLoader.Instance.GetRecycledObject("DialogDecisionUI").GetComponent<DialogDecisionUI>();
+                decisionUI.SetInfo(decision);
+                decisionUI.transform.SetParent(DecisionContainer, false);
+                decisionUI.transform.position = Vector3.zero;
+                decisionUI.transform.localScale = Vector3.one;
+            }
+        });
     }
 
     public void EndDialog()
@@ -70,5 +130,40 @@ public class DialogEntity : MonoBehaviour
         [SerializeField]
         public UnityEvent OnDialogPiece;
         
+    }
+
+    [System.Serializable]
+    public class DialogDecision
+    {
+        public string Content;
+
+        public List<GameEvent> OnSelect = new List<GameEvent>();
+
+        public List<AbilityCondition> DisplayConditions = new List<AbilityCondition>();//TODO Should rename to GameCondition...
+
+        public bool DisplayOnlyIfConditionsMet;
+
+        public Dialog DefaultDialog;
+
+        public void SelectDecision()
+        {
+            foreach (GameEvent gEvent in OnSelect)
+            {
+                gEvent.Execute();
+            }
+
+            if(DefaultDialog.DialogPieces.Count > 0)
+            {
+                CurrentInstance.StartDialog(DefaultDialog);
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class Dialog
+    {
+        public List<DialogPiece> DialogPieces = new List<DialogPiece>();
+
+        public List<DialogDecision> Decisions = new List<DialogDecision>();
     }
 }

@@ -41,18 +41,20 @@ public class TimePhaseEntity : MonoBehaviour
 
     public void SwitchState()
     {
-        if (HasFader)
-        {
-            ScreenFaderUI.Instance.FadeToBlack(() =>
-            {
-                RefreshState();
-                ScreenFaderUI.Instance.FadeFromBlack();
-            });
-        }
-        else
-        {
+
+        //TODO Remove fader?
+        //if (HasFader)
+        //{
+        //    ScreenFaderUI.Instance.FadeToBlack(() =>
+        //    {
+        //        RefreshState();
+        //        ScreenFaderUI.Instance.FadeFromBlack();
+        //    });
+        //}
+        //else
+        //{
             RefreshState();
-        }
+        //}
     }
 
     public void RefreshState()

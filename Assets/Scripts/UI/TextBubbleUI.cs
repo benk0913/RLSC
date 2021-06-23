@@ -36,6 +36,11 @@ public class TextBubbleUI : MonoBehaviour
 
     private void Update()
     {
+        if(CurrentAnchor == null || CurrentAnchor==transform)
+        {
+            return;
+        }
+
         transform.position = Vector2.Lerp(transform.position, CurrentAnchor.position, Time.deltaTime * 8f);
     }
 

@@ -65,7 +65,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         }
 
 
-        SGroup.RefreshGroup(true);
+        CORE.Instance.DelayedInvokation(0.1f, () => SGroup.RefreshGroup(true));
     }
 
     public void Hide()
@@ -105,7 +105,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         }
 
 
-        SGroup.RefreshGroup(true);
+        CORE.Instance.DelayedInvokation(0.1f,()=>SGroup.RefreshGroup(true));
     }
 
     public void RemoveMember(PartyMemberDisplayUI partyMemberDisplayUI)

@@ -7,7 +7,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Condition", menuName = "Data/Condition", order = 2)]
 [Serializable]
-public class AbilityCondition : ScriptableObject
+public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public ConditionType Type;

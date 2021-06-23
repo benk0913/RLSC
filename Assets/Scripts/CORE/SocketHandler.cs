@@ -536,7 +536,6 @@ public class SocketHandler : MonoBehaviour
                     CORE.Instance.ShowScreenEffect("ScreenEffectLocation", sceneInfo.sceneName);
                 }
 
-                CORE.Instance.IsFirstGameState = true;
             });
         });
     }

@@ -75,7 +75,7 @@ public class ActorSkin : MonoBehaviour
 
         ClassJob job = CORE.Instance.Data.content.Classes.Find(x => x.name == Act.State.Data.classJob);
 
-        if (job != null)
+        if (job != null && Halo != null)
         {
             Halo.color = new Color(job.ClassColor.r, job.ClassColor.g, job.ClassColor.b, CORE.Instance.InGame ? 0.3f : 1f);
         }

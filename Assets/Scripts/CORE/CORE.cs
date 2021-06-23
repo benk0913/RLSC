@@ -45,8 +45,6 @@ public class CORE : MonoBehaviour
 
     public bool IsPickingUpItem = false;
 
-    public bool IsFirstGameState = true;
-
     public bool IsTyping
     {
         get 
@@ -118,13 +116,6 @@ public class CORE : MonoBehaviour
 
     private void GameStatesChanges()
     {
-        if(IsFirstGameState)
-        {
-            IsFirstGameState = false;
-            return;
-        }
-        //TODO Make sure it wont appear on start of game.
-
         if (CORE.Instance.GameStates["phase"] == "Day")
         {
             CORE.Instance.ShowScreenEffect("ScreenEffectChamberToDay");
