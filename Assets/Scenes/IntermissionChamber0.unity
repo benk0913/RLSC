@@ -1097,14 +1097,31 @@ MonoBehaviour:
       OnDialogPiece:
         m_PersistentCalls:
           m_Calls: []
-    Decisions: []
+    Decisions:
+    - Content: Thank you!
+      OnSelect: []
+      DisplayConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces: []
+        Decisions: []
+    - Content: Bye...
+      OnSelect: []
+      DisplayConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: Have a good one
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions: []
   CurrentDialog:
     DialogPieces: []
     Decisions: []
   CurrentIndex: 0
   CurrentBubble: {fileID: 108916384}
   isActiveDialog: 0
-  DecisionContainer: {fileID: 941603906483440761}
 --- !u!114 &182074004
 MonoBehaviour:
   m_ObjectHideFlags: 0

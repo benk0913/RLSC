@@ -46,6 +46,9 @@ public class CORE : MonoBehaviour
 
     public bool IsPickingUpItem = false;
 
+    public bool GameStatesInitialized;
+    public string CurrentTimePhase;
+    
     public bool IsTyping
     {
         get 
@@ -80,9 +83,14 @@ public class CORE : MonoBehaviour
 
     public bool IsInputEnabled
     {
-        get
+        get //All must be lightweight conditions(!)
         {
-            return !CORE.Instance.IsLoading && !CORE.Instance.IsTyping && !CORE.Instance.HasWindowOpen && !CameraChaseEntity.Instance.IsFocusing;
+            return !CORE.Instance.IsLoading 
+                && !CORE.Instance.IsTyping 
+                && !CORE.Instance.HasWindowOpen 
+                && !CameraChaseEntity.Instance.IsFocusing 
+                && !DecisionContainerUI.Instance.IsActive 
+                && (DialogEntity.CurrentInstance == null || !DialogEntity.CurrentInstance.isActiveDialog);
         }
     }
 
@@ -127,13 +135,24 @@ public class CORE : MonoBehaviour
 
     private void GameStatesChanges()
     {
-        if (CORE.Instance.GameStates["phase"] == "Day")
+        if(!GameStatesInitialized)
         {
-            CORE.Instance.ShowScreenEffect("ScreenEffectChamberToDay");
+            GameStatesInitialized = true;
+            return;
         }
-        else if (CORE.Instance.GameStates["phase"] == "Night")
+
+        if (GameStates["phase"] != CurrentTimePhase)
         {
-            CORE.Instance.ShowScreenEffect("ScreenEffectChamberToNight");
+            if (GameStates["phase"] == "Day")
+            {
+                ShowScreenEffect("ScreenEffectChamberToDay");
+            }
+            else if (GameStates["phase"] == "Night")
+            {
+                ShowScreenEffect("ScreenEffectChamberToNight");
+            }
+
+            CurrentTimePhase = GameStates["phase"];
         }
     }
 

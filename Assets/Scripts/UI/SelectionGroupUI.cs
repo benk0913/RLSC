@@ -17,6 +17,8 @@ public class SelectionGroupUI : MonoBehaviour
     public SelectionGroupInstance CurrentSelected;
     public Selectable CurrentSelectedSelectable;
 
+    public bool Debug = false;
+
     private void Start()
     {
         RefreshGroup(false);
@@ -59,6 +61,9 @@ public class SelectionGroupUI : MonoBehaviour
         {
             if (selectable.isActiveAndEnabled)
             {
+                if (Debug)
+                    CORE.Instance.LogMessage("SelectionGroup - Setting Selectable " + selectable.gameObject.name);
+
                 SelectionGroupInstance instance = new SelectionGroupInstance(selectable);
                 instances.Add(instance);
                 instancesBySelectable.Add(selectable, instance);
@@ -139,6 +144,9 @@ public class SelectionGroupUI : MonoBehaviour
                     }
                 }
             }
+
+            if (Debug)
+                CORE.Instance.LogMessage("SelectionGroup - Setting Neighbors " + instance.CS.gameObject.name + " | U "+ instance.toUp + " | D " + instance.toDown+ " | L " + instance.toLeft + " | R " + instance.toRight);
         }
 
         if (instances.Count > 0)
@@ -258,6 +266,8 @@ public class SelectionGroupUI : MonoBehaviour
         {
             if(CurrentSelected.toUp == null)
             {
+                if(Debug)
+                    CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'Above'");
                 return;
             }
 
@@ -267,6 +277,8 @@ public class SelectionGroupUI : MonoBehaviour
         {
             if (CurrentSelected.toDown == null)
             {
+                if (Debug)
+                    CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'Below'");
                 return;
             }
 
@@ -276,6 +288,8 @@ public class SelectionGroupUI : MonoBehaviour
         {
             if (CurrentSelected.toLeft == null)
             {
+                if (Debug)
+                    CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'To Left'");
                 return;
             }
 
@@ -285,6 +299,8 @@ public class SelectionGroupUI : MonoBehaviour
         {
             if (CurrentSelected.toRight== null)
             {
+                if (Debug)
+                    CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'To Right'");
                 return;
             }
 

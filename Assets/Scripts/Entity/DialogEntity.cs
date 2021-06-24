@@ -17,10 +17,21 @@ public class DialogEntity : MonoBehaviour
     [SerializeField]
     TextBubbleUI CurrentBubble;
 
+    private void Update()
+    {
+        if(Input.anyKeyDown)
+        {
+            if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return))
+            {
+                return;
+            }
+
+            EndDialog();
+        }
+    }
+
     public bool isActiveDialog;
-
-    public Transform DecisionContainer;
-
+    
     public void StartDialog()
     {
         StartDialog(DefaultDialog);
@@ -40,7 +51,7 @@ public class DialogEntity : MonoBehaviour
 
         CurrentBubble.gameObject.SetActive(true);
 
-        CORE.ClearContainer(DecisionContainer);
+        DecisionContainerUI.Instance.Hide();
 
         CurrentIndex = 0;
         
@@ -50,7 +61,7 @@ public class DialogEntity : MonoBehaviour
         {
             if (CurrentDialog.Decisions.Count > 0)
             {
-                ShowDecisions();
+                DecisionContainerUI.Instance.Show(CORE.Instance.Room.PlayerActor, CurrentDialog.Decisions);
                 return;
             }
             else
@@ -73,7 +84,7 @@ public class DialogEntity : MonoBehaviour
         {
             if (CurrentDialog.Decisions.Count > 0)
             {
-                ShowDecisions();
+                DecisionContainerUI.Instance.Show(CORE.Instance.Room.PlayerActor, CurrentDialog.Decisions);
             }
             else
             {
@@ -93,36 +104,14 @@ public class DialogEntity : MonoBehaviour
     public void ShowIndex(int index)
     {
 
-        CORE.ClearContainer(DecisionContainer);
+        DecisionContainerUI.Instance.Hide();
 
         string content = CurrentDialog.DialogPieces[index].Content;
         CurrentBubble.Show(CurrentBubble.transform, content, Continue);
         CurrentDialog.DialogPieces[index].OnDialogPiece?.Invoke();
     }
 
-    public void ShowDecisions()
-    {
-        CORE.ClearContainer(DecisionContainer);
 
-        CORE.Instance.DelayedInvokation(0.1f, () => 
-        {
-            foreach (DialogDecision decision in CurrentDialog.Decisions)
-            {
-                DialogDecisionUI decisionUI = ResourcesLoader.Instance.GetRecycledObject("DialogDecisionUI").GetComponent<DialogDecisionUI>();
-                decisionUI.SetInfo(decision);
-                decisionUI.transform.SetParent(DecisionContainer, false);
-                decisionUI.transform.position = Vector3.zero;
-                decisionUI.transform.localScale = Vector3.one;
-            }
-
-            DecisionContainer.gameObject.SetActive(false);
-            CORE.Instance.DelayedInvokation(0.1f, () => 
-            {
-                DecisionContainer.gameObject.SetActive(true);
-                LayoutRebuilder.ForceRebuildLayoutImmediate(DecisionContainer.GetComponent<RectTransform>());
-            });
-        });
-    }
 
     public void EndDialog()
     {
@@ -164,6 +153,10 @@ public class DialogEntity : MonoBehaviour
             if(DefaultDialog.DialogPieces.Count > 0)
             {
                 CurrentInstance.StartDialog(DefaultDialog);
+            }
+            else
+            {
+                CurrentInstance.EndDialog();
             }
         }
     }

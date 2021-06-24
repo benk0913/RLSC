@@ -25,7 +25,7 @@ public class CameraChaseEntity : MonoBehaviour
 
     float DefaultSize;
 
-    Camera CurrentCam;
+    public Camera CurrentCam;
 
     Vector3 deltaPosition;
     Vector3 lastPosition;
