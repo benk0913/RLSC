@@ -98,13 +98,16 @@ public class CORE : MonoBehaviour
     public WindowInterface CurrentWindow;
     public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
 
-    private void Awake()
+    private void OnEnable()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(this.gameObject);
         }
+    }
 
+    private void Awake()
+    {
         Instance = this;
         Application.targetFrameRate = 60;
         Time.fixedDeltaTime = 0.01666667f;

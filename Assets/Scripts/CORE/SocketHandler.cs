@@ -524,6 +524,8 @@ public class SocketHandler : MonoBehaviour
                 }
             }
 
+            CORE.Instance.GameStatesInitialized = false;
+
             CORE.Instance.LoadScene(data["scene"].Value, () =>
             {
                 ScreenFaderUI.Instance.FadeFromBlack();
