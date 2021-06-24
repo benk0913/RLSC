@@ -17,12 +17,13 @@ public class DialogEntity : MonoBehaviour
     [SerializeField]
     TextBubbleUI CurrentBubble;
 
-    private void Update()
+    private void LateUpdate()
     {
         if(Input.anyKeyDown)
         {
             if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return))
             {
+                Continue();
                 return;
             }
 

@@ -247,9 +247,9 @@ public class Actor : MonoBehaviour
 
         if(TooltipTarget != null)
         {
-            TooltipTarget.SetTooltip(this.State.Data.name
-                + System.Environment.NewLine + "<size=7><color=blue>" + "Class: " + State.Data.ClassJobReference.name + "</color></size>"
-                + System.Environment.NewLine + "<size=7><color=blue>" + "Level: " + State.Data.level+ "</color></size>"
+            TooltipTarget.SetTooltip("<color=yellow>" + this.State.Data.name +"</color>"
+                + System.Environment.NewLine + "<size=7>" + "Class: " + State.Data.ClassJobReference.name + "</color>"
+                + System.Environment.NewLine + "<size=7>" + "Level: " + State.Data.level+ "</color>"
                 +( InParty? System.Environment.NewLine + "<size=7><color=yellow>" + "In Party</color></size>" : "")
                 + (State.Data.IsPlayer? System.Environment.NewLine + "<size=7><color=yellow>" + "This is YOU!</color></size>" : "")
                 + System.Environment.NewLine + "<size=7><color=grey>(Double Click - To Inspect)</color></size>");

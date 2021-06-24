@@ -343,6 +343,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 node["money"].AsInt = result;
                 
                 SocketHandler.Instance.SendEvent("dropped_money",node);
+                AudioControl.Instance.PlayInPosition("sound_coins", transform.position);
             }
             else
             {

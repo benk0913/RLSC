@@ -1,3 +1,4 @@
+using EdgeworldBase;
 using SimpleJSON;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,10 @@ public class VendorEntity : MonoBehaviour
     public bool IsFocusing = false;
 
 
+    private void OnDisable()
+    {
+        StopFocusing();
+    }
 
     public void StartFocusing()
     {
@@ -61,6 +66,7 @@ public class VendorEntity : MonoBehaviour
     public void StopFocusing()
     {
         CameraChaseEntity.Instance.Unfocus();
+        PointAndClickTooltipUI.Instance.Hide();
         IsFocusing = false;
     }
 
@@ -114,6 +120,7 @@ public class VendorEntity : MonoBehaviour
         if(item.VendorPrice > CORE.Instance.Room.PlayerActor.money)
         {
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("You do not have enugh money! (" + CORE.Instance.Room.PlayerActor.money + "/" + item.VendorPrice + ")",Color.red));
+            AudioControl.Instance.PlayInPosition("sound_coins", transform.position);
             return;
         }
 
@@ -122,6 +129,8 @@ public class VendorEntity : MonoBehaviour
         node["itemName"] = item.name;
 
         SocketHandler.Instance.SendEvent("purchased_item", node);
+
+        AudioControl.Instance.PlayInPosition("sound_purchase", transform.position);
 
         StopFocusing();
     }
@@ -158,5 +167,7 @@ public class VendorEntity : MonoBehaviour
         }
 
         OnRefresh?.Invoke();
+
+        AudioControl.Instance.PlayInPosition("RabbitEscape", transform.position);
     }
 }

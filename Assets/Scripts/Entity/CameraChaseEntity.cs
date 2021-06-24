@@ -137,8 +137,12 @@ public class CameraChaseEntity : MonoBehaviour
         FocusCam.gameObject.SetActive(false);
         
         CurrentCam.orthographicSize = DefaultSize;
-        StopCoroutine(FocusRoutineInstance);
-        FocusRoutineInstance = null;
+
+        if (FocusRoutineInstance != null)
+        {
+            StopCoroutine(FocusRoutineInstance);
+            FocusRoutineInstance = null;
+        }
 
         IsFocusing = false;
     }

@@ -98,14 +98,6 @@ public class CORE : MonoBehaviour
     public WindowInterface CurrentWindow;
     public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
 
-    private void OnEnable()
-    {
-        if (Instance != null)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
     private void Awake()
     {
         Instance = this;
@@ -325,7 +317,7 @@ public class CORE : MonoBehaviour
             StopCoroutine(LoadSceneRoutineInstance);
         }
         Room = new RoomData();
-        
+
         LoadSceneRoutineInstance = StartCoroutine(LoadSceneRoutine(sceneKey,onComplete));
     }
 
@@ -450,6 +442,7 @@ public class CORE : MonoBehaviour
         if (sceneKey == "PRELOADER")
         {
             SocketHandler.Instance.SendDisconnectSocket();
+            Destroy(this.gameObject);
         }
 
         LoadSceneRoutineInstance = null;
