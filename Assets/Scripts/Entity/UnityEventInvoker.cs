@@ -11,4 +11,9 @@ public class UnityEventInvoker : MonoBehaviour
     {
         Events[index].Invoke();
     }
+
+    public void DestroySelf()
+    {
+        Destroy(this.gameObject);
+    }
 }

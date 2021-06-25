@@ -17,13 +17,12 @@ public class DialogEntity : MonoBehaviour
     [SerializeField]
     TextBubbleUI CurrentBubble;
 
-    private void LateUpdate()
+    private void Update()
     {
         if(Input.anyKeyDown)
         {
             if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return))
             {
-                Continue();
                 return;
             }
 
@@ -42,7 +41,6 @@ public class DialogEntity : MonoBehaviour
     {
         if(CurrentDialog == dialog &&  isActiveDialog)
         {
-            Continue();
             return;
         }
 

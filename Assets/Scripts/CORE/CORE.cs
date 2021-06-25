@@ -140,11 +140,11 @@ public class CORE : MonoBehaviour
         {
             if (GameStates["phase"] == "Day")
             {
-                ShowScreenEffect("ScreenEffectChamberToDay");
+                ShowScreenEffect("ScreenEffectChamberToDay",null,false, Room.HasEnemies? 4f:1f);
             }
             else if (GameStates["phase"] == "Night")
             {
-                ShowScreenEffect("ScreenEffectChamberToNight");
+                ShowScreenEffect("ScreenEffectChamberToNight", null, false, Room.HasEnemies? 4f : 1f);
             }
 
             CurrentTimePhase = GameStates["phase"];
@@ -505,7 +505,7 @@ public class CORE : MonoBehaviour
     GameObject LastScreenEffect;
     List<ScreenEffectQueInstance> screenEffectQue = new List<ScreenEffectQueInstance>();
 
-    public GameObject ShowScreenEffect(string screenEffectObject, object data = null, bool skipQue = false)
+    public GameObject ShowScreenEffect(string screenEffectObject, object data = null, bool skipQue = false, float animSpeed = 1f)
     {
         if(!skipQue && LastScreenEffect != null)
         {
@@ -515,11 +515,17 @@ public class CORE : MonoBehaviour
             screenEffectQue.Add(queInst);
             return null;//TODO Make sure it doesnt break ActorControlClient.cs
         }
-        GameObject obj = ResourcesLoader.Instance.GetRecycledObject(screenEffectObject);
+        GameObject obj = Instantiate(ResourcesLoader.Instance.GetObject(screenEffectObject));
         obj.transform.SetParent(GameUICG.transform, true);
         obj.transform.position = GameUICG.transform.position;
         obj.transform.localScale = Vector3.one;
         obj.GetComponent<ScreenEffectUI>().Show(data);
+
+        Animator animer = obj.GetComponent<Animator>();
+        if(animer !=  null)
+        {
+            animer.speed = animSpeed;
+        }
 
         RectTransform rt = obj.GetComponent<RectTransform>();
         rt.anchorMin = Vector2.zero;

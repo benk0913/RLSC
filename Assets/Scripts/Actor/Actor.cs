@@ -179,6 +179,22 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public bool CanInteract
+    {
+        get
+        {
+            return !IsStunned
+               && !State.IsPreparingAbility
+               && (State.Data.isMob || 
+                       !CORE.Instance.IsLoading
+                    && !CORE.Instance.IsTyping
+                    && !CORE.Instance.HasWindowOpen
+                    && !CameraChaseEntity.Instance.IsFocusing
+                    && !DecisionContainerUI.Instance.IsActive)
+               && !IsDead;
+        }
+    }
+
     public bool CanLookAround
     {
         get
