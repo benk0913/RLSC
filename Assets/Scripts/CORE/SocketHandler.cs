@@ -1231,8 +1231,16 @@ public class SocketHandler : MonoBehaviour
     {
         string leaderName = data["leaderName"].Value;
 
-        CORE.Instance.AddChatMessage("<color=yellow>"+ leaderName+" had invited you to a party!</color>");
-        LootRollPanelUI.Instance.AddPartyInvitation(leaderName);
+        if (!string.IsNullOrEmpty(leaderName))
+        {
+            CORE.Instance.AddChatMessage("<color=yellow>" + leaderName + " had invited you to a party!</color>");
+            LootRollPanelUI.Instance.AddPartyInvitation(leaderName);
+        }
+        else
+        {
+            string actorName = data["actorName"].Value;
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has been invited to the party!</color>");
+        }
     }
 
     public void OnPartyInviteTimeout(string eventName, JSONNode data)
