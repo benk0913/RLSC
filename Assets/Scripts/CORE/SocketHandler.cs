@@ -118,6 +118,12 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("party_toggle_offline", OnPartyToggleOffline));
         SocketEventListeners.Add(new SocketEventListener("party_status", OnPartyStatus));
 
+        // Expedition
+        SocketEventListeners.Add(new SocketEventListener("expedition_queue_start", OnExpeditionQueueStart));
+        SocketEventListeners.Add(new SocketEventListener("expedition_queue_stop", OnExpeditionQueueStop));
+        SocketEventListeners.Add(new SocketEventListener("expedition_queue_match_found", OnExpeditionQueueMatchFound));
+        SocketEventListeners.Add(new SocketEventListener("expedition_queue_match_hide", OnExpeditionQueueMatchHide));
+
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -1332,6 +1338,65 @@ public class SocketHandler : MonoBehaviour
         }
 
         CORE.Instance.InvokeEvent("PartyUpdated");
+    }
+
+
+    // Expedition
+
+    public void SendEnterExpedition(string expeditionName)
+    {
+        JSONNode node = new JSONClass();
+        node["expeditionName"] = expeditionName;
+        
+        SendEvent("expedition_enter", node);
+    }
+
+    public void SendStartExpeditionQueue(string expeditionName)
+    {
+        JSONNode node = new JSONClass();
+        node["expeditionName"] = expeditionName;
+        
+        SendEvent("expedition_queue_start", node);
+    }
+
+    public void SendStopExpeditionQueue()
+    {
+        JSONNode node = new JSONClass();
+        
+        SendEvent("expedition_queue_abort", node);
+    }
+
+    public void SendExpeditionQueueMatchResponse(bool accept)
+    {
+        JSONNode node = new JSONClass();
+        node["accept"].AsBool = accept;
+        
+        SendEvent("expedition_queue_match_response", node);
+    }
+    
+
+    public void OnExpeditionQueueStart(string eventName, JSONNode data)
+    {
+        // Duration elapsed is 0 when starting the queue, but if queue match popped and someone declined, this event will be called with the time elapsed since first queued.
+        // Start the queue timer with this number.
+        int durationElapsedInSeconds = data["durationElapsedInSeconds"].AsInt;
+
+        // TODO show queue timer
+    }
+
+    public void OnExpeditionQueueStop(string eventName, JSONNode data)
+    {
+        // TODO hide queue timer
+    }
+
+    public void OnExpeditionQueueMatchFound(string eventName, JSONNode data)
+    {
+        // TODO show loot roll window to accept / decline the queue. Keep the loot roll open until OnExpeditionQueueMatchHide is called~! (EVEN IF THE TIMER RUNS OUT!)
+    }
+
+    public void OnExpeditionQueueMatchHide(string eventName, JSONNode data)
+    {
+        // TODO hide the expedition queue match loot roll window
     }
 
     #endregion
