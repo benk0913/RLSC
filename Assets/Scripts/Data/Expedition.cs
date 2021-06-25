@@ -9,6 +9,8 @@ using UnityEngine;
 public class Expedition : ScriptableObject
 {
     public List<ExpeditionFloor> Floors = new List<ExpeditionFloor>();
+    public int PartyLengthMin;
+    public int PartyLengthMax;
 }
 
 [Serializable]
