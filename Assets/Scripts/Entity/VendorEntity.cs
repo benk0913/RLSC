@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class VendorEntity : MonoBehaviour
 {
+    public static VendorEntity CurrentInstance;
+
     public VendorData VendorReference;
 
     public List<VendorWorldItem> ItemsEntities = new List<VendorWorldItem>();
@@ -25,6 +27,7 @@ public class VendorEntity : MonoBehaviour
 
     public void StartFocusing()
     {
+        CurrentInstance = this;
         FocusOnItem(0);
         IsFocusing = true;
     }
@@ -61,6 +64,8 @@ public class VendorEntity : MonoBehaviour
         tooltipTarget.Text += ItemsLogic.GetTooltipTextFromItem(CurrentItem);
 
         tooltipTarget.ShowOnPosition(Camera.main.WorldToScreenPoint(ItemsEntities[ItemIndex].transform.position ) + new Vector3(-20f, 0f,0f));
+
+        VendorSelectionUI.Instance.SetItem(CurrentItem);
     }
 
     public void StopFocusing()
@@ -68,6 +73,11 @@ public class VendorEntity : MonoBehaviour
         CameraChaseEntity.Instance.Unfocus();
         PointAndClickTooltipUI.Instance.Hide();
         IsFocusing = false;
+        
+        if(CurrentInstance == this)
+            CurrentInstance = null;
+
+        VendorSelectionUI.Instance.Hide();
     }
 
     void Start()
@@ -96,11 +106,11 @@ public class VendorEntity : MonoBehaviour
         {
             if (Input.GetKeyDown(InputMap.Map["Move Right"]))
             {
-                FocusOnItem(ItemIndex + 1);
+                SetRightItem();
             }
             else if (Input.GetKeyDown(InputMap.Map["Move Left"]))
             {
-                FocusOnItem(ItemIndex - 1);
+                SetLeftItem();
             }
             else if (Input.GetKeyDown(InputMap.Map["Exit"]))
             {
@@ -111,6 +121,16 @@ public class VendorEntity : MonoBehaviour
                 PurchaseItem(ItemIndex);
             }
         }
+    }
+
+    public void SetRightItem()
+    {
+        FocusOnItem(ItemIndex + 1);
+    }
+
+    public void SetLeftItem()
+    {
+        FocusOnItem(ItemIndex - 1);
     }
 
     public void PurchaseItem(int itemIndex)

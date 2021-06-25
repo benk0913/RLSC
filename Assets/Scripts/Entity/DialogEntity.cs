@@ -41,6 +41,7 @@ public class DialogEntity : MonoBehaviour
     {
         if(CurrentDialog == dialog &&  isActiveDialog)
         {
+            Continue();
             return;
         }
 
