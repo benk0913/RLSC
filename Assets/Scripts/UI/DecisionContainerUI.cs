@@ -21,7 +21,7 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
         this.gameObject.SetActive(false);
     }
     
-    public void Show(ActorData actor)
+    public void Show(ActorData actor, object data = null)
     {
         Show(actor, null);
     }

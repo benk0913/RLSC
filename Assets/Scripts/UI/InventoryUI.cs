@@ -102,7 +102,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         }
     }
 
-    public void Show(ActorData ofActor)
+    public void Show(ActorData ofActor, object data = null)
     {
         IsOpen = true;
         this.gameObject.SetActive(true);

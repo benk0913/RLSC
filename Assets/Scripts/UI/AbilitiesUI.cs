@@ -36,7 +36,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         Hide();
     }
 
-    public void Show(ActorData actorData)
+    public void Show(ActorData actorData, object data = null)
     {
         IsOpen = true;
         playerActor = actorData.ActorEntity;

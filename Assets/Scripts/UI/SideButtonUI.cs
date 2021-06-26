@@ -22,12 +22,9 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
         isVisible = false;
     }
 
-    public void Show(ActorData actorData)
+    public void Show(ActorData actorData, object data = null)
     {
-        if(CameraChaseEntity.Instance.IsFocusing)
-        {
-            return;
-        }
+
 
         Animer.SetTrigger("Show");
         isVisible = true;

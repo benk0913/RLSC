@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class VendorSelectionUI : MonoBehaviour
+public class VendorSelectionUI : MonoBehaviour, WindowInterface
 {
     public static VendorSelectionUI Instance;
 
@@ -19,9 +19,15 @@ public class VendorSelectionUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Hide();
     }
 
-    public void SetItem(ItemData item)
+    public void Show(ActorData actorData, object data)
+    {
+        Show((ItemData)data, actorData);
+    }
+
+    public void Show(ItemData item, ActorData actor = null)
     {
         this.gameObject.SetActive(true);
 
@@ -45,5 +51,5 @@ public class VendorSelectionUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    
+
 }

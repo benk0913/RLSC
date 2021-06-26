@@ -159,14 +159,20 @@ public class CORE : MonoBehaviour
             {
                 if(Input.GetKeyDown(windowToKeyCode.Value))
                 {
-                    ShowWindow(windowToKeyCode.Key, windowToKeyCode.Value, null);
+                    ShowWindow(windowToKeyCode.Key, windowToKeyCode.Value, null, null);
                 }
             }
         }
     }
 
-    public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed, ActorData ofActor)
+    public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed = null, ActorData ofActor = null, object data = null)
     {
+        if(CurrentWindow == WindowToShow)
+        {
+            CurrentWindow.Show(ofActor == null ? SocketHandler.Instance.CurrentUser.actor : ofActor, data);
+            return;
+        }
+
         bool isTargetWindowClosed = CurrentWindow != WindowToShow;
         bool closedAWindow = CurrentWindow != null;
         CloseCurrentWindow();
@@ -174,18 +180,19 @@ public class CORE : MonoBehaviour
         if (isTargetWindowClosed && !isClosingAWindowWithExit)
         {
             CurrentWindow = WindowToShow;
-            CurrentWindow.Show(ofActor == null ? SocketHandler.Instance.CurrentUser.actor : ofActor);
+            CurrentWindow.Show(ofActor == null ? SocketHandler.Instance.CurrentUser.actor : ofActor, data);
         }
     }
 
+
     public void ShowAbilitiesUiWindow()
     {
-        ShowWindow(AbilitiesUI.Instance, null, null);
+        ShowWindow(AbilitiesUI.Instance);
     }
 
     public void ShowInventoryUiWindow()
     {
-        ShowWindow(InventoryUI.Instance, null, null);
+        ShowWindow(InventoryUI.Instance);
     }
 
     public void ShowInventoryUiWindow(ActorData ofActor)
@@ -195,12 +202,17 @@ public class CORE : MonoBehaviour
 
     public void ShowPartyUiWindow()
     {
-        ShowWindow(PartyWindowUI.Instance, null, null);
+        ShowWindow(PartyWindowUI.Instance);
     }
 
     public void ShowSideButtonUiWindow()
     {
-        ShowWindow(SideButtonUI.Instance, null, null);
+        ShowWindow(SideButtonUI.Instance);
+    }
+
+    public void ShowVendorSelectionWindow(ItemData currentItem)
+    {
+        ShowWindow(VendorSelectionUI.Instance, null, null, currentItem);
     }
 
     public void CloseCurrentWindow()
