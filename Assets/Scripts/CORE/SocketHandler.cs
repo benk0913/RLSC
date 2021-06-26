@@ -1377,10 +1377,6 @@ public class SocketHandler : MonoBehaviour
 
     public void OnExpeditionQueueStart(string eventName, JSONNode data)
     {
-        // Duration elapsed is 0 when starting the queue, but if queue match popped and someone declined, this event will be called with the time elapsed since first queued.
-        // Start the queue timer with this number.
-        int durationElapsedInSeconds = data["durationElapsedInSeconds"].AsInt;
-
         // TODO show queue timer
     }
 

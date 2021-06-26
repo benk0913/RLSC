@@ -64,3 +64,16 @@ MonoBehaviour:
     Exp: 0
   PartyLengthMin: 3
   PartyLengthMax: 5
+  QueueRules:
+  - RequireAllClasses: 1
+    RequireAirOrEarth: 0
+    PartyLength: 4
+    SecondsToStartRule: 0
+  - RequireAllClasses: 0
+    RequireAirOrEarth: 1
+    PartyLength: 4
+    SecondsToStartRule: 30
+  - RequireAllClasses: 0
+    RequireAirOrEarth: 1
+    PartyLength: 3
+    SecondsToStartRule: 60

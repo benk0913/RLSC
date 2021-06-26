@@ -93,6 +93,7 @@ public class DatabaseContent
     public int TimePhasesDurationMinutes;
     public int NpcItemsPoolLength;
     public int NpcItemsRefreshMinutes;
+    public int ExpeditionQueueMatchDurationSeconds;
 }
 
 [Serializable]
