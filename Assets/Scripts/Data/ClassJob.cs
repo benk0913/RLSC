@@ -27,6 +27,8 @@ public class ClassJob : ScriptableObject
 
     public List<ItemData> DropsOnDeath = new List<ItemData>();
     
+    public float CoinDropMultiplier = 0f;
+    
     public List<AbilityParam> OnDeathParams = new List<AbilityParam>();
 
     [JsonIgnore]

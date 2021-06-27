@@ -94,6 +94,8 @@ public class DatabaseContent
     public int NpcItemsPoolLength;
     public int NpcItemsRefreshMinutes;
     public int ExpeditionQueueMatchDurationSeconds;
+
+    public int BaseCoinDrop = 5;
 }
 
 [Serializable]
