@@ -136,15 +136,19 @@ public class CORE : MonoBehaviour
             return;
         }
 
+
         if (GameStates["phase"] != CurrentTimePhase)
         {
-            if (GameStates["phase"] == "Day")
+            if(!Room.HasEnemies)
             {
-                ShowScreenEffect("ScreenEffectChamberToDay",null,false, Room.HasEnemies? 4f:1f);
-            }
-            else if (GameStates["phase"] == "Night")
-            {
-                ShowScreenEffect("ScreenEffectChamberToNight", null, false, Room.HasEnemies? 4f : 1f);
+                if (GameStates["phase"] == "Day")
+                {
+                    ShowScreenEffect("ScreenEffectChamberToDay",null,false);
+                }
+                else if (GameStates["phase"] == "Night")
+                {
+                    ShowScreenEffect("ScreenEffectChamberToNight", null, false);
+                }
             }
 
             CurrentTimePhase = GameStates["phase"];
