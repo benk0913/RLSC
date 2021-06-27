@@ -105,7 +105,6 @@ public class CORE : MonoBehaviour
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
         DontDestroyOnLoad(this.gameObject);
-        LeaveGame();
     }
 
     private void Start()
@@ -126,6 +125,8 @@ public class CORE : MonoBehaviour
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
         WindowToKeyMap.Add(PartyWindowUI.Instance, InputMap.Map["Party Window"]);
         WindowToKeyMap.Add(SideButtonUI.Instance, InputMap.Map["Exit"]);
+
+        LoadScene("MainMenu");
     }
 
     private void GameStatesChanges()
@@ -445,14 +446,17 @@ public class CORE : MonoBehaviour
 
         onComplete?.Invoke();
 
-        EnterGame();
 
         InvokeEvent("NewSceneLoaded");
 
-        if (sceneKey == "PRELOADER")
+        if (sceneKey == "MainMenu")
         {
             SocketHandler.Instance.SendDisconnectSocket();
-            Destroy(this.gameObject);
+            LeaveGame();
+        }
+        else
+        {
+            EnterGame();
         }
 
         LoadSceneRoutineInstance = null;
@@ -490,8 +494,7 @@ public class CORE : MonoBehaviour
     {
         LeaveGame();
         SocketHandler.Instance.SendDisconnectSocket();
-        LoadScene("PRELOADER");
-        Destroy(this.gameObject);
+        LoadScene("MainMenu");
     }
 
     Coroutine RoomUpdateRoutineInstance;
