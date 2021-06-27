@@ -65,7 +65,15 @@ public class VendorEntity : MonoBehaviour
 
         tooltipTarget.ShowOnPosition(Camera.main.WorldToScreenPoint(ItemsEntities[ItemIndex].transform.position ) + new Vector3(-20f, 0f,0f));
 
-        CORE.Instance.ShowVendorSelectionWindow(CurrentItem);
+
+        if(!VendorSelectionUI.Instance.IsActive)
+        {
+            CORE.Instance.ShowVendorSelectionWindow(CurrentItem);
+        }
+        else
+        {
+            VendorSelectionUI.Instance.RefreshUI(CurrentItem);
+        }
     }
 
     public void StopFocusing()

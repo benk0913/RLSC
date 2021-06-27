@@ -16,6 +16,9 @@ public class VendorSelectionUI : MonoBehaviour, WindowInterface
     [SerializeField]
     TextMeshProUGUI KeyText;
 
+    public bool IsActive;
+
+
     private void Awake()
     {
         Instance = this;
@@ -24,13 +27,16 @@ public class VendorSelectionUI : MonoBehaviour, WindowInterface
 
     public void Show(ActorData actorData, object data)
     {
-        Show((ItemData)data, actorData);
-    }
-
-    public void Show(ItemData item, ActorData actor = null)
-    {
         this.gameObject.SetActive(true);
 
+        if(data != null)
+            RefreshUI((ItemData)data);
+
+        IsActive = true;
+    }
+
+    public void RefreshUI(ItemData item)
+    {   
         KeyText.text = "Press '" + InputMap.Map["Interact"].ToString() + "' To Purchase!";
         NameLabel.text = item.name;
         PriceLabel.text = item.VendorPrice.ToString();
@@ -48,6 +54,7 @@ public class VendorSelectionUI : MonoBehaviour, WindowInterface
 
     public void Hide()
     {
+        IsActive = false;
         this.gameObject.SetActive(false);
     }
 
