@@ -167,7 +167,7 @@ public class CORE : MonoBehaviour
 
     public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed = null, ActorData ofActor = null, object data = null)
     {
-        if(CurrentWindow == WindowToShow)
+        if(CurrentWindow != WindowToShow)
         {
             CurrentWindow.Show(ofActor == null ? SocketHandler.Instance.CurrentUser.actor : ofActor, data);
             return;
