@@ -13,15 +13,15 @@ public class StatItemUI : MonoBehaviour
         StatLabel.text = "<color=white>"+attribute+ "</color>: "+ "<color=yellow>" + value+ "</color>";
     }
 
-    public void SetStat(string attribute, float value)
+    public void SetStat(string attributeKey, string displayAttribute, float value)
     {
-        if (ItemsLogic.DisplayAttributes.ContainsKey(attribute) && !string.IsNullOrEmpty(ItemsLogic.DisplayAttributes[attribute].SpriteName))
+        if (ItemsLogic.DisplayAttributes.ContainsKey(attributeKey) && !string.IsNullOrEmpty(ItemsLogic.DisplayAttributes[attributeKey].SpriteName))
         {
-            StatLabel.text = "<color="+(value > 0 ? ItemsLogic.GOOD_LINE_COLOR : ItemsLogic.BAD_LINE_COLOR )+"><sprite name=\"" + ItemsLogic.DisplayAttributes[attribute].SpriteName + "\"> "+ (value > 0 ? "+" : "") + Mathf.RoundToInt(value * 100f) + "% " + attribute+"</color>";
+            StatLabel.text = "<color="+(value > 0 ? ItemsLogic.GOOD_LINE_COLOR : ItemsLogic.BAD_LINE_COLOR )+"><sprite name=\"" + ItemsLogic.DisplayAttributes[attributeKey].SpriteName + "\">  "+ (value > 0 ? "+" : "") + Mathf.RoundToInt(value * 100f) + "% " + displayAttribute+"</color>";
         }
         else
         {
-            StatLabel.text = "<color=" + (value > 0 ? ItemsLogic.GOOD_LINE_COLOR : ItemsLogic.BAD_LINE_COLOR) + ">" + (value > 0 ? "+" : "") + Mathf.RoundToInt(value * 100f) + "% " + attribute + "</color>";
+            StatLabel.text = "<color=" + (value > 0 ? ItemsLogic.GOOD_LINE_COLOR : ItemsLogic.BAD_LINE_COLOR) + ">" + (value > 0 ? "+" : "") + Mathf.RoundToInt(value * 100f) + "% " + displayAttribute + "</color>";
         }
     }
 }

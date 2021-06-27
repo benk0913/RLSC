@@ -46,26 +46,13 @@ public class StatsPanelUI : MonoBehaviour
         GenerateStatItem("Class", CurrentActor.ClassJobReference.name);
         GenerateStatItem("Level", CurrentActor.level.ToString());
         GenerateStatItem("EXP", CurrentActor.exp.ToString());
-        GenerateStatItem("Power", CurrentActor.attributes.Power);
-        GenerateStatItem("HP", CurrentActor.attributes.HP);
-        GenerateStatItem("Defense", CurrentActor.attributes.Defense);
-        GenerateStatItem("Block", CurrentActor.attributes.Block);
-        GenerateStatItem("CDReduction", CurrentActor.attributes.CDReduction);
-        GenerateStatItem("CTReduction", CurrentActor.attributes.CTReduction);
-        GenerateStatItem("Lifesteal", CurrentActor.attributes.Lifesteal);
-        GenerateStatItem("LongRangeMultiplier", CurrentActor.attributes.LongRangeMultiplier);
-        GenerateStatItem("ShortRangeMultiplier", CurrentActor.attributes.ShortRangeMultiplier);
-        GenerateStatItem("WildMagicChance", CurrentActor.attributes.WildMagicChance);
-        GenerateStatItem("SpellDuration", CurrentActor.attributes.SpellDuration);
-        GenerateStatItem("AntiDebuff", CurrentActor.attributes.AntiDebuff);
-        GenerateStatItem("Threat", CurrentActor.attributes.Threat);
-        GenerateStatItem("MovementSpeed", CurrentActor.attributes.MovementSpeed);
-        GenerateStatItem("JumpHeight", CurrentActor.attributes.JumpHeight);
-        GenerateStatItem("DoubleCast", CurrentActor.attributes.DoubleCast);
-        GenerateStatItem("Explode", CurrentActor.attributes.Explode);
-        GenerateStatItem("HpRegen", CurrentActor.attributes.HpRegen);
 
-
+        foreach (KeyValuePair<string, ItemsLogic.DisplayAttribute> keyValuePair in ItemsLogic.DisplayAttributes)
+        {
+            float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(CurrentActor.attributes);
+            
+            GenerateStatItem(keyValuePair.Key, keyValuePair.Value.Name, propertyValue);
+        }
     }
 
     public void GenerateStatItem(string statName, string statValue)
@@ -79,7 +66,7 @@ public class StatsPanelUI : MonoBehaviour
         item.SetStat(statName, statValue);
     }
 
-    public void GenerateStatItem(string statName, float statValue)
+    public void GenerateStatItem(string statName, string displayName, float statValue)
     {
         if(statValue == 0f)
         {
@@ -92,6 +79,6 @@ public class StatsPanelUI : MonoBehaviour
         item.transform.localScale = Vector3.one;
         item.transform.position = Vector3.zero;
 
-        item.SetStat(statName, statValue);
+        item.SetStat(statName, displayName, statValue);
     }
 }
