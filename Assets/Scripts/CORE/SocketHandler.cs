@@ -1048,7 +1048,14 @@ public class SocketHandler : MonoBehaviour
         }
 
         item.Entity.BePickedBy(actorDat.ActorEntity);
-        CORE.Instance.AddChatMessage("<color=yellow>"+actorDat.name+" has picked up the item: '"+item.itemName+"'</color>");
+        if (item.Data.Type.name == "Money")
+        {
+            CORE.Instance.AddChatMessage("<color=yellow>"+actorDat.name+" has picked up " + item.amount + " coins</color>");
+        }
+        else
+        {
+            CORE.Instance.AddChatMessage("<color=yellow>"+actorDat.name+" has picked up the item: '"+item.itemName+"'</color>");
+        }
 
         CORE.Instance.IsPickingUpItem = false;
     }

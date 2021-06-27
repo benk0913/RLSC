@@ -13,6 +13,7 @@ public class Item
     public float y;
     public float spawnX;
     public float spawnY;
+    public int amount;
 
     [JsonIgnore]
     public ItemEntity Entity;
