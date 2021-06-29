@@ -69,7 +69,7 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
             transform.position = Vector2.Lerp(transform.position, (Vector2)CameraChaseEntity.Instance.CurrentCam.WorldToScreenPoint(CurrentTarget.position) + new Vector2(0f, Screen.height / 8), Time.deltaTime);
         }
 
-        if(Input.GetKeyDown(InputMap.Map["Escape"]))
+        if(Input.GetKeyDown(InputMap.Map["Exit"]))
         {
             Hide();
         }

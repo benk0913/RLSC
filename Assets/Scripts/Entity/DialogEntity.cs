@@ -39,6 +39,11 @@ public class DialogEntity : MonoBehaviour
 
     public void StartDialog(Dialog dialog)
     {
+        if(VendorEntity.CurrentInstance != null && VendorEntity.CurrentInstance.IsFocusing)
+        {
+            return;
+        }
+
         if(CurrentDialog == dialog &&  isActiveDialog)
         {
             Continue();

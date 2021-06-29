@@ -268,7 +268,7 @@ public class Actor : MonoBehaviour
                 + System.Environment.NewLine + "<size=7>" + "Level: " + State.Data.level+ "</color>"
                 +( InParty? System.Environment.NewLine + "<size=7><color=yellow>" + "In Party</color></size>" : "")
                 + (State.Data.IsPlayer? System.Environment.NewLine + "<size=7><color=yellow>" + "This is YOU!</color></size>" : "")
-                + System.Environment.NewLine + "<size=7><color=grey>(Double Click - To Inspect)</color></size>");
+                + System.Environment.NewLine + "<size=7><color=yellow>(Double Click - To Inspect)</color></size>");
         }
     }
 

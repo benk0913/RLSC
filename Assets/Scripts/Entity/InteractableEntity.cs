@@ -40,7 +40,7 @@ public class InteractableEntity : MonoBehaviour
             return;
         }
 
-        InteractableCooldown = 1f;
+        InteractableCooldown = 0.1f;
 
         IsBusy = true;
 

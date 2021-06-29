@@ -30,7 +30,7 @@ public class HealthbarUI : MonoBehaviour
         if (ShouldHideBar() || CurrentActor == null || CurrentActor.State == null || CurrentActor.State.Data == null || CurrentActor.State.Data.attributes == null)
         {
             CG.alpha = 0f;
-            LastHpPercent = 0f;
+            LastHpPercent = 1f;
             ImageFill.fillAmount = LastHpPercent;
 
             return;
@@ -53,11 +53,12 @@ public class HealthbarUI : MonoBehaviour
         }
     }
 
-    protected virtual bool ShouldHideBar()
+    protected virtual bool ShouldHideBar() ///TODO Replace this, probably bad for performance atm.
     {
         bool isHPFull = CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP;
 
         return CurrentActor == null
+            || !CORE.Instance.InGame
             || (CurrentActor.State.Data.isCharacter && CurrentActor.State.Data.IsPlayer && isHPFull)
             || (CurrentActor.State.Data.isCharacter && !CurrentActor.State.Data.IsPlayer && !CurrentActor.InParty) 
             || (CurrentActor.State.Data.isMob && isHPFull || CurrentActor.State.Data.hp <= 0);

@@ -140,7 +140,7 @@ public class CORE : MonoBehaviour
 
         if (GameStates["phase"] != CurrentTimePhase)
         {
-            if(!Room.HasEnemies)
+            if(!Room.HasEnemies && InGame)
             {
                 if (GameStates["phase"] == "Day")
                 {
@@ -451,8 +451,11 @@ public class CORE : MonoBehaviour
 
         if (sceneKey == "MainMenu")
         {
-            SocketHandler.Instance.SendDisconnectSocket();
-            LeaveGame();
+            if(InGame)
+            {
+                SocketHandler.Instance.SendDisconnectSocket();
+                LeaveGame();
+            }
         }
         else
         {
@@ -492,8 +495,6 @@ public class CORE : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        LeaveGame();
-        SocketHandler.Instance.SendDisconnectSocket();
         LoadScene("MainMenu");
     }
 

@@ -34,6 +34,7 @@ public class VendorEntity : MonoBehaviour
 
     public void FocusOnItem(int itemIndex)
     {
+
         if(itemIndex < 0)
         {
             itemIndex = ItemsEntities.Count - 1;
@@ -112,21 +113,25 @@ public class VendorEntity : MonoBehaviour
 
         if (IsFocusing)
         {
-            if (Input.GetKeyDown(InputMap.Map["Move Right"]))
+            if(!WarningWindowUI.Instance.isActiveAndEnabled)
             {
-                SetRightItem();
+                if (Input.GetKeyDown(InputMap.Map["Move Right"]))
+                {
+                    SetRightItem();
+                }
+                else if (Input.GetKeyDown(InputMap.Map["Move Left"]))
+                {
+                    SetLeftItem();
+                }
+                else if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]))
+                {  
+                    PurchaseItem(ItemIndex);
+                }
             }
-            else if (Input.GetKeyDown(InputMap.Map["Move Left"]))
-            {
-                SetLeftItem();
-            }
-            else if (Input.GetKeyDown(InputMap.Map["Exit"]))
+
+            if (Input.GetKeyDown(InputMap.Map["Exit"]))
             {
                 StopFocusing();
-            }
-            else if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]))
-            {
-                PurchaseItem(ItemIndex);
             }
         }
     }
@@ -152,15 +157,19 @@ public class VendorEntity : MonoBehaviour
             return;
         }
 
-        JSONNode node = new JSONClass();
-        node["vendorId"] = VendorReference.ID;
-        node["itemName"] = item.name;
+        WarningWindowUI.Instance.Show("Purchase "+item.name+" for "+item.VendorPrice+" coins?",()=>
+        {
+            JSONNode node = new JSONClass();
+            node["vendorId"] = VendorReference.ID;
+            node["itemName"] = item.name;
 
-        SocketHandler.Instance.SendEvent("purchased_item", node);
+            SocketHandler.Instance.SendEvent("purchased_item", node);
 
-        AudioControl.Instance.PlayInPosition("sound_purchase", transform.position);
+            AudioControl.Instance.PlayInPosition("sound_purchase", transform.position);
 
-        StopFocusing();
+            StopFocusing();
+        });
+
     }
 
     public void OnVendorsUpdate()
