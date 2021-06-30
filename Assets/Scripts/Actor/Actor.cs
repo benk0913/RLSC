@@ -3,6 +3,7 @@ using SimpleJSON;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -558,8 +559,23 @@ public class Actor : MonoBehaviour
         bool isCastingExternal = castingExternal || ability.IsCastingExternal;
         if(IsClientControl)
         {
-
             CORE.Instance.ActivateParams(ability.OnExecuteParams, null, this);
+
+            for(int i=0;i<State.Data.equips.Keys.Count;i++)
+            {
+                Item item = State.Data.equips[State.Data.equips.Keys.ElementAt(i)];
+                if(item == null)
+                {
+                    continue;
+                }
+
+                if(item.Data.OnExecuteParams == null || item.Data.OnExecuteParams.Count == 0)
+                {
+                    continue;
+                }
+
+                CORE.Instance.ActivateParams(item.Data.OnExecuteParams, null, this);
+            }
 
             AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
 
@@ -620,6 +636,23 @@ public class Actor : MonoBehaviour
         if (IsClientControl)
         {
             CORE.Instance.ActivateParams(ability.OnHitParams, casterActor, this);
+
+             for(int i=0;i<State.Data.equips.Keys.Count;i++)
+            {
+                Item item = State.Data.equips[State.Data.equips.Keys.ElementAt(i)];
+                if(item == null)
+                {
+                    continue;
+                }
+
+                if(item.Data.OnHitParams == null || item.Data.OnHitParams.Count == 0)
+                {
+                    continue;
+                }
+
+                CORE.Instance.ActivateParams(item.Data.OnHitParams, casterActor, this);
+            }
+
         }
 
         if (ability.Sounds.HitAbilitySoundVarriants.Count > 0)

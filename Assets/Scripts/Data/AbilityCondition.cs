@@ -31,6 +31,17 @@ public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
                         return Inverse; //  True
                     }
                 }
+            case ConditionType.Chance:
+                {
+                    if(UnityEngine.Random.Range(0f,1f) < float.Parse(Value))
+                    {
+                        return !Inverse; //  False
+                    }
+                    else
+                    {
+                        return Inverse; //  True
+                    }
+                }
         } 
 
         return !Inverse; //  True 

@@ -40,19 +40,22 @@ public class InteractableEntity : MonoBehaviour
             return;
         }
 
-        InteractableCooldown = 0.1f;
-
-        IsBusy = true;
-
-        if (isClientOnly)
+        CORE.Instance.DelayedInvokation(0.1f,()=> // Delayed in order to interact with all nearby interactables.
         {
-            Interacted(NearbyActor.State.Data.actorId);
-            return;
-        }
+            InteractableCooldown = 0.1f;
 
-        JSONNode node = new JSONClass();
-        node["interactableId"] = Data.interactableId;
-        SocketHandler.Instance.SendEvent("used_interactable", node);
+            IsBusy = true;
+
+            if (isClientOnly)
+            {
+                Interacted(NearbyActor.State.Data.actorId);
+                return;
+            }
+
+            JSONNode node = new JSONClass();
+            node["interactableId"] = Data.interactableId;
+            SocketHandler.Instance.SendEvent("used_interactable", node);
+        });
     }
 
     public void Interacted(string byActorID)

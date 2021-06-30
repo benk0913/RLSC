@@ -592,6 +592,11 @@ public class CORE : MonoBehaviour
     {
         foreach (AbilityParam param in onExecuteParams)
         {
+            if(param.Condition != null && !param.Condition.IsValid(originCaster))
+            {
+                continue;
+            }
+
             if (param.Type.name == "Movement")
             {
                 if ((param.Targets == TargetType.Self || param.Targets == TargetType.FriendsAndSelf) && casterActor != null)
@@ -614,7 +619,7 @@ public class CORE : MonoBehaviour
                     {
                         continue;
                     }
-
+                
                     originCaster.State.Abilities.Find(x => x.CurrentAbility.name == (originCaster.LastAbility.name)).CurrentCD = 0f;
                 }
             }
