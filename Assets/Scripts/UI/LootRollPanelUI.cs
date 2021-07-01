@@ -11,6 +11,8 @@ public class LootRollPanelUI : MonoBehaviour
 
     List<PartyInvitePanelUI> Invites = new List<PartyInvitePanelUI>();
 
+    List<MatchFoundPanelUI> MatchesFound = new List<MatchFoundPanelUI>();
+
     private void Awake()
     {
         Instance = this;
@@ -29,8 +31,8 @@ public class LootRollPanelUI : MonoBehaviour
     public void RemoveLootRollItem(Item item)
     {
         LootRollItemUI itm = Items.Find(x => x.CurrentItem.itemId == item.itemId);
-        
-        if(itm == null)
+
+        if (itm == null)
         {
             CORE.Instance.LogMessageError("NO ROLL ITEM INSTANCE FOR ID " + item.itemId);
             return;
@@ -64,7 +66,7 @@ public class LootRollPanelUI : MonoBehaviour
 
     public void RemovePartyInvitation(string fromPlayer = "")
     {
-        if(Invites.Count == 0)
+        if (Invites.Count == 0)
         {
             return;
         }
@@ -78,7 +80,7 @@ public class LootRollPanelUI : MonoBehaviour
         {
             partyInviteUI = Invites.Find(x => x.CurrentFromPlayer == fromPlayer);
         }
-        
+
 
         if (partyInviteUI == null)
         {
@@ -90,4 +92,21 @@ public class LootRollPanelUI : MonoBehaviour
         Invites.Remove(partyInviteUI);
     }
 
+    public void AddMatchFound()
+    {
+        MatchFoundPanelUI matchFoundUI = ResourcesLoader.Instance.GetRecycledObject("MatchFoundPanelUI").GetComponent<MatchFoundPanelUI>();
+
+        //TODO Which match?
+        matchFoundUI.transform.SetParent(transform, false);
+        MatchesFound.Add(matchFoundUI);
+    }
+
+    public void RemoveMatchFound()
+    {
+        while(MatchesFound.Count > 0)
+        {
+            MatchesFound[0].gameObject.SetActive(false);
+            MatchesFound.RemoveAt(0);
+        }
+    }
 }

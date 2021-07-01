@@ -44,7 +44,14 @@ public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
                 }
             case ConditionType.InExpeditionQueue:
                 {
-                    return true;//TODO Change when UI is made
+                    if(ExpeditionQueTimerUI.Instance.IsSearching)
+                    {
+                        return !Inverse;
+                    }
+                    else
+                    {
+                        return Inverse;
+                    }
                 }
         } 
 

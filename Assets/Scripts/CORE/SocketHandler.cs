@@ -1384,21 +1384,23 @@ public class SocketHandler : MonoBehaviour
 
     public void OnExpeditionQueueStart(string eventName, JSONNode data)
     {
-        // TODO show queue timer
+        ExpeditionQueTimerUI.Instance.Show("Forest");
     }
 
     public void OnExpeditionQueueStop(string eventName, JSONNode data)
     {
-        // TODO hide queue timer
+        ExpeditionQueTimerUI.Instance.Hide();
     }
 
     public void OnExpeditionQueueMatchFound(string eventName, JSONNode data)
     {
+        LootRollPanelUI.Instance.AddMatchFound();
         // TODO show loot roll window to accept / decline the queue. Keep the loot roll open until OnExpeditionQueueMatchHide is called~! (EVEN IF THE TIMER RUNS OUT!)
     }
 
     public void OnExpeditionQueueMatchHide(string eventName, JSONNode data)
     {
+        LootRollPanelUI.Instance.RemoveMatchFound();
         // TODO hide the expedition queue match loot roll window
     }
 

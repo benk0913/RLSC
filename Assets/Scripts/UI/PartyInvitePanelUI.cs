@@ -7,21 +7,21 @@ using UnityEngine.UI;
 public class PartyInvitePanelUI : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI TitleText;
+    protected TextMeshProUGUI TitleText;
 
     [SerializeField]
-    Image TimerFillImage;
+    protected Image TimerFillImage;
 
     [SerializeField]
-    CanvasGroup CG;
+    protected CanvasGroup CG;
 
     [SerializeField]
-    TextMeshProUGUI KeyOption1Label;
+    protected TextMeshProUGUI KeyOption1Label;
 
     [SerializeField]
-    TextMeshProUGUI KeyOption2Label;
+    protected TextMeshProUGUI KeyOption2Label;
 
-    Coroutine TimerRoutineInstance;
+    protected Coroutine TimerRoutineInstance;
 
     public string CurrentFromPlayer;
 
@@ -43,11 +43,8 @@ public class PartyInvitePanelUI : MonoBehaviour
         }
     }
 
-    public void SetInfo(string fromPlayer)
+    public virtual void SetInfo()
     {
-        this.CurrentFromPlayer = fromPlayer;
-        
-        TitleText.text = "Join "+CurrentFromPlayer+"'s Party?";
         CG.interactable = true;
 
         if (TimerRoutineInstance != null)
@@ -61,7 +58,14 @@ public class PartyInvitePanelUI : MonoBehaviour
         KeyOption2Label.text = InputMap.Map["Vote Option 2"].ToString();
     }
 
-    IEnumerator TimerRoutine(float timeLeft)
+    public virtual void SetInfo(string fromPlayer)
+    {
+        this.CurrentFromPlayer = fromPlayer;
+        TitleText.text = "Join "+CurrentFromPlayer+"'s Party?";
+        SetInfo();
+    }
+
+    protected IEnumerator TimerRoutine(float timeLeft)
     {
         timeLeft -= 2;//Two second before the timer ends just in case
 
@@ -78,7 +82,7 @@ public class PartyInvitePanelUI : MonoBehaviour
         TimerRoutineInstance = null;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!CG.interactable)
         {
@@ -97,14 +101,14 @@ public class PartyInvitePanelUI : MonoBehaviour
         }
     }
 
-    public void Decline()
+    public virtual void Decline()
     {
         SocketHandler.Instance.SendPartyInviteResponse(false);
         CG.interactable = false;
         LootRollPanelUI.Instance.RemovePartyInvitation(CurrentFromPlayer);
     }
 
-    public void Accept()
+    public virtual void Accept()
     {
         SocketHandler.Instance.SendPartyInviteResponse(true);
         CG.interactable = false;
