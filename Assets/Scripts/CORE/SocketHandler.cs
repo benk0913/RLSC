@@ -1384,7 +1384,9 @@ public class SocketHandler : MonoBehaviour
 
     public void OnExpeditionQueueStart(string eventName, JSONNode data)
     {
-        ExpeditionQueTimerUI.Instance.Show("Forest");
+        string expeditionName = data["expeditionName"].Value;
+        
+        ExpeditionQueTimerUI.Instance.Show(expeditionName);
     }
 
     public void OnExpeditionQueueStop(string eventName, JSONNode data)
