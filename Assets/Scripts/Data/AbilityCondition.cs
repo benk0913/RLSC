@@ -42,6 +42,10 @@ public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
                         return Inverse; //  True
                     }
                 }
+            case ConditionType.InExpeditionQueue:
+                {
+                    return true;//TODO Change when UI is made
+                }
         } 
 
         return !Inverse; //  True 
@@ -55,4 +59,6 @@ public enum ConditionType
     HasState,
     Staring,
     Chance,
+
+    InExpeditionQueue
 }

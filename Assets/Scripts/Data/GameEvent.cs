@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections;
@@ -9,7 +9,7 @@ using UnityEngine;
 [Serializable]
 public class GameEvent : ScriptableObject
 {
-    public void Execute(System.Object obj = null)
+    public virtual void Execute(System.Object obj = null)
     {
     }
 }
