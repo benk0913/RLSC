@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace EdgeworldBase
 {
@@ -91,6 +92,33 @@ namespace EdgeworldBase
             }
             else
             {
+            }
+        }
+
+        public void SetInBackground()
+        {      
+            MusicSource.Pause();
+            SoundscapeSource.Pause();
+        }
+
+        public void SetNoInBackground()
+        {
+            if(MusicSource.time <= 1f)
+            {
+                MusicSource.Play();
+            }
+            else
+            {
+                MusicSource.UnPause();
+            }
+
+            if(SoundscapeSource.time <= 1f)
+            {
+                SoundscapeSource.Play();
+            }
+            else
+            {
+                SoundscapeSource.UnPause();
             }
         }
 
@@ -307,7 +335,11 @@ namespace EdgeworldBase
             {
                 MusicSource.Stop();
                 MusicSource.clip = ResourcesLoader.Instance.GetClip(gClip);
-                MusicSource.Play();
+
+                if(!CORE.Instance.IsAppInBackground)
+                {
+                    MusicSource.Play();
+                }
             }
         }
 
@@ -333,7 +365,11 @@ namespace EdgeworldBase
             {
                 SoundscapeSource.Stop();
                 SoundscapeSource.clip = ResourcesLoader.Instance.GetClip(gClip);
-                SoundscapeSource.Play();
+
+                if(!CORE.Instance.IsAppInBackground)
+                {
+                    SoundscapeSource.Play();
+                }
             }
         }
 

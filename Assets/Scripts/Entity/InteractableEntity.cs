@@ -46,7 +46,7 @@ public class InteractableEntity : MonoBehaviour
 
             IsBusy = true;
 
-            if (isClientOnly)
+            if (isClientOnly && NearbyActor != null)
             {
                 Interacted(NearbyActor.State.Data.actorId);
                 return;

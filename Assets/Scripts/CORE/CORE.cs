@@ -94,6 +94,8 @@ public class CORE : MonoBehaviour
         }
     }
 
+    public bool IsAppInBackground = false;
+
 
     public WindowInterface CurrentWindow;
     public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
@@ -105,6 +107,20 @@ public class CORE : MonoBehaviour
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    void OnApplicationFocus( bool focus )
+    {
+        if( focus )
+        {
+            AudioControl.Instance.SetNoInBackground();
+            IsAppInBackground = false;
+        }
+        else
+        {
+            AudioControl.Instance.SetInBackground();
+            IsAppInBackground = true;
+        }
     }
 
     private void Start()

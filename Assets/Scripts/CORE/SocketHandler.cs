@@ -25,8 +25,8 @@ public class SocketHandler : MonoBehaviour
     public string LocalSocketUrl = "http://localhost:5000/socket.io/";
     public string ProdHostUrl = "https://lul2.herokuapp.com";
     public string ProdSocketUrl = "https://lul2.herokuapp.com/socket.io/";
-    public string HostUrl { get { return IsLocal ? LocalHostUrl : ProdHostUrl; }}
-    public string SocketUrl { get { return IsLocal ? LocalSocketUrl : ProdSocketUrl; }}
+    public string HostUrl { get { return IsLocal ? LocalHostUrl : ProdHostUrl; } }
+    public string SocketUrl { get { return IsLocal ? LocalSocketUrl : ProdSocketUrl; } }
 
     public UserData CurrentUser;
 
@@ -34,13 +34,17 @@ public class SocketHandler : MonoBehaviour
 
     public List<SocketEventListener> SocketEventListeners = new List<SocketEventListener>();
 
+    public int UniqueNumber;
+
     private void Awake()
     {
         Instance = this;
 
+        UniqueNumber = UnityEngine.Random.Range(0,9999);
+
         SetupSocketIO();
     }
-    
+
     private void OnApplicationQuit()
     {
         SendDisconnectSocket();
@@ -49,9 +53,9 @@ public class SocketHandler : MonoBehaviour
     void SetupSocketIO()
     {
         SocketManager = new SocketManager(new Uri(HostUrl));
-        
+
         SocketEventListeners.Clear();
-        
+
 
         SocketEventListeners.Add(new SocketEventListener("load_scene", OnLoadScene));
         SocketEventListeners.Add(new SocketEventListener("event_error", OnError));
@@ -83,7 +87,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("room_state", OnRoomState));
         SocketEventListeners.Add(new SocketEventListener("room_states", OnRoomStates));
         SocketEventListeners.Add(new SocketEventListener("room_vendors", OnVendorUpdate));
-        
+
         SocketEventListeners.Add(new SocketEventListener("game_states", OnGameStates));
 
         SocketEventListeners.Add(new SocketEventListener("exp_update", OnExpUpdate));
@@ -99,7 +103,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_pick_item", OnActorPickItem));
         SocketEventListeners.Add(new SocketEventListener("orb_added", OnOrbAdded));
         SocketEventListeners.Add(new SocketEventListener("money_refresh", OnMoneyRefresh));
-        
+
         // Rolls
         SocketEventListeners.Add(new SocketEventListener("choose_item_roll", OnChooseItemRoll));
         SocketEventListeners.Add(new SocketEventListener("actor_chose_rolled_item", OnActorChoseRolledItem));
@@ -107,7 +111,7 @@ public class SocketHandler : MonoBehaviour
 
         // Chat
         SocketEventListeners.Add(new SocketEventListener("actor_chat_message", OnActorChatMessage));
-        
+
         // Party
         SocketEventListeners.Add(new SocketEventListener("party_invite", OnPartyInvite));
         SocketEventListeners.Add(new SocketEventListener("party_invite_timeout", OnPartyInviteTimeout));
@@ -144,7 +148,7 @@ public class SocketHandler : MonoBehaviour
 
     public void AddListeners()
     {
-        
+
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -164,7 +168,7 @@ public class SocketHandler : MonoBehaviour
     public void SendLogin(Action OnComplete = null)
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Color.green, 3f, true));
-        
+
         JSONNode node = new JSONClass();
         node["skipTutorial"] = SkippedTutorial();
 
@@ -179,7 +183,7 @@ public class SocketHandler : MonoBehaviour
         true);
     }
 
-    public void SendCreateCharacter(string element = "fire", ActorData actor = null,Action OnComplete = null)
+    public void SendCreateCharacter(string element = "fire", ActorData actor = null, Action OnComplete = null)
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Creating Character...", Color.green, 1f, true));
 
@@ -254,7 +258,7 @@ public class SocketHandler : MonoBehaviour
         {
             StopCoroutine(ConnectSocketRoutineInstance);
         }
-        
+
         ConnectSocketRoutineInstance = StartCoroutine(ConnectSocketRoutine(OnComplete));
     }
 
@@ -268,22 +272,22 @@ public class SocketHandler : MonoBehaviour
         options.AdditionalQueryParams.Add("skipTutorial", SkippedTutorial());
         options.AdditionalQueryParams.Add("charIndex", CurrentUser.SelectedCharacterIndex.ToString());
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         options.AdditionalQueryParams.Add("isEditor", "1");
-        #endif
+#endif
 
         options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
 
         DisconnectSocket();
 
-        SocketManager = new SocketManager(new Uri(SocketUrl),options);
+        SocketManager = new SocketManager(new Uri(SocketUrl), options);
         SocketManager.Encoder = new SimpleJsonEncoder();
 
         AddListeners();
 
         SocketManager.Open();
-        
-        while(SocketManager.State != SocketManager.States.Open)
+
+        while (SocketManager.State != SocketManager.States.Open)
         {
             yield return 0;
         }
@@ -298,9 +302,12 @@ public class SocketHandler : MonoBehaviour
     private string SkippedTutorial()
     {
         return SystemInfo.deviceUniqueIdentifier
-            #if UNITY_EDITOR
-            + "-editor"
-            #endif
+#if UNITY_EDITOR
+            +"-editor"
+#else
+            +UniqueNumber+"-devbuild"
+#endif
+
         ;
     }
 
@@ -344,15 +351,15 @@ public class SocketHandler : MonoBehaviour
     {
         // TODO update characters list
     }
-    
-    
+
+
     #endregion
 
     #region HTTP Request Handling
 
-    public void SendWebRequest(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string,string> urlParams = null, bool isPost = false)
+    public void SendWebRequest(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string, string> urlParams = null, bool isPost = false)
     {
-        StartCoroutine(SendHTTPRequestRoutine(url, OnResponse,sentJson,urlParams,isPost));
+        StartCoroutine(SendHTTPRequestRoutine(url, OnResponse, sentJson, urlParams, isPost));
     }
 
     public IEnumerator SendHTTPRequestRoutine(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string, string> urlParams = null, bool isPost = false)
@@ -366,7 +373,7 @@ public class SocketHandler : MonoBehaviour
 
             urlWithParams += "?" + urlParams.Keys.ElementAt(0) + "=" + urlParams[urlParams.Keys.ElementAt(0)];
 
-            for (int i=1;i<urlParams.Keys.Count;i++)
+            for (int i = 1; i < urlParams.Keys.Count; i++)
             {
                 urlWithParams += "&" + urlParams.Keys.ElementAt(i) + "=" + urlParams[urlParams.Keys.ElementAt(i)];
             }
@@ -453,9 +460,9 @@ public class SocketHandler : MonoBehaviour
             CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + node.ToString());
         }
 
-        SocketManager.Socket.Emit(eventKey, node);    
+        SocketManager.Socket.Emit(eventKey, node);
     }
-   
+
 
     #endregion
 
@@ -479,11 +486,11 @@ public class SocketHandler : MonoBehaviour
                 DisconnectSocket();
                 break;
             default:
-                CORE.Instance.LogMessageError("Server error!"  + " Code: " + error.Code + ". Message: " + error.Message);
+                CORE.Instance.LogMessageError("Server error!" + " Code: " + error.Code + ". Message: " + error.Message);
                 break;
         }
     }
-    
+
     public void OnDisconnect(Socket socket, Packet packet, params object[] args)
     {
         CORE.Instance.ReturnToMainMenu();
@@ -505,17 +512,18 @@ public class SocketHandler : MonoBehaviour
 
     public void OnLoadScene(string eventName, JSONNode data)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering "+data["scene"].Value, Color.green, 1f, false));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering " + data["scene"].Value, Color.green, 1f, false));
 
         CORE.Instance.IsLoading = true;
         CORE.Instance.CloseCurrentWindow();
-        ScreenFaderUI.Instance.FadeToBlack(()=> 
+        ScreenFaderUI.Instance.FadeToBlack(() =>
         {
+
             SceneInfo info = CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == data["scene"].Value);
-        
+
             if (info != null)
             {
-                if(!string.IsNullOrEmpty(info.MusicTrack))
+                if (!string.IsNullOrEmpty(info.MusicTrack))
                 {
                     AudioControl.Instance.SetMusic(info.MusicTrack);
                 }
@@ -542,6 +550,7 @@ public class SocketHandler : MonoBehaviour
                 if (sceneInfo.displayTitleOnEnter)
                 {
                     CORE.Instance.ShowScreenEffect("ScreenEffectLocation", sceneInfo.sceneName);
+
                 }
 
             });
@@ -570,7 +579,7 @@ public class SocketHandler : MonoBehaviour
 
         if (!CORE.Instance.Room.RoomStates.ContainsKey(State))
         {
-            CORE.Instance.Room.RoomStates.Add(State,Value);
+            CORE.Instance.Room.RoomStates.Add(State, Value);
         }
 
         CORE.Instance.Room.RoomStates[State] = Value;
@@ -613,7 +622,7 @@ public class SocketHandler : MonoBehaviour
         string givenActorId = data["actorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
-        if(actorDat == null)
+        if (actorDat == null)
         {
             CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
             return;
@@ -673,7 +682,7 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["portalId"] = portal.name;
-        
+
         SocketHandler.Instance.SendEvent("entered_portal", node);
     }
 
@@ -681,7 +690,7 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["itemId"] = itemId;
-        
+
         SocketHandler.Instance.SendEvent("picked_item", node);
     }
 
@@ -689,7 +698,7 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["slotIndex"].AsInt = slotIndex;
-        
+
         SocketHandler.Instance.SendEvent("dropped_item", node);
     }
 
@@ -697,7 +706,7 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["slotIndex"].AsInt = slotIndex;
-        
+
         SocketHandler.Instance.SendEvent("equipped_item", node);
     }
 
@@ -705,7 +714,7 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["equipType"] = equipType;
-        
+
         SocketHandler.Instance.SendEvent("unequipped_item", node);
     }
 
@@ -714,7 +723,7 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["slotIndex1"].AsInt = slotIndex1;
         node["slotIndex2"].AsInt = slotIndex2;
-        
+
         SocketHandler.Instance.SendEvent("swapped_item_slots", node);
     }
 
@@ -723,7 +732,7 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["equipType"] = equipType;
         node["slotIndex"].AsInt = slotIndex;
-        
+
         SocketHandler.Instance.SendEvent("swapped_item_and_equip_slots", node);
     }
 
@@ -734,7 +743,7 @@ public class SocketHandler : MonoBehaviour
 
     protected void OnBitchPlease(string eventName, JSONNode data)
     {
-        SendEvent("bitch_please",data);
+        SendEvent("bitch_please", data);
     }
 
     protected void OnActorBitch(string eventName, JSONNode data)
@@ -748,7 +757,7 @@ public class SocketHandler : MonoBehaviour
     {
         ActorData actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
 
-        if(CurrentUser.actor.actorId == actor.actorId)
+        if (CurrentUser.actor.actorId == actor.actorId)
         {
             CurrentUser.actor = actor;
         }
@@ -766,7 +775,7 @@ public class SocketHandler : MonoBehaviour
         string givenActorId = data["actorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
-        if(actorDat == null)
+        if (actorDat == null)
         {
             CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
             return;
@@ -798,9 +807,9 @@ public class SocketHandler : MonoBehaviour
         bool faceRight = data["faceRight"].AsBool;
         bool castingExternal = data["castingExternal"].AsBool;
 
-        actorDat.ActorEntity.ExecuteAbility(ability,position,faceRight, castingExternal);
+        actorDat.ActorEntity.ExecuteAbility(ability, position, faceRight, castingExternal);
 
-        
+
     }
 
     public void OnActorAbilityHit(string eventName, JSONNode data)
@@ -863,7 +872,7 @@ public class SocketHandler : MonoBehaviour
         float duration = data["durationInSeconds"].AsFloat;
 
         Buff buff = CORE.Instance.Data.content.Buffs.Find(x => x.name == buffName);
-        
+
         actorDat.ActorEntity.AddBuff(buff, duration);
 
 
@@ -970,9 +979,9 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        actorDat.states = JsonConvert.DeserializeObject<Dictionary<string,StateData>>(data["states"].ToString());
+        actorDat.states = JsonConvert.DeserializeObject<Dictionary<string, StateData>>(data["states"].ToString());
 
-        if(actorDat.ActorEntity == null)
+        if (actorDat.ActorEntity == null)
         {
             CORE.Instance.LogMessageError("ACTOR DATA HAS NO ENTITY?");
             return;
@@ -1007,22 +1016,22 @@ public class SocketHandler : MonoBehaviour
     public void OnActorUpdateEquipSlot(string eventName, JSONNode data)
     {
         string actorId = data["actorId"].Value;
-        
+
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
-        if(actorDat == null)
+        if (actorDat == null)
         {
             CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
             return;
         }
-        
+
         string equipType = data["equipType"].Value;
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
 
         actorDat.equips[equipType] = item;
-        
+
         actorDat.ActorEntity.RefreshLooks();
 
-        if(actorDat.IsPlayer)
+        if (actorDat.IsPlayer)
         {
             InventoryUI.Instance.RefreshUI();
         }
@@ -1031,9 +1040,9 @@ public class SocketHandler : MonoBehaviour
     public void OnActorPickItem(string eventName, JSONNode data)
     {
         string actorId = data["actorId"].Value;
-        
+
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
-        if(actorDat == null)
+        if (actorDat == null)
         {
             CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
             return;
@@ -1041,7 +1050,7 @@ public class SocketHandler : MonoBehaviour
 
         Item item = CORE.Instance.Room.Items.Find(x => x.itemId == data["itemId"].Value);
 
-        if(item == null)
+        if (item == null)
         {
             CORE.Instance.LogMessageError("No item with ID " + data["itemId"].Value);
             return;
@@ -1050,11 +1059,11 @@ public class SocketHandler : MonoBehaviour
         item.Entity.BePickedBy(actorDat.ActorEntity);
         if (item.Data.Type.name == "Money")
         {
-            CORE.Instance.AddChatMessage("<color=yellow>"+actorDat.name+" has picked up " + String.Format("{0:n0}", item.amount) + " coins</color>");
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorDat.name + " has picked up " + String.Format("{0:n0}", item.amount) + " coins</color>");
         }
         else
         {
-            CORE.Instance.AddChatMessage("<color=yellow>"+actorDat.name+" has picked up the item: '"+item.itemName+"'</color>");
+            CORE.Instance.AddChatMessage("<color=yellow>" + actorDat.name + " has picked up the item: '" + item.itemName + "'</color>");
         }
 
         CORE.Instance.IsPickingUpItem = false;
@@ -1063,9 +1072,9 @@ public class SocketHandler : MonoBehaviour
     public void OnOrbAdded(string eventName, JSONNode data)
     {
         string actorId = data["actorId"].Value;
-        
+
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
-        if(actorDat == null)
+        if (actorDat == null)
         {
             CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
             return;
@@ -1087,7 +1096,7 @@ public class SocketHandler : MonoBehaviour
     public void OnMoneyRefresh(string eventName, JSONNode data)
     {
         int money = data["money"].AsInt;
-        
+
         CORE.Instance.Room.PlayerActor.money = money;
 
         InventoryUI.Instance.RefreshUI();
@@ -1104,7 +1113,7 @@ public class SocketHandler : MonoBehaviour
     public void OnActorChoseRolledItem(string eventName, JSONNode data)
     {
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
-        
+
         if (item == null)
         {
             CORE.Instance.LogMessageError("No item!");
@@ -1112,7 +1121,7 @@ public class SocketHandler : MonoBehaviour
         }
 
         string error = data["error"].Value;
-        if(error == "Inventory is full")
+        if (error == "Inventory is full")
         {
             LootRollPanelUI.Instance.ReleaseLootRollItem(item);
             return;
@@ -1122,7 +1131,7 @@ public class SocketHandler : MonoBehaviour
     public void OnActorRolls(string eventName, JSONNode data)
     {
         Item rolledItem = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
-        
+
         if (rolledItem == null)
         {
             CORE.Instance.LogMessageError("No rolled item");
@@ -1137,7 +1146,7 @@ public class SocketHandler : MonoBehaviour
         {
             int rollNumber = data["rollsWithActors"][i]["roll"].AsInt;
             string rollActorId = data["rollsWithActors"][i]["actorId"].Value;
-            
+
             ActorData rollingActorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == rollActorId);
             if (rollingActorDat == null)
             {
@@ -1145,7 +1154,7 @@ public class SocketHandler : MonoBehaviour
                 continue;
             }
 
-            
+
             result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnChar").GetComponent<ActorRollResultUI>();
             result.SetInfo(rollingActorDat.ActorEntity, rolledItem.Data, rollNumber);
         }
@@ -1167,7 +1176,7 @@ public class SocketHandler : MonoBehaviour
         }
 
 
-        CORE.Instance.DelayedInvokation(2f, () => 
+        CORE.Instance.DelayedInvokation(2f, () =>
         {
             result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnCharWinner").GetComponent<ActorRollResultUI>();
             result.SetInfo(actorDat.ActorEntity, rolledItem.Data, 0);
@@ -1186,7 +1195,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        if(actorDat.ActorEntity == null)
+        if (actorDat.ActorEntity == null)
         {
             CORE.Instance.LogMessageError("No entity to actor with ID " + data["actorId"].Value);
             return;
@@ -1194,18 +1203,18 @@ public class SocketHandler : MonoBehaviour
 
         actorDat.ActorEntity.ShowTextBubble(data["message"].Value);
 
-        string chatlogMessage = "<color=yellow>"+actorDat.name + "</color>: " + data["message"].Value;
+        string chatlogMessage = "<color=yellow>" + actorDat.name + "</color>: " + data["message"].Value;
 
         CORE.Instance.AddChatMessage(chatlogMessage);
     }
 
     // Party
-    
+
     public void SendPartyInvite(string actorName)
     {
         JSONNode node = new JSONClass();
         node["actorName"] = actorName;
-        
+
         SendEvent("party_invite", node);
     }
 
@@ -1213,14 +1222,14 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["accept"].AsBool = accept;
-        
+
         SendEvent("party_invite_response", node);
     }
 
     public void SendPartyLeave()
     {
         JSONNode node = new JSONClass();
-        
+
         SendEvent("party_leave", node);
     }
 
@@ -1228,7 +1237,7 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["actorName"] = actorName;
-        
+
         SendEvent("party_kick", node);
     }
 
@@ -1236,7 +1245,7 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["actorName"] = actorName;
-        
+
         SendEvent("party_leader", node);
     }
 
@@ -1292,10 +1301,13 @@ public class SocketHandler : MonoBehaviour
     {
         string actorName = data["actorName"].Value;
         string reason = data["reason"].Value;
-        
-        if (reason == "leave") {
+
+        if (reason == "leave")
+        {
             CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has left the party.</color>");
-        } else if (reason == "kicked") {
+        }
+        else if (reason == "kicked")
+        {
             CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " was kicked out of the party.</color>");
         }
     }
@@ -1335,11 +1347,11 @@ public class SocketHandler : MonoBehaviour
             foreach (string member in CORE.Instance.CurrentParty.members)
             {
                 ActorData actor = CORE.Instance.Room.Actors.Find(x => x.name == member);
-                if(actor == null)
+                if (actor == null)
                 {
                     continue;
                 }
-                
+
                 actor.ActorEntity.InParty = true;
             }
         }
@@ -1354,7 +1366,7 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["expeditionName"] = expeditionName;
-        
+
         SendEvent("expedition_enter", node);
     }
 
@@ -1362,14 +1374,14 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["expeditionName"] = expeditionName;
-        
+
         SendEvent("expedition_queue_start", node);
     }
 
     public void SendStopExpeditionQueue()
     {
         JSONNode node = new JSONClass();
-        
+
         SendEvent("expedition_queue_abort", node);
     }
 
@@ -1377,15 +1389,15 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode node = new JSONClass();
         node["accept"].AsBool = accept;
-        
+
         SendEvent("expedition_queue_match_response", node);
     }
-    
+
 
     public void OnExpeditionQueueStart(string eventName, JSONNode data)
     {
         string expeditionName = data["expeditionName"].Value;
-        
+
         ExpeditionQueTimerUI.Instance.Show(expeditionName);
     }
 
@@ -1501,7 +1513,7 @@ public class ActorData
     {
         get
         {
-            if(_classjobRef == null && !string.IsNullOrEmpty(classJob))
+            if (_classjobRef == null && !string.IsNullOrEmpty(classJob))
             {
                 _classjobRef = CORE.Instance.Data.content.Classes.Find(x => x.name == this.classJob);
             }
@@ -1544,7 +1556,7 @@ public class ActorLooks
     public string Ears;
     public string Nose;
     public string Mouth;
-    
+
     public string SkinColor;
     public string HairColor;
     public string Iris;
@@ -1564,7 +1576,7 @@ public class Interactable
     {
         get
         {
-            if(_data == null)
+            if (_data == null)
             {
                 _data = CORE.Instance.Data.content.Interactables.Find(x => x.name == interactableName);
             }
@@ -1587,12 +1599,12 @@ public class SocketEventListener
 {
     public string EventKey;
 
-    public Action<string,JSONNode> InternalCallback;
+    public Action<string, JSONNode> InternalCallback;
 
 
-   
 
-    public SocketEventListener(string key, Action<string,JSONNode> internalCallback = null)
+
+    public SocketEventListener(string key, Action<string, JSONNode> internalCallback = null)
     {
         this.EventKey = key;
 
@@ -1602,7 +1614,7 @@ public class SocketEventListener
     public void Callback(Socket socket, Packet packet, params object[] args)
     {
         JSONNode data = JSON.Parse(args[0].ToString());
-        InternalCallback.Invoke(packet.EventName,data);
+        InternalCallback.Invoke(packet.EventName, data);
     }
 }
 
