@@ -19,6 +19,8 @@ public class PointAndClickTooltipUI : MonoBehaviour
     RectTransform rectT;
 
     private Vector3? AnchorPosition;
+    private float PivotX;
+    private float PivotY;
 
     Coroutine ShowRoutineInstance;
 
@@ -43,13 +45,20 @@ public class PointAndClickTooltipUI : MonoBehaviour
         transform.SetAsLastSibling();
     }
 
-    public void Show(string message, List<TooltipBonus> bonuses = null, Vector3? position = null)
+    public void Show(
+        string message,
+        List<TooltipBonus> bonuses = null,
+        Vector3? position = null,
+        float pivotX = -1,
+        float pivotY = -1)
     {
         if(string.IsNullOrEmpty(message))
         {
             return;
         }
         AnchorPosition = position;
+        PivotX = pivotX;
+        PivotY = pivotY;
 
         PositionTooltip();
 
@@ -81,7 +90,10 @@ public class PointAndClickTooltipUI : MonoBehaviour
 
         rectT.anchorMin = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
         rectT.anchorMax = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
-        rectT.pivot = new Vector2(xInRightSide ? 1 : 0, yInUpperSide ? 1 : 0);
+        
+        float xPivot = PivotX > -1 ? PivotX : (xInRightSide ? 1 : 0);
+        float yPivot = PivotY > -1 ? PivotY : (yInUpperSide ? 1 : 0);
+        rectT.pivot = new Vector2(xPivot, yPivot);
 
         transform.position = BasePosition + new Vector3(topLeftCorner ? 12 : 0, 0, 0);
     }

@@ -18,6 +18,9 @@ public class VendorWorldItem : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI NameLabel;
 
+    [SerializeField]
+    public Transform TooltipPosition;
+
 
     public void SetInfo(ItemData item)
     {

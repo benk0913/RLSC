@@ -42,9 +42,9 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         this.Bonuses = tooltipBonuses;
     }
 
-    public void ShowOnPosition(Vector3 position)
+    public void ShowOnPosition(Vector3 position, float pivotX = -1, float pivotY = -1)
     {
-        PointAndClickTooltipUI.Instance.Show(Text, Bonuses, position);
+        PointAndClickTooltipUI.Instance.Show(Text, Bonuses, position, pivotX, pivotY);
     }
 
     void OnDisable()

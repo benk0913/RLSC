@@ -92,6 +92,21 @@ public class ItemsLogic
         return text;
     }
 
+    public static string GetItemTooltip(ItemData itemData)
+    {
+        string text = itemData.DisplayName;
+        text += System.Environment.NewLine + itemData.Type.name;
+
+        string description = itemData.Description.Trim();
+        if (!string.IsNullOrEmpty(description)) {
+            text += System.Environment.NewLine + description;
+        }
+
+        text += ItemsLogic.GetTooltipTextFromItem(itemData);
+
+        return text;
+    }
+
     public class DisplayAttribute
     {
         public FieldInfo FieldInfo;

@@ -28,11 +28,11 @@ public class VendorEntity : MonoBehaviour
     public void StartFocusing()
     {
         CurrentInstance = this;
-        FocusOnItem(0);
         IsFocusing = true;
+        FocusOnItem(0, true);
     }
 
-    public void FocusOnItem(int itemIndex)
+    public void FocusOnItem(int itemIndex, bool initialFocus)
     {
 
         if(itemIndex < 0)
@@ -46,34 +46,29 @@ public class VendorEntity : MonoBehaviour
 
         ItemIndex = itemIndex;
 
-        ItemData CurrentItem = ItemsEntities[ItemIndex].CurrentItem;
+        ItemData CurrentItemData = ItemsEntities[ItemIndex].CurrentItem;
 
         CameraChaseEntity.Instance.FocusOn(new FocusInstance(ItemsEntities[ItemIndex].transform,5f));
 
         TooltipTargetUI tooltipTarget = ItemsEntities[itemIndex].GetComponent<TooltipTargetUI>();
 
-        tooltipTarget.Text = CurrentItem.name;
-        tooltipTarget.Text += System.Environment.NewLine + CurrentItem.Type.name;
-        tooltipTarget.Text += System.Environment.NewLine + CurrentItem.VendorPrice+"c";
-        //TooltipTarget.Text += System.Environment.NewLine + "<color=#"+ColorUtility.ToHtmlStringRGBA(CurrentItem.Data.Rarity.RarityColor)+">"+ CurrentItem.Data.Rarity.name+"</color>";
-        string description = CurrentItem.Description.Trim();
-        if (!string.IsNullOrEmpty(description))
-        {
-            tooltipTarget.Text += System.Environment.NewLine + description;
-        }
+        tooltipTarget.Text = ItemsLogic.GetItemTooltip(CurrentItemData);
 
-        tooltipTarget.Text += ItemsLogic.GetTooltipTextFromItem(CurrentItem);
-
-        tooltipTarget.ShowOnPosition(Camera.main.WorldToScreenPoint(ItemsEntities[ItemIndex].transform.position ) + new Vector3(-20f, 0f,0f));
-
+        // The camera is being moved, so wait for it to snap to position before showing the tooltip.
+        CORE.Instance.DelayedInvokation(initialFocus ? 0.5f : 0.25f, () => {
+            if (IsFocusing && ItemIndex == itemIndex)
+            {
+                tooltipTarget.ShowOnPosition(Camera.main.WorldToScreenPoint(ItemsEntities[ItemIndex].TooltipPosition.position), 0f, 0.5f);
+            }
+        });
 
         if(!VendorSelectionUI.Instance.IsActive)
         {
-            CORE.Instance.ShowVendorSelectionWindow(CurrentItem);
+            CORE.Instance.ShowVendorSelectionWindow(CurrentItemData);
         }
         else
         {
-            VendorSelectionUI.Instance.RefreshUI(CurrentItem);
+            VendorSelectionUI.Instance.RefreshUI(CurrentItemData);
         }
     }
 
@@ -138,12 +133,12 @@ public class VendorEntity : MonoBehaviour
 
     public void SetRightItem()
     {
-        FocusOnItem(ItemIndex + 1);
+        FocusOnItem(ItemIndex + 1, false);
     }
 
     public void SetLeftItem()
     {
-        FocusOnItem(ItemIndex - 1);
+        FocusOnItem(ItemIndex - 1, false);
     }
 
     public void PurchaseItem(int itemIndex)
