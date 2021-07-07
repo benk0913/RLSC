@@ -169,6 +169,7 @@ public class CORE : MonoBehaviour
             }
 
             CurrentTimePhase = GameStates["phase"];
+            RefreshSecneInfo();
         }
     }
 
@@ -647,6 +648,63 @@ public class CORE : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void RefreshSecneInfo()
+    {
+        SceneInfo info = ActiveSceneInfo;
+
+            if (info != null)
+            {
+                 if (CORE.Instance.GameStates["phase"] == "Day")
+                {
+                    if (!string.IsNullOrEmpty(info.MusicTrack))
+                    {
+                        AudioControl.Instance.SetMusic(info.MusicTrack);
+                    }
+
+                    if (!string.IsNullOrEmpty(info.Soundscape))
+                    {
+                        AudioControl.Instance.SetSoundscape(info.Soundscape);
+                    }
+                    else
+                    {
+                        AudioControl.Instance.SetSoundscape(null);
+                    }
+                }
+                else if (CORE.Instance.GameStates["phase"] == "Night")
+                {
+                    if (!string.IsNullOrEmpty(info.NightMusicTrack))
+                    {
+                        AudioControl.Instance.SetMusic(info.NightMusicTrack);
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(info.MusicTrack))
+                        {
+                            AudioControl.Instance.SetMusic(info.MusicTrack);
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(info.NightSoundscape))
+                    {
+                        AudioControl.Instance.SetSoundscape(info.NightSoundscape);
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(info.Soundscape))
+                        {
+                            AudioControl.Instance.SetSoundscape(info.Soundscape);
+                        }
+                        else
+                        {
+                            AudioControl.Instance.SetSoundscape(null);
+                        }
+                    }
+                }
+                
+                
+            }
     }
 }
 

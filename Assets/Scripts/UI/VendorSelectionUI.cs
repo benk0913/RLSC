@@ -16,6 +16,9 @@ public class VendorSelectionUI : MonoBehaviour, WindowInterface
     [SerializeField]
     TextMeshProUGUI KeyText;
 
+    [SerializeField]
+    TextMeshProUGUI ItemDescriptionText;
+
     public bool IsActive;
 
 
@@ -40,6 +43,7 @@ public class VendorSelectionUI : MonoBehaviour, WindowInterface
         KeyText.text = "Press '" + InputMap.Map["Interact"].ToString() + "' To Purchase!";
         NameLabel.text = item.name;
         PriceLabel.text = item.VendorPrice.ToString();
+        ItemDescriptionText.text = ItemsLogic.GetItemTooltip(item);
     }
 
     public void Left()

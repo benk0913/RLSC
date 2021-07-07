@@ -50,18 +50,6 @@ public class VendorEntity : MonoBehaviour
 
         CameraChaseEntity.Instance.FocusOn(new FocusInstance(ItemsEntities[ItemIndex].transform,5f));
 
-        TooltipTargetUI tooltipTarget = ItemsEntities[itemIndex].GetComponent<TooltipTargetUI>();
-
-        tooltipTarget.Text = ItemsLogic.GetItemTooltip(CurrentItemData);
-
-        // The camera is being moved, so wait for it to snap to position before showing the tooltip.
-        CORE.Instance.DelayedInvokation(initialFocus ? 0.5f : 0.25f, () => {
-            if (IsFocusing && ItemIndex == itemIndex)
-            {
-                tooltipTarget.ShowOnPosition(Camera.main.WorldToScreenPoint(ItemsEntities[ItemIndex].TooltipPosition.position), 0f, 0.5f);
-            }
-        });
-
         if(!VendorSelectionUI.Instance.IsActive)
         {
             CORE.Instance.ShowVendorSelectionWindow(CurrentItemData);
@@ -75,7 +63,6 @@ public class VendorEntity : MonoBehaviour
     public void StopFocusing()
     {
         CameraChaseEntity.Instance.Unfocus();
-        PointAndClickTooltipUI.Instance.Hide();
         IsFocusing = false;
         
         if(CurrentInstance == this)
