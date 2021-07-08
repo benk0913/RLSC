@@ -211,6 +211,8 @@ public class CGDatabaseEditor : Editor
             db.content.ExpChart.Add(calculateExpToTargetLevel(lvl));
         }
 
+        db.content.LatestVersion = Application.version;
+
         EditorUtility.SetDirty(db);
     }
 

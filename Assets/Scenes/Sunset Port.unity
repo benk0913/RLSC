@@ -2074,7 +2074,7 @@ Transform:
   m_Children:
   - {fileID: 1235672855}
   m_Father: {fileID: 1466385553}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &60655438
 SpriteRenderer:
@@ -18218,7 +18218,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 2b1575a0000000009be26ed9552e9aae7b1d518b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 3
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -31529,7 +31529,7 @@ GameObject:
   - component: {fileID: 504837420}
   - component: {fileID: 504837421}
   m_Layer: 0
-  m_Name: Global Light 2D (1)
+  m_Name: smallLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41818,7 +41818,7 @@ GameObject:
   - component: {fileID: 772728844}
   - component: {fileID: 772728845}
   m_Layer: 0
-  m_Name: Global Light 2D (1)
+  m_Name: Small Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48571,7 +48571,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 47c3ed3c
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 1
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -49760,7 +49760,7 @@ GameObject:
   - component: {fileID: 958366250}
   - component: {fileID: 958366251}
   m_Layer: 0
-  m_Name: Global Light 2D (1)
+  m_Name: Small Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51403,7 +51403,7 @@ GameObject:
   - component: {fileID: 989716882}
   - component: {fileID: 989716883}
   m_Layer: 0
-  m_Name: Global Light 2D (1)
+  m_Name: smallLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62831,10 +62831,10 @@ Transform:
   - {fileID: 303297461}
   - {fileID: 1682760780}
   - {fileID: 2095978821}
+  - {fileID: 1541459770}
   - {fileID: 361497248}
   - {fileID: 1655595247}
   - {fileID: 773094343}
-  - {fileID: 1541459770}
   m_Father: {fileID: 1466385553}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -65547,7 +65547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1430899409
 Transform:
   m_ObjectHideFlags: 0
@@ -66201,8 +66201,8 @@ Transform:
   m_LocalScale: {x: 1.2410247, y: 1.2410253, z: 1.2410253}
   m_Children:
   - {fileID: 1326517413}
-  - {fileID: 1713258633}
   - {fileID: 60655437}
+  - {fileID: 1713258633}
   m_Father: {fileID: 1430899409}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73794,7 +73794,7 @@ Transform:
   m_LocalScale: {x: 4.7396436, y: 3.0908747, z: 1}
   m_Children: []
   m_Father: {fileID: 1326517413}
-  m_RootOrder: 21
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1541459771
 SpriteRenderer:
@@ -89695,7 +89695,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 2b1575a0000000009be26ed9552e9aae7b1d518b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 2
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -106359,6 +106359,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 883216552786374304, guid: 85a19c7f03160ab40baa0a59f150a04f, type: 3}
+      propertyPath: m_LightOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4659344112601062244, guid: 85a19c7f03160ab40baa0a59f150a04f, type: 3}
       propertyPath: m_RootOrder
       value: 11

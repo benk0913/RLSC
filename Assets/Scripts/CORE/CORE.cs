@@ -201,6 +201,10 @@ public class CORE : MonoBehaviour
     }
 
 
+    public void ToggleSettings()
+    {
+        ResolutionDialog.enabled = !ResolutionDialog.enabled;
+    }
     public void ShowAbilitiesUiWindow()
     {
         ShowWindow(AbilitiesUI.Instance);

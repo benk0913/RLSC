@@ -97,29 +97,31 @@ namespace EdgeworldBase
 
         public void SetInBackground()
         {      
-            MusicSource.Pause();
-            SoundscapeSource.Pause();
+            // MusicSource.Pause();
+            // SoundscapeSource.Pause();
+            AudioListener.pause=true;
         }
 
         public void SetNoInBackground()
         {
-            if(MusicSource.time <= 1f)
-            {
-                MusicSource.Play();
-            }
-            else
-            {
-                MusicSource.UnPause();
-            }
+            // if(MusicSource.time <= 1f)
+            // {
+            //     MusicSource.Play();
+            // }
+            // else
+            // {
+            //     MusicSource.UnPause();
+            // }
 
-            if(SoundscapeSource.time <= 1f)
-            {
-                SoundscapeSource.Play();
-            }
-            else
-            {
-                SoundscapeSource.UnPause();
-            }
+            // if(SoundscapeSource.time <= 1f)
+            // {
+            //     SoundscapeSource.Play();
+            // }
+            // else
+            // {
+            //     SoundscapeSource.UnPause();
+            // }
+            AudioListener.pause=false;
         }
 
         public void Play(string gClip)

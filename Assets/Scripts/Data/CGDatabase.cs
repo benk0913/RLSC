@@ -63,6 +63,7 @@ public class DatabaseContent
     public List<string> TimePhases = new List<string>();
     
     public List<MoneyValueMap> MoneyValueMaps = new List<MoneyValueMap>();
+    public string LatestVersion;
 
     public string StartingScene;
 

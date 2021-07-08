@@ -171,7 +171,8 @@ public class SocketHandler : MonoBehaviour
 
         JSONNode node = new JSONClass();
         node["skipTutorial"] = SkippedTutorial();
-
+        node["version"] = Application.version;
+        
         SendWebRequest(HostUrl + "/login", (UnityWebRequest lreq) =>
         {
             OnLogin(lreq);

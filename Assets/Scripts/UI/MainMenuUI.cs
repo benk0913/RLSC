@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -24,9 +25,13 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     TooltipTargetUI CreateCharTooltip;
 
+    [SerializeField]
+    TextMeshProUGUI VersionLabel;
+
     private void Awake()
     {
         Instance = this;
+        VersionLabel.text = Application.version;
     }
 
     private void Start()
