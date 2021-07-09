@@ -2494,6 +2494,8 @@ MonoBehaviour:
     KeyCode: 108
   - Name: Party Window
     KeyCode: 112
+  - Name: Settings Window
+    KeyCode: 107
 --- !u!114 &231128635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5331,6 +5333,19 @@ MonoBehaviour:
     CS: {fileID: 0}
   CurrentSelectedSelectable: {fileID: 0}
   Debug: 0
+--- !u!114 &484004358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484004356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393a5f56f01d3e043b86fd1f35e2b34c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SettingsCanvas: {fileID: 1471217085}
 --- !u!1 &493161329
 GameObject:
   m_ObjectHideFlags: 0
@@ -18446,7 +18461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 504288707632755210, guid: 9419655a6ab1b524a95d15e08ac510a6, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 531225468586491033, guid: 9419655a6ab1b524a95d15e08ac510a6, type: 3}
       propertyPath: m_AnchorMax.y
@@ -18475,6 +18490,10 @@ PrefabInstance:
     - target: {fileID: 1127137196770117347, guid: 9419655a6ab1b524a95d15e08ac510a6, type: 3}
       propertyPath: m_Name
       value: OptionsMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127137196770117347, guid: 9419655a6ab1b524a95d15e08ac510a6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1825327179316970600, guid: 9419655a6ab1b524a95d15e08ac510a6, type: 3}
       propertyPath: popupKeyCode
@@ -22909,7 +22928,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 231128633}
         m_TargetAssemblyTypeName: CORE, Assembly-CSharp
-        m_MethodName: ToggleSettings
+        m_MethodName: ShowSettingsWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

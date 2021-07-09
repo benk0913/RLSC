@@ -48,12 +48,12 @@ public class CORE : MonoBehaviour
 
     public bool GameStatesInitialized;
     public string CurrentTimePhase;
-    
+
     public bool IsTyping
     {
-        get 
+        get
         {
-            if(EventSystem.current == null)
+            if (EventSystem.current == null)
             {
                 return false;
             }
@@ -75,7 +75,7 @@ public class CORE : MonoBehaviour
     }
     public bool HasWindowOpen
     {
-        get 
+        get
         {
             return CurrentWindow != null;
         }
@@ -85,11 +85,11 @@ public class CORE : MonoBehaviour
     {
         get //All must be lightweight conditions(!)
         {
-            return !CORE.Instance.IsLoading 
-                && !CORE.Instance.IsTyping 
-                && !CORE.Instance.HasWindowOpen 
-                && !CameraChaseEntity.Instance.IsFocusing 
-                && !DecisionContainerUI.Instance.IsActive 
+            return !CORE.Instance.IsLoading
+                && !CORE.Instance.IsTyping
+                && !CORE.Instance.HasWindowOpen
+                && !CameraChaseEntity.Instance.IsFocusing
+                && !DecisionContainerUI.Instance.IsActive
                 && (DialogEntity.CurrentInstance == null || !DialogEntity.CurrentInstance.isActiveDialog);
         }
     }
@@ -109,9 +109,9 @@ public class CORE : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    void OnApplicationFocus( bool focus )
+    void OnApplicationFocus(bool focus)
     {
-        if( focus )
+        if (focus)
         {
             AudioControl.Instance.SetNoInBackground();
             IsAppInBackground = false;
@@ -125,21 +125,22 @@ public class CORE : MonoBehaviour
 
     private void Start()
     {
-        SubscribeToEvent("ActorDied", () => {Room.RefreshThreat();});
-        SubscribeToEvent("ActorResurrected", () => {Room.RefreshThreat();});
-        SubscribeToEvent("ActorChangedStates", () => {Room.RefreshThreat();});
+        SubscribeToEvent("ActorDied", () => { Room.RefreshThreat(); });
+        SubscribeToEvent("ActorResurrected", () => { Room.RefreshThreat(); });
+        SubscribeToEvent("ActorChangedStates", () => { Room.RefreshThreat(); });
         SubscribeToEvent("GameStatesChanged", () => { GameStatesChanges(); });
 
 #if !UNITY_EDITOR
         DelayedInvokation(3f, () =>
         {
-            ResolutionDialog.enabled = true;
+            ShowSettingsWindow();
         });
 #endif
 
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
         WindowToKeyMap.Add(PartyWindowUI.Instance, InputMap.Map["Party Window"]);
+        WindowToKeyMap.Add(SettingsMenuUI.Instance, InputMap.Map["Settings Window"]);
         WindowToKeyMap.Add(SideButtonUI.Instance, InputMap.Map["Exit"]);
 
         LoadScene("MainMenu");
@@ -147,7 +148,7 @@ public class CORE : MonoBehaviour
 
     private void GameStatesChanges()
     {
-        if(!GameStatesInitialized)
+        if (!GameStatesInitialized)
         {
             GameStatesInitialized = true;
             return;
@@ -156,11 +157,11 @@ public class CORE : MonoBehaviour
 
         if (GameStates["phase"] != CurrentTimePhase)
         {
-            if(!Room.HasEnemies && InGame)
+            if (!Room.HasEnemies && InGame)
             {
                 if (GameStates["phase"] == "Day")
                 {
-                    ShowScreenEffect("ScreenEffectChamberToDay",null,false);
+                    ShowScreenEffect("ScreenEffectChamberToDay", null, false);
                 }
                 else if (GameStates["phase"] == "Night")
                 {
@@ -175,11 +176,11 @@ public class CORE : MonoBehaviour
 
     private void Update()
     {
-        if(InGame && !IsLoading && !IsTyping)
+        if (InGame && !IsLoading && !IsTyping)
         {
             foreach (var windowToKeyCode in WindowToKeyMap)
             {
-                if(Input.GetKeyDown(windowToKeyCode.Value))
+                if (Input.GetKeyDown(windowToKeyCode.Value))
                 {
                     ShowWindow(windowToKeyCode.Key, windowToKeyCode.Value, null, null);
                 }
@@ -201,9 +202,9 @@ public class CORE : MonoBehaviour
     }
 
 
-    public void ToggleSettings()
+    public void ShowSettingsWindow()
     {
-        ResolutionDialog.enabled = !ResolutionDialog.enabled;
+        ShowWindow(SettingsMenuUI.Instance);
     }
     public void ShowAbilitiesUiWindow()
     {
@@ -303,13 +304,13 @@ public class CORE : MonoBehaviour
 
     public void ConditionalInvokation(Predicate<object> condition, Action action, float interval = 1f, bool repeat = false)
     {
-        StartCoroutine(ConditionalInvokationRoutine(condition, action, interval));    
+        StartCoroutine(ConditionalInvokationRoutine(condition, action, interval));
     }
 
     IEnumerator ConditionalInvokationRoutine(Predicate<object> condition, Action action, float interval = 1f, bool repeat = false)
     {
 
-        while(!condition(null))
+        while (!condition(null))
         {
             yield return new WaitForSeconds(interval);
         }
@@ -324,7 +325,7 @@ public class CORE : MonoBehaviour
 
     public void LogMessage(string message)
     {
-        if(!DEBUG)
+        if (!DEBUG)
         {
             return;
         }
@@ -344,20 +345,20 @@ public class CORE : MonoBehaviour
 
     public void LoadScene(string sceneKey, Action onComplete = null)
     {
-        if(LoadSceneRoutineInstance != null)
+        if (LoadSceneRoutineInstance != null)
         {
             StopCoroutine(LoadSceneRoutineInstance);
         }
         Room = new RoomData();
 
-        LoadSceneRoutineInstance = StartCoroutine(LoadSceneRoutine(sceneKey,onComplete));
+        LoadSceneRoutineInstance = StartCoroutine(LoadSceneRoutine(sceneKey, onComplete));
     }
 
     public void SpawnActor(ActorData actorData)
     {
         ActorData existingActor = Room.Actors.Find(X => X.actorId == actorData.actorId);
 
-        if(existingActor != null && existingActor.ActorEntity != null && existingActor.ActorEntity.IsDead)
+        if (existingActor != null && existingActor.ActorEntity != null && existingActor.ActorEntity.IsDead)
         {
             existingActor.ActorEntity.Resurrect();
             return;
@@ -366,7 +367,7 @@ public class CORE : MonoBehaviour
         GameObject actorObject;
 
         actorObject = ResourcesLoader.Instance.GetRecycledObject(actorData.prefab);
-       
+
         Vector3 startPos = new Vector3(actorData.x, actorData.y, 0f);
         actorObject.transform.position = startPos;
         actorData.ActorEntity = actorObject.GetComponent<Actor>();
@@ -386,7 +387,7 @@ public class CORE : MonoBehaviour
     {
         InteractableData dataRef = Data.content.Interactables.Find(X => X.name == interactable.interactableName);
 
-        if(dataRef == null)
+        if (dataRef == null)
         {
             LogMessageError("No known interactable " + interactable.interactableName);
             return;
@@ -415,7 +416,7 @@ public class CORE : MonoBehaviour
     {
         Interactable interactable = Room.Interactables.Find(x => x.interactableId == interactableId);
 
-        if(interactable == null)
+        if (interactable == null)
         {
             LogMessageError("No interactable with the id " + interactableId);
             return;
@@ -428,7 +429,7 @@ public class CORE : MonoBehaviour
     {
         ///TODO ADD ENTITY
 
-        ItemEntity itemEntity =  ResourcesLoader.Instance.GetRecycledObject("WorldItem").GetComponent<ItemEntity>();
+        ItemEntity itemEntity = ResourcesLoader.Instance.GetRecycledObject("WorldItem").GetComponent<ItemEntity>();
         itemEntity.transform.position = new Vector2(item.x, item.y);
         item.Entity = itemEntity;
         itemEntity.SetInfo(item);
@@ -448,7 +449,7 @@ public class CORE : MonoBehaviour
 
         SceneManager.LoadScene(sceneKey);
 
-        if(RoomUpdateRoutineInstance != null)
+        if (RoomUpdateRoutineInstance != null)
         {
             StopCoroutine(RoomUpdateRoutineInstance);
             RoomUpdateRoutineInstance = null;
@@ -472,7 +473,7 @@ public class CORE : MonoBehaviour
 
         if (sceneKey == "MainMenu")
         {
-            if(InGame)
+            if (InGame)
             {
                 SocketHandler.Instance.SendDisconnectSocket();
                 LeaveGame();
@@ -485,13 +486,13 @@ public class CORE : MonoBehaviour
 
         LoadSceneRoutineInstance = null;
 
-    //    ObjectiveUI.Instance.SetInfo(Data.content.Scenes.Find(X => X.sceneName == sceneKey).objectiveDescription);
+        //    ObjectiveUI.Instance.SetInfo(Data.content.Scenes.Find(X => X.sceneName == sceneKey).objectiveDescription);
 
     }
 
     public void AttemptPickUpItem(Item item)
     {
-        if(IsPickingUpItem)
+        if (IsPickingUpItem)
         {
             return;
         }
@@ -542,7 +543,7 @@ public class CORE : MonoBehaviour
 
     public GameObject ShowScreenEffect(string screenEffectObject, object data = null, bool skipQue = false, float animSpeed = 1f)
     {
-        if(!skipQue && LastScreenEffect != null)
+        if (!skipQue && LastScreenEffect != null)
         {
             ScreenEffectQueInstance queInst = new ScreenEffectQueInstance();
             queInst.Key = screenEffectObject;
@@ -557,7 +558,7 @@ public class CORE : MonoBehaviour
         obj.GetComponent<ScreenEffectUI>().Show(data);
 
         Animator animer = obj.GetComponent<Animator>();
-        if(animer !=  null)
+        if (animer != null)
         {
             animer.speed = animSpeed;
         }
@@ -566,7 +567,7 @@ public class CORE : MonoBehaviour
         rt.anchorMin = Vector2.zero;
         rt.anchorMax = Vector2.one;
         rt.sizeDelta = Vector2.zero;
-        
+
         if (!skipQue)
         {
             LastScreenEffect = obj;
@@ -583,12 +584,15 @@ public class CORE : MonoBehaviour
 
     public IEnumerator NextScreenEffect()
     {
-        while(LastScreenEffect.gameObject.activeInHierarchy)
+        if(LastScreenEffect != null)
         {
-            yield return 0;
-        }
+            while (LastScreenEffect.gameObject.activeInHierarchy)
+            {
+                yield return 0;
+            }
 
-        LastScreenEffect = null;
+            LastScreenEffect = null;
+        }
 
         if (screenEffectQue.Count == 0)
         {
@@ -597,8 +601,8 @@ public class CORE : MonoBehaviour
 
         ScreenEffectQueInstance inst = screenEffectQue[0];
         screenEffectQue.RemoveAt(0);
-        ShowScreenEffect(inst.Key,inst.Data);
-        
+        ShowScreenEffect(inst.Key, inst.Data);
+
     }
 
     #endregion
@@ -613,7 +617,7 @@ public class CORE : MonoBehaviour
     {
         foreach (AbilityParam param in onExecuteParams)
         {
-            if(param.Condition != null && !param.Condition.IsValid(originCaster))
+            if (param.Condition != null && !param.Condition.IsValid(originCaster))
             {
                 continue;
             }
@@ -636,11 +640,11 @@ public class CORE : MonoBehaviour
             {
                 if (originCaster != null)
                 {
-                    if (originCaster .LastAbility == null)
+                    if (originCaster.LastAbility == null)
                     {
                         continue;
                     }
-                
+
                     originCaster.State.Abilities.Find(x => x.CurrentAbility.name == (originCaster.LastAbility.name)).CurrentCD = 0f;
                 }
             }
@@ -658,15 +662,44 @@ public class CORE : MonoBehaviour
     {
         SceneInfo info = ActiveSceneInfo;
 
-            if (info != null)
+        if (info != null)
+        {
+            if (CORE.Instance.GameStates["phase"] == "Day")
             {
-                 if (CORE.Instance.GameStates["phase"] == "Day")
+                if (!string.IsNullOrEmpty(info.MusicTrack))
+                {
+                    AudioControl.Instance.SetMusic(info.MusicTrack);
+                }
+
+                if (!string.IsNullOrEmpty(info.Soundscape))
+                {
+                    AudioControl.Instance.SetSoundscape(info.Soundscape);
+                }
+                else
+                {
+                    AudioControl.Instance.SetSoundscape(null);
+                }
+            }
+            else if (CORE.Instance.GameStates["phase"] == "Night")
+            {
+                if (!string.IsNullOrEmpty(info.NightMusicTrack))
+                {
+                    AudioControl.Instance.SetMusic(info.NightMusicTrack);
+                }
+                else
                 {
                     if (!string.IsNullOrEmpty(info.MusicTrack))
                     {
                         AudioControl.Instance.SetMusic(info.MusicTrack);
                     }
+                }
 
+                if (!string.IsNullOrEmpty(info.NightSoundscape))
+                {
+                    AudioControl.Instance.SetSoundscape(info.NightSoundscape);
+                }
+                else
+                {
                     if (!string.IsNullOrEmpty(info.Soundscape))
                     {
                         AudioControl.Instance.SetSoundscape(info.Soundscape);
@@ -676,39 +709,10 @@ public class CORE : MonoBehaviour
                         AudioControl.Instance.SetSoundscape(null);
                     }
                 }
-                else if (CORE.Instance.GameStates["phase"] == "Night")
-                {
-                    if (!string.IsNullOrEmpty(info.NightMusicTrack))
-                    {
-                        AudioControl.Instance.SetMusic(info.NightMusicTrack);
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrEmpty(info.MusicTrack))
-                        {
-                            AudioControl.Instance.SetMusic(info.MusicTrack);
-                        }
-                    }
-
-                    if (!string.IsNullOrEmpty(info.NightSoundscape))
-                    {
-                        AudioControl.Instance.SetSoundscape(info.NightSoundscape);
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrEmpty(info.Soundscape))
-                        {
-                            AudioControl.Instance.SetSoundscape(info.Soundscape);
-                        }
-                        else
-                        {
-                            AudioControl.Instance.SetSoundscape(null);
-                        }
-                    }
-                }
-                
-                
             }
+
+
+        }
     }
 }
 
@@ -752,7 +756,7 @@ public class RoomData
     {
         get
         {
-            return Actors.Find(x=>x.isMob && x.ActorEntity != null && !x.ActorEntity.IsDead) != null;
+            return Actors.Find(x => x.isMob && x.ActorEntity != null && !x.ActorEntity.IsDead) != null;
         }
     }
 
@@ -760,7 +764,7 @@ public class RoomData
     {
         Actor mostThreatAct = null;
         float mostThreat = Mathf.NegativeInfinity;
-        for(int i=0;i<Actors.Count;i++)
+        for (int i = 0; i < Actors.Count; i++)
         {
             if (Actors[i].ActorEntity.IsDead || Actors[i].isMob || Actors[i].states.ContainsKey("Untargetable"))
             {
@@ -777,9 +781,9 @@ public class RoomData
         }
 
         return mostThreatAct;
-        
+
     }
-    
+
     public Actor GetLeastThreateningActor()
     {
         Actor leastThreatAct = null;
@@ -873,7 +877,7 @@ public class RoomData
 
         Actors.Add(actor);
 
-        if(actor.IsPlayer)
+        if (actor.IsPlayer)
         {
             PlayerActor = actor;
             DisplayEXPEntityUI.Instance.Init();
@@ -889,7 +893,7 @@ public class RoomData
     {
         ActorData actor = Actors.Find(x => x.actorId == actorID);
 
-        if(actor == null)
+        if (actor == null)
         {
             CORE.Instance.LogMessageError("No actorId " + actorID + " in room.");
             return;
@@ -920,14 +924,14 @@ public class RoomData
             CORE.Instance.LogMessageError("No interactableId " + interactableId + " in room.");
             return;
         }
-        
+
         Interactables.Remove(interactable);
 
         CORE.Instance.ConditionalInvokation(
-            x => 
+            x =>
         {
             return !interactable.Entity.IsBusy;
-        }, () => 
+        }, () =>
         {
             CORE.Destroy(interactable.Entity.gameObject);
         });
@@ -967,7 +971,7 @@ public class RoomData
                 Vendors[vendor.id] = vendor.itemsPool;
             }
 
-            CORE.Instance.InvokeEvent("VendorsUpdate"+vendor.id);
+            CORE.Instance.InvokeEvent("VendorsUpdate" + vendor.id);
         }
     }
 
@@ -982,10 +986,10 @@ public class RoomData
     {
         List<ActorData> actorsToUpdate = new List<ActorData>();
         JSONNode node = new JSONClass();
-        for(int i=0;i<Actors.Count;i++)
+        for (int i = 0; i < Actors.Count; i++)
         {
             ActorData actor = Actors[i];
-            if ((actor.IsPlayer || (!actor.isCharacter && CORE.Instance.IsBitch)) && actor.ActorEntity != null) 
+            if ((actor.IsPlayer || (!actor.isCharacter && CORE.Instance.IsBitch)) && actor.ActorEntity != null)
             {
                 float lastX = actor.x;
                 float lastY = actor.y;
@@ -994,13 +998,14 @@ public class RoomData
                 actor.y = actor.ActorEntity.transform.position.y;
                 actor.faceRight = actor.ActorEntity.Body.localScale.x < 0f;
 
-                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight) {
+                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight)
+                {
                     actorsToUpdate.Add(actor);
                 }
             }
         }
 
-        for(int i=0;i<actorsToUpdate.Count;i++)
+        for (int i = 0; i < actorsToUpdate.Count; i++)
         {
             ActorData actor = actorsToUpdate[i];
             node["actorPositions"][i]["actorId"] = actor.actorId;
@@ -1017,11 +1022,11 @@ public class RoomData
 
     public void ReceiveActorPositions(JSONNode data)
     {
-        for(int i=0;i<data["actorPositions"].Count;i++)
+        for (int i = 0; i < data["actorPositions"].Count; i++)
         {
             ActorData actor = Actors.Find(x => x.actorId == data["actorPositions"][i]["actorId"].Value);
 
-            if(actor == null)
+            if (actor == null)
             {
                 CORE.Instance.LogMessageError("No actor with id " + data["actorPositions"][i]["actorId"].Value);
                 continue;
