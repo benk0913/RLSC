@@ -6,9 +6,6 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
 {
     public static SettingsMenuUI Instance;
 
-    [SerializeField]
-    Canvas SettingsCanvas;
-
     void Awake()
     {
         Instance = this;

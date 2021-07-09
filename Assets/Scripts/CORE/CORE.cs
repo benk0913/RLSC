@@ -16,8 +16,6 @@ public class CORE : MonoBehaviour
 
     public CanvasGroup GameUICG;
 
-    public Canvas ResolutionDialog;
-
     public CGDatabase Data;
 
     public SceneInfo ActiveSceneInfo
