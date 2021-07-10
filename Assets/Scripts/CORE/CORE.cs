@@ -155,7 +155,7 @@ public class CORE : MonoBehaviour
 
         if (GameStates["phase"] != CurrentTimePhase)
         {
-            if (!Room.HasEnemies && InGame)
+            if (!this.Room.HasEnemies && InGame)
             {
                 if (GameStates["phase"] == "Day")
                 {
