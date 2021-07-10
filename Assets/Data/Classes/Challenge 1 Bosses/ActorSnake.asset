@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorTurtle
+  m_Name: ActorSnake
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300002, guid: 53c7783affa2fbe4bbded61ac9c29b66, type: 3}
+  Icon: {fileID: -5558645632004886975, guid: 094328d41a8c69b458dde6c2b49754f8, type: 3}
   Abilities:
-  - TurtleSmash
-  PassiveAbility: PassiveHitTurtleBoss
+  - Snake Bite 1
+  - Snake Bite 3
+  - Snake Hypno 1
+  PassiveAbility: PassiveSnake
   Attributes:
     Power: 0
     HP: 40
@@ -30,7 +32,7 @@ MonoBehaviour:
     SpellDuration: 0
     AntiDebuff: 0
     Threat: 0
-    MovementSpeed: -0.7
+    MovementSpeed: 0
     JumpHeight: 0
     DoubleCast: 0
     Explode: 0
@@ -38,8 +40,11 @@ MonoBehaviour:
   Immunity: []
   States: []
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
-  DropsOnDeath: []
-  CoinDropMultiplier: 25
+  DropsOnDeath:
+  - {fileID: 11400000, guid: e603df0aa8bfb0b44a2430fdaf9e9392, type: 2}
+  - {fileID: 11400000, guid: 3779afbf08e32b04a9f4605dddf0dae5, type: 2}
+  - {fileID: 11400000, guid: 659793af4c6ca194b8c6983cf24e2042, type: 2}
+  CoinDropMultiplier: 15
   OnDeathParams: []
   UniqueHurtSounds: []
   UniqueDeathSound: 

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorSlimeMedium
+  m_Name: ActorCatGuardSecond
   m_EditorClassIdentifier: 
-  Icon: {fileID: -1933679314495529430, guid: 304f7d21b29981d40a86157d2f3d3f31, type: 3}
+  Icon: {fileID: 3413451862118824628, guid: 524f28d50a9d6af499ce7d588e67d865, type: 3}
   Abilities:
-  - Slime Hop
-  - Slime Split Medium
-  - SlimeMuck
-  PassiveAbility: PassiveSlimeBoss
+  - CatShielding
+  - CatShieldBash
+  - CatSmash
+  PassiveAbility: PassiveHitCatBoss
   Attributes:
     Power: 0
-    HP: 4
+    HP: 10
     Defense: 0
     Block: 0
     CDReduction: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
     SpellDuration: 0
     AntiDebuff: 0
     Threat: 0
-    MovementSpeed: 0
+    MovementSpeed: -0.7
     JumpHeight: 0
     DoubleCast: 0
     Explode: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   States: []
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
   DropsOnDeath: []
-  CoinDropMultiplier: 25
+  CoinDropMultiplier: 15
   OnDeathParams: []
   UniqueHurtSounds: []
   UniqueDeathSound: 

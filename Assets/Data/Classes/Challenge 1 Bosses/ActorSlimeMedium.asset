@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorFruitBoss
+  m_Name: ActorSlimeMedium
   m_EditorClassIdentifier: 
-  Icon: {fileID: -5369071244165425098, guid: 847fe5f7c9f5c074abee41cfc959760a, type: 3}
+  Icon: {fileID: -1933679314495529430, guid: 304f7d21b29981d40a86157d2f3d3f31, type: 3}
   Abilities:
-  - FruitBossSpit
-  - FruitBossSpit2
-  PassiveAbility: PassiveFruitBoss
+  - Slime Hop
+  - Slime Split Medium
+  - SlimeMuck
+  PassiveAbility: PassiveSlimeBoss
   Attributes:
     Power: 0
-    HP: 20
+    HP: 4
     Defense: 0
     Block: 0
     CDReduction: 0
@@ -39,11 +40,8 @@ MonoBehaviour:
   Immunity: []
   States: []
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
-  DropsOnDeath:
-  - {fileID: 11400000, guid: 5b1a63ddfcea9b54d993662ebd578718, type: 2}
-  - {fileID: 11400000, guid: 60df7b6aa89827d4bb34b0a55d9ded30, type: 2}
-  - {fileID: 11400000, guid: 4158c803954f2464497b5fd1a92270ff, type: 2}
-  CoinDropMultiplier: 50
+  DropsOnDeath: []
+  CoinDropMultiplier: 15
   OnDeathParams: []
   UniqueHurtSounds: []
   UniqueDeathSound: 

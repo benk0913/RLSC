@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorBlock
+  m_Name: ActorCatGuard
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300002, guid: 53c7783affa2fbe4bbded61ac9c29b66, type: 3}
+  Icon: {fileID: 3413451862118824628, guid: 524f28d50a9d6af499ce7d588e67d865, type: 3}
   Abilities:
-  - TurtleSmash
-  - BlockEnrageHaste
-  PassiveAbility: PassiveHitTurtleBoss
+  - CatShielding
+  - CatShieldBash
+  - CatSmash
+  - CatEnrage
+  - CatEnrageThreat
+  PassiveAbility: PassiveHitCatBoss
   Attributes:
     Power: 0
-    HP: 40
+    HP: 10
     Defense: 0
     Block: 0
     CDReduction: 0
@@ -40,16 +43,11 @@ MonoBehaviour:
   States: []
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
   DropsOnDeath:
-  - {fileID: 11400000, guid: 2f5eeb78910fd82428c1cd9665fc1ed7, type: 2}
-  - {fileID: 11400000, guid: e7d53dfc2ab37ee48a0f6c82849c88ca, type: 2}
-  - {fileID: 11400000, guid: bce63f9c90aecc249924a15a57e4e0e8, type: 2}
-  CoinDropMultiplier: 25
-  OnDeathParams:
-  - Type: {fileID: 11400000, guid: b3086b950e6c3d34d8cc83bed2cb4afc, type: 2}
-    Condition: {fileID: 0}
-    Targets: 2
-    Value: 50
-    ObjectValue: {fileID: 0}
+  - {fileID: 11400000, guid: d5861268431760b429068cdbb74baad6, type: 2}
+  - {fileID: 11400000, guid: e983b9babb1449947a380e65beb70d65, type: 2}
+  - {fileID: 11400000, guid: d49369f845bb4834cbe50194c2d5881d, type: 2}
+  CoinDropMultiplier: 15
+  OnDeathParams: []
   UniqueHurtSounds:
-  - BlockOnHit3
+  - CatGuardOnHit
   UniqueDeathSound: 

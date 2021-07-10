@@ -24,6 +24,8 @@ public class ActorAI : MonoBehaviour
 
     public bool Asleep = true;
 
+    public bool DontInitiateSpells = false;
+
     [SerializeField]
     protected float ChaseDistance = 1f;
 
@@ -377,7 +379,14 @@ public class ActorAI : MonoBehaviour
 
             while (SelectedAbility == null)
             {
-                SelectedAbility = GetAvailableAbilityState();
+                if(!DontInitiateSpells)
+                {
+                    SelectedAbility = GetAvailableAbilityState();
+                }
+                else
+                {
+                    SelectedAbility = null;
+                }
 
                 if (PatrolTargetArea)
                 {

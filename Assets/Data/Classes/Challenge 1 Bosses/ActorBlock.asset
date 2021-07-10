@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorMushroomBig
+  m_Name: ActorBlock
   m_EditorClassIdentifier: 
-  Icon: {fileID: 3093014609379000668, guid: 88a979a253728594abec298d484ee95a, type: 3}
+  Icon: {fileID: 21300002, guid: 53c7783affa2fbe4bbded61ac9c29b66, type: 3}
   Abilities:
-  - MushroomSpore
-  - MushroomProtec
-  - MushroomProtecX2
-  PassiveAbility: PassiveHitMushroomBoss
+  - TurtleSmash
+  - BlockEnrageHaste
+  PassiveAbility: PassiveHitTurtleBoss
   Attributes:
     Power: 0
     HP: 40
@@ -32,7 +31,7 @@ MonoBehaviour:
     SpellDuration: 0
     AntiDebuff: 0
     Threat: 0
-    MovementSpeed: -0.5
+    MovementSpeed: -0.7
     JumpHeight: 0
     DoubleCast: 0
     Explode: 0
@@ -41,11 +40,16 @@ MonoBehaviour:
   States: []
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
   DropsOnDeath:
-  - {fileID: 11400000, guid: e4db9f65b0d3ee74a8bf6cd8c0cc61f8, type: 2}
-  - {fileID: 11400000, guid: c6dbadffc0c14184ea9fbf9e2dd26027, type: 2}
-  - {fileID: 11400000, guid: 455c3e0a697e967448aae230abe28889, type: 2}
-  CoinDropMultiplier: 25
-  OnDeathParams: []
+  - {fileID: 11400000, guid: 2f5eeb78910fd82428c1cd9665fc1ed7, type: 2}
+  - {fileID: 11400000, guid: e7d53dfc2ab37ee48a0f6c82849c88ca, type: 2}
+  - {fileID: 11400000, guid: bce63f9c90aecc249924a15a57e4e0e8, type: 2}
+  CoinDropMultiplier: 15
+  OnDeathParams:
+  - Type: {fileID: 11400000, guid: b3086b950e6c3d34d8cc83bed2cb4afc, type: 2}
+    Condition: {fileID: 0}
+    Targets: 2
+    Value: 50
+    ObjectValue: {fileID: 0}
   UniqueHurtSounds:
-  - BigMushroomOnHit
+  - BlockOnHit3
   UniqueDeathSound: 

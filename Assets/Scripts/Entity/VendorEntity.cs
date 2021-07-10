@@ -188,5 +188,12 @@ public class VendorEntity : MonoBehaviour
         OnRefresh?.Invoke();
 
         AudioControl.Instance.PlayInPosition("RabbitEscape", transform.position);
+
+        if(IsFocusing)
+        {
+            StopFocusing();
+            StartFocusing();
+        }
+
     }
 }

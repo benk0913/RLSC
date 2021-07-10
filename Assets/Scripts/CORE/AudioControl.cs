@@ -104,24 +104,17 @@ namespace EdgeworldBase
 
         public void SetNoInBackground()
         {
-            // if(MusicSource.time <= 1f)
-            // {
-            //     MusicSource.Play();
-            // }
-            // else
-            // {
-            //     MusicSource.UnPause();
-            // }
-
-            // if(SoundscapeSource.time <= 1f)
-            // {
-            //     SoundscapeSource.Play();
-            // }
-            // else
-            // {
-            //     SoundscapeSource.UnPause();
-            // }
             AudioListener.pause=false;
+
+            if(MusicSource.time <= 1f)
+            {
+                MusicSource.Play();
+            }
+
+            if(SoundscapeSource.time <= 1f)
+            {
+                SoundscapeSource.Play();
+            }
         }
 
         public void Play(string gClip)
