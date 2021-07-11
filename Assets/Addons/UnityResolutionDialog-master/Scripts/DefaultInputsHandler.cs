@@ -52,7 +52,7 @@ namespace NewResolutionDialog.Scripts
             {
                 yield return new WaitUntil(() => Input.GetKeyUp(popupKeyCode));
 
-                ToggleCanvas();
+                // ToggleCanvas();
 
                 // wait twice (into next frame) to prevent the hotkey from being recognized again in the same frame
                 yield return new WaitForEndOfFrame();

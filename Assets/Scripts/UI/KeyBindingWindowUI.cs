@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using EdgeworldBase;
+using UnityEngine.UI;
 
 public class KeyBindingWindowUI : MonoBehaviour {
 
@@ -9,6 +10,12 @@ public class KeyBindingWindowUI : MonoBehaviour {
     Transform Container;
 
     KeyBindingPieceUI LastClickedPiece;
+
+    [SerializeField]
+    ScrollRect Scroll;
+
+    [SerializeField]
+    SelectionGroupUI SGroup;
 
     void Start()
     {
@@ -30,6 +37,9 @@ public class KeyBindingWindowUI : MonoBehaviour {
             KeyBindingPiece.SetInfo(key, InputMap.Map[key]);
             KeyBindingPiece.m_btn.onClick.AddListener(delegate {OnKeyBindingPieceClicked(KeyBindingPiece);});
         }
+
+        SGroup.RefreshGroup();
+        //CORE.Instance.DelayedInvokation(0.1f,()=>SGroup.RefreshGroup());
     }
 
     public void OnKeyBindingPieceClicked(KeyBindingPieceUI KeyBindingPiece)
@@ -59,5 +69,15 @@ public class KeyBindingWindowUI : MonoBehaviour {
         {
             Container.GetChild(i).gameObject.SetActive(false);
         }
+    }
+
+    public void ScrollDown()
+    {
+        Scroll.verticalNormalizedPosition -= 1f *Time.deltaTime;
+    }
+
+    public void ScrollUp()
+    {
+        Scroll.verticalNormalizedPosition += 1f*Time.deltaTime;
     }
 }

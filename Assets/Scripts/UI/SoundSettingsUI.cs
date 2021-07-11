@@ -41,4 +41,14 @@ public class SoundSettingsUI : MonoBehaviour {
     {
         AudioControl.Instance.SetMasterVolume(MasterVolume.value);
     }
+
+    public void AddVolumeToSlider(Slider slider)
+    {
+        slider.value += 0.1f;
+    }
+
+    public void RemoveVolumeFromSlider(Slider slider)
+    {
+        slider.value -= 0.1f;
+    }
 }

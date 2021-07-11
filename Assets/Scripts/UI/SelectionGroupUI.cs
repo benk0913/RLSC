@@ -11,6 +11,8 @@ public class SelectionGroupUI : MonoBehaviour
     public static SelectionGroupUI SelectionInControl;
     SelectionGroupUI previousSelection;
 
+    public List<Selectable> IgnoreSelectables= new List<Selectable>();
+
     List<SelectionGroupInstance> instances = new List<SelectionGroupInstance>();
     Dictionary<Selectable, SelectionGroupInstance> instancesBySelectable = new Dictionary<Selectable, SelectionGroupInstance>();
 
@@ -63,6 +65,12 @@ public class SelectionGroupUI : MonoBehaviour
             {
                 if (Debug)
                     CORE.Instance.LogMessage("SelectionGroup - Setting Selectable " + selectable.gameObject.name);
+
+                if( IgnoreSelectables.Contains(selectable))
+                {
+                    continue;
+                }
+
 
                 SelectionGroupInstance instance = new SelectionGroupInstance(selectable);
                 instances.Add(instance);
