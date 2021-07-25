@@ -317,6 +317,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         Deselect();
 
         AudioControl.Instance.Play(DropSound);
+        
     }
 
     public void AttemptDropMoney()

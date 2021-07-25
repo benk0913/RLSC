@@ -77,6 +77,8 @@ public class ItemEntity : MonoBehaviour
 
         Animer.SetTrigger("Pick");
 
+        AudioControl.Instance.PlayInPosition("itemPickUp", transform.position);
+
         StartCoroutine(PickRoutine(actor));
     }
 
