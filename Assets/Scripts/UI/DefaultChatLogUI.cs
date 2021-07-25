@@ -35,17 +35,17 @@ public class DefaultChatLogUI : MonoBehaviour
     public void AddLogMessage(string message)
     {
 
+
         TextMeshProUGUI logPiece = ResourcesLoader.Instance.GetRecycledObject("LogMessagePiece").GetComponent<TextMeshProUGUI>();
         logPiece.transform.SetParent(ShortLogCG.transform, false);
         logPiece.transform.localScale = Vector3.one;
         logPiece.transform.position = Vector3.zero;
         logPiece.text = message;
 
-
         if (ShortLogCG.transform.childCount > ShortLogCap)
         {
             ShortLogCG.transform.GetChild(0).gameObject.SetActive(false);
-            ShortLogCG.transform.GetChild(0).SetParent(transform);
+            ShortLogCG.transform.GetChild(0).SetParent(transform.parent);
         }
 
         if(ConsoleInputUI.Instance.IsTyping)

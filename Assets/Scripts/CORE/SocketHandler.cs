@@ -513,7 +513,7 @@ public class SocketHandler : MonoBehaviour
 
     public void OnLoadScene(string eventName, JSONNode data)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering " + data["scene"].Value, Color.green, 1f, false));
+        // TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering " + data["scene"].Value, Color.green, 1f, false));
 
         CORE.Instance.IsLoading = true;
         CORE.Instance.CloseCurrentWindow();
@@ -529,7 +529,7 @@ public class SocketHandler : MonoBehaviour
 
                 SceneInfo sceneInfo = CORE.Instance.ActiveSceneInfo;
 
-                CORE.Instance.RefreshSecneInfo();
+                CORE.Instance.RefreshSceneInfo();
 
                 if (sceneInfo.displayTitleOnEnter)
                 {

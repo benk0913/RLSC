@@ -202,20 +202,42 @@ public class ActorAI : MonoBehaviour
             {
                 if (rhitRight)
                 {
-                    Act.AttemptJump();
+                    if(rhitRight.collider.tag != "NPC_WALL")
+                    {
+                        Act.AttemptJump();
+                        Act.AttemptMoveRight();
+                    }
+                    // else
+                    // {
+                    //     Act.AttemptMoveLeft();
+                    // }
+                }
+                else
+                {
+                    Act.AttemptMoveRight();
                 }
 
-                Act.AttemptMoveRight();
                 return;
             }
             else if (CurrentTarget.transform.position.x < transform.position.x)
             {
                 if (rhitLeft)
                 {
-                    Act.AttemptJump();
+                    if(rhitLeft.collider.tag != "NPC_WALL")
+                    {
+                        Act.AttemptJump();
+                        Act.AttemptMoveLeft();
+                    }
+                    // else
+                    // {
+                    //     Act.AttemptMoveRight();
+                    // }
+                }
+                else
+                {
+                    Act.AttemptMoveLeft();
                 }
 
-                Act.AttemptMoveLeft();
                 return;
             }
         }

@@ -25,28 +25,33 @@ MonoBehaviour:
     PrepareAbilitySound: MushroomProtecX2_Prepare
     ExecuteAbilitySound: MushroomProtecX2_Execute
     HitAbilitySound: 
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
     PreparingAnimation: Cast1
     ExecuteAnimation: Execute1
-  CD: 8
+  CD: 9
   CastingTime: 1
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 925789fd29bf01b4794f3effafc40709, type: 2}
     Condition: {fileID: 0}
     Targets: 1
     Value: ActorMushroomSmall
+    ObjectValue: {fileID: 0}
   - Type: {fileID: 11400000, guid: 925789fd29bf01b4794f3effafc40709, type: 2}
     Condition: {fileID: 0}
     Targets: 1
     Value: ActorMushroomSmall
+    ObjectValue: {fileID: 0}
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 1
     Value: Mushroom Invulnerability
+    ObjectValue: {fileID: 0}
   OnMissParams: []

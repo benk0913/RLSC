@@ -155,20 +155,20 @@ public class CORE : MonoBehaviour
 
         if (GameStates["phase"] != CurrentTimePhase)
         {
-            if (!this.Room.HasEnemies && InGame)
-            {
-                if (GameStates["phase"] == "Day")
-                {
-                    ShowScreenEffect("ScreenEffectChamberToDay", null, false);
-                }
-                else if (GameStates["phase"] == "Night")
-                {
-                    ShowScreenEffect("ScreenEffectChamberToNight", null, false);
-                }
-            }
+            // if (!this.Room.HasEnemies && InGame)
+            // {
+            //     if (GameStates["phase"] == "Day")
+            //     {
+            //         ShowScreenEffect("ScreenEffectChamberToDay", null, false);
+            //     }
+            //     else if (GameStates["phase"] == "Night")
+            //     {
+            //         ShowScreenEffect("ScreenEffectChamberToNight", null, false);
+            //     }
+            // }
 
             CurrentTimePhase = GameStates["phase"];
-            RefreshSecneInfo();
+            RefreshSceneInfo();
         }
     }
 
@@ -425,9 +425,15 @@ public class CORE : MonoBehaviour
 
     public void SpawnItem(Item item)
     {
-        ///TODO ADD ENTITY
-
-        ItemEntity itemEntity = ResourcesLoader.Instance.GetRecycledObject("WorldItem").GetComponent<ItemEntity>();
+        ItemEntity itemEntity;
+        if(string.IsNullOrEmpty(item.Data.UniquePrefab))
+        {
+            itemEntity = ResourcesLoader.Instance.GetRecycledObject("WorldItem").GetComponent<ItemEntity>();
+        }
+        else
+        {
+            itemEntity = ResourcesLoader.Instance.GetRecycledObject(item.Data.UniquePrefab).GetComponent<ItemEntity>();
+        }
         itemEntity.transform.position = new Vector2(item.x, item.y);
         item.Entity = itemEntity;
         itemEntity.SetInfo(item);
@@ -656,7 +662,7 @@ public class CORE : MonoBehaviour
         }
     }
 
-    public void RefreshSecneInfo()
+    public void RefreshSceneInfo()
     {
         SceneInfo info = ActiveSceneInfo;
 

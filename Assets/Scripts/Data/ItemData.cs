@@ -17,6 +17,8 @@ public class ItemData : ScriptableObject
     [TextArea(3,6)]
     public string Description;
 
+    public string UniquePrefab;
+
     public AttributeData Stats;
 
     public int VendorPrice = 2;

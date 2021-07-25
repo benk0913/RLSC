@@ -6,6 +6,9 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
 {
     public static SettingsMenuUI Instance;
 
+    [SerializeField]
+    Canvas Canv;
+
     void Awake()
     {
         Instance = this;
@@ -20,5 +23,8 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
     public void Show(ActorData actorData, object data)
     {
         this.gameObject.SetActive(true);
+
+        //TODO Yes, it's stupid, I know, remember to next time build your own settings menu.
+        CORE.Instance.DelayedInvokation(0.1f,()=>{Canv.enabled = true;});
     }
 }
