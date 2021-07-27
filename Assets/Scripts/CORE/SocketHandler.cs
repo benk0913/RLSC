@@ -171,7 +171,7 @@ public class SocketHandler : MonoBehaviour
 
         JSONNode node = new JSONClass();
         node["skipTutorial"] = SkippedTutorial();
-        node["version"] = Application.version;
+        node["tutorialVersion"] = Application.version;
         
         SendWebRequest(HostUrl + "/login", (UnityWebRequest lreq) =>
         {
@@ -271,6 +271,7 @@ public class SocketHandler : MonoBehaviour
         SocketOptions options = new SocketOptions();
         options.AdditionalQueryParams = new ObservableDictionary<string, string>();
         options.AdditionalQueryParams.Add("skipTutorial", SkippedTutorial());
+        options.AdditionalQueryParams.Add("tutorialVersion", Application.version);
         options.AdditionalQueryParams.Add("charIndex", CurrentUser.SelectedCharacterIndex.ToString());
 
 #if UNITY_EDITOR
