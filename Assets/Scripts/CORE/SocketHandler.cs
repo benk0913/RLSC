@@ -324,6 +324,11 @@ public class SocketHandler : MonoBehaviour
 
     private void DisconnectSocket()
     {
+        if(CORE.Instance != null)
+        {
+            CORE.Instance.DisposeSession();
+        }
+
         if (SocketManager != null)
         {
             SocketManager.Close();
@@ -495,6 +500,11 @@ public class SocketHandler : MonoBehaviour
 
     public void OnDisconnect(Socket socket, Packet packet, params object[] args)
     {
+        if(CORE.Instance != null)
+        {
+            CORE.Instance.DisposeSession();
+        }
+
         CORE.Instance.ReturnToMainMenu();
     }
 

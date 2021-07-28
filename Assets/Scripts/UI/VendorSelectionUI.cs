@@ -19,6 +19,9 @@ public class VendorSelectionUI : MonoBehaviour, WindowInterface
     [SerializeField]
     TextMeshProUGUI ItemDescriptionText;
 
+    [SerializeField]
+    TextMeshProUGUI PlayerMoneyLabel;
+
     public bool IsActive;
 
 
@@ -42,7 +45,8 @@ public class VendorSelectionUI : MonoBehaviour, WindowInterface
     {   
         KeyText.text = "Press '" + InputMap.Map["Interact"].ToString() + "' To Purchase!";
         NameLabel.text = item.name;
-        PriceLabel.text = item.VendorPrice.ToString();
+        PriceLabel.text = item.VendorPrice.ToString("N0");
+        PlayerMoneyLabel.text = CORE.Instance.Room.PlayerActor.money.ToString("N0");
         ItemDescriptionText.text = ItemsLogic.GetItemTooltip(item);
     }
 

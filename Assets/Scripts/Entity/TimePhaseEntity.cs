@@ -16,7 +16,7 @@ public class TimePhaseEntity : MonoBehaviour
     public Color DefaultSunColor;
     public Color DefaultNightSunColor;
 
-    public bool ListenToEvent = false;
+    public bool ListenToEvent = false;//TODO OBSOLETE? DELETE?
     #endregion
 
     private void Start()
@@ -37,10 +37,10 @@ public class TimePhaseEntity : MonoBehaviour
         }
 
 
-        if(ListenToEvent )
-        {
+        // if(ListenToEvent )
+        // {
             CORE.Instance.SubscribeToEvent("GameStatesChanged", SwitchState);
-        }
+        // }
         
         RefreshState();
     }

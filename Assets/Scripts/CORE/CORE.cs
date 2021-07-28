@@ -167,6 +167,8 @@ public class CORE : MonoBehaviour
             //     }
             // }
 
+            CORE.Instance.ShowScreenEffect("ScreenEffectLocation", ActiveSceneInfo.sceneName);
+
             CurrentTimePhase = GameStates["phase"];
             RefreshSceneInfo();
         }
@@ -446,9 +448,22 @@ public class CORE : MonoBehaviour
         Room.ItemLeft(itemId);
     }
 
+    public void DisposeSession()
+    {
+        CORE.Instance.CurrentParty = null;
+    }
+
+    public void DisposeChamberCache()
+    {
+        screenEffectQue.Clear();
+        // Room = null;
+    }
+
     Coroutine LoadSceneRoutineInstance;
     IEnumerator LoadSceneRoutine(string sceneKey, Action onComplete = null)
     {
+        DisposeChamberCache();
+
         string currentSceneKey = SceneManager.GetActiveScene().name;
 
         SceneManager.LoadScene(sceneKey);
@@ -555,22 +570,37 @@ public class CORE : MonoBehaviour
             screenEffectQue.Add(queInst);
             return null;//TODO Make sure it doesnt break ActorControlClient.cs
         }
-        GameObject obj = Instantiate(ResourcesLoader.Instance.GetObject(screenEffectObject));
-        obj.transform.SetParent(GameUICG.transform, true);
-        obj.transform.position = GameUICG.transform.position;
-        obj.transform.localScale = Vector3.one;
-        obj.GetComponent<ScreenEffectUI>().Show(data);
+        GameObject refObj = ResourcesLoader.Instance.GetObject(screenEffectObject);
+        GameObject obj = null;
 
-        Animator animer = obj.GetComponent<Animator>();
-        if (animer != null)
+        if(refObj != null)
         {
-            animer.speed = animSpeed;
-        }
+            obj = Instantiate(refObj);
+            obj.transform.SetParent(GameUICG.transform, true);
+            obj.transform.position = GameUICG.transform.position;
+            obj.transform.localScale = Vector3.one;
+            ScreenEffectUI screenEffect = obj.GetComponent<ScreenEffectUI>();
 
-        RectTransform rt = obj.GetComponent<RectTransform>();
-        rt.anchorMin = Vector2.zero;
-        rt.anchorMax = Vector2.one;
-        rt.sizeDelta = Vector2.zero;
+            if(screenEffect != null)
+            {
+                screenEffect.Show(data);
+            }
+
+            Animator animer = obj.GetComponent<Animator>();
+            if (animer != null)
+            {
+                animer.speed = animSpeed;
+            }
+
+            RectTransform rt = obj.GetComponent<RectTransform>();
+
+            if(rt != null)
+            {
+                rt.anchorMin = Vector2.zero;
+                rt.anchorMax = Vector2.one;
+                rt.sizeDelta = Vector2.zero;
+            }
+        }
 
         if (!skipQue)
         {

@@ -30,6 +30,7 @@ public class PartyMemberDisplayUI : MonoBehaviour
     [SerializeField]
     GameObject LeaderMarker;
 
+
     Actor CurrentActor;
 
     string CurrentMemberName = "";
@@ -70,6 +71,7 @@ public class PartyMemberDisplayUI : MonoBehaviour
         CurrentMemberName = memberName;
         CurrentActor = null;
         RefreshUI();
+
     }
 
     public void RefreshUI()
@@ -110,9 +112,19 @@ public class PartyMemberDisplayUI : MonoBehaviour
 
         LeaveButton.SetActive(IsPlayer);
         KickButton.SetActive(CORE.Instance.CurrentParty.IsPlayerLeader && !IsPlayer);
-        InspectButton.SetActive(!IsOffline && IsInRoom);
+        InspectButton.SetActive(!IsOffline && IsInRoom && !IsPlayer);
         PromoteButton.SetActive(!IsPlayer && !IsLeader && CORE.Instance.CurrentParty.IsPlayerLeader);
         LeaderMarker.SetActive(IsLeader);
+
+        
+        if(IsPlayer)
+        {
+            NameLabel.color = Color.yellow;
+        }
+        else
+        {
+            NameLabel.color = Color.white;
+        }
 
         if (IsInRoom)
         {
