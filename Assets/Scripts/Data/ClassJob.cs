@@ -29,6 +29,10 @@ public class ClassJob : ScriptableObject
     
     public float CoinDropMultiplier = 0f;
     
+    public List<AbilityParam> OnGetHitParams = new List<AbilityParam>();
+    
+    public List<AbilityParam> OnSomeoneExecutesParams = new List<AbilityParam>();
+
     public List<AbilityParam> OnDeathParams = new List<AbilityParam>();
 
     [JsonIgnore]

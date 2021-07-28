@@ -767,8 +767,10 @@ public class SocketHandler : MonoBehaviour
         }
 
         string abilityName = data["abilityName"];
+        bool castingExternal = data["castingExternal"].AsBool;
+        // TODO run the ability if possible when castingExternal is true.
 
-        if (!actorDat.ActorEntity.IsClientControl)
+        if (!actorDat.ActorEntity.IsClientControl || castingExternal)
         {
             actorDat.ActorEntity.PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
         }
