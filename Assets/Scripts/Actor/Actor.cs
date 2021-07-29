@@ -527,7 +527,16 @@ public class Actor : MonoBehaviour
     {
         Vector3 targetPosition = new Vector2(State.Data.x, State.Data.y);
 
-        Rigid.position = Vector3.Lerp(Rigid.position, targetPosition, Time.deltaTime * InterpolationSpeed);
+        float dist = Vector2.Distance(Rigid.position, targetPosition);
+
+        if(dist < 0.1f)
+        {
+            Rigid.position = targetPosition;
+        }
+        else
+        {
+            Rigid.position = Vector3.Lerp(Rigid.position, targetPosition, Time.deltaTime * InterpolationSpeed);
+        }
 
         Body.localScale = State.Data.faceRight ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
     }
