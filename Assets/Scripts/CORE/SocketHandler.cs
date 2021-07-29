@@ -780,10 +780,20 @@ public class SocketHandler : MonoBehaviour
         bool castingExternal = data["castingExternal"].AsBool;
         // TODO run the ability if possible when castingExternal is true.
 
-        if (!actorDat.ActorEntity.IsClientControl || castingExternal)
+
+        if(castingExternal)
         {
-            actorDat.ActorEntity.PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
+            int index = actorDat.ClassJobReference.Abilities.FindIndex(x=> x==abilityName);
+            actorDat.ActorEntity.AttemptPrepareAbility(index);
         }
+        else
+        {
+            if (!actorDat.ActorEntity.IsClientControl)
+            {
+                actorDat.ActorEntity.PrepareAbility(CORE.Instance.Data.content.Abilities.Find(x => x.name == abilityName));
+            }   
+        }
+        
     }
 
     public void OnActorExecuteAbility(string eventName, JSONNode data)
