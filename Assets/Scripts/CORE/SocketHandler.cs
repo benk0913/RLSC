@@ -1491,7 +1491,7 @@ public class ActorData
 
     public AttributeData attributes;
 
-    public AttributeData computedAttributes;
+    public AttributeData computedAttributes = new AttributeData();
 
     public Dictionary<string, StateData> states = new Dictionary<string, StateData>();
 
