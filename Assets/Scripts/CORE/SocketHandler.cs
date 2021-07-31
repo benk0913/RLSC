@@ -916,6 +916,7 @@ public class SocketHandler : MonoBehaviour
         }
 
         actorDat.attributes = JsonConvert.DeserializeObject<AttributeData>(data["attributes"].ToString());
+        actorDat.computedAttributes = JsonConvert.DeserializeObject<AttributeData>(data["computedAttributes"].ToString());
         CORE.Instance.InvokeEvent("StatsChanged");
     }
 
@@ -1490,6 +1491,8 @@ public class ActorData
 
     public AttributeData attributes;
 
+    public AttributeData computedAttributes;
+
     public Dictionary<string, StateData> states = new Dictionary<string, StateData>();
 
     public List<string> abilities;
@@ -1499,7 +1502,7 @@ public class ActorData
     {
         get
         {
-            return CORE.Instance.Data.content.BaseAttributes.MovementSpeed + CORE.Instance.Data.content.BaseAttributes.MovementSpeed * attributes.MovementSpeed;
+            return computedAttributes.MovementSpeed;
         }
     }
 
@@ -1508,7 +1511,7 @@ public class ActorData
     {
         get
         {
-            return CORE.Instance.Data.content.BaseAttributes.HP + CORE.Instance.Data.content.BaseAttributes.HP * attributes.HP;
+            return computedAttributes.HP;
         }
     }
 
