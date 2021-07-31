@@ -127,6 +127,9 @@ public class SceneInfo
     public string sceneName;
 
     [JsonIgnore]
+    public string displyName;
+
+    [JsonIgnore]
     public string objectiveDescription;
 
     public string UniqueCompletionScreenEffect;

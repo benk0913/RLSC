@@ -544,7 +544,7 @@ public class SocketHandler : MonoBehaviour
 
                 if (sceneInfo.displayTitleOnEnter)
                 {
-                    CORE.Instance.ShowScreenEffect("ScreenEffectLocation", sceneInfo.sceneName);
+                    CORE.Instance.ShowScreenEffect("ScreenEffectLocation", sceneInfo.displyName);
 
                 }
 

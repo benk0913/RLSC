@@ -167,7 +167,7 @@ public class CORE : MonoBehaviour
             //     }
             // }
 
-            CORE.Instance.ShowScreenEffect("ScreenEffectLocation", ActiveSceneInfo.sceneName);
+            CORE.Instance.ShowScreenEffect("ScreenEffectLocation", ActiveSceneInfo.displyName);
 
             CurrentTimePhase = GameStates["phase"];
             RefreshSceneInfo();

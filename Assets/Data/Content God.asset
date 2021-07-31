@@ -727,6 +727,7 @@ MonoBehaviour:
       overrideType: {fileID: 11400000, guid: 5bbe9426183acef449d9c64dda953cf9, type: 2}
     Scenes:
     - sceneName: ChamberA1Block
+      displyName: Golem's Mesa
       objectiveDescription: Destroy The Giant Golem!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -757,6 +758,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: TestEmptyChamber
+      displyName: Secret Area
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -782,6 +784,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: ChamberA2Ghost
+      displyName: The Haunted Willow
       objectiveDescription: Eliminate The Tormenting Ghost!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -812,6 +815,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: ChamberA3Slime
+      displyName: Slime's Foothills
       objectiveDescription: Evaporate this wild slime out of existence!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -842,6 +846,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: ChamberC1Snake
+      displyName: The Snake's Lair
       objectiveDescription: Destroy the snake before it destroys you!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -872,6 +877,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: PRELOADER
+      displyName: Main Menu
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -887,6 +893,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: ChamberC2CatGuard
+      displyName: Sacred Ruines
       objectiveDescription: Show this cat how useless his shield may be!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -997,6 +1004,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: ChamberC3Mushroom
+      displyName: Mushroom's Glade
       objectiveDescription: Smack that hat off of this mushrooms head!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -1042,6 +1050,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: ChamberD1FruitTree
+      displyName: Fruit Of Misfortune
       objectiveDescription: Punch a hole in this oval and juicy fruit!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -1297,6 +1306,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: ChamberD2Borrow
+      displyName: The Cursed Burrow
       objectiveDescription: Destroy the obstruction that blocks the way out!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -1442,6 +1452,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: TestEmptyChamberB
+      displyName: Secret Area B
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -1477,6 +1488,7 @@ MonoBehaviour:
       enablePvp: 1
       displayTitleOnEnter: 0
     - sceneName: IntermissionChamber1
+      displyName: Hillside Camp
       objectiveDescription: Enjoy the respite this camp provides.
       UniqueCompletionScreenEffect: ScreenEffectChamberCompleteSubtle
       Mobs:
@@ -1507,6 +1519,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: IntermissionChamber2
+      displyName: Forest Camp
       objectiveDescription: Enjoy the respite this camp provides.
       UniqueCompletionScreenEffect: ScreenEffectChamberCompleteSubtle
       Mobs:
@@ -1537,6 +1550,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: IntermissionChamber3
+      displyName: Hollow Shelter
       objectiveDescription: Enjoy the respite this camp provides.
       UniqueCompletionScreenEffect: ScreenEffectChamberCompleteSubtle
       Mobs:
@@ -1567,6 +1581,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_RabbitsA
+      displyName: Land Of Misdemeanor
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -1602,6 +1617,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_RabbitsB
+      displyName: Land Of Misdemeanor B
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -1637,6 +1653,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_FlowersB
+      displyName: Field Of Bloom
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -1697,6 +1714,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_GhostsA
+      displyName: Unholy Site
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -1767,9 +1785,20 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_BlocksA
+      displyName: Rocky Den
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
+      - monsterName: ActorBat
+        positionX: -4.7
+        positionY: 60.2
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorBat
+        positionX: -13.5
+        positionY: 75.2
+        respawnSeconds: 0
+        IrellevantMob: 0
       - monsterName: ActorBat
         positionX: -200.52998
         positionY: 87.02
@@ -1788,26 +1817,6 @@ MonoBehaviour:
       - monsterName: ActorBat
         positionX: -212.49998
         positionY: 92.2
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFlowerbeingWild
-        positionX: -192.1
-        positionY: 40.2
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorFlowerbeingWild
-        positionX: -236.6
-        positionY: 35.9
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorRabbit
-        positionX: -4.9000053
-        positionY: 21
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorRabbit
-        positionX: -22.4
-        positionY: 21
         respawnSeconds: 0
         IrellevantMob: 0
       Interactables:
@@ -1832,6 +1841,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_BlocksB
+      displyName: Windy Nowhere
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -1867,6 +1877,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_MushroomsA
+      displyName: Restless Forest
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -2102,6 +2113,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCJumpQuest_DarknessA
+      displyName: Ancient Burrow Access
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -2325,6 +2337,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCJumpQuest_FruitA
+      displyName: The Bold Treeclimb
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -2960,6 +2973,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCJumpQuest_RocksA
+      displyName: Breezy Cliffs
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -3045,6 +3059,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCJumpQuest_BorrowA
+      displyName: Narrow Burrow Climb
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -3400,6 +3415,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_FlowersAfixed
+      displyName: Bloom Path
       objectiveDescription: Defeat All Of The Flowers!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -3455,6 +3471,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCJumpQuest_Curse
+      displyName: 'Cursed Altar '
       objectiveDescription: Sacrifice a friend.
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -3589,6 +3606,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCJumpQuest_CurseTest
+      displyName: Lost And Abandoned
       objectiveDescription: Suck my Ass
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -3614,6 +3632,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_FlowersWild
+      displyName: Florid Detour
       objectiveDescription: Destroy these wildly magical flower creatures!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -3664,6 +3683,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_Dungeon
+      displyName: Lost Catacomb
       objectiveDescription: Defeat all the skeletons!
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -3904,6 +3924,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_SalamanderA
+      displyName: Salamander's Grounds
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -3994,6 +4015,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_SalamanderB
+      displyName: Salamander's Lair
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -4124,6 +4146,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_GrasslandA
+      displyName: Crossing Paths
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -4174,6 +4197,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCJumpQuest_WaterTest
+      displyName: Lost Rapid
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -4214,6 +4238,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: Sunset Port
+      displyName: Sunset Port
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -4301,6 +4326,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 1
     - sceneName: IntermissionChamber0
+      displyName: Expedition Camp
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -4330,6 +4356,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: MainMenu
+      displyName: Main Menu
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -4345,6 +4372,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCJumpQuest_Ruins
+      displyName: Lost Ruins
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -4460,6 +4488,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_Beach
+      displyName: Sunset Beach A
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -4510,6 +4539,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_BeachB
+      displyName: Sunset Beach B
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -4560,6 +4590,7 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
     - sceneName: FCMonsterQuest_BeachJumpquest
+      displyName: Sunset Beach C
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
