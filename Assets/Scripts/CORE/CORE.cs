@@ -92,6 +92,8 @@ public class CORE : MonoBehaviour
         }
     }
 
+    public string NextScenePrediction;
+
     public bool IsAppInBackground = false;
 
 

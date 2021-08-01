@@ -539,6 +539,8 @@ public class SocketHandler : MonoBehaviour
                 CORE.Instance.IsLoading = false;
 
                 SceneInfo sceneInfo = CORE.Instance.ActiveSceneInfo;
+                CORE.Instance.NextScenePrediction = (string)data["nextScenePrediction"];
+                
 
                 CORE.Instance.RefreshSceneInfo();
 

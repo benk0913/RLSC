@@ -158,6 +158,9 @@ public class SceneInfo
 
     [JsonIgnore]
     public bool displayTitleOnEnter = false;
+
+    [JsonIgnore]
+    public Sprite PredictionImage;
 }
 
 [Serializable]
