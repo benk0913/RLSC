@@ -196,6 +196,11 @@ public class ActorAI : MonoBehaviour
             return;
         }
 
+        if(TemporaryPatrolRoutine != null)
+        {
+            return;
+        }
+
         if (IsJumping)
         {
             if (CurrentTarget.transform.position.x > transform.position.x)
@@ -207,10 +212,10 @@ public class ActorAI : MonoBehaviour
                         Act.AttemptJump();
                         Act.AttemptMoveRight();
                     }
-                    // else
-                    // {
-                    //     Act.AttemptMoveLeft();
-                    // }
+                    else
+                    {
+                        TemporaryPatrolRoutine = StartCoroutine(PatrolLeftFor(3f));
+                    }
                 }
                 else
                 {
@@ -228,10 +233,10 @@ public class ActorAI : MonoBehaviour
                         Act.AttemptJump();
                         Act.AttemptMoveLeft();
                     }
-                    // else
-                    // {
-                    //     Act.AttemptMoveRight();
-                    // }
+                    else
+                    {
+                        TemporaryPatrolRoutine = StartCoroutine(PatrolRightFor(3f));
+                    }
                 }
                 else
                 {
@@ -350,6 +355,39 @@ public class ActorAI : MonoBehaviour
         yield return new WaitForSeconds(selectedAbility.CurrentAbility.CastingTime);
     }
 
+
+Coroutine TemporaryPatrolRoutine;
+
+    public IEnumerator PatrolLeftFor(float seconds)
+    {
+        while (seconds > 0f)
+        {
+            seconds -=  Time.deltaTime;
+
+            Act.AttemptMoveLeft();
+
+            yield return 0;
+        }
+
+         TemporaryPatrolRoutine= null;
+    }
+
+     public IEnumerator PatrolRightFor(float seconds)
+    {
+        while (seconds > 0f)
+        {
+            seconds -= Time.deltaTime;
+
+            Act.AttemptMoveRight();
+
+            yield return 0;
+        }
+
+        TemporaryPatrolRoutine = null;
+    }
+
+
+
     protected IEnumerator AreaPatrolRoutine()
     {
 
@@ -364,12 +402,22 @@ public class ActorAI : MonoBehaviour
                 {
                     Act.AttemptMoveLeft();
                 }
+                else
+                {
+                    yield return StartCoroutine(PatrolRightFor(2f));
+                    yield break;
+                }
             }
             else
             {
                 if (!rhitRight)
                 {
                     Act.AttemptMoveRight();
+                }
+                else
+                {
+                    yield return StartCoroutine(PatrolLeftFor(2f));
+                    yield break;
                 }
             }
 

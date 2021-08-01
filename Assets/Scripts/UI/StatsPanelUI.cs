@@ -9,6 +9,8 @@ public class StatsPanelUI : MonoBehaviour
 
     ActorData CurrentActor;
 
+    public List<string> AlwaysDisplayStats = new List<string>();
+
     private void Start()
     {
         CORE.Instance.SubscribeToEvent("StatsChanged", () =>
@@ -70,7 +72,10 @@ public class StatsPanelUI : MonoBehaviour
     {
         if(statValue == 0f)
         {
-            return;
+            if(!AlwaysDisplayStats.Contains(statName))
+            {
+                return;
+            }
         }
 
         StatItemUI item = ResourcesLoader.Instance.GetRecycledObject("StatItemUI").GetComponent<StatItemUI>();
