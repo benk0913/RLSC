@@ -32,6 +32,8 @@ public class CreateCharacterPanelUI : MonoBehaviour
     public List<Image> JobFrames = new List<Image>();
     public List<string> Jobs = new List<string>{"fire", "water", "earth", "air"};
 
+    public Image AlignmentGoodHalo;
+    public Image AlignmentEvilHalo;
 
     private void Awake()
     {
@@ -312,12 +314,28 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.RefreshLooks();
     }
 
+    public void SetAlignmentGood(bool isGood)
+    {
+        DisplayActor.State.Data.alignmentGood = isGood;
+        if(isGood)
+        {
+            AlignmentGoodHalo.gameObject.SetActive(true);
+            AlignmentEvilHalo.gameObject.SetActive(false);
+        }
+        else
+        {
+            AlignmentGoodHalo.gameObject.SetActive(false);
+            AlignmentEvilHalo.gameObject.SetActive(true);
+        }
+    }
+
     private void UpdateClassJob(int index)
     {
         DisplayActor.State.Data.classJob = Jobs[index];
         for (int i = 0; i < JobFrames.Count; i++)
         {
-            JobFrames[i].color = i == index ? Color.red : Color.white;
+            JobFrames[i].color = i == index ? Color.green : Color.white;
         }
     }
+
 }

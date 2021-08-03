@@ -1451,6 +1451,8 @@ public class ActorData
     public bool faceRight;
     public string name;
     public string classJob;
+
+    public bool alignmentGood;
     public string actorType;
     public string prefab;
     public int hp;
