@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EdgeworldBase;
 using TMPro;
 using UnityEngine;
 
@@ -24,6 +25,8 @@ public class HitLabelEntityUI : MonoBehaviour
             {
                 Label.text = "BLOCK";
             }
+
+            AudioControl.Instance.PlayInPosition("sound_blocked_hit", transform.position);
 
             float t = ((float)numResult / 200f);
             Label.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 3, t);
