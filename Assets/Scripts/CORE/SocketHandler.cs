@@ -128,6 +128,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("expedition_queue_match_found", OnExpeditionQueueMatchFound));
         SocketEventListeners.Add(new SocketEventListener("expedition_queue_match_hide", OnExpeditionQueueMatchHide));
 
+        //Karma
+        SocketEventListeners.Add(new SocketEventListener("karma_update", OnKarmaUpdate));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -262,6 +264,7 @@ public class SocketHandler : MonoBehaviour
 
         ConnectSocketRoutineInstance = StartCoroutine(ConnectSocketRoutine(OnComplete));
     }
+    
 
     Coroutine ConnectSocketRoutineInstance;
     IEnumerator ConnectSocketRoutine(Action OnComplete = null)
@@ -654,6 +657,12 @@ public class SocketHandler : MonoBehaviour
         GameObject lvlUpEffect = ResourcesLoader.Instance.GetRecycledObject("LevelUpEffect");
         lvlUpEffect.transform.position = actorDat.ActorEntity.transform.position;
         lvlUpEffect.GetComponent<AbilityCollider>().SetInfo(null, actorDat.ActorEntity);
+    }
+
+    public void OnKarmaUpdate(string eventName, JSONNode data)
+    {
+        CurrentUser.actor.karma = data["karma"].AsInt;
+        CORE.Instance.InvokeEvent("AlignmentUpdated");
     }
 
     public void OnExpeditionFloorComplete(string eventName, JSONNode data)
@@ -1453,6 +1462,7 @@ public class ActorData
     public string classJob;
 
     public bool alignmentGood;
+    public int karma;
     public string actorType;
     public string prefab;
     public int hp;
