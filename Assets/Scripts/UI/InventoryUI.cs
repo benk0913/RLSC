@@ -108,8 +108,12 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         this.gameObject.SetActive(true);
         currentActor = ofActor;
 
-
         isInspecting = ofActor != CORE.Instance.Room.PlayerActor;
+
+        if(isInspecting)
+        {
+            AudioControl.Instance.Play("onInspectSound");
+        }
 
         StatsPanel.SetActor(ofActor);
         StatsPanel.RefreshStats();
