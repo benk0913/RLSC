@@ -635,7 +635,7 @@ public class CORE : MonoBehaviour
     {
         if(LastScreenEffect != null)
         {
-            while (LastScreenEffect.gameObject.activeInHierarchy)
+            while (LastScreenEffect != null && LastScreenEffect.gameObject.activeInHierarchy)
             {
                 yield return 0;
             }

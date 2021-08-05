@@ -47,6 +47,7 @@ public class ExpeditionQueTimerUI : MonoBehaviour
     public void StopSearching()
     {
         SocketHandler.Instance.SendStopExpeditionQueue();
+        IsSearching = false;
         Hide();
     }
 }

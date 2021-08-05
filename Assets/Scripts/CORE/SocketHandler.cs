@@ -1430,11 +1430,15 @@ public class SocketHandler : MonoBehaviour
         string expeditionName = data["expeditionName"].Value;
 
         ExpeditionQueTimerUI.Instance.Show(expeditionName);
+
+        CORE.Instance.InvokeEvent("MatchQueueUpdate");
     }
 
     public void OnExpeditionQueueStop(string eventName, JSONNode data)
     {
         ExpeditionQueTimerUI.Instance.Hide();
+
+        CORE.Instance.InvokeEvent("MatchQueueUpdate");
     }
 
     public void OnExpeditionQueueMatchFound(string eventName, JSONNode data)
