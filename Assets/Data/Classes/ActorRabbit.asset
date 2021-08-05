@@ -15,16 +15,17 @@ MonoBehaviour:
   Icon: {fileID: 21300002, guid: 65b783eed2a9de64c8394133a31977e7, type: 3}
   Abilities:
   - Escape
+  - Carrot Explosion
   - Throw Carrot
   PassiveAbility: PassiveHitRabbit
   Attributes:
     Power: 0
-    HP: 1
+    HP: 4
     Defense: 0
     Block: 0
     CDReduction: 0
     CTReduction: 0
-    Lifesteal: 0.25
+    Lifesteal: 0
     LongRangeMultiplier: 0
     ShortRangeMultiplier: 0
     WildMagicChance: 0
@@ -41,6 +42,8 @@ MonoBehaviour:
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
   DropsOnDeath: []
   CoinDropMultiplier: 1
+  OnGetHitParams: []
+  OnSomeoneExecutesParams: []
   OnDeathParams: []
   UniqueHurtSounds:
   - RabbitOnHit

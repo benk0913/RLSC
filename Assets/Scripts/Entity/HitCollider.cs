@@ -26,9 +26,12 @@ public class HitCollider : MonoBehaviour
 
     protected int TimesHit = 0;
 
+    public HitCollider ParentCollider;
 
-    public virtual void SetInfo(Ability abilitySource = null, Actor actorSource = null)
+    public virtual void SetInfo(Ability abilitySource = null, Actor actorSource = null, HitCollider parentCollider = null)
     {
+        this.ParentCollider = parentCollider;
+
         AbilitySource = abilitySource;
         ActorSource = actorSource;
         TimesHit = 0;
