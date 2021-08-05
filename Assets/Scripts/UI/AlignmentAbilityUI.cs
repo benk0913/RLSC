@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using SimpleJSON;
 
-public class AlignmentAbilityUI : MonoBehaviour, IPointerClickHandler
+public class AlignmentAbilityUI : MonoBehaviour//, IPointerClickHandler
 {
     AlignmentAbility CurrentAbility;
 
@@ -48,7 +48,13 @@ public class AlignmentAbilityUI : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    // public void OnPointerClick(PointerEventData eventData)
+    // {
+    //     Use();
+    // }
+
+
+    public void Use()
     {
         if(!CurrentAbility.IsActive)
         {
