@@ -1,4 +1,4 @@
-﻿using EdgeworldBase;
+using EdgeworldBase;
 using Newtonsoft.Json;
 using SimpleJSON;
 using System;
@@ -13,6 +13,11 @@ using UnityEngine.SceneManagement;
 public class CORE : MonoBehaviour
 {
     public static CORE Instance;
+
+    public static ActorData PlayerActor
+    {
+        get{return SocketHandler.Instance.CurrentUser.actor;}
+    }
 
     public CanvasGroup GameUICG;
 
@@ -140,6 +145,7 @@ public class CORE : MonoBehaviour
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
         WindowToKeyMap.Add(PartyWindowUI.Instance, InputMap.Map["Party Window"]);
+        WindowToKeyMap.Add(AlignmentWindowUI.Instance, InputMap.Map["Alignment Window"]);
         WindowToKeyMap.Add(SettingsMenuUI.Instance, InputMap.Map["Settings Window"]);
         WindowToKeyMap.Add(SideButtonUI.Instance, InputMap.Map["Exit"]);
 
@@ -226,6 +232,11 @@ public class CORE : MonoBehaviour
     public void ShowPartyUiWindow()
     {
         ShowWindow(PartyWindowUI.Instance);
+    }
+
+    public void ShowAlignmentUiWindow()
+    {
+        ShowWindow(AlignmentWindowUI.Instance);
     }
 
     public void ShowSideButtonUiWindow()
@@ -442,6 +453,8 @@ public class CORE : MonoBehaviour
         item.Entity = itemEntity;
         itemEntity.SetInfo(item);
 
+        AudioControl.Instance.PlayInPosition("itemDrop",item.Entity.transform.position);
+
         Room.ItemJoined(item);
     }
 
@@ -622,7 +635,7 @@ public class CORE : MonoBehaviour
     {
         if(LastScreenEffect != null)
         {
-            while (LastScreenEffect.gameObject.activeInHierarchy)
+            while (LastScreenEffect != null && LastScreenEffect.gameObject.activeInHierarchy)
             {
                 yield return 0;
             }

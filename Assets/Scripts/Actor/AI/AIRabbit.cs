@@ -38,7 +38,7 @@ public class AIRabbit : ActorAI
     {
         float abilityTimeout = 5f;
         
-        if (selectedAbility.CurrentAbility.name == "Throw Carrot")
+        if (selectedAbility.CurrentAbility.name == "Throw Carrot" || selectedAbility.CurrentAbility.name == "Carrot Explosion" )
         {
             MoveToTarget();
 
@@ -78,18 +78,28 @@ public class AIRabbit : ActorAI
         }
         else if (selectedAbility.CurrentAbility.name == "Escape")
         {
-            if(CurrentTarget.transform.position.x < transform.position.x)
+            if(rhitRight)
+            {
+                Act.AttemptMoveRight();
+            }
+            else if(rhitLeft)
             {
                 Act.AttemptMoveLeft();
             }
             else
             {
-                Act.AttemptMoveRight();
+                if(CurrentTarget.transform.position.x < transform.position.x)
+                {
+                    Act.AttemptMoveLeft();
+                }
+                else
+                {
+                    Act.AttemptMoveRight();
+                }
             }
             
             Act.AttemptPrepareAbility(Act.State.Abilities.IndexOf(selectedAbility));
         }
-
 
         yield return new WaitForSeconds(selectedAbility.CurrentAbility.CastingTime);
     }
@@ -114,12 +124,23 @@ public class AIRabbit : ActorAI
 
                     if(SelectedAbility == null)
                     {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Carrot Explosion" && x.CurrentCD <= 0f);
+                    }
+
+                    if(SelectedAbility == null)
+                    {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Throw Carrot" && x.CurrentCD <= 0f);
                     }
+                    
                 }
                 else
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Throw Carrot" && x.CurrentCD <= 0f);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Carrot Explosion" && x.CurrentCD <= 0f);
+
+                    if(SelectedAbility == null)
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Throw Carrot" && x.CurrentCD <= 0f);
+                    }
                 }
 
                 WaitBehaviour();

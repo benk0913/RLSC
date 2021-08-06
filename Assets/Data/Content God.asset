@@ -447,6 +447,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3a2249e8fdbbd044b9fb45e46b878ae1, type: 2}
     - {fileID: 11400000, guid: 8f78e72393829ae4cbb37d8afdd0ec5a, type: 2}
     - {fileID: 11400000, guid: c18f1593b56d5be4997250a67a842255, type: 2}
+    - {fileID: 11400000, guid: d00c66bf0838ab14c8bdc4e1d49a8a91, type: 2}
     - {fileID: 11400000, guid: b0d5be31382a90546bf016a55aca8ffe, type: 2}
     - {fileID: 11400000, guid: 539935ce1ad6f2943a4f7a2816c2de26, type: 2}
     - {fileID: 11400000, guid: d15000ef0223f3449aa864a6bfaa883b, type: 2}
@@ -1589,80 +1590,6 @@ MonoBehaviour:
       Vendors: []
       MusicTrack: IntermissionSong
       Soundscape: Campfire SoundScape
-      NightMusicTrack: 
-      NightSoundscape: 
-      enablePvp: 0
-      displayTitleOnEnter: 0
-      PredictionImage: {fileID: 0}
-    - sceneName: FCMonsterQuest_RabbitsA
-      displyName: Land Of Misdemeanor
-      objectiveDescription: 
-      UniqueCompletionScreenEffect: 
-      Mobs:
-      - monsterName: ActorRabbit
-        positionX: -163
-        positionY: 42.4
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorRabbit
-        positionX: -142.8
-        positionY: 42.4
-        respawnSeconds: 0
-        IrellevantMob: 0
-      Interactables:
-      - interactableName: GateRightInteractable
-        interactableId: 
-        positionX: -98
-        positionY: 33
-      playerSpawnX: -275.2
-      playerSpawnY: 45.8
-      Portals:
-      - name: EndPortalA
-        TargetScene: 
-        TargetSceneGate: 
-        IsExpeditionLocked: 1
-        portalPositionX: -122.36
-        portalPositionY: 171.77
-      Vendors: []
-      MusicTrack: Valley
-      Soundscape: Valley SoundScape
-      NightMusicTrack: 
-      NightSoundscape: 
-      enablePvp: 0
-      displayTitleOnEnter: 0
-      PredictionImage: {fileID: 0}
-    - sceneName: FCMonsterQuest_RabbitsB
-      displyName: Land Of Misdemeanor B
-      objectiveDescription: 
-      UniqueCompletionScreenEffect: 
-      Mobs:
-      - monsterName: ActorRabbitQuix
-        positionX: -232.2
-        positionY: 46.8
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorRabbitQuix
-        positionX: -138.8
-        positionY: 46.3
-        respawnSeconds: 0
-        IrellevantMob: 0
-      Interactables:
-      - interactableName: GateRightInteractable
-        interactableId: 
-        positionX: -98
-        positionY: 33
-      playerSpawnX: -277.2
-      playerSpawnY: 64.3
-      Portals:
-      - name: EndPortalA
-        TargetScene: 
-        TargetSceneGate: 
-        IsExpeditionLocked: 1
-        portalPositionX: -122.36
-        portalPositionY: 171.77
-      Vendors: []
-      MusicTrack: Valley
-      Soundscape: Valley SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
@@ -4666,6 +4593,38 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
+    - sceneName: FCMonsterQuest_Rabbit
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorRabbit
+        positionX: -163
+        positionY: 42.4
+        respawnSeconds: 0
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: -98
+        positionY: 33
+      playerSpawnX: -275.2
+      playerSpawnY: 45.8
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      Vendors: []
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -4688,6 +4647,20 @@ MonoBehaviour:
     TimePhases:
     - Day
     - Night
+    alignmentData:
+      MaxKarma: 100
+      GoodAbilities:
+      - {fileID: 11400000, guid: eec126699cd86e3468631cd72a056367, type: 2}
+      - {fileID: 11400000, guid: c9d967deef0f4cf4581d259d515de7a4, type: 2}
+      - {fileID: 11400000, guid: ed7010f9f39b8a34b83a19f2fe6f1f21, type: 2}
+      - {fileID: 11400000, guid: 502745e2a1a06ca43ac84b86a636061c, type: 2}
+      - {fileID: 11400000, guid: d04a7528c9a205a4b83c87930a56905c, type: 2}
+      EvilAbilities:
+      - {fileID: 11400000, guid: 3a365dd329ba31844b2243890cc4c8bb, type: 2}
+      - {fileID: 11400000, guid: cfe231193511407478c9701a6b584b1d, type: 2}
+      - {fileID: 11400000, guid: dbb9f540f181f3b499be3bf9f84c31e4, type: 2}
+      - {fileID: 11400000, guid: 96bfbe5ce1273a947809f8dcd9cee2b6, type: 2}
+      - {fileID: 11400000, guid: 79258742f52bcfb458303ee5e04ab230, type: 2}
     MoneyValueMaps:
     - moneyItem: {fileID: 11400000, guid: 8528b58f3fe1a0d47a6458b734b5ebe7, type: 2}
       minAmount: 0

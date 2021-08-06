@@ -20,6 +20,9 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     SelectionGroupUI SGroup;
+    
+    [SerializeField]
+    GameObject QueuePanel;
 
     public bool IsOpen;
 
@@ -40,6 +43,8 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         }
 
         CORE.Instance.SubscribeToEvent("PartyUpdated", RefreshUI);
+        CORE.Instance.SubscribeToEvent("MatchQueueUpdate", MatchQueueRefresh);
+        
         RefreshUI();
     }
 
@@ -53,7 +58,6 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         
         AudioControl.Instance.Play(OpenSound);
 
-        
         RefreshUI();
         
         if (CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length >= CORE.Instance.Data.content.MaxPartyMembers)
@@ -77,15 +81,23 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         AudioControl.Instance.Play(HideSound);
     }
     
+    public void MatchQueueRefresh()
+    {
+        QueuePanel.gameObject.SetActive(ExpeditionQueTimerUI.Instance.IsSearching);
+    }
 
     public void RefreshUI()
     {
+        
+        MatchQueueRefresh();
+        
         if (!IsOpen)
         {
             return;
         }
 
         CORE.ClearContainer(PartyMembersContainer);
+
 
         if (CORE.Instance.CurrentParty == null)
         {
@@ -107,6 +119,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
 
         CORE.Instance.DelayedInvokation(0.1f,()=>SGroup.RefreshGroup(true));
+
     }
 
     public void RemoveMember(PartyMemberDisplayUI partyMemberDisplayUI)
@@ -118,5 +131,11 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
     public void InviteMember()
     {
         InputLabelWindow.Instance.Show("Invite Player", "Player Name...", (string name) => { SocketHandler.Instance.SendPartyInvite(name); });
+    }
+
+    public void LeaveQueue()
+    {
+        ExpeditionQueTimerUI.Instance.StopSearching();
+        QueuePanel.gameObject.SetActive(false);
     }
 }

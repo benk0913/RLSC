@@ -62,6 +62,7 @@ public class DatabaseContent
 
     public List<string> TimePhases = new List<string>();
     
+    public AlignmentData alignmentData;
     public List<MoneyValueMap> MoneyValueMaps = new List<MoneyValueMap>();
     public string LatestVersion;
 
@@ -120,6 +121,15 @@ public class VisualDatabase
     [JsonIgnore]
     public List<Color> IrisColorPresets = new List<Color>();
 }
+
+[Serializable]
+public class AlignmentData
+{
+    public int MaxKarma = 100;
+    public List<AlignmentAbility> GoodAbilities = new List<AlignmentAbility>();
+    public List<AlignmentAbility> EvilAbilities = new List<AlignmentAbility>();
+}
+
 
 [Serializable]
 public class SceneInfo

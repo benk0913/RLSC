@@ -128,6 +128,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("expedition_queue_match_found", OnExpeditionQueueMatchFound));
         SocketEventListeners.Add(new SocketEventListener("expedition_queue_match_hide", OnExpeditionQueueMatchHide));
 
+        //Karma
+        SocketEventListeners.Add(new SocketEventListener("karma_update", OnKarmaUpdate));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -262,6 +264,7 @@ public class SocketHandler : MonoBehaviour
 
         ConnectSocketRoutineInstance = StartCoroutine(ConnectSocketRoutine(OnComplete));
     }
+    
 
     Coroutine ConnectSocketRoutineInstance;
     IEnumerator ConnectSocketRoutine(Action OnComplete = null)
@@ -654,6 +657,12 @@ public class SocketHandler : MonoBehaviour
         GameObject lvlUpEffect = ResourcesLoader.Instance.GetRecycledObject("LevelUpEffect");
         lvlUpEffect.transform.position = actorDat.ActorEntity.transform.position;
         lvlUpEffect.GetComponent<AbilityCollider>().SetInfo(null, actorDat.ActorEntity);
+    }
+
+    public void OnKarmaUpdate(string eventName, JSONNode data)
+    {
+        CurrentUser.actor.karma = data["karma"].AsInt;
+        CORE.Instance.InvokeEvent("AlignmentUpdated");
     }
 
     public void OnExpeditionFloorComplete(string eventName, JSONNode data)
@@ -1263,6 +1272,8 @@ public class SocketHandler : MonoBehaviour
     {
         string leaderName = data["leaderName"].Value;
 
+        AudioControl.Instance.Play("getPartyInvite");
+
         if (!string.IsNullOrEmpty(leaderName))
         {
             CORE.Instance.AddChatMessage("<color=yellow>" + leaderName + " had invited you to a party!</color>");
@@ -1279,6 +1290,8 @@ public class SocketHandler : MonoBehaviour
     {
         CORE.Instance.AddChatMessage("<color=yellow> The party invitation had timed out...</color>");
         LootRollPanelUI.Instance.RemovePartyInvitation();
+
+        AudioControl.Instance.Play("getPartyTimeout");
     }
 
     public void OnPartyJoin(string eventName, JSONNode data)
@@ -1286,6 +1299,8 @@ public class SocketHandler : MonoBehaviour
         string actorName = data["actorName"].Value;
 
         CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has joined the party!</color>");
+
+        AudioControl.Instance.Play("getPartyAccept");
     }
 
     public void OnPartyDecline(string eventName, JSONNode data)
@@ -1296,10 +1311,12 @@ public class SocketHandler : MonoBehaviour
         if (reason == "decline")
         {
             CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has declined the invitation.</color>");
+            AudioControl.Instance.Play("getPartyDecline");
         }
         else if (reason == "timeout")
         {
             CORE.Instance.AddChatMessage("<color=yellow>" + actorName + "'s invitation timed out.</color>");
+            AudioControl.Instance.Play("getPartyTimeout");
         }
         else if (reason == "disconnected")
         {
@@ -1315,10 +1332,12 @@ public class SocketHandler : MonoBehaviour
         if (reason == "leave")
         {
             CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has left the party.</color>");
+            AudioControl.Instance.Play("getPartyLeave");   
         }
         else if (reason == "kicked")
         {
             CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " was kicked out of the party.</color>");
+            AudioControl.Instance.Play("getPartyKick");
         }
     }
 
@@ -1328,6 +1347,8 @@ public class SocketHandler : MonoBehaviour
 
         CORE.Instance.AddChatMessage("<color=yellow>" + leaderName + " is now the party leader!</color>");
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(leaderName + " is now the party leader!"));
+
+        AudioControl.Instance.Play("getPartyPromote");
     }
 
     public void OnPartyToggleOffline(string eventName, JSONNode data)
@@ -1409,11 +1430,15 @@ public class SocketHandler : MonoBehaviour
         string expeditionName = data["expeditionName"].Value;
 
         ExpeditionQueTimerUI.Instance.Show(expeditionName);
+
+        CORE.Instance.InvokeEvent("MatchQueueUpdate");
     }
 
     public void OnExpeditionQueueStop(string eventName, JSONNode data)
     {
         ExpeditionQueTimerUI.Instance.Hide();
+
+        CORE.Instance.InvokeEvent("MatchQueueUpdate");
     }
 
     public void OnExpeditionQueueMatchFound(string eventName, JSONNode data)
@@ -1453,6 +1478,7 @@ public class ActorData
     public string classJob;
 
     public bool alignmentGood;
+    public int karma;
     public string actorType;
     public string prefab;
     public int hp;

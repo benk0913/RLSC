@@ -317,11 +317,14 @@ public class SelectionGroupUI : MonoBehaviour
 
         if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return))
         {
-            AudioEntityUIHandle audioEntity = CurrentSelected.CS.GetComponent<AudioEntityUIHandle>();
-            if (audioEntity != null)
+            if(CurrentSelected != null && CurrentSelected.CS != null)
             {
-                audioEntity.PlaySound(audioEntity.PointerDownSound);
-                CORE.Instance.DelayedInvokation(0.1f, ()=>audioEntity.PlaySound(audioEntity.PointerUpSound));
+                AudioEntityUIHandle audioEntity = CurrentSelected.CS.GetComponent<AudioEntityUIHandle>();
+                if (audioEntity != null)
+                {
+                    audioEntity.PlaySound(audioEntity.PointerDownSound);
+                    CORE.Instance.DelayedInvokation(0.1f, ()=>audioEntity.PlaySound(audioEntity.PointerUpSound));
+                }
             }
 
             if (CurrentSelectedSelectable.GetType() == typeof(Button))

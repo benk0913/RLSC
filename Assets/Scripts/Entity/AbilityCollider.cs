@@ -40,6 +40,9 @@ public class AbilityCollider : HitCollider
 
     public bool RemoveOnInterrupt;
 
+    public List<AbilityCollider> ChildrenColliders = new List<AbilityCollider>();
+
+
     private void Awake()
     {
         if (!string.IsNullOrEmpty(onHitObject))
@@ -136,9 +139,9 @@ public class AbilityCollider : HitCollider
         }
     }
 
-    public override void SetInfo(Ability abilitySource, Actor actorSource)
+    public override void SetInfo(Ability abilitySource, Actor actorSource, HitCollider parentCollider  = null)
     {
-        base.SetInfo(abilitySource, actorSource);
+        base.SetInfo(abilitySource, actorSource, parentCollider);
 
         if(StickToSkilledShot)
         {
@@ -185,6 +188,11 @@ public class AbilityCollider : HitCollider
         if(DuplicateBubbles) //TODO Replace with something more generic
         {
             BubblesDuplicated.Clear();
+        }
+
+        foreach(AbilityCollider child in ChildrenColliders)
+        {
+            child.SetInfo(abilitySource,actorSource, this);
         }
     }
 
