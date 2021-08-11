@@ -15,6 +15,11 @@ public class BossHealthbarUI : HealthbarUI
     
     protected override bool ShouldHideBar()
     {
+        if(CORE.IsMachinemaMode)
+        {
+            return true;
+        }
+        
         return CurrentActor == null || CurrentActor.State.Data.hp <= 0;
     }
 }

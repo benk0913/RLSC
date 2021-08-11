@@ -8,7 +8,7 @@ public class NamePanelUI : MonoBehaviour
 {
     [SerializeField]
     TextMeshProUGUI TextLabel;
-    
+
 
     public void Refresh(Actor CurrentActor)
     {

@@ -945,17 +945,21 @@ public class Actor : MonoBehaviour
     
     public void ShowHurtLabel(int damage, Actor source = null)
     {
+
         bool isPlayerRelevant = source.State.Data.IsPlayer || this.State.Data.IsPlayer;
 
-        HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
-        label.transform.position = transform.position;
-
-        float alpha = 0.4f;
-        if (State.Data.IsPlayer || (source != null && source.State.Data.IsPlayer))
+        if(!CORE.IsMachinemaMode)
         {
-            alpha = 1f;
+            HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+            label.transform.position = transform.position;
+
+            float alpha = 0.4f;
+            if (State.Data.IsPlayer || (source != null && source.State.Data.IsPlayer))
+            {
+                alpha = 1f;
+            }
+            label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green, alpha);
         }
-        label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green, alpha);
 
         if (damage > 0)
         {

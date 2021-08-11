@@ -4206,6 +4206,8 @@ MonoBehaviour:
       faceRight: 0
       name: 
       classJob: 
+      alignmentGood: 0
+      karma: 0
       actorType: 
       prefab: 
       hp: 0
@@ -4226,6 +4228,25 @@ MonoBehaviour:
       level: 0
       orbs: []
       attributes:
+        Power: 0
+        HP: 0
+        Defense: 0
+        Block: 0
+        CDReduction: 0
+        CTReduction: 0
+        Lifesteal: 0
+        LongRangeMultiplier: 0
+        ShortRangeMultiplier: 0
+        WildMagicChance: 0
+        SpellDuration: 0
+        AntiDebuff: 0
+        Threat: 0
+        MovementSpeed: 0
+        JumpHeight: 0
+        DoubleCast: 0
+        Explode: 0
+        HpRegen: 0
+      computedAttributes:
         Power: 0
         HP: 0
         Defense: 0
@@ -4955,6 +4976,8 @@ GameObject:
   - component: {fileID: 9067518487958003052}
   - component: {fileID: 738341170692944268}
   - component: {fileID: 2434315042324721815}
+  - component: {fileID: 3243996965773485107}
+  - component: {fileID: 2845784410103584960}
   m_Layer: 8
   m_Name: NamePanel
   m_TagString: Untagged
@@ -5033,3 +5056,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TextLabel: {fileID: 3390602614611593011}
+--- !u!225 &3243996965773485107
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219635507275644613}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2845784410103584960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219635507275644613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c54deb09a204740b11f63fb1d0ba67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnActive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3243996965773485107}
+        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+        m_MethodName: set_alpha
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnInactive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3243996965773485107}
+        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+        m_MethodName: set_alpha
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

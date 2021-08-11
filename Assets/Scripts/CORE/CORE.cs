@@ -48,7 +48,7 @@ public class CORE : MonoBehaviour
     public bool IsLoading = false;
 
     public bool IsPickingUpItem = false;
-
+    public static bool IsMachinemaMode;
     public bool GameStatesInitialized;
     public string CurrentTimePhase;
 
@@ -193,6 +193,12 @@ public class CORE : MonoBehaviour
                     ShowWindow(windowToKeyCode.Key, windowToKeyCode.Value, null, null);
                 }
             }
+        }
+
+        if(IsMachinemaMode && Input.GetKeyDown(InputMap.Map["Exit"]))
+        {
+            IsMachinemaMode = false;
+            InvokeEvent("MachinemaModeRefresh");
         }
     }
 

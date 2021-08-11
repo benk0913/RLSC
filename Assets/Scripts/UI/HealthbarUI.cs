@@ -55,6 +55,11 @@ public class HealthbarUI : MonoBehaviour
 
     protected virtual bool ShouldHideBar() ///TODO Replace this, probably bad for performance atm.
     {
+        if(CORE.IsMachinemaMode)
+        {
+            return true;
+        }
+
         bool isHPFull = CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP;
 
         return CurrentActor == null
