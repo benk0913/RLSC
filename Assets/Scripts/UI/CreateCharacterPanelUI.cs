@@ -126,6 +126,12 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.RefreshLooks();
     }
 
+     public void SetIrisColor(int irisIndex)
+    {
+        DisplayActor.State.Data.looks.Iris = DefaultIris[irisIndex].name;
+        DisplayActor.RefreshLooks();
+    }
+
     public void NextHair()
     {
         int index = DefaultHair.IndexOf(DefaultHair.Find(x=>x.name == DisplayActor.State.Data.looks.Hair))+1;

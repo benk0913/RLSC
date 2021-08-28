@@ -22,6 +22,8 @@ public class PartyMemberActivePanelUI : MonoBehaviour
     [SerializeField]
     GameObject DeadIcon;
 
+    [SerializeField]
+    GameObject CrownIcon;
 
     protected float LastHpPercent = 1f;
     protected Coroutine UpdateBarFillRoutineInstance;
@@ -43,6 +45,7 @@ public class PartyMemberActivePanelUI : MonoBehaviour
         CurrentActorName = "";
         CurrentActor = null;
         DeadIcon.gameObject.SetActive(false);
+        CrownIcon.gameObject.SetActive(false);
     }
     
     private void OnPartyUpdated()
@@ -52,6 +55,8 @@ public class PartyMemberActivePanelUI : MonoBehaviour
             return;
         }
 
+        CrownIcon.gameObject.SetActive(CORE.Instance.CurrentParty.leaderName == CurrentActorName);
+        
         IsOffline = CORE.Instance.CurrentParty.membersOffline.ContainsKey(CurrentActorName);
 
         if(!IsOffline)

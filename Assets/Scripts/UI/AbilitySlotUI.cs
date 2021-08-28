@@ -83,7 +83,7 @@ public class AbilitySlotUI : MonoBehaviour
 
         if (abilityState.IsAbilityLocked)
         {
-            tooltipString += System.Environment.NewLine + "<color=red> - LOCKED - </color>";
+            tooltipString += System.Environment.NewLine + "<color=red> - UNLOCK AT LEVEL "+abilityState.UnlockLevel+" - </color>";
             AbilityLock.SetActive(true);
         }
         else

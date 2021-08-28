@@ -10,6 +10,9 @@ public class PartyMemberDisplayUI : MonoBehaviour
     TextMeshProUGUI NameLabel;
 
     [SerializeField]
+    TextMeshProUGUI LVLLabel;
+
+    [SerializeField]
     Image ClassIcon;
 
     [SerializeField]
@@ -109,7 +112,6 @@ public class PartyMemberDisplayUI : MonoBehaviour
         IsPlayer = CurrentMemberName == CORE.Instance.Room.PlayerActor.name;
         IsLeader = CORE.Instance.CurrentParty.leaderName == CurrentMemberName;
 
-
         LeaveButton.SetActive(IsPlayer);
         KickButton.SetActive(CORE.Instance.CurrentParty.IsPlayerLeader && !IsPlayer);
         InspectButton.SetActive(!IsOffline && IsInRoom && !IsPlayer);
@@ -131,6 +133,10 @@ public class PartyMemberDisplayUI : MonoBehaviour
             ClassIcon.gameObject.SetActive(true);
             ClassIcon.sprite = CurrentActor.State.Data.ClassJobReference.Icon;
             Background.color = CurrentActor.State.Data.ClassJobReference.ClassColor;
+
+            LVLLabel.gameObject.SetActive(true);
+            LVLLabel.text = CurrentActor.State.Data.level.ToString();
+            LVLLabel.color = CurrentActor.State.Data.ClassJobReference.ClassColor; 
         }
         else
         {
@@ -145,6 +151,8 @@ public class PartyMemberDisplayUI : MonoBehaviour
             {
                 Background.color = Color.grey;
             }
+
+            LVLLabel.gameObject.SetActive(false);
         }
     }
    

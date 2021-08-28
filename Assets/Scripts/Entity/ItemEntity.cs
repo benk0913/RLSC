@@ -38,7 +38,7 @@ public class ItemEntity : MonoBehaviour
             InteractableCooldown -= Time.deltaTime;
         }
 
-        if (NearbyActor != null && Input.GetKeyDown(InputMap.Map["Interact"]) && NearbyActor.CanLookAround)
+        if (NearbyActor != null && Input.GetKeyDown(InputMap.Map["Pick Up Item"]) && NearbyActor.CanLookAround)
         {
             Interact();
         }

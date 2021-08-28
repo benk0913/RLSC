@@ -472,6 +472,7 @@ public class CORE : MonoBehaviour
     public void DisposeSession()
     {
         CORE.Instance.CurrentParty = null;
+        CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
     public void DisposeChamberCache()
@@ -811,7 +812,7 @@ public class RoomData
     {
         get
         {
-            return Actors.Find(x => x.isMob && x.ActorEntity != null && !x.ActorEntity.IsDead) != null;
+            return Actors.Find(x => x.isMob && x.ActorEntity != null && !x.ActorEntity.IsDead && !x.ActorEntity.IsHarmless) != null;
         }
     }
 

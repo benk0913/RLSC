@@ -27,27 +27,27 @@ public class ActorControl : MonoBehaviour
             ConsoleInputUI.Instance.EnterPressed();
         }
 
-        if(Input.GetKey(InputMap.Map["Move Left"]))
+        if(Input.GetKey(InputMap.Map["Move Left"])|| Input.GetKey(InputMap.Map["Secondary Move Left"]))
         {
             ConsoleInputUI.Instance.HideIfEmpty();
             CurrentActor.AttemptMoveLeft();
         }
-        else if(Input.GetKey(InputMap.Map["Move Right"]))
+        else if(Input.GetKey(InputMap.Map["Move Right"]) || Input.GetKey(InputMap.Map["Secondary Move Right"]))
         {
             ConsoleInputUI.Instance.HideIfEmpty();
             CurrentActor.AttemptMoveRight();
         }
 
-        if (Input.GetKey(InputMap.Map["Move Up"]))
+        if (Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]))
         {
             CurrentActor.AttemptMoveUp();
         }
-        else if (Input.GetKey(InputMap.Map["Move Down"]))
+        else if (Input.GetKey(InputMap.Map["Move Down"])|| Input.GetKey(InputMap.Map["Secondary Move Down"]))
         {
             CurrentActor.AttemptMoveDown();
         }
 
-        if (Input.GetKeyDown(InputMap.Map["Jump"]) || Input.GetKeyDown(InputMap.Map["Move Up"]))
+        if (Input.GetKeyDown(InputMap.Map["Jump"]) || Input.GetKeyDown(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]))
         {
             CurrentActor.AttemptJump();
         }

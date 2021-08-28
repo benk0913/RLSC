@@ -53,22 +53,22 @@ public class ActorControlClient : MonoBehaviour
             return;
         }
 
-        if(Input.GetKey(InputMap.Map["Move Left"]))
+        if(Input.GetKey(InputMap.Map["Move Left"])|| Input.GetKey(InputMap.Map["Secondary Move Left"]))
         {
             Rigid.position += Vector2.left * Time.deltaTime * MovementSpeed;
             Body.transform.localScale = new Vector3(1,1,1);
         }
-        else if(Input.GetKey(InputMap.Map["Move Right"]))
+        else if(Input.GetKey(InputMap.Map["Move Right"])|| Input.GetKey(InputMap.Map["Secondary Move Right"]))
         {
             Rigid.position += Vector2.right * Time.deltaTime * MovementSpeed;
             Body.transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        if (Input.GetKey(InputMap.Map["Move Up"]))
+        if (Input.GetKey(InputMap.Map["Move Up"])|| Input.GetKey(InputMap.Map["Secondary Move Up"]))
         {
             Rigid.position += Vector2.up * Time.deltaTime * MovementSpeed;
         }
-        else if (Input.GetKey(InputMap.Map["Move Down"]))
+        else if (Input.GetKey(InputMap.Map["Move Down"])|| Input.GetKey(InputMap.Map["Secondary Move Down"]))
         {
             Rigid.position += Vector2.down * Time.deltaTime * MovementSpeed;
         }

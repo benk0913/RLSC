@@ -21,6 +21,9 @@ public class InteractableEntity : MonoBehaviour
 
     public bool isClientOnly = false;
 
+    //TODO Frowned upon / Fix?
+    public bool Item = false;
+
     
     public void SetInfo(Interactable data)
     {
@@ -117,7 +120,9 @@ public class InteractableEntity : MonoBehaviour
             InteractableCooldown -= Time.deltaTime;
         }
 
-        if(NearbyActor != null && Input.GetKeyDown(InputMap.Map["Interact"]) && NearbyActor.CanInteract)
+        bool KeyIsDown = Item? Input.GetKeyDown(InputMap.Map["Pick Up Item"]) :  Input.GetKeyDown(InputMap.Map["Interact"]) ;
+        
+        if(NearbyActor != null && KeyIsDown && NearbyActor.CanInteract)
         {
             Interact();
         }

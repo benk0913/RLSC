@@ -17,16 +17,29 @@ public class DialogEntity : MonoBehaviour
     [SerializeField]
     TextBubbleUI CurrentBubble;
 
+    float keyDownTimer = 1f;
     private void Update()
     {
-        if(Input.anyKeyDown)
+        if(Input.anyKey)
         {
             if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return))
             {
                 return;
             }
 
-            EndDialog();
+            if(keyDownTimer > 0f)
+            {
+                keyDownTimer -= Time.deltaTime;
+            }
+            else
+            {
+                EndDialog();
+                keyDownTimer = 1f;
+            }
+        }
+        else
+        {
+            keyDownTimer = 1f;
         }
     }
 

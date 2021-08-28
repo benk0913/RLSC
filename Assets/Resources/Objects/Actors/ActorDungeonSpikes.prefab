@@ -267,12 +267,13 @@ MonoBehaviour:
   State:
     Data:
       actorId: 
-      scene: 
       x: 0
       y: 0
       faceRight: 0
       name: 
       classJob: 
+      alignmentGood: 0
+      karma: 0
       actorType: 
       prefab: 
       hp: 0
@@ -288,6 +289,7 @@ MonoBehaviour:
         HairColor: 
         Iris: 
       items: []
+      money: 0
       exp: 0
       level: 0
       orbs: []
@@ -295,6 +297,7 @@ MonoBehaviour:
         Power: 0
         HP: 0
         Defense: 0
+        Block: 0
         CDReduction: 0
         CTReduction: 0
         Lifesteal: 0
@@ -305,9 +308,28 @@ MonoBehaviour:
         AntiDebuff: 0
         Threat: 0
         MovementSpeed: 0
+        JumpHeight: 0
         DoubleCast: 0
-        StunOnDmg: 0
-        SpawnSlime: 0
+        Explode: 0
+        HpRegen: 0
+      computedAttributes:
+        Power: 0
+        HP: 0
+        Defense: 0
+        Block: 0
+        CDReduction: 0
+        CTReduction: 0
+        Lifesteal: 0
+        LongRangeMultiplier: 0
+        ShortRangeMultiplier: 0
+        WildMagicChance: 0
+        SpellDuration: 0
+        AntiDebuff: 0
+        Threat: 0
+        MovementSpeed: 0
+        JumpHeight: 0
+        DoubleCast: 0
+        Explode: 0
         HpRegen: 0
       abilities: []
       ActorEntity: {fileID: 0}
@@ -340,15 +362,20 @@ MonoBehaviour:
   Collider: {fileID: 6361384596435383124}
   PassiveHitCollider: {fileID: 1430529596314220594}
   PlayerHalo: {fileID: 0}
+  NamePanel: {fileID: 0}
+  TooltipTarget: {fileID: 0}
   IsGrounded: 0
   CurrentGround: {fileID: 0}
   Ghost: {fileID: 0}
   IsFlying: 0
   IsAttached: 0
   IsDead: 0
+  IsHarmless: 1
+  InParty: 0
   ClientMovingTowardsDir: 0
   GroundCheckDistance: 5
   GroundedDistance: 1
+  JumpCooldown: 0.5
   VelocityMinimumThreshold: 0.1
   KnockbackAmount: 4
   LastAbility: {fileID: 0}
@@ -388,6 +415,7 @@ MonoBehaviour:
     m_Bits: 4097
   NoticeDistance: 0
   Asleep: 1
+  DontInitiateSpells: 0
   ChaseDistance: 3
   FleeDistance: 10
   HasTargetingLine: 0

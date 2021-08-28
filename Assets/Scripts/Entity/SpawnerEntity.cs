@@ -11,4 +11,6 @@ public class SpawnerEntity : MonoBehaviour
     public float RespawnSeconds;
 
     public bool IrellevantMob;
+
+
 }

@@ -129,6 +129,7 @@ public class Actor : MonoBehaviour
 
     public bool IsDead;
 
+    public bool IsHarmless;
     public bool InParty;
 
     public int ClientMovingTowardsDir;
@@ -1783,11 +1784,34 @@ public class AbilityState
         }
     }
 
+    public int UnlockLevel
+    {
+        get
+        {
+            int lvl =  IndexInClass - (CORE.Instance.Data.content.AbilitiesInitCount-1);
+
+            if(lvl < 0)
+            {
+                lvl = 0;
+            }
+
+            return lvl+1;
+        }
+    }
+
+    public int IndexInClass
+    {
+        get
+        {
+            return OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name));
+        }
+    }
+
     public bool IsLevelLocked
     {
         get
         {
-            return OfActor.State.Data.IsPlayer && OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name)) > OfActor.State.Data.level + 1;
+            return OfActor.State.Data.IsPlayer && IndexInClass > OfActor.State.Data.level + 1;
         }
     }
 
