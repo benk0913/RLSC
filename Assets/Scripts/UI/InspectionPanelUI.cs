@@ -8,9 +8,30 @@ public class InspectionPanelUI : MonoBehaviour
 
     ActorData CurrentActor;
 
+    public bool IsFocusingOnActor = false;
+
     public void SetActor(ActorData currentActor)
     {
+        if(currentActor == null)
+        {
+            IsFocusingOnActor = false;
+            CurrentActor = null;
+            CameraChaseEntity.Instance.ReferenceObject = null;
+            return;
+        }
+
         CurrentActor = currentActor;
+        IsFocusingOnActor = true;
+        CameraChaseEntity.Instance.ReferenceObject = CurrentActor.ActorEntity.transform;
+    }
+
+    void Update()
+    {
+        if(CurrentActor == null || CurrentActor.ActorEntity == null)
+        {
+            CameraChaseEntity.Instance.ReferenceObject = null;
+            IsFocusingOnActor = false;
+        }
     }
 
     public void SendPartyInvite()

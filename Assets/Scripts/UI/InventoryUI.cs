@@ -141,6 +141,14 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         AudioControl.Instance.Play(HideSound);
     }
 
+    void OnDisable()
+    {
+        if(InspectPanel.IsFocusingOnActor)
+        {
+            InspectPanel.SetActor(null);
+        }
+    }
+
     public void RefreshUI(bool restoreSelectionPlacement = true)
     {
         if (!IsOpen)
