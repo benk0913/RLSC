@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 [CreateAssetMenu(fileName = "ClassJob", menuName = "Data/ClassJob", order = 2)]
 [Serializable]
@@ -24,6 +25,9 @@ public class ClassJob : ScriptableObject
 
     [JsonIgnore]
     public Color ClassColor;
+
+    [JsonIgnore]
+    public VideoClip ClassFeatureVideo;
 
     public List<ItemData> DropsOnDeath = new List<ItemData>();
     

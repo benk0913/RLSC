@@ -338,10 +338,10 @@ public class CreateCharacterPanelUI : MonoBehaviour
     private void UpdateClassJob(int index)
     {
         DisplayActor.State.Data.classJob = Jobs[index];
-        for (int i = 0; i < JobFrames.Count; i++)
-        {
-            JobFrames[i].color = i == index ? Color.green : Color.white;
-        }
+        // for (int i = 0; i < JobFrames.Count; i++)
+        // {
+        //     JobFrames[i].color = i == index ? Color.green : Color.white;
+        // }
     }
 
 }

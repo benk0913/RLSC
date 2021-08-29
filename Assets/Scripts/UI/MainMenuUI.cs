@@ -28,6 +28,9 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI VersionLabel;
 
+    [SerializeField]
+    GameObject ClassSelectionPanel;
+
     private void Awake()
     {
         Instance = this;
@@ -116,7 +119,7 @@ public class MainMenuUI : MonoBehaviour
 
         if (SocketHandler.Instance.CurrentUser.chars.Length <= 0)
         {
-            CreateCharacterPanelUI.Instance.Show();
+            ClassSelectionPanel.SetActive(true);
         }
         CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Length < CORE.Instance.Data.content.MaxCharacters;
         CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : "Cannot have more than " + CORE.Instance.Data.content.MaxCharacters + " characters.");

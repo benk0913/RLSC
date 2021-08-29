@@ -246,13 +246,13 @@ public class SelectionGroupUI : MonoBehaviour
 
             while(canvasGroup.alpha > 0.4f)
             {
-                canvasGroup.alpha -= (Time.deltaTime * 3f);
+                canvasGroup.alpha -= (Time.deltaTime * 1.5f);
                 yield return 0;
             }
 
             while (canvasGroup.alpha < 1f)
             {
-                canvasGroup.alpha += (Time.deltaTime * 3f);
+                canvasGroup.alpha += (Time.deltaTime * 1.5f);
                 yield return 0;
             }
         }
