@@ -24,13 +24,13 @@ public class TextBubbleUI : MonoBehaviour
 
     Action OnHide;
 
-    public void Show(Transform anchor, string message, Action onHide = null)
+    public void Show(Transform anchor, string message, Action onHide = null, bool isFemale = false)
     {
         this.gameObject.SetActive(true);
         StopAllCoroutines();
 
         CurrentAnchor = anchor;
-        StartCoroutine(ShowRoutine(message));
+        StartCoroutine(ShowRoutine(message,isFemale));
 
         OnHide = onHide;
     }
@@ -45,7 +45,7 @@ public class TextBubbleUI : MonoBehaviour
         transform.position = Vector2.Lerp(transform.position, CurrentAnchor.position, Time.deltaTime * 8f);
     }
 
-    IEnumerator ShowRoutine(string message)
+    IEnumerator ShowRoutine(string message, bool isFemale = false)
     {
         ContentText.text = "";
 
@@ -54,7 +54,16 @@ public class TextBubbleUI : MonoBehaviour
         CG.alpha = 1f;
 
         //TODO Replace with character pitch?
-        float randomPitch = UnityEngine.Random.Range(0.5f, 1.5f);
+        float pitch = 1f;
+        if(isFemale)
+        {
+            pitch = UnityEngine.Random.Range(1f, 1.75f);
+        }
+        else
+        {
+            pitch = UnityEngine.Random.Range(0.25f, 1.25f);
+        }
+
 
         while (ContentText.text.Length < message.Length)
         {
@@ -62,7 +71,7 @@ public class TextBubbleUI : MonoBehaviour
 
             if (ContentText.text.Length % 3 == 0)
             {
-                AudioControl.Instance.PlayInPosition("talksound",transform.position,200f, randomPitch);
+                AudioControl.Instance.PlayInPosition("talksound",transform.position,200f, pitch);
             }
 
             yield return 0;

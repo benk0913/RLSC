@@ -59,9 +59,9 @@ public class KeyBindingPieceUI : MonoBehaviour {
     void OnGUI()
     {
         if(isWaitingForKey)
-        {
+        {   
             keyEvent = Event.current;
-            if (keyEvent.isKey)
+            if (keyEvent != null && keyEvent.isKey)
             {
                 if(keyEvent.keyCode != KeyCode.Escape)
                 {

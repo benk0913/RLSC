@@ -125,7 +125,7 @@ public class DialogEntity : MonoBehaviour
         DecisionContainerUI.Instance.Hide();
 
         string content = CurrentDialog.DialogPieces[index].Content;
-        CurrentBubble.Show(CurrentBubble.transform, content, Continue);
+        CurrentBubble.Show(CurrentBubble.transform, content, Continue, CurrentDialog.IsFemale);
         CurrentDialog.DialogPieces[index].OnDialogPiece?.Invoke();
     }
 
@@ -145,6 +145,7 @@ public class DialogEntity : MonoBehaviour
 
         [SerializeField]
         public UnityEvent OnDialogPiece;
+
         
     }
 
@@ -185,5 +186,7 @@ public class DialogEntity : MonoBehaviour
         public List<DialogPiece> DialogPieces = new List<DialogPiece>();
 
         public List<DialogDecision> Decisions = new List<DialogDecision>();
+
+        public bool IsFemale = false;
     }
 }
