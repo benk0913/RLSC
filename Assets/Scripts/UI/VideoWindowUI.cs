@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EdgeworldBase;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Video;
@@ -21,6 +22,7 @@ public class VideoWindowUI : MonoBehaviour
 
     public bool CantHide = false;
 
+    float previousMusicVolume = -1f;
 
     private void Awake()
     {
@@ -30,6 +32,11 @@ public class VideoWindowUI : MonoBehaviour
 
     public void Hide(bool accepted = false)
     {
+        MoviePlayer.Stop();
+
+        if(previousMusicVolume != -1f)
+            AudioControl.Instance.SetVolume("Music",previousMusicVolume);
+
         if(!accepted)
         {
             SkipAction?.Invoke();
@@ -66,6 +73,8 @@ public class VideoWindowUI : MonoBehaviour
         MoviePlayer.Play();
         AcceptAction = acceptCallback;
         SkipAction = skipCallback;
+        previousMusicVolume = AudioControl.Instance.GetVolumeByTag("Music");
+        AudioControl.Instance.SetVolume("Music",0f);
     }
 
     public void Accept()
