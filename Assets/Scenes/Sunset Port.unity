@@ -36235,6 +36235,9 @@ MonoBehaviour:
     - Content: Enter An Expedition
       OnSelect:
       - {fileID: 11400000, guid: c61c06807fa23a748b768dad6875ef3d, type: 2}
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
       DisplayConditions: []
       DisplayOnlyIfConditionsMet: 0
       DefaultDialog:
@@ -36248,6 +36251,9 @@ MonoBehaviour:
     - Content: I am looking for a group...
       OnSelect:
       - {fileID: 11400000, guid: 1cc59ceb4fe0e0e419e0e89d65d3bdaa, type: 2}
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
       DisplayConditions:
       - {fileID: 11400000, guid: 12dacf85b1b3d1e4a986c740e1f1d85e, type: 2}
       DisplayOnlyIfConditionsMet: 1
@@ -36261,6 +36267,9 @@ MonoBehaviour:
         IsFemale: 0
     - Content: I am looking for a group...
       OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
       DisplayConditions:
       - {fileID: 11400000, guid: 64be8bb5a8cd198439e449086f0a16bc, type: 2}
       DisplayOnlyIfConditionsMet: 1
@@ -36278,6 +36287,9 @@ MonoBehaviour:
         IsFemale: 0
     - Content: Nevermind...
       OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
       DisplayConditions: []
       DisplayOnlyIfConditionsMet: 0
       DefaultDialog:
@@ -52704,7 +52716,47 @@ MonoBehaviour:
       OnDialogPiece:
         m_PersistentCalls:
           m_Calls: []
-    Decisions: []
+    Decisions:
+    - Content: Start Training Session
+      OnSelect:
+      - {fileID: 11400000, guid: 85b2dec18dfa576488363709f909d03a, type: 2}
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces: []
+        Decisions: []
+        IsFemale: 0
+    - Content: Sign Up
+      OnSelect:
+      - {fileID: 11400000, guid: eacdf1c18f308754d9deb8caccf30e32, type: 2}
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions:
+      - {fileID: 11400000, guid: 12dacf85b1b3d1e4a986c740e1f1d85e, type: 2}
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces: []
+        Decisions: []
+        IsFemale: 0
+    - Content: Not for me...
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: Alright, if you say so!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions: []
+        IsFemale: 0
     IsFemale: 0
   CurrentDialog:
     DialogPieces: []

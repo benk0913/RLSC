@@ -156,6 +156,8 @@ public class DialogEntity : MonoBehaviour
 
         public List<GameEvent> OnSelect = new List<GameEvent>();
 
+        public UnityEvent OnSelectInvokation = new UnityEvent();
+        
         public List<AbilityCondition> DisplayConditions = new List<AbilityCondition>();//TODO Should rename to GameCondition...
 
         public bool DisplayOnlyIfConditionsMet;
