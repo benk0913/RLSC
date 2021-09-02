@@ -133,7 +133,14 @@ public class CameraChaseEntity : MonoBehaviour
 
     public void Unfocus()
     {
+        if(!IsFocusing)
+        {
+            return;
+        }
+
         CurrentFocus = null;
+
+        
         FocusCam.gameObject.SetActive(false);
         
         CurrentCam.orthographicSize = DefaultSize;
