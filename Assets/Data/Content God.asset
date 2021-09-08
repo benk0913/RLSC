@@ -531,6 +531,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b35aa84aa9091324bb332fae8c7b3f32, type: 2}
     - {fileID: 11400000, guid: a5940d651b4ce8448891e1b975adce6a, type: 2}
     - {fileID: 11400000, guid: d40ceb5caf473494b9310ff9d2973613, type: 2}
+    - {fileID: 11400000, guid: db5469f37b1c2224790d4fd724d2c1c7, type: 2}
     - {fileID: 11400000, guid: 6a53cbe837747bf4ab89d575a2cbf58c, type: 2}
     - {fileID: 11400000, guid: fc6d3d6182a89674b99e2964598f0b8f, type: 2}
     Buffs:
@@ -588,6 +589,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5fbedf07b6020d244bed5f3943ae0124, type: 2}
     - {fileID: 11400000, guid: 6e0b1f0985d5b4044b9e0646fea1046a, type: 2}
     - {fileID: 11400000, guid: 0c4fc0205cfea4142993f0d2ae4654e3, type: 2}
+    - {fileID: 11400000, guid: 779fb6fa3a2b11544a2a3b569a3b4752, type: 2}
     - {fileID: 11400000, guid: f97f4147b3901d24fa87fdff103e9476, type: 2}
     - {fileID: 11400000, guid: 0e02fe5e1a71afb40b335b3775c95175, type: 2}
     States:
@@ -4209,10 +4211,6 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
-      - interactableName: NPC_VendorNight
-        interactableId: 
-        positionX: -47
-        positionY: -10
       - interactableName: NPC_Seagull
         interactableId: 
         positionX: -111
@@ -4227,12 +4225,16 @@ MonoBehaviour:
         positionY: 10
       - interactableName: NPC_Trainer
         interactableId: 
-        positionX: 131
-        positionY: -12
+        positionX: 16
+        positionY: -11
+      - interactableName: NPC_VendorNight
+        interactableId: 
+        positionX: -47
+        positionY: -10
       - interactableName: NPC_Trainer
         interactableId: 
-        positionX: 16
-        positionY: -10
+        positionX: 133
+        positionY: -12
       - interactableName: NPC_Seagull
         interactableId: 
         positionX: 51
@@ -4249,18 +4251,6 @@ MonoBehaviour:
       playerSpawnY: -12.4
       Portals: []
       Vendors:
-      - ID: TownVendorNight
-        Items:
-        - {fileID: 11400000, guid: ea98da07642f5734685e9a304335ebdc, type: 2}
-        - {fileID: 11400000, guid: bb6970918901e8f42bb2e7b6ca51fb44, type: 2}
-        - {fileID: 11400000, guid: 7ffe61c8e510bfe42bfc23af6207a7fd, type: 2}
-        - {fileID: 11400000, guid: 3b917b8b86a37314ca7e4ac622b468aa, type: 2}
-        - {fileID: 11400000, guid: 4f5c252ab73d59d48b8fcf57a2553aeb, type: 2}
-        - {fileID: 11400000, guid: d2ee9d7c8934c354c811909726870cc0, type: 2}
-        - {fileID: 11400000, guid: 54e616d241b4bc145995d2000590dc34, type: 2}
-        - {fileID: 11400000, guid: a6e5e1d636c75d1439aee602664a7bf8, type: 2}
-        - {fileID: 11400000, guid: 89c98f6bfa561e24aaf1c1e206d8cae1, type: 2}
-        - {fileID: 11400000, guid: 6e92e6db6c265c34381c5bab7447e9e9, type: 2}
       - ID: TownVendorDay
         Items:
         - {fileID: 11400000, guid: 430e8a6209e514c4ca5c4dc1013529d2, type: 2}
@@ -4662,41 +4652,6 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
-      - interactableName: NPC_Trainer
-        interactableId: 
-        positionX: 65
-        positionY: -19
-      - interactableName: GateRightInteractable
-        interactableId: 
-        positionX: 211
-        positionY: -16
-      - interactableName: NPC_Trainer
-        interactableId: 
-        positionX: 18
-        positionY: -19
-      playerSpawnX: -3.47
-      playerSpawnY: -10.79
-      Portals:
-      - name: EndPortalA
-        TargetScene: 
-        TargetSceneGate: 
-        IsExpeditionLocked: 1
-        portalPositionX: -122.36
-        portalPositionY: 171.77
-      Vendors: []
-      MusicTrack: music_grasslands_1
-      Soundscape: Beach SoundScape
-      NightMusicTrack: music_grasslands_1
-      NightSoundscape: Beach SoundScape
-      enablePvp: 0
-      displayTitleOnEnter: 0
-      PredictionImage: {fileID: 0}
-    - sceneName: FCTrainingQuest_2
-      displyName: Training Course C
-      objectiveDescription: 
-      UniqueCompletionScreenEffect: 
-      Mobs: []
-      Interactables:
       - interactableName: GateRightInteractable
         interactableId: 
         positionX: 305
@@ -4734,6 +4689,45 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
+    - sceneName: FCTrainingQuest_2
+      displyName: Training Course C
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: TutorialBucketEnabler
+        interactableId: TutorialBucketEnabler
+        positionX: 69
+        positionY: -20
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 398
+        positionY: -13
+      - interactableName: NPC_Trainer1
+        interactableId: 
+        positionX: 23
+        positionY: -12
+      - interactableName: NPC_Trainer2
+        interactableId: 
+        positionX: 353
+        positionY: -19
+      playerSpawnX: -23.6
+      playerSpawnY: -20.3
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      Vendors: []
+      MusicTrack: music_grasslands_1
+      Soundscape: Beach SoundScape
+      NightMusicTrack: music_grasslands_1
+      NightSoundscape: Beach SoundScape
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -4749,6 +4743,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c284fc6f25a27d542902b8e2acc6bccd, type: 2}
     - {fileID: 11400000, guid: 66653ef37b3136b4eb124c885ec77a08, type: 2}
     - {fileID: 11400000, guid: 1035f07296947ac47ad7edbf4e2a4007, type: 2}
+    - {fileID: 11400000, guid: ec55653a982c5e2459ab1b835a9f890a, type: 2}
     - {fileID: 11400000, guid: 21a0d16d5a3654d43a8c2d5f2a39d5b6, type: 2}
     Expeditions:
     - {fileID: 11400000, guid: 1049c1152bc701f4aae659e35ff5b404, type: 2}

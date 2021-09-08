@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Water Totem Interaction Spell
+  m_Name: Tutorial Bucket Enabler Spell
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: f87b8369678ba08419ab47d5c8d03dd5, type: 3}
   Description: 
   Colliders:
-    HitAbilityColliderObject: HealHit
+    HitAbilityColliderObject: 
     MissAbilityColliderObject: 
-    AbilityColliderObject: WaterTotemInteractionSpellCollider
+    AbilityColliderObject: TutorialBucketInteractionSpellCollider
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
@@ -31,17 +31,17 @@ MonoBehaviour:
     ScreenEffectObject: 
     PreparingAnimation: Cast5
     ExecuteAnimation: Execute5
-  CD: 25
-  CastingTime: 3
+  CD: 1
+  CastingTime: 1
   TargetCap: 0
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 1
   OnExecuteParams: []
   OnHitParams:
-  - Type: {fileID: 11400000, guid: a606211bb21ffeb45ae90aa94e749759, type: 2}
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 4
-    Value: 30
+    Value: Ghost Shield
     ObjectValue: {fileID: 0}
   OnMissParams: []
