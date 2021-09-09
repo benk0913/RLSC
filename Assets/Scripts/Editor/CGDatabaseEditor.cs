@@ -8,6 +8,7 @@ using UnityEditor.SceneManagement;
 [CustomEditor(typeof(CGDatabase))]
 public class CGDatabaseEditor : Editor
 {
+    
     public override void OnInspectorGUI()
     {
         CGDatabase db = (CGDatabase)target;
@@ -22,8 +23,25 @@ public class CGDatabaseEditor : Editor
             AutofillDatabase(db);
             SendWebRequest(db.HostURL, JsonConvert.SerializeObject(db, Formatting.None));
         }
-        
+
         DrawDefaultInspector();
+
+        
+         if (GUILayout.Button("CUSTOM SCRIPT"))
+        {
+            ClassJob[] jobs = db.content.Classes.FindAll(x=>x.DropsOnDeath.Count > 0).ToArray();
+            foreach(ClassJob job in jobs)
+            {
+                Debug.Log("CUSTOM SCRIPT "+job.name);
+                foreach(ItemData item in db.content.temporaryData)
+                {
+                    job.DropsOnDeath.Add(item);
+                }
+            }
+            
+        }
+        
+        
     }
     
     public void AutofillCurrentSceneInfo(CGDatabase db)

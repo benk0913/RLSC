@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95219eb7d644f142a40a738ada1fec8, type: 3}
-  m_Name: Round Glasses
+  m_Name: Backpack
   m_EditorClassIdentifier: 
-  Icon: {fileID: -2302307801049129647, guid: 39b9fee4d83be9d438536fddddafbd51, type: 3}
-  DisplayName: Round Glasses
+  Icon: {fileID: 2486855823749345808, guid: 844a86e33b1c94446acd8f83978b577c, type: 3}
+  DisplayName: Backpack
   Description: '
 
 '
@@ -28,7 +28,7 @@ MonoBehaviour:
     Lifesteal: 0
     LongRangeMultiplier: 0
     ShortRangeMultiplier: 0
-    WildMagicChance: 0.1
+    WildMagicChance: 0
     SpellDuration: 0
     AntiDebuff: 0
     Threat: 0
@@ -39,13 +39,18 @@ MonoBehaviour:
     HpRegen: 0
   VendorPrice: 125
   DropChance: 1
-  Type: {fileID: 11400000, guid: 1606eff6269136848876fc5427edd727, type: 2}
-  Rarity: {fileID: 11400000, guid: 3c7a55160e621724b964830f1f1c5b24, type: 2}
+  Type: {fileID: 11400000, guid: 6daa04cc7768d5d4fbf52c5086710295, type: 2}
+  Rarity: {fileID: 11400000, guid: 3c421321ee602c345b0785d93f279b15, type: 2}
   OrbColliderObject: 
   SkinOverride:
-  - {fileID: 11400000, guid: 02912eae34f10d147bf333c0526dbb70, type: 2}
+  - {fileID: 11400000, guid: bc2af069ecd91e344b9cdc8e95e1483a, type: 2}
   States: []
   TypeBasedOverrides: []
   Pool: []
   OnExecuteParams: []
-  OnHitParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 11400000, guid: 12f1a052fac634f4d92d501c7ead690d, type: 2}
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: d7293f9faa0679348a180dec120f3b5d, type: 2}

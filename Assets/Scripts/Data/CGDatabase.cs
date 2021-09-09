@@ -36,6 +36,7 @@ public class CGDatabase : ScriptableObject
 [Serializable]
 public class DatabaseContent
 {
+    public List<ItemData> temporaryData = new List<ItemData>();
     public VisualDatabase Visuals;
 
     public List<ClassJob> Classes = new List<ClassJob>();
