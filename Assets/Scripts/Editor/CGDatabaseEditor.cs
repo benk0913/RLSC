@@ -36,6 +36,7 @@ public class CGDatabaseEditor : Editor
                 foreach(ItemData item in db.content.temporaryData)
                 {
                     job.DropsOnDeath.Add(item);
+                    EditorUtility.SetDirty(job);
                 }
             }
             

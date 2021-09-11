@@ -808,14 +808,12 @@ public class Actor : MonoBehaviour
 
     IEnumerator DeathSlowmo()
     {
-        Debug.LogError("1HAMANAMAN "+Time.timeScale);
         Time.timeScale = 0.1f;
 
         while(Time.timeScale < 1f)
         {
             Time.timeScale +=  (Time.fixedDeltaTime);
 
-            Debug.LogError("HAMANAMAN "+Time.timeScale);
             yield return 0;
         }
     }

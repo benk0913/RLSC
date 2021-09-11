@@ -60,6 +60,11 @@ public class HealthbarUI : MonoBehaviour
             return true;
         }
 
+        if(CurrentActor == null)
+        {
+            return true;
+        }
+        
         bool isHPFull = CurrentActor.State.Data.hp >= CurrentActor.State.Data.MaxHP;
 
         return CurrentActor == null
