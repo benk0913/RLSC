@@ -138,6 +138,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("player_accept_trade", OnPlayerAccept));
         SocketEventListeners.Add(new SocketEventListener("player_dont_accept_trade", OnPlayerDontAccept));
 
+        //Friends
+        SocketEventListeners.Add(new SocketEventListener("friends_list_update", OnFriendsListUpdated));
+
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -703,6 +706,13 @@ public class SocketHandler : MonoBehaviour
         string byWho = data["playerId"].Value;
         TradeWindowUI.Instance.DontAcceptTrade(byWho);
     }
+
+    public void OnFriendsListUpdated(string eventName, JSONNode data)
+    {
+        CurrentUser.friends = JsonConvert.DeserializeObject<UserData.FriendData[]>(data["friends"].ToString());
+        CORE.Instance.InvokeEvent("FriendsUpdated");
+    }
+
 
     public void OnExpeditionFloorComplete(string eventName, JSONNode data)
     {
@@ -1503,7 +1513,16 @@ public class UserData
 
     public ActorData[] chars;
 
+    public FriendData[] friends;
+
     public int SelectedCharacterIndex;
+
+    [Serializable]
+    public class FriendData
+    {
+        public string name;
+        public bool isOnline;
+    }
 }
 
 [Serializable]
@@ -1523,6 +1542,8 @@ public class ActorData
     public int hp;
     public ActorLooks looks = new ActorLooks();
     public List<Item> items;
+
+
     public int money;
     public int exp;
     public int level;
