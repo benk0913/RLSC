@@ -12,6 +12,9 @@ public class FriendDisplayDisplayUI : MonoBehaviour
 
     FriendData CurrentFriendData;
 
+    [SerializeField]
+    GameObject InviteButton;
+
 
     void OnEnable()
     {
@@ -50,6 +53,19 @@ public class FriendDisplayDisplayUI : MonoBehaviour
             NameLabel.text = CurrentFriendData.name + " (offline)";
             NameLabel.color = Color.grey;
         }
+
+        InviteButton.SetActive(true);
+        if(CORE.Instance.CurrentParty != null)
+        {
+            foreach(string partyMemberName in CORE.Instance.CurrentParty.members)
+            {
+                if(partyMemberName == CurrentFriendData.name)
+                {
+                    InviteButton.SetActive(false);
+                    break;
+                }
+            }
+        }
     }
    
 
@@ -59,6 +75,11 @@ public class FriendDisplayDisplayUI : MonoBehaviour
         {
             SocketHandler.Instance.SendEvent("remove_friend",CurrentFriendData.name);
         });
+    }
+
+    public void InviteToParty()
+    {
+        SocketHandler.Instance.SendPartyInvite(CurrentFriendData.name);
     }
 
  
