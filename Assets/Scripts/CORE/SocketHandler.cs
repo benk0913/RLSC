@@ -131,6 +131,13 @@ public class SocketHandler : MonoBehaviour
         //Karma
         SocketEventListeners.Add(new SocketEventListener("karma_update", OnKarmaUpdate));
 
+        //Trade
+        SocketEventListeners.Add(new SocketEventListener("trade_state_updated", OnTradeStateUpdated));
+        SocketEventListeners.Add(new SocketEventListener("trade_complete", OnTradeComplete));
+        SocketEventListeners.Add(new SocketEventListener("player_stopped_trade", OnTradeStopped));
+        SocketEventListeners.Add(new SocketEventListener("player_accept_trade", OnPlayerAccept));
+        SocketEventListeners.Add(new SocketEventListener("player_dont_accept_trade", OnPlayerDontAccept));
+
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -663,6 +670,38 @@ public class SocketHandler : MonoBehaviour
     {
         CurrentUser.actor.karma = data["karma"].AsInt;
         CORE.Instance.InvokeEvent("AlignmentUpdated");
+    }
+
+    public void OnTradeStateUpdated(string eventName, JSONNode data)
+    {
+        TradeWindowUI.PlayerTradeState player = JsonConvert.DeserializeObject<TradeWindowUI.PlayerTradeState>(data["player"].ToString()); 
+        TradeWindowUI.PlayerTradeState otherPlayer = JsonConvert.DeserializeObject<TradeWindowUI.PlayerTradeState>(data["otherPlayer"].ToString()); 
+        TradeWindowUI.Instance.TradeStateUpdated(player,otherPlayer);
+    }
+
+    public void OnTradeComplete(string eventName, JSONNode data)
+    {
+        TradeWindowUI.PlayerTradeState player = JsonConvert.DeserializeObject<TradeWindowUI.PlayerTradeState>(data["player"].ToString()); 
+        TradeWindowUI.PlayerTradeState otherPlayer = JsonConvert.DeserializeObject<TradeWindowUI.PlayerTradeState>(data["otherPlayer"].ToString()); 
+        TradeWindowUI.Instance.TradeComplete(player,otherPlayer);
+    }
+    
+    public void OnTradeStopped(string eventName, JSONNode data)
+    {
+       string byWho = data["playerId"].Value;
+       TradeWindowUI.Instance.StopTrade(byWho);
+    }
+
+    public void OnPlayerAccept(string eventName, JSONNode data)
+    {
+        string byWho = data["playerId"].Value;
+        TradeWindowUI.Instance.AcceptTrade(byWho);
+    }
+
+    public void OnPlayerDontAccept(string eventName, JSONNode data)
+    {
+        string byWho = data["playerId"].Value;
+        TradeWindowUI.Instance.DontAcceptTrade(byWho);
     }
 
     public void OnExpeditionFloorComplete(string eventName, JSONNode data)

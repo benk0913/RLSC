@@ -226,39 +226,80 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         //Deselect();
     }
 
-    public void Select(InventorySlotUI slot)
+    public void Select(InventorySlotUI slot) //TODO Bad imp, refactor in future
     {
         AudioControl.Instance.Play(SelectSound);
 
         if (SelectedSlot != null)
         {
-            if (SelectedSlot == slot && Time.time - SelectedTime > 1f)
+            if(SelectedSlot.IsTradeSlot)
             {
-                // If the user selects the same slot but after a delay, instead of equip/unequip, just deselect it.
+                if(slot.IsTradeSlot) //From trade slot to trade slot 
+                {
+                    if(slot == SelectedSlot)// Doubleclick
+                    {
+                        TradeWindowUI.Instance.SetItem(null,SelectedSlot);    
+                    }
+                    return;
+                }
+                if(slot.IsEquipmentSlot) //From trade slot to other slot 
+                {
+                    TradeWindowUI.Instance.SetItem(null,SelectedSlot);
+                }
+                else //From trade slot to other slot 
+                {
+                    TradeWindowUI.Instance.SetItem(null,SelectedSlot);
+                }
             }
-            else if (!SelectedSlot.IsEquipmentSlot && SelectedSlot == slot)
+            else if(slot.IsTradeSlot)
             {
-                SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex());
-            }
-            else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot)
-            {
-                SocketHandler.Instance.SendUnequippedItem(SelectedSlot.name);
-            }
-            else if (SelectedSlot.IsEquipmentSlot & slot.IsEquipmentSlot)
-            {
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("First unequip the item and then re equip it.", Color.red));
-            }
-            else if (SelectedSlot.IsEquipmentSlot)
-            {
-                SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.name);
-            }
-            else if (slot.IsEquipmentSlot)
-            {
-                SocketHandler.Instance.SendSwappedItemAndEquipSlots(SelectedSlot.transform.GetSiblingIndex(), slot.name);
+                if(SelectedSlot.IsTradeSlot) //From trade slot to trade slot 
+                {
+                    if(slot == SelectedSlot) // Doubleclick
+                    {
+                        TradeWindowUI.Instance.SetItem(null,slot);    
+                    }
+                    return;
+                }
+                if(SelectedSlot.IsEquipmentSlot) //From equip slot to trade slot 
+                {
+                    return;
+                }
+                else //From inventory slot to trade slot 
+                {
+                    TradeWindowUI.Instance.SetItem(SelectedSlot.CurrentItem,slot);
+                }
             }
             else
             {
-                SocketHandler.Instance.SendSwappedItemSlots(SelectedSlot.transform.GetSiblingIndex(), slot.transform.GetSiblingIndex());
+                if (SelectedSlot == slot && Time.time - SelectedTime > 1f)
+                {
+                    // If the user selects the same slot but after a delay, instead of equip/unequip, just deselect it.
+                }
+                else if (!SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick equip
+                {
+                    SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex());
+                }
+                else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick unequip
+                {
+                    SocketHandler.Instance.SendUnequippedItem(SelectedSlot.name);
+                }
+                else if (SelectedSlot.IsEquipmentSlot & slot.IsEquipmentSlot) //Reposition equipment
+                {
+                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("WARNING: First unequip the item and then re equip it.", Color.red));
+                }
+                else if (SelectedSlot.IsEquipmentSlot )//swapped between equo and inventory 
+                {
+                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.name);
+                }
+                else if (slot.IsEquipmentSlot) //swapped between inventory and equip 
+                {
+                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(SelectedSlot.transform.GetSiblingIndex(), slot.name);
+                }
+                else //Swap in inventory
+                {
+                    SocketHandler.Instance.SendSwappedItemSlots(SelectedSlot.transform.GetSiblingIndex(), slot.transform.GetSiblingIndex());
+                }
             }
 
             Deselect();
@@ -268,7 +309,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             SelectedSlot = slot;
             SelectedTime = Time.time;
 
-            if (!SelectedSlot.IsEquipmentSlot)
+            if (!SelectedSlot.IsEquipmentSlot && !SelectedSlot.IsTradeSlot)
             {
                 SelectedPanel.SetActive(true);
             }
@@ -284,13 +325,24 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             return;
         }
 
-        if (!SelectedSlot.IsEquipmentSlot)
+        if(SelectedSlot.IsTradeSlot)
         {
-            SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex());
+            TradeWindowUI.Instance.SetItem(null, SelectedSlot);    
+        }
+        else if(TradeWindowUI.Instance.gameObject.activeInHierarchy)
+        {
+            TradeWindowUI.Instance.AddItem(SelectedSlot.CurrentItem);
         }
         else
         {
-            SocketHandler.Instance.SendUnequippedItem(SelectedSlot.name);
+            if (!SelectedSlot.IsEquipmentSlot)
+            {
+                SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex());
+            }
+            else
+            {
+                SocketHandler.Instance.SendUnequippedItem(SelectedSlot.name);
+            }
         }
 
         AudioControl.Instance.Play(UseSelectedSound);
@@ -321,6 +373,12 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         if (SelectedSlot.IsEquipmentSlot)
         {
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("First unequip the item and only then, you may drop it.", Color.red));
+            return;
+        }
+
+        if (SelectedSlot.IsTradeSlot)
+        {
+            TradeWindowUI.Instance.SetItem(null,SelectedSlot);
             return;
         }
 

@@ -22,6 +22,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public bool IsEquipmentSlot;
 
+    public bool IsTradeSlot;
+
     public ItemType SlotType = null;
 
     public bool IsInspecting = false;
@@ -78,6 +80,10 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             if (IsEquipmentSlot)
             {
                 TooltipTarget.Text = "Empty Equipment Slot ("+SlotType.name+")";
+            }
+            else if(IsTradeSlot)
+            {
+                TooltipTarget.Text = "Empty Trade Slot";
             }
             else
             {

@@ -38,4 +38,9 @@ public class InspectionPanelUI : MonoBehaviour
     {
         SocketHandler.Instance.SendPartyInvite(CurrentActor.name);
     }
+
+    public void SendStartTrade()
+    {
+        SocketHandler.Instance.SendEvent("start_trade",CurrentActor.actorId);
+    }
 }
