@@ -54,6 +54,10 @@ public class SelectionGroupUI : MonoBehaviour
         }
     }
 
+    public void DelayedRefreshGroup(float delay = 0.3f)
+    {
+        CORE.Instance.DelayedInvokation(delay,()=>RefreshGroup());
+    }
     public void RefreshGroup(bool restorePlacement = true)
     {
         Selectable[] selectables = GetComponentsInChildren<Selectable>();

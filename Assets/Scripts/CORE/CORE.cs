@@ -148,6 +148,7 @@ public class CORE : MonoBehaviour
         WindowToKeyMap.Add(FriendsWindowUI.Instance, InputMap.Map["Friends Window"]);
         // WindowToKeyMap.Add(AlignmentWindowUI.Instance, InputMap.Map["Alignment Window"]);
         WindowToKeyMap.Add(SettingsMenuUI.Instance, InputMap.Map["Settings Window"]);
+        //WindowToKeyMap.Add(CashShopWindowUI.Instance,InputMap.Map["InApp Shop"]);
         WindowToKeyMap.Add(SideButtonUI.Instance, InputMap.Map["Exit"]);
 
         LoadScene("MainMenu");
@@ -244,6 +245,11 @@ public class CORE : MonoBehaviour
     public void ShowFriendsWindow()
     {
         ShowWindow(FriendsWindowUI.Instance);
+    }
+
+    public void ShowInAppShopWindow()
+    {
+        ShowWindow(CashShopWindowUI.Instance);
     }
 
     public void ShowAlignmentUiWindow()
