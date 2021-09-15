@@ -141,6 +141,10 @@ public class SocketHandler : MonoBehaviour
         //Friends
         SocketEventListeners.Add(new SocketEventListener("friends_list_update", OnFriendsListUpdated));
 
+        //Que
+        SocketEventListeners.Add(new SocketEventListener("que_update", OnQueUpdate));
+        SocketEventListeners.Add(new SocketEventListener("que_complete", OnQueComplete));
+
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -711,6 +715,16 @@ public class SocketHandler : MonoBehaviour
     {
         CurrentUser.friends = JsonConvert.DeserializeObject<UserData.FriendData[]>(data["friends"].ToString());
         CORE.Instance.InvokeEvent("FriendsUpdated");
+    }
+
+    public void OnQueUpdate(string eventName, JSONNode data)
+    {
+        QueWindowUI.Instance.Show(data["players_before"].AsInt);
+    }
+
+    public void OnQueComplete(string eventName, JSONNode data)
+    {
+        QueWindowUI.Instance.Hide();
     }
 
 
