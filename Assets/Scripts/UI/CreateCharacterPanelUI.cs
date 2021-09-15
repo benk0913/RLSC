@@ -30,6 +30,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     public string Job = "fire";
     public List<GameObject> JobFrames = new List<GameObject>();
+    public List<GameObject> JobFrames2 = new List<GameObject>();
     public List<string> Jobs = new List<string>{"fire", "water", "earth", "air"};
 
     public Image AlignmentGoodHalo;
@@ -314,6 +315,34 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.RefreshLooks();
     }
 
+    public void NextClassJob()
+    {
+        int index = Jobs.IndexOf(DisplayActor.State.Data.classJob);
+
+        index++;
+
+        if (index >= Jobs.Count)
+        {
+            index = 0;
+        }
+
+        SetClassJob(index);
+    }
+
+    public void PreviousClassJob()
+    {
+        int index = Jobs.IndexOf(DisplayActor.State.Data.classJob);
+
+        index--;
+
+        if (index < 0)
+        {
+            index = Jobs.Count-1;
+        }
+
+        SetClassJob(index);
+    }
+
     public void SetClassJob(int index)
     {
         UpdateClassJob(index);
@@ -341,6 +370,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
         for(int i=0;i<JobFrames.Count;i++)
         {
             JobFrames[i].gameObject.SetActive(i==index);
+            JobFrames2[i].gameObject.SetActive(i==index);
         }
     }
 
