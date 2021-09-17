@@ -4260,6 +4260,10 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
+      - interactableName: TavernEntrance
+        interactableId: 
+        positionX: -66
+        positionY: -8
       - interactableName: NPC_Seagull
         interactableId: 
         positionX: -111
@@ -4274,16 +4278,16 @@ MonoBehaviour:
         positionY: 10
       - interactableName: NPC_Trainer
         interactableId: 
-        positionX: 16
-        positionY: -11
+        positionX: -32
+        positionY: -7
       - interactableName: NPC_VendorNight
         interactableId: 
         positionX: -47
         positionY: -10
       - interactableName: NPC_Trainer
         interactableId: 
-        positionX: 133
-        positionY: -12
+        positionX: 13
+        positionY: -10
       - interactableName: NPC_Seagull
         interactableId: 
         positionX: 51
@@ -4298,7 +4302,13 @@ MonoBehaviour:
         positionY: -10
       playerSpawnX: -132.81
       playerSpawnY: -12.4
-      Portals: []
+      Portals:
+      - name: TavernEntrance
+        TargetScene: SunsetPortTavern
+        TargetSceneGate: TavernEntrance
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       Vendors:
       - ID: TownVendorDay
         Items:
@@ -4324,18 +4334,6 @@ MonoBehaviour:
         - {fileID: 11400000, guid: c55a799ad2dbc3241ada4a8f6ee2d4a3, type: 2}
         - {fileID: 11400000, guid: b2389236fdcca784fba89ead1db9db7a, type: 2}
         - {fileID: 11400000, guid: 9c8660a0259b09d41826645ade3e1c51, type: 2}
-      - ID: TownVendorNight
-        Items:
-        - {fileID: 11400000, guid: aafc6c7e2d9a85b499e4bf0de205089d, type: 2}
-        - {fileID: 11400000, guid: c8a3cb7f993471f43a65c56960371741, type: 2}
-        - {fileID: 11400000, guid: 28346a81d086f354bb552b3d098ef011, type: 2}
-        - {fileID: 11400000, guid: 21fe16960bbeb44438ef099649be99d9, type: 2}
-        - {fileID: 11400000, guid: 194460a394f62b14c8d2c3b8d7cb1422, type: 2}
-        - {fileID: 11400000, guid: fcc9f2ec1b1a76e4db0f0d4111764961, type: 2}
-        - {fileID: 11400000, guid: a5096962d0368e74cb2f7c2cd797463e, type: 2}
-        - {fileID: 11400000, guid: c35c5387f27e10c4c9cbdfee1759dea9, type: 2}
-        - {fileID: 11400000, guid: 3b1aee532e09efb4a8ac2d431122fa0c, type: 2}
-        - {fileID: 11400000, guid: d26e08196260bc448b91ff3471d8e504, type: 2}
       MusicTrack: Yo ho ho
       Soundscape: Beach SoundScape
       NightMusicTrack: Sunset Port Night
@@ -4870,6 +4868,33 @@ MonoBehaviour:
       - name: EndPortalA
         TargetScene: 
         TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      Vendors: []
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+    - sceneName: SunsetPortTavern
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 1
+        positionY: -4
+      playerSpawnX: 2.05
+      playerSpawnY: -7.58
+      Portals:
+      - name: TavernEntrance
+        TargetScene: Sunset Port
+        TargetSceneGate: TavernEntrance
         IsExpeditionLocked: 1
         portalPositionX: -122.36
         portalPositionY: 171.77
