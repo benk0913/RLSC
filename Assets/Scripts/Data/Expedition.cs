@@ -19,6 +19,7 @@ public class ExpeditionFloor
 {
     public List<string> PossibleChambers = new List<string>();
     public int Exp;
+    public int FloorPrediction;
 }
 
 [Serializable]
