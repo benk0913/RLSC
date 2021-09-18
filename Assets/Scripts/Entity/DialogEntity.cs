@@ -17,7 +17,7 @@ public class DialogEntity : MonoBehaviour
     [SerializeField]
     TextBubbleUI CurrentBubble;
 
-    float keyDownTimer = 1f;
+    float keyDownTimer = 0.5f;
     private void Update()
     {
         if(Input.anyKey)
@@ -34,12 +34,12 @@ public class DialogEntity : MonoBehaviour
             else
             {
                 EndDialog();
-                keyDownTimer = 1f;
+                keyDownTimer = 0.5f;
             }
         }
         else
         {
-            keyDownTimer = 1f;
+            keyDownTimer =  0.5f;
         }
     }
 

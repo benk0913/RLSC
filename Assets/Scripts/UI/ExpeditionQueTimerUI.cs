@@ -42,6 +42,7 @@ public class ExpeditionQueTimerUI : MonoBehaviour
     public void Hide()
     {
         this.gameObject.SetActive(false);
+        IsSearching = false;
     }
 
     public void StopSearching()
