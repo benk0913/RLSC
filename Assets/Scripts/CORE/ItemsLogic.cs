@@ -95,9 +95,9 @@ public class ItemsLogic
     public static string GetItemTooltip(ItemData itemData)
     {
         string text = itemData.DisplayName;
-        text += System.Environment.NewLine + itemData.Type.name;
+        text += System.Environment.NewLine +"<i><color=yellow>"+ itemData.Type.name+"</color></i>";
 
-        string description = itemData.Description.Trim();
+        string description = "<i>"+itemData.Description.Trim()+"</i>";
         if (!string.IsNullOrEmpty(description)) {
             text += System.Environment.NewLine + description;
         }

@@ -97,11 +97,11 @@ public class VendorEntity : MonoBehaviour
         {
             if(!WarningWindowUI.Instance.isActiveAndEnabled)
             {
-                if (Input.GetKeyDown(InputMap.Map["Move Right"])|| Input.GetKey(InputMap.Map["Secondary Move Right"]))
+                if (Input.GetKeyDown(InputMap.Map["Move Right"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Right"]))
                 {
                     SetRightItem();
                 }
-                else if (Input.GetKeyDown(InputMap.Map["Move Left"])|| Input.GetKey(InputMap.Map["Secondary Move Left"]))
+                else if (Input.GetKeyDown(InputMap.Map["Move Left"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Left"]))
                 {
                     SetLeftItem();
                 }

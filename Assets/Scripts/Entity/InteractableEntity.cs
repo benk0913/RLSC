@@ -17,6 +17,8 @@ public class InteractableEntity : MonoBehaviour
 
     public float InteractableCooldown = 0f;
 
+    public float BusyCooldown = 3f;
+
     public bool IsBusy;
 
     public bool isClientOnly = false;
@@ -30,6 +32,8 @@ public class InteractableEntity : MonoBehaviour
         this.gameObject.SetActive(true);
         Data = data;
     }
+
+    
 
     public void Interact()
     {
@@ -48,6 +52,7 @@ public class InteractableEntity : MonoBehaviour
             InteractableCooldown = 0.1f;
 
             IsBusy = true;
+            BusyCooldown = 3f;
 
             if (isClientOnly && NearbyActor != null)
             {
@@ -115,6 +120,17 @@ public class InteractableEntity : MonoBehaviour
 
     private void Update()
     {
+        if(IsBusy)
+        {
+            if(BusyCooldown > 0f)
+                BusyCooldown -= Time.deltaTime;
+            else
+            {
+                IsBusy = false;
+                BusyCooldown = 3f;
+            }
+        }
+
         if(InteractableCooldown > 0f)
         {
             InteractableCooldown -= Time.deltaTime;

@@ -4280,9 +4280,9 @@ MonoBehaviour:
         interactableId: 
         positionX: -32
         positionY: -7
-      - interactableName: NPC_VendorNight
+      - interactableName: NPC_TownVendorNightNEW
         interactableId: 
-        positionX: -47
+        positionX: 3
         positionY: -10
       - interactableName: NPC_Trainer
         interactableId: 
@@ -4306,10 +4306,20 @@ MonoBehaviour:
       - name: TavernEntrance
         TargetScene: SunsetPortTavern
         TargetSceneGate: TavernEntrance
-        IsExpeditionLocked: 1
+        IsExpeditionLocked: 0
         portalPositionX: -122.36
         portalPositionY: 171.77
       Vendors:
+      - ID: TownVendorNightNEW
+        Items:
+        - {fileID: 11400000, guid: c8a3cb7f993471f43a65c56960371741, type: 2}
+        - {fileID: 11400000, guid: aafc6c7e2d9a85b499e4bf0de205089d, type: 2}
+        - {fileID: 11400000, guid: fcc9f2ec1b1a76e4db0f0d4111764961, type: 2}
+        - {fileID: 11400000, guid: 194460a394f62b14c8d2c3b8d7cb1422, type: 2}
+        - {fileID: 11400000, guid: 21fe16960bbeb44438ef099649be99d9, type: 2}
+        - {fileID: 11400000, guid: d26e08196260bc448b91ff3471d8e504, type: 2}
+        - {fileID: 11400000, guid: c35c5387f27e10c4c9cbdfee1759dea9, type: 2}
+        - {fileID: 11400000, guid: a5096962d0368e74cb2f7c2cd797463e, type: 2}
       - ID: TownVendorDay
         Items:
         - {fileID: 11400000, guid: 430e8a6209e514c4ca5c4dc1013529d2, type: 2}
@@ -4887,22 +4897,63 @@ MonoBehaviour:
       Interactables:
       - interactableName: GateRightInteractable
         interactableId: 
+        positionX: 17
+        positionY: 12
+      - interactableName: GateRightInteractable
+        interactableId: 
         positionX: 1
         positionY: -4
+      - interactableName: NPC_Keeper
+        interactableId: 
+        positionX: 44
+        positionY: -6
       playerSpawnX: 2.05
       playerSpawnY: -7.58
+      Portals:
+      - name: TavernGuestRoomEntrance
+        TargetScene: TavernPrivateRoom
+        TargetSceneGate: GuestRoomEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      - name: TavernEntrance
+        TargetScene: Sunset Port
+        TargetSceneGate: TavernEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      Vendors: []
+      MusicTrack: soundscape_tavern
+      Soundscape: Forest SoundScape
+      NightMusicTrack: soundscape_tavern
+      NightSoundscape: Campfire SoundScape
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+    - sceneName: TavernPrivateRoom
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 1
+        positionY: 4
+      playerSpawnX: 2.05
+      playerSpawnY: -1.09
       Portals:
       - name: TavernEntrance
         TargetScene: Sunset Port
         TargetSceneGate: TavernEntrance
-        IsExpeditionLocked: 1
+        IsExpeditionLocked: 0
         portalPositionX: -122.36
         portalPositionY: 171.77
       Vendors: []
-      MusicTrack: 
-      Soundscape: 
-      NightMusicTrack: 
-      NightSoundscape: 
+      MusicTrack: soundscape_tavern
+      Soundscape: Forest SoundScape
+      NightMusicTrack: soundscape_tavern
+      NightSoundscape: Campfire SoundScape
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
@@ -4925,6 +4976,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21a0d16d5a3654d43a8c2d5f2a39d5b6, type: 2}
     Expeditions:
     - {fileID: 11400000, guid: 1049c1152bc701f4aae659e35ff5b404, type: 2}
+    - {fileID: 11400000, guid: a90382295a280f34fb0e7447835c7063, type: 2}
     - {fileID: 11400000, guid: 55f7a0f906096f44f8541173f0fdace4, type: 2}
     ExpChart: 0000000064000000c80000009001000020030000dc050000280a0000681000000019000054240000
     TimePhases:
