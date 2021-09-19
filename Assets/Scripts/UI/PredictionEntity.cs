@@ -8,6 +8,12 @@ public class PredictionEntity : MonoBehaviour
 
     void Start()
     {
+        CORE.Instance.SubscribeToEvent("PredictionUpdate",RefreshState);
+        RefreshState();
+    }
+
+    public void RefreshState()
+    {
         if(string.IsNullOrEmpty(CORE.Instance.NextScenePrediction))
         {
             this.gameObject.SetActive(false);
@@ -17,16 +23,19 @@ public class PredictionEntity : MonoBehaviour
 
         if(predictionScene == null)
         {
+            CORE.Instance.LogMessageError("No Prediction Scene");
             this.gameObject.SetActive(false);
             return;
         }
         
         if( predictionScene.PredictionImage == null)
         {
+            CORE.Instance.LogMessageError("No Prediction Scene Image");
             this.gameObject.SetActive(false);
             return;
         }
 
+        this.gameObject.SetActive(true);
         spriteRenderer.sprite = predictionScene.PredictionImage;
     }
 

@@ -4897,15 +4897,25 @@ MonoBehaviour:
       Interactables:
       - interactableName: GateRightInteractable
         interactableId: 
+        positionX: 17
+        positionY: 12
+      - interactableName: GateRightInteractable
+        interactableId: 
         positionX: 1
         positionY: -4
       - interactableName: NPC_Keeper
         interactableId: 
-        positionX: 37
+        positionX: 44
         positionY: -6
       playerSpawnX: 2.05
       playerSpawnY: -7.58
       Portals:
+      - name: TavernGuestRoomEntrance
+        TargetScene: TavernPrivateRoom
+        TargetSceneGate: GuestRoomEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -122.36
+        portalPositionY: 171.77
       - name: TavernEntrance
         TargetScene: Sunset Port
         TargetSceneGate: TavernEntrance
@@ -4917,6 +4927,33 @@ MonoBehaviour:
       Soundscape: Forest SoundScape
       NightMusicTrack: soundscape_tavern
       NightSoundscape: Campfire SoundScape
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+    - sceneName: TavernPrivateRoom
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 1
+        positionY: 4
+      playerSpawnX: 2.05
+      playerSpawnY: -1.09
+      Portals:
+      - name: TavernEntrance
+        TargetScene: Sunset Port
+        TargetSceneGate: TavernEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      Vendors: []
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
@@ -4939,6 +4976,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21a0d16d5a3654d43a8c2d5f2a39d5b6, type: 2}
     Expeditions:
     - {fileID: 11400000, guid: 1049c1152bc701f4aae659e35ff5b404, type: 2}
+    - {fileID: 11400000, guid: a90382295a280f34fb0e7447835c7063, type: 2}
     - {fileID: 11400000, guid: 55f7a0f906096f44f8541173f0fdace4, type: 2}
     ExpChart: 0000000064000000c80000009001000020030000dc050000280a0000681000000019000054240000
     TimePhases:

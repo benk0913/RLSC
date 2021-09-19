@@ -274,7 +274,7 @@ public class SelectionGroupUI : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        if(Input.GetKeyDown(InputMap.Map["Move Up"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Up"]))
         {
             if(CurrentSelected.toUp == null)
             {
@@ -285,7 +285,7 @@ public class SelectionGroupUI : MonoBehaviour
 
             Select(CurrentSelected.toUp);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(InputMap.Map["Move Down"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Down"]))
         {
             if (CurrentSelected.toDown == null)
             {
@@ -296,7 +296,7 @@ public class SelectionGroupUI : MonoBehaviour
 
             Select(CurrentSelected.toDown);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(InputMap.Map["Move Left"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Left"]))
         {
             if (CurrentSelected.toLeft == null)
             {
@@ -307,7 +307,7 @@ public class SelectionGroupUI : MonoBehaviour
 
             Select(CurrentSelected.toLeft);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(InputMap.Map["Move Right"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Right"]))
         {
             if (CurrentSelected.toRight== null)
             {
@@ -319,7 +319,7 @@ public class SelectionGroupUI : MonoBehaviour
             Select(CurrentSelected.toRight);
         }
 
-        if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]))
         {
             if(CurrentSelected != null && CurrentSelected.CS != null)
             {
