@@ -427,6 +427,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e35aaeda36cbe8146bf180cec3caffc2, type: 2}
     - {fileID: 11400000, guid: 0089b72f450b1fa4ca3b4458e9a7ec49, type: 2}
     - {fileID: 11400000, guid: e35989922faf0f64c98d9a4784f87b41, type: 2}
+    - {fileID: 11400000, guid: dbd4663bea6a35642a306090f8590baa, type: 2}
     - {fileID: 11400000, guid: c6150352cd9f5db42b34b4d249e5bd71, type: 2}
     - {fileID: 11400000, guid: 4ff732d2264cb3048868abee8ff98e73, type: 2}
     - {fileID: 11400000, guid: e4b9b19552374d244aa8f52777524542, type: 2}
@@ -4733,6 +4734,46 @@ MonoBehaviour:
       displyName: Training Course B
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorTreasureChestTutorial
+        positionX: 11.18
+        positionY: -14.110138
+        respawnSeconds: 0
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 33
+        positionY: -7
+      - interactableName: DarknessGateInteractable2
+        interactableId: DarknessGateInteractable2
+        positionX: -34
+        positionY: -10
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: -27
+        positionY: -7
+      playerSpawnX: -34.62
+      playerSpawnY: -8.23
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      Vendors: []
+      MusicTrack: music_grasslands_1
+      Soundscape: Beach SoundScape
+      NightMusicTrack: music_grasslands_1
+      NightSoundscape: Beach SoundScape
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+    - sceneName: FCTrainingQuest_2
+      displyName: Training Course C
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
       - interactableName: GateRightInteractable
@@ -4772,8 +4813,8 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
-    - sceneName: FCTrainingQuest_2
-      displyName: Training Course C
+    - sceneName: FCTrainingQuest_3
+      displyName: 
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -4788,8 +4829,8 @@ MonoBehaviour:
         positionY: -12
       - interactableName: NPC_Trainer2
         interactableId: 
-        positionX: 353
-        positionY: -19
+        positionX: 354
+        positionY: -12
       playerSpawnX: -23.6
       playerSpawnY: -20.3
       Portals:
@@ -4800,14 +4841,14 @@ MonoBehaviour:
         portalPositionX: -122.36
         portalPositionY: 171.77
       Vendors: []
-      MusicTrack: music_grasslands_1
-      Soundscape: Beach SoundScape
-      NightMusicTrack: music_grasslands_1
-      NightSoundscape: Beach SoundScape
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
-    - sceneName: FCTrainingQuest_3
+    - sceneName: FCTrainingQuest_4
       displyName: 
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
@@ -4843,51 +4884,16 @@ MonoBehaviour:
         respawnSeconds: 0
         IrellevantMob: 0
       Interactables:
-      - interactableName: NPC_Trainer1
-        interactableId: 
-        positionX: -87
-        positionY: -14
       - interactableName: GateRightInteractable
         interactableId: 
         positionX: 30
         positionY: 0
+      - interactableName: NPC_Trainer1
+        interactableId: 
+        positionX: -87
+        positionY: -14
       playerSpawnX: -103.5
       playerSpawnY: -5.7
-      Portals:
-      - name: EndPortalA
-        TargetScene: 
-        TargetSceneGate: 
-        IsExpeditionLocked: 1
-        portalPositionX: -122.36
-        portalPositionY: 171.77
-      Vendors: []
-      MusicTrack: 
-      Soundscape: 
-      NightMusicTrack: 
-      NightSoundscape: 
-      enablePvp: 0
-      displayTitleOnEnter: 0
-      PredictionImage: {fileID: 0}
-    - sceneName: FCTrainingQuest_4
-      displyName: 
-      objectiveDescription: 
-      UniqueCompletionScreenEffect: 
-      Mobs: []
-      Interactables:
-      - interactableName: NPC_Trainer
-        interactableId: 
-        positionX: 17
-        positionY: -11
-      - interactableName: GateRightInteractable
-        interactableId: 
-        positionX: 33
-        positionY: -7
-      - interactableName: NPC_Expeditioneer
-        interactableId: 
-        positionX: 9
-        positionY: -11
-      playerSpawnX: -3.47
-      playerSpawnY: -10.79
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -4957,10 +4963,10 @@ MonoBehaviour:
       playerSpawnX: 2.05
       playerSpawnY: -1.09
       Portals:
-      - name: TavernEntrance
-        TargetScene: Sunset Port
-        TargetSceneGate: TavernEntrance
-        IsExpeditionLocked: 0
+      - name: GuestRoomEntrance
+        TargetScene: SunsetPortTavern
+        TargetSceneGate: TavernGuestRoomEntrance
+        IsExpeditionLocked: 1
         portalPositionX: -122.36
         portalPositionY: 171.77
       Vendors: []
@@ -4968,6 +4974,41 @@ MonoBehaviour:
       Soundscape: TavernAmbienceUpstairs
       NightMusicTrack: TavernMusic
       NightSoundscape: TavernAmbienceUpstairs
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+    - sceneName: FCTrainingQuest_5
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 33
+        positionY: -7
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: 17
+        positionY: -11
+      - interactableName: NPC_Expeditioneer
+        interactableId: 
+        positionX: 9
+        positionY: -11
+      playerSpawnX: -3.47
+      playerSpawnY: -10.79
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: -122.36
+        portalPositionY: 171.77
+      Vendors: []
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
