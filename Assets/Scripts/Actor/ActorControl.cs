@@ -51,7 +51,7 @@ public class ActorControl : MonoBehaviour
         {
             CurrentActor.AttemptJump();
         }
-        
+
         int abilitiesLength = CurrentActor.State.Data.abilities.Count;
         for(int i = 0; i < abilitiesLength; i++)
         {
@@ -61,5 +61,13 @@ public class ActorControl : MonoBehaviour
             }
         }
         
+        for(int i = 1; i < 9; i++)
+        {
+            if (Input.GetKeyDown(InputMap.Map["Emote "+i]))
+            {
+                CurrentActor.AttemptEmote(i);
+            }
+        }
+
     }
 }

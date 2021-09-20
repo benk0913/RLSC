@@ -17,6 +17,17 @@ public class ActorSkin : MonoBehaviour
     [SerializeField]
     public List<GameObject> OrbEffects = new List<GameObject>();
 
+    Emote CurrentEmote;
+
+    Coroutine EmoteRoutineInstance;
+
+    public List<SpriteRenderer> PartsHiddenByEmote = new List<SpriteRenderer>();
+
+    void OnDisable()
+    {
+        EmoteRoutineInstance = null;
+    }
+
     public void RefreshLooks()
     {
         ActorLooks looks = Act.State.Data.looks;
@@ -232,6 +243,45 @@ public class ActorSkin : MonoBehaviour
             //rendererPart.Renderer.enabled = true;
             rendererPart.SetSkin(set,Act.State.Data);
         }
+    }
+
+    public void SetEmote(Emote emote)
+    {
+        if(EmoteRoutineInstance != null)
+        {
+            return;
+        }
+
+        EmoteRoutineInstance = StartCoroutine(EmoteRoutine(emote));
+    }
+
+    IEnumerator EmoteRoutine(Emote emote)
+    {
+        RendererPart renderPart = SkinParts.Find(x => x.Part.name == "Emote");
+
+        if(renderPart == null)
+        {
+            CORE.Instance.LogMessageError("The body part - Emote was not found...");
+            yield break;
+        }
+
+        renderPart.Renderer.sprite = emote.EmoteGraphic;
+
+        foreach(SpriteRenderer hiddenRenderer in PartsHiddenByEmote)
+        {
+            hiddenRenderer.enabled = false;
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        renderPart.Renderer.sprite = null;
+
+        foreach(SpriteRenderer hiddenRenderer in PartsHiddenByEmote)
+        {
+            hiddenRenderer.enabled = true;
+        }
+
+        EmoteRoutineInstance = null;
     }
 }
 

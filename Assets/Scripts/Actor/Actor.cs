@@ -1171,6 +1171,11 @@ public class Actor : MonoBehaviour
         CurrentBubble.transform.position = transform.position;
     }
 
+    public void Emote(Emote emote)
+    {
+        Skin.SetEmote(emote);
+    }
+
     #region ClientControl
 
     public void ExecuteMovement(string movementKey, Actor casterActor = null)
@@ -1523,6 +1528,25 @@ public class Actor : MonoBehaviour
         return abilityState.IsCanDoAbility;
     }
 
+    public void AttemptEmote(int emoteIndex)
+    {
+        if(SocketHandler.Instance.CurrentUser.emotes == null || SocketHandler.Instance.CurrentUser.emotes.Length <= emoteIndex)
+        {
+            return;
+        }
+
+        Emote emote = CORE.Instance.Data.content.Emotes.Find(X=>X.name == SocketHandler.Instance.CurrentUser.emotes[emoteIndex].Data.name);
+
+        if(emote == null)
+        {
+            CORE.Instance.LogMessageError("NO EMOTE in index "+emoteIndex + " - "+ SocketHandler.Instance.CurrentUser.emotes[emoteIndex].itemName);
+            return;
+        }
+
+        JSONNode node = new JSONClass();
+        node["emote"] = emote.name;
+        SocketHandler.Instance.SendEvent("emoted", node);
+    }
 
     public void StartFlying()
     {

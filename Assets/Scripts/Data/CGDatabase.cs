@@ -53,6 +53,8 @@ public class DatabaseContent
     
     public List<ItemTypeOverride> EquipSlotOverrides = new List<ItemTypeOverride>();
 
+    public List<Emote> Emotes = new List<Emote>();
+
     public List<SceneInfo> Scenes = new List<SceneInfo>();
 
     public List<InteractableData> Interactables = new List<InteractableData>();
@@ -76,6 +78,10 @@ public class DatabaseContent
     public AttributeData MobsBaseAttributes;
     
     public AttributeData AttributesLimits;
+
+    public List<ItemData> BaseEmotes = new List<ItemData>();
+    public ItemData DefaultNameTag;
+    public ItemData DefaultChatBubble;
 
     public int MaxLevel;
 

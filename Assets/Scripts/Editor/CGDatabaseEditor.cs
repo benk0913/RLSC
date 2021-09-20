@@ -225,6 +225,13 @@ public class CGDatabaseEditor : Editor
             db.content.Visuals.BodyParts.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(BodyPart)) as BodyPart);
         }
 
+        guids = AssetDatabase.FindAssets("t:Emote", new[] { "Assets/" + db.DataPath });
+        db.content.Emotes.Clear();
+        foreach (string guid in guids)
+        {
+            db.content.Emotes.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(Emote)) as Emote);
+        }
+
         db.content.ExpChart.Clear();
         for (int lvl = 1; lvl <= db.content.MaxLevel; lvl++) {
             db.content.ExpChart.Add(calculateExpToTargetLevel(lvl));

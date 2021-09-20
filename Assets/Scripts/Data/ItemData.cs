@@ -30,6 +30,8 @@ public class ItemData : ScriptableObject
 
     public ItemRarity Rarity;
 
+    public bool CashShopItem = false;
+
     [JsonIgnore]
     public string OrbColliderObject;
 

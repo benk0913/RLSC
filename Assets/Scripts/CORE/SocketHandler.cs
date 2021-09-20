@@ -145,6 +145,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("que_update", OnQueUpdate));
         SocketEventListeners.Add(new SocketEventListener("que_complete", OnQueComplete));
 
+        //Emotes
+        SocketEventListeners.Add(new SocketEventListener("actor_emoted", OnActorEmoted));
+
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -558,6 +561,8 @@ public class SocketHandler : MonoBehaviour
                 SceneInfo sceneInfo = CORE.Instance.ActiveSceneInfo;
                 CORE.Instance.NextScenePrediction = (string)data["nextScenePrediction"];
                 CORE.Instance.InvokeEvent("PredictionUpdate");
+
+                
 
                 CORE.Instance.RefreshSceneInfo();
 
@@ -1073,6 +1078,34 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.InvokeEvent("ActorChangedStates");
     }
 
+    public void OnActorEmoted(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+
+        Emote emote = CORE.Instance.Data.content.Emotes.Find(x=>x.name ==  data["emote"].Value);
+
+        if(emote == null)
+        {
+            CORE.Instance.LogMessageError("No emote with name: " + data["emote"].Value);
+            return;
+        }
+
+        if(actorDat.ActorEntity == null)
+        {
+            CORE.Instance.LogMessageError("No actor entity for actorID " + data["actorId"].Value);
+            return;
+        }
+
+        actorDat.ActorEntity.Emote(emote);
+    }
+
     public void OnItemsSpawn(string eventName, JSONNode data)
     {
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
@@ -1528,6 +1561,15 @@ public class UserData
     public ActorData[] chars;
 
     public FriendData[] friends;
+
+    public Item[] cashShopInventory;
+
+    public Item[] emotes;
+
+    public Item chatBubble;
+
+    public Item nameTag;
+
 
     public int SelectedCharacterIndex;
 
