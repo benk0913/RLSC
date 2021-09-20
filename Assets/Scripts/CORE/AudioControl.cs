@@ -117,7 +117,7 @@ namespace EdgeworldBase
             }
         }
 
-        public void Play(string gClip)
+        public void Play(string gClip, bool gLoop = false, string gTag = "")
         {
             if (ResourcesLoader.Instance.m_bLoading)
             {
@@ -126,12 +126,24 @@ namespace EdgeworldBase
 
             GameObject currentInstance = null;
 
+            int alreadyPlaying = 0;
             for (int i = 0; i < m_listInstances.Count; i++)
             {
-                if (!m_listInstances[i].GetComponent<AudioSource>().isPlaying)
+                AudioSource currentAS = m_listInstances[i].GetComponent<AudioSource>();
+                if (!currentAS.isPlaying)
                 {
                     currentInstance = m_listInstances[i];
-                    break;
+                }
+                else
+                {
+                    if(currentAS.clip.name == gClip)
+                    {
+                        alreadyPlaying++;
+                        if(alreadyPlaying > 3)
+                        {
+                            return;
+                        }
+                    }
                 }
             }
 
@@ -142,92 +154,19 @@ namespace EdgeworldBase
                 m_listInstances.Add(currentInstance);
             }
 
-            currentInstance.GetComponent<AudioSource>().spatialBlend = 0f;
-            currentInstance.GetComponent<AudioSource>().pitch = 1f;
-            currentInstance.GetComponent<AudioSource>().loop = false;
-            currentInstance.GetComponent<AudioSource>().clip = m_res.GetClip(gClip);
-            currentInstance.GetComponent<AudioSource>().Play();
+            AudioSource instanceSource = currentInstance.GetComponent<AudioSource>();
+            instanceSource.spatialBlend = 0f;
+            instanceSource.pitch = 1f;
+            instanceSource.loop = gLoop;
+            instanceSource.clip = m_res.GetClip(gClip);
+            instanceSource.Play();
+
+            if(!string.IsNullOrEmpty(gTag))
+                currentInstance.tag = gTag;
 
             if (m_dicVolumeGroup.ContainsKey(currentInstance.tag))
             {
-                currentInstance.GetComponent<AudioSource>().volume = m_dicVolumeGroup[currentInstance.tag];
-            }
-        }
-
-        public void Play(string gClip, bool gLoop)
-        {
-            if (ResourcesLoader.Instance.m_bLoading)
-            {
-                return;
-            }
-
-            GameObject currentInstance = null;
-
-            for (int i = 0; i < m_listInstances.Count; i++)
-            {
-                if (!m_listInstances[i].GetComponent<AudioSource>().isPlaying)
-                {
-                    currentInstance = m_listInstances[i];
-                    break;
-                }
-            }
-
-            if (currentInstance == null)
-            {
-                currentInstance = (GameObject)Instantiate(m_res.GetObject(m_sInstancePrefab));
-                currentInstance.transform.parent = m_tInstancesContainer;
-                m_listInstances.Add(currentInstance);
-            }
-
-            currentInstance.GetComponent<AudioSource>().spatialBlend = 0f;
-            currentInstance.GetComponent<AudioSource>().pitch = 1f;
-            currentInstance.GetComponent<AudioSource>().loop = gLoop;
-            currentInstance.GetComponent<AudioSource>().clip = m_res.GetClip(gClip);
-            currentInstance.GetComponent<AudioSource>().Play();
-
-            if (m_dicVolumeGroup.ContainsKey(currentInstance.tag))
-            {
-                currentInstance.GetComponent<AudioSource>().volume = m_dicVolumeGroup[currentInstance.tag];
-            }
-
-        }
-
-        public void Play(string gClip, bool gLoop, string gTag)
-        {
-            if (ResourcesLoader.Instance.m_bLoading)
-            {
-                return;
-            }
-
-            GameObject currentInstance = null;
-
-            for (int i = 0; i < m_listInstances.Count; i++)
-            {
-                if (!m_listInstances[i].GetComponent<AudioSource>().isPlaying)
-                {
-                    currentInstance = m_listInstances[i];
-                    break;
-                }
-            }
-
-            if (currentInstance == null)
-            {
-                currentInstance = (GameObject)Instantiate(m_res.GetObject(m_sInstancePrefab));
-                currentInstance.transform.parent = m_tInstancesContainer;
-                m_listInstances.Add(currentInstance);
-            }
-
-            currentInstance.GetComponent<AudioSource>().spatialBlend = 0f;
-            currentInstance.GetComponent<AudioSource>().pitch = 1f;
-            currentInstance.GetComponent<AudioSource>().loop = gLoop;
-            currentInstance.GetComponent<AudioSource>().clip = m_res.GetClip(gClip);
-            currentInstance.GetComponent<AudioSource>().Play();
-
-            currentInstance.tag = gTag;
-
-            if (m_dicVolumeGroup.ContainsKey(currentInstance.tag))
-            {
-                currentInstance.GetComponent<AudioSource>().volume = m_dicVolumeGroup[currentInstance.tag];
+                instanceSource.volume = m_dicVolumeGroup[currentInstance.tag];
             }
         }
 
