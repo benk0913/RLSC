@@ -21,6 +21,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     Transform ItemsContainer;
 
     [SerializeField]
+    Transform CashItemsContainer;
+
+    [SerializeField]
     SelectionGroupUI SelectionGroup;
 
     [SerializeField]
@@ -34,6 +37,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     TextMeshProUGUI MoneyLabel;
+
+    [SerializeField]
+    TextMeshProUGUI CashPointsLabel;
 
     [SerializeField]
     public StatsPanelUI StatsPanel;
@@ -68,6 +74,18 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     [SerializeField]
     InspectionPanelUI InspectPanel;
 
+    [SerializeField]
+    public GameObject InventoryTabSelectedHalo;
+
+    [SerializeField]
+    public GameObject CashItemsTabSelectedHalo;
+    
+    [SerializeField]
+    public GameObject InventoryPanelGameObject;
+
+    [SerializeField]
+    public GameObject CashItemsPanelGameObject;
+
 
 
     public List<EquippableSlot> EquipSlots = new List<EquippableSlot>();
@@ -79,7 +97,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     public bool IsOpen;
 
     bool isInspecting;
-
+    public bool IsCashTab = false;
 
 
 
@@ -158,18 +176,38 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (!isInspecting)
         {
-            MoneyLabel.text = currentActor.money.ToString();
-
-            CORE.ClearContainer(ItemsContainer);
-
-            for (int i = 0; i < currentActor.items.Count; i++)
+            
+            if(IsCashTab)
             {
-                InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
-                slot.SetItem(currentActor.items[i], () => Select(slot));
-                slot.transform.SetParent(ItemsContainer, false);
-                slot.transform.localScale = Vector3.one;
-                slot.transform.position = Vector3.zero;
+                CashPointsLabel.text = SocketHandler.Instance.CurrentUser.cashPoints.ToString();
 
+                CORE.ClearContainer(CashItemsContainer);
+
+                for (int i = 0; i < SocketHandler.Instance.CurrentUser.cashItems.Length; i++)
+                {
+                    InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
+                    slot.SetItem(SocketHandler.Instance.CurrentUser.cashItems[i], () => Select(slot));
+                    slot.transform.SetParent(CashItemsContainer, false);
+                    slot.transform.localScale = Vector3.one;
+                    slot.transform.position = Vector3.zero;
+
+                }
+            }
+            else
+            {
+                MoneyLabel.text = currentActor.money.ToString();
+
+                CORE.ClearContainer(ItemsContainer);
+
+                for (int i = 0; i < currentActor.items.Count; i++)
+                {
+                    InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
+                    slot.SetItem(currentActor.items[i], () => Select(slot));
+                    slot.transform.SetParent(ItemsContainer, false);
+                    slot.transform.localScale = Vector3.one;
+                    slot.transform.position = Vector3.zero;
+
+                }
             }
         }
 
@@ -190,6 +228,30 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));
         Deselect();
+    }
+
+    public void SetCashTab()
+    {
+        IsCashTab = true;
+
+        InventoryPanelGameObject.SetActive(false);
+        InventoryTabSelectedHalo.SetActive(false);
+        CashItemsPanelGameObject.SetActive(true);
+        CashItemsTabSelectedHalo.SetActive(true);
+
+        RefreshUI();
+    }
+
+    public void SetInventoryTab()
+    {
+        IsCashTab = false;
+
+        InventoryPanelGameObject.SetActive(true);
+        InventoryTabSelectedHalo.SetActive(true);
+        CashItemsPanelGameObject.SetActive(false);
+        CashItemsTabSelectedHalo.SetActive(false);
+
+        RefreshUI();
     }
 
     internal void DragItem(InventorySlotUI inventorySlotUI)
@@ -225,6 +287,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         //Deselect();
     }
+
 
     public void Select(InventorySlotUI slot) //TODO Bad imp, refactor in future
     {
@@ -272,8 +335,6 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }
             else
             {
-                // TODO set isCash to be true if the current inventory tab is cash.
-                bool isCash = false;
 
                 if (SelectedSlot == slot && Time.time - SelectedTime > 1f)
                 {
@@ -281,7 +342,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else if (!SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick equip
                 {
-                    SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex(), isCash);
+                    SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
                 }
                 else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick unequip
                 {
@@ -293,15 +354,15 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else if (SelectedSlot.IsEquipmentSlot )//swapped between equo and inventory 
                 {
-                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.name, isCash);
+                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.name, IsCashTab);
                 }
                 else if (slot.IsEquipmentSlot) //swapped between inventory and equip 
                 {
-                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(SelectedSlot.transform.GetSiblingIndex(), slot.name, isCash);
+                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(SelectedSlot.transform.GetSiblingIndex(), slot.name, IsCashTab);
                 }
                 else //Swap in inventory
                 {
-                    SocketHandler.Instance.SendSwappedItemSlots(SelectedSlot.transform.GetSiblingIndex(), slot.transform.GetSiblingIndex(), isCash);
+                    SocketHandler.Instance.SendSwappedItemSlots(SelectedSlot.transform.GetSiblingIndex(), slot.transform.GetSiblingIndex(), IsCashTab);
                 }
             }
 

@@ -1578,6 +1578,8 @@ public class UserData
 
     public Item[] cashItems;
 
+    public int cashPoints;
+
     public int SelectedCharacterIndex;
 
     [Serializable]
