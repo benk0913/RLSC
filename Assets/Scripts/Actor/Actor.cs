@@ -1530,16 +1530,17 @@ public class Actor : MonoBehaviour
 
     public void AttemptEmote(int emoteIndex)
     {
-        if(SocketHandler.Instance.CurrentUser.emotes == null || SocketHandler.Instance.CurrentUser.emotes.Length <= emoteIndex)
+        Item emoteItem = State.Data.equips["Emote " + emoteIndex];
+        if(emoteItem == null)
         {
             return;
         }
 
-        Emote emote = CORE.Instance.Data.content.Emotes.Find(X=>X.name == SocketHandler.Instance.CurrentUser.emotes[emoteIndex].Data.name);
+        Emote emote = CORE.Instance.Data.content.Emotes.Find(X=>X.name == emoteItem.Data.name);
 
         if(emote == null)
         {
-            CORE.Instance.LogMessageError("NO EMOTE in index "+emoteIndex + " - "+ SocketHandler.Instance.CurrentUser.emotes[emoteIndex].itemName);
+            CORE.Instance.LogMessageError("NO EMOTE in index "+emoteIndex + " - "+ emoteItem.itemName);
             return;
         }
 

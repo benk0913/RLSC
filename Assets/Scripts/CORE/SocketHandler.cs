@@ -1564,8 +1564,6 @@ public class UserData
 
     public Item[] cashShopInventory;
 
-    public Item[] emotes;
-
     public Item chatBubble;
 
     public Item nameTag;
