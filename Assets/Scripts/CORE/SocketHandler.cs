@@ -366,6 +366,7 @@ public class SocketHandler : MonoBehaviour
         JSONNode data = JSON.Parse(response.downloadHandler.text);
 
         CurrentUser.chars = JsonConvert.DeserializeObject<ActorData[]>(data["chars"].ToString());
+        CurrentUser.cashItems = JsonConvert.DeserializeObject<Item[]>(data["cashItems"].ToString());
         // TODO replace entire user data in repsonse?
     }
 
@@ -776,10 +777,11 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.SendEvent("dropped_item", node);
     }
 
-    public void SendEquippedItem(int slotIndex)
+    public void SendEquippedItem(int slotIndex, bool isCash)
     {
         JSONNode node = new JSONClass();
         node["slotIndex"].AsInt = slotIndex;
+        node["isCash"].AsBool = isCash;
 
         SocketHandler.Instance.SendEvent("equipped_item", node);
     }
@@ -792,20 +794,22 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.SendEvent("unequipped_item", node);
     }
 
-    public void SendSwappedItemSlots(int slotIndex1, int slotIndex2)
+    public void SendSwappedItemSlots(int slotIndex1, int slotIndex2, bool isCash)
     {
         JSONNode node = new JSONClass();
         node["slotIndex1"].AsInt = slotIndex1;
         node["slotIndex2"].AsInt = slotIndex2;
+        node["isCash"].AsBool = isCash;
 
         SocketHandler.Instance.SendEvent("swapped_item_slots", node);
     }
 
-    public void SendSwappedItemAndEquipSlots(int slotIndex, string equipType)
+    public void SendSwappedItemAndEquipSlots(int slotIndex, string equipType, bool isCash)
     {
         JSONNode node = new JSONClass();
         node["equipType"] = equipType;
         node["slotIndex"].AsInt = slotIndex;
+        node["isCash"].AsBool = isCash;
 
         SocketHandler.Instance.SendEvent("swapped_item_and_equip_slots", node);
     }
@@ -1123,7 +1127,17 @@ public class SocketHandler : MonoBehaviour
         int slotIndex = data["slotIndex"].AsInt;
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
 
-        CurrentUser.actor.items[slotIndex] = item;
+        // TODO set the inventory tab to cash if updated a cash item and to normal if updated a normal item.
+        bool isCash = data["isCash"].AsBool;
+        if (isCash)
+        {
+            CurrentUser.cashItems[slotIndex] = item;
+        }
+        else
+        {
+            CurrentUser.actor.items[slotIndex] = item;
+        }
+
 
         InventoryUI.Instance.RefreshUI();
     }
@@ -1562,12 +1576,7 @@ public class UserData
 
     public FriendData[] friends;
 
-    public Item[] cashShopInventory;
-
-    public Item chatBubble;
-
-    public Item nameTag;
-
+    public Item[] cashItems;
 
     public int SelectedCharacterIndex;
 

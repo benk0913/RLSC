@@ -90,6 +90,7 @@ public class DatabaseContent
     public int AbilitiesMaxCount;
 
     public int MaxInventorySlots;
+    public int MaxCashItemSlots;
     public int MaxChatLength;
     public int RollDurationSeconds;
     public float LongRangeDistance;

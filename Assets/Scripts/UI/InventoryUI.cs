@@ -272,13 +272,16 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }
             else
             {
+                // TODO set isCash to be true if the current inventory tab is cash.
+                bool isCash = false;
+
                 if (SelectedSlot == slot && Time.time - SelectedTime > 1f)
                 {
                     // If the user selects the same slot but after a delay, instead of equip/unequip, just deselect it.
                 }
                 else if (!SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick equip
                 {
-                    SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex());
+                    SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex(), isCash);
                 }
                 else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick unequip
                 {
@@ -290,15 +293,15 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else if (SelectedSlot.IsEquipmentSlot )//swapped between equo and inventory 
                 {
-                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.name);
+                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.name, isCash);
                 }
                 else if (slot.IsEquipmentSlot) //swapped between inventory and equip 
                 {
-                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(SelectedSlot.transform.GetSiblingIndex(), slot.name);
+                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(SelectedSlot.transform.GetSiblingIndex(), slot.name, isCash);
                 }
                 else //Swap in inventory
                 {
-                    SocketHandler.Instance.SendSwappedItemSlots(SelectedSlot.transform.GetSiblingIndex(), slot.transform.GetSiblingIndex());
+                    SocketHandler.Instance.SendSwappedItemSlots(SelectedSlot.transform.GetSiblingIndex(), slot.transform.GetSiblingIndex(), isCash);
                 }
             }
 
@@ -337,7 +340,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         {
             if (!SelectedSlot.IsEquipmentSlot)
             {
-                SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex());
+                // TODO set isCash to be true if the current inventory tab is cash.
+                bool isCash = false;
+                SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex(), isCash);
             }
             else
             {
@@ -379,6 +384,14 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         if (SelectedSlot.IsTradeSlot)
         {
             TradeWindowUI.Instance.SetItem(null,SelectedSlot);
+            return;
+        }
+        
+        // TODO set isCash to be true if the current inventory tab is cash.
+        bool isCash = false;
+        if (isCash)
+        {
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Cash items cannot be dropped.", Color.red));
             return;
         }
 
