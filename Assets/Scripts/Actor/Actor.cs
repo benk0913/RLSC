@@ -768,6 +768,11 @@ public class Actor : MonoBehaviour
         CORE.Instance.InvokeEvent("ActorDied");
         Shadow.gameObject.SetActive(false);
 
+        //Eliminated emote
+        JSONClass node = new JSONClass();
+        node["emote"] = "Eliminated Emote";
+        SocketHandler.Instance.SendEvent("emoted", node);
+
         if (!string.IsNullOrEmpty(State.Data.ClassJobReference.UniqueDeathSound))
         {
             AudioControl.Instance.PlayInPosition(State.Data.ClassJobReference.UniqueDeathSound, transform.position);
