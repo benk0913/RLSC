@@ -13,6 +13,17 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     [SerializeField]
     SelectionGroupUI SGroup;
 
+    [SerializeField]
+    Canvas CameraCanvas;
+
+    [SerializeField]
+    GameObject DisplayActorPanel;
+
+    [SerializeField]
+    DisplayCharacterUI DisplayActor;
+
+    
+
 
     public bool IsOpen;
 
@@ -42,6 +53,14 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     {
         IsOpen = true;
 
+        CameraCanvas.worldCamera = Camera.main;
+
+        CORE.IsMachinemaMode = true;
+        CORE.Instance.InvokeEvent("MachinemaModeRefresh");
+
+        AudioControl.Instance.SetMusic("music_CashShopBaP");
+        AudioControl.Instance.SetSoundscape("");
+
         this.gameObject.SetActive(true);
         
         
@@ -52,12 +71,31 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         CORE.Instance.DelayedInvokation(0.1f, () => SGroup.RefreshGroup(true));
     }
 
+    public void ShowDisplayActor()
+    {
+        DisplayActorPanel.SetActive(true);
+        DisplayActor.AttachedCharacter.SetActorInfo(CORE.PlayerActor);
+    }
+
+    public void HideDisplayActor()
+    {
+        DisplayActorPanel.SetActive(false);
+    }
+
     public void Hide()
     {
+        if(CORE.Instance != null && CORE.PlayerActor.ActorEntity != null)
+        {
+            CORE.IsMachinemaMode = false;
+            CORE.Instance.InvokeEvent("MachinemaModeRefresh");
+            CORE.Instance.RefreshSceneInfo();
+            
+            AudioControl.Instance.Play(HideSound);
+        }
+
         IsOpen = false;
         this.gameObject.SetActive(false);
 
-        AudioControl.Instance.Play(HideSound);
     }
     
     public void RefreshUI()
