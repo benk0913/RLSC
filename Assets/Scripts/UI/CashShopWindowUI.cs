@@ -44,6 +44,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     [SerializeField]
     SelectionGroupUI SelectionGroup;
 
+    [SerializeField]
+    ScrollRect CashItemsInventoryScroll;
 
     CashShopProductUI SelectedProduct;
 
@@ -104,8 +106,10 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     {
         DisplayActorPanel.SetActive(true);
         DisplayActor.AttachedCharacter.SetActorInfo(CORE.PlayerActor);
-
+        
         RefreshEQPState();
+
+        CORE.Instance.DelayedInvokation(0.1f,()=>{CashItemsInventoryScroll.verticalNormalizedPosition = 1f;});
     }
 
     public void HideDisplayActor()

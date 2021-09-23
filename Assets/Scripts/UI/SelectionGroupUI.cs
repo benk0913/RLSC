@@ -19,6 +19,7 @@ public class SelectionGroupUI : MonoBehaviour
     public SelectionGroupInstance CurrentSelected;
     public Selectable CurrentSelectedSelectable;
 
+
     public bool Debug = false;
 
     private void Start()

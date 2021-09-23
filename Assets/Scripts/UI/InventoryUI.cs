@@ -3,6 +3,7 @@ using SimpleJSON;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour, WindowInterface
 {
@@ -82,6 +83,12 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     public GameObject CashItemsPanelGameObject;
+
+    [SerializeField]
+    ScrollRect InventoryContainerScroll;
+
+    [SerializeField]
+    ScrollRect CashItemsContainerScroll;
 
 
 
@@ -242,6 +249,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         CashItemsTabSelectedHalo.SetActive(true);
 
         RefreshUI();
+
+        CORE.Instance.DelayedInvokation(0.1f,()=>{CashItemsContainerScroll.verticalNormalizedPosition = 1f;});
     }
 
     public void SetInventoryTab()
@@ -254,6 +263,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         CashItemsTabSelectedHalo.SetActive(false);
 
         RefreshUI();
+
+        CORE.Instance.DelayedInvokation(0.1f,()=>{InventoryContainerScroll.verticalNormalizedPosition = 1f;});
     }
 
     internal void DragItem(InventorySlotUI inventorySlotUI)
