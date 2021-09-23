@@ -161,7 +161,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        CORE.Instance.LogMessage("On Socket Event: " + eventName + " | " + data.ToString());
+        CORE.Instance.LogMessage("On Socket Event: " + eventName + " | " + FormatJson(data.ToString()));
     }
 
 
@@ -408,7 +408,7 @@ public class SocketHandler : MonoBehaviour
 
             if (CORE.Instance.DEBUG)
             {
-                CORE.Instance.LogMessage("Request: " + urlWithParams + " | " + sentJson);
+                CORE.Instance.LogMessage("Request: " + urlWithParams + " | " + FormatJson(sentJson));
             }
 
             if (isPost)
@@ -424,7 +424,7 @@ public class SocketHandler : MonoBehaviour
         {
             if (CORE.Instance.DEBUG)
             {
-                CORE.Instance.LogMessage("Request: " + url + " | " + sentJson);
+                CORE.Instance.LogMessage("Request: " + url + " | " + FormatJson(sentJson));
             }
 
 
@@ -452,7 +452,7 @@ public class SocketHandler : MonoBehaviour
 
         if (CORE.Instance.DEBUG)
         {
-            CORE.Instance.LogMessage("Response: " + url + " | " + request.downloadHandler.text);
+            CORE.Instance.LogMessage("Response: " + url + " | " + FormatJson(request.downloadHandler.text));
         }
 
         if (request.isNetworkError || request.isHttpError)
@@ -466,6 +466,12 @@ public class SocketHandler : MonoBehaviour
 
         OnResponse?.Invoke(request);
 
+    }
+
+    public string FormatJson(string json)
+    {
+        object parsedJson = JsonConvert.DeserializeObject(json);
+        return JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
     }
 
     #endregion
@@ -485,7 +491,7 @@ public class SocketHandler : MonoBehaviour
 
         if (eventKey != "actors_moved" || CORE.Instance.DEBUG_SPAMMY_EVENTS)
         {
-            CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + node.ToString());
+            CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + FormatJson(node.ToString()));
         }
 
         SocketManager.Socket.Emit(eventKey, node);
