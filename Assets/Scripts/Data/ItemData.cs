@@ -23,6 +23,8 @@ public class ItemData : ScriptableObject
 
     public int VendorPrice = 2;
 
+    public int CashItemPrice = 0;
+
     //Between 0 to 1.
     public float DropChance = 1f;
 

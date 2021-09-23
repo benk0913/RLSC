@@ -1144,8 +1144,7 @@ public class SocketHandler : MonoBehaviour
             CurrentUser.actor.items[slotIndex] = item;
         }
 
-
-        InventoryUI.Instance.RefreshUI();
+        CORE.Instance.InvokeEvent("InventoryUpdated");
     }
 
     public void OnActorUpdateEquipSlot(string eventName, JSONNode data)
@@ -1168,8 +1167,9 @@ public class SocketHandler : MonoBehaviour
 
         if (actorDat.IsPlayer)
         {
-            InventoryUI.Instance.RefreshUI();
+            CORE.Instance.InvokeEvent("InventoryUpdated");
         }
+        
     }
 
     public void OnActorPickItem(string eventName, JSONNode data)

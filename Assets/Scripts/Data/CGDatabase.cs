@@ -39,6 +39,8 @@ public class DatabaseContent
     public List<ItemData> temporaryData = new List<ItemData>();
     public VisualDatabase Visuals;
 
+    public CashShopDatabase CashShop;
+
     public List<ClassJob> Classes = new List<ClassJob>();
 
     public List<Ability> Abilities = new List<Ability>();
@@ -53,6 +55,7 @@ public class DatabaseContent
     
     public List<ItemTypeOverride> EquipSlotOverrides = new List<ItemTypeOverride>();
 
+    [JsonIgnore]
     public List<Emote> Emotes = new List<Emote>();
 
     public List<SceneInfo> Scenes = new List<SceneInfo>();
@@ -128,6 +131,19 @@ public class VisualDatabase
     public List<Color> HairColorPresets = new List<Color>();
     [JsonIgnore]
     public List<Color> IrisColorPresets = new List<Color>();
+}
+
+[Serializable]
+public class CashShopDatabase
+{
+    public List<CashShopStore> CashShopStores = new List<CashShopStore>();
+
+    [Serializable]
+    public class CashShopStore
+    {
+        public string StoreKey;
+        public List<ItemData> StoreItems = new List<ItemData>();
+    }
 }
 
 [Serializable]

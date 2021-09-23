@@ -1,11 +1,8 @@
 using EdgeworldBase;
 using SimpleJSON;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour, WindowInterface
 {
@@ -106,6 +103,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         Instance = this;
         Hide();
     }
+    
 
     private void Update()
     {
@@ -122,6 +120,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     public void Show(ActorData ofActor, object data = null)
     {
+        CORE.Instance.SubscribeToEvent("InventoryUpdated",()=>RefreshUI());
+
         IsOpen = true;
         this.gameObject.SetActive(true);
         currentActor = ofActor;
@@ -156,6 +156,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         IsOpen = false;
         this.gameObject.SetActive(false);
 
+        CORE.Instance.UnsubscribeFromEvent("InventoryUpdated",()=>RefreshUI());
+
         AudioControl.Instance.Play(HideSound);
     }
 
@@ -179,7 +181,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             
             if(IsCashTab)
             {
-                CashPointsLabel.text = SocketHandler.Instance.CurrentUser.cashPoints.ToString();
+                CashPointsLabel.text =  System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.cashPoints);
 
                 CORE.ClearContainer(CashItemsContainer);
 
@@ -195,7 +197,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }
             else
             {
-                MoneyLabel.text = currentActor.money.ToString();
+                MoneyLabel.text = System.String.Format("{0:n0}", currentActor.money);
 
                 CORE.ClearContainer(ItemsContainer);
 
