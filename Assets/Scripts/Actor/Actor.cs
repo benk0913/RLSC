@@ -55,6 +55,9 @@ public class Actor : MonoBehaviour
     [SerializeField]
     TooltipTargetUI TooltipTarget;
     
+    [SerializeField]
+    public bool IsDisplayActor = false;
+    
     private Dictionary<string, Coroutine> ColliderCooldowns = new Dictionary<string, Coroutine>();
     
     public List<DamageHistoryRow> DamageHistory = new List<DamageHistoryRow>();
@@ -768,10 +771,14 @@ public class Actor : MonoBehaviour
         CORE.Instance.InvokeEvent("ActorDied");
         Shadow.gameObject.SetActive(false);
 
+
         //Eliminated emote
-        JSONClass node = new JSONClass();
-        node["emote"] = "Eliminated Emote";
-        SocketHandler.Instance.SendEvent("emoted", node);
+        if(!State.Data.isMob)
+        {
+            JSONClass node = new JSONClass();
+            node["emote"] = "Eliminated Emote";
+            SocketHandler.Instance.SendEvent("emoted", node);
+        }
 
         if (!string.IsNullOrEmpty(State.Data.ClassJobReference.UniqueDeathSound))
         {
@@ -848,6 +855,7 @@ public class Actor : MonoBehaviour
 
     public void AddBuff(Buff buff, float duration)
     {
+        
         BuffState state = State.Buffs.Find(x => x.CurrentBuff.name == buff.name);
 
         if (state == null)
@@ -1116,6 +1124,11 @@ public class Actor : MonoBehaviour
 
     public void RefreshOrbs()
     {
+        if(IsDisplayActor)
+        {
+            return;
+        }
+
         if (Skin == null)
         {
             return;

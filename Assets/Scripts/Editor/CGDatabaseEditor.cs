@@ -89,7 +89,10 @@ public class CGDatabaseEditor : Editor
 
         foreach (PortalEntity portal in portals)
         {
+            
             currentInfo.Portals.Add(portal.PortalReference);
+            currentInfo.Portals[currentInfo.Portals.Count-1].portalPositionX = portal.transform.position.x;
+            currentInfo.Portals[currentInfo.Portals.Count-1].portalPositionY = portal.transform.position.y;
         }
 
         InteractableEntity[] interactables = FindObjectsOfType<InteractableEntity>(true);

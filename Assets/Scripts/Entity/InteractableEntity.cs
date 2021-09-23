@@ -26,7 +26,17 @@ public class InteractableEntity : MonoBehaviour
     //TODO Frowned upon / Fix?
     public bool Item = false;
 
-    
+    public bool MapInteractable = false;
+
+    void Awake()
+    {
+        if(MapInteractable)
+        {
+            this.gameObject.SetActive(false);
+        }
+
+    }
+
     public void SetInfo(Interactable data)
     {
         this.gameObject.SetActive(true);

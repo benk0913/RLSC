@@ -122,6 +122,11 @@ public class ActorSkin : MonoBehaviour
 
     public void RefreshOrbs()
     {
+        if(Act.IsDisplayActor)
+        {
+            return;
+        }
+
         while(OrbEffects.Count > 0)
         {
             OrbEffects[0].SetActive(false);
