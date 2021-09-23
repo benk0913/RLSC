@@ -86,6 +86,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         AudioControl.Instance.SetSoundscape("");
 
         CameraCanvas.gameObject.SetActive(true);
+
+        DeselectProduct();
         
         
         AudioControl.Instance.Play(OpenSound);
@@ -174,7 +176,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
             return;
         }
 
-        WarningWindowUI.Instance.Show("Buy "+SelectedProduct.CurrentItem.DisplayName+"? ",()=>
+        CashShopWarningWindowUI.Instance.Show("Buy "+SelectedProduct.CurrentItem.DisplayName+" for "+SelectedProduct.CurrentItem.CashItemPrice+" EQP? ",()=>
         {
             JSONClass data = new JSONClass();
             data["item"] = SelectedProduct.CurrentItem.name;

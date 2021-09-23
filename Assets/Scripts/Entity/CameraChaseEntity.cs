@@ -27,7 +27,7 @@ public class CameraChaseEntity : MonoBehaviour
 
     public Camera CurrentCam;
 
-    Vector3 deltaPosition;
+    public Vector3 deltaPosition;
     Vector3 lastPosition;
 
     FocusInstance CurrentFocus;

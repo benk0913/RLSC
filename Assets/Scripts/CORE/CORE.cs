@@ -197,7 +197,7 @@ public class CORE : MonoBehaviour
             }
         }
 
-        if(IsMachinemaMode && Input.GetKeyDown(InputMap.Map["Exit"]))
+        if(IsMachinemaMode && Input.GetKeyDown(InputMap.Map["Exit"]) && !CashShopWindowUI.Instance.IsOpen)
         {
             IsMachinemaMode = false;
             InvokeEvent("MachinemaModeRefresh");

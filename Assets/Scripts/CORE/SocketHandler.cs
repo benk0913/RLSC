@@ -561,7 +561,7 @@ public class SocketHandler : MonoBehaviour
 
             CORE.Instance.LoadScene(data["scene"].Value, () =>
             {
-                ScreenFaderUI.Instance.FadeFromBlack();
+
                 SendEvent("scene_loaded");
                 CORE.Instance.IsLoading = false;
 
@@ -578,7 +578,14 @@ public class SocketHandler : MonoBehaviour
                     CORE.Instance.ShowScreenEffect("ScreenEffectLocation", sceneInfo.displyName);
 
                 }
-
+                CORE.Instance.ConditionalInvokation(
+                    (x)=>
+                    {
+                        return  CameraChaseEntity.Instance.ReferenceObject != null && CameraChaseEntity.Instance.deltaPosition.magnitude < 0.1f;
+                    }
+                    ,()=>{
+                        ScreenFaderUI.Instance.FadeFromBlack();
+                    });
             });
         });
     }
