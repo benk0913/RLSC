@@ -118,7 +118,7 @@ public class CGDatabaseEditor : Editor
     {
         UnityWebRequest request;
         
-        Debug.Log("Request: " + url + " | " + sentJson);
+        Debug.Log("Request: " + url + " | " + SocketHandler.FormatJson(sentJson));
         
         request = UnityWebRequest.Post(url, new WWWForm());
 
@@ -143,7 +143,7 @@ public class CGDatabaseEditor : Editor
                 return;
             }
 
-            Debug.Log("Response: " + url + " | " + request.downloadHandler.text);
+            Debug.Log("Response: " + url + " | " + SocketHandler.FormatJson(request.downloadHandler.text));
         };
 
 
