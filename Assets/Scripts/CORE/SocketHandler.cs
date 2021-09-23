@@ -156,7 +156,7 @@ public class SocketHandler : MonoBehaviour
 
     void AddEventListenerLogging(string eventName, JSONNode data)
     {
-        if (!CORE.Instance.DEBUG_SPAMMY_EVENTS && (!string.IsNullOrEmpty(data["actorPositions"].ToString()) || !string.IsNullOrEmpty(data["actorMoved"].ToString())))
+        if (!CORE.Instance.DEBUG || (!CORE.Instance.DEBUG_SPAMMY_EVENTS && (!string.IsNullOrEmpty(data["actorPositions"].ToString()) || !string.IsNullOrEmpty(data["actorMoved"].ToString()))))
         {
             return;
         }
@@ -468,7 +468,7 @@ public class SocketHandler : MonoBehaviour
 
     }
 
-    public string FormatJson(string json)
+    public static string FormatJson(string json)
     {
         object parsedJson = JsonConvert.DeserializeObject(json);
         return JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
@@ -489,7 +489,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        if (eventKey != "actors_moved" || CORE.Instance.DEBUG_SPAMMY_EVENTS)
+        if (!CORE.Instance.DEBUG && (eventKey != "actors_moved" || CORE.Instance.DEBUG_SPAMMY_EVENTS))
         {
             CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + FormatJson(node.ToString()));
         }
