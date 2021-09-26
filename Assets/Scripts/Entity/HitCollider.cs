@@ -94,6 +94,21 @@ public class HitCollider : MonoBehaviour
             return false;
         }
 
+        bool inSameParty = false;
+        if (CORE.Instance.CurrentParty != null)
+        {
+            int matchingMembers = 0;
+
+            foreach (string member in CORE.Instance.CurrentParty.members)
+            {
+                if (ActorSource.State.Data.name == member || actorVictim.State.Data.name == member)
+                {
+                    matchingMembers++;
+                }
+            }
+            inSameParty = matchingMembers == 2;
+        }
+
         bool isVictimAlly = ActorSource.State.Data.isMob == actorVictim.State.Data.isMob;
 
         if (targetType == TargetType.Self)
@@ -115,6 +130,11 @@ public class HitCollider : MonoBehaviour
                 return false;
             }
 
+            if (CORE.Instance.ActiveSceneInfo.enablePvp && inSameParty)
+            {
+                return false;
+            }
+
             if (actorVictim.IsDead)
             {
                 return false;
@@ -131,10 +151,20 @@ public class HitCollider : MonoBehaviour
             {
                 return false;
             }
+
+            if (!ActorSource.State.Data.isMob && !inSameParty)
+            {
+                return false;
+            }
         }
         else if (targetType == TargetType.FriendsAndSelf)
         {
             if (!isVictimAlly)
+            {
+                return false;
+            }
+
+            if (!ActorSource.State.Data.isMob && !inSameParty)
             {
                 return false;
             }
