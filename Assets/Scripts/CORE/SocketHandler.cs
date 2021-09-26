@@ -1722,6 +1722,19 @@ public class ActorData
             this.ActorEntity = gActorObject.GetComponent<Actor>();
         }
     }
+
+    public ActorData Clone()
+    {
+        ActorData clone = (ActorData) this.MemberwiseClone();   
+        clone.equips = new Dictionary<string, Item>();
+
+        for(int i=0;i<equips.Keys.Count;i++)
+        {
+            clone.equips.Add(this.equips.Keys.ElementAt(i), (Item) this.equips[this.equips.Keys.ElementAt(i)].Clone());
+        }
+
+        return clone;
+    }
 }
 
 [Serializable]

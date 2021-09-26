@@ -16,6 +16,9 @@ public class Item
     public int amount;
 
     [JsonIgnore]
+    public string equipKey;
+
+    [JsonIgnore]
     public ItemEntity Entity;
 
     [JsonIgnore]
@@ -46,6 +49,11 @@ public class Item
 
     [JsonIgnore]
     public Material OrbMaterial;
+
+    public Item Clone()
+    { 
+        return (Item) this.MemberwiseClone();
+    }
 
 }
 

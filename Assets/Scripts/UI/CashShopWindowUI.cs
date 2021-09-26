@@ -105,7 +105,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     public void ShowDisplayActor()
     {
         DisplayActorPanel.SetActive(true);
-        DisplayActor.AttachedCharacter.SetActorInfo(CORE.PlayerActor);
+        DisplayActor.AttachedCharacter.SetActorInfo(CORE.PlayerActor.Clone());
         
         RefreshEQPState();
 
@@ -146,7 +146,14 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         Item itemInstance = new Item();
         itemInstance.Data = product.CurrentItem;
 
-        DisplayActor.AttachedCharacter.State.Data.equips.Add(product.CurrentItem.Type.ToString(), itemInstance);
+        if(!DisplayActor.AttachedCharacter.State.Data.equips.ContainsKey(product.CurrentItem.Type.ToString()))
+        {
+            DisplayActor.AttachedCharacter.State.Data.equips.Add(product.CurrentItem.Type.ToString(), itemInstance);
+        }
+        else
+        {
+            DisplayActor.AttachedCharacter.State.Data.equips[product.CurrentItem.Type.ToString()] = itemInstance;
+        }
         DisplayActor.AttachedCharacter.RefreshLooks();
 
         BuyButton.gameObject.SetActive(true);

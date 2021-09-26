@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: '
 
 '
+  UniquePrefab: 
   Stats:
     Power: 0
     HP: 0
@@ -37,16 +38,29 @@ MonoBehaviour:
     Explode: 0
     HpRegen: 0
   VendorPrice: 125
+  CashItemPrice: 0
   DropChance: 1
   Type: {fileID: 11400000, guid: 5bbe9426183acef449d9c64dda953cf9, type: 2}
   Rarity: {fileID: 11400000, guid: 3c421321ee602c345b0785d93f279b15, type: 2}
+  CashShopItem: 0
   OrbColliderObject: 
-  SkinOverride:
-  - {fileID: 11400000, guid: 1d5b213a942b58742bb8f62d2b4dae95, type: 2}
+  SkinOverride: []
+  NewSkinOverride:
+  - Part: {fileID: 11400000, guid: e07d90460e5f49444b393a797eb2a9ee, type: 2}
+    TargetSprite: {fileID: -6761606616795609385, guid: f2e819c0580d1cd49ae22d898a787fb9, type: 3}
+    TargetSpriteFemale: {fileID: 0}
+    BareSkin: 0
+    Hair: 0
   States: []
   TypeBasedOverrides:
   - TypeKey: Hand Left
-    Skinset: {fileID: 11400000, guid: 23f68b9c772f0744e8eeab7d681f265c, type: 2}
+    Skinset: {fileID: 0}
+    nSkinset:
+      Part: {fileID: 11400000, guid: 8765021ee7e588c4aa5cb6027f1f02b6, type: 2}
+      TargetSprite: {fileID: -6761606616795609385, guid: f2e819c0580d1cd49ae22d898a787fb9, type: 3}
+      TargetSpriteFemale: {fileID: 0}
+      BareSkin: 0
+      Hair: 0
   Pool: []
   OnExecuteParams: []
   OnHitParams:

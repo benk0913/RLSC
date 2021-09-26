@@ -39,7 +39,13 @@ public class ItemData : ScriptableObject
 
     [JsonIgnore]
     public List<SkinSet> SkinOverride = new List<SkinSet>();
-    
+
+    [JsonIgnore]
+    public List<NSkinSet> NewSkinOverride = new List<NSkinSet>();
+
+    [JsonIgnore]
+    public List<ItemType> HidingItemTypes = new List<ItemType>();
+
     public List<State> States = new List<State>();
     
     [JsonIgnore]
@@ -51,13 +57,13 @@ public class ItemData : ScriptableObject
     
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();
 
-    public SkinSet SkinTypeOverride(string typeKey)
+    public NSkinSet SkinTypeOverride(string typeKey)
     {
         TypeBasedOverride result = TypeBasedOverrides.Find(x => x.TypeKey == typeKey);
 
         if (result != null)
         {
-            return result.Skinset;
+            return result.nSkinset;
         }
 
         return null;
@@ -68,7 +74,43 @@ public class ItemData : ScriptableObject
     {
         public string TypeKey;
 
-        public SkinSet Skinset;
+        public NSkinSet nSkinset;
     }
 }
 
+[System.Serializable]
+public class NSkinSet
+{
+  public BodyPart Part;
+
+    [PreviewSprite]
+    public Sprite TargetSprite;
+
+    [PreviewSprite]
+    public Sprite TargetSpriteFemale;
+
+    public bool BareSkin = false;
+
+    public bool Hair = false;
+
+
+    public Sprite GetSprite(ActorData fromData)
+    {
+        if(fromData == null || fromData.looks == null)
+        {
+            return TargetSprite;
+        }
+
+        if(fromData.looks.IsFemale)
+        {
+            if(TargetSpriteFemale == null)
+            {
+                return TargetSprite;
+            }
+
+            return TargetSpriteFemale;
+        }
+
+        return TargetSprite;
+    }
+}

@@ -28,23 +28,66 @@ public class CGDatabaseEditor : Editor
 
         
          if (GUILayout.Button("CUSTOM SCRIPT"))
-        {
-            ClassJob[] jobs = db.content.Classes.FindAll(x=>x.DropsOnDeath.Count > 0).ToArray();
-            foreach(ClassJob job in jobs)
-            {
-                Debug.Log("CUSTOM SCRIPT "+job.name);
-                foreach(ItemData item in db.content.temporaryData)
-                {
-                    job.DropsOnDeath.Add(item);
-                    EditorUtility.SetDirty(job);
-                }
-            }
+        {   
+            //ADD CUSTOM DROPS
+            // ClassJob[] jobs = db.content.Classes.FindAll(x=>x.DropsOnDeath.Count > 0).ToArray();
+            // foreach(ClassJob job in jobs)
+            // {
+            //     Debug.Log("CUSTOM SCRIPT "+job.name);
+            //     foreach(ItemData item in db.content.temporaryData)
+            //     {
+            //         job.DropsOnDeath.Add(item);
+            //         EditorUtility.SetDirty(job);
+            //     }
+            // }
             
+            //SKIN OVERRIDE REPLACE
+            // foreach(ItemData item in db.content.Items)
+            // {
+                
+            //     foreach(ItemData.TypeBasedOverride ooverride in item.TypeBasedOverrides)
+            //     {
+            //         NSkinSet newSet = new NSkinSet();
+            //         newSet.TargetSprite = ooverride.Skinset.TargetSprite;
+            //         newSet.TargetSpriteFemale = ooverride.Skinset.TargetSpriteFemale;
+            //         newSet.BareSkin = ooverride.Skinset.BareSkin;
+            //         newSet.Hair = ooverride.Skinset.Hair;
+            //         newSet.Part = ooverride.Skinset.Part;
+
+            //         ooverride.nSkinset = newSet;
+            //         ooverride.Skinset =null;
+
+            //     }
+            //     EditorUtility.SetDirty(item);
+            // }
+
+            // foreach(ItemData item in db.content.Items)
+            // {
+            //     item.SkinOverride.Clear();
+            //     EditorUtility.SetDirty(item);
+            // }
         }
         
         
     }
     
+    public void SubFunctionA(ItemData item, SkinSet set)
+    {
+        NSkinSet newSet = new NSkinSet();
+                    newSet.TargetSprite = set.TargetSprite;
+                    newSet.TargetSpriteFemale = set.TargetSpriteFemale;
+                    newSet.BareSkin = set.BareSkin;
+                    newSet.Hair = set.Hair;
+                    newSet.Part = set.Part;
+
+                    foreach(SkinSet subset in set.BundledSkins)
+                    {
+                        SubFunctionA(item, subset);
+                    }
+
+                    item.NewSkinOverride.Add(newSet);
+    }
+
     public void AutofillCurrentSceneInfo(CGDatabase db)
     {
 
