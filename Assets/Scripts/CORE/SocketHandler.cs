@@ -378,6 +378,7 @@ public class SocketHandler : MonoBehaviour
         {
             CurrentUser.chars = JsonConvert.DeserializeObject<ActorData[]>(data["chars"].ToString());
             CurrentUser.cashItems = JsonConvert.DeserializeObject<Item[]>(data["cashItems"].ToString());
+            CurrentUser.cashPoints = data["cashPoints"].AsInt;
         });
         // TODO replace entire user data in repsonse?
     }
