@@ -519,7 +519,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        if (!CORE.Instance.DEBUG && (eventKey != "actors_moved" || CORE.Instance.DEBUG_SPAMMY_EVENTS))
+        if (CORE.Instance.DEBUG && (eventKey != "actors_moved" || CORE.Instance.DEBUG_SPAMMY_EVENTS))
         {
             CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + FormatJson(node.ToString()));
         }
