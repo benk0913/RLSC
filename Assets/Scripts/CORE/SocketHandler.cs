@@ -1271,7 +1271,7 @@ public class SocketHandler : MonoBehaviour
 
         CORE.Instance.Room.PlayerActor.money = money;
 
-        InventoryUI.Instance.RefreshUI();
+        CORE.Instance.InvokeEvent("InventoryUpdated");
     }
 
     public void OnCashRefresh(string eventName, JSONNode data)
@@ -1280,7 +1280,7 @@ public class SocketHandler : MonoBehaviour
 
         SocketHandler.Instance.CurrentUser.cashPoints = cash;
 
-        InventoryUI.Instance.RefreshUI();
+        CORE.Instance.InvokeEvent("InventoryUpdated");
     }
 
     public void OnChooseItemRoll(string eventName, JSONNode data)
