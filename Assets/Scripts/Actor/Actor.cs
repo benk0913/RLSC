@@ -772,14 +772,6 @@ public class Actor : MonoBehaviour
         Shadow.gameObject.SetActive(false);
 
 
-        //Eliminated emote
-        if(!State.Data.isMob)
-        {
-            JSONClass node = new JSONClass();
-            node["emote"] = "Eliminated Emote";
-            SocketHandler.Instance.SendEvent("emoted", node);
-        }
-
         if (!string.IsNullOrEmpty(State.Data.ClassJobReference.UniqueDeathSound))
         {
             AudioControl.Instance.PlayInPosition(State.Data.ClassJobReference.UniqueDeathSound, transform.position);
@@ -815,6 +807,15 @@ public class Actor : MonoBehaviour
             });
 
             StartCoroutine(DeathSlowmo());
+
+            
+            //Eliminated emote
+            if(!State.Data.isMob)
+            {
+                JSONClass node = new JSONClass();
+                node["emote"] = "Eliminated Emote";
+                SocketHandler.Instance.SendEvent("emoted", node);
+            }
         }
     }
 
