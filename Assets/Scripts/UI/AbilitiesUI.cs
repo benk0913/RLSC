@@ -110,11 +110,29 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
             HoveredAbility.Deselect();
             ResetReplacement();
+
+            for(int i=0;i<CurrentAbilitiesContainer.childCount;i++)
+            {
+                AbilitySlotDraggableUI slot = CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
+                slot.Unmark();
+            }
         }
         else
         {
             SelectedAbility = HoveredAbility;
             SelectedAbility.Select();
+
+            for(int i=0;i<CurrentAbilitiesContainer.childCount;i++)
+            {
+                AbilitySlotDraggableUI slot = CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
+                if(slot == SelectedAbility)
+                {
+                    slot.Unmark();
+                    continue;
+                }
+
+                slot.Mark();
+            }
         }
 
         AudioControl.Instance.Play(SelectAbilitySound);

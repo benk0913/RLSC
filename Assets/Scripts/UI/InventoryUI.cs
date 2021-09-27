@@ -192,9 +192,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
                 CORE.ClearContainer(CashItemsContainer);
 
-                for (int i = 0; i < SocketHandler.Instance.CurrentUser.cashItems.Length; i++)
+                for (int i = 0; i < SocketHandler.Instance.CurrentUser.cashItems.Count; i++)
                 {
                     InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
+
                     slot.SetItem(SocketHandler.Instance.CurrentUser.cashItems[i], () => Select(slot));
                     slot.transform.SetParent(CashItemsContainer, false);
                     slot.transform.localScale = Vector3.one;

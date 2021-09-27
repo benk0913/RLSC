@@ -10,6 +10,12 @@ public class AbilitySlotDraggableUI : AbilitySlotUI
     [SerializeField]
     public UnityEvent OnDeselect;
 
+    [SerializeField]
+    public UnityEvent OnMark;
+
+    [SerializeField]
+    public UnityEvent OnUnmark;
+
     public void Deselect()
     {
         OnDeselect?.Invoke();
@@ -20,6 +26,17 @@ public class AbilitySlotDraggableUI : AbilitySlotUI
         OnSelect?.Invoke();
     }
     
+    public void Unmark()
+    {
+        OnUnmark?.Invoke();
+    }
+
+    public void Mark()
+    {
+        OnMark?.Invoke();
+    }
+    
+
     public void OnSelectionEnter()
     {
         Tooltip.ShowOnPosition(transform.position);

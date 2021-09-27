@@ -60,6 +60,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void SetItem(Item item, Action onSelect = null, ItemType slotType = null, bool isInspecting = false)
     {
+        
         CurrentItem = item;
 
         IsInspecting = isInspecting;
@@ -73,7 +74,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     void RefreshUI()
     {
-        if(CurrentItem == null) 
+        if(CurrentItem == null || string.IsNullOrEmpty(CurrentItem.itemId))
         {
             IconImage.enabled = false;
 

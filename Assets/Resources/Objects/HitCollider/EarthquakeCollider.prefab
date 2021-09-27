@@ -127,8 +127,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   CanMiss: 0
-  HitOnlyGroundedActors: 0
+  HitOnlyGroundedActors: 1
+  ParentCollider: {fileID: 0}
   StickToActor: 0
+  StickToActorFacing: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 0
   SkilledShotPoint: {fileID: 0}
@@ -143,6 +145,8 @@ MonoBehaviour:
   BubblesDuplicated: []
   AudioOnHit: 
   HitInterval: 0
+  RemoveOnInterrupt: 0
+  ChildrenColliders: []
 --- !u!114 &3940188688605025950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +201,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

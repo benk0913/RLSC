@@ -124,7 +124,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         CORE.ClearContainer(CashItemsInventoryContainer);
 
-        for (int i = 0; i < SocketHandler.Instance.CurrentUser.cashItems.Length; i++)
+        for (int i = 0; i < SocketHandler.Instance.CurrentUser.cashItems.Count; i++)
         {
             InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
             slot.SetItem(SocketHandler.Instance.CurrentUser.cashItems[i], null);

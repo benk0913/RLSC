@@ -372,14 +372,13 @@ public class SocketHandler : MonoBehaviour
 
     public void OnLogin(UnityWebRequest response)
     {
-        JSONNode data = JSON.Parse(response.downloadHandler.text);
+         JSONNode data = JSON.Parse(response.downloadHandler.text);
 
         CORE.Instance.DelayedInvokation(0.1f,()=>
         {
             CurrentUser.chars = JsonConvert.DeserializeObject<ActorData[]>(data["chars"].ToString());
-            CurrentUser.cashItems = JsonConvert.DeserializeObject<Item[]>(data["cashItems"].ToString());
+            CurrentUser.cashItems = JsonConvert.DeserializeObject<List<Item>>(data["cashItems"].ToString());
         });
-        // TODO replace entire user data in repsonse?
     }
 
     public void OnCreateCharacter(UnityWebRequest response)
@@ -1609,13 +1608,14 @@ public class SocketHandler : MonoBehaviour
 [Serializable]
 public class UserData
 {
+    
     public ActorData actor;
 
     public ActorData[] chars;
 
     public FriendData[] friends;
 
-    public Item[] cashItems;
+    public List<Item> cashItems;
 
     public int cashPoints;
 
