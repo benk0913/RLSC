@@ -415,9 +415,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         {
             if (!SelectedSlot.IsEquipmentSlot)
             {
-                // TODO set isCash to be true if the current inventory tab is cash.
-                bool isCash = false;
-                SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex(), isCash);
+                SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
             }
             else
             {
@@ -462,9 +460,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             return;
         }
         
-        // TODO set isCash to be true if the current inventory tab is cash.
-        bool isCash = false;
-        if (isCash)
+        if (IsCashTab)
         {
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Cash items cannot be dropped.", Color.red));
             return;

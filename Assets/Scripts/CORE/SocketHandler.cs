@@ -104,6 +104,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("orb_added", OnOrbAdded));
         SocketEventListeners.Add(new SocketEventListener("money_refresh", OnMoneyRefresh));
 
+        // Cash Items
+        SocketEventListeners.Add(new SocketEventListener("cash_refresh", OnCashRefresh));
+
         // Rolls
         SocketEventListeners.Add(new SocketEventListener("choose_item_roll", OnChooseItemRoll));
         SocketEventListeners.Add(new SocketEventListener("actor_chose_rolled_item", OnActorChoseRolledItem));
@@ -378,6 +381,8 @@ public class SocketHandler : MonoBehaviour
         {
             CurrentUser.chars = JsonConvert.DeserializeObject<ActorData[]>(data["chars"].ToString());
             CurrentUser.cashItems = JsonConvert.DeserializeObject<List<Item>>(data["cashItems"].ToString());
+            CurrentUser.cashPoints = data["cashPoints"].AsInt;
+
         });
     }
 
@@ -514,7 +519,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        if (!CORE.Instance.DEBUG && (eventKey != "actors_moved" || CORE.Instance.DEBUG_SPAMMY_EVENTS))
+        if (CORE.Instance.DEBUG && (eventKey != "actors_moved" || CORE.Instance.DEBUG_SPAMMY_EVENTS))
         {
             CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + FormatJson(node.ToString()));
         }
@@ -1266,7 +1271,16 @@ public class SocketHandler : MonoBehaviour
 
         CORE.Instance.Room.PlayerActor.money = money;
 
-        InventoryUI.Instance.RefreshUI();
+        CORE.Instance.InvokeEvent("InventoryUpdated");
+    }
+
+    public void OnCashRefresh(string eventName, JSONNode data)
+    {
+        int cash = data["cash"].AsInt;
+
+        SocketHandler.Instance.CurrentUser.cashPoints = cash;
+
+        CORE.Instance.InvokeEvent("InventoryUpdated");
     }
 
     public void OnChooseItemRoll(string eventName, JSONNode data)
