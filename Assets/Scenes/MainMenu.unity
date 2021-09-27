@@ -18007,18 +18007,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1133495203}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1756633160}
         m_TargetAssemblyTypeName: CreateCharacterPanelUI, Assembly-CSharp
         m_MethodName: Confirm
@@ -34889,6 +34877,33 @@ MonoBehaviour:
   CreateCharTooltip: {fileID: 1868701166}
   VersionLabel: {fileID: 873838450}
   ClassSelectionPanel: {fileID: 383077018}
+  OnNoCharacters:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 383077018}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1133495203}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1410499645
 GameObject:
   m_ObjectHideFlags: 0
@@ -46458,6 +46473,33 @@ MonoBehaviour:
   DisplayActor: {fileID: 1132888798}
   NameInputField: {fileID: 799506683}
   SelectionGroup: {fileID: 1756633163}
+  OnCharacterCreationComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1756633157}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1133495203}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   DefaultEars:
   - {fileID: 11400000, guid: 43e1eab3c411c7540ae72d584ae21feb, type: 2}
   - {fileID: 11400000, guid: d30db91f10f4a924ba696cd36914c9b5, type: 2}

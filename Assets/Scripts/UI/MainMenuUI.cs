@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class MainMenuUI : MonoBehaviour
 
     [SerializeField]
     GameObject ClassSelectionPanel;
+
+    [SerializeField]
+    UnityEvent OnNoCharacters;
 
     private void Awake()
     {
@@ -119,7 +123,7 @@ public class MainMenuUI : MonoBehaviour
 
         if (SocketHandler.Instance.CurrentUser.chars.Length <= 0)
         {
-            ClassSelectionPanel.SetActive(true);
+            OnNoCharacters?.Invoke();
         }
         CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Length < CORE.Instance.Data.content.MaxCharacters;
         CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : "Cannot have more than " + CORE.Instance.Data.content.MaxCharacters + " characters.");

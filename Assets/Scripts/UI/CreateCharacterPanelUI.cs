@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CreateCharacterPanelUI : MonoBehaviour
@@ -16,6 +17,9 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     [SerializeField]
     SelectionGroupUI SelectionGroup;
+
+    [SerializeField]
+    UnityEvent OnCharacterCreationComplete;
 
     public List<SkinSet> DefaultEars = new List<SkinSet>();
     public List<SkinSet> DefaultEyebrows = new List<SkinSet>();
@@ -104,6 +108,10 @@ public class CreateCharacterPanelUI : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             MainMenuUI.Instance.AutoLogin();
+            OnCharacterCreationComplete?.Invoke();
+        },()=>
+        {
+            
         });
     }
 

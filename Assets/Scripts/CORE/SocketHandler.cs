@@ -196,16 +196,20 @@ public class SocketHandler : MonoBehaviour
         {
             OnLogin(lreq);
 
-            OnComplete?.Invoke();
+            CORE.Instance.DelayedInvokation(0.2f,()=>
+            {
+                OnComplete?.Invoke();
+            });
+            
         },
         node.ToString(),
         null,
         true);
     }
 
-    public void SendCreateCharacter(string element = "fire", ActorData actor = null, Action OnComplete = null)
+    public void SendCreateCharacter(string element = "fire", ActorData actor = null, Action OnComplete = null, Action OnError = null)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Creating Character...", Color.green, 1f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to create character...", Color.green, 1f, true));
 
         JSONNode node = new JSONClass();
         node["skipTutorial"] = SkippedTutorial();
@@ -221,7 +225,12 @@ public class SocketHandler : MonoBehaviour
         },
         node.ToString(),
         null,
-        true);
+        true,
+        (UnityWebRequest err)=>
+        {
+            CORE.Instance.LogMessageError(err.error);
+            OnError?.Invoke();
+        });
     }
 
     public void SendGetRandomName(bool IsFemale, Action<string> OnComplete)
@@ -365,15 +374,18 @@ public class SocketHandler : MonoBehaviour
     {
         JSONNode data = JSON.Parse(response.downloadHandler.text);
 
-        CurrentUser.chars = JsonConvert.DeserializeObject<ActorData[]>(data["chars"].ToString());
-        CurrentUser.cashItems = JsonConvert.DeserializeObject<Item[]>(data["cashItems"].ToString());
+        CORE.Instance.DelayedInvokation(0.1f,()=>
+        {
+            CurrentUser.chars = JsonConvert.DeserializeObject<ActorData[]>(data["chars"].ToString());
+            CurrentUser.cashItems = JsonConvert.DeserializeObject<Item[]>(data["cashItems"].ToString());
+        });
         // TODO replace entire user data in repsonse?
     }
 
     public void OnCreateCharacter(UnityWebRequest response)
     {
         //CurrentUser.actor = JsonConvert.DeserializeObject<ActorData>(response.downloadHandler.text);
-        JSONNode data = JSON.Parse(response.downloadHandler.text);
+        // JSONNode data = JSON.Parse(response.downloadHandler.text);
     }
     public void OnDeleteCharacter(UnityWebRequest response)
     {
@@ -385,12 +397,12 @@ public class SocketHandler : MonoBehaviour
 
     #region HTTP Request Handling
 
-    public void SendWebRequest(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string, string> urlParams = null, bool isPost = false)
+    public void SendWebRequest(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string, string> urlParams = null, bool isPost = false, Action<UnityWebRequest> OnError = null)
     {
-        StartCoroutine(SendHTTPRequestRoutine(url, OnResponse, sentJson, urlParams, isPost));
+        StartCoroutine(SendHTTPRequestRoutine(url, OnResponse, sentJson, urlParams, isPost, OnError));
     }
 
-    public IEnumerator SendHTTPRequestRoutine(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string, string> urlParams = null, bool isPost = false)
+    public IEnumerator SendHTTPRequestRoutine(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string, string> urlParams = null, bool isPost = false, Action<UnityWebRequest> OnError = null)
     {
 
         UnityWebRequest request;
@@ -450,18 +462,32 @@ public class SocketHandler : MonoBehaviour
 
         yield return request.SendWebRequest();
 
-        if (CORE.Instance.DEBUG)
+        if (request.result == UnityWebRequest.Result.ConnectionError 
+        || request.result == UnityWebRequest.Result.ProtocolError 
+        || request.result == UnityWebRequest.Result.DataProcessingError)
         {
-            CORE.Instance.LogMessage("Response: " + url + " | " + FormatJson(request.downloadHandler.text));
-        }
-
-        if (request.isNetworkError || request.isHttpError)
-        {
+            OnError?.Invoke(request);
             CORE.Instance.LogMessageError(request.error + " | " + request.downloadHandler.text);
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(request.downloadHandler.text, Color.red, 2f, true));
 
             yield break;
         }
+
+
+        if (CORE.Instance.DEBUG)
+        {
+            if(CORE.Instance.DEBUG_SPAMMY_EVENTS)
+            {
+                CORE.Instance.LogMessage(url+" | " + request.downloadHandler.text);
+            }
+
+            try
+            {
+                CORE.Instance.LogMessage("Response: " + url + " | " + FormatJson(request.downloadHandler.text));
+            }
+            catch{}
+        }
+
 
 
         OnResponse?.Invoke(request);

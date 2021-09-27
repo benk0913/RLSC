@@ -305,9 +305,9 @@ namespace EdgeworldBase
                 lastMiliSec = Time.time;
             }
 
+            
 
-
-            AudioClip[] loadedClip = Resources.LoadAll<AudioClip>("Audio");
+            AudioClip[] loadedClipMusic = Resources.LoadAll<AudioClip>("Audio/Music");
 
             yield return 0;
 
@@ -320,17 +320,17 @@ namespace EdgeworldBase
 
             if (debugMode)
             {
-                Debug.Log("Resource Loader - Loaded " + (loadedClip.Length + 1) + " resources.");
+                Debug.Log("Resource Loader - Loaded " + (loadedClipMusic.Length + 1) + " resources.");
             }
 
-            for (int i = 0; i < loadedClip.Length; i++)
+            for (int i = 0; i < loadedClipMusic.Length; i++)
             {
 
-                m_dicLoadedClips.Add(loadedClip[i].name, loadedClip[i]);
+                m_dicLoadedClips.Add(loadedClipMusic[i].name, loadedClipMusic[i]);
 
                 if (debugMode)
                 {
-                    Debug.Log("Resource Loader - " + loadedClip[i].name + " - Has been loaded.");
+                    Debug.Log("Resource Loader - " + loadedClipMusic[i].name + " - Has been loaded.");
                 }
 
                 if (i % 10 == 0)
@@ -338,6 +338,76 @@ namespace EdgeworldBase
                     yield return 0;
                 }
             }
+
+            
+            AudioClip[] loadedClipSoundscape = Resources.LoadAll<AudioClip>("Audio/Soundscape");
+
+            yield return 0;
+
+            if (debugMode)
+            {
+                Debug.Log((Time.time - lastMiliSec) + "***AUDIO");
+                lastMiliSec = Time.time;
+            }
+
+
+            if (debugMode)
+            {
+                Debug.Log("Resource Loader - Loaded " + (loadedClipSoundscape.Length + 1) + " resources.");
+            }
+
+            for (int i = 0; i < loadedClipSoundscape.Length; i++)
+            {
+
+                m_dicLoadedClips.Add(loadedClipSoundscape[i].name, loadedClipSoundscape[i]);
+
+                if (debugMode)
+                {
+                    Debug.Log("Resource Loader - " + loadedClipSoundscape[i].name + " - Has been loaded.");
+                }
+
+                if (i % 10 == 0)
+                {
+                    yield return 0;
+                }
+            }
+
+            
+            
+            AudioClip[] loadedClipSFX = Resources.LoadAll<AudioClip>("Audio/SFX");
+
+            yield return 0;
+
+            if (debugMode)
+            {
+                Debug.Log((Time.time - lastMiliSec) + "***AUDIO");
+                lastMiliSec = Time.time;
+            }
+
+
+            if (debugMode)
+            {
+                Debug.Log("Resource Loader - Loaded " + (loadedClipSFX.Length + 1) + " resources.");
+            }
+
+            for (int i = 0; i < loadedClipSFX.Length; i++)
+            {
+
+                m_dicLoadedClips.Add(loadedClipSFX[i].name, loadedClipSFX[i]);
+
+                if (debugMode)
+                {
+                    Debug.Log("Resource Loader - " + loadedClipSFX[i].name + " - Has been loaded.");
+                }
+
+                if (i % 10 == 0)
+                {
+                    yield return 0;
+                }
+            }
+
+            
+
 
 
             if (debugMode)
