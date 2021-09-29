@@ -1765,12 +1765,22 @@ public class ActorData
 
     public ActorData Clone()
     {
-        ActorData clone = (ActorData) this.MemberwiseClone();   
+        ActorData clone = (ActorData) this.MemberwiseClone();  
+        clone.actorId = "DISPLAY_CHARACTER"; 
         clone.equips = new Dictionary<string, Item>();
 
         for(int i=0;i<equips.Keys.Count;i++)
         {
-            clone.equips.Add(this.equips.Keys.ElementAt(i), (Item) this.equips[this.equips.Keys.ElementAt(i)].Clone());
+            Item item = (Item) this.equips[this.equips.Keys.ElementAt(i)];
+
+            if(item != null)
+            {
+                clone.equips.Add(this.equips.Keys.ElementAt(i), item.Clone());
+            }
+            else
+            {
+                clone.equips.Add(this.equips.Keys.ElementAt(i), null);
+            }
         }
 
         return clone;

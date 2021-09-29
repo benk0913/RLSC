@@ -4,6 +4,7 @@ using EdgeworldBase;
 using SimpleJSON;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CashShopWindowUI : MonoBehaviour, WindowInterface
@@ -55,10 +56,18 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     public string OpenSound;
     public string HideSound;
 
+
+    public UnityEvent OnHide;
+    
     private void Awake()
     {
         Instance = this;
         Hide();
+    }
+
+    void OnDisable()
+    {
+        OnHide?.Invoke();
     }
 
     void Start()
