@@ -121,21 +121,6 @@ public class ActorSkin : MonoBehaviour
             {
                 normalItems.RemoveAll(x=>x.Data.Type == type);
             }
-
-            foreach(NSkinSet set in overrideItem.Data.NewSkinOverride)
-                {   
-                    NSkinSet typeBasedOverride = overrideItem.Data.SkinTypeOverride(overrideItem.equipKey);
-
-
-                    if (typeBasedOverride != null)
-                    {
-                        SetSkin(typeBasedOverride);
-                    }
-                    else
-                    {
-                        SetSkin(set);
-                    }
-                }
         }
 
         foreach(Item normalItem in normalItems)
@@ -154,6 +139,24 @@ public class ActorSkin : MonoBehaviour
                     }
                 }
 
+        }
+
+        foreach(Item overrideItem in cashShopItems)
+        {
+            foreach(NSkinSet set in overrideItem.Data.NewSkinOverride)
+                {   
+                    NSkinSet typeBasedOverride = overrideItem.Data.SkinTypeOverride(overrideItem.equipKey);
+
+
+                    if (typeBasedOverride != null)
+                    {
+                        SetSkin(typeBasedOverride);
+                    }
+                    else
+                    {
+                        SetSkin(set);
+                    }
+                }
         }
 
         
