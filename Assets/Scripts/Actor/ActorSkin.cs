@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActorSkin : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class ActorSkin : MonoBehaviour
 
     [SerializeField]
     SpriteRenderer Halo;
+
+
+    [SerializeField]
+    Image NameTagImage;
+
 
     [SerializeField]
     public List<GameObject> OrbEffects = new List<GameObject>();
@@ -113,6 +119,13 @@ public class ActorSkin : MonoBehaviour
             {
                 normalItems.Add(equip);
             }
+
+            if(equip.Data.Type.ToString() == "NameTag")
+            {
+                NameTagImage.sprite = equip.Data.Icon;
+            }
+
+
         }
 
         foreach(Item overrideItem in cashShopItems)
@@ -161,6 +174,8 @@ public class ActorSkin : MonoBehaviour
 
         
         RefreshOrbs();
+
+        
     }
 
     public void RefreshOrbs()
