@@ -159,6 +159,10 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         Item itemInstance = new Item();
         itemInstance.Data = product.CurrentItem;
 
+
+        BuyButton.gameObject.SetActive(true);
+
+
         if(itemInstance.Data.Type.name == "Chat Bubble")
         {
             DisplayTextBubble.gameObject.SetActive(true);
@@ -189,9 +193,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         {
             DisplayActor.AttachedCharacter.State.Data.equips[product.CurrentItem.Type.name] = itemInstance;
         }
+        
         DisplayActor.AttachedCharacter.RefreshLooks();
-
-        BuyButton.gameObject.SetActive(true);
 
         if(CORE.Instance.DEBUG)
         {
