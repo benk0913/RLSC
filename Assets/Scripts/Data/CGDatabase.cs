@@ -83,6 +83,7 @@ public class DatabaseContent
     public AttributeData AttributesLimits;
 
     public List<ItemData> BaseEmotes = new List<ItemData>();
+
     public ItemData DefaultNameTag;
     public ItemData DefaultChatBubble;
 

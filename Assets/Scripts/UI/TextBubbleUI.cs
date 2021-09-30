@@ -19,18 +19,28 @@ public class TextBubbleUI : MonoBehaviour
     [SerializeField]
     RectTransform RectTrans;
 
+    [SerializeField]
+    Image ChatBubbleImage;
+
 
     Transform CurrentAnchor;
 
     Action OnHide;
 
-    public void Show(Transform anchor, string message, Action onHide = null, bool isFemale = false)
+    public void Show(Transform anchor, string message, Action onHide = null, bool isFemale = false,Sprite skinSprite = null)
     {
         this.gameObject.SetActive(true);
         StopAllCoroutines();
-
+        
         CurrentAnchor = anchor;
         StartCoroutine(ShowRoutine(message,isFemale));
+
+        if(skinSprite == null)
+        {
+            skinSprite = CORE.Instance.Data.content.DefaultChatBubble.Icon;
+        }
+
+        ChatBubbleImage.sprite = skinSprite;
 
         OnHide = onHide;
     }

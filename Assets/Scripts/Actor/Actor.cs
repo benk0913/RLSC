@@ -1186,7 +1186,15 @@ public class Actor : MonoBehaviour
         }
 
         CurrentBubble = ResourcesLoader.Instance.GetRecycledObject("TextBubbleUI").GetComponent<TextBubbleUI>();
-        CurrentBubble.Show(transform,message,()=> { CurrentBubble = null; },State.Data.looks.IsFemale);
+
+        Sprite chatBubbleSprite = null;
+        Item chatBubbleSkin = this.State.Data.equips["Chat Bubble"];
+        if(chatBubbleSkin != null)
+        {
+            chatBubbleSprite = chatBubbleSkin.Data.Icon;
+        }
+
+        CurrentBubble.Show(transform,message,()=> { CurrentBubble = null; },State.Data.looks.IsFemale,chatBubbleSprite);
         CurrentBubble.transform.position = transform.position;
     }
 

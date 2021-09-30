@@ -124,6 +124,10 @@ public class ActorSkin : MonoBehaviour
             {
                 NameTagImage.sprite = equip.Data.Icon;
             }
+            else
+            {
+                NameTagImage.sprite = CORE.Instance.Data.content.DefaultNameTag.Icon;
+            }
 
 
         }
