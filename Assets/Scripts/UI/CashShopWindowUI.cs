@@ -18,6 +18,10 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     [SerializeField]
     GameObject DisplayActorPanel;
 
+
+    [SerializeField]
+    TextBubbleUI DisplayTextBubble;
+
     [SerializeField]
     DisplayCharacterUI DisplayActor;
 
@@ -155,24 +159,52 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         Item itemInstance = new Item();
         itemInstance.Data = product.CurrentItem;
 
-        if(!DisplayActor.AttachedCharacter.State.Data.equips.ContainsKey(product.CurrentItem.Type.ToString()))
+        if(itemInstance.Data.Type.name == "Chat Bubble")
         {
-            DisplayActor.AttachedCharacter.State.Data.equips.Add(product.CurrentItem.Type.ToString(), itemInstance);
+            DisplayTextBubble.gameObject.SetActive(true);
+            DisplayTextBubble.Show(DisplayTextBubble.transform,"Hello",null,false,itemInstance.Data.Icon);
         }
         else
         {
-            DisplayActor.AttachedCharacter.State.Data.equips[product.CurrentItem.Type.ToString()] = itemInstance;
+            DisplayTextBubble.gameObject.SetActive(false);
+        }
+
+        if(!DisplayActor.AttachedCharacter.State.Data.equips.ContainsKey(product.CurrentItem.Type.name))
+        {
+            DisplayActor.AttachedCharacter.State.Data.equips.Add(product.CurrentItem.Type.name, itemInstance);
+        }
+        else
+        {
+            DisplayActor.AttachedCharacter.State.Data.equips[product.CurrentItem.Type.name] = itemInstance;
         }
         DisplayActor.AttachedCharacter.RefreshLooks();
 
         BuyButton.gameObject.SetActive(true);
+
+        if(CORE.Instance.DEBUG)
+        {
+            string TEST = "";
+
+            foreach(string key in DisplayActor.AttachedCharacter.State.Data.equips.Keys)
+            {
+                Item item = DisplayActor.AttachedCharacter.State.Data.equips[key];
+                TEST += key;
+
+                if(item != null)
+                    TEST += " " + item.Data.name  + " | ";
+                else
+                        TEST += " | ";
+            }
+
+            CORE.Instance.LogMessage(TEST);
+        }
     }
 
     public void DeselectProduct()
     {
         if(SelectedProduct != null)
         {
-            DisplayActor.AttachedCharacter.State.Data.equips.Remove(SelectedProduct.CurrentItem.Type.ToString());
+            DisplayActor.AttachedCharacter.State.Data.equips.Remove(SelectedProduct.CurrentItem.Type.name);
             DisplayActor.AttachedCharacter.RefreshLooks();
             
             SelectedProduct.SetDeselected();

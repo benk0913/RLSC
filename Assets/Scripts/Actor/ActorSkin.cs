@@ -120,16 +120,17 @@ public class ActorSkin : MonoBehaviour
                 normalItems.Add(equip);
             }
 
-            if(equip.Data.Type.ToString() == "NameTag")
+            if(equip.Data.Type.name == "Name Tag")
             {
                 NameTagImage.sprite = equip.Data.Icon;
             }
-            else
-            {
-                NameTagImage.sprite = CORE.Instance.Data.content.DefaultNameTag.Icon;
-            }
 
 
+        }
+
+        if(!Act.State.Data.equips.ContainsKey("Name Tag"))
+        {
+            NameTagImage.sprite = CORE.Instance.Data.content.DefaultNameTag.Icon;
         }
 
         foreach(Item overrideItem in cashShopItems)
