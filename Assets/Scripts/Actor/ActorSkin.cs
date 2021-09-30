@@ -25,7 +25,7 @@ public class ActorSkin : MonoBehaviour
 
     Emote CurrentEmote;
 
-    Coroutine EmoteRoutineInstance;
+    public Coroutine EmoteRoutineInstance;
 
     public List<SpriteRenderer> PartsHiddenByEmote = new List<SpriteRenderer>();
 
@@ -363,7 +363,9 @@ public class ActorSkin : MonoBehaviour
             yield break;
         }
 
+
         renderPart.Renderer.sprite = emote.EmoteGraphic;
+
 
         foreach(SpriteRenderer hiddenRenderer in PartsHiddenByEmote)
         {

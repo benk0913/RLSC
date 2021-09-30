@@ -169,6 +169,18 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
             DisplayTextBubble.gameObject.SetActive(false);
         }
 
+        if(itemInstance.Data.Type.name == "Emote")
+        {
+            if(DisplayActor.AttachedCharacter.Skin.EmoteRoutineInstance != null)
+            {
+                StopCoroutine(DisplayActor.AttachedCharacter.Skin.EmoteRoutineInstance);
+                DisplayActor.AttachedCharacter.Skin.EmoteRoutineInstance = null;
+            }
+
+            DisplayActor.AttachedCharacter.Emote(CORE.Instance.Data.content.Emotes.Find(X=>X.name == itemInstance.Data.name));
+            return;//Required so RefreshLooks wont wipe the emote...
+        }
+
         if(!DisplayActor.AttachedCharacter.State.Data.equips.ContainsKey(product.CurrentItem.Type.name))
         {
             DisplayActor.AttachedCharacter.State.Data.equips.Add(product.CurrentItem.Type.name, itemInstance);
@@ -252,24 +264,27 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         CORE.ClearContainer(CurrentFocusedStoreContainer);
 
-        CashShopDatabase.CashShopStore currentStore = CORE.Instance.Data.content.CashShop.CashShopStores.Find(x=>x.StoreKey == storeKey);
-
-        if(currentStore == null)
+        CORE.Instance.DelayedInvokation(0.01f,()=>
         {
-            CORE.Instance.LogMessageError("No store with key "+storeKey);
-            return;
-        }
+            CashShopDatabase.CashShopStore currentStore = CORE.Instance.Data.content.CashShop.CashShopStores.Find(x=>x.StoreKey == storeKey);
 
-        foreach(ItemData item in currentStore.StoreItems)
-        {
-            CashShopProductUI product = ResourcesLoader.Instance.GetRecycledObject("CashShopProductUI").GetComponent<CashShopProductUI>();
-            product.transform.SetParent(CurrentFocusedStoreContainer, false);
-            product.transform.localScale = Vector3.one;
-            product.transform.position = Vector3.zero;
-            product.SetInfo(item);
-        }
+            if(currentStore == null)
+            {
+                CORE.Instance.LogMessageError("No store with key "+storeKey);
+                return;
+            }
 
-        RefreshSelectionGroup();
+            foreach(ItemData item in currentStore.StoreItems)
+            {
+                CashShopProductUI product = ResourcesLoader.Instance.GetRecycledObject("CashShopProductUI").GetComponent<CashShopProductUI>();
+                product.transform.SetParent(CurrentFocusedStoreContainer, false);
+                product.transform.localScale = Vector3.one;
+                product.transform.position = Vector3.zero;
+                product.SetInfo(item);
+            }
+
+            RefreshSelectionGroup();
+        }); 
     }   
 
     public void RefreshSelectionGroup()

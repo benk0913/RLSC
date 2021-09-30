@@ -28,7 +28,7 @@ public class Actor : MonoBehaviour
     protected Animator Animer;
 
     [SerializeField]
-    protected ActorSkin Skin;
+    public ActorSkin Skin;
 
     [SerializeField]
     protected LayerMask GroundMask;
@@ -1557,7 +1557,14 @@ public class Actor : MonoBehaviour
 
     public void AttemptEmote(int emoteIndex)
     {
-        Item emoteItem = State.Data.equips["Emote " + emoteIndex];
+        string emoteString = "Emote " + emoteIndex;
+        Item emoteItem = null;
+
+        if(State.Data.equips.ContainsKey(emoteString))
+        {
+            emoteItem = State.Data.equips[emoteString ];
+        }
+
         if(emoteItem == null)
         {
             return;
