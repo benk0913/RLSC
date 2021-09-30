@@ -63,6 +63,8 @@ public class AbilityParam
 
     [JsonConverter(typeof(ObjectNameConverter))]
     public ScriptableObject ObjectValue;
+
+    public string Value2;
 }
 
 [Serializable]
