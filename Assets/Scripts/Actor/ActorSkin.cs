@@ -48,48 +48,7 @@ public class ActorSkin : MonoBehaviour
         SetSkin(looks.Iris);
         SetSkin(looks.Eyebrows);
 
-        if (!string.IsNullOrEmpty(looks.SkinColor))
-        {
-            Color relevantColor = Color.clear;
-            if (ColorUtility.TryParseHtmlString(looks.SkinColor, out relevantColor))
-            {
-                foreach (RendererPart part in SkinParts)
-                {
-                    if (part.CurrentSkinSet == null || !part.CurrentSkinSet.BareSkin)
-                    {
-                        continue;
-                    }
-
-                    SetSkinColor(part, relevantColor);
-                }
-            }
-            else
-            {
-                CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
-            }
-        }
         
-        if (!string.IsNullOrEmpty(looks.SkinColor))
-        {
-            Color relevantColor = Color.clear;
-            if (ColorUtility.TryParseHtmlString(looks.HairColor, out relevantColor))
-            {
-                foreach (RendererPart part in SkinParts)
-                {
-                    if (part.CurrentSkinSet == null || !part.CurrentSkinSet.Hair)
-                    {
-                        continue;
-                    }
-
-                    SetSkinColor(part, relevantColor);
-                }
-            }
-            else
-            {
-                CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
-            }
-        }
-
         ClassJob job = CORE.Instance.Data.content.Classes.Find(x => x.name == Act.State.Data.classJob);
 
         if (job != null && Halo != null)
@@ -175,6 +134,50 @@ public class ActorSkin : MonoBehaviour
                         SetSkin(set);
                     }
                 }
+        }
+
+
+        if (!string.IsNullOrEmpty(looks.SkinColor))
+        {
+            Color relevantColor = Color.clear;
+            if (ColorUtility.TryParseHtmlString(looks.SkinColor, out relevantColor))
+            {
+                foreach (RendererPart part in SkinParts)
+                {
+                    if (part.CurrentSkinSet == null || !part.CurrentSkinSet.BareSkin)
+                    {
+                        continue;
+                    }
+
+                    SetSkinColor(part, relevantColor);
+                }
+            }
+            else
+            {
+                CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
+            }
+        }
+        
+        if (!string.IsNullOrEmpty(looks.SkinColor))
+        {
+            Color relevantColor = Color.clear;
+            if (ColorUtility.TryParseHtmlString(looks.HairColor, out relevantColor))
+            {
+                foreach (RendererPart part in SkinParts)
+                {
+                    if (part.CurrentSkinSet == null || !part.CurrentSkinSet.Hair)
+                    {
+                        continue;
+                    }
+
+                    SetSkinColor(part, relevantColor);
+                }
+                
+            }
+            else
+            {
+                CORE.Instance.LogMessageError("Could not parse color - " + looks.SkinColor);
+            }
         }
 
         
@@ -418,8 +421,6 @@ public class RendererPart
     
     public void SetSkin(NSkinSet set, ActorData actor)
     {
-        
-
         NCurrentSkinSet = set;
 
         if (set == null)
@@ -429,6 +430,24 @@ public class RendererPart
         else
         {
             Renderer.sprite = NCurrentSkinSet.GetSprite(actor);
+        }
+
+        if (set.BareSkin)
+        {
+            if (!string.IsNullOrEmpty(actor.looks.SkinColor))
+            {
+                Color relevantColor = Color.clear;
+                if (ColorUtility.TryParseHtmlString(actor.looks.SkinColor, out relevantColor))
+                {
+                    
+
+                    Renderer.color =  relevantColor;
+                }
+                else
+                {
+                    CORE.Instance.LogMessageError("Could not parse color - " + actor.looks.SkinColor);
+                }
+            }
         }
     }
 }
