@@ -120,6 +120,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         DisplayActorPanel.SetActive(true);
         DisplayActor.AttachedCharacter.SetActorInfo(CORE.PlayerActor.Clone());
         
+        DisplayActor.AttachedCharacter.Skin.StopEmote();
         RefreshEQPState();
 
         CORE.Instance.DelayedInvokation(0.1f,()=>{CashItemsInventoryScroll.verticalNormalizedPosition = 1f;});

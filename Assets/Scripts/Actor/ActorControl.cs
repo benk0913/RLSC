@@ -61,7 +61,7 @@ public class ActorControl : MonoBehaviour
             }
         }
         
-        for(int i = 1; i < 9; i++)
+        for(int i = 1; i < 10; i++)
         {
             if (Input.GetKeyDown(InputMap.Map["Emote "+i]))
             {

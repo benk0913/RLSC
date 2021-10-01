@@ -1562,7 +1562,7 @@ public class Actor : MonoBehaviour
 
         if(State.Data.equips.ContainsKey(emoteString))
         {
-            emoteItem = State.Data.equips[emoteString ];
+            emoteItem = State.Data.equips[emoteString];
         }
 
         if(emoteItem == null)

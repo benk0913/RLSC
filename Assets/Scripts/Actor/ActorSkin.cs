@@ -377,6 +377,13 @@ public class ActorSkin : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
+        StopEmote();
+    }
+
+    public void StopEmote()
+    {
+        RendererPart renderPart = SkinParts.Find(x => x.Part.name == "Emote");
+
         renderPart.Renderer.sprite = null;
 
         foreach(SpriteRenderer hiddenRenderer in PartsHiddenByEmote)
