@@ -186,6 +186,12 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
             return;//Required so RefreshLooks wont wipe the emote...
         }
 
+        if(itemInstance.Data.Type.name == "Consume")
+        {
+            CORE.Instance.ActivateParams(itemInstance.Data.OnEquipParams,DisplayActor.AttachedCharacter);
+            // return;//Required so RefreshLooks wont wipe the consumable...
+        }
+
         if(!DisplayActor.AttachedCharacter.State.Data.equips.ContainsKey(product.CurrentItem.Type.name))
         {
             DisplayActor.AttachedCharacter.State.Data.equips.Add(product.CurrentItem.Type.name, itemInstance);

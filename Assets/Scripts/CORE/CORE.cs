@@ -724,6 +724,60 @@ public class CORE : MonoBehaviour
                     originCaster.State.Abilities.ForEach(x => x.CurrentCD = 0f);
                 }
             }
+            else if (param.Type.name == "Change Looks")
+            {
+                switch(param.Value)
+                {
+                    case "Ears":
+                    {
+                        casterActor.State.Data.looks.Hair = param.Value2;
+                        break;
+                    }
+                    case "Eyes":
+                    {
+                        casterActor.State.Data.looks.Eyes = param.Value2;
+                        break;
+                    }
+                    case "Nose":
+                    {
+                        casterActor.State.Data.looks.Nose = param.Value2;
+                        break;
+                    }
+                    case "Eyebrows":
+                    {
+                        casterActor.State.Data.looks.Eyebrows = param.Value2;
+                        break;
+                    }
+                    case "Mouth":
+                    {
+                        casterActor.State.Data.looks.Mouth = param.Value2;
+                        break;
+                    }
+                    case "Hair":
+                    {
+                        casterActor.State.Data.looks.Hair = param.Value2;
+                        break;
+                    }
+                    case "Iris":
+                    {
+                        casterActor.State.Data.looks.Iris = param.Value2;
+                        break;
+                    }
+                    case "HairColor":
+                    {
+                        casterActor.State.Data.looks.HairColor = param.Value2;
+                        break;
+                    }
+                    case "SkinColor":
+                    {
+                        casterActor.State.Data.looks.SkinColor = param.Value2;
+                        break;
+                    }
+                }
+
+                                    
+                casterActor.RefreshLooks();
+            }
         }
     }
 
