@@ -730,7 +730,7 @@ public class CORE : MonoBehaviour
                 {
                     case "Ears":
                     {
-                        casterActor.State.Data.looks.Hair = param.Value2;
+                        casterActor.State.Data.looks.Ears = param.Value2;
                         break;
                     }
                     case "Eyes":
