@@ -858,6 +858,15 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.SendEvent("swapped_item_and_equip_slots", node);
     }
 
+    public void SendSwappedEquipAndEquipSlots(string equipType1, string equipType2)
+    {
+        JSONNode node = new JSONClass();
+        node["equipType1"] = equipType1;
+        node["equipType2"] = equipType2;
+
+        SocketHandler.Instance.SendEvent("swapped_equip_and_equip_slots", node);
+    }
+
     public void OnMoveActors(string eventName, JSONNode data)
     {
         CORE.Instance.Room.ReceiveActorPositions(data);

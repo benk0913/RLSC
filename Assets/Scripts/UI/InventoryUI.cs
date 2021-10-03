@@ -364,7 +364,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else if (SelectedSlot.IsEquipmentSlot & slot.IsEquipmentSlot) //Reposition equipment
                 {
-                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("WARNING: First unequip the item and then re equip it.", Color.red));
+                    SocketHandler.Instance.SendSwappedEquipAndEquipSlots(slot.name, SelectedSlot.name);
                 }
                 else if (SelectedSlot.IsEquipmentSlot )//swapped between equo and inventory 
                 {
