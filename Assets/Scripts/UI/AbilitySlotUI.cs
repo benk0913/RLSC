@@ -30,11 +30,30 @@ public class AbilitySlotUI : MonoBehaviour
     [SerializeField]
     GameObject AbilityLock;
 
+    
+    [SerializeField]
+    protected TextMeshProUGUI AbilityKeyLabel;
 
-    public virtual void SetAbilityState(AbilityState abilityState = null)
+
+    [SerializeField]
+    GameObject KeyLabelObject;
+
+    
+    public virtual void SetAbilityState(AbilityState abilityState = null, string abilityKeyText = "")
     {
 
         CurrentAbility = abilityState;
+
+        if(!string.IsNullOrEmpty(abilityKeyText))
+        {
+            KeyLabelObject.SetActive(true);
+            AbilityKeyLabel.text = abilityKeyText.Replace("Alpha","");
+        }
+        else
+        {
+            KeyLabelObject.SetActive(false);
+            AbilityKeyLabel.text ="";
+        }
 
         if(CurrentAbility == null || CurrentAbility.CurrentAbility == null)
         {

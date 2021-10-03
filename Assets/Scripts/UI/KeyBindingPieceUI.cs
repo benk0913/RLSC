@@ -68,6 +68,7 @@ public class KeyBindingPieceUI : MonoBehaviour {
                     InputMap.Map[m_txtTitle.text] = keyEvent.keyCode;
                     InputMap.SaveMap();
                     SetInfo(m_txtTitle.text, keyEvent.keyCode);
+                    CORE.Instance.InvokeEvent("KeybindingsChanged");
                 }
 
                 CloseBinding();

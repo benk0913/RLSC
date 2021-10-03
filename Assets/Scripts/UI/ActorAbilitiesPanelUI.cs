@@ -15,6 +15,7 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        CORE.Instance.SubscribeToEvent("KeybindingsChanged",()=>SetActor(playerActor));
     }
 
     //public void LateUpdate()
@@ -41,11 +42,12 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
 
         foreach(AbilityState abilityState in playerActor.State.Abilities)
         {
+            int i = playerActor.State.Data.abilities.IndexOf(abilityState.CurrentAbility.name);
             AbilitySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("AbilitySlotUI").GetComponent<AbilitySlotUI>();
             slot.transform.SetParent(abilitiesContainer, false);
             slot.transform.localScale = Vector3.one;
             slot.transform.position = Vector3.zero;
-            slot.SetAbilityState(abilityState);
+            slot.SetAbilityState(abilityState,InputMap.Map["Ability"+i].ToString());
         }
     }
 }

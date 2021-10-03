@@ -159,11 +159,12 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
         foreach (AbilityState abilityState in playerActor.State.Abilities)
         {
+            int i = playerActor.State.Data.abilities.IndexOf(abilityState.CurrentAbility.name);
             AbilitySlotDraggableUI slot = ResourcesLoader.Instance.GetRecycledObject("AbilitySlotDraggableUI").GetComponent<AbilitySlotDraggableUI>();
             slot.transform.SetParent(CurrentAbilitiesContainer, false);
             slot.transform.localScale = Vector3.one;
             slot.transform.position = Vector3.zero;
-            slot.SetAbilityState(abilityState);
+            slot.SetAbilityState(abilityState,InputMap.Map["Ability"+i].ToString());
         }
 
         ClassJob job = playerActor.State.Data.ClassJobReference;
