@@ -356,7 +356,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else if (!SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick equip
                 {
-                    SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
+                    SocketHandler.Instance.SendUsedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
                 }
                 else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick unequip
                 {
@@ -415,7 +415,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         {
             if (!SelectedSlot.IsEquipmentSlot)
             {
-                SocketHandler.Instance.SendEquippedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
+                SocketHandler.Instance.SendUsedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
             }
             else
             {

@@ -820,13 +820,13 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.SendEvent("dropped_item", node);
     }
 
-    public void SendEquippedItem(int slotIndex, bool isCash)
+    public void SendUsedItem(int slotIndex, bool isCash)
     {
         JSONNode node = new JSONClass();
         node["slotIndex"].AsInt = slotIndex;
         node["isCash"].AsBool = isCash;
 
-        SocketHandler.Instance.SendEvent("equipped_item", node);
+        SocketHandler.Instance.SendEvent("used_item", node);
     }
 
     public void SendUnequippedItem(string equipType)
