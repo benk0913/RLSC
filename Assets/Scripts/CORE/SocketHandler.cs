@@ -106,6 +106,7 @@ public class SocketHandler : MonoBehaviour
 
         // Cash Items
         SocketEventListeners.Add(new SocketEventListener("cash_refresh", OnCashRefresh));
+        SocketEventListeners.Add(new SocketEventListener("actor_change_looks", OnActorChangeLooks));
 
         // Rolls
         SocketEventListeners.Add(new SocketEventListener("choose_item_roll", OnChooseItemRoll));
@@ -1281,6 +1282,22 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.CurrentUser.cashPoints = cash;
 
         CORE.Instance.InvokeEvent("InventoryUpdated");
+    }
+
+    public void OnActorChangeLooks(string eventName, JSONNode data)
+    {
+        string actorId = data["actorId"].Value;
+
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+        ActorLooks newActorLooks = JsonConvert.DeserializeObject<ActorLooks>(data["looks"].ToString());
+
+        actorDat.looks = newActorLooks;
+        actorDat.ActorEntity.RefreshLooks();
     }
 
     public void OnChooseItemRoll(string eventName, JSONNode data)
