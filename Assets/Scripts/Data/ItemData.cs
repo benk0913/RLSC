@@ -57,7 +57,7 @@ public class ItemData : ScriptableObject
     
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();
 
-    public List<AbilityParam> OnEquipParams = new List<AbilityParam>();
+    public List<AbilityParam> OnUseParams = new List<AbilityParam>();
 
     public NSkinSet SkinTypeOverride(string typeKey)
     {

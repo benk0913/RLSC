@@ -188,7 +188,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         if(itemInstance.Data.Type.name == "Consume")
         {
-            CORE.Instance.ActivateParams(itemInstance.Data.OnEquipParams,DisplayActor.AttachedCharacter);
+            CORE.Instance.ActivateParams(itemInstance.Data.OnUseParams,DisplayActor.AttachedCharacter);
             // return;//Required so RefreshLooks wont wipe the consumable...
         }
 
