@@ -1188,7 +1188,12 @@ public class Actor : MonoBehaviour
         CurrentBubble = ResourcesLoader.Instance.GetRecycledObject("TextBubbleUI").GetComponent<TextBubbleUI>();
 
         Sprite chatBubbleSprite = null;
-        Item chatBubbleSkin = this.State.Data.equips["Chat Bubble"];
+
+        Item chatBubbleSkin = null;
+        if(this.State.Data.equips.ContainsKey("Chat Bubble"))
+        {
+             chatBubbleSkin = this.State.Data.equips["Chat Bubble"];
+        }
         if(chatBubbleSkin != null)
         {
             chatBubbleSprite = chatBubbleSkin.Data.Icon;

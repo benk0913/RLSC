@@ -609,14 +609,9 @@ public class SocketHandler : MonoBehaviour
                     CORE.Instance.ShowScreenEffect("ScreenEffectLocation", sceneInfo.displyName);
 
                 }
-                CORE.Instance.ConditionalInvokation(
-                    (x)=>
-                    {
-                        return  CameraChaseEntity.Instance.ReferenceObject != null && CameraChaseEntity.Instance.deltaPosition.magnitude < 0.1f;
-                    }
-                    ,()=>{
-                        ScreenFaderUI.Instance.FadeFromBlack();
-                    });
+                
+                ScreenFaderUI.Instance.FadeFromBlack();
+                    
             });
         });
     }

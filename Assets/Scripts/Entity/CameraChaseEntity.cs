@@ -63,6 +63,11 @@ public class CameraChaseEntity : MonoBehaviour
             if (foundActor != null && foundActor.ActorEntity != null)
             {
                 ReferenceObject = foundActor.ActorEntity.transform;
+
+                if(Speed > 0)
+                {
+                    transform.position = new Vector3(ReferenceObject.transform.position.x,ReferenceObject.transform.position.y, transform.position.z);
+                }
             }
 
             return;
