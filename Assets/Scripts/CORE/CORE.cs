@@ -485,6 +485,7 @@ public class CORE : MonoBehaviour
     {
         CORE.Instance.CurrentParty = null;
         DefaultChatLogUI.Instance.ClearLog();
+        ConsoleInputUI.Instance.ClearLog();
         LootRollPanelUI.Instance.ClearContainer();
         ExpeditionQueTimerUI.Instance.Hide();
         CORE.Instance.InvokeEvent("PartyUpdated");
