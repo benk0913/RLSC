@@ -28,6 +28,11 @@ public class LootRollPanelUI : MonoBehaviour
         Items.Add(lootRollItem);
     }
 
+    public void ClearContainer()
+    {
+        CORE.ClearContainer(transform);
+    }
+
     public void RemoveLootRollItem(Item item)
     {
         LootRollItemUI itm = Items.Find(x => x.CurrentItem.itemId == item.itemId);
@@ -99,6 +104,7 @@ public class LootRollPanelUI : MonoBehaviour
         //TODO Which match?
         matchFoundUI.transform.SetParent(transform, false);
         MatchesFound.Add(matchFoundUI);
+        matchFoundUI.SetInfo();
     }
 
     public void RemoveMatchFound()

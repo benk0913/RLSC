@@ -129,5 +129,9 @@ public class ConsoleInputUI : MonoBehaviour
         inputField.ActivateInputField();
     }
 
-
+    public void ClearLog()
+    {
+        CORE.ClearContainer(ChatLogContainer);
+        LogMessages.Clear();
+    }
 }

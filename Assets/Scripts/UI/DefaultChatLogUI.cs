@@ -57,7 +57,10 @@ public class DefaultChatLogUI : MonoBehaviour
         StartCoroutine(DisplayShortLog());
     }
 
-
+    public void ClearLog()
+    {
+        CORE.ClearContainer(ShortLogCG.transform);
+    }
     IEnumerator DisplayShortLog()
     {
         while (ShortLogCG.alpha < 1f)
