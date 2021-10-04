@@ -54,13 +54,32 @@ public class MainMenuUI : MonoBehaviour
     {
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
-        SocketHandler.Instance.SendLogin(() =>
+    
+        if(SocketHandler.Instance.SkipSteamLogin)
         {
-            ResourcesLoader.Instance.RunWhenResourcesLoaded(() => {
-                ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
-                RefreshUserInfo();
+            SocketHandler.Instance.SendLogin(()=>
+            {
+                ResourcesLoader.Instance.RunWhenResourcesLoaded(() => 
+                {
+                    ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+                    RefreshUserInfo();
+                });
             });
-        });
+        }
+        else
+        {
+            SocketHandler.Instance.GetSteamSession(() =>
+            {
+                SocketHandler.Instance.SendLogin(()=>
+                {
+                    ResourcesLoader.Instance.RunWhenResourcesLoaded(() => 
+                    {
+                        ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+                        RefreshUserInfo();
+                    });
+                });
+            });
+        }
 
     }
 
@@ -81,7 +100,6 @@ public class MainMenuUI : MonoBehaviour
         WarningWindowUI.Instance.Show("Delete this character forever and ever!?", () =>
         {
             ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
-
             SocketHandler.Instance.SendDeleteCharacter(actorId, () =>
             {
                 ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
@@ -99,6 +117,7 @@ public class MainMenuUI : MonoBehaviour
                 SocketHandler.Instance.CurrentUser.chars = characters.ToArray();
                 RefreshUserInfo();
             });
+
         });
     }
 

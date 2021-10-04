@@ -4,6 +4,7 @@ using EdgeworldBase;
 using Newtonsoft.Json;
 using PlatformSupport.Collections.ObjectModel;
 using SimpleJSON;
+using Steamworks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,7 +35,18 @@ public class SocketHandler : MonoBehaviour
 
     public List<SocketEventListener> SocketEventListeners = new List<SocketEventListener>();
 
-    public int UniqueNumber;
+    public int UniqueNumber = 0;
+
+
+    //STEAM
+    int SessionTicketSize = 1024;
+    byte[] SessionPTicket;
+    uint SessionPCBTicket = 0;
+
+    string SessionTicket;
+
+    public bool SkipSteamLogin;
+
 
     private void Awake()
     {
@@ -188,14 +200,59 @@ public class SocketHandler : MonoBehaviour
 
     #region Request
 
-    public void SendLogin(Action OnComplete = null)
+    public void GetSteamSession(Action OnComplete = null)
+    {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Waiting for steam to initialize...", Color.green, 3f, false));
+
+        CORE.Instance.ConditionalInvokation((x)=>
+        {
+            return SteamManager.Initialized;
+            },()=>ObtainSessionTicket(OnComplete),0.1f);
+    }
+
+    void ObtainSessionTicket(Action OnComplete)
+    {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Getting Session...", Color.green, 3f, true));
+
+        //I know these are mouthfulls but blame steam not me lol
+        GetAuthSessionTicketResponseCallbackContainer = Callback<GetAuthSessionTicketResponse_t>.Create(OnGetAuthSessionTicketResponse);
+        GetAuthSessionTicketOnCompleteCallbackContainer = Callback<GetAuthSessionTicketResponse_t>.Create((GetAuthSessionTicketResponse_t pc)=>{OnComplete?.Invoke();});
+
+        SessionPTicket = new byte[SessionTicketSize];
+        Steamworks.SteamUser.GetAuthSessionTicket(SessionPTicket,SessionTicketSize, out SessionPCBTicket);
+        
+       
+        
+
+    }
+
+    protected Callback<GetAuthSessionTicketResponse_t> GetAuthSessionTicketOnCompleteCallbackContainer;
+    protected Callback<GetAuthSessionTicketResponse_t> GetAuthSessionTicketResponseCallbackContainer;
+    void OnGetAuthSessionTicketResponse(GetAuthSessionTicketResponse_t pCallback) 
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Color.green, 3f, true));
 
+        System.Array.Resize(ref SessionPTicket, (int)SessionPCBTicket);
+
+        //format as Hex 
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+        foreach (byte b in SessionPTicket) {
+            sb.AppendFormat ("{0:x2}", b);
+        }
+
+        this.SessionTicket = sb.ToString();
+        CORE.Instance.LogMessage("Current session: "+this.SessionTicket);
+    }
+
+    public void SendLogin(Action OnComplete)
+    {
         JSONNode node = new JSONClass();
-        node["skipTutorial"] = SkippedTutorial();
+        
+        node["skipTutorial"] = SessionTicket;
         node["tutorialVersion"] = Application.version;
         
+
         SendWebRequest(HostUrl + "/login", (UnityWebRequest lreq) =>
         {
             OnLogin(lreq);
@@ -291,12 +348,13 @@ public class SocketHandler : MonoBehaviour
         {
             StopCoroutine(ConnectSocketRoutineInstance);
         }
-
+    
         ConnectSocketRoutineInstance = StartCoroutine(ConnectSocketRoutine(OnComplete));
     }
     
 
     Coroutine ConnectSocketRoutineInstance;
+
     IEnumerator ConnectSocketRoutine(Action OnComplete = null)
     {
         //BestHTTP.HTTPManager.Logger.Level = BestHTTP.Logger.Loglevels.All; //Uncomment to log socket...
@@ -336,13 +394,10 @@ public class SocketHandler : MonoBehaviour
 
     private string SkippedTutorial()
     {
-        return SystemInfo.deviceUniqueIdentifier
-#if UNITY_EDITOR
-            +"-editor"
-#else
-            +UniqueNumber+"-devbuild"
+        return SessionTicket
+#if DEV_BUILD
+            +"_"+UniqueNumber+"-devbuild"
 #endif
-
         ;
     }
 
