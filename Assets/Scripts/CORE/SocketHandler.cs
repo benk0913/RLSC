@@ -43,7 +43,7 @@ public class SocketHandler : MonoBehaviour
     byte[] SessionPTicket;
     uint SessionPCBTicket = 0;
 
-    string SessionTicket;
+    public string SessionTicket;
 
     public bool SkipSteamLogin;
 
@@ -243,6 +243,9 @@ public class SocketHandler : MonoBehaviour
 
         this.SessionTicket = sb.ToString();
         CORE.Instance.LogMessage("Current session: "+this.SessionTicket);
+
+        GetAuthSessionTicketResponseCallbackContainer = null;
+        GetAuthSessionTicketOnCompleteCallbackContainer = null;
     }
 
     public void SendLogin(Action OnComplete)
@@ -392,7 +395,7 @@ public class SocketHandler : MonoBehaviour
         ConnectSocketRoutineInstance = null;
     }
 
-    private string SkippedTutorial()
+    public string SkippedTutorial()
     {
         return SessionTicket
 #if DEV_BUILD

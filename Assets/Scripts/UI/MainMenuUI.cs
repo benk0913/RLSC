@@ -55,7 +55,7 @@ public class MainMenuUI : MonoBehaviour
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
     
-        if(SocketHandler.Instance.SkipSteamLogin)
+        if(!string.IsNullOrEmpty(SocketHandler.Instance.SessionTicket) || SocketHandler.Instance.SkipSteamLogin)
         {
             SocketHandler.Instance.SendLogin(()=>
             {
