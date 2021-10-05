@@ -111,8 +111,12 @@ public class CORE : MonoBehaviour
         Application.targetFrameRate = 60;
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
+
+
         DontDestroyOnLoad(this.gameObject);
     }
+
+    
 
     void OnApplicationFocus(bool focus)
     {
@@ -187,6 +191,12 @@ public class CORE : MonoBehaviour
 
     private void Update()
     {
+        Debug.LogError(Input.GetJoystickNames().Length.ToString());
+        foreach (string jName in Input.GetJoystickNames())
+        {
+            Debug.LogError(jName);
+        }
+
         if (InGame && !IsLoading && !IsTyping)
         {
             foreach (var windowToKeyCode in WindowToKeyMap)

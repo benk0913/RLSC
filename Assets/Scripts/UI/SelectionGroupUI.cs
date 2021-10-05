@@ -19,6 +19,8 @@ public class SelectionGroupUI : MonoBehaviour
     public SelectionGroupInstance CurrentSelected;
     public Selectable CurrentSelectedSelectable;
 
+    public bool ScrollRectSnapSupport = false;
+
 
     public bool Debug = false;
 
@@ -183,6 +185,21 @@ public class SelectionGroupUI : MonoBehaviour
             return;
         }
 
+        if(ScrollRectSnapSupport)
+        {
+            ScrollRect sRect = target.CS.GetComponentInParent<ScrollRect>();
+            if (sRect != null)
+            {
+                Canvas.ForceUpdateCanvases();
+
+                Vector2 targetPos = (Vector2)sRect.transform.InverseTransformPoint(sRect.content.position)
+                    - (Vector2)sRect.transform.InverseTransformPoint(target.CS.transform.position);
+
+                sRect.content.anchoredPosition = new Vector2(sRect.content.anchoredPosition.x, targetPos.y);
+                    
+            }
+        }
+
         AudioEntityUIHandle audioEntity;
 
 
@@ -232,7 +249,7 @@ public class SelectionGroupUI : MonoBehaviour
     {
         Select(instancesBySelectable[selectable]);
     }
-
+    
     IEnumerator StrobeSelect()
     {
         CanvasGroup canvasGroup = CurrentSelectedSelectable.GetComponent<CanvasGroup>();
