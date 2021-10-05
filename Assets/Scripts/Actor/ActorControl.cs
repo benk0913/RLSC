@@ -27,22 +27,22 @@ public class ActorControl : MonoBehaviour
             ConsoleInputUI.Instance.EnterPressed();
         }
 
-        if(Input.GetKey(InputMap.Map["Move Left"])|| Input.GetKey(InputMap.Map["Secondary Move Left"]) || Input.GetAxis("Horizontal") < 0f)
+        if(Input.GetKey(InputMap.Map["Move Left"])|| Input.GetKey(InputMap.Map["Secondary Move Left"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") < 0f))
         {
             ConsoleInputUI.Instance.HideIfEmpty();
             CurrentActor.AttemptMoveLeft();
         }
-        else if(Input.GetKey(InputMap.Map["Move Right"]) || Input.GetKey(InputMap.Map["Secondary Move Right"]) || Input.GetAxis("Horizontal") > 0f)
+        else if(Input.GetKey(InputMap.Map["Move Right"]) || Input.GetKey(InputMap.Map["Secondary Move Right"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") > 0f))
         {
             ConsoleInputUI.Instance.HideIfEmpty();
             CurrentActor.AttemptMoveRight();
         }
 
-        if (Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || Input.GetAxis("Vertical") > 0f)
+        if (Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") > 0f))
         {
             CurrentActor.AttemptMoveUp();
         }
-        else if (Input.GetKey(InputMap.Map["Move Down"])|| Input.GetKey(InputMap.Map["Secondary Move Down"]) || Input.GetAxis("Vertical") < 0f)
+        else if (Input.GetKey(InputMap.Map["Move Down"])|| Input.GetKey(InputMap.Map["Secondary Move Down"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") < 0f))
         {
             CurrentActor.AttemptMoveDown();
         }
