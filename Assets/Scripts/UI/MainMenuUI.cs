@@ -55,7 +55,7 @@ public class MainMenuUI : MonoBehaviour
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
     
-        if(!string.IsNullOrEmpty(SocketHandler.Instance.SessionTicket) || SocketHandler.Instance.SkipSteamLogin)
+        if(!string.IsNullOrEmpty(SocketHandler.Instance.SessionTicket))
         {
             SocketHandler.Instance.SendLogin(()=>
             {
@@ -114,7 +114,7 @@ public class MainMenuUI : MonoBehaviour
                     characters.Add(chara);
                 }
 
-                SocketHandler.Instance.CurrentUser.chars = characters.ToArray();
+                SocketHandler.Instance.CurrentUser.chars = characters;
                 RefreshUserInfo();
             });
 
@@ -126,7 +126,7 @@ public class MainMenuUI : MonoBehaviour
         CORE.ClearContainer(CharacterSelectionContainer);
         RemoveCharacterSelected();
 
-        for(int i=0;i<SocketHandler.Instance.CurrentUser.chars.Length;i++)
+        for(int i=0;i<SocketHandler.Instance.CurrentUser.chars.Count; i++)
         {
             ActorData character = SocketHandler.Instance.CurrentUser.chars[i];
 
@@ -144,11 +144,11 @@ public class MainMenuUI : MonoBehaviour
             }
         }
 
-        if (SocketHandler.Instance.CurrentUser.chars.Length <= 0)
+        if (SocketHandler.Instance.CurrentUser.chars.Count <= 0)
         {
             OnNoCharacters?.Invoke();
         }
-        CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Length < CORE.Instance.Data.content.MaxCharacters;
+        CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Count < CORE.Instance.Data.content.MaxCharacters;
         CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : "Cannot have more than " + CORE.Instance.Data.content.MaxCharacters + " characters.");
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(false));
@@ -179,7 +179,7 @@ public class MainMenuUI : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < SocketHandler.Instance.CurrentUser.chars.Length; i++)
+        for (int i = 0; i < SocketHandler.Instance.CurrentUser.chars.Count; i++)
         {
             if (SocketHandler.Instance.CurrentUser.chars[i].name == SelectedDisplayActor.AttachedCharacter.State.Data.name)
             {

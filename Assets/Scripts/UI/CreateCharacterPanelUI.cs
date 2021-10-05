@@ -1,3 +1,4 @@
+using EdgeworldBase;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -104,11 +105,15 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     public void Confirm()
     {
+        ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
         SocketHandler.Instance.SendCreateCharacter(DisplayActor.State.Data.classJob, DisplayActor.State.Data, () =>
         {
             this.gameObject.SetActive(false);
-            MainMenuUI.Instance.AutoLogin();
             OnCharacterCreationComplete?.Invoke();
+            CORE.Instance.DelayedInvokation(0.1f, () => {
+                MainMenuUI.Instance.RefreshUserInfo();            
+                ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+            });
         },()=>
         {
             

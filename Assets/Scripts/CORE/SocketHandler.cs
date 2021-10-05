@@ -47,7 +47,9 @@ public class SocketHandler : MonoBehaviour
 
     public string TutorialIndex;
 
-    public bool SkipSteamLogin;
+#if DEV_BUILD || UNITY_EDITOR
+    public bool RandomUser;
+#endif
 
 
     private void Awake()
@@ -204,6 +206,12 @@ public class SocketHandler : MonoBehaviour
 
     public void GetSteamSession(Action OnComplete = null)
     {
+#if DEV_BUILD || UNITY_EDITOR
+        if (RandomUser) {
+            OnComplete?.Invoke();
+            return;
+        }
+#endif
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Waiting for steam to initialize...", Color.green, 3f, false));
 
         CORE.Instance.ConditionalInvokation((x)=>
@@ -257,6 +265,15 @@ public class SocketHandler : MonoBehaviour
         node["skipTutorial"] = SessionTicket;
         node["tutorialVersion"] = Application.version;
         
+#if DEV_BUILD || UNITY_EDITOR
+    if (RandomUser) {
+    #if DEV_BUILD
+        node["randomUser"] = "dev";
+    #elif UNITY_EDITOR
+        node["randomUser"] = "editor";
+    #endif
+    }
+#endif
 
         SendWebRequest(HostUrl + "/login", (UnityWebRequest lreq) =>
         {
@@ -397,15 +414,6 @@ public class SocketHandler : MonoBehaviour
         ConnectSocketRoutineInstance = null;
     }
 
-    public string SkippedTutorial()
-    {
-        return SessionTicket
-#if DEV_BUILD
-            +"_"+UniqueNumber+"-devbuild"
-#endif
-        ;
-    }
-
     public void SendDisconnectSocket()
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Rejecting Humanity... Returning to MONKE...", Color.green, 3f, true));
@@ -440,7 +448,7 @@ public class SocketHandler : MonoBehaviour
 
         CORE.Instance.DelayedInvokation(0.1f,()=>
         {
-            CurrentUser.chars = JsonConvert.DeserializeObject<ActorData[]>(data["chars"].ToString());
+            CurrentUser.chars = JsonConvert.DeserializeObject<List<ActorData>>(data["chars"].ToString());
             CurrentUser.cashItems = JsonConvert.DeserializeObject<List<Item>>(data["cashItems"].ToString());
             CurrentUser.cashPoints = data["cashPoints"].AsInt;
             TutorialIndex = data["tutorialIndex"].Value;
@@ -449,8 +457,10 @@ public class SocketHandler : MonoBehaviour
 
     public void OnCreateCharacter(UnityWebRequest response)
     {
-        //CurrentUser.actor = JsonConvert.DeserializeObject<ActorData>(response.downloadHandler.text);
-        // JSONNode data = JSON.Parse(response.downloadHandler.text);
+        JSONNode data = JSON.Parse(response.downloadHandler.text);
+
+        ActorData actor = JsonConvert.DeserializeObject<ActorData>(data["actor"].ToString());
+        CurrentUser.chars.Insert(0, actor);
     }
     public void OnDeleteCharacter(UnityWebRequest response)
     {
@@ -1706,7 +1716,7 @@ public class UserData
     
     public ActorData actor;
 
-    public ActorData[] chars;
+    public List<ActorData> chars;
 
     public FriendData[] friends;
 
