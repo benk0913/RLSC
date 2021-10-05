@@ -45,6 +45,8 @@ public class SocketHandler : MonoBehaviour
 
     public string SessionTicket;
 
+    public string TutorialIndex;
+
     public bool SkipSteamLogin;
 
 
@@ -276,7 +278,7 @@ public class SocketHandler : MonoBehaviour
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to create character...", Color.green, 1f, true));
 
         JSONNode node = new JSONClass();
-        node["skipTutorial"] = SkippedTutorial();
+        node["tutorialIndex"] = TutorialIndex;
         node["classJob"] = element;
         node["actor"] = JSON.Parse(JsonConvert.SerializeObject(actor));
 
@@ -300,7 +302,7 @@ public class SocketHandler : MonoBehaviour
     public void SendGetRandomName(bool IsFemale, Action<string> OnComplete)
     {
         JSONNode node = new JSONClass();
-        node["skipTutorial"] = SkippedTutorial();
+        node["tutorialIndex"] = TutorialIndex;
         node["isFemale"].AsBool = IsFemale;
 
         SendWebRequest(HostUrl + "/random-name", (UnityWebRequest ccreq) =>
@@ -319,7 +321,7 @@ public class SocketHandler : MonoBehaviour
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Deleting Character...", Color.green, 1f, true));
 
         JSONNode node = new JSONClass();
-        node["skipTutorial"] = SkippedTutorial();
+        node["tutorialIndex"] = TutorialIndex;
         node["actorId"] = actorId;
 
         SendWebRequest(HostUrl + "/delete-char", (UnityWebRequest ccreq) =>
@@ -364,7 +366,7 @@ public class SocketHandler : MonoBehaviour
 
         SocketOptions options = new SocketOptions();
         options.AdditionalQueryParams = new ObservableDictionary<string, string>();
-        options.AdditionalQueryParams.Add("skipTutorial", SkippedTutorial());
+        options.AdditionalQueryParams.Add("tutorialIndex", TutorialIndex);
         options.AdditionalQueryParams.Add("tutorialVersion", Application.version);
         options.AdditionalQueryParams.Add("charIndex", CurrentUser.SelectedCharacterIndex.ToString());
 
@@ -441,7 +443,7 @@ public class SocketHandler : MonoBehaviour
             CurrentUser.chars = JsonConvert.DeserializeObject<ActorData[]>(data["chars"].ToString());
             CurrentUser.cashItems = JsonConvert.DeserializeObject<List<Item>>(data["cashItems"].ToString());
             CurrentUser.cashPoints = data["cashPoints"].AsInt;
-
+            TutorialIndex = data["tutorialIndex"].Value;
         });
     }
 
