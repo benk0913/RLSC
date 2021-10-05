@@ -243,15 +243,20 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
             return;
         }
 
-        if(SocketHandler.Instance.CurrentUser.cashPoints < SelectedProduct.CurrentItem.CashItemPrice)
-        {
-            TopNotificationUI.Instance.Show(
-                new TopNotificationUI.TopNotificationInstance("You don't have enough EQP! ("+SocketHandler.Instance.CurrentUser.cashPoints+"/"+SelectedProduct.CurrentItem.CashItemPrice+")", Color.red,3f,true));
-            return;
-        }
+
 
         CashShopWarningWindowUI.Instance.Show("Buy "+SelectedProduct.CurrentItem.DisplayName+" for "+SelectedProduct.CurrentItem.CashItemPrice+" EQP? ",()=>
-        {
+        {     
+            if(SocketHandler.Instance.CurrentUser.cashPoints < SelectedProduct.CurrentItem.CashItemPrice)
+            {
+                CashShopWarningWindowUI.Instance.Show("You don't have enough EQP! ("+SocketHandler.Instance.CurrentUser.cashPoints+"/"+SelectedProduct.CurrentItem.CashItemPrice+")",()=>
+                {
+
+                });
+
+                return;
+            }
+            
             JSONClass data = new JSONClass();
             data["item"] = SelectedProduct.CurrentItem.name;
             SocketHandler.Instance.SendEvent("cashshop_buy_item",data);

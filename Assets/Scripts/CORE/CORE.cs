@@ -148,10 +148,11 @@ public class CORE : MonoBehaviour
         // WindowToKeyMap.Add(FriendsWindowUI.Instance, InputMap.Map["Friends Window"]);
         // WindowToKeyMap.Add(AlignmentWindowUI.Instance, InputMap.Map["Alignment Window"]);
         WindowToKeyMap.Add(SettingsMenuUI.Instance, InputMap.Map["Settings Window"]);
-        //WindowToKeyMap.Add(CashShopWindowUI.Instance,InputMap.Map["InApp Shop"]);
+        WindowToKeyMap.Add(CashShopWindowUI.Instance,InputMap.Map["InApp Shop"]);
         WindowToKeyMap.Add(SideButtonUI.Instance, InputMap.Map["Exit"]);
 
-        LoadScene("MainMenu");
+        
+        ReturnToMainMenu();
     }
 
     private void GameStatesChanges()
@@ -576,6 +577,12 @@ public class CORE : MonoBehaviour
     public void ReturnToMainMenu()
     {
         LoadScene("MainMenu");
+
+        ResourcesLoader.Instance.RunWhenResourcesLoaded(() => 
+        {
+            AudioControl.Instance.SetMusic(Data.content.titleScreenMusic);
+            AudioControl.Instance.SetSoundscape(Data.content.titleScreenSoundscape);
+        });
     }
 
     Coroutine RoomUpdateRoutineInstance;

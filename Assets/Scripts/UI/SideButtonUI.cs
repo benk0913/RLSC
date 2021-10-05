@@ -9,6 +9,9 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
     [SerializeField]
     Animator Animer;
 
+
+
+
     public bool isVisible;
 
     void Awake()
@@ -28,6 +31,8 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
 
         Animer.SetTrigger("Show");
         isVisible = true;
+
+
     }
 
     public void Toggle()

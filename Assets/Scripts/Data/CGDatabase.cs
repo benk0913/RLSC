@@ -87,6 +87,12 @@ public class DatabaseContent
     public ItemData DefaultNameTag;
     public ItemData DefaultChatBubble;
 
+    [JsonIgnore]
+    public string titleScreenMusic;
+    
+    [JsonIgnore]
+    public string titleScreenSoundscape;
+
     public int MaxLevel;
 
     public int AbilitiesInitCount;
