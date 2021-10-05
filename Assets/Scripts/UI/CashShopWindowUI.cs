@@ -152,6 +152,12 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void SelectProduct(CashShopProductUI product)
     {
+        if(product == SelectedProduct)
+        {
+            BuyProduct();
+            return;
+        }
+        
         DeselectProduct();
 
         product.SetSelected();
