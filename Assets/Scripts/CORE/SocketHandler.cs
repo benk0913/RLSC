@@ -232,20 +232,20 @@ public class SocketHandler : MonoBehaviour
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Color.green, 3f, true));
 
-        System.Array.Resize(ref SessionPTicket, (int)SessionPCBTicket);
+        //System.Array.Resize(ref SessionPTicket, (int)SessionPCBTicket);
+            
 
-        //format as Hex 
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-        foreach (byte b in SessionPTicket) {
-            sb.AppendFormat ("{0:x2}", b);
+        string hexticket ="";
+        for(int i=0;i<SessionPTicket.Length;i++) {
+            hexticket += string.Format("{0:x2}", SessionPTicket[i]);
         }
 
-        this.SessionTicket = sb.ToString();
+        this.SessionTicket = hexticket;
         CORE.Instance.LogMessage("Current session: "+this.SessionTicket);
 
         GetAuthSessionTicketResponseCallbackContainer = null;
         GetAuthSessionTicketOnCompleteCallbackContainer = null;
+
     }
 
     public void SendLogin(Action OnComplete)
