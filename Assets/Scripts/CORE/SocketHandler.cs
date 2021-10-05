@@ -245,7 +245,9 @@ public class SocketHandler : MonoBehaviour
 
         GetAuthSessionTicketResponseCallbackContainer = null;
         GetAuthSessionTicketOnCompleteCallbackContainer = null;
-
+        Debug.LogError("https://partner.steam-api.com/ISteamUserAuth/AuthenticateUserTicket/v1/?key=3AE30FAACF2F40973B99A8A2A5620D5E&appid=1780330&ticket=" + this.SessionTicket);
+        SendWebRequest("https://partner.steam-api.com/ISteamUserAuth/AuthenticateUserTicket/v1/?key=3AE30FAACF2F40973B99A8A2A5620D5E&appid=1780330&ticket=" + this.SessionTicket, (UnityWebRequest req) => { Debug.LogError(req.result.ToString()); Debug.LogError(req.responseCode.ToString()); });
+        
     }
 
     public void SendLogin(Action OnComplete)
