@@ -40,7 +40,7 @@ public class InputLabelWindow : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(InputMap.Map["Exit"]))
+        if (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 10"))
         {
             Hide();
         }

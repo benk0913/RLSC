@@ -49,11 +49,11 @@ public class WarningWindowUI : MonoBehaviour
 
     private void Update()
     {
-        if (!CantHide && Input.GetKeyDown(InputMap.Map["Exit"]))
+        if (!CantHide && Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 10"))
         {
             Hide();
         }
-        else if (Input.GetKeyDown(InputMap.Map["Confirm"]))
+        else if (Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
         {
             Accept();
         }

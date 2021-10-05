@@ -97,21 +97,21 @@ public class VendorEntity : MonoBehaviour
         {
             if(!WarningWindowUI.Instance.isActiveAndEnabled)
             {
-                if (Input.GetKeyDown(InputMap.Map["Move Right"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Right"]))
+                if (Input.GetKeyDown(InputMap.Map["Move Right"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Right"]) || Input.GetAxis("Horizontal") > 0f)
                 {
                     SetRightItem();
                 }
-                else if (Input.GetKeyDown(InputMap.Map["Move Left"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Left"]))
+                else if (Input.GetKeyDown(InputMap.Map["Move Left"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Left"]) || Input.GetAxis("Horizontal") < 0f)
                 {
                     SetLeftItem();
                 }
-                else if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]))
+                else if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
                 {  
                     PurchaseItem(ItemIndex);
                 }
             }
 
-            if (Input.GetKeyDown(InputMap.Map["Exit"]))
+            if (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 10"))
             {
                 StopFocusing();
             }

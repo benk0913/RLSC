@@ -22,37 +22,59 @@ public class ActorControl : MonoBehaviour
             return;
         }
         
-        if(Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]))
+        if(Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]) || Input.GetButtonDown("Joystick 10"))
         {
             ConsoleInputUI.Instance.EnterPressed();
         }
 
-        if(Input.GetKey(InputMap.Map["Move Left"])|| Input.GetKey(InputMap.Map["Secondary Move Left"]))
+        if(Input.GetKey(InputMap.Map["Move Left"])|| Input.GetKey(InputMap.Map["Secondary Move Left"]) || Input.GetAxis("Horizontal") < 0f)
         {
             ConsoleInputUI.Instance.HideIfEmpty();
             CurrentActor.AttemptMoveLeft();
         }
-        else if(Input.GetKey(InputMap.Map["Move Right"]) || Input.GetKey(InputMap.Map["Secondary Move Right"]))
+        else if(Input.GetKey(InputMap.Map["Move Right"]) || Input.GetKey(InputMap.Map["Secondary Move Right"]) || Input.GetAxis("Horizontal") > 0f)
         {
             ConsoleInputUI.Instance.HideIfEmpty();
             CurrentActor.AttemptMoveRight();
         }
 
-        if (Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]))
+        if (Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || Input.GetAxis("Vertical") > 0f)
         {
             CurrentActor.AttemptMoveUp();
         }
-        else if (Input.GetKey(InputMap.Map["Move Down"])|| Input.GetKey(InputMap.Map["Secondary Move Down"]))
+        else if (Input.GetKey(InputMap.Map["Move Down"])|| Input.GetKey(InputMap.Map["Secondary Move Down"]) || Input.GetAxis("Vertical") < 0f)
         {
             CurrentActor.AttemptMoveDown();
         }
 
-        if (Input.GetKeyDown(InputMap.Map["Jump"]) || Input.GetKeyDown(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]))
+        if (Input.GetKeyDown(InputMap.Map["Jump"]) || Input.GetKeyDown(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || Input.GetAxis("Vertical") > 0f)
         {
             CurrentActor.AttemptJump();
         }
 
-        int abilitiesLength = CurrentActor.State.Data.abilities.Count;
+        if(Input.GetButtonDown("Joystick 0"))
+        {
+            CurrentActor.AttemptPrepareAbility(0);
+        }
+        else if (Input.GetButtonDown("Joystick 1"))
+        {
+            CurrentActor.AttemptPrepareAbility(1);
+        }
+        else if (Input.GetButtonDown("Joystick 3"))
+        {
+            CurrentActor.AttemptPrepareAbility(2);
+        }
+        else if (Input.GetButtonDown("Joystick 4"))
+        {
+            CurrentActor.AttemptPrepareAbility(3);
+        }
+        else if (Input.GetButtonDown("Joystick 5"))
+        {
+            CurrentActor.AttemptPrepareAbility(4);
+        }
+
+
+            int abilitiesLength = CurrentActor.State.Data.abilities.Count;
         for(int i = 0; i < abilitiesLength; i++)
         {
             if (Input.GetKeyDown(InputMap.Map["Ability"+i]))

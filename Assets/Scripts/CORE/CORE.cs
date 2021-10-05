@@ -52,6 +52,7 @@ public class CORE : MonoBehaviour
     public bool GameStatesInitialized;
     public string CurrentTimePhase;
 
+    public bool IsUsingJoystick;
     public bool IsTyping
     {
         get
@@ -191,11 +192,8 @@ public class CORE : MonoBehaviour
 
     private void Update()
     {
-        Debug.LogError(Input.GetJoystickNames().Length.ToString());
-        foreach (string jName in Input.GetJoystickNames())
-        {
-            Debug.LogError(jName);
-        }
+        SetJoystickMode(Input.GetJoystickNames().Length > 0);
+        
 
         if (InGame && !IsLoading && !IsTyping)
         {
@@ -208,7 +206,7 @@ public class CORE : MonoBehaviour
             }
         }
 
-        if(IsMachinemaMode && Input.GetKeyDown(InputMap.Map["Exit"]) && !CashShopWindowUI.Instance.IsOpen)
+        if (IsMachinemaMode && (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 10")) && !CashShopWindowUI.Instance.IsOpen)
         {
             IsMachinemaMode = false;
             InvokeEvent("MachinemaModeRefresh");
@@ -220,7 +218,7 @@ public class CORE : MonoBehaviour
         bool isTargetWindowClosed = CurrentWindow != WindowToShow;
         bool closedAWindow = CurrentWindow != null;
         CloseCurrentWindow();
-        bool isClosingAWindowWithExit = closedAWindow && keyPressed == InputMap.Map["Exit"];
+        bool isClosingAWindowWithExit = closedAWindow && (keyPressed == InputMap.Map["Exit"] || Input.GetButtonDown("Joystick 10"));
         if (isTargetWindowClosed && !isClosingAWindowWithExit)
         {
             CurrentWindow = WindowToShow;
@@ -583,6 +581,22 @@ public class CORE : MonoBehaviour
         InGame = false;
     }
 
+
+    public void SetJoystickMode(bool isOn)
+    {
+        if(IsUsingJoystick && !isOn)
+        {
+            IsUsingJoystick = false;
+            //CHANGE STATE
+        }
+        else if (!IsUsingJoystick && isOn)
+        {
+            IsUsingJoystick = true;
+            //CHANGE STATE
+
+        
+        }
+    }
 
     public void ReturnToMainMenu()
     {

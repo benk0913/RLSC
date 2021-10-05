@@ -292,7 +292,7 @@ public class SelectionGroupUI : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyDown(InputMap.Map["Move Up"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Up"]))
+        if(Input.GetKeyDown(InputMap.Map["Move Up"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Up"]) || Input.GetAxis("Vertical") > 0f)
         {
             if(CurrentSelected.toUp == null)
             {
@@ -303,7 +303,7 @@ public class SelectionGroupUI : MonoBehaviour
 
             Select(CurrentSelected.toUp);
         }
-        else if (Input.GetKeyDown(InputMap.Map["Move Down"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Down"]))
+        else if (Input.GetKeyDown(InputMap.Map["Move Down"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Down"]) || Input.GetAxis("Vertical") < 0f)
         {
             if (CurrentSelected.toDown == null)
             {
@@ -314,7 +314,7 @@ public class SelectionGroupUI : MonoBehaviour
 
             Select(CurrentSelected.toDown);
         }
-        else if (Input.GetKeyDown(InputMap.Map["Move Left"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Left"]))
+        else if (Input.GetKeyDown(InputMap.Map["Move Left"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Left"]) || Input.GetAxis("Horizontal") < 0f)
         {
             if (CurrentSelected.toLeft == null)
             {
@@ -325,7 +325,7 @@ public class SelectionGroupUI : MonoBehaviour
 
             Select(CurrentSelected.toLeft);
         }
-        else if (Input.GetKeyDown(InputMap.Map["Move Right"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Right"]))
+        else if (Input.GetKeyDown(InputMap.Map["Move Right"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Right"]) || Input.GetAxis("Horizontal") > 0f)
         {
             if (CurrentSelected.toRight== null)
             {
@@ -337,7 +337,7 @@ public class SelectionGroupUI : MonoBehaviour
             Select(CurrentSelected.toRight);
         }
 
-        if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]))
+        if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
         {
             if(CurrentSelected != null && CurrentSelected.CS != null)
             {
