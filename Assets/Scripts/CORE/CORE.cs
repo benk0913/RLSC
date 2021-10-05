@@ -1,6 +1,7 @@
 using EdgeworldBase;
 using Newtonsoft.Json;
 using SimpleJSON;
+using Steamworks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -109,6 +110,11 @@ public class CORE : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        SteamAPI.RestartAppIfNecessary(new AppId_t(1780330));
+        SteamAPI.Init();
+
+
         Application.targetFrameRate = 60;
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
