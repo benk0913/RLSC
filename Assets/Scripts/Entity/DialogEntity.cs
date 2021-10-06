@@ -56,8 +56,6 @@ public class DialogEntity : MonoBehaviour
     public void StartDialog(Dialog dialog)
     {
 
-        CORE.Instance.LogMessage("DIALOG START " + (dialog.DialogPieces.Count > 0 ? dialog.DialogPieces[0].Content.Substring(0, 10) : "") + "...");
-
         if (VendorEntity.CurrentInstance != null && VendorEntity.CurrentInstance.IsFocusing)
         {
             return;
@@ -107,13 +105,11 @@ public class DialogEntity : MonoBehaviour
 
     public void Continue()
     {
-        CORE.Instance.LogMessage("DIALOG NEXT " +(CurrentDialog.DialogPieces.Count > CurrentIndex?CurrentDialog.DialogPieces[CurrentIndex].Content.Substring(0, 10) :"")+ "... - " + CurrentIndex );
         CurrentIndex++;
 
         if (CurrentIndex >= CurrentDialog.DialogPieces.Count)
         {
-
-            CORE.Instance.LogMessage("DIALOG SHOW DECISIONS " + CurrentDialog.Decisions.Count);
+            
             if (CurrentDialog.Decisions.Count > 0)
             {
                 DecisionContainerUI.Instance.Show(CORE.Instance.Room.PlayerActor, CurrentDialog.Decisions);
@@ -147,7 +143,6 @@ public class DialogEntity : MonoBehaviour
 
     public void EndDialog()
     {
-        CORE.Instance.LogMessage("DIALOG END " + CurrentDialog.DialogPieces[0].Content.Substring(0, 10)+"...");
 
         CurrentDialog = null;
         this.CurrentBubble.gameObject.SetActive(false);

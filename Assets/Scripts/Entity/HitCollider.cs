@@ -95,7 +95,7 @@ public class HitCollider : MonoBehaviour
         }
 
         bool inSameParty = false;
-        if (CORE.Instance.CurrentParty != null)
+        if (CORE.Instance != null && CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members != null && CORE.Instance.CurrentParty.members.Length > 1)
         {
             int matchingMembers = 0;
 
