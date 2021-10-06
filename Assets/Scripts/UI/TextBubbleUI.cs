@@ -81,7 +81,7 @@ public class TextBubbleUI : MonoBehaviour
 
             if (ContentText.text.Length % 3 == 0)
             {
-                if(message[ContentText.text.Length-1] == '!' || message[ContentText.text.Length] == '?')
+                if(message[ContentText.text.Length-1] == '!' || message[ContentText.text.Length-1] == '?')
                 {
                     AudioControl.Instance.PlayInPosition("talksound", transform.position, 200f, pitch + +0.5f);
                 }
