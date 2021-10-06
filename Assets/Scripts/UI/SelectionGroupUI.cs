@@ -196,7 +196,7 @@ public class SelectionGroupUI : MonoBehaviour
                     - (Vector2)sRect.transform.InverseTransformPoint(target.CS.transform.position);
 
                 sRect.content.anchoredPosition = new Vector2(sRect.content.anchoredPosition.x, targetPos.y);
-                    
+                
             }
         }
 

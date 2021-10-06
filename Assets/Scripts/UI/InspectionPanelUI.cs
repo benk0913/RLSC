@@ -12,6 +12,11 @@ public class InspectionPanelUI : MonoBehaviour
 
     public void SetActor(ActorData currentActor)
     {
+        if((currentActor == CORE.PlayerActor && CameraChaseEntity.Instance.ReferenceObject == CORE.PlayerActor.ActorEntity.transform))
+        {
+            return;
+        }
+
         if(currentActor == null)
         {
             IsFocusingOnActor = false;

@@ -133,7 +133,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         this.gameObject.SetActive(true);
         currentActor = ofActor;
 
-        isInspecting = ofActor != CORE.Instance.Room.PlayerActor;
+        isInspecting = ofActor != CORE.PlayerActor;
 
         if(isInspecting)
         {

@@ -97,11 +97,11 @@ public class VendorEntity : MonoBehaviour
         {
             if(!WarningWindowUI.Instance.isActiveAndEnabled)
             {
-                if (Input.GetKeyDown(InputMap.Map["Move Right"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Right"]) || Input.GetAxis("Horizontal") > 0f)
+                if (Input.GetKeyDown(InputMap.Map["Move Right"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Right"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") > 0.3f))
                 {
                     SetRightItem();
                 }
-                else if (Input.GetKeyDown(InputMap.Map["Move Left"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Left"]) || Input.GetAxis("Horizontal") < 0f)
+                else if (Input.GetKeyDown(InputMap.Map["Move Left"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Left"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") < -0.3f))
                 {
                     SetLeftItem();
                 }

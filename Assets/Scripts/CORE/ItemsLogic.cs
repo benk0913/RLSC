@@ -16,7 +16,7 @@ public class ItemsLogic
         { "Block", new DisplayAttribute(typeof(AttributeData).GetField("Block"), "icat_10", "Block","")},
         { "CDReduction", new DisplayAttribute(typeof(AttributeData).GetField("CDReduction"), "icat_8", "Lower Cooldowns","")},
         { "CTReduction", new DisplayAttribute(typeof(AttributeData).GetField("CTReduction"), "icat_7", "Faster Spells","")},
-        { "Lifesteal", new DisplayAttribute(typeof(AttributeData).GetField("Lifesteal"), "", "Lifesteal","")},
+        { "Lifesteal", new DisplayAttribute(typeof(AttributeData).GetField("Lifesteal"), "lifesteal", "Lifesteal","")},
         { "LongRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("LongRangeMultiplier"), "crosshair", "Distance Damage","")},
         { "ShortRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("ShortRangeMultiplier"), "icat_6", "Close Damage","")},
         { "WildMagicChance", new DisplayAttribute(typeof(AttributeData).GetField("WildMagicChance"), "icat_5", "Wild Magic","")},
@@ -25,9 +25,10 @@ public class ItemsLogic
         { "Threat", new DisplayAttribute(typeof(AttributeData).GetField("Threat"), "icat_2", "Threat","")},
         { "MovementSpeed", new DisplayAttribute(typeof(AttributeData).GetField("MovementSpeed"), "icat_1", "Speed","")},
         { "JumpHeight", new DisplayAttribute(typeof(AttributeData).GetField("JumpHeight"), "icat_1", "Jump","")},
-        { "DoubleCast", new DisplayAttribute(typeof(AttributeData).GetField("DoubleCast"), "", "Double Cast","")},
-        { "Explode", new DisplayAttribute(typeof(AttributeData).GetField("Explode"), "", "Explode","")},
-        { "HpRegen", new DisplayAttribute(typeof(AttributeData).GetField("HpRegen"), "", "HP Regen","")},
+        { "DoubleCast", new DisplayAttribute(typeof(AttributeData).GetField("DoubleCast"), "Default", "Double Cast","")},
+        { "Explode", new DisplayAttribute(typeof(AttributeData).GetField("Explode"), "icat_9", "Explode","")},
+        { "HpRegen", new DisplayAttribute(typeof(AttributeData).GetField("HpRegen"), "hpregen", "HP Regen","")},
+        { "Default", new DisplayAttribute(null, "Default", "Default","")},
     };
     public static string GetTooltipTextFromItem(ItemData itemData)
     {
@@ -45,21 +46,21 @@ public class ItemsLogic
         // First get all the positives, then the negatives.
         foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in DisplayAttributes)
         {
-            float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(data);
+            float propertyValue = keyValuePair.Value.FieldInfo != null ? (float)keyValuePair.Value.FieldInfo.GetValue(data) : 0f;
             
             if (propertyValue > 0)
             {
-                string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\">  ";
+                string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ?  "<sprite name=\"Default\">" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\">  ";
                 result += Environment.NewLine + "<color=" + GOOD_LINE_COLOR + ">" + icon + keyValuePair.Value.Name + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
             }
         }
         foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in DisplayAttributes)
         {
-            float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(data);
-            
+            float propertyValue = keyValuePair.Value.FieldInfo != null ? (float)keyValuePair.Value.FieldInfo.GetValue(data) : 0f;
+
             if (propertyValue < 0)
             {
-                string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\" tint=1>  ";
+                string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "<sprite name=\"Default\">" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\" tint=1>  ";
                 result += Environment.NewLine + "<color=" + BAD_LINE_COLOR + ">" + icon + keyValuePair.Value.Name + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
             }
         }
@@ -73,6 +74,8 @@ public class ItemsLogic
         foreach (var abilityParam in abilityParams)
         {
             string abilityParamText = "";
+
+            abilityParamText += "<sprite name=\"crosshair\">  ";
 
             if (abilityParam.Condition && abilityParam.Condition.Type == ConditionType.Chance)
             {
@@ -97,11 +100,14 @@ public class ItemsLogic
         string text = itemData.DisplayName;
         text += System.Environment.NewLine +"<i><color=yellow>"+ itemData.Type.name+"</color></i>";
 
-        string description = "<i>"+itemData.Description.Trim()+"</i>";
+
+
+        string description = itemData.Description.Trim();
         if (!string.IsNullOrEmpty(description)) {
-            text += System.Environment.NewLine + description;
+            text += System.Environment.NewLine + "<i>"+description+"</i>";
         }
 
+        //text += System.Environment.NewLine + "<i><u><color=yellow> Bonuses: </color></u></i>";
         text += ItemsLogic.GetTooltipTextFromItem(itemData);
 
         return text;

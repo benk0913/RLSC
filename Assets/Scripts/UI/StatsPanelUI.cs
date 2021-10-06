@@ -51,6 +51,11 @@ public class StatsPanelUI : MonoBehaviour
 
         foreach (KeyValuePair<string, ItemsLogic.DisplayAttribute> keyValuePair in ItemsLogic.DisplayAttributes)
         {
+            if(keyValuePair.Value.FieldInfo == null)
+            {
+                continue;
+            }
+
             float propertyValue = (float)keyValuePair.Value.FieldInfo.GetValue(CurrentActor.attributes);
             
             GenerateStatItem(keyValuePair.Key, keyValuePair.Value.Name, propertyValue);
