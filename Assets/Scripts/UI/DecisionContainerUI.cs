@@ -33,24 +33,29 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
         CurrentTarget = actor.ActorEntity.transform;
         CurrentDecisions = decisions;
 
-        CORE.ClearContainer(transform);
 
         IsActive = true;
 
+        CORE.ClearContainer(transform);
+
         CORE.Instance.DelayedInvokation(0.1f, () =>
         {
-            foreach (DialogDecision decision in CurrentDecisions)
-            {
-                DialogDecisionUI decisionUI = ResourcesLoader.Instance.GetRecycledObject("DialogDecisionUI").GetComponent<DialogDecisionUI>();
-                decisionUI.SetInfo(decision);
-                decisionUI.transform.SetParent(transform, false);
-                decisionUI.transform.position = Vector3.zero;
-                decisionUI.transform.localScale = Vector3.one;
-            }
 
-            CORE.Instance.DelayedInvokation(0.1f, () => 
+            CORE.Instance.DelayedInvokation(0.1f, () =>
             {
-                SGroup.RefreshGroup(false);
+                foreach (DialogDecision decision in CurrentDecisions)
+                {
+                    DialogDecisionUI decisionUI = ResourcesLoader.Instance.GetRecycledObject("DialogDecisionUI").GetComponent<DialogDecisionUI>();
+                    decisionUI.SetInfo(decision);
+                    decisionUI.transform.SetParent(transform, false);
+                    decisionUI.transform.position = Vector3.zero;
+                    decisionUI.transform.localScale = Vector3.one;
+                }
+
+                CORE.Instance.DelayedInvokation(0.1f, () =>
+                {
+                    SGroup.RefreshGroup(false);
+                });
             });
         });
     }

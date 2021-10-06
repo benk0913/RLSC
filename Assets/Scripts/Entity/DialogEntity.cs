@@ -20,26 +20,29 @@ public class DialogEntity : MonoBehaviour
     float keyDownTimer = 0.5f;
     private void Update()
     {
-        if(Input.anyKey)
+        if (isActiveDialog)
         {
-            if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Joystick 2"))
+            if (Input.anyKey)
             {
-                return;
-            }
+                if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Joystick 2"))
+                {
+                    return;
+                }
 
-            if(keyDownTimer > 0f)
-            {
-                keyDownTimer -= Time.deltaTime;
+                if (keyDownTimer > 0f)
+                {
+                    keyDownTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    EndDialog();
+                    keyDownTimer = 0.5f;
+                }
             }
             else
             {
-                EndDialog();
                 keyDownTimer = 0.5f;
             }
-        }
-        else
-        {
-            keyDownTimer =  0.5f;
         }
     }
 
@@ -52,12 +55,20 @@ public class DialogEntity : MonoBehaviour
 
     public void StartDialog(Dialog dialog)
     {
-        if(VendorEntity.CurrentInstance != null && VendorEntity.CurrentInstance.IsFocusing)
+
+        CORE.Instance.LogMessage("DIALOG START " + (dialog.DialogPieces.Count > 0 ? dialog.DialogPieces[0].Content.Substring(0, 10) : "") + "...");
+
+        if (VendorEntity.CurrentInstance != null && VendorEntity.CurrentInstance.IsFocusing)
         {
             return;
         }
 
-        if(CurrentDialog == dialog &&  isActiveDialog)
+        if(DecisionContainerUI.Instance.IsActive)
+        {
+            return;
+        }
+
+        if(isActiveDialog)
         {
             Continue();
             return;
@@ -96,10 +107,13 @@ public class DialogEntity : MonoBehaviour
 
     public void Continue()
     {
+        CORE.Instance.LogMessage("DIALOG NEXT " +(CurrentDialog.DialogPieces.Count > CurrentIndex?CurrentDialog.DialogPieces[CurrentIndex].Content.Substring(0, 10) :"")+ "... - " + CurrentIndex );
         CurrentIndex++;
 
         if (CurrentIndex >= CurrentDialog.DialogPieces.Count)
         {
+
+            CORE.Instance.LogMessage("DIALOG SHOW DECISIONS " + CurrentDialog.Decisions.Count);
             if (CurrentDialog.Decisions.Count > 0)
             {
                 DecisionContainerUI.Instance.Show(CORE.Instance.Room.PlayerActor, CurrentDialog.Decisions);
@@ -133,6 +147,9 @@ public class DialogEntity : MonoBehaviour
 
     public void EndDialog()
     {
+        CORE.Instance.LogMessage("DIALOG END " + CurrentDialog.DialogPieces[0].Content.Substring(0, 10)+"...");
+
+        CurrentDialog = null;
         this.CurrentBubble.gameObject.SetActive(false);
         isActiveDialog = false;
     }
@@ -171,13 +188,11 @@ public class DialogEntity : MonoBehaviour
                 gEvent.Execute();
             }
 
-            if(DefaultDialog.DialogPieces.Count > 0)
+            CurrentInstance.EndDialog();
+
+            if (DefaultDialog.DialogPieces.Count > 0)
             {
                 CurrentInstance.StartDialog(DefaultDialog);
-            }
-            else
-            {
-                CurrentInstance.EndDialog();
             }
         }
     }

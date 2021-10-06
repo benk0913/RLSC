@@ -32,7 +32,7 @@ public class InspectionPanelUI : MonoBehaviour
 
     void Update()
     {
-        if(CurrentActor == null || CurrentActor.ActorEntity == null)
+        if(CameraChaseEntity.Instance != null && (CurrentActor == null || CurrentActor.ActorEntity == null ))
         {
             CameraChaseEntity.Instance.ReferenceObject = null;
             IsFocusingOnActor = false;

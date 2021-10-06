@@ -16,8 +16,8 @@ public class DialogDecisionUI : MonoBehaviour
 
     public void OnClick()
     {
-        CurrentDecision.SelectDecision();
         DecisionContainerUI.Instance.Hide();
+        CurrentDecision.SelectDecision();
     }
 
     public void SetInfo(DialogEntity.DialogDecision decision)
