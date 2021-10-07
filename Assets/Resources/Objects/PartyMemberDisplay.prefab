@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 5243034232513397195}
   - component: {fileID: 5243034232513397188}
   - component: {fileID: 3545981964822899098}
+  - component: {fileID: 7045384536772143838}
   m_Layer: 5
   m_Name: InspectButton
   m_TagString: Untagged
@@ -357,6 +358,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Inspect Character
+--- !u!114 &7045384536772143838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243034232513397190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3545981964822899098}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3545981964822899098}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5243034232545994413
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +563,7 @@ GameObject:
   - component: {fileID: 5243034232693833094}
   - component: {fileID: 5243034232693833095}
   - component: {fileID: 6394394229416273944}
+  - component: {fileID: 5018688743985768392}
   m_Layer: 5
   m_Name: PromoteButton
   m_TagString: Untagged
@@ -654,6 +698,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Promote To Party Leader!
+--- !u!114 &5018688743985768392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243034232693833089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6394394229416273944}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6394394229416273944}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5243034233004403854
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +887,7 @@ GameObject:
   - component: {fileID: 5243034233175493572}
   - component: {fileID: 5243034233175493573}
   - component: {fileID: 3972950453204577349}
+  - component: {fileID: 6265313289960201760}
   m_Layer: 5
   m_Name: LeaveButton
   m_TagString: Untagged
@@ -935,6 +1022,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Leave Party
+--- !u!114 &6265313289960201760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243034233175493575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3972950453204577349}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3972950453204577349}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5243034233235318708
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +1077,7 @@ GameObject:
   - component: {fileID: 5243034233235318713}
   - component: {fileID: 5243034233235318714}
   - component: {fileID: 6357717459566932793}
+  - component: {fileID: 7945148438479548101}
   m_Layer: 5
   m_Name: KickButton
   m_TagString: Untagged
@@ -1082,6 +1212,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Kick From Party
+--- !u!114 &7945148438479548101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243034233235318708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6357717459566932793}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6357717459566932793}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5243034233557423149
 GameObject:
   m_ObjectHideFlags: 0

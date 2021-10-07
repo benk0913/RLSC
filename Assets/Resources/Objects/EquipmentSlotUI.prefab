@@ -115,11 +115,17 @@ MonoBehaviour:
     y: 0
     spawnX: 0
     spawnY: 0
+    amount: 0
+    equipKey: 
     Entity: {fileID: 0}
+    OrbMaterial: {fileID: 0}
   IconImage: {fileID: 1809425089064107197}
   TooltipTarget: {fileID: 4022331011380134952}
   SelectedFrame: {fileID: 8821404966776724043}
   IsEquipmentSlot: 1
+  IsTradeSlot: 0
+  SlotType: {fileID: 0}
+  IsInspecting: 0
 --- !u!114 &9139876922741727978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,8 +141,8 @@ MonoBehaviour:
   OnEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2631943444614629730}
-        m_TargetAssemblyTypeName: InventorySlotUI, Assembly-CSharp
+      - m_Target: {fileID: 4022331011380134952}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
         m_MethodName: OnSelectionEnter
         m_Mode: 1
         m_Arguments:
@@ -150,8 +156,8 @@ MonoBehaviour:
   OnExitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2631943444614629730}
-        m_TargetAssemblyTypeName: InventorySlotUI, Assembly-CSharp
+      - m_Target: {fileID: 4022331011380134952}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
         m_MethodName: OnSelectionExit
         m_Mode: 1
         m_Arguments:

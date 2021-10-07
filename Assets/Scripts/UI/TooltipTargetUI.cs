@@ -46,6 +46,16 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         PointAndClickTooltipUI.Instance.Show(Text, Bonuses, position, pivotX, pivotY);
     }
+    
+    public void OnSelectionEnter()
+    {
+        ShowOnPosition(transform.position);
+    }
+
+    public void OnSelectionExit()
+    {
+        Hide();
+    }
 
     void OnDisable()
     {
