@@ -39,22 +39,17 @@ MonoBehaviour:
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
   ClassFeatureVideo: {fileID: 0}
   DropsOnDeath:
-  - {fileID: 11400000, guid: 8e7a54764c8e8be45ba0b7ad54d51870, type: 2}
-  - {fileID: 11400000, guid: 7f35a599b891ddd468eddfd24c95e8bc, type: 2}
-  - {fileID: 11400000, guid: c16fe934a2efca342b8fa76ffe36763d, type: 2}
-  - {fileID: 11400000, guid: 5a91eaa2e544fe243aa2070d810080b2, type: 2}
-  - {fileID: 11400000, guid: 7977922f72cedcb4781d512416366645, type: 2}
-  - {fileID: 11400000, guid: d1873185479f0b64b9d625e9b86970ba, type: 2}
-  - {fileID: 11400000, guid: 5ea4ff85ec6fe2742b2b1fcf5f5a5645, type: 2}
-  - {fileID: 11400000, guid: 4618a150d8f0fcf498d576dc24523e8b, type: 2}
-  - {fileID: 11400000, guid: 9b1fd4747f5b9214fae8efb0dbb0319b, type: 2}
-  - {fileID: 11400000, guid: 86714ffd9b528b94e91f1946c5bf4b16, type: 2}
-  - {fileID: 11400000, guid: 5605fd21f93f70c40b9ade3687be035d, type: 2}
-  - {fileID: 11400000, guid: 52b7feaee042c644fbfd5af1ef76a6bc, type: 2}
+  - {fileID: 11400000, guid: e8f5410c6b5a48d478591173e1188990, type: 2}
   CoinDropMultiplier: 10
   OnGetHitParams: []
   OnSomeoneExecutesParams: []
-  OnDeathParams: []
+  OnDeathParams:
+  - Type: {fileID: 11400000, guid: ab5735645c370aa4182cd55a64d48649, type: 2}
+    Condition: {fileID: 11400000, guid: 52889d43b1294bd4e8f42fb09abb7386, type: 2}
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 0bb8739256f85e5449ab5f7bd8f6a7a5, type: 2}
+    Value2: 
   UniqueHurtSounds:
   - ChestHurt2
   - ChestHurt3

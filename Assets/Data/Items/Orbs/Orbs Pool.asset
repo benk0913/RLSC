@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95219eb7d644f142a40a738ada1fec8, type: 3}
-  m_Name: Double Cast 1
+  m_Name: Orbs Pool
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 0b61c73a6e8761242ac81f613ba7ded6, type: 3}
-  DisplayName: Double Cast
-  Description: 
+  Icon: {fileID: 21300000, guid: ec3454ae7f7effe46b4a497501349add, type: 3}
+  DisplayName: Orbs Pool
+  Description: ORBS
   UniquePrefab: 
   Stats:
     Power: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
     Threat: 0
     MovementSpeed: 0
     JumpHeight: 0
-    DoubleCast: 0.33
+    DoubleCast: 0
     Explode: 0
     HpRegen: 0
   VendorPrice: 2
@@ -44,8 +44,22 @@ MonoBehaviour:
   OrbColliderObject: 
   SkinOverride: []
   NewSkinOverride: []
+  HidingItemTypes: []
   States: []
   TypeBasedOverrides: []
-  Pool: []
+  Pool:
+  - {fileID: 11400000, guid: 7f35a599b891ddd468eddfd24c95e8bc, type: 2}
+  - {fileID: 11400000, guid: 8e7a54764c8e8be45ba0b7ad54d51870, type: 2}
+  - {fileID: 11400000, guid: c16fe934a2efca342b8fa76ffe36763d, type: 2}
+  - {fileID: 11400000, guid: 5a91eaa2e544fe243aa2070d810080b2, type: 2}
+  - {fileID: 11400000, guid: 7977922f72cedcb4781d512416366645, type: 2}
+  - {fileID: 11400000, guid: d1873185479f0b64b9d625e9b86970ba, type: 2}
+  - {fileID: 11400000, guid: 5ea4ff85ec6fe2742b2b1fcf5f5a5645, type: 2}
+  - {fileID: 11400000, guid: 4618a150d8f0fcf498d576dc24523e8b, type: 2}
+  - {fileID: 11400000, guid: 9b1fd4747f5b9214fae8efb0dbb0319b, type: 2}
+  - {fileID: 11400000, guid: 86714ffd9b528b94e91f1946c5bf4b16, type: 2}
+  - {fileID: 11400000, guid: 5605fd21f93f70c40b9ade3687be035d, type: 2}
+  - {fileID: 11400000, guid: 52b7feaee042c644fbfd5af1ef76a6bc, type: 2}
   OnExecuteParams: []
   OnHitParams: []
+  OnUseParams: []

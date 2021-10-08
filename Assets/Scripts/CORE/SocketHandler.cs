@@ -1280,7 +1280,6 @@ public class SocketHandler : MonoBehaviour
         int slotIndex = data["slotIndex"].AsInt;
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
 
-        // TODO set the inventory tab to cash if updated a cash item and to normal if updated a normal item.
         bool isCash = data["isCash"].AsBool;
         if (isCash)
         {
@@ -1314,6 +1313,7 @@ public class SocketHandler : MonoBehaviour
 
         if (actorDat.IsPlayer)
         {
+            InventoryUI.Instance.EquippedItem(item);
             CORE.Instance.InvokeEvent("InventoryUpdated");
         }
         
