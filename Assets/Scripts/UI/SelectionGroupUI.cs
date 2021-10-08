@@ -355,7 +355,14 @@ public class SelectionGroupUI : MonoBehaviour
             }
             else if (CurrentSelectedSelectable.GetType() == typeof(TMP_InputField))
             {
-                ((TMP_InputField)CurrentSelectedSelectable).Select();
+                if (EventSystem.current.currentSelectedGameObject == CurrentSelectedSelectable.gameObject)
+                {
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
+                else
+                {
+                    ((TMP_InputField)CurrentSelectedSelectable).Select();
+                }
             }
         }
     }

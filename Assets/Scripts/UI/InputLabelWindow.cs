@@ -17,6 +17,8 @@ public class InputLabelWindow : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI FieldLabel;
 
+    
+
     [SerializeField]
     TMP_InputField Field;
 
@@ -50,11 +52,18 @@ public class InputLabelWindow : MonoBehaviour
     {
         this.gameObject.SetActive(true);
 
+        Field.text = "";
+
+
+
         TitleLabel.text = title;
         FieldLabel.text = fieldLabel;
         AcceptAction = acceptCallback;
 
-        SGroup.Select(SelectableFocusOnStart);
+        CORE.Instance.DelayedInvokation(0.1f, () => { SGroup.Select(SelectableFocusOnStart); });
+
+        SGroup.Select(Field);
+
     }
 
     public void Accept()

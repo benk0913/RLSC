@@ -17,7 +17,8 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        PointAndClickTooltipUI.Instance.Show(Text, Bonuses);
+        Vector3? posi = null;
+        PointAndClickTooltipUI.Instance.Show(Text, Bonuses,posi);
     }
 
     public void OnPointerExitSimple()
@@ -46,10 +47,15 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         PointAndClickTooltipUI.Instance.Show(Text, Bonuses, position, pivotX, pivotY);
     }
-    
+
+    public void ShowOnTransform(Transform trans, float pivotX = -1, float pivotY = -1)
+    {
+        PointAndClickTooltipUI.Instance.Show(Text, Bonuses, trans, pivotX, pivotY);
+    }
+
     public void OnSelectionEnter()
     {
-        ShowOnPosition(transform.position);
+        ShowOnTransform(transform);
     }
 
     public void OnSelectionExit()

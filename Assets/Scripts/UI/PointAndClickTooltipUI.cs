@@ -18,6 +18,8 @@ public class PointAndClickTooltipUI : MonoBehaviour
     [SerializeField]
     RectTransform rectT;
 
+    Transform PositionTransform;
+
     private Vector3? AnchorPosition;
     private float PivotX;
     private float PivotY;
@@ -64,6 +66,48 @@ public class PointAndClickTooltipUI : MonoBehaviour
 
         Text.text = message;
 
+        PositionTransform = null;
+
+        Show();
+
+        ClearBonuses();
+
+        if (bonuses != null)
+        {
+            foreach (TooltipBonus bonus in bonuses)
+            {
+                GameObject bonusObj = ResourcesLoader.Instance.GetRecycledObject("TooltipBonusInstance");
+                bonusObj.transform.SetParent(transform);
+                bonusObj.transform.SetAsLastSibling();
+                bonusObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = bonus.Text;
+                bonusObj.transform.GetChild(1).GetComponent<Image>().sprite = bonus.Icon;
+            }
+        }
+    }
+
+    public void Show(
+    string message,
+    List<TooltipBonus> bonuses = null,
+    Transform positionTransform = null,
+    float pivotX = -1,
+    float pivotY = -1)
+    {
+        if (string.IsNullOrEmpty(message))
+        {
+            return;
+        }
+
+
+        PivotX = pivotX;
+        PivotY = pivotY;
+
+        PositionTransform = positionTransform;
+        AnchorPosition = PositionTransform.position;
+
+        PositionTooltip();
+
+        Text.text = message;
+
         Show();
 
         ClearBonuses();
@@ -83,6 +127,11 @@ public class PointAndClickTooltipUI : MonoBehaviour
 
     void PositionTooltip()
     {
+        if(PositionTransform != null)
+        {
+            AnchorPosition = PositionTransform.position;
+        }
+
         Vector3 BasePosition = AnchorPosition != null ? (Vector3)AnchorPosition : Input.mousePosition;
         bool xInRightSide = BasePosition.x > Screen.width / 2;
         bool yInUpperSide = BasePosition.y > Screen.height / 2;
