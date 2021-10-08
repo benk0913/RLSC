@@ -83,18 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!225 &6668542478237727235
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7414940063394315741}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &4388057860214177010
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +174,7 @@ GameObject:
   - component: {fileID: -4450653481467336306}
   - component: {fileID: 1102209929354250402}
   - component: {fileID: -173390328672722209}
+  - component: {fileID: 2981936749360039020}
   m_Layer: 5
   m_Name: DisplayActor
   m_TagString: Untagged
@@ -365,6 +354,21 @@ MonoBehaviour:
   PointerUpSound: CharCircle
   PointerHoverSound: BigIconEnter
   PointerUnhoverSound: 
+--- !u!114 &2981936749360039020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5655247046041533110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d525c092a3c91a0458e1951596be652a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6530704886266272464
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +444,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &6668542478237727235
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414940063394315741}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8093301407078400186
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +576,10 @@ PrefabInstance:
       propertyPath: CG
       value: 
       objectReference: {fileID: 6668542478237727235}
+    - target: {fileID: 3155438538835037121, guid: 1868153d338370546aa625ea5d04992a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3422503758729898155, guid: 1868153d338370546aa625ea5d04992a, type: 3}
       propertyPath: m_IsActive
       value: 1

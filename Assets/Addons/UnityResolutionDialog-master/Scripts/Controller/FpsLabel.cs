@@ -25,7 +25,7 @@ namespace NewResolutionDialog.Scripts.Controller
                 deltaTime -= updateRateSeconds;
             }
 
-            fpsLabel.text = string.Format("{0} fps", (int)(fps + updateRateSeconds) + 0.5f);
+            fpsLabel.text = string.Format("{0} fps", Mathf.RoundToInt(fps + updateRateSeconds + 0.5f));
         }
     }
 }

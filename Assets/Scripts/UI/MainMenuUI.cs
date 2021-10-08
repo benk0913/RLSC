@@ -129,7 +129,7 @@ public class MainMenuUI : MonoBehaviour
         for(int i=0;i<SocketHandler.Instance.CurrentUser.chars.Count; i++)
         {
             ActorData character = SocketHandler.Instance.CurrentUser.chars[i];
-
+            int characterIndex = 0 + i;
 
             DisplayCharacterUI disAct = ResourcesLoader.Instance.GetRecycledObject("DisplayActor").GetComponent<DisplayCharacterUI>();
             disAct.transform.SetParent(CharacterSelectionContainer, false);
@@ -137,11 +137,14 @@ public class MainMenuUI : MonoBehaviour
             disAct.transform.position = Vector3.one;
             disAct.AttachedCharacter.transform.position = Vector3.one;
             disAct.AttachedCharacter.SetActorInfo(character);
+            disAct.GetComponent<DoubleclickHandlerUI>().OnDoubleClick.AddListener(()=> { SelectCharacter(characterIndex); });
             disAct.SetInfo(() => { SetCharacterSelected(disAct); });
             if (i == 0)
             {
                 SetCharacterSelected(disAct);
             }
+
+            disAct.AttachedCharacter.RefreshLooks();
         }
 
         if (SocketHandler.Instance.CurrentUser.chars.Count <= 0)
@@ -204,5 +207,10 @@ public class MainMenuUI : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ShowOptionsMenu()
+    {
+        CORE.Instance.ShowWindow(SettingsMenuUI.Instance);
     }
 }

@@ -57,7 +57,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
         // Randomize whether a female or not only at the beginning.
         DisplayActor.State.Data.looks.IsFemale = Random.Range(0, 2) == 0;
-        UpdateClassJob(Random.Range(0, 4));
+        
         Randomize();
         
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(false));

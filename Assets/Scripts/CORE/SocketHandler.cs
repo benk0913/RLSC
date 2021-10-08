@@ -399,7 +399,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendConnectSocket(Action OnComplete = null)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Embracing Humanity...", Color.green, 3f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting...", Color.green, 3f, true));
 
         if (ConnectSocketRoutineInstance != null)
         {
@@ -451,7 +451,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendDisconnectSocket()
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Rejecting Humanity... Returning to MONKE...", Color.green, 3f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Disconnecting...", Color.green, 3f, true));
 
         DisconnectSocket();
 

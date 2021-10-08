@@ -9,7 +9,7 @@ public class DoubleclickHandlerUI : MonoBehaviour, IPointerClickHandler
     Coroutine DoubleClickRoutineInstance;
 
     [SerializeField]
-    UnityEvent OnDoubleClick;
+    public UnityEvent OnDoubleClick;
 
     public void OnPointerClick(PointerEventData eventData)
     {
