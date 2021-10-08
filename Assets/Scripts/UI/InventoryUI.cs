@@ -87,7 +87,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     [SerializeField]
     public List<GameObject> EquipmentPanelsGameObjects; 
 
-    public List<EquippableSlot> EquipSlots = new List<EquippableSlot>();
+    public List<EquippableSlotTab> EquipSlotsByTab = new List<EquippableSlotTab>();
     
 
     InventorySlotUI SelectedSlot;
@@ -101,6 +101,21 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         get
         {
             return InventoryPanelsGameObjects[1].activeInHierarchy;
+        }
+    }
+    public int CurrentEquipmentTab
+    {
+        get
+        {
+            
+            for (int i = 0; i < EquipmentPanelsGameObjects.Count; i++)
+            {
+                if (EquipmentPanelsGameObjects[i].activeInHierarchy)
+                {
+                    return i;
+                }
+            }
+            return 0;
         }
     }
 
@@ -224,19 +239,19 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }
         }
 
-        
+        List<EquippableSlot> EquipSlots = EquipSlotsByTab[CurrentEquipmentTab].Slots;
         for (int i = 0; i < EquipSlots.Count; i++)
         {
             Item item = null;
             currentActor.equips.TryGetValue(EquipSlots[i].Type.name, out item); 
             InventorySlotUI slot = EquipSlots[i].Slot;
             
-                slot.SetItem(item, () => {
-                    if (!isInspecting)
-                    {
-                        Select(slot);
-                    }
-                }, EquipSlots[i].Type);
+            slot.SetItem(item, () => {
+                if (!isInspecting)
+                {
+                    Select(slot);
+                }
+            }, EquipSlots[i].Type);
         }
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));
@@ -277,6 +292,48 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             CORE.Instance.DelayedInvokation(0.1f,()=>{
                 ContainersScrolls[index].verticalNormalizedPosition = 1f;
             });
+        }
+    }
+
+    public int GetTabOfEquip(Item item)
+    {
+        if (item == null || item.Data == null)
+        {
+            return 0;
+        }
+
+        ItemType ExampleSlotType = item.Data.Type;
+
+        // EquipSlotsByTab has slot names (e.g. 'emote 1') and item type is the actual type (e.g. 'emote'),
+        // so in order to find the tab index, we get any slot name with the item type. 
+        foreach (var typeOverride in CORE.Instance.Data.content.EquipSlotOverrides)
+        {
+            if (typeOverride.overrideType.name == item.Data.Type.name)
+            {
+                ExampleSlotType = typeOverride.itemType;
+            }
+        }
+
+        for (int i = 0; i < EquipSlotsByTab.Count; i++)
+        {
+            List<EquippableSlot> EquipSlots = EquipSlotsByTab[i].Slots;
+            for (int j = 0; j < EquipSlots.Count; j++)
+            {
+                if (EquipSlots[j].Type.name == ExampleSlotType.name)
+                {
+                    return i;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public void EquippedItem(Item item)
+    {
+        if (item != null && item.Data != null)
+        {
+            int tabIndex = GetTabOfEquip(item);
+            SetEquipmentTab(tabIndex);
         }
     }
 
@@ -372,19 +429,19 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick unequip
                 {
-                    SocketHandler.Instance.SendUnequippedItem(SelectedSlot.name);
+                    SocketHandler.Instance.SendUnequippedItem(SelectedSlot.SlotType.name);
                 }
                 else if (SelectedSlot.IsEquipmentSlot & slot.IsEquipmentSlot) //Reposition equipment
                 {
-                    SocketHandler.Instance.SendSwappedEquipAndEquipSlots(slot.name, SelectedSlot.name);
+                    SocketHandler.Instance.SendSwappedEquipAndEquipSlots(slot.SlotType.name, SelectedSlot.SlotType.name);
                 }
                 else if (SelectedSlot.IsEquipmentSlot )//swapped between equo and inventory 
                 {
-                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.name, IsCashTab);
+                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.SlotType.name, IsCashTab);
                 }
                 else if (slot.IsEquipmentSlot) //swapped between inventory and equip 
                 {
-                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(SelectedSlot.transform.GetSiblingIndex(), slot.name, IsCashTab);
+                    SocketHandler.Instance.SendSwappedItemAndEquipSlots(SelectedSlot.transform.GetSiblingIndex(), slot.SlotType.name, IsCashTab);
                 }
                 else //Swap in inventory
                 {
@@ -431,7 +488,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }
             else
             {
-                SocketHandler.Instance.SendUnequippedItem(SelectedSlot.name);
+                SocketHandler.Instance.SendUnequippedItem(SelectedSlot.SlotType.name);
             }
         }
 
@@ -526,4 +583,10 @@ public class EquippableSlot
 {
     public InventorySlotUI Slot;
     public ItemType Type;
+}
+
+[System.Serializable]
+public class EquippableSlotTab
+{
+    public List<EquippableSlot> Slots;
 }
