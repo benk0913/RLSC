@@ -116,6 +116,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
             });
         },()=>
         {
+            this.gameObject.SetActive(true);
             
         });
     }

@@ -32,28 +32,19 @@ public class KeyBindingPieceUI : MonoBehaviour {
 
     public void OnClick()
     {
-        SetBinding();
+        KeyBindingWindowUI.Instance.OnKeyBindingPieceClicked(this);
     }
 
-    protected void SetBinding()
+    public void SetBinding()
     {
-        StopAllCoroutines();
         isWaitingForKey = true;
-        initColor = m_Image.color;
         m_Image.color = Color.yellow;
-
-
-        //TODO Investigate why this was  required?
-       //CORE.Instance.IsTyping = true;
     }
 
     public void CloseBinding()
     {
         isWaitingForKey = false;
-        m_Image.color = initColor;
-
-        //TODO Investigate why this was  required?
-        //StartCoroutine(DelayedInChatDisable());
+        m_Image.color = Color.white;
     }
 
     void OnGUI()
@@ -63,7 +54,7 @@ public class KeyBindingPieceUI : MonoBehaviour {
             keyEvent = Event.current;
             if (keyEvent != null && keyEvent.isKey)
             {
-                if(keyEvent.keyCode != KeyCode.Escape)
+                if(keyEvent.keyCode != InputMap.Map["Exit"] && keyEvent.keyCode != InputMap.Map["Confirm"])
                 {
                     InputMap.Map[m_txtTitle.text] = keyEvent.keyCode;
                     InputMap.SaveMap();
@@ -72,15 +63,9 @@ public class KeyBindingPieceUI : MonoBehaviour {
                 }
 
                 CloseBinding();
+                KeyBindingWindowUI.Instance.CloseBinding();
             }
         }
     }
 
-    // private IEnumerator DelayedInChatDisable()
-    // {
-    //     // give the button a small delay before it starts working since the user just clicked it to set it
-    //     yield return new WaitForSeconds(0.2f);
-
-    //     Game.Instance.InChat = false;
-    // }
 }

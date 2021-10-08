@@ -214,10 +214,38 @@ public class SocketHandler : MonoBehaviour
 #endif
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Waiting for steam to initialize...", Color.green, 3f, false));
 
-        CORE.Instance.ConditionalInvokation((x)=>
+        if(GetSessionTicketRoutineInstance != null)
         {
-            return SteamManager.Initialized;
-            },()=>ObtainSessionTicket(OnComplete),0.1f);
+            StopCoroutine(GetSessionTicketRoutineInstance);
+        }
+
+        GetSessionTicketRoutineInstance = StartCoroutine(GetSessionTicketRoutine(OnComplete));
+    }
+
+
+    Coroutine GetSessionTicketRoutineInstance;
+    IEnumerator GetSessionTicketRoutine(Action OnComplete = null)
+    {
+        float timeout = 10f;
+        while(timeout > 0)
+        {
+            if(SteamManager.Initialized)
+            {
+                break;
+            }
+
+            timeout -= Time.deltaTime;
+
+            if(timeout <= 0)
+            {
+                timeout = 10f;
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Please make sure Steam is running and online!", Color.red, 3f, true));
+            }
+
+            yield return 0;
+        }
+
+        ObtainSessionTicket(OnComplete);
     }
 
     void ObtainSessionTicket(Action OnComplete)
@@ -230,8 +258,15 @@ public class SocketHandler : MonoBehaviour
 
         SessionPTicket = new byte[SessionTicketSize];
         Steamworks.SteamUser.GetAuthSessionTicket(SessionPTicket,SessionTicketSize, out SessionPCBTicket);
-        
-       
+
+        //Timeout validation
+        CORE.Instance.DelayedInvokation(10f, () => 
+        {
+            if(string.IsNullOrEmpty(SessionTicket))
+            {
+                GetSteamSession(OnComplete);
+            }
+        });
         
 
     }

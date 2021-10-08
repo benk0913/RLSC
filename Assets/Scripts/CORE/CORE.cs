@@ -63,6 +63,11 @@ public class CORE : MonoBehaviour
                 return false;
             }
 
+            if(KeyBindingWindowUI.Instance != null && KeyBindingWindowUI.Instance.IsWaitingForKeyActive)
+            {
+                return true;
+            }
+
             GameObject currentSelectedGameObject = EventSystem.current.currentSelectedGameObject;
             if (currentSelectedGameObject != null)
             {
@@ -111,11 +116,16 @@ public class CORE : MonoBehaviour
     {
         Instance = this;
 
-        SteamAPI.RestartAppIfNecessary(new AppId_t(1780330));
+        if(SteamAPI.RestartAppIfNecessary(new AppId_t(1780330)))
+        {
+            Application.Quit();
+            return;
+        }
+
         SteamAPI.Init();
 
 
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
 
@@ -145,13 +155,6 @@ public class CORE : MonoBehaviour
         SubscribeToEvent("ActorResurrected", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorChangedStates", () => { Room.RefreshThreat(); });
         SubscribeToEvent("GameStatesChanged", () => { GameStatesChanges(); });
-
-#if !UNITY_EDITOR
-        DelayedInvokation(3f, () =>
-        {
-            ShowSettingsWindow();
-        });
-#endif
 
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);

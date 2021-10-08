@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class KeyBindingWindowUI : MonoBehaviour {
 
+    public static KeyBindingWindowUI Instance;
+
     [SerializeField]
     Transform Container;
 
@@ -17,9 +19,21 @@ public class KeyBindingWindowUI : MonoBehaviour {
     [SerializeField]
     SelectionGroupUI SGroup;
 
+    public bool IsWaitingForKeyActive;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         CORE.Instance.ConditionalInvokation(X=>!ResourcesLoader.Instance.m_bLoading,()=>{Init();});
+    }
+
+    void OnDisable()
+    {
+        CloseBinding();
     }
 
 	public void Init()
@@ -35,31 +49,39 @@ public class KeyBindingWindowUI : MonoBehaviour {
             key = InputMap.Map.Keys.ElementAt(i);
             KeyBindingPieceUI KeyBindingPiece = tempPiece.GetComponent<KeyBindingPieceUI>();
             KeyBindingPiece.SetInfo(key, InputMap.Map[key]);
-            KeyBindingPiece.m_btn.onClick.AddListener(delegate {OnKeyBindingPieceClicked(KeyBindingPiece);});
         }
 
-        SGroup.RefreshGroup();
-        //CORE.Instance.DelayedInvokation(0.1f,()=>SGroup.RefreshGroup());
+
+        CORE.Instance.DelayedInvokation(0.1f,()=>SGroup.RefreshGroup());
     }
 
     public void OnKeyBindingPieceClicked(KeyBindingPieceUI KeyBindingPiece)
     {
-        bool IsPieceAlreadyActive = KeyBindingPiece.isWaitingForKey;
+        if (LastClickedPiece == KeyBindingPiece)
+        {
+            CloseBinding();
+            return;
+        }
+
+        KeyBindingPiece.SetBinding();
+        IsWaitingForKeyActive = true;
+
         if (LastClickedPiece != null)
         {
             LastClickedPiece.CloseBinding();
         }
 
-        if (IsPieceAlreadyActive)
+        LastClickedPiece = KeyBindingPiece;
+    }
+
+    public void CloseBinding()
+    {
+        IsWaitingForKeyActive = false;
+
+        if (LastClickedPiece != null)
         {
-            // keep the piece disabled and clear the last clicked piece
+            LastClickedPiece.CloseBinding();
             LastClickedPiece = null;
-        }
-        else 
-        {
-            // save the last piece so it can be closed if another one is clicked
-            LastClickedPiece = KeyBindingPiece;
-            KeyBindingPiece.OnClick();
         }
     }
 
