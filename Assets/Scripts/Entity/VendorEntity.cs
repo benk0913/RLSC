@@ -68,7 +68,8 @@ public class VendorEntity : MonoBehaviour
         if(CurrentInstance == this)
             CurrentInstance = null;
 
-        CORE.Instance.CloseCurrentWindow();
+        if(VendorSelectionUI.Instance.IsActive)
+            CORE.Instance.CloseCurrentWindow();
     }
 
     void Start()
