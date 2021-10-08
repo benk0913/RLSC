@@ -73,24 +73,19 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     InspectionPanelUI InspectPanel;
 
     [SerializeField]
-    public GameObject InventoryTabSelectedHalo;
+    public List<GameObject> InventoryTabsSelectedHalos;
 
     [SerializeField]
-    public GameObject CashItemsTabSelectedHalo;
+    public List<GameObject> InventoryPanelsGameObjects;
+
+    [SerializeField]
+    public List<ScrollRect> InventoryContainersScrolls;
+
+    [SerializeField]
+    public List<GameObject> EquipmentTabsSelectedHalos;
     
     [SerializeField]
-    public GameObject InventoryPanelGameObject;
-
-    [SerializeField]
-    public GameObject CashItemsPanelGameObject;
-
-    [SerializeField]
-    ScrollRect InventoryContainerScroll;
-
-    [SerializeField]
-    ScrollRect CashItemsContainerScroll;
-
-
+    public List<GameObject> EquipmentPanelsGameObjects; 
 
     public List<EquippableSlot> EquipSlots = new List<EquippableSlot>();
     
@@ -101,8 +96,13 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     public bool IsOpen;
 
     bool isInspecting;
-    public bool IsCashTab = false;
-
+    public bool IsCashTab
+    {
+        get
+        {
+            return InventoryPanelsGameObjects[1].activeInHierarchy;
+        }
+    }
 
 
     private void Awake()
@@ -146,6 +146,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         InventoryPanel.SetActive(!isInspecting);
         InspectPanel.gameObject.SetActive(isInspecting);
+
+        SetInventoryTab(0);
+        SetEquipmentTab(0);
 
         RefreshUI(false);
 
@@ -240,32 +243,41 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         Deselect();
     }
 
-    public void SetCashTab()
+    public void SetInventoryTab(int index)
     {
-        IsCashTab = true;
-
-        InventoryPanelGameObject.SetActive(false);
-        InventoryTabSelectedHalo.SetActive(false);
-        CashItemsPanelGameObject.SetActive(true);
-        CashItemsTabSelectedHalo.SetActive(true);
-
+        SetTab(index, InventoryPanelsGameObjects, InventoryTabsSelectedHalos, InventoryContainersScrolls);
+    }
+    public void SetInventoryTabWithRefresh(int index)
+    {
+        SetInventoryTab(index);
         RefreshUI();
-
-        CORE.Instance.DelayedInvokation(0.1f,()=>{CashItemsContainerScroll.verticalNormalizedPosition = 1f;});
     }
 
-    public void SetInventoryTab()
+    public void SetEquipmentTab(int index)
     {
-        IsCashTab = false;
-
-        InventoryPanelGameObject.SetActive(true);
-        InventoryTabSelectedHalo.SetActive(true);
-        CashItemsPanelGameObject.SetActive(false);
-        CashItemsTabSelectedHalo.SetActive(false);
-
+        SetTab(index, EquipmentPanelsGameObjects, EquipmentTabsSelectedHalos);
+    }
+    public void SetEquipmentTabWithRefresh(int index)
+    {
+        SetEquipmentTab(index);
         RefreshUI();
+    }
 
-        CORE.Instance.DelayedInvokation(0.1f,()=>{InventoryContainerScroll.verticalNormalizedPosition = 1f;});
+    public void SetTab(int index, List<GameObject> GameObjects, List<GameObject> SelectedHalos, List<ScrollRect> ContainersScrolls = null)
+    {
+        for (int i = 0; i < GameObjects.Count; i++)
+        {
+            bool active = i == index;
+            GameObjects[i].SetActive(active);
+            SelectedHalos[i].SetActive(active);
+        }
+
+        if (ContainersScrolls != null)
+        {
+            CORE.Instance.DelayedInvokation(0.1f,()=>{
+                ContainersScrolls[index].verticalNormalizedPosition = 1f;
+            });
+        }
     }
 
     internal void DragItem(InventorySlotUI inventorySlotUI)
