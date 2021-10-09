@@ -121,11 +121,11 @@ public class PartyMemberDisplayUI : MonoBehaviour
         
         if(IsPlayer)
         {
-            NameLabel.color = Color.yellow;
+            NameLabel.color = Colors.AsColor(Colors.COLOR_HIGHLIGHT);
         }
         else
         {
-            NameLabel.color = Color.white;
+            NameLabel.color = Colors.AsColor(Colors.COLOR_TEXT);
         }
 
         if (IsInRoom)
@@ -177,7 +177,7 @@ public class PartyMemberDisplayUI : MonoBehaviour
     {
         if (IsOffline || !IsInRoom)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Player is not nearby...", Color.red));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Player is not nearby...", Colors.AsColor(Colors.COLOR_BAD)));
             return;
         }
 

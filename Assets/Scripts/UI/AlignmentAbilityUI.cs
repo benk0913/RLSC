@@ -59,7 +59,7 @@ public class AlignmentAbilityUI : MonoBehaviour//, IPointerClickHandler
         if(!CurrentAbility.IsActive)
         {
             TopNotificationUI.Instance.Show(
-                new TopNotificationUI.TopNotificationInstance("You will have to unlock this ability first!",Color.red,3f));
+                new TopNotificationUI.TopNotificationInstance("You will have to unlock this ability first!",Colors.AsColor(Colors.COLOR_BAD),3f));
         }
 
         JSONNode data = new JSONClass();

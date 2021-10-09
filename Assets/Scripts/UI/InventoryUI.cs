@@ -169,8 +169,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
 
 
-        IsSelectedDropText.text = "<color=red>"+InputMap.Map["Drop Inventory Item"].ToString()+" - Drop</color>";
-        IsSelectedUseText.text = "<color=yellow>" + InputMap.Map["Use Inventory Item"].ToString() + " - Use</color>";
+        IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">"+InputMap.Map["Drop Inventory Item"].ToString()+" - Drop</color>";
+        IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + InputMap.Map["Use Inventory Item"].ToString() + " - Use</color>";
 
         AudioControl.Instance.Play(ShowSound);
 
@@ -519,7 +519,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (SelectedSlot.IsEquipmentSlot)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("First unequip the item and only then, you may drop it.", Color.red));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("First unequip the item and only then, you may drop it.", Colors.AsColor(Colors.COLOR_BAD)));
             return;
         }
 
@@ -531,7 +531,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         
         if (IsCashTab)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Cash items cannot be dropped.", Color.red));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Cash items cannot be dropped.", Colors.AsColor(Colors.COLOR_BAD)));
             return;
         }
 
@@ -552,13 +552,13 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             {
                 if (result <= 0)
                 {
-                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Invalid amount of money...", Color.red));
+                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Invalid amount of money...", Colors.AsColor(Colors.COLOR_BAD)));
                     return;
                 }
 
                 if (result > CORE.Instance.Room.PlayerActor.money)
                 {
-                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Not enough money at your disposal!", Color.red));
+                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Not enough money at your disposal!", Colors.AsColor(Colors.COLOR_BAD)));
                     return;
                 }
 
@@ -571,7 +571,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }
             else
             {
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Invalid amount of money!", Color.red));
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Invalid amount of money!", Colors.AsColor(Colors.COLOR_BAD)));
                 return;
             }
         });

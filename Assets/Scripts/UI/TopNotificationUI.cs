@@ -79,7 +79,7 @@ public class TopNotificationUI : MonoBehaviour
         if(instance.Color == Color.clear)
         {
             Frame.color = Color.clear;
-            Field.color = Color.white;
+            Field.color = Colors.AsColor(Colors.COLOR_TEXT);
         }
         else
         {

@@ -46,7 +46,7 @@ public class FriendDisplayDisplayUI : MonoBehaviour
         if(CurrentFriendData.isOnline)
         {
             NameLabel.text = CurrentFriendData.name;
-            NameLabel.color = Color.white;
+            NameLabel.color = Colors.AsColor(Colors.COLOR_TEXT);
         }
         else
         {

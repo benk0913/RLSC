@@ -76,7 +76,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
         if(CORE.Instance.Room.HasEnemies)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("You cannot switch abilities, Enemies are nearby!", Color.red));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("You cannot switch abilities, Enemies are nearby!", Colors.AsColor(Colors.COLOR_BAD)));
             return;
         }
 

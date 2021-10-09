@@ -98,7 +98,7 @@ public class TradeWindowUI : MonoBehaviour
     internal void StopTrade(string byWho)
     {
         this.gameObject.SetActive(false);
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trade Cancelled",Color.red));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trade Cancelled",Colors.AsColor(Colors.COLOR_BAD)));
     }
 
     internal void AcceptTrade(string byWho)
@@ -128,7 +128,7 @@ public class TradeWindowUI : MonoBehaviour
     internal void TradeComplete(PlayerTradeState player, PlayerTradeState otherPlayer)
     {
         this.gameObject.SetActive(false);
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trade Complete!",Color.green));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trade Complete!",Colors.AsColor(Colors.COLOR_GOOD)));
     }
 
 #endregion

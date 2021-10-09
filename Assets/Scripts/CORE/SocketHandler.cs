@@ -212,7 +212,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 #endif
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Waiting for steam to initialize...", Color.green, 3f, false));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Waiting for steam to initialize...", Colors.AsColor(Colors.COLOR_GOOD), 3f, false));
 
         if(GetSessionTicketRoutineInstance != null)
         {
@@ -239,7 +239,7 @@ public class SocketHandler : MonoBehaviour
             if(timeout <= 0)
             {
                 timeout = 10f;
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Please make sure Steam is running and online!", Color.red, 3f, true));
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Please make sure Steam is running and online!", Colors.AsColor(Colors.COLOR_BAD), 3f, true));
             }
 
             yield return 0;
@@ -250,7 +250,7 @@ public class SocketHandler : MonoBehaviour
 
     void ObtainSessionTicket(Action OnComplete)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Getting Session...", Color.green, 3f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Getting Session...", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
 
         //I know these are mouthfulls but blame steam not me lol
         GetAuthSessionTicketResponseCallbackContainer = Callback<GetAuthSessionTicketResponse_t>.Create(OnGetAuthSessionTicketResponse);
@@ -275,7 +275,7 @@ public class SocketHandler : MonoBehaviour
     protected Callback<GetAuthSessionTicketResponse_t> GetAuthSessionTicketResponseCallbackContainer;
     void OnGetAuthSessionTicketResponse(GetAuthSessionTicketResponse_t pCallback) 
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Color.green, 3f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
 
         //System.Array.Resize(ref SessionPTicket, (int)SessionPCBTicket);
             
@@ -327,7 +327,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendCreateCharacter(string element = "fire", ActorData actor = null, Action OnComplete = null, Action OnError = null)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to create character...", Color.green, 1f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to create character...", Colors.AsColor(Colors.COLOR_GOOD), 1f, true));
 
         JSONNode node = new JSONClass();
         node["tutorialIndex"] = TutorialIndex;
@@ -370,7 +370,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendDeleteCharacter(string actorId, Action OnComplete = null)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Deleting Character...", Color.green, 1f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Deleting Character...", Colors.AsColor(Colors.COLOR_GOOD), 1f, true));
 
         JSONNode node = new JSONClass();
         node["tutorialIndex"] = TutorialIndex;
@@ -390,7 +390,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendSelectCharacter(Action OnComplete = null, int index = 0)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Selecting Character", Color.green, 1f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Selecting Character", Colors.AsColor(Colors.COLOR_GOOD), 1f, true));
 
         CurrentUser.SelectedCharacterIndex = index;
         CurrentUser.actor = CurrentUser.chars[index];
@@ -399,7 +399,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendConnectSocket(Action OnComplete = null)
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting...", Color.green, 3f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting...", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
 
         if (ConnectSocketRoutineInstance != null)
         {
@@ -451,7 +451,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendDisconnectSocket()
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Disconnecting...", Color.green, 3f, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Disconnecting...", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
 
         DisconnectSocket();
 
@@ -578,7 +578,7 @@ public class SocketHandler : MonoBehaviour
         {
             OnError?.Invoke(request);
             CORE.Instance.LogMessageError(request.error + " | " + request.downloadHandler.text);
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(request.downloadHandler.text, Color.red, 2f, true));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(request.downloadHandler.text, Colors.AsColor(Colors.COLOR_BAD), 2f, true));
 
             yield break;
         }
@@ -651,7 +651,7 @@ public class SocketHandler : MonoBehaviour
                 // This error case is when having issues connecting to the game, e.g. when you're already connected on another PC.
                 JSONNode errorData = JSON.Parse(error.Message.ToString());
                 string errorMessage = errorData["message"];
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(errorMessage, Color.red, 2, true));
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(errorMessage, Colors.AsColor(Colors.COLOR_BAD), 2, true));
                 CORE.Instance.LogMessageError("Server custom error. Message: " + errorMessage);
                 DisconnectSocket();
                 break;
@@ -681,13 +681,13 @@ public class SocketHandler : MonoBehaviour
 
         int durationInSeconds = data["durationInSeconds"].AsInt > 0 ? data["durationInSeconds"].AsInt : 1;
 
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(error, Color.red, durationInSeconds, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(error, Colors.AsColor(Colors.COLOR_BAD), durationInSeconds, true));
         CORE.Instance.LogMessageError(error);
     }
 
     public void OnLoadScene(string eventName, JSONNode data)
     {
-        // TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering " + data["scene"].Value, Color.green, 1f, false));
+        // TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Entering " + data["scene"].Value, Colors.AsColor(Colors.COLOR_GOOD), 1f, false));
 
         CORE.Instance.IsLoading = true;
         CORE.Instance.CloseCurrentWindow();
@@ -1341,11 +1341,11 @@ public class SocketHandler : MonoBehaviour
         item.Entity.BePickedBy(actorDat.ActorEntity);
         if (item.Data.Type.name == "Money")
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorDat.name + " has picked up " + String.Format("{0:n0}", item.amount) + " coins</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " has picked up " + String.Format("{0:n0}", item.amount) + " coins</color>");
         }
         else
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorDat.name + " has picked up the item: '" + item.itemName + "'</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " has picked up the item: '" + item.itemName + "'</color>");
         }
 
         CORE.Instance.IsPickingUpItem = false;
@@ -1470,7 +1470,7 @@ public class SocketHandler : MonoBehaviour
         string winningActorId = data["winningActorId"].Value;
         if (string.IsNullOrEmpty(winningActorId))
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No one has picked the item " + rolledItem.Data.DisplayName, Color.red, 3f));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No one has picked the item " + rolledItem.Data.DisplayName, Colors.AsColor(Colors.COLOR_BAD), 3f));
             return;
         }
 
@@ -1487,7 +1487,7 @@ public class SocketHandler : MonoBehaviour
         {
             result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnCharWinner").GetComponent<ActorRollResultUI>();
             result.SetInfo(actorDat.ActorEntity, rolledItem.Data, 0);
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorDat.name + " has won the item: '" + rolledItem.itemName + "'</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " has won the item: '" + rolledItem.itemName + "'</color>");
         });
     }
 
@@ -1510,7 +1510,7 @@ public class SocketHandler : MonoBehaviour
 
         actorDat.ActorEntity.ShowTextBubble(data["message"].Value);
 
-        string chatlogMessage = "<color=yellow>" + actorDat.name + "</color>: " + data["message"].Value;
+        string chatlogMessage = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + "</color>: " + data["message"].Value;
 
         CORE.Instance.AddChatMessage(chatlogMessage);
     }
@@ -1564,19 +1564,19 @@ public class SocketHandler : MonoBehaviour
 
         if (!string.IsNullOrEmpty(leaderName))
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + leaderName + " had invited you to a party!</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + " had invited you to a party!</color>");
             LootRollPanelUI.Instance.AddPartyInvitation(leaderName);
         }
         else
         {
             string actorName = data["actorName"].Value;
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has been invited to the party!</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has been invited to the party!</color>");
         }
     }
 
     public void OnPartyInviteTimeout(string eventName, JSONNode data)
     {
-        CORE.Instance.AddChatMessage("<color=yellow> The party invitation had timed out...</color>");
+        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + "> The party invitation had timed out...</color>");
         LootRollPanelUI.Instance.RemovePartyInvitation();
 
         AudioControl.Instance.Play("getPartyTimeout");
@@ -1586,7 +1586,7 @@ public class SocketHandler : MonoBehaviour
     {
         string actorName = data["actorName"].Value;
 
-        CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has joined the party!</color>");
+        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has joined the party!</color>");
 
         AudioControl.Instance.Play("getPartyAccept");
     }
@@ -1598,17 +1598,17 @@ public class SocketHandler : MonoBehaviour
 
         if (reason == "decline")
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has declined the invitation.</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has declined the invitation.</color>");
             AudioControl.Instance.Play("getPartyDecline");
         }
         else if (reason == "timeout")
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + "'s invitation timed out.</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + "'s invitation timed out.</color>");
             AudioControl.Instance.Play("getPartyTimeout");
         }
         else if (reason == "disconnected")
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " was rude enough to disconnect.</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " was rude enough to disconnect.</color>");
         }
     }
 
@@ -1619,12 +1619,12 @@ public class SocketHandler : MonoBehaviour
 
         if (reason == "leave")
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has left the party.</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has left the party.</color>");
             AudioControl.Instance.Play("getPartyLeave");   
         }
         else if (reason == "kicked")
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " was kicked out of the party.</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " was kicked out of the party.</color>");
             AudioControl.Instance.Play("getPartyKick");
         }
     }
@@ -1633,7 +1633,7 @@ public class SocketHandler : MonoBehaviour
     {
         string leaderName = data["leaderName"].Value;
 
-        CORE.Instance.AddChatMessage("<color=yellow>" + leaderName + " is now the party leader!</color>");
+        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + " is now the party leader!</color>");
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(leaderName + " is now the party leader!"));
 
         AudioControl.Instance.Play("getPartyPromote");
@@ -1646,11 +1646,11 @@ public class SocketHandler : MonoBehaviour
 
         if (isOffline)
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has gone offline</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has gone offline</color>");
         }
         else
         {
-            CORE.Instance.AddChatMessage("<color=yellow>" + actorName + " has come online!</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has come online!</color>");
         }
     }
 

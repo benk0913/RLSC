@@ -38,7 +38,7 @@ public class BuffSlotUI : MonoBehaviour
 
         string tooltipString = "";
 
-        tooltipString += "<color=yellow>"+ActiveBuffEffect.Name+"</color>";
+        tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+ActiveBuffEffect.Name+"</color>";
         tooltipString += ActiveBuffEffect.Description;
         Tooltip.SetTooltip(tooltipString);
     }
@@ -62,7 +62,7 @@ public class BuffSlotUI : MonoBehaviour
             }
 
             CooldownImage.fillAmount = ActiveBuffEffect.CurrentLength / ActiveBuffEffect.Length;
-            CooldownImage.color = ActiveBuffEffect.IsNegativeEffect ? Color.red : Color.green;
+            CooldownImage.color = ActiveBuffEffect.IsNegativeEffect ? Colors.AsColor(Colors.COLOR_BAD) : Colors.AsColor(Colors.COLOR_GOOD);
 
             CooldownLabel.text = Mathf.RoundToInt(ActiveBuffEffect.CurrentLength).ToString();
             CooldownLabel.color = CooldownImage.color;

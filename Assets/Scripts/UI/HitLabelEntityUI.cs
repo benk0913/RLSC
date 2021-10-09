@@ -29,7 +29,7 @@ public class HitLabelEntityUI : MonoBehaviour
 
             float t = ((float)numResult / 200f);
             Label.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 3, t);
-            Label.color = Color.Lerp(clr, Color.red, t);
+            Label.color = Color.Lerp(clr, Colors.AsColor(Colors.COLOR_BAD), t);
 
             if ((t > 0.5f))
             {

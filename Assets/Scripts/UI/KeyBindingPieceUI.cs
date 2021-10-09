@@ -38,13 +38,13 @@ public class KeyBindingPieceUI : MonoBehaviour {
     public void SetBinding()
     {
         isWaitingForKey = true;
-        m_Image.color = Color.yellow;
+        m_Image.color = Colors.AsColor(Colors.COLOR_HIGHLIGHT);
     }
 
     public void CloseBinding()
     {
         isWaitingForKey = false;
-        m_Image.color = Color.white;
+        m_Image.color = Colors.AsColor(Colors.COLOR_TEXT);
     }
 
     void OnGUI()

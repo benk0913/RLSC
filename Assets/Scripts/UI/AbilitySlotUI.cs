@@ -65,7 +65,7 @@ public class AbilitySlotUI : MonoBehaviour
 
         string tooltipString = "";
 
-        tooltipString += "<color=yellow>"+abilityState.CurrentAbility.name+"</color>";
+        tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+abilityState.CurrentAbility.name+"</color>";
         tooltipString += System.Environment.NewLine + abilityState.CurrentAbility.Description;
 
         // TODO do we want detailed tooltips?
@@ -74,7 +74,7 @@ public class AbilitySlotUI : MonoBehaviour
 
         // if (abilityState.CurrentAbility.OnExecuteParams.Count > 0)
         // {
-        //     tooltipString += System.Environment.NewLine + "<color=yellow>On Execute</color>";
+        //     tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_HIGHLIGHT + ">On Execute</color>";
         //     foreach (AbilityParam param in abilityState.CurrentAbility.OnExecuteParams)
         //     {
         //         tooltipString += System.Environment.NewLine + param.Type.name + " | " + param.Targets.ToString() + " | " + param.Value;
@@ -83,7 +83,7 @@ public class AbilitySlotUI : MonoBehaviour
 
         // if (abilityState.CurrentAbility.OnHitParams.Count > 0)
         // {
-        //     tooltipString += System.Environment.NewLine + "<color=yellow>On Hit</color>";
+        //     tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_HIGHLIGHT + ">On Hit</color>";
         //     foreach (AbilityParam param in abilityState.CurrentAbility.OnHitParams)
         //     {
         //         tooltipString += System.Environment.NewLine + param.Type.name + " | " + param.Targets.ToString() + " | " + param.Value;
@@ -92,7 +92,7 @@ public class AbilitySlotUI : MonoBehaviour
 
         // if (abilityState.CurrentAbility.OnMissParams.Count > 0)
         // {
-        //     tooltipString += System.Environment.NewLine + "<color=yellow>On Miss</color>";
+        //     tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_HIGHLIGHT + ">On Miss</color>";
         //     foreach (AbilityParam param in abilityState.CurrentAbility.OnMissParams)
         //     {
         //         tooltipString += System.Environment.NewLine + param.Type.name + " | " + param.Targets.ToString() + " | " + param.Value;
@@ -102,7 +102,7 @@ public class AbilitySlotUI : MonoBehaviour
 
         if (abilityState.IsAbilityLocked)
         {
-            tooltipString += System.Environment.NewLine + "<color=red> - UNLOCK AT LEVEL "+abilityState.UnlockLevel+" - </color>";
+            tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_BAD + "> - UNLOCK AT LEVEL "+abilityState.UnlockLevel+" - </color>";
             AbilityLock.SetActive(true);
         }
         else

@@ -268,12 +268,12 @@ public class Actor : MonoBehaviour
 
         if(TooltipTarget != null)
         {
-            TooltipTarget.SetTooltip("<color=yellow>" + this.State.Data.name +"</color>"
+            TooltipTarget.SetTooltip("<color=" + Colors.COLOR_HIGHLIGHT + ">" + this.State.Data.name +"</color>"
                 + System.Environment.NewLine + "<size=7>" + "Class: " + State.Data.ClassJobReference.name + "</color>"
                 + System.Environment.NewLine + "<size=7>" + "Level: " + State.Data.level+ "</color>"
-                +( InParty? System.Environment.NewLine + "<size=7><color=yellow>" + "In Party</color></size>" : "")
-                + (State.Data.IsPlayer? System.Environment.NewLine + "<size=7><color=yellow>" + "This is YOU!</color></size>" : "")
-                + System.Environment.NewLine + "<size=7><color=yellow>(Double Click - To Inspect)</color></size>");
+                +( InParty? System.Environment.NewLine + "<size=7><color=" + Colors.COLOR_HIGHLIGHT + ">" + "In Party</color></size>" : "")
+                + (State.Data.IsPlayer? System.Environment.NewLine + "<size=7><color=" + Colors.COLOR_HIGHLIGHT + ">" + "This is YOU!</color></size>" : "")
+                + System.Environment.NewLine + "<size=7><color=" + Colors.COLOR_HIGHLIGHT + ">(Double Click - To Inspect)</color></size>");
         }
     }
 
@@ -751,7 +751,7 @@ public class Actor : MonoBehaviour
 
     public void HealEffect(Actor source = null)
     {
-        spriteColorGroup.SetColor(Color.green);
+        spriteColorGroup.SetColor(Colors.AsColor(Colors.COLOR_GOOD));
         CORE.Instance.DelayedInvokation(0.1f, () =>
         {
             spriteColorGroup.ResetColor();
@@ -965,13 +965,7 @@ public class Actor : MonoBehaviour
         {
             HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
             label.transform.position = transform.position;
-
-            float alpha = 0.4f;
-            if (State.Data.IsPlayer || (source != null && source.State.Data.IsPlayer))
-            {
-                alpha = 1f;
-            }
-            label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Color.yellow : Color.green, alpha);
+            label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Colors.AsColor(Colors.COLOR_HIGHLIGHT) : Colors.AsColor(Colors.COLOR_GOOD));
         }
 
         if (damage > 0)
@@ -1552,7 +1546,7 @@ public class Actor : MonoBehaviour
 
         if(ability.OnlyIfGrounded && !IsGrounded)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(ability.name + " can only be cast from the ground!",Color.red));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(ability.name + " can only be cast from the ground!",Colors.AsColor(Colors.COLOR_BAD)));
             return false;
         }
 

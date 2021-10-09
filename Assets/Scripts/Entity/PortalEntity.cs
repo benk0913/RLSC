@@ -45,7 +45,7 @@ public class PortalEntity : MonoBehaviour
             TopNotificationUI.Instance.Show(
                 new TopNotificationUI.TopNotificationInstance("The chamber is not complete! "
                 + CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == SceneManager.GetActiveScene().name).objectiveDescription, 
-                Color.yellow,
+                Colors.AsColor(Colors.COLOR_HIGHLIGHT),
                 3));
             return;
         }

@@ -135,7 +135,7 @@ public class VendorEntity : MonoBehaviour
 
         if(item.VendorPrice > CORE.Instance.Room.PlayerActor.money)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("You do not have enugh money! (" + CORE.Instance.Room.PlayerActor.money + "/" + item.VendorPrice + ")",Color.red));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("You do not have enugh money! (" + CORE.Instance.Room.PlayerActor.money + "/" + item.VendorPrice + ")",Colors.AsColor(Colors.COLOR_BAD)));
             AudioControl.Instance.PlayInPosition("sound_coins", transform.position);
             return;
         }

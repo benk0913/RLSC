@@ -118,7 +118,7 @@ public class ConsoleInputUI : MonoBehaviour
         if (inputField.text == "/dps")
         {
             int dps = CORE.Instance.Room.PlayerActor.ActorEntity.GetDps();
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("The total damage per second is: " + dps, Color.green, 3f, true));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("The total damage per second is: " + dps, Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
         }
         else
         {

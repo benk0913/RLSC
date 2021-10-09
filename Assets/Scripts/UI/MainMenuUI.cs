@@ -178,7 +178,7 @@ public class MainMenuUI : MonoBehaviour
     {
         if(SelectedDisplayActor == null)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No selected character...",Color.yellow,1f));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No selected character...", Colors.AsColor(Colors.COLOR_HIGHLIGHT),1f));
             return;
         }
 
@@ -196,7 +196,7 @@ public class MainMenuUI : MonoBehaviour
     {
         if (SelectedDisplayActor == null)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No selected character...", Color.yellow, 1f));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No selected character...", Colors.AsColor(Colors.COLOR_HIGHLIGHT), 1f));
             return;
         }
 

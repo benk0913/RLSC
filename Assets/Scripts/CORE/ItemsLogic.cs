@@ -51,7 +51,7 @@ public class ItemsLogic
             if (propertyValue > 0)
             {
                 string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ?  "<sprite name=\"Default\">" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\">  ";
-                result += Environment.NewLine + "<color=" + GOOD_LINE_COLOR + ">" + icon + keyValuePair.Value.Name + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
+                result += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + ">" + icon + keyValuePair.Value.Name + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
             }
         }
         foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in DisplayAttributes)
@@ -61,7 +61,7 @@ public class ItemsLogic
             if (propertyValue < 0)
             {
                 string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "<sprite name=\"Default\">" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\" tint=1>  ";
-                result += Environment.NewLine + "<color=" + BAD_LINE_COLOR + ">" + icon + keyValuePair.Value.Name + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
+                result += Environment.NewLine + "<color=" + Colors.COLOR_BAD + ">" + icon + keyValuePair.Value.Name + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
             }
         }
 
@@ -90,7 +90,7 @@ public class ItemsLogic
             }
             abilityParamText = char.ToUpper(abilityParamText[0]) + abilityParamText.Substring(1).ToLower();
 
-            text += Environment.NewLine + "<color=" + GOOD_LINE_COLOR + ">" +  abilityParamText + "</color>";
+            text += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + ">" +  abilityParamText + "</color>";
         }
         return text;
     }
@@ -98,7 +98,7 @@ public class ItemsLogic
     public static string GetItemTooltip(ItemData itemData)
     {
         string text = itemData.DisplayName;
-        text += System.Environment.NewLine +"<i><color=yellow>"+ itemData.Type.name+"</color></i>";
+        text += System.Environment.NewLine +"<i><color=" + Colors.COLOR_HIGHLIGHT + ">"+ itemData.Type.name+"</color></i>";
 
 
 
@@ -107,7 +107,7 @@ public class ItemsLogic
             text += System.Environment.NewLine + "<i>"+description+"</i>";
         }
 
-        //text += System.Environment.NewLine + "<i><u><color=yellow> Bonuses: </color></u></i>";
+        //text += System.Environment.NewLine + "<i><u><color=" + Colors.COLOR_HIGHLIGHT + "> Bonuses: </color></u></i>";
         text += ItemsLogic.GetTooltipTextFromItem(itemData);
 
         return text;
