@@ -364,6 +364,12 @@ public class SelectionGroupUI : MonoBehaviour
                     ((TMP_InputField)CurrentSelectedSelectable).Select();
                 }
             }
+
+            DoubleclickHandlerUI doubleclickHandler = CurrentSelectedSelectable.GetComponent<DoubleclickHandlerUI>();
+            if (doubleclickHandler != null)
+            {
+                doubleclickHandler.OnPointerClick();
+            }
         }
     }
 

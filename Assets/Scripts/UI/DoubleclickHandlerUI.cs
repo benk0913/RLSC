@@ -13,6 +13,11 @@ public class DoubleclickHandlerUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        OnPointerClick();
+    }
+
+    public void OnPointerClick()
+    {
         if(DoubleClickRoutineInstance != null)
         {
             OnDoubleClick?.Invoke();
