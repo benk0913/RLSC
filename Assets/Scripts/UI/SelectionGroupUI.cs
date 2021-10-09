@@ -21,6 +21,8 @@ public class SelectionGroupUI : MonoBehaviour
 
     public bool ScrollRectSnapSupport = false;
 
+    public bool CompensateOnEmptySelections = false;
+
 
     public bool Debug = false;
 
@@ -158,6 +160,63 @@ public class SelectionGroupUI : MonoBehaviour
                         instance.toDown = otherInstance;
                     }
                 }
+            }
+
+
+            if (CompensateOnEmptySelections)
+            {
+
+                shortestUp = Mathf.Infinity;
+                shortestDown = Mathf.Infinity;
+                shortestLeft = Mathf.Infinity;
+                shortestRight = Mathf.Infinity;
+
+                foreach (SelectionGroupInstance otherInstance in instances)
+                {
+                    if (otherInstance == instance)
+                    {
+                        continue;
+                    }
+                    float dist = Vector2.Distance(instance.CS.transform.position, otherInstance.CS.transform.position);
+
+                    if (otherInstance != instance.toUp && otherInstance != instance.toDown && otherInstance != instance.toLeft && otherInstance != instance.toRight)
+                    {
+                        if (instance.toUp == null)
+                        {
+                            if (otherInstance.CS.transform.position.y > instance.CS.transform.position.y && dist < shortestUp) // Is Above 
+                            {
+                                shortestUp = dist;
+                                instance.toUp = otherInstance;
+                            }
+                        }
+                        else if (instance.toDown == null)
+                        {
+                            if (otherInstance.CS.transform.position.y < instance.CS.transform.position.y && dist < shortestDown) // Is Above 
+                            {
+                                shortestDown = dist;
+                                instance.toDown = otherInstance;
+                            }
+                        }
+                        else if (instance.toLeft == null)
+                        {
+                            if (otherInstance.CS.transform.position.x < instance.CS.transform.position.x && dist < shortestLeft) // Is Above 
+                            {
+                                shortestLeft = dist;
+                                instance.toLeft = otherInstance;
+                            }
+                        }
+                        else if (instance.toRight == null)
+                        {
+                            if (otherInstance.CS.transform.position.x > instance.CS.transform.position.x && dist < shortestRight) // Is Above 
+                            {
+                                shortestRight = dist;
+                                instance.toRight = otherInstance;
+                            }
+                        }
+                    }
+
+                }
+
             }
 
             if (Debug)

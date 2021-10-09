@@ -74,7 +74,9 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     void OnDisable()
     {
         OnHide?.Invoke();
-        CashShopWarningWindowUI.Instance.Hide(false);
+
+        if(CashShopWarningWindowUI.Instance != null)
+            CashShopWarningWindowUI.Instance.Hide(false);
     }
 
     void Start()
@@ -165,7 +167,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         for (int i = 0; i < SocketHandler.Instance.CurrentUser.cashItems.Count; i++)
         {
-            InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
+            InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUIUninteractable").GetComponent<InventorySlotUI>();
             slot.SetItem(SocketHandler.Instance.CurrentUser.cashItems[i], null);
             slot.transform.SetParent(CashItemsInventoryContainer, false);
             slot.transform.localScale = Vector3.one;
