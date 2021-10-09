@@ -1909,6 +1909,8 @@ public class ActorData
             }
         }
 
+        clone.looks = this.looks.Clone();
+        
         return clone;
     }
 }
@@ -1927,6 +1929,8 @@ public class ActorLooks
     public string SkinColor;
     public string HairColor;
     public string Iris;
+
+    public ActorLooks Clone() => (ActorLooks) MemberwiseClone();
 }
 
 [Serializable]

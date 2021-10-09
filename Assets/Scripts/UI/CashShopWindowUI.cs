@@ -62,7 +62,9 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
 
     public UnityEvent OnHide;
-    
+
+    float shortClickTimer = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -72,6 +74,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     void OnDisable()
     {
         OnHide?.Invoke();
+        CashShopWarningWindowUI.Instance.Hide(false);
     }
 
     void Start()
@@ -85,6 +88,14 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         CORE.Instance.SubscribeToEvent("InventoryUpdated",RefreshEQPState);
 
         RefreshUI();
+    }
+
+    void Update()
+    {
+        if(shortClickTimer > 0)
+        {
+            shortClickTimer -= Time.deltaTime;
+        }
     }
 
 
@@ -118,12 +129,26 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     public void ShowDisplayActor()
     {
         DisplayActorPanel.SetActive(true);
-        DisplayActor.AttachedCharacter.SetActorInfo(CORE.PlayerActor.Clone());
-        
-        DisplayActor.AttachedCharacter.Skin.StopEmote();
+
+        ResetActorClone();
+
         RefreshEQPState();
 
         CORE.Instance.DelayedInvokation(0.1f,()=>{CashItemsInventoryScroll.verticalNormalizedPosition = 1f;});
+    }
+
+    public void ResetActorClone()
+    {
+        DisplayActor.AttachedCharacter.SetActorInfo(CORE.PlayerActor.Clone());
+
+        DisplayActor.AttachedCharacter.Skin.StopEmote();
+    }
+
+    public void StripActorClone()
+    {
+        DisplayActor.AttachedCharacter.State.Data.equips.Clear();
+
+        DisplayActor.AttachedCharacter.RefreshLooks();
     }
 
     public void HideDisplayActor()
@@ -150,13 +175,16 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         RefreshSelectionGroup();
     }
 
+    
     public void SelectProduct(CashShopProductUI product)
     {
-        if(product == SelectedProduct)
+        if(product == SelectedProduct && shortClickTimer > 0f)
         {
             BuyProduct();
             return;
         }
+
+        shortClickTimer = 1f;
         
         DeselectProduct();
 
@@ -275,6 +303,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     }
     public void PopulateContainerWithStore(string storeKey)
     {
+        BuyButton.gameObject.SetActive(false);
+
         CurrentFocusedStoreKey = storeKey;
 
         if(CurrentFocusedStoreContainer == null)
@@ -346,5 +376,9 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     }
 
+    public void BuyEQP(int dealIndex = 0)
+    {
+        
+    }
 
 }
