@@ -54,6 +54,8 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         IsOpen = false;
         this.gameObject.SetActive(false);
 
+        ClearMarks();
+
         AudioControl.Instance.Play(HideSound);
     }
 
@@ -111,31 +113,50 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
             HoveredAbility.Deselect();
             ResetReplacement();
 
-            for(int i=0;i<CurrentAbilitiesContainer.childCount;i++)
-            {
-                AbilitySlotDraggableUI slot = CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
-                slot.Unmark();
-            }
+            ClearMarks();
         }
         else
         {
             SelectedAbility = HoveredAbility;
+
+            MarkAll();
             SelectedAbility.Select();
 
-            for(int i=0;i<CurrentAbilitiesContainer.childCount;i++)
-            {
-                AbilitySlotDraggableUI slot = CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
-                if(slot == SelectedAbility)
-                {
-                    slot.Unmark();
-                    continue;
-                }
-
-                slot.Mark();
-            }
         }
 
         AudioControl.Instance.Play(SelectAbilitySound);
+    }
+
+    void ClearMarks()
+    {
+        for (int i = 0; i < CurrentAbilitiesContainer.childCount; i++)
+        {
+            AbilitySlotDraggableUI slot = CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
+            slot.Unmark();
+        }
+
+        for (int i = 0; i < AllAbilitiesContainer.childCount; i++)
+        {
+            AbilitySlotDraggableUI slot = AllAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
+
+            slot.Unmark();
+        }
+    }
+
+    void MarkAll()
+    {
+        for (int i = 0; i < CurrentAbilitiesContainer.childCount; i++)
+        {
+            AbilitySlotDraggableUI slot = CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
+            slot.Mark();
+        }
+
+        for (int i = 0; i < AllAbilitiesContainer.childCount; i++)
+        {
+            AbilitySlotDraggableUI slot = AllAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
+
+            slot.Mark();
+        }
     }
 
     private void SendSwapAbilityEvent(int index, string abilityName)
@@ -146,6 +167,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         SocketHandler.Instance.SendEvent("swapped_ability", node);
 
         AudioControl.Instance.Play(AbilitySwapSound);
+        
     }
 
     public void RefreshUI(bool restoreSelectionPlacement = true)
