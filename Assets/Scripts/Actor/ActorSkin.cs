@@ -144,12 +144,10 @@ public class ActorSkin : MonoBehaviour
             {
                 foreach (RendererPart part in SkinParts)
                 {
-                    if (part.CurrentSkinSet == null || !part.CurrentSkinSet.BareSkin)
+                    if ((part.CurrentSkinSet != null && part.CurrentSkinSet.BareSkin) || (part.NCurrentSkinSet != null && part.NCurrentSkinSet.BareSkin))
                     {
-                        continue;
+                        SetSkinColor(part, relevantColor);
                     }
-
-                    SetSkinColor(part, relevantColor);
                 }
             }
             else
@@ -406,13 +404,15 @@ public class RendererPart
     
     public void SetSkin(BodyPart part, Sprite targetSprite)
     {
+        NCurrentSkinSet = null;
+        CurrentSkinSet = null;
         Renderer.sprite = targetSprite;
     }
 
     public void SetSkin(SkinSet set, ActorData actor)
     {
-        
 
+        NCurrentSkinSet = null;
         CurrentSkinSet = set;
 
         if (set == null)
@@ -428,6 +428,7 @@ public class RendererPart
     
     public void SetSkin(NSkinSet set, ActorData actor)
     {
+        CurrentSkinSet = null;
         NCurrentSkinSet = set;
 
         if (set == null)

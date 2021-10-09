@@ -183,7 +183,7 @@ public class SelectionGroupUI : MonoBehaviour
                     {
                         if (instance.toUp == null)
                         {
-                            if (otherInstance.CS.transform.position.y > instance.CS.transform.position.y && dist < shortestUp) // Is Above 
+                            if (otherInstance.CS.transform.position.y > instance.CS.transform.position.y && dist < shortestUp) 
                             {
                                 shortestUp = dist;
                                 instance.toUp = otherInstance;
@@ -191,7 +191,7 @@ public class SelectionGroupUI : MonoBehaviour
                         }
                         else if (instance.toDown == null)
                         {
-                            if (otherInstance.CS.transform.position.y < instance.CS.transform.position.y && dist < shortestDown) // Is Above 
+                            if (otherInstance.CS.transform.position.y < instance.CS.transform.position.y && dist < shortestDown)
                             {
                                 shortestDown = dist;
                                 instance.toDown = otherInstance;
@@ -199,7 +199,7 @@ public class SelectionGroupUI : MonoBehaviour
                         }
                         else if (instance.toLeft == null)
                         {
-                            if (otherInstance.CS.transform.position.x < instance.CS.transform.position.x && dist < shortestLeft) // Is Above 
+                            if (otherInstance.CS.transform.position.x < instance.CS.transform.position.x && dist < shortestLeft)
                             {
                                 shortestLeft = dist;
                                 instance.toLeft = otherInstance;
@@ -207,7 +207,7 @@ public class SelectionGroupUI : MonoBehaviour
                         }
                         else if (instance.toRight == null)
                         {
-                            if (otherInstance.CS.transform.position.x > instance.CS.transform.position.x && dist < shortestRight) // Is Above 
+                            if (otherInstance.CS.transform.position.x > instance.CS.transform.position.x && dist < shortestRight)
                             {
                                 shortestRight = dist;
                                 instance.toRight = otherInstance;
