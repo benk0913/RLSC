@@ -151,8 +151,9 @@ public class MainMenuUI : MonoBehaviour
         {
             OnNoCharacters?.Invoke();
         }
-        CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Count < CORE.Instance.Data.content.MaxCharacters;
-        CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : "Cannot have more than " + CORE.Instance.Data.content.MaxCharacters + " characters.");
+        int maxCharacters = CORE.Instance.Data.content.MaxCharacters + SocketHandler.Instance.CurrentUser.info.additionalCharSlots;
+        CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Count < maxCharacters;
+        CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : "Cannot have more than " + maxCharacters + " characters.");
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(false));
     }

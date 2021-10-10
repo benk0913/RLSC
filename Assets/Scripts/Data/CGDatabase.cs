@@ -107,6 +107,7 @@ public class DatabaseContent
     public float ShortRangeDistance;
     public float IdleSecondsForInvulnerability;
     public int MaxCharacters;
+    public int MaxAdditionalCharacters;
     public int MaxNameLength;
     public int MinNameLength;
     public int HpRegenSeconds;

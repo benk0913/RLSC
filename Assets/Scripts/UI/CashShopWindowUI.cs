@@ -161,14 +161,14 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     public void RefreshEQPState()
     {
 
-        EQPLabel.text = System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.cashPoints);
+        EQPLabel.text = System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.info.cashPoints);
 
         CORE.ClearContainer(CashItemsInventoryContainer);
 
-        for (int i = 0; i < SocketHandler.Instance.CurrentUser.cashItems.Count; i++)
+        for (int i = 0; i < SocketHandler.Instance.CurrentUser.info.cashItems.Count; i++)
         {
             InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUIUninteractable").GetComponent<InventorySlotUI>();
-            slot.SetItem(SocketHandler.Instance.CurrentUser.cashItems[i], null);
+            slot.SetItem(SocketHandler.Instance.CurrentUser.info.cashItems[i], null);
             slot.transform.SetParent(CashItemsInventoryContainer, false);
             slot.transform.localScale = Vector3.one;
             slot.transform.position = Vector3.zero;
@@ -283,9 +283,9 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         CashShopWarningWindowUI.Instance.Show("Buy "+SelectedProduct.CurrentItem.DisplayName+" for "+SelectedProduct.CurrentItem.CashItemPrice+" EQP? ",()=>
         {     
-            if(SocketHandler.Instance.CurrentUser.cashPoints < SelectedProduct.CurrentItem.CashItemPrice)
+            if(SocketHandler.Instance.CurrentUser.info.cashPoints < SelectedProduct.CurrentItem.CashItemPrice)
             {
-                CashShopWarningWindowUI.Instance.Show("You don't have enough EQP! ("+SocketHandler.Instance.CurrentUser.cashPoints+"/"+SelectedProduct.CurrentItem.CashItemPrice+")",()=>
+                CashShopWarningWindowUI.Instance.Show("You don't have enough EQP! ("+SocketHandler.Instance.CurrentUser.info.cashPoints+"/"+SelectedProduct.CurrentItem.CashItemPrice+")",()=>
                 {
 
                 });

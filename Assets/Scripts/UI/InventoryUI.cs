@@ -206,15 +206,15 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             
             if(IsCashTab)
             {
-                CashPointsLabel.text =  System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.cashPoints);
+                CashPointsLabel.text =  System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.info.cashPoints);
 
                 CORE.ClearContainer(CashItemsContainer);
 
-                for (int i = 0; i < SocketHandler.Instance.CurrentUser.cashItems.Count; i++)
+                for (int i = 0; i < SocketHandler.Instance.CurrentUser.info.cashItems.Count; i++)
                 {
                     InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUI").GetComponent<InventorySlotUI>();
 
-                    slot.SetItem(SocketHandler.Instance.CurrentUser.cashItems[i], () => Select(slot));
+                    slot.SetItem(SocketHandler.Instance.CurrentUser.info.cashItems[i], () => Select(slot));
                     slot.transform.SetParent(CashItemsContainer, false);
                     slot.transform.localScale = Vector3.one;
                     slot.transform.position = Vector3.zero;

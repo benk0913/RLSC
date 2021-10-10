@@ -123,6 +123,7 @@ public class SocketHandler : MonoBehaviour
         // Cash Items
         SocketEventListeners.Add(new SocketEventListener("cash_refresh", OnCashRefresh));
         SocketEventListeners.Add(new SocketEventListener("actor_change_looks", OnActorChangeLooks));
+        SocketEventListeners.Add(new SocketEventListener("user_char_slots", OnUserCharSlots));
 
         // Rolls
         SocketEventListeners.Add(new SocketEventListener("choose_item_roll", OnChooseItemRoll));
@@ -484,8 +485,7 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.DelayedInvokation(0.1f,()=>
         {
             CurrentUser.chars = JsonConvert.DeserializeObject<List<ActorData>>(data["chars"].ToString());
-            CurrentUser.cashItems = JsonConvert.DeserializeObject<List<Item>>(data["cashItems"].ToString());
-            CurrentUser.cashPoints = data["cashPoints"].AsInt;
+            CurrentUser.info = JsonConvert.DeserializeObject<UserInfo>(data["info"].ToString());
             TutorialIndex = data["tutorialIndex"].Value;
         });
     }
@@ -1283,7 +1283,7 @@ public class SocketHandler : MonoBehaviour
         bool isCash = data["isCash"].AsBool;
         if (isCash)
         {
-            CurrentUser.cashItems[slotIndex] = item;
+            CurrentUser.info.cashItems[slotIndex] = item;
         }
         else
         {
@@ -1388,9 +1388,16 @@ public class SocketHandler : MonoBehaviour
     {
         int cash = data["cash"].AsInt;
 
-        SocketHandler.Instance.CurrentUser.cashPoints = cash;
+        SocketHandler.Instance.CurrentUser.info.cashPoints = cash;
 
         CORE.Instance.InvokeEvent("InventoryUpdated");
+    }
+
+    public void OnUserCharSlots(string eventName, JSONNode data)
+    {
+        int additionalCharSlots = data["additionalCharSlots"].AsInt;
+
+        SocketHandler.Instance.CurrentUser.info.additionalCharSlots = additionalCharSlots;
     }
 
     public void OnActorChangeLooks(string eventName, JSONNode data)
@@ -1753,11 +1760,9 @@ public class UserData
 
     public List<ActorData> chars;
 
+    public UserInfo info;
+
     public FriendData[] friends;
-
-    public List<Item> cashItems;
-
-    public int cashPoints;
 
     public int SelectedCharacterIndex;
 
@@ -1767,6 +1772,16 @@ public class UserData
         public string name;
         public bool isOnline;
     }
+}
+
+[Serializable]
+public class UserInfo
+{
+    public List<Item> cashItems;
+
+    public int cashPoints;
+
+    public int additionalCharSlots;
 }
 
 [Serializable]
