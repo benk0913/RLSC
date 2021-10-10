@@ -149,3 +149,41 @@
 [2021-10-04 13:38:49] [AppID 7] Starting sync (eval,)
 [2021-10-04 13:38:49] [AppID 7] AutoCloud checking local state for user 33262196
 [2021-10-04 13:38:51] [AppID 7] Failed sync for 'eval,' [login=false][offlineMode=false]
+
+
+[2021-10-10 17:56:41] [AppID 7] Starting sync (init,)
+[2021-10-10 17:56:41] [AppID 7] AutoCloud checking local state for user 33262196
+[2021-10-10 17:56:41] [U:1:33262196] [AppID 7] Init cache request complete
+[2021-10-10 17:56:43] [Roaming Config] PerformSyncCloud - evaluating sync state
+[2021-10-10 17:56:43] [AppID 7] Starting sync (eval,)
+[2021-10-10 17:56:43] [AppID 7] AutoCloud checking local state for user 33262196
+[2021-10-10 17:56:44] [AppID 7] Need to sync from local change number '0' to global change number '13418936201687189643', but not attempting now
+[2021-10-10 17:56:44] [AppID 7] serverbrowser_hist.vdf has local changes but mismatch - creating a conflict. Local/Remote SHA: 2a66fbe2f7e94a12f6500ada3ee11ad5bd0b9a99 / 2d14c6de10fd96894f8ca2346c88123d2f095d11, Local/Remote persist state: 0 / 0
+[2021-10-10 17:56:44] [AppID 7] sharedconfig.vdf has local changes but mismatch - creating a conflict. Local/Remote SHA: 189ba49a30c0091a87c8aee765480762c012e280 / 2be42f18accd11f3eca2b44130df432ce131554b, Local/Remote persist state: 0 / 0
+[2021-10-10 17:56:44] [AppID 7] Sync conflict for file serverbrowser_hist.vdf
+[2021-10-10 17:56:44] [AppID 7] Sync conflict for file sharedconfig.vdf
+[2021-10-10 17:56:44] [AppID 7] Eval complete
+[2021-10-10 17:56:44] [Roaming Config] OnRemoteStorageStateEvaluated - result OK
+[2021-10-10 17:56:44] [AppID 7] Starting sync (down,)
+[2021-10-10 17:56:44] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2021-10-10 17:56:44] [AppID 7] Attempting to sync from local change number '0' to global change number '13418936201687189643'
+[2021-10-10 17:56:44] [AppID 7] serverbrowser_hist.vdf already marked as conflicting. Local/Remote SHA: 2a66fbe2f7e94a12f6500ada3ee11ad5bd0b9a99 / 2d14c6de10fd96894f8ca2346c88123d2f095d11, Local/Remote persist state: 0 / 0
+[2021-10-10 17:56:44] [AppID 7] sharedconfig.vdf already marked as conflicting. Local/Remote SHA: 189ba49a30c0091a87c8aee765480762c012e280 / 2be42f18accd11f3eca2b44130df432ce131554b, Local/Remote persist state: 0 / 0
+[2021-10-10 17:56:44] [AppID 7] Sync conflict for file serverbrowser_hist.vdf
+[2021-10-10 17:56:44] [AppID 7] Sync conflict for file sharedconfig.vdf
+[2021-10-10 17:56:44] [AppID 7] Download failed due to conflicts in build list
+[2021-10-10 17:56:44] [Roaming Config] OnRemoteStorageSyncedClient() - result Remote File Conflict
+[2021-10-10 17:56:44] [AppID 7] Successfully synced to ChangeNumber 13418936201687189643
+[2021-10-10 17:56:44] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2021-10-10 17:56:49] [Roaming Config] PerformSyncCloud - conflict detected, accepting remote files
+[2021-10-10 17:56:49] [AppID 7] Starting sync (down,resolve,)
+[2021-10-10 17:56:49] [AppID 7] Currently already synced to global change number '13418936201687189643', should be nothing to download
+[2021-10-10 17:56:49] [AppID 7] Resolving file serverbrowser_hist.vdf from state 4, bUseLocal = false
+[2021-10-10 17:56:49] [AppID 7] File serverbrowser_hist.vdf does not exist remotely and bUseLocal = false. Setting local version forgotten instead
+[2021-10-10 17:56:49] [AppID 7] Resolving file sharedconfig.vdf from state 4, bUseLocal = false
+[2021-10-10 17:56:49] [AppID 7] File sharedconfig.vdf does not exist remotely and bUseLocal = false. Setting local version forgotten instead
+[2021-10-10 17:56:49] [AppID 7] Download complete in build list
+[2021-10-10 17:56:49] [Roaming Config] OnRemoteStorageConflictResolution - result OK
+[2021-10-10 17:56:49] [AppID 7] Successfully synced to ChangeNumber 0
+[2021-10-10 17:56:49] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2021-10-10 17:56:54] [Roaming Config] PerformSyncCloud - all sync'd up
