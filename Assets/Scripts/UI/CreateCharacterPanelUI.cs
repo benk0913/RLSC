@@ -116,6 +116,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
             });
         },()=>
         {
+            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
             this.gameObject.SetActive(true);
             
         });

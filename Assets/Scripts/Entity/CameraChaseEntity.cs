@@ -64,10 +64,10 @@ public class CameraChaseEntity : MonoBehaviour
             {
                 ReferenceObject = foundActor.ActorEntity.transform;
 
-                if(Speed > 0)
-                {
-                    transform.position = new Vector3(ReferenceObject.transform.position.x,ReferenceObject.transform.position.y, transform.position.z);
-                }
+                //if(Speed > 0)
+                //{
+                //    transform.position = new Vector3(ReferenceObject.transform.position.x,ReferenceObject.transform.position.y, transform.position.z);
+                //}
             }
 
             return;

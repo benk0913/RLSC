@@ -103,8 +103,7 @@ public class TextBubbleUI : MonoBehaviour
 
 
 
-            yield return 0;
-            yield return 0;
+            yield return new WaitForSeconds(0.025f);
         }
 
         yield return new WaitForSeconds(2f + (message.Length * DELAY_PER_LETTER));
