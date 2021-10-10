@@ -75,6 +75,8 @@ public class AIRabbit : ActorAI
             }
             
             Act.AttemptPrepareAbility(Act.State.Abilities.IndexOf(selectedAbility));
+
+            yield return 0;
         }
         else if (selectedAbility.CurrentAbility.name == "Escape")
         {
@@ -99,9 +101,13 @@ public class AIRabbit : ActorAI
             }
             
             Act.AttemptPrepareAbility(Act.State.Abilities.IndexOf(selectedAbility));
+
+            yield return 0;
         }
 
         yield return new WaitForSeconds(selectedAbility.CurrentAbility.CastingTime);
+
+        yield return 0;
     }
 
 
