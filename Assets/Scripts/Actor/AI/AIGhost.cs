@@ -43,7 +43,7 @@ public class AIGhost : ActorAI
 
                     if (SelectedAbility == null)
                     {
-                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghostial Pull" && x.CurrentCD <= 0f);
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghost Pull" && x.CurrentCD <= 0f);
                     }
 
                 }
@@ -53,7 +53,7 @@ public class AIGhost : ActorAI
 
                     if (SelectedAbility == null)
                     {
-                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghostial Pull" && x.CurrentCD <= 0f);
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghost Pull" && x.CurrentCD <= 0f);
                     }
                 }
 
