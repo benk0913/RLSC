@@ -10,6 +10,8 @@ namespace NewResolutionDialog.Scripts.Controller
 {
     public class GraphicSettingsHandler : MonoBehaviour
     {
+        public static GraphicSettingsHandler Instance;
+
         #region Fields and Stuff
         [SerializeField] Dropdown resolution;
         [SerializeField] Dropdown refreshRate;
@@ -82,6 +84,8 @@ namespace NewResolutionDialog.Scripts.Controller
         #region Unity Startup
         void Awake()
         {
+            Instance = this;
+
             displayNote.gameObject.SetActive(false);
             vSyncNote.gameObject.SetActive(false);
 
@@ -482,7 +486,18 @@ namespace NewResolutionDialog.Scripts.Controller
             SetResolution(width, height, GetSelectedFullScreenMode(), hz);
         }
 
-        void SetResolution(int width, int height, FullScreenMode mode, int hz)
+        public void SetResolution(int width, int height)
+        {
+            var selectedRes = GetSelectedResolution();
+            var availableRefreshRates = refreshRates[selectedRes];
+            var selectedHz = GetSelectedRefreshRate();
+            if (selectedHz.Equals("N/A") || availableRefreshRates.Contains(selectedHz) == false)
+                selectedHz = "0";
+            var hz = int.Parse(selectedHz);
+            SetResolution(width, height, GetSelectedFullScreenMode(), hz);
+        }
+
+        public void SetResolution(int width, int height, FullScreenMode mode, int hz)
         {
             // prevent setting resolution multiple times when dialog is updated in the next frame
             //Debug.LogError("DESIRED res: " + GetResolutionString(width, height) + " @ " + hz + " Hz in " + mode);

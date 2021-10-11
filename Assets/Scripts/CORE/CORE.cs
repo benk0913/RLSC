@@ -1,4 +1,5 @@
 using EdgeworldBase;
+using NewResolutionDialog.Scripts.Controller;
 using Newtonsoft.Json;
 using SimpleJSON;
 using Steamworks;
@@ -167,8 +168,32 @@ public class CORE : MonoBehaviour
 
         
         ReturnToMainMenu();
+
+
+        DelayedInvokation(1f, () => { ValidateScreenRatio(); });
     }
 
+    void ValidateScreenRatio()
+    {
+        bool isScreenValid = (((float)Screen.width / (float)Screen.height) == 16f / 9f) || Mathf.Approximately(((float)Screen.width / (float)Screen.height), 16f / 9f);
+
+        if(!isScreenValid)
+        {
+            LogMessage("Validating Screen Ratio");
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Readjusting Screen Ratio...", Color.yellow, 3f, false));
+
+            for(int i=0;i<Screen.resolutions.Length;i++)
+            {
+                float currentRatio = ((float)Screen.resolutions[i].width / (float)Screen.resolutions[i].height);
+                if (currentRatio == 16f / 9f || Mathf.Approximately(currentRatio, 16f / 9f))
+                {
+                    CORE.Instance.DelayedInvokation(1f, () => { GraphicSettingsHandler.Instance.SetResolution(Screen.resolutions[i].width, Screen.resolutions[i].height); });
+                    return;
+                }
+            }
+
+        }
+    }
     private void GameStatesChanges()
     {
         if (!GameStatesInitialized)

@@ -254,7 +254,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }, EquipSlots[i].Type);
         }
 
-        CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));
+        CORE.Instance.DelayedInvokation(0.5f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));
         Deselect();
     }
 
@@ -280,6 +280,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     public void SetTab(int index, List<GameObject> GameObjects, List<GameObject> SelectedHalos, List<ScrollRect> ContainersScrolls = null)
     {
+        Debug.LogError("Set " + index);
         for (int i = 0; i < GameObjects.Count; i++)
         {
             bool active = i == index;
@@ -289,7 +290,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (ContainersScrolls != null)
         {
-            CORE.Instance.DelayedInvokation(0.1f,()=>{
+            CORE.Instance.DelayedInvokation(0f,()=>{
                 ContainersScrolls[index].verticalNormalizedPosition = 1f;
             });
         }

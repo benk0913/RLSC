@@ -17,6 +17,7 @@ public class Ability : ScriptableObject
     [TextArea(3, 6)]
     public string Description;
 
+
     [JsonIgnore]
     public AbilityColliders Colliders;
 
@@ -42,6 +43,7 @@ public class Ability : ScriptableObject
 
     [JsonIgnore]
     public bool IsCastingExternal;
+
 
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();
@@ -87,6 +89,8 @@ public class AbilityColliders
 
     [JsonIgnore]
     public AbilityCondition HitConditionObjectCondition;
+
+
 }
 
 [Serializable]
