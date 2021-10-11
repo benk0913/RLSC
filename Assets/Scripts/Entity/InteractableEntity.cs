@@ -146,7 +146,7 @@ public class InteractableEntity : MonoBehaviour
             InteractableCooldown -= Time.deltaTime;
         }
 
-        bool KeyIsDown = Item? (Input.GetKeyDown(InputMap.Map["Pick Up Item"]) || Input.GetButtonDown("Joystick 6")) :  (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetButtonDown("Joystick 2"));
+        bool KeyIsDown = Item? (Input.GetKeyDown(InputMap.Map["Pick Up Item"]) || Input.GetButtonDown("Joystick 2")) :  (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetButtonDown("Joystick 2"));
         
         if(NearbyActor != null && KeyIsDown && NearbyActor.CanInteract)
         {

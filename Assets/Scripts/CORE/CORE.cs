@@ -55,6 +55,8 @@ public class CORE : MonoBehaviour
     public string CurrentTimePhase;
 
     public bool IsUsingJoystick;
+    
+
     public bool IsTyping
     {
         get
@@ -81,6 +83,7 @@ public class CORE : MonoBehaviour
                     }
                 }
             }
+
             return ConsoleInputUI.Instance.IsTyping;
         }
     }
@@ -98,6 +101,7 @@ public class CORE : MonoBehaviour
         {
             return !CORE.Instance.IsLoading
                 && !CORE.Instance.IsTyping
+                && !(IsUsingJoystick && VirtualKeyboard.VirtualKeyboard.Instance.IsTyping)
                 && !CORE.Instance.HasWindowOpen
                 && !CameraChaseEntity.Instance.IsFocusing
                 && !DecisionContainerUI.Instance.IsActive
@@ -238,9 +242,14 @@ public class CORE : MonoBehaviour
                     ShowWindow(windowToKeyCode.Key, windowToKeyCode.Value, null, null);
                 }
             }
+
+            if (IsUsingJoystick && Input.GetButtonDown("Joystick 8"))
+            {
+                ShowSideButtonUiWindow();
+            }
         }
 
-        if (IsMachinemaMode && (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 10")) && !CashShopWindowUI.Instance.IsOpen)
+        if (IsMachinemaMode && (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8")) && !CashShopWindowUI.Instance.IsOpen)
         {
             IsMachinemaMode = false;
             InvokeEvent("MachinemaModeRefresh");
@@ -252,7 +261,7 @@ public class CORE : MonoBehaviour
         bool isTargetWindowClosed = CurrentWindow != WindowToShow;
         bool closedAWindow = CurrentWindow != null;
         CloseCurrentWindow();
-        bool isClosingAWindowWithExit = closedAWindow && (keyPressed == InputMap.Map["Exit"] || Input.GetButtonDown("Joystick 10"));
+        bool isClosingAWindowWithExit = closedAWindow && keyPressed == InputMap.Map["Exit"];
         if (isTargetWindowClosed && !isClosingAWindowWithExit)
         {
             CurrentWindow = WindowToShow;

@@ -11,7 +11,7 @@ public class ConsoleInputUI : MonoBehaviour
     public static ConsoleInputUI Instance;
 
     [SerializeField]
-    InputField inputField;
+    TMP_InputField inputField;
 
     public bool IsTyping;
 
@@ -27,7 +27,7 @@ public class ConsoleInputUI : MonoBehaviour
         Hide();
         
     #if UNITY_EDITOR
-        inputField.placeholder.GetComponent<Text>().text = "/help";
+        inputField.placeholder.GetComponent<TextMeshProUGUI>().text = "/help";
     #endif
     }
 
@@ -82,8 +82,17 @@ public class ConsoleInputUI : MonoBehaviour
     {
         this.gameObject.SetActive(true);
 
-        inputField.ActivateInputField();
-        IsTyping = true;
+        if (CORE.Instance.IsUsingJoystick)
+        {
+            VirtualKeyboard.VirtualKeyboard.Instance.Show(inputField, () => { OnEndEdit(); SendConsoleMessage();  }, () => { OnEndEdit();  });
+        }
+        else
+        {
+            inputField.ActivateInputField();
+
+            IsTyping = true;
+        }
+
 
         RefreshChatLog();
     }
@@ -91,12 +100,22 @@ public class ConsoleInputUI : MonoBehaviour
 
     public void Hide()
     {
+        if(VirtualKeyboard.VirtualKeyboard.Instance != null && VirtualKeyboard.VirtualKeyboard.Instance.IsTyping)
+        {
+            VirtualKeyboard.VirtualKeyboard.Instance.Hide();
+        }
+
         this.gameObject.SetActive(false);
         IsTyping = false;
     }
 
     public void HideIfEmpty()
     {
+        if(CORE.Instance.IsUsingJoystick)
+        {
+            return;
+        }
+
         if (IsTyping && string.IsNullOrEmpty(inputField.text))
         {
             Hide();
@@ -105,7 +124,7 @@ public class ConsoleInputUI : MonoBehaviour
 
     public void OnEndEdit()
     {
-        bool wasEnterPressed = Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]) || Input.GetButtonDown("Joystick 9");
+        bool wasEnterPressed = Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]) || Input.GetButtonDown("Joystick 10");
         if (!wasEnterPressed)
         {
             CORE.Instance.DelayedInvokation(0, () => Hide());

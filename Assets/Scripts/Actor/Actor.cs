@@ -193,6 +193,7 @@ public class Actor : MonoBehaviour
                && (State.Data.isMob || 
                        !CORE.Instance.IsLoading
                     && !CORE.Instance.IsTyping
+                    && !VirtualKeyboard.VirtualKeyboard.Instance.IsTyping
                     && !CORE.Instance.HasWindowOpen
                     && !CameraChaseEntity.Instance.IsFocusing
                     && !DecisionContainerUI.Instance.IsActive)

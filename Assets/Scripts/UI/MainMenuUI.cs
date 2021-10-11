@@ -35,6 +35,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     UnityEvent OnNoCharacters;
 
+
     public void OpenURL(string url)
     {
         Application.OpenURL(url);//TODO Change to in-steam UI 

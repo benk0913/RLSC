@@ -49,7 +49,7 @@ public class WarningWindowUI : MonoBehaviour
 
     private void Update()
     {
-        if (!CantHide && Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 10"))
+        if (!CantHide && Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8"))
         {
             Hide();
         }

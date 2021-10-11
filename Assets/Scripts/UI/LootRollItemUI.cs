@@ -79,9 +79,18 @@ public class LootRollItemUI : MonoBehaviour
 
         TimerRoutineInstance = StartCoroutine(TimerRoutine(TimeLeft));
 
-        KeyOption1Label.text = InputMap.Map["Vote Option 1"].ToString();
-        KeyOption2Label.text = InputMap.Map["Vote Option 2"].ToString();
-        KeyOption3Label.text = InputMap.Map["Vote Option 3"].ToString();
+        if (CORE.Instance.IsUsingJoystick)
+        {
+            KeyOption1Label.text = "X";
+            KeyOption2Label.text = "Y";
+            KeyOption3Label.text = "B";
+        }
+        else
+        {
+            KeyOption1Label.text = InputMap.Map["Vote Option 1"].ToString();
+            KeyOption2Label.text = InputMap.Map["Vote Option 2"].ToString();
+            KeyOption3Label.text = InputMap.Map["Vote Option 3"].ToString();
+        }
     }
 
     IEnumerator TimerRoutine(float timeLeft)
@@ -110,20 +119,27 @@ public class LootRollItemUI : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(InputMap.Map["Vote Option 1"]))
+        if (Input.GetKeyDown(InputMap.Map["Vote Option 1"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 3")))
         {
-            if (IsTopActiveRoll)
-                Need();
+            WarningWindowUI.Instance.Show("Are you sure?", () => {
+                if (IsTopActiveRoll)
+                    Need();
+            });
         }
-        else if (Input.GetKeyDown(InputMap.Map["Vote Option 2"]))
+        else if (Input.GetKeyDown(InputMap.Map["Vote Option 2"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 0")))
         {
-            if (IsTopActiveRoll)
-                Greed();
+            WarningWindowUI.Instance.Show("Are you sure?", () => {
+                if (IsTopActiveRoll)
+                    Greed();
+            });
         }
-        else if (Input.GetKeyDown(InputMap.Map["Vote Option 3"]))
+        else if (Input.GetKeyDown(InputMap.Map["Vote Option 3"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1")))
         {
-            if (IsTopActiveRoll)
-                Decline();
+            WarningWindowUI.Instance.Show("Are you sure?", () => {
+
+                if (IsTopActiveRoll)
+                    Decline();
+            });
         }
     }
 

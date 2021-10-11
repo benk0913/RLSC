@@ -128,8 +128,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     
 
     private void Update()
-    {
-        if(Input.GetKeyDown(InputMap.Map["Drop Inventory Item"]))
+    {   
+        if(Input.GetKeyDown(InputMap.Map["Drop Inventory Item"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1")))
         {
             AttemptDrop();
         }
@@ -168,9 +168,16 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         RefreshUI(false);
 
 
-
-        IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">"+InputMap.Map["Drop Inventory Item"].ToString()+" - Drop</color>";
-        IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + InputMap.Map["Use Inventory Item"].ToString() + " - Use</color>";
+        if (CORE.Instance.IsUsingJoystick)
+        {
+            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + "B - Drop</color>";
+            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + "A - Use</color>";
+        }
+        else
+        {
+            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + InputMap.Map["Drop Inventory Item"].ToString() + " - Drop</color>";
+            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + InputMap.Map["Use Inventory Item"].ToString() + " - Use</color>";
+        }
 
         AudioControl.Instance.Play(ShowSound);
 
@@ -280,7 +287,6 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     public void SetTab(int index, List<GameObject> GameObjects, List<GameObject> SelectedHalos, List<ScrollRect> ContainersScrolls = null)
     {
-        Debug.LogError("Set " + index);
         for (int i = 0; i < GameObjects.Count; i++)
         {
             bool active = i == index;

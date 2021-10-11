@@ -112,7 +112,7 @@ public class VendorEntity : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 10"))
+            if (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8"))
             {
                 StopFocusing();
             }

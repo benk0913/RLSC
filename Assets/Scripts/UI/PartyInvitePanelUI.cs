@@ -54,8 +54,16 @@ public class PartyInvitePanelUI : MonoBehaviour
 
         TimerRoutineInstance = StartCoroutine(TimerRoutine(CORE.Instance.Data.content.PartyInviteTimeoutSeconds));
 
-        KeyOption1Label.text = InputMap.Map["Vote Option 1"].ToString();
-        KeyOption2Label.text = InputMap.Map["Vote Option 2"].ToString();
+        if (CORE.Instance.IsUsingJoystick)
+        {
+            KeyOption1Label.text = "X";
+            KeyOption2Label.text = "B";
+        }
+        else
+        {
+            KeyOption1Label.text = InputMap.Map["Vote Option 1"].ToString();
+            KeyOption2Label.text = InputMap.Map["Vote Option 2"].ToString();
+        }
     }
 
     public virtual void SetInfo(string fromPlayer)
@@ -89,16 +97,21 @@ public class PartyInvitePanelUI : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(InputMap.Map["Vote Option 1"]))
+        if (Input.GetKeyDown(InputMap.Map["Vote Option 1"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 3")))
         {
-            if (IsTopActiveRoll)
-                Accept();
+            WarningWindowUI.Instance.Show("Are you sure?", () => {
+                if (IsTopActiveRoll)
+                    Accept();
+            });
         }
-        else if (Input.GetKeyDown(InputMap.Map["Vote Option 2"]))
+        else if (Input.GetKeyDown(InputMap.Map["Vote Option 2"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1")))
         {
-            if (IsTopActiveRoll)
-                Decline();
+            WarningWindowUI.Instance.Show("Are you sure?", () => {
+                if (IsTopActiveRoll)
+                    Decline();
+            });
         }
+
     }
 
     public virtual void Decline()

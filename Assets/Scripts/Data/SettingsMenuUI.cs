@@ -9,6 +9,9 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
     [SerializeField]
     Canvas Canv;
 
+    public GameObject KeyboardBindings;
+    public GameObject ControllerBindings;
+
 
     void Awake()
     {
@@ -28,7 +31,8 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         //TODO Yes, it's stupid, I know, remember to next time build your own settings menu.
         CORE.Instance.DelayedInvokation(0.1f,()=>{Canv.enabled = true;});
 
-        
+        KeyboardBindings.SetActive(!CORE.Instance.IsUsingJoystick);
+        ControllerBindings.SetActive(CORE.Instance.IsUsingJoystick);
     }
 
     public void StartMachinemaMode()

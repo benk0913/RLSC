@@ -23,6 +23,8 @@ public class SelectionGroupUI : MonoBehaviour
 
     public bool CompensateOnEmptySelections = false;
 
+    float joystickPressedDelay;
+    const float JOYSTICK_DELAY = 0.1f;
 
     public bool Debug = false;
 
@@ -338,10 +340,13 @@ public class SelectionGroupUI : MonoBehaviour
             }
         }
     }
+    
+    
 
     private void Update()
     {
-        if(SelectionInControl != this)
+
+        if (SelectionInControl != this)
         {
             return;
         }
@@ -351,18 +356,20 @@ public class SelectionGroupUI : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyDown(InputMap.Map["Move Up"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Up"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") > 0f))
+            
+        if (Input.GetKeyDown(InputMap.Map["Move Up"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Up"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") > 0 && joystickPressedDelay <= 0f))
         {
-            if(CurrentSelected.toUp == null)
+            if (CurrentSelected.toUp == null)
             {
-                if(Debug)
+                if (Debug)
                     CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'Above'");
                 return;
             }
 
             Select(CurrentSelected.toUp);
+            joystickPressedDelay = JOYSTICK_DELAY;
         }
-        else if (Input.GetKeyDown(InputMap.Map["Move Down"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Down"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") < 0f))
+        else if (Input.GetKeyDown(InputMap.Map["Move Down"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Down"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") < 0 && joystickPressedDelay <= 0f))
         {
             if (CurrentSelected.toDown == null)
             {
@@ -372,8 +379,9 @@ public class SelectionGroupUI : MonoBehaviour
             }
 
             Select(CurrentSelected.toDown);
+            joystickPressedDelay = JOYSTICK_DELAY;
         }
-        else if (Input.GetKeyDown(InputMap.Map["Move Left"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Left"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") < 0f))
+        else if (Input.GetKeyDown(InputMap.Map["Move Left"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Left"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") < 0 && joystickPressedDelay <= 0f))
         {
             if (CurrentSelected.toLeft == null)
             {
@@ -383,10 +391,11 @@ public class SelectionGroupUI : MonoBehaviour
             }
 
             Select(CurrentSelected.toLeft);
+            joystickPressedDelay = JOYSTICK_DELAY;
         }
-        else if (Input.GetKeyDown(InputMap.Map["Move Right"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Right"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") > 0f))
+        else if (Input.GetKeyDown(InputMap.Map["Move Right"]) || Input.GetKeyDown(InputMap.Map["Secondary Move Right"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") > 0 && joystickPressedDelay <= 0f))
         {
-            if (CurrentSelected.toRight== null)
+            if (CurrentSelected.toRight == null)
             {
                 if (Debug)
                     CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'To Right'");
@@ -394,9 +403,17 @@ public class SelectionGroupUI : MonoBehaviour
             }
 
             Select(CurrentSelected.toRight);
+            joystickPressedDelay = JOYSTICK_DELAY;
+        }
+        else if((CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f && joystickPressedDelay > 0f))
+        {
+            joystickPressedDelay -= Time.deltaTime;
         }
 
-        if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
+
+
+
+        if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
         {
             if(CurrentSelected != null && CurrentSelected.CS != null)
             {
@@ -414,13 +431,27 @@ public class SelectionGroupUI : MonoBehaviour
             }
             else if (CurrentSelectedSelectable.GetType() == typeof(TMP_InputField))
             {
-                if (EventSystem.current.currentSelectedGameObject == CurrentSelectedSelectable.gameObject)
+                if (CORE.Instance.IsUsingJoystick)
                 {
+                    if (!CORE.Instance.IsUsingJoystick)
+                    {
+                        return;
+                    }
+                    
                     EventSystem.current.SetSelectedGameObject(null);
+                    VirtualKeyboard.VirtualKeyboard.Instance.Show((TMP_InputField)CurrentSelectedSelectable);
+                    
                 }
                 else
                 {
-                    ((TMP_InputField)CurrentSelectedSelectable).Select();
+                    if (EventSystem.current.currentSelectedGameObject == CurrentSelectedSelectable.gameObject)
+                    {
+                        EventSystem.current.SetSelectedGameObject(null);
+                    }
+                    else
+                    {
+                        ((TMP_InputField)CurrentSelectedSelectable).Select();
+                    }
                 }
             }
 
