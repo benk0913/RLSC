@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Air Totem Interaction Spell
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 124f0ab8f6a3a3243bb419962ef697de, type: 3}
-  Description: Craft a Totem of Wind. It will supply, upon interaction, a temporary
-    movement speed boost.
+  Description: Craft a Totem of Wind. It will supply, upon interaction, instant teleportation
+    to you.
   Colliders:
     HitAbilityColliderObject: AirDodgeCollider
     MissAbilityColliderObject: 
@@ -26,6 +26,7 @@ MonoBehaviour:
     PrepareAbilitySound: 
     ExecuteAbilitySound: 
     HitAbilitySound: 
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -35,6 +36,7 @@ MonoBehaviour:
   CastingTime: 3
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 1
   OnExecuteParams: []
   OnHitParams:
@@ -42,8 +44,12 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 4
     Value: DashUpwards
+    ObjectValue: {fileID: 0}
+    Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 4
     Value: Whip Speed
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

@@ -1805,6 +1805,7 @@ public class ActorData
     public string actorId;
     public float x;
     public float y;
+    public int movementDirection;
     public bool faceRight;
     public string name;
     public string classJob;

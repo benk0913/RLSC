@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Whip
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 53f3a2bbba0603e43976124e8b954929, type: 3}
-  Description: Use the lash of the wind to either hurt your enemies or hurry up your
+  Description: Use the lash of the wind to either hurt your enemies OR hurry up your
     friends.
   Colliders:
     HitAbilityColliderObject: 
@@ -26,6 +26,7 @@ MonoBehaviour:
     PrepareAbilitySound: A_Whip_PrepareOGG
     ExecuteAbilitySound: A_Whip_ExecuteOGG
     HitAbilitySound: A_Whip_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -35,6 +36,7 @@ MonoBehaviour:
   CastingTime: 0.5
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -42,8 +44,12 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 0
     Value: 16
+    ObjectValue: {fileID: 0}
+    Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 1
     Value: Whip Speed
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

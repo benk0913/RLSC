@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Orbs
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 2ef66f349dd11b94b830593a33e7232a, type: 3}
-  Description: Summon orbs that damage enemies
+  Description: Summon orbs that damage enemies in close range.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: F_FireOrbs_PrepareOGG
     ExecuteAbilitySound: 
     HitAbilitySound: F_FireOrbs_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -34,11 +35,14 @@ MonoBehaviour:
   CastingTime: 1
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: Fire Orbs Buff
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams: []
   OnMissParams: []

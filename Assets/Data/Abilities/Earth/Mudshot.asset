@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mudshot
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: a3617e29cb805e343a0c0e53a9cf17fd, type: 3}
-  Description: Throw mud to slow an enemy
+  Description: Throw mud to slow an enemy.
   Colliders:
     HitAbilityColliderObject: MudshotHit
     MissAbilityColliderObject: 
@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: 
     ExecuteAbilitySound: sound_earth_3
     HitAbilitySound: sound_earth_4
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -34,6 +35,7 @@ MonoBehaviour:
   CastingTime: 0.5
   TargetCap: 1
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -41,8 +43,12 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 0
     Value: 8
+    ObjectValue: {fileID: 0}
+    Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 0
     Value: Mud Slow Short
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

@@ -10,38 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Contagious Desease Contage
+  m_Name: Ghost Pull
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 41861d6181d471d4292cb9c947cc50e4, type: 3}
-  Description: 
+  Icon: {fileID: 21300000, guid: 73d0b1bff0255a046a660d8d9d59cd47, type: 3}
+  Description: Quickly pull a distant ally to your position, hopefully saving him
+    from nearby threats.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
-    AbilityColliderObject: ContagiousDeseaseColliderEnemy
+    AbilityColliderObject: GhostPullCollider
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
   Sounds:
     PrepareAbilitySound: 
-    ExecuteAbilitySound: F_ContagiousFlames_BuffEndOGG
-    HitAbilitySound: F_ContagiousFlames_HitOGG
+    ExecuteAbilitySound: Ghostpull_Execute
+    HitAbilitySound: 
     HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
-    PreparingAnimation: Cast4
-    ExecuteAnimation: Execute4
-  CD: 14
-  CastingTime: 0.2
+    PreparingAnimation: Cast1
+    ExecuteAnimation: Execute1
+  CD: 5
+  CastingTime: 1.5
   TargetCap: 0
   OnlyIfGrounded: 0
   AIViableRange: 0
-  IsCastingExternal: 1
+  IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
-  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
-    Targets: 1
-    Value: Contagious Desease Contage Pain Buff
+    Targets: 0
+    Value: Pull
     ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

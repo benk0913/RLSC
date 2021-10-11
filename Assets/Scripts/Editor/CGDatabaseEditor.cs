@@ -28,7 +28,7 @@ public class CGDatabaseEditor : Editor
 
         
          if (GUILayout.Button("CUSTOM SCRIPT"))
-        {   
+        {
             //ADD CUSTOM DROPS
             // ClassJob[] jobs = db.content.Classes.FindAll(x=>x.DropsOnDeath.Count > 0).ToArray();
             // foreach(ClassJob job in jobs)
@@ -40,11 +40,11 @@ public class CGDatabaseEditor : Editor
             //         EditorUtility.SetDirty(job);
             //     }
             // }
-            
+
             //SKIN OVERRIDE REPLACE
             // foreach(ItemData item in db.content.Items)
             // {
-                
+
             //     foreach(ItemData.TypeBasedOverride ooverride in item.TypeBasedOverrides)
             //     {
             //         NSkinSet newSet = new NSkinSet();
@@ -66,6 +66,13 @@ public class CGDatabaseEditor : Editor
             //     item.SkinOverride.Clear();
             //     EditorUtility.SetDirty(item);
             // }
+
+            string bigString = "";
+            foreach(Ability ability in db.content.Abilities)
+            {
+                bigString += System.Environment.NewLine + ability.name + " | " + ability.Description; 
+            }
+            Debug.Log(bigString);
         }
         
         

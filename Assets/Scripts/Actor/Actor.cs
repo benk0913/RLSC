@@ -451,9 +451,9 @@ public class Actor : MonoBehaviour
 
     void RefreshActorState()
     {
-        foreach(AbilityState abilityState in State.Abilities)
+        foreach (AbilityState abilityState in State.Abilities)
         {
-            if(abilityState.CurrentCD > 0f)
+            if (abilityState.CurrentCD > 0f)
             {
                 abilityState.CurrentCD -= Time.deltaTime;
             }
@@ -462,7 +462,7 @@ public class Actor : MonoBehaviour
             {
                 abilityState.CurrentCastingTime -= Time.deltaTime;
 
-                if(abilityState.CurrentCastingTime <= 0f && State.IsPreparingAbility)
+                if (abilityState.CurrentCastingTime <= 0f && State.IsPreparingAbility)
                 {
                     AttemptExecuteAbility(abilityState.CurrentAbility);
                 }
@@ -480,24 +480,27 @@ public class Actor : MonoBehaviour
         Animer.SetBool("Stunned", IsStunned);
         Animer.SetBool("Dead", IsDead);
     }
-
+    
     void RefreshVelocity()
     {
         deltaPosition = Rigid.position - lastPosition;
         lastPosition = Rigid.position;
 
+
+
         if (IsClientControl)
         {
             Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
             Animer.SetFloat("VelocityY", deltaPosition.y);
+
+            ClientMovingTowardsDir = 0;
         }
         else
         {
-            Animer.SetFloat("VelocityX", deltaPosition.x);
+            Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
             Animer.SetFloat("VelocityY", deltaPosition.y);
         }
 
-        ClientMovingTowardsDir = 0;
     }
 
     void RefreshShadow()
@@ -526,10 +529,11 @@ public class Actor : MonoBehaviour
 
         RefreshLooks();
     }
-
     void UpdateFromActorData()
     {
         Vector3 targetPosition = new Vector2(State.Data.x, State.Data.y);
+
+        ClientMovingTowardsDir = State.Data.movementDirection; 
 
         float dist = Vector2.Distance(Rigid.position, targetPosition);
 

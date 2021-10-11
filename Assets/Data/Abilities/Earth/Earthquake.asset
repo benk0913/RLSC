@@ -17,7 +17,7 @@ MonoBehaviour:
 
 
     Unfortunately,
-    you are stunned as well in this vast release of energy.'
+    you are stunned as well by this vast release of energy.'
   Colliders:
     HitAbilityColliderObject: MudshotHit
     MissAbilityColliderObject: 
@@ -29,6 +29,7 @@ MonoBehaviour:
     PrepareAbilitySound: E_EarthQuake_PrepareOGG
     ExecuteAbilitySound: E_EarthQuake_ExecuteOGG
     HitAbilitySound: 
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -38,19 +39,26 @@ MonoBehaviour:
   CastingTime: 2
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: Earthquake Stun
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 0
     Value: Earthquake Stun
+    ObjectValue: {fileID: 0}
+    Value2: 
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     Targets: 0
     Value: 30
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

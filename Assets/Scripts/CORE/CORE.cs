@@ -1188,6 +1188,7 @@ public class RoomData
                 bool lastFaceRight = actor.faceRight;
                 actor.x = actor.ActorEntity.transform.position.x;
                 actor.y = actor.ActorEntity.transform.position.y;
+                actor.movementDirection = actor.ActorEntity.ClientMovingTowardsDir;
                 actor.faceRight = actor.ActorEntity.Body.localScale.x < 0f;
 
                 if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight)

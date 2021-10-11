@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kick
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 3c088dabd8b4d464f8883382a02db6c1, type: 3}
-  Description: Strike the enemy in a short distance while backing away from it.
+  Description: Strike the enemy at a short distance while backing away from it.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: A_Kick_PrepareOGG
     ExecuteAbilitySound: A_Kick_ExecuteOGG
     HitAbilitySound: _ound_hit_1
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -34,15 +35,20 @@ MonoBehaviour:
   CastingTime: 0.5
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: Disengage
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     Targets: 0
     Value: 40
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []
