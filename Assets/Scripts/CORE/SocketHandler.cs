@@ -21,13 +21,28 @@ public class SocketHandler : MonoBehaviour
 
     public static SocketHandler Instance;
 
-    public bool IsLocal = false;
-    public string LocalHostUrl = "http://localhost:5000";
-    public string LocalSocketUrl = "http://localhost:5000/socket.io/";
-    public string ProdHostUrl = "https://lul2.herokuapp.com";
-    public string ProdSocketUrl = "https://lul2.herokuapp.com/socket.io/";
-    public string HostUrl { get { return IsLocal ? LocalHostUrl : ProdHostUrl; } }
-    public string SocketUrl { get { return IsLocal ? LocalSocketUrl : ProdSocketUrl; } }
+    [Popup("Local", "Dev", "Prod")]
+    public string Env;
+    private string LocalHostUrl = "http://localhost:5000";
+    private string DevHostUrl = "https://lul2.herokuapp.com";
+    private string ProdHostUrl = "http://18.184.236.74";
+    private string SocketPath = "/socket.io/";
+    public string HostUrl
+    {
+        get
+        { 
+            switch (Env)
+            {
+                case "Local":
+                    return LocalHostUrl;
+                case "Dev":
+                    return DevHostUrl;
+                case "Prod":default:
+                    return ProdHostUrl;
+            }
+        }
+    }
+    public string SocketUrl { get { return HostUrl + SocketPath; } }
 
     public UserData CurrentUser;
 
