@@ -7,7 +7,7 @@ public class ServerEnvironment
     public string Environment;
     private string LocalHostUrl = "http://localhost:5000";
     private string DevHostUrl = "https://lul2.herokuapp.com";
-    private string ProdHostUrl = "http://18.184.236.74";
+    private string ProdHostUrl = "http://eq-1685188041.eu-central-1.elb.amazonaws.com";
     private string SocketPath = "/socket.io/";
     private string CGPath = "/update-content";
     public string HostUrl
