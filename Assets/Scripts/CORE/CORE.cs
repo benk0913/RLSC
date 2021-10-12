@@ -1,4 +1,4 @@
-using EdgeworldBase;
+﻿using EdgeworldBase;
 using NewResolutionDialog.Scripts.Controller;
 using Newtonsoft.Json;
 using SimpleJSON;
@@ -1198,12 +1198,13 @@ public class RoomData
                 float lastX = actor.x;
                 float lastY = actor.y;
                 bool lastFaceRight = actor.faceRight;
+                int lastMovementDirection = actor.movementDirection;
                 actor.x = actor.ActorEntity.transform.position.x;
                 actor.y = actor.ActorEntity.transform.position.y;
                 actor.movementDirection = actor.ActorEntity.ClientMovingTowardsDir;
                 actor.faceRight = actor.ActorEntity.Body.localScale.x < 0f;
 
-                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight)
+                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight || lastMovementDirection != actor.movementDirection)
                 {
                     actorsToUpdate.Add(actor);
                 }
@@ -1217,6 +1218,7 @@ public class RoomData
             node["actorPositions"][i]["x"] = actor.x.ToString();
             node["actorPositions"][i]["y"] = actor.y.ToString();
             node["actorPositions"][i]["faceRight"].AsBool = actor.faceRight;
+            node["actorPositions"][i]["movementDirection"].AsInt = actor.movementDirection;
         }
 
         if (actorsToUpdate.Count > 0)
@@ -1240,6 +1242,7 @@ public class RoomData
             actor.x = float.Parse(data["actorPositions"][i]["x"]);
             actor.y = float.Parse(data["actorPositions"][i]["y"]);
             actor.faceRight = bool.Parse(data["actorPositions"][i]["faceRight"]);
+            actor.movementDirection = data["actorPositions"][i]["movementDirection"].AsInt;
         }
     }
 
