@@ -20,29 +20,8 @@ public class SocketHandler : MonoBehaviour
     #region Essentials
 
     public static SocketHandler Instance;
-
-    [Popup("Local", "Dev", "Prod")]
-    public string Env;
-    private string LocalHostUrl = "http://localhost:5000";
-    private string DevHostUrl = "https://lul2.herokuapp.com";
-    private string ProdHostUrl = "http://18.184.236.74";
-    private string SocketPath = "/socket.io/";
-    public string HostUrl
-    {
-        get
-        { 
-            switch (Env)
-            {
-                case "Local":
-                    return LocalHostUrl;
-                case "Dev":
-                    return DevHostUrl;
-                case "Prod":default:
-                    return ProdHostUrl;
-            }
-        }
-    }
-    public string SocketUrl { get { return HostUrl + SocketPath; } }
+    
+    public ServerEnvironment ServerEnvironment;
 
     public UserData CurrentUser;
 
@@ -83,7 +62,7 @@ public class SocketHandler : MonoBehaviour
 
     void SetupSocketIO()
     {
-        SocketManager = new SocketManager(new Uri(HostUrl));
+        SocketManager = new SocketManager(new Uri(ServerEnvironment.HostUrl));
 
         SocketEventListeners.Clear();
 
@@ -326,7 +305,7 @@ public class SocketHandler : MonoBehaviour
     }
 #endif
 
-        SendWebRequest(HostUrl + "/login", (UnityWebRequest lreq) =>
+        SendWebRequest(ServerEnvironment.HostUrl + "/login", (UnityWebRequest lreq) =>
         {
             OnLogin(lreq);
 
@@ -350,7 +329,7 @@ public class SocketHandler : MonoBehaviour
         node["classJob"] = element;
         node["actor"] = JSON.Parse(JsonConvert.SerializeObject(actor));
 
-        SendWebRequest(HostUrl + "/create-char", (UnityWebRequest ccreq) =>
+        SendWebRequest(ServerEnvironment.HostUrl + "/create-char", (UnityWebRequest ccreq) =>
         {
             OnCreateCharacter(ccreq);
 
@@ -373,7 +352,7 @@ public class SocketHandler : MonoBehaviour
         node["tutorialIndex"] = TutorialIndex;
         node["isFemale"].AsBool = IsFemale;
 
-        SendWebRequest(HostUrl + "/random-name", (UnityWebRequest ccreq) =>
+        SendWebRequest(ServerEnvironment.HostUrl + "/random-name", (UnityWebRequest ccreq) =>
         {
             JSONNode data = JSON.Parse(ccreq.downloadHandler.text);
 
@@ -392,7 +371,7 @@ public class SocketHandler : MonoBehaviour
         node["tutorialIndex"] = TutorialIndex;
         node["actorId"] = actorId;
 
-        SendWebRequest(HostUrl + "/delete-char", (UnityWebRequest ccreq) =>
+        SendWebRequest(ServerEnvironment.HostUrl + "/delete-char", (UnityWebRequest ccreq) =>
         {
             OnDeleteCharacter(ccreq);
 
@@ -446,7 +425,7 @@ public class SocketHandler : MonoBehaviour
 
         DisconnectSocket();
 
-        SocketManager = new SocketManager(new Uri(SocketUrl), options);
+        SocketManager = new SocketManager(new Uri(ServerEnvironment.SocketUrl), options);
         SocketManager.Encoder = new SimpleJsonEncoder();
 
         AddListeners();

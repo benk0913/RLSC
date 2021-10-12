@@ -9,18 +9,23 @@ using UnityEngine;
 public class CGDatabase : ScriptableObject
 {
     [JsonIgnore]
-    public bool IsLocal = false;
- 
-    [JsonIgnore]
-    public string ProdHostURL;
- 
-    [JsonIgnore]
-    public string LocalHostURL;
+    public ServerEnvironment ServerEnvironment;
 
-    [JsonIgnore]
-    public string HostURL { get { return IsLocal ? LocalHostURL : ProdHostURL; }}
-
-    public string unic0rn = "b0ss";
+    public string unic0rn
+    {
+        get
+        {
+            switch (ServerEnvironment.Environment)
+            {
+                case "Local":
+                case "Dev":
+                default:
+                    return "b0ss";
+                case "Prod":
+                    return PlayerPrefs.GetString("unic0rn");
+            }
+        }
+    }
 
     public string DataPath = "Data";
 

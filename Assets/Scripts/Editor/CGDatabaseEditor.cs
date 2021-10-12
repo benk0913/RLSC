@@ -21,7 +21,7 @@ public class CGDatabaseEditor : Editor
         if (GUILayout.Button("Sync With Server"))
         {
             AutofillDatabase(db);
-            SendWebRequest(db.HostURL, JsonConvert.SerializeObject(db, Formatting.None));
+            SendWebRequest(db.ServerEnvironment.CGUrl, JsonConvert.SerializeObject(db, Formatting.None));
         }
 
         DrawDefaultInspector();
