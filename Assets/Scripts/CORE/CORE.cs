@@ -156,6 +156,9 @@ public class CORE : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetString("unic0rn", "d0e25085d463a5ce7db65476fd9b0f5fb02702f2396f6bb729d1ad3cb884ff7f");
+        PlayerPrefs.Save();
+
         SubscribeToEvent("ActorDied", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorResurrected", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorChangedStates", () => { Room.RefreshThreat(); });
