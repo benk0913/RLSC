@@ -288,8 +288,42 @@ public class SocketHandler : MonoBehaviour
         
     }
 
+    public void LogOut()
+    {
+
+        CurrentUser.chars = null;
+        CurrentUser.info = null;
+        TutorialIndex = "";
+        SessionTicket = "";
+        ServerEnvironment.Region = "";
+
+        CORE.Instance.LoadScene("MIDLOADER",()=> { SendDisconnectSocket(); Disconnect(); });
+    }
+
     public void SendLogin(Action OnComplete)
     {
+        string region = PlayerPrefs.GetString("region", "");
+
+        if (string.IsNullOrEmpty(region))
+        {
+            SendGeolocationRequest((UnityWebRequest response) =>
+            {
+                JSONNode data = JSON.Parse(response.downloadHandler.text);
+
+                CORE.Instance.LogMessage("Obtained GEOLOCATION - " + data["region"].Value);
+
+                PlayerPrefs.SetString("region", data["region"].Value);
+                PlayerPrefs.Save();
+
+                SendLogin(OnComplete);
+            });
+            return;
+        }
+        else
+        {
+            ServerEnvironment.Region = region;
+        }
+
         JSONNode node = new JSONClass();
         
         node["skipTutorial"] = SessionTicket;
@@ -403,6 +437,19 @@ public class SocketHandler : MonoBehaviour
     
         ConnectSocketRoutineInstance = StartCoroutine(ConnectSocketRoutine(OnComplete));
     }
+
+    public void SendGeolocationRequest(Action<UnityWebRequest> OnComplete = null)
+    {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Looking for a nearby server...", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
+
+        SendWebRequest(ServerEnvironment.HostUrl + "/which-region", (UnityWebRequest ccreq) =>
+        {
+            OnComplete?.Invoke(ccreq);
+        },
+        null,
+        null,
+        false);
+    }
     
 
     Coroutine ConnectSocketRoutineInstance;
@@ -508,7 +555,10 @@ public class SocketHandler : MonoBehaviour
 
     public IEnumerator SendHTTPRequestRoutine(string url, Action<UnityWebRequest> OnResponse = null, string sentJson = "", Dictionary<string, string> urlParams = null, bool isPost = false, Action<UnityWebRequest> OnError = null)
     {
-
+        if(string.IsNullOrEmpty(sentJson))
+        {
+            sentJson = new JSONClass();
+        }
         UnityWebRequest request;
 
         if (urlParams != null)
@@ -657,7 +707,12 @@ public class SocketHandler : MonoBehaviour
 
     public void OnDisconnect(Socket socket, Packet packet, params object[] args)
     {
-        if(CORE.Instance != null)
+        Disconnect();
+    }
+
+    void Disconnect()
+    {
+        if (CORE.Instance != null)
         {
             CORE.Instance.DisposeSession();
         }

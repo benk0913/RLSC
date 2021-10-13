@@ -5,6 +5,8 @@ public class ServerEnvironment
 {
     [Popup("Local", "Dev", "Prod")]
     public string Environment;
+    public string Region;
+    
     private string LocalHostUrl = "http://localhost:5000";
     private string DevHostUrl = "https://lul2.herokuapp.com";
     private string ProdHostUrlUs = "http://eq-1786457703.us-east-1.elb.amazonaws.com";
@@ -23,11 +25,20 @@ public class ServerEnvironment
                     return DevHostUrl;
                 case "Prod":
                 default:
-                    return ProdHostUrlEu;
+                    {
+                        switch(Region)
+                        {
+                            case "eu":
+                                return ProdHostUrlEu;
+                            default:
+                                return ProdHostUrlUs;
+                        }
+                    }
             }
         }
     }
     public string SocketUrl { get { return HostUrl + SocketPath; } }
     public string CGUrl { get { return HostUrl + CGPath; } }
 
+    
 }

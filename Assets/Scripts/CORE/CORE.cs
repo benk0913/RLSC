@@ -155,8 +155,7 @@ public class CORE : MonoBehaviour
     }
 
     private void Start()
-    {
-
+    {        
         SubscribeToEvent("ActorDied", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorResurrected", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorChangedStates", () => { Room.RefreshThreat(); });
