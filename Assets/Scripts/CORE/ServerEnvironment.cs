@@ -1,10 +1,13 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class ServerEnvironment
 {
     [Popup("Local", "Dev", "Prod")]
     public string Environment;
+    
+    [HideInInspector]
     public string Region;
     
     private string LocalHostUrl = "http://localhost:5000";
@@ -40,5 +43,19 @@ public class ServerEnvironment
     public string SocketUrl { get { return HostUrl + SocketPath; } }
     public string CGUrl { get { return HostUrl + CGPath; } }
 
-    
+    public string unic0rn
+    {
+        get
+        {
+            switch (Environment)
+            {
+                case "Local":
+                case "Dev":
+                default:
+                    return "b0ss";
+                case "Prod":
+                    return PlayerPrefs.GetString("unic0rn");
+            }
+        }
+    }
 }
