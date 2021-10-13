@@ -15,15 +15,7 @@ public class CGDatabase : ScriptableObject
     {
         get
         {
-            switch (ServerEnvironment.Environment)
-            {
-                case "Local":
-                case "Dev":
-                default:
-                    return "b0ss";
-                case "Prod":
-                    return PlayerPrefs.GetString("unic0rn");
-            }
+            return ServerEnvironment.unic0rn;
         }
     }
 
