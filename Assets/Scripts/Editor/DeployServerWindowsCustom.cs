@@ -93,7 +93,7 @@ class DeployServerWindowsCustom : EditorWindow
 
     void UpdateCG()
     {
-        // TODO BENK! how do you do that??
+        CGDatabaseEditor.ForceSyncCG();
     }
     
 }

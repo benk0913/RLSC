@@ -8,7 +8,22 @@ using UnityEditor.SceneManagement;
 [CustomEditor(typeof(CGDatabase))]
 public class CGDatabaseEditor : Editor
 {
-    
+
+    public static void ForceSyncCG()
+    {
+        string[] guids = AssetDatabase.FindAssets("t:CGDatabase", new[] { "Assets/" });
+
+
+        foreach (string guid in guids)
+        {
+            CGDatabase db = AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(CGDatabase)) as CGDatabase;
+            Debug.Log("Syncing " + db.name);
+
+            AutofillDatabase(db);
+            WebRequest.SendWebRequest(db.ServerEnvironment.CGUrl, JsonConvert.SerializeObject(db, Formatting.None));
+        }
+    }
+
     public override void OnInspectorGUI()
     {
         CGDatabase db = (CGDatabase)target;
@@ -167,7 +182,7 @@ public class CGDatabaseEditor : Editor
         EditorUtility.SetDirty(db);
     }
     
-    public void AutofillDatabase(CGDatabase db)
+    public static void AutofillDatabase(CGDatabase db)
     {
         string[] guids;
 
@@ -257,7 +272,7 @@ public class CGDatabaseEditor : Editor
         EditorUtility.SetDirty(db);
     }
 
-    private int calculateExpToTargetLevel(int lvl)
+    private static int calculateExpToTargetLevel(int lvl)
     {
         return (int)(50 * (Mathf.Pow(lvl, 3) - 6 * Mathf.Pow(lvl, 2) + 17 * lvl - 12) / 3);
     }
