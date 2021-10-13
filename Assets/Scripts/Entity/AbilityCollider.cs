@@ -13,6 +13,8 @@ public class AbilityCollider : HitCollider
     public bool StickToSkilledShot;
     public bool HitEventOnWalls;
 
+    public Vector3 InitPosition;
+
     [SerializeField]
     Transform SkilledShotPoint;
 
@@ -27,6 +29,9 @@ public class AbilityCollider : HitCollider
 
     [SerializeField]
     Transform OnHitSource;
+
+    [SerializeField]
+    bool RepositionChildrenOnEnable;
 
     [SerializeField]
     bool DuplicateBubbles = false; //TODO Replace with something more generic?
@@ -81,6 +86,20 @@ public class AbilityCollider : HitCollider
                     AudioControl.Instance.PlayInPosition(AudioOnHit, transform.position);
                 }
             });
+        }
+    }
+
+    private void OnEnable()
+    {
+        InitPosition = transform.position;
+
+        if (RepositionChildrenOnEnable)
+        {
+            foreach(AbilityCollider child in ChildrenColliders)
+            {
+                if (child.InitPosition != Vector3.zero)
+                    child.transform.position = child.InitPosition;
+            }
         }
     }
 

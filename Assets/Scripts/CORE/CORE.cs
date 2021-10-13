@@ -425,7 +425,7 @@ public class CORE : MonoBehaviour
             return;
         }
 
-        Debug.Log(message);
+        Debug.Log(message + " | TS "+Time.realtimeSinceStartup);
     }
 
     public void LogMessageError(string message)
@@ -1195,6 +1195,7 @@ public class RoomData
         LeastThreatheningActor = GetLeastThreateningActor();
     }
 
+    int lastSentMovementDirection;
     public void SendActorsPositions()
     {
         List<ActorData> actorsToUpdate = new List<ActorData>();
@@ -1204,19 +1205,23 @@ public class RoomData
             ActorData actor = Actors[i];
             if ((actor.IsPlayer || (!actor.isCharacter && CORE.Instance.IsBitch)) && actor.ActorEntity != null)
             {
+                Debug.LogError("Sending Position of " + actor.actorId + " " + actor.movementDirection);
                 float lastX = actor.x;
                 float lastY = actor.y;
                 bool lastFaceRight = actor.faceRight;
-                int lastMovementDirection = actor.movementDirection;
+
                 actor.x = actor.ActorEntity.transform.position.x;
                 actor.y = actor.ActorEntity.transform.position.y;
-                actor.movementDirection = actor.ActorEntity.ClientMovingTowardsDir;
+                //actor.movementDirection = actor.ActorEntity.ClientMovingTowardsDir;
+
                 actor.faceRight = actor.ActorEntity.Body.localScale.x < 0f;
 
-                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight || lastMovementDirection != actor.movementDirection)
+                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight || lastSentMovementDirection != actor.movementDirection)
                 {
                     actorsToUpdate.Add(actor);
                 }
+
+                lastSentMovementDirection = actor.movementDirection;
             }
         }
 
@@ -1234,6 +1239,7 @@ public class RoomData
         {
             SocketHandler.Instance.SendEvent("actors_moved", node);
         }
+        
     }
 
     public void ReceiveActorPositions(JSONNode data)
