@@ -1,3 +1,4 @@
+using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,5 +48,17 @@ public class InspectionPanelUI : MonoBehaviour
     public void SendStartTrade()
     {
         SocketHandler.Instance.SendEvent("start_trade",CurrentActor.actorId);
+    }
+
+    public void SendReportPlayer()
+    {
+        InputLabelWindow.Instance.Show("Report Player", "What's Wrong?", (string msg) => 
+        {
+            JSONNode node = new JSONClass();
+            node["message"] = msg;
+            node["reporterId"] = CORE.PlayerActor.actorId;
+            node["repotedId"] = CurrentActor.actorId;
+            SocketHandler.Instance.SendEvent("report_player", node);
+        });
     }
 }

@@ -331,6 +331,18 @@ public class CORE : MonoBehaviour
         }
     }
 
+    public void ReportBug()
+    {
+        InputLabelWindow.Instance.Show("Report a Bug", "What went wrong?", (string msg) => 
+        {
+            JSONNode node = new JSONClass();
+            node["message"] = msg;
+            node["reporterId"] = CORE.PlayerActor.actorId;
+
+            SocketHandler.Instance.SendEvent("report_bug", node);
+        });
+    }
+
     public static void ClearContainer(Transform container)
     {
         while (container.childCount > 0)
