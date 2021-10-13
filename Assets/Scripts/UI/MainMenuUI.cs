@@ -53,9 +53,9 @@ public class MainMenuUI : MonoBehaviour
     
     public void AutoLogin()
     {
+        CORE.Instance.LogMessage("Auto Login");
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
-    
         if(!string.IsNullOrEmpty(SocketHandler.Instance.SessionTicket))
         {
             SocketHandler.Instance.SendLogin(()=>

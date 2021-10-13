@@ -1,4 +1,4 @@
-using EdgeworldBase;
+﻿using EdgeworldBase;
 using NewResolutionDialog.Scripts.Controller;
 using Newtonsoft.Json;
 using SimpleJSON;
@@ -155,10 +155,7 @@ public class CORE : MonoBehaviour
     }
 
     private void Start()
-    {
-        PlayerPrefs.SetString("unic0rn", "d0e25085d463a5ce7db65476fd9b0f5fb02702f2396f6bb729d1ad3cb884ff7f");
-        PlayerPrefs.Save();
-
+    {        
         SubscribeToEvent("ActorDied", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorResurrected", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorChangedStates", () => { Room.RefreshThreat(); });
@@ -331,6 +328,18 @@ public class CORE : MonoBehaviour
         }
     }
 
+    public void ReportBug()
+    {
+        InputLabelWindow.Instance.Show("Report a Bug", "What went wrong?", (string msg) => 
+        {
+            JSONNode node = new JSONClass();
+            node["message"] = msg;
+            node["reporterId"] = CORE.PlayerActor.actorId;
+
+            SocketHandler.Instance.SendEvent("report_bug", node);
+        });
+    }
+
     public static void ClearContainer(Transform container)
     {
         while (container.childCount > 0)
@@ -416,7 +425,7 @@ public class CORE : MonoBehaviour
             return;
         }
 
-        Debug.Log(message);
+        Debug.Log(message + " | TS "+Time.realtimeSinceStartup);
     }
 
     public void LogMessageError(string message)
@@ -1186,6 +1195,7 @@ public class RoomData
         LeastThreatheningActor = GetLeastThreateningActor();
     }
 
+    int lastSentMovementDirection;
     public void SendActorsPositions()
     {
         List<ActorData> actorsToUpdate = new List<ActorData>();
@@ -1195,18 +1205,23 @@ public class RoomData
             ActorData actor = Actors[i];
             if ((actor.IsPlayer || (!actor.isCharacter && CORE.Instance.IsBitch)) && actor.ActorEntity != null)
             {
+                Debug.LogError("Sending Position of " + actor.actorId + " " + actor.movementDirection);
                 float lastX = actor.x;
                 float lastY = actor.y;
                 bool lastFaceRight = actor.faceRight;
+
                 actor.x = actor.ActorEntity.transform.position.x;
                 actor.y = actor.ActorEntity.transform.position.y;
-                actor.movementDirection = actor.ActorEntity.ClientMovingTowardsDir;
+                //actor.movementDirection = actor.ActorEntity.ClientMovingTowardsDir;
+
                 actor.faceRight = actor.ActorEntity.Body.localScale.x < 0f;
 
-                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight)
+                if (lastX != actor.x || lastY != actor.y || lastFaceRight != actor.faceRight || lastSentMovementDirection != actor.movementDirection)
                 {
                     actorsToUpdate.Add(actor);
                 }
+
+                lastSentMovementDirection = actor.movementDirection;
             }
         }
 
@@ -1217,12 +1232,14 @@ public class RoomData
             node["actorPositions"][i]["x"] = actor.x.ToString();
             node["actorPositions"][i]["y"] = actor.y.ToString();
             node["actorPositions"][i]["faceRight"].AsBool = actor.faceRight;
+            node["actorPositions"][i]["movementDirection"].AsInt = actor.movementDirection;
         }
 
         if (actorsToUpdate.Count > 0)
         {
             SocketHandler.Instance.SendEvent("actors_moved", node);
         }
+        
     }
 
     public void ReceiveActorPositions(JSONNode data)
@@ -1240,6 +1257,7 @@ public class RoomData
             actor.x = float.Parse(data["actorPositions"][i]["x"]);
             actor.y = float.Parse(data["actorPositions"][i]["y"]);
             actor.faceRight = bool.Parse(data["actorPositions"][i]["faceRight"]);
+            actor.movementDirection = data["actorPositions"][i]["movementDirection"].AsInt;
         }
     }
 

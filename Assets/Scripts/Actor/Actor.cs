@@ -145,8 +145,10 @@ public class Actor : MonoBehaviour
 
     public float KnockbackAmount = 4f;
 
+    protected Vector2 XdeltaPosition;
     protected Vector2 deltaPosition;
     protected Vector2 lastPosition;
+    protected Vector2 lastLastPosition;
 
 
     public Ability LastAbility;
@@ -494,15 +496,21 @@ public class Actor : MonoBehaviour
             Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
             Animer.SetFloat("VelocityY", deltaPosition.y);
 
+            this.State.Data.movementDirection = ClientMovingTowardsDir;
+
             ClientMovingTowardsDir = 0;
+            Debug.LogError(this.State.Data.actorId + " | REFRESH client");
         }
         else
         {
             Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
             Animer.SetFloat("VelocityY", deltaPosition.y);
+
+            Debug.LogError(this.State.Data.actorId + " | REFRESH server");
         }
 
     }
+
 
     void RefreshShadow()
     {

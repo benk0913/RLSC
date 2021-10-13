@@ -64,10 +64,17 @@ public class InspectTipUI : MonoBehaviour
         }
         else
         {
-            string targetString = "to inspect " + currentActor.State.Data.name; ;
+            string targetString = "to inspect " + currentActor.State.Data.name;
             if (ContentLabel.text != targetString)
             {
-                KeyLabel.text = InputMap.Map["Inspect"].ToString();
+                if (CORE.Instance.IsUsingJoystick)
+                {
+                    KeyLabel.text = "JS8";
+                }
+                else
+                {
+                    KeyLabel.text = InputMap.Map["Inspect"].ToString();
+                }
                 ContentLabel.text = targetString;
             }
 
@@ -77,7 +84,7 @@ public class InspectTipUI : MonoBehaviour
             }
 
 
-            if (!CORE.Instance.IsTyping && Input.GetKeyDown(InputMap.Map["Inspect"]))
+            if ((!CORE.Instance.IsTyping && Input.GetKeyDown(InputMap.Map["Inspect"])) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 8")))
             {
                 CORE.Instance.ShowInventoryUiWindow(currentActor.State.Data);
             }

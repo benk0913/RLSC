@@ -41,6 +41,8 @@ public class CreateCharacterPanelUI : MonoBehaviour
     public Image AlignmentGoodHalo;
     public Image AlignmentEvilHalo;
 
+    int classJobIndex = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -59,7 +61,9 @@ public class CreateCharacterPanelUI : MonoBehaviour
         DisplayActor.State.Data.looks.IsFemale = Random.Range(0, 2) == 0;
         
         Randomize();
-        
+
+        UpdateClassJob(classJobIndex);
+
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(false));
     }
 
@@ -381,7 +385,8 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     private void UpdateClassJob(int index)
     {
-        DisplayActor.State.Data.classJob = Jobs[index];
+        classJobIndex = index;
+        DisplayActor.State.Data.classJob = Jobs[classJobIndex];
         for(int i=0;i<JobFrames.Count;i++)
         {
             JobFrames[i].gameObject.SetActive(i==index);
