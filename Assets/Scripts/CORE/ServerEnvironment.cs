@@ -7,7 +7,8 @@ public class ServerEnvironment
     public string Environment;
     private string LocalHostUrl = "http://localhost:5000";
     private string DevHostUrl = "https://lul2.herokuapp.com";
-    private string ProdHostUrl = "http://eq-1685188041.eu-central-1.elb.amazonaws.com";
+    private string ProdHostUrlUs = "http://eq-1786457703.us-east-1.elb.amazonaws.com";
+    private string ProdHostUrlEu = "http://eq-1685188041.eu-central-1.elb.amazonaws.com";
     private string SocketPath = "/socket.io/";
     private string CGPath = "/update-content";
     public string HostUrl
@@ -22,7 +23,7 @@ public class ServerEnvironment
                     return DevHostUrl;
                 case "Prod":
                 default:
-                    return ProdHostUrl;
+                    return ProdHostUrlEu;
             }
         }
     }
