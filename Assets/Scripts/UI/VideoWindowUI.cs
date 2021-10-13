@@ -21,6 +21,9 @@ public class VideoWindowUI : MonoBehaviour
     VideoPlayer MoviePlayer;
 
     [SerializeField]
+    GameObject LoadingWindow;
+
+    [SerializeField]
     SelectionGroupUI SG;
 
     public bool CantHide = false;
@@ -66,6 +69,31 @@ public class VideoWindowUI : MonoBehaviour
 
     public void Show(VideoClip clip, Action acceptCallback, bool cantHide = false, Action skipCallback = null)
     {
+        this.gameObject.SetActive(true);
+
+        StopAllCoroutines();
+        StartCoroutine(ShowRoutine(clip, acceptCallback, cantHide, skipCallback));
+    }
+
+    IEnumerator ShowRoutine(VideoClip clip, Action acceptCallback, bool cantHide, Action skipCallback)
+    {
+        MoviePlayer.clip = clip;
+        MoviePlayer.Prepare();
+        float timeout = 5f;
+
+        LoadingWindow.SetActive(true);
+
+        while (!MoviePlayer.isPrepared)
+        {
+            timeout -= Time.deltaTime;
+            if(timeout <= 0)
+            {
+                break;
+            }
+            yield return 0;
+        }
+
+        LoadingWindow.SetActive(false);
 
         CantHide = cantHide;
 
@@ -73,9 +101,6 @@ public class VideoWindowUI : MonoBehaviour
 
         this.gameObject.SetActive(true);
 
-
-
-        MoviePlayer.clip = clip;
         MoviePlayer.Play();
         AcceptAction = acceptCallback;
         SkipAction = skipCallback;
@@ -83,6 +108,11 @@ public class VideoWindowUI : MonoBehaviour
         AudioControl.Instance.SetVolume("Music", 0f);
 
         CORE.Instance.DelayedInvokation(0.1f, () => { SG.RefreshGroup(false); });
+
+        if(!MoviePlayer.isPrepared)
+        {
+            Hide();
+        }
     }
 
     public void Accept()

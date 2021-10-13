@@ -42,7 +42,7 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         List<Dropdown.OptionData> regionOptions = new List<Dropdown.OptionData>();
         regionOptions.Add(new Dropdown.OptionData("us"));
         regionOptions.Add(new Dropdown.OptionData("eu"));
-        regionOptions.Add(new Dropdown.OptionData("sea"));
+        //regionOptions.Add(new Dropdown.OptionData("sea"));
         RegionDropdown.AddOptions(regionOptions);
         Dropdown.OptionData currentOption =  RegionDropdown.options.Find(x => x.text == SocketHandler.Instance.ServerEnvironment.Region);
         if (currentOption == null)

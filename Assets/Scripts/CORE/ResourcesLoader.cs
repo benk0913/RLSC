@@ -406,8 +406,8 @@ namespace EdgeworldBase
                 }
             }
 
-            
 
+            
 
 
             if (debugMode)
@@ -416,6 +416,8 @@ namespace EdgeworldBase
                 lastMiliSec = Time.time;
                 Debug.Log(this + " - Has finished loading resources...");
             }
+
+
 
             yield return StartCoroutine(LoadSceneObjectsRoutine());
 
