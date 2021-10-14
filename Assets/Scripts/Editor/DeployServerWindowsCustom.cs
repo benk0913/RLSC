@@ -93,7 +93,7 @@ class DeployServerWindowsCustom : EditorWindow
 
     void UpdateCG()
     {
-        CGDatabaseEditor.ForceSyncCG();
+        CGDatabaseEditor.ForceSyncCG(ServerEnvironment);
     }
     
 }

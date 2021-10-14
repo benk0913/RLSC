@@ -9,10 +9,9 @@ using UnityEditor.SceneManagement;
 public class CGDatabaseEditor : Editor
 {
 
-    public static void ForceSyncCG()
+    public static void ForceSyncCG(ServerEnvironment ServerEnvironment)
     {
-        string[] guids = AssetDatabase.FindAssets("t:CGDatabase", new[] { "Assets/" });
-
+        string[] guids = AssetDatabase.FindAssets("t:CGDatabase", new[] { "Assets" });
 
         foreach (string guid in guids)
         {
@@ -20,6 +19,7 @@ public class CGDatabaseEditor : Editor
             Debug.Log("Syncing " + db.name);
 
             AutofillDatabase(db);
+            db.ServerEnvironment = ServerEnvironment;
             WebRequest.SendWebRequest(db.ServerEnvironment.CGUrl, JsonConvert.SerializeObject(db, Formatting.None));
         }
     }
