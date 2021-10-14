@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401683986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -0.98, z: 0}
+  m_LocalPosition: {x: 0.06, y: -0.53, z: 0}
   m_LocalScale: {x: 3.0316603, y: 0.56592274, z: 2.6078796}
   m_Children: []
   m_Father: {fileID: 5952646397111703715}
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185918073813294902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.21000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4765155673497181147}
@@ -1385,7 +1385,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.24825144, y: 3.2858431}
+  m_Offset: {x: -0.24825144, y: 3.4989667}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1396,7 +1396,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.537225, y: 7.45}
+  m_Size: {x: 4.537225, y: 7.641076}
   m_EdgeRadius: 0
 --- !u!114 &1551737046
 MonoBehaviour:
@@ -1415,9 +1415,12 @@ MonoBehaviour:
       actorId: 
       x: 0
       y: 0
+      movementDirection: 0
       faceRight: 0
       name: 
       classJob: 
+      alignmentGood: 0
+      karma: 0
       actorType: 
       prefab: 
       hp: 0
@@ -1438,6 +1441,25 @@ MonoBehaviour:
       level: 0
       orbs: []
       attributes:
+        Power: 0
+        HP: 0
+        Defense: 0
+        Block: 0
+        CDReduction: 0
+        CTReduction: 0
+        Lifesteal: 0
+        LongRangeMultiplier: 0
+        ShortRangeMultiplier: 0
+        WildMagicChance: 0
+        SpellDuration: 0
+        AntiDebuff: 0
+        Threat: 0
+        MovementSpeed: 0
+        JumpHeight: 0
+        DoubleCast: 0
+        Explode: 0
+        HpRegen: 0
+      computedAttributes:
         Power: 0
         HP: 0
         Defense: 0
@@ -1489,12 +1511,14 @@ MonoBehaviour:
   PlayerHalo: {fileID: 0}
   NamePanel: {fileID: 0}
   TooltipTarget: {fileID: 0}
+  IsDisplayActor: 0
   IsGrounded: 0
   CurrentGround: {fileID: 0}
   Ghost: {fileID: 0}
   IsFlying: 0
   IsAttached: 0
   IsDead: 0
+  IsHarmless: 0
   InParty: 0
   ClientMovingTowardsDir: 0
   GroundCheckDistance: 5
@@ -1735,7 +1759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1961361078568754045, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.21000004
       objectReference: {fileID: 0}
     - target: {fileID: 1961361078568754045, guid: f007a4b427a6c8348a285512b8208502, type: 3}
       propertyPath: m_LocalPosition.z

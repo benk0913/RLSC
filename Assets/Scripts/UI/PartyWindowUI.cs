@@ -1,6 +1,7 @@
 ﻿using System;
 using EdgeworldBase;
 using SimpleJSON;
+using Steamworks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -130,6 +131,11 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
     public void InviteMember()
     {
         InputLabelWindow.Instance.Show("Invite Player", "Player Name...", (string name) => { SocketHandler.Instance.SendPartyInvite(name); });
+    }
+    
+    public void InviteMemberFromSteam()
+    {
+        SteamFriends.ActivateGameOverlayInviteDialog(new CSteamID(CORE.PlayerActor.steamID));
     }
 
     public void LeaveQueue()

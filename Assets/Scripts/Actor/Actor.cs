@@ -499,14 +499,11 @@ public class Actor : MonoBehaviour
             this.State.Data.movementDirection = ClientMovingTowardsDir;
 
             ClientMovingTowardsDir = 0;
-            Debug.LogError(this.State.Data.actorId + " | REFRESH client");
         }
         else
         {
             Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
             Animer.SetFloat("VelocityY", deltaPosition.y);
-
-            Debug.LogError(this.State.Data.actorId + " | REFRESH server");
         }
 
     }

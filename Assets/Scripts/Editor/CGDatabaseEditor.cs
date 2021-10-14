@@ -19,7 +19,9 @@ public class CGDatabaseEditor : Editor
             Debug.Log("Syncing " + db.name);
 
             AutofillDatabase(db);
+
             db.ServerEnvironment = ServerEnvironment;
+
             WebRequest.SendWebRequest(db.ServerEnvironment.CGUrl, JsonConvert.SerializeObject(db, Formatting.None));
         }
     }

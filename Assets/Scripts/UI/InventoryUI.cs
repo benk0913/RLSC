@@ -152,7 +152,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if(isInspecting)
         {
-            AudioControl.Instance.Play("onInspectSound");
+            AudioControl.Instance.Play("partyWindowOpen");
         }
 
         StatsPanel.SetActor(ofActor);

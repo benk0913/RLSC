@@ -38,7 +38,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void OpenURL(string url)
     {
-        Application.OpenURL(url);//TODO Change to in-steam UI 
+        Steamworks.SteamFriends.ActivateGameOverlayToWebPage(url);//TODO Change to in-steam UI 
     }
     private void Awake()
     {
@@ -215,4 +215,10 @@ public class MainMenuUI : MonoBehaviour
     {
         CORE.Instance.ShowWindow(SettingsMenuUI.Instance);
     }
+
+    public void ShowForums()
+    {
+        Steamworks.SteamFriends.ActivateGameOverlay("community");
+    }
 }
+

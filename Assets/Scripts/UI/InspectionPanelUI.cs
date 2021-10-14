@@ -1,4 +1,5 @@
 using SimpleJSON;
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,5 +61,20 @@ public class InspectionPanelUI : MonoBehaviour
             node["repotedId"] = CurrentActor.actorId;
             SocketHandler.Instance.SendEvent("report_player", node);
         });
+    }
+
+    public void OpenAccountProfile()
+    {
+        SteamFriends.ActivateGameOverlayToUser("steamid",new CSteamID(CurrentActor.steamID));
+    }
+    
+    public void AddFriend()
+    {
+        SteamFriends.ActivateGameOverlayToUser("friendadd", new CSteamID(CurrentActor.steamID));
+    }
+
+    public void SendPrivateMessage()
+    {
+        SteamFriends.ActivateGameOverlayToUser("chat", new CSteamID(CurrentActor.steamID));
     }
 }

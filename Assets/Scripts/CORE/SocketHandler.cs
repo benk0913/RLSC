@@ -1843,6 +1843,7 @@ public class ActorData
     public bool faceRight;
     public string name;
     public string classJob;
+    public ulong steamID;
 
     public bool alignmentGood;
     public int karma;

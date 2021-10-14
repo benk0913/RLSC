@@ -129,13 +129,37 @@ public class CORE : MonoBehaviour
 
         SteamAPI.Init();
 
+        //string launchCommandLine = "";
+        //SteamApps.GetLaunchCommandLine(out launchCommandLine,1024);
+
+        string connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("connect_lobby");
+        if(!string.IsNullOrEmpty(connectLobbyUniqueKey))
+        {
+            Debug.LogError("1 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
+        }
+
+        connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("+connect_lobby");
+        if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
+        {
+            Debug.LogError("2 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
+        }
+
+        GetLobbyJoinResponse = Callback<GameLobbyJoinRequested_t>.Create(OnGetLobbyJoinResponse);
 
         //Application.targetFrameRate = 60;
+
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
 
 
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    protected Callback<GameLobbyJoinRequested_t> GetLobbyJoinResponse;
+    void OnGetLobbyJoinResponse(GameLobbyJoinRequested_t pCallBack)
+    {
+        LogMessage("STEAM - JOIN LOBBY RESPONSE - Lobby: " + pCallBack.m_steamIDLobby + " | Friend: " + pCallBack.m_steamIDFriend);
+        //TODO JOIN PARTY
     }
 
     
@@ -1205,7 +1229,6 @@ public class RoomData
             ActorData actor = Actors[i];
             if ((actor.IsPlayer || (!actor.isCharacter && CORE.Instance.IsBitch)) && actor.ActorEntity != null)
             {
-                Debug.LogError("Sending Position of " + actor.actorId + " " + actor.movementDirection);
                 float lastX = actor.x;
                 float lastY = actor.y;
                 bool lastFaceRight = actor.faceRight;
@@ -1251,6 +1274,11 @@ public class RoomData
             if (actor == null)
             {
                 CORE.Instance.LogMessageError("No actor with id " + data["actorPositions"][i]["actorId"].Value);
+                continue;
+            }
+
+            if(actor.IsPlayer)
+            {
                 continue;
             }
 

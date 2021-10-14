@@ -127,7 +127,7 @@ public class AIRabbit : ActorAI
                 if(closestActorDistance < EscapeDistance)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Escape" && x.CurrentCD <= 0f);
-
+                    
                     if(SelectedAbility == null)
                     {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Carrot Explosion" && x.CurrentCD <= 0f);
@@ -148,6 +148,9 @@ public class AIRabbit : ActorAI
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Throw Carrot" && x.CurrentCD <= 0f);
                     }
                 }
+
+                if(SelectedAbility != null)
+                    Debug.LogError("SELECTED " + SelectedAbility.CurrentAbility.name);
 
                 WaitBehaviour();
 
