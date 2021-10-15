@@ -25,6 +25,8 @@ public class SocketHandler : MonoBehaviour
 
     public UserData CurrentUser;
 
+    public int SelectedRealmIndex;
+
     public SocketManager SocketManager;
 
     public List<SocketEventListener> SocketEventListeners = new List<SocketEventListener>();
@@ -339,6 +341,9 @@ public class SocketHandler : MonoBehaviour
     }
 #endif
 
+        Dictionary<string, string> UrlParams = new Dictionary<string, string>();
+        UrlParams.Add("realm", SelectedRealmIndex.ToString());
+
         SendWebRequest(ServerEnvironment.HostUrl + "/login", (UnityWebRequest lreq) =>
         {
             OnLogin(lreq);
@@ -350,7 +355,7 @@ public class SocketHandler : MonoBehaviour
             
         },
         node.ToString(),
-        null,
+        UrlParams,
         true);
     }
 
@@ -362,6 +367,9 @@ public class SocketHandler : MonoBehaviour
         node["tutorialIndex"] = TutorialIndex;
         node["classJob"] = element;
         node["actor"] = JSON.Parse(JsonConvert.SerializeObject(actor));
+        
+        Dictionary<string, string> UrlParams = new Dictionary<string, string>();
+        UrlParams.Add("realm", SelectedRealmIndex.ToString());
 
         SendWebRequest(ServerEnvironment.HostUrl + "/create-char", (UnityWebRequest ccreq) =>
         {
@@ -371,7 +379,7 @@ public class SocketHandler : MonoBehaviour
             OnComplete?.Invoke();
         },
         node.ToString(),
-        null,
+        UrlParams,
         true,
         (UnityWebRequest err)=>
         {
@@ -385,6 +393,9 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["tutorialIndex"] = TutorialIndex;
         node["isFemale"].AsBool = IsFemale;
+        
+        Dictionary<string, string> UrlParams = new Dictionary<string, string>();
+        UrlParams.Add("realm", SelectedRealmIndex.ToString());
 
         SendWebRequest(ServerEnvironment.HostUrl + "/random-name", (UnityWebRequest ccreq) =>
         {
@@ -393,7 +404,7 @@ public class SocketHandler : MonoBehaviour
             OnComplete.Invoke(data["name"]);
         },
         node.ToString(),
-        null,
+        UrlParams,
         true);
     }
 
@@ -404,6 +415,9 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["tutorialIndex"] = TutorialIndex;
         node["actorId"] = actorId;
+        
+        Dictionary<string, string> UrlParams = new Dictionary<string, string>();
+        UrlParams.Add("realm", SelectedRealmIndex.ToString());
 
         SendWebRequest(ServerEnvironment.HostUrl + "/delete-char", (UnityWebRequest ccreq) =>
         {
@@ -413,7 +427,7 @@ public class SocketHandler : MonoBehaviour
             OnComplete?.Invoke();
         },
         node.ToString(),
-        null,
+        UrlParams,
         true);
     }
 
@@ -463,6 +477,7 @@ public class SocketHandler : MonoBehaviour
         options.AdditionalQueryParams.Add("tutorialIndex", TutorialIndex);
         options.AdditionalQueryParams.Add("tutorialVersion", Application.version);
         options.AdditionalQueryParams.Add("charIndex", CurrentUser.SelectedCharacterIndex.ToString());
+        options.AdditionalQueryParams.Add("realm", SelectedRealmIndex.ToString());
 
 #if UNITY_EDITOR
         options.AdditionalQueryParams.Add("isEditor", "1");
