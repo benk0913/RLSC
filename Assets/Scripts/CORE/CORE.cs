@@ -956,6 +956,7 @@ public class CORE : MonoBehaviour
 [Serializable]
 public class PartyData
 {
+    public string partyId;
     public string leaderName;
     public string[] members;
     public Dictionary<string, bool> membersOffline;
