@@ -57,8 +57,7 @@ public class InspectionPanelUI : MonoBehaviour
         {
             JSONNode node = new JSONClass();
             node["message"] = msg;
-            node["reporterId"] = CORE.PlayerActor.actorId;
-            node["repotedId"] = CurrentActor.actorId;
+            node["repotedName"] = CurrentActor.name;
             SocketHandler.Instance.SendEvent("report_player", node);
         });
     }

@@ -358,7 +358,6 @@ public class CORE : MonoBehaviour
         {
             JSONNode node = new JSONClass();
             node["message"] = msg;
-            node["reporterId"] = CORE.PlayerActor.actorId;
 
             SocketHandler.Instance.SendEvent("report_bug", node);
         });
