@@ -144,7 +144,7 @@ public class CORE : MonoBehaviour
             Debug.LogError("2 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
         }
 
-        GetLobbyJoinResponse = Callback<GameLobbyJoinRequested_t>.Create(OnGetLobbyJoinResponse);
+        GetJoinRequestResponse = Callback<GameRichPresenceJoinRequested_t>.Create(OnGetJoinRequestResponse);
 
         //Application.targetFrameRate = 60;
 
@@ -155,11 +155,14 @@ public class CORE : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    protected Callback<GameLobbyJoinRequested_t> GetLobbyJoinResponse;
-    void OnGetLobbyJoinResponse(GameLobbyJoinRequested_t pCallBack)
+
+    protected Callback<GameRichPresenceJoinRequested_t> GetJoinRequestResponse;
+    string pendingJoinParty = null;
+    void OnGetJoinRequestResponse(GameRichPresenceJoinRequested_t pCallBack)
     {
-        LogMessage("STEAM - JOIN LOBBY RESPONSE - Lobby: " + pCallBack.m_steamIDLobby + " | Friend: " + pCallBack.m_steamIDFriend);
-        //TODO JOIN PARTY
+        LogMessage("STEAM - JOIN LOBBY RESPONSE | key: " + pCallBack.m_rgchConnect);
+
+        pendingJoinParty = pCallBack.m_rgchConnect;
     }
 
     
@@ -659,6 +662,16 @@ public class CORE : MonoBehaviour
         InGame = false;
     }
 
+    public void CheckOOGInvitations()
+    {
+        if(pendingJoinParty != null)
+        {
+            JSONNode node = new JSONClass();
+            node["partyId"] = pendingJoinParty;
+            SocketHandler.Instance.SendEvent("party_auto_join", node);
+        }
+
+    }
 
     public void SetJoystickMode(bool isOn)
     {

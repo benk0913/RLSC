@@ -35,6 +35,9 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     UnityEvent OnNoCharacters;
 
+    [SerializeField]
+    RealmSigilUI RealmSigil;
+
 
     public void OpenURL(string url)
     {
@@ -56,44 +59,92 @@ public class MainMenuUI : MonoBehaviour
         CORE.Instance.LogMessage("Auto Login");
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
-        if(!string.IsNullOrEmpty(SocketHandler.Instance.SessionTicket))
+        Action postRealmLogin = () => 
         {
-            SocketHandler.Instance.SendLogin(()=>
+            RealmSigil.SetData(CORE.Instance.Data.content.Realms[SocketHandler.Instance.SelectedRealmIndex]);
+
+            if (!string.IsNullOrEmpty(SocketHandler.Instance.SessionTicket))
             {
-                ResourcesLoader.Instance.RunWhenResourcesLoaded(() => 
+                SocketHandler.Instance.SendLogin(() =>
                 {
-                    ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
-                    RefreshUserInfo();
-                });
-            });
-        }
-        else
-        {
-            SocketHandler.Instance.GetSteamSession(() =>
-            {
-                SocketHandler.Instance.SendLogin(()=>
-                {
-                    ResourcesLoader.Instance.RunWhenResourcesLoaded(() => 
+                    ResourcesLoader.Instance.RunWhenResourcesLoaded(() =>
                     {
                         ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
                         RefreshUserInfo();
                     });
                 });
+            }
+            else
+            {
+                SocketHandler.Instance.GetSteamSession(() =>
+                {
+                    SocketHandler.Instance.SendLogin(() =>
+                    {
+                        ResourcesLoader.Instance.RunWhenResourcesLoaded(() =>
+                        {
+                            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+                            RefreshUserInfo();
+                        });
+                    });
+                });
+            }
+        };
+
+        SocketHandler.Instance.SelectedRealmIndex = PlayerPrefs.GetInt("SelectedRealmIndex", -1);
+
+        if(SocketHandler.Instance.SelectedRealmIndex == -1)
+        {
+            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+            RealmSelectionUI.Instance.Show((int selectdRealm) => 
+            {
+                SocketHandler.Instance.SelectedRealmIndex = selectdRealm;
+                PlayerPrefs.SetInt("SelectedRealmIndex", SocketHandler.Instance.SelectedRealmIndex);
+                PlayerPrefs.Save();
+
+                ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+                postRealmLogin.Invoke();
             });
+        }
+        else
+        {
+            postRealmLogin.Invoke();
         }
 
     }
 
+    public void ChangeRealms()
+    {
+        WarningWindowUI.Instance.Show("Warning! Changing your realm will reuslt in disconnection from the game!", () =>
+        {
+            PlayerPrefs.SetInt("SelectedRealmIndex", -1);
+            SocketHandler.Instance.SelectedRealmIndex = -1;
+            SocketHandler.Instance.LogOut();
+        }, false, () =>
+        {
+            
+        });
+    }
+
     public void AutoCreateSelect(string element = "fire")
     {
-        SocketHandler.Instance.SendCreateCharacter(element,null,() => SocketHandler.Instance.SendSelectCharacter());
+        SocketHandler.Instance.SendCreateCharacter(element, null, () =>
+        {
+            SocketHandler.Instance.SendSelectCharacter();
+            CORE.Instance.CheckOOGInvitations();
+        });
     }
 
     public void SelectCharacter(int index)
     {
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
-        SocketHandler.Instance.SendSelectCharacter(()=> ResourcesLoader.Instance.LoadingWindowObject.SetActive(false), index);
+        SocketHandler.Instance.SendSelectCharacter(()=>
+        {
+            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+
+            CORE.Instance.CheckOOGInvitations();
+
+        }, index);
     }
 
     public void DeleteCharacter (string actorId)

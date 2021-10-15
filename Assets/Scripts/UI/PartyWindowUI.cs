@@ -135,7 +135,8 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
     
     public void InviteMemberFromSteam()
     {
-        SteamFriends.ActivateGameOverlayInviteDialog(new CSteamID(CORE.PlayerActor.steamID));
+        SteamFriends.ActivateGameOverlayInviteDialogConnectString(CORE.PlayerActor.steamID.ToString());
+        //SteamFriends.ActivateGameOverlayInviteDialog(new CSteamID(CORE.PlayerActor.steamID));
     }
 
     public void LeaveQueue()

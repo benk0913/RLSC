@@ -25,7 +25,7 @@ public class SocketHandler : MonoBehaviour
 
     public UserData CurrentUser;
 
-    public int SelectedRealmIndex;
+    public int SelectedRealmIndex = -1;
 
     public SocketManager SocketManager;
 
@@ -437,6 +437,7 @@ public class SocketHandler : MonoBehaviour
 
         CurrentUser.SelectedCharacterIndex = index;
         CurrentUser.actor = CurrentUser.chars[index];
+
         SendConnectSocket(OnComplete);
     }
 

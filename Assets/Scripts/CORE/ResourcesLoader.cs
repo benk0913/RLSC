@@ -128,91 +128,91 @@ namespace EdgeworldBase
             StartCoroutine(LoadResourcesRoutine());
         }
 
-        public IEnumerator GetImageFromURL(Image gImg, string gUrl)
-        {
-            WWW wwwRequest = new WWW(gUrl);
+        //public IEnumerator GetImageFromURL(Image gImg, string gUrl)
+        //{
+        //    WWW wwwRequest = new WWW(gUrl);
 
-            yield return wwwRequest;
+        //    yield return wwwRequest;
 
-            //Server check
-            if (wwwRequest.error != null || wwwRequest.texture.width == 8)
-            {
-                Debug.LogError(gUrl + " - had a request problem...");
-                Debug.LogError(wwwRequest.error);
+        //    //Server check
+        //    if (wwwRequest.error != null || wwwRequest.texture.width == 8)
+        //    {
+        //        Debug.LogError(gUrl + " - had a request problem...");
+        //        Debug.LogError(wwwRequest.error);
 
-                if (debugMode)
-                {
-                    print("Resource Loader - " + gUrl + " fell back to a local file...");
-                }
+        //        if (debugMode)
+        //        {
+        //            print("Resource Loader - " + gUrl + " fell back to a local file...");
+        //        }
 
-                string croppedName = "";
-                int iFrom = gUrl.Length - 1;
-                int iTo = 0;
+        //        string croppedName = "";
+        //        int iFrom = gUrl.Length - 1;
+        //        int iTo = 0;
 
-                //FALLBACK
-                while (iFrom > 0)
-                {
-                    if (gUrl[iFrom] == '.')
-                    {
-                        iTo = iFrom;
-                    }
+        //        //FALLBACK
+        //        while (iFrom > 0)
+        //        {
+        //            if (gUrl[iFrom] == '.')
+        //            {
+        //                iTo = iFrom;
+        //            }
 
-                    if (gUrl[iFrom] == '/')
-                    {
-                        iFrom++;
+        //            if (gUrl[iFrom] == '/')
+        //            {
+        //                iFrom++;
 
-                        if (iTo != 0)
-                        {
-                            croppedName = gUrl.Substring(iFrom, (iTo - iFrom));
-                        }
-                        else
-                        {
-                            croppedName = gUrl.Substring(iFrom, (gUrl.Length - 4) - iFrom);
-                        }
+        //                if (iTo != 0)
+        //                {
+        //                    croppedName = gUrl.Substring(iFrom, (iTo - iFrom));
+        //                }
+        //                else
+        //                {
+        //                    croppedName = gUrl.Substring(iFrom, (gUrl.Length - 4) - iFrom);
+        //                }
 
-                        if (debugMode)
-                        {
-                            print("Resource Loader - had gathered the file name " + croppedName + " from " + gUrl);
-                        }
+        //                if (debugMode)
+        //                {
+        //                    print("Resource Loader - had gathered the file name " + croppedName + " from " + gUrl);
+        //                }
 
-                        break;
-                    }
+        //                break;
+        //            }
 
-                    iFrom--;
-                }
+        //            iFrom--;
+        //        }
 
-                if (croppedName != "")
-                {
-                    if (GetSprite(croppedName) != null)
-                    {
-                        gImg.sprite = GetSprite(croppedName);
-                    }
-                    else
-                    {
-                        if (debugMode)
-                        {
-                            print("Resource Loader - " + croppedName + " does not exist as a local file...");
-                            gImg.sprite = GetSprite("error");
-                        }
-                    }
-                }
-                else
-                {
-                    if (debugMode)
-                    {
-                        print("Resource Loader - " + gUrl + " could not be broken apart correctly.");
-                        gImg.sprite = GetSprite("error");
-                    }
-                }
+        //        if (croppedName != "")
+        //        {
+        //            if (GetSprite(croppedName) != null)
+        //            {
+        //                gImg.sprite = GetSprite(croppedName);
+        //            }
+        //            else
+        //            {
+        //                if (debugMode)
+        //                {
+        //                    print("Resource Loader - " + croppedName + " does not exist as a local file...");
+        //                    gImg.sprite = GetSprite("error");
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (debugMode)
+        //            {
+        //                print("Resource Loader - " + gUrl + " could not be broken apart correctly.");
+        //                gImg.sprite = GetSprite("error");
+        //            }
+        //        }
 
 
-            }
-            else
-            {
-                Rect tempRect = new Rect(0, 0, wwwRequest.texture.width, wwwRequest.texture.height);
-                gImg.sprite = Sprite.Create(wwwRequest.texture, tempRect, new Vector2(wwwRequest.texture.width / 2, wwwRequest.texture.height / 2));
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        Rect tempRect = new Rect(0, 0, wwwRequest.texture.width, wwwRequest.texture.height);
+        //        gImg.sprite = Sprite.Create(wwwRequest.texture, tempRect, new Vector2(wwwRequest.texture.width / 2, wwwRequest.texture.height / 2));
+        //    }
+        //}
 
         public void ClearObjectPool()
         {

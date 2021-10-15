@@ -34,6 +34,10 @@ public class CGDatabase : ScriptableObject
 public class DatabaseContent
 {
     public List<ItemData> temporaryData = new List<ItemData>();
+
+    public List<RealmData> Realms = new List<RealmData>();
+    public int RealmCap = 2;
+
     public VisualDatabase Visuals;
 
     public CashShopDatabase CashShop;
