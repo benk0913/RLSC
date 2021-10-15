@@ -18,11 +18,15 @@ public class CGDatabaseEditor : Editor
             CGDatabase db = AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(CGDatabase)) as CGDatabase;
             Debug.Log("Syncing " + db.name);
 
+            
             AutofillDatabase(db);
 
+            ServerEnvironment OriginalServerEnvironment = db.ServerEnvironment;
             db.ServerEnvironment = ServerEnvironment;
 
             WebRequest.SendWebRequest(db.ServerEnvironment.CGUrl, JsonConvert.SerializeObject(db, Formatting.None));
+
+            db.ServerEnvironment = OriginalServerEnvironment;
         }
     }
 
