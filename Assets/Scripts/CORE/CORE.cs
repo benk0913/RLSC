@@ -113,6 +113,7 @@ public class CORE : MonoBehaviour
 
     public bool IsAppInBackground = false;
 
+    
 
     public WindowInterface CurrentWindow;
     public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
@@ -132,19 +133,27 @@ public class CORE : MonoBehaviour
         //string launchCommandLine = "";
         //SteamApps.GetLaunchCommandLine(out launchCommandLine,1024);
 
-        string connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("connect_lobby");
-        if(!string.IsNullOrEmpty(connectLobbyUniqueKey))
+        ConditionalInvokation((x) => { return SteamAPI.Init(); }, () => 
         {
-            Debug.LogError("1 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
-        }
 
-        connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("+connect_lobby");
-        if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
-        {
-            Debug.LogError("2 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
-        }
+            string connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("connect_lobby");
+            if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
+            {
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!", Color.yellow, 1, true));
+                Debug.LogError("1 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
+            }
 
-        GetJoinRequestResponse = Callback<GameRichPresenceJoinRequested_t>.Create(OnGetJoinRequestResponse);
+            connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("+connect_lobby");
+            if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
+            {
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!!", Color.yellow, 1, true));
+                Debug.LogError("2 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
+            }
+
+        });
+
+        if(GetJoinRequestResponse == null)
+            GetJoinRequestResponse = Callback<GameRichPresenceJoinRequested_t>.Create(OnGetJoinRequestResponse);
 
         //Application.targetFrameRate = 60;
 
@@ -161,6 +170,7 @@ public class CORE : MonoBehaviour
     void OnGetJoinRequestResponse(GameRichPresenceJoinRequested_t pCallBack)
     {
         LogMessage("STEAM - JOIN LOBBY RESPONSE | key: " + pCallBack.m_rgchConnect);
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Joining a friend's group!", Color.green, 3, true));
 
         pendingJoinParty = pCallBack.m_rgchConnect;
     }
@@ -375,6 +385,14 @@ public class CORE : MonoBehaviour
         }
     }
 
+    public static void DestroyContainer(Transform container)
+    {
+        for(int i=0;i<container.childCount;i++)
+        {
+            Destroy(container.GetChild(i).gameObject);
+        }
+    }
+
     public void SubscribeToEvent(string eventKey, UnityAction action)
     {
         if (!DynamicEvents.ContainsKey(eventKey))
@@ -451,7 +469,7 @@ public class CORE : MonoBehaviour
             return;
         }
 
-        Debug.Log(message + " | TS "+Time.realtimeSinceStartup);
+        Debug.Log(message);
     }
 
     public void LogMessageError(string message)
@@ -652,6 +670,7 @@ public class CORE : MonoBehaviour
     {
         GameUICG.alpha = 1f;
         GameUICG.interactable = true;
+        GameUICG.blocksRaycasts = true;
         InGame = true;
     }
 
@@ -659,6 +678,7 @@ public class CORE : MonoBehaviour
     {
         GameUICG.alpha = 0f;
         GameUICG.interactable = false;
+        GameUICG.blocksRaycasts = false;
         InGame = false;
     }
 
@@ -691,12 +711,13 @@ public class CORE : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        LoadScene("MainMenu");
-
-        ResourcesLoader.Instance.RunWhenResourcesLoaded(() => 
+        LoadScene("MainMenu",()=> 
         {
-            AudioControl.Instance.SetMusic(Data.content.titleScreenMusic);
-            AudioControl.Instance.SetSoundscape(Data.content.titleScreenSoundscape);
+            ResourcesLoader.Instance.RunWhenResourcesLoaded(() =>
+            {
+                AudioControl.Instance.SetMusic(Data.content.titleScreenMusic);
+                AudioControl.Instance.SetSoundscape(Data.content.titleScreenSoundscape);
+            });
         });
     }
 

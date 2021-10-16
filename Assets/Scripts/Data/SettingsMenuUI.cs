@@ -65,16 +65,32 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
 
         Hide();
 
-        WarningWindowUI.Instance.Show("Warning! Changing your region to " + newRegion + " will reuslt in disconnection from the game!", () => 
+        System.Action changeRegionAction = () =>
         {
+            SocketHandler.Instance.SelectedRealmIndex = -1;
+            PlayerPrefs.SetInt("SelectedRealmIndex", -1);
+            PlayerPrefs.Save();
+
             PlayerPrefs.SetString("region", newRegion);
             PlayerPrefs.Save();
 
             SocketHandler.Instance.LogOut();
-        },false,()=> 
+        };
+
+        if (!CORE.Instance.InGame)
         {
-            Show(null, null);
-        });
+            changeRegionAction?.Invoke();
+        }
+        else
+        {
+            WarningWindowUI.Instance.Show("Warning! Changing your region to " + newRegion + " will reuslt in disconnection from the game!", () =>
+            {
+                changeRegionAction.Invoke();
+            }, false, () =>
+          {
+                Show(null, null);
+            });
+        }
     }
 
     public void StartMachinemaMode()

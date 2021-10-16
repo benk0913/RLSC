@@ -35,7 +35,9 @@ public class DatabaseContent
 {
     public List<ItemData> temporaryData = new List<ItemData>();
 
+    [JsonIgnore]
     public List<RealmData> Realms = new List<RealmData>();
+
     public int RealmCap = 2;
 
     public VisualDatabase Visuals;

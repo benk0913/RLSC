@@ -114,15 +114,10 @@ public class MainMenuUI : MonoBehaviour
 
     public void ChangeRealms()
     {
-        WarningWindowUI.Instance.Show("Warning! Changing your realm will reuslt in disconnection from the game!", () =>
-        {
-            PlayerPrefs.SetInt("SelectedRealmIndex", -1);
-            SocketHandler.Instance.SelectedRealmIndex = -1;
-            SocketHandler.Instance.LogOut();
-        }, false, () =>
-        {
-            
-        });
+        PlayerPrefs.SetInt("SelectedRealmIndex", -1);
+        SocketHandler.Instance.SelectedRealmIndex = -1;
+        SocketHandler.Instance.LogOut();
+
     }
 
     public void AutoCreateSelect(string element = "fire")
@@ -175,39 +170,54 @@ public class MainMenuUI : MonoBehaviour
 
     public void RefreshUserInfo()
     {
-        CORE.ClearContainer(CharacterSelectionContainer);
+        if(CharacterSelectionContainer == null)
+        {
+            return;
+        }
+
+        CORE.DestroyContainer(CharacterSelectionContainer);
         RemoveCharacterSelected();
 
-        for(int i=0;i<SocketHandler.Instance.CurrentUser.chars.Count; i++)
-        {
-            ActorData character = SocketHandler.Instance.CurrentUser.chars[i];
-            int characterIndex = 0 + i;
+        CORE.Instance.DelayedInvokation(0.1f, () =>
+             {
 
-            DisplayCharacterUI disAct = ResourcesLoader.Instance.GetRecycledObject("DisplayActor").GetComponent<DisplayCharacterUI>();
-            disAct.transform.SetParent(CharacterSelectionContainer, false);
-            disAct.transform.localScale = Vector3.one;
-            disAct.transform.position = Vector3.one;
-            disAct.AttachedCharacter.transform.position = Vector3.one;
-            disAct.AttachedCharacter.SetActorInfo(character);
-            disAct.GetComponent<DoubleclickHandlerUI>().OnDoubleClick.AddListener(()=> { SelectCharacter(characterIndex); });
-            disAct.SetInfo(() => { SetCharacterSelected(disAct); });
-            if (i == 0)
-            {
-                SetCharacterSelected(disAct);
-            }
+                 for (int i = 0; i < SocketHandler.Instance.CurrentUser.chars.Count; i++)
+                 {
+                     ActorData character = SocketHandler.Instance.CurrentUser.chars[i];
+                     int characterIndex = 0 + i;
+                     
+                     DisplayCharacterUI disAct = Instantiate(ResourcesLoader.Instance.GetObject("DisplayActor")).GetComponent<DisplayCharacterUI>();
+                     disAct.transform.SetParent(CharacterSelectionContainer, false);
+                     disAct.transform.localScale = Vector3.one;
+                     disAct.transform.position = Vector3.one;
+                     disAct.AttachedCharacter.transform.position = Vector3.one;
+                     disAct.AttachedCharacter.SetActorInfo(character);
+                     disAct.GetComponent<DoubleclickHandlerUI>().OnDoubleClick.AddListener(() => { SelectCharacter(characterIndex); });
+                     disAct.SetInfo(() => { SetCharacterSelected(disAct); });
+                     if (i == 0)
+                     {
+                         SetCharacterSelected(disAct);
+                     }
 
-            disAct.AttachedCharacter.RefreshLooks();
-        }
+                     disAct.AttachedCharacter.RefreshLooks();
+                 }
 
-        if (SocketHandler.Instance.CurrentUser.chars.Count <= 0)
-        {
-            OnNoCharacters?.Invoke();
-        }
-        int maxCharacters = CORE.Instance.Data.content.MaxCharacters + SocketHandler.Instance.CurrentUser.info.additionalCharSlots;
-        CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Count < maxCharacters;
-        CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : "Cannot have more than " + maxCharacters + " characters.");
+                 if (SocketHandler.Instance.CurrentUser.chars.Count <= 0)
+                 {
+                     OnNoCharacters?.Invoke();
+                 }
+                 int maxCharacters = CORE.Instance.Data.content.MaxCharacters + SocketHandler.Instance.CurrentUser.info.additionalCharSlots;
+                 CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Count < maxCharacters;
+                 CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : "Cannot have more than " + maxCharacters + " characters.");
 
-        CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(false));
+                 CORE.Instance.DelayedInvokation(0f, () =>
+                {
+             if (SelectionGroup != null)
+                 SelectionGroup.RefreshGroup(false);
+             });
+
+
+             });
     }
 
     public void SetCharacterSelected(DisplayCharacterUI displayActor)

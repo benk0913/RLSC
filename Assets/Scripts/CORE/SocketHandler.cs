@@ -47,7 +47,6 @@ public class SocketHandler : MonoBehaviour
     public bool RandomUser;
 #endif
 
-
     private void Awake()
     {
         Instance = this;
@@ -247,14 +246,18 @@ public class SocketHandler : MonoBehaviour
 
     void ObtainSessionTicket(Action OnComplete)
     {
+        this.OnCompleteSessionTicket = OnComplete;
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Getting Session...", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
+        
+        if(GetAuthSessionTicketResponseCallbackContainer == null)
+            GetAuthSessionTicketResponseCallbackContainer = Callback<GetAuthSessionTicketResponse_t>.Create(OnGetAuthSessionTicketResponse);
 
-        //I know these are mouthfulls but blame steam not me lol
-        GetAuthSessionTicketResponseCallbackContainer = Callback<GetAuthSessionTicketResponse_t>.Create(OnGetAuthSessionTicketResponse);
-        GetAuthSessionTicketOnCompleteCallbackContainer = Callback<GetAuthSessionTicketResponse_t>.Create((GetAuthSessionTicketResponse_t pc)=>{OnComplete?.Invoke();});
+        if(GetAuthSessionTicketOnCompleteCallbackContainer == null)
+            GetAuthSessionTicketOnCompleteCallbackContainer = Callback<GetAuthSessionTicketResponse_t>.Create((GetAuthSessionTicketResponse_t pc)=>{ OnCompleteSessionTicket?.Invoke();});
 
+        
         SessionPTicket = new byte[SessionTicketSize];
-        Steamworks.SteamUser.GetAuthSessionTicket(SessionPTicket,SessionTicketSize, out SessionPCBTicket);
+        SteamUser.GetAuthSessionTicket(SessionPTicket,SessionTicketSize, out SessionPCBTicket);
 
         //Timeout validation
         CORE.Instance.DelayedInvokation(10f, () => 
@@ -268,12 +271,13 @@ public class SocketHandler : MonoBehaviour
 
     }
 
+
+    Action OnCompleteSessionTicket;
     protected Callback<GetAuthSessionTicketResponse_t> GetAuthSessionTicketOnCompleteCallbackContainer;
     protected Callback<GetAuthSessionTicketResponse_t> GetAuthSessionTicketResponseCallbackContainer;
     void OnGetAuthSessionTicketResponse(GetAuthSessionTicketResponse_t pCallback) 
     {
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
-
         //System.Array.Resize(ref SessionPTicket, (int)SessionPCBTicket);
             
 
@@ -284,9 +288,6 @@ public class SocketHandler : MonoBehaviour
 
         this.SessionTicket = hexticket;
         CORE.Instance.LogMessage("Current session: "+this.SessionTicket);
-
-        GetAuthSessionTicketResponseCallbackContainer = null;
-        GetAuthSessionTicketOnCompleteCallbackContainer = null;
         
     }
 
@@ -299,7 +300,13 @@ public class SocketHandler : MonoBehaviour
         SessionTicket = "";
         ServerEnvironment.Region = "";
 
-        CORE.Instance.LoadScene("MIDLOADER",()=> { SendDisconnectSocket(); Disconnect(); });
+        CORE.Instance.LoadScene("MIDLOADER",()=> 
+        {
+            if (CORE.Instance.InGame)
+                SendDisconnectSocket();
+            else
+                Disconnect();
+        });
     }
 
     public void SendLogin(Action OnComplete)
@@ -728,6 +735,8 @@ public class SocketHandler : MonoBehaviour
 
     void Disconnect()
     {
+        CORE.Instance.LogMessage("DISCONNECTING");
+
         if (CORE.Instance != null)
         {
             CORE.Instance.DisposeSession();
