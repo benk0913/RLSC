@@ -1,4 +1,5 @@
-﻿using BestHTTP.SocketIO3;
+﻿using BestHTTP.SocketIO;
+using BestHTTP.SocketIO.Events;
 using EdgeworldBase;
 using Newtonsoft.Json;
 using PlatformSupport.Collections.ObjectModel;
@@ -186,14 +187,10 @@ public class SocketHandler : MonoBehaviour
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
-            SocketManager.Socket.On<Dictionary<string, object>>(listener.EventKey, (Dictionary<string, object> dataDic) => {
-                // TODO if using the right parser, change the above to On<JSONNode data>
-                JSONNode data = new JSONClass();
-                listener.InternalCallback.Invoke(listener.EventKey, data);
-            });
+            SocketManager.Socket.On(listener.EventKey, listener.Callback);
         }
 
-        SocketManager.Socket.On<Error>(SocketIOEventTypes.Error, OnErrorRawCallback);
+        SocketManager.Socket.On(SocketIOEventTypes.Error, OnErrorRawCallback);
         SocketManager.Socket.On(SocketIOEventTypes.Disconnect, OnDisconnect);
     }
 
@@ -494,14 +491,13 @@ public class SocketHandler : MonoBehaviour
         options.AdditionalQueryParams.Add("isEditor", "1");
 #endif
 
-        options.ConnectWith = BestHTTP.SocketIO3.Transports.TransportTypes.WebSocket;
+        options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
+        options.AutoConnect = false;
 
         DisconnectSocket();
 
         SocketManager = new SocketManager(new Uri(ServerEnvironment.SocketUrl), options);
-        
-        // TODO this was removed :(
-        // SocketManager.Encoder = new SimpleJsonEncoder();
+        SocketManager.Encoder = new SimpleJsonEncoder();
 
         AddListeners();
 
@@ -710,15 +706,30 @@ public class SocketHandler : MonoBehaviour
 
     #region Socket Response
 
-    public void OnErrorRawCallback(Error error)
+    public void OnErrorRawCallback(Socket socket, Packet packet, params object[] args)
     {
-        string errorMessage = error.message;
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(errorMessage, Colors.AsColor(Colors.COLOR_BAD), 2, true));
-        CORE.Instance.LogMessageError("Had an error: " + errorMessage);
-        DisconnectSocket();
+        Error error = args[0] as Error;
+
+        switch (error.Code)
+        {
+            case SocketIOErrors.User:
+                CORE.Instance.LogMessageError("Exception in an event handler! Message: " + error.Message);
+                break;
+            case SocketIOErrors.Custom:
+                // This error case is when having issues connecting to the game, e.g. when you're already connected on another PC.
+                JSONNode errorData = JSON.Parse(error.Message.ToString());
+                string errorMessage = errorData["message"];
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(errorMessage, Colors.AsColor(Colors.COLOR_BAD), 2, true));
+                CORE.Instance.LogMessageError("Server custom error. Message: " + errorMessage);
+                DisconnectSocket();
+                break;
+            default:
+                CORE.Instance.LogMessageError("Server error!" + " Code: " + error.Code + ". Message: " + error.Message);
+                break;
+        }
     }
 
-    public void OnDisconnect()
+    public void OnDisconnect(Socket socket, Packet packet, params object[] args)
     {
         Disconnect();
     }
@@ -2061,6 +2072,12 @@ public class SocketEventListener
         this.EventKey = key;
 
         this.InternalCallback = internalCallback;
+    }
+
+    public void Callback(Socket socket, Packet packet, params object[] args)
+    {
+        JSONNode data = JSON.Parse(args[0].ToString());
+        InternalCallback.Invoke(packet.EventName, data);
     }
 }
 
