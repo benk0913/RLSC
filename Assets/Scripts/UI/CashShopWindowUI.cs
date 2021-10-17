@@ -1,7 +1,9 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using EdgeworldBase;
 using SimpleJSON;
+using Steamworks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -36,6 +38,12 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     TextMeshProUGUI EQPLabel;
+
+    [SerializeField]
+    List<TextMeshProUGUI> EQPCostLabels;
+
+    [SerializeField]
+    List<TextMeshProUGUI> EQPValueLabels;
 
     [SerializeField]
     Transform CashItemsInventoryContainer;
@@ -162,6 +170,12 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     {
 
         EQPLabel.text = System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.info.cashPoints);
+
+        for (int i = 0; i < CORE.Instance.Data.content.CashShop.Prices.Count; i++)
+        {
+            EQPCostLabels[i].text = "For $" + System.String.Format("{0:n0}", CORE.Instance.Data.content.CashShop.Prices[i].CostInUSD);
+            EQPValueLabels[i].text = System.String.Format("{0:n0}", CORE.Instance.Data.content.CashShop.Prices[i].EQPValue);
+        }
 
         CORE.ClearContainer(CashItemsInventoryContainer);
 
@@ -384,7 +398,27 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void BuyEQP(int dealIndex = 0)
     {
+        JSONNode node = new JSONClass();
+        node["dealIndex"].AsInt = dealIndex;
+        SocketHandler.Instance.SendEvent("buy_eq", node);
         
+        RegisterSteamInAppWindow();
     }
 
+    protected Callback<MicroTxnAuthorizationResponse_t> MicroTxnAuthorizationCallbackContainer;
+    void RegisterSteamInAppWindow()
+    {
+        if(MicroTxnAuthorizationCallbackContainer == null)
+            MicroTxnAuthorizationCallbackContainer = Callback<MicroTxnAuthorizationResponse_t>.Create(OnMicroTxnAuthorizationResponse);
+    }
+    void OnMicroTxnAuthorizationResponse(MicroTxnAuthorizationResponse_t pCallback) 
+    {
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
+        
+        JSONNode node = new JSONClass();
+        node["orderId"] = pCallback.m_ulOrderID.ToString();
+        node["transactionId"] = pCallback.m_ulOrderID.ToString();
+        node["authorized"].AsBool = pCallback.m_bAuthorized == 1;
+        SocketHandler.Instance.SendEvent("buy_eq_steam_answer", node);
+    }
 }

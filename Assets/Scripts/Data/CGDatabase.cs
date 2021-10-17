@@ -155,6 +155,17 @@ public class CashShopDatabase
         public string StoreKey;
         public List<ItemData> StoreItems = new List<ItemData>();
     }
+    
+    public List<EQPPrice> Prices = new List<EQPPrice>();
+
+    public string SteamItemDescription;
+
+    [Serializable]
+    public class EQPPrice
+    {
+        public float CostInUSD;
+        public int EQPValue;
+    }
 }
 
 [Serializable]
