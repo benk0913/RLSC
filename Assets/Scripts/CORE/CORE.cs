@@ -135,21 +135,28 @@ public class CORE : MonoBehaviour
 
         ConditionalInvokation((x) => { return SteamAPI.Init(); }, () => 
         {
+            SteamUser.AdvertiseGame(new CSteamID(), 0, 0);
 
             string connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("connect_lobby");
             if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
             {
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!", Color.yellow, 1, true));
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!"+ connectLobbyUniqueKey, Color.yellow, 1, true));
                 Debug.LogError("1 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
+
+                pendingJoinParty = connectLobbyUniqueKey;
             }
 
-            connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("+connect_lobby");
-            if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
-            {
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!!", Color.yellow, 1, true));
-                Debug.LogError("2 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
-            }
-
+            //TODO ONLY FOR TEST, REMOVE LATER
+            //string[] args = Environment.GetCommandLineArgs();
+            //string input = "";
+            //for (int i = 0; i < args.Length; i++)
+            //{
+            //    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(("ARG " + i + ": " + args[i]), Color.yellow, 3f, false));
+            //    if (args[i] == "-folderInput")
+            //    {
+            //        input = args[i + 1];
+            //    }
+            //}
         });
 
         if(GetJoinRequestResponse == null)
@@ -173,6 +180,9 @@ public class CORE : MonoBehaviour
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Joining a friend's group!", Color.green, 3, true));
 
         pendingJoinParty = pCallBack.m_rgchConnect;
+
+        if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
+            CheckOOGInvitations();
     }
 
     
@@ -672,6 +682,8 @@ public class CORE : MonoBehaviour
         GameUICG.interactable = true;
         GameUICG.blocksRaycasts = true;
         InGame = true;
+
+
     }
 
     void LeaveGame()

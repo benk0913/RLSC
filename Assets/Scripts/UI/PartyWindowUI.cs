@@ -135,7 +135,17 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
     
     public void InviteMemberFromSteam()
     {
-        SteamFriends.ActivateGameOverlayInviteDialogConnectString(CORE.PlayerActor.steamID.ToString());
+        if (CORE.Instance.CurrentParty == null)
+        {
+
+            SocketHandler.Instance.SendEvent("create_party", new JSONClass());
+
+        }
+
+        CORE.Instance.ConditionalInvokation((X) => { return CORE.Instance.CurrentParty != null; }, () =>
+        {
+            SteamFriends.ActivateGameOverlayInviteDialogConnectString(CORE.PlayerActor.steamID.ToString());
+        });
         //SteamFriends.ActivateGameOverlayInviteDialog(new CSteamID(CORE.PlayerActor.steamID));
     }
 

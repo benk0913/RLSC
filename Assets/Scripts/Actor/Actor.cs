@@ -545,7 +545,8 @@ public class Actor : MonoBehaviour
 
         if(dist < 0.1f)
         {
-            Rigid.position = targetPosition;
+            //TODO TEST - REMOVE IF NMAKJES TROUBLE!
+            //Rigid.position = targetPosition;
         }
         else
         {

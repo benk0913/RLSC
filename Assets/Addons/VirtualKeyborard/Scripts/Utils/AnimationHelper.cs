@@ -157,7 +157,7 @@ namespace VirtualKeyboard
         {
             theSystem.gameObject.SetActive(true);
             theSystem.Play(true);
-            AnimationHelper.playAfterDelay(AnimationHelper.Instance, theSystem.duration + decativateDelay, () =>
+            AnimationHelper.playAfterDelay(AnimationHelper.Instance, theSystem.main.duration + decativateDelay, () =>
             {
                 theSystem.gameObject.SetActive(false);
             });

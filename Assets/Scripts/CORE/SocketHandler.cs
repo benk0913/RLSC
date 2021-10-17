@@ -240,7 +240,7 @@ public class SocketHandler : MonoBehaviour
 
                 ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
 
-                WarningWindowUI.Instance.Show("Retry?", () => 
+                WarningWindowUI.Instance.Show("Steam is unavailable. Retry?", () => 
                 {
                     ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
@@ -248,7 +248,7 @@ public class SocketHandler : MonoBehaviour
                 },false, () => 
                 {
                     Application.Quit();
-                });
+                },"Steam Unavailable");
 
                 yield break;
             }
@@ -394,7 +394,7 @@ public class SocketHandler : MonoBehaviour
             ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
 
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Login FAILED! - " + lreq.result.ToString(), Color.red, 3f, true));
-            WarningWindowUI.Instance.Show("Retry?", () =>
+            WarningWindowUI.Instance.Show("Failed to login. Retry?", () =>
             {
                 ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
@@ -402,7 +402,7 @@ public class SocketHandler : MonoBehaviour
             }, false, () =>
             {
                 Application.Quit();
-            });
+            },"Login Error");
         });
     }
 
@@ -561,7 +561,7 @@ public class SocketHandler : MonoBehaviour
             ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
 
 
-            WarningWindowUI.Instance.Show("Retry?", () =>
+            WarningWindowUI.Instance.Show("Unable to enter the selected realm. Retry?", () =>
             {
                 ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
@@ -569,7 +569,7 @@ public class SocketHandler : MonoBehaviour
             }, false, () =>
             {
                 Application.Quit();
-            });
+            },"Realm Unavailable");
 
             yield break;
         }
@@ -802,6 +802,7 @@ public class SocketHandler : MonoBehaviour
 
     void Disconnect()
     {
+        CORE.Instance.InvokeEvent("Disconnect");
         CORE.Instance.LogMessage("DISCONNECTING");
 
         if (CORE.Instance != null)

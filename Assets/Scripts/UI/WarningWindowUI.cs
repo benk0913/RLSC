@@ -15,6 +15,9 @@ public class WarningWindowUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI Description;
 
+    [SerializeField]
+    TextMeshProUGUI Title;
+
 
     [SerializeField]
     GameObject HideButton;
@@ -59,7 +62,7 @@ public class WarningWindowUI : MonoBehaviour
         }
     }
 
-    public void Show(string message, Action acceptCallback, bool cantHide = false, Action skipCallback = null)
+    public void Show(string message, Action acceptCallback, bool cantHide = false, Action skipCallback = null, string uniqueTitle = "Warning")
     {
         if(this.gameObject.activeInHierarchy)
         {
@@ -76,6 +79,8 @@ public class WarningWindowUI : MonoBehaviour
         Description.text = message;
         AcceptAction = acceptCallback;
         SkipAction = skipCallback;
+
+        Title.text = uniqueTitle;
     }
 
     public void Accept()
