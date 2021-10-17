@@ -238,8 +238,12 @@ public class SocketHandler : MonoBehaviour
                 timeout = 10f;
                 TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Please make sure Steam is running and online!", Colors.AsColor(Colors.COLOR_BAD), 3f, true));
 
+                ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+
                 WarningWindowUI.Instance.Show("Retry?", () => 
                 {
+                    ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+
                     GetSteamSession(OnComplete);
                 },false, () => 
                 {
@@ -375,30 +379,31 @@ public class SocketHandler : MonoBehaviour
 
         SendWebRequest(ServerEnvironment.HostUrl + "/login", (UnityWebRequest lreq) =>
         {
-            if (lreq.result == UnityWebRequest.Result.DataProcessingError || lreq.result == UnityWebRequest.Result.ConnectionError || lreq.result == UnityWebRequest.Result.ProtocolError)
-            {
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Login FAILED! - " + lreq.result.ToString(),Color.red,3f,true));
-                WarningWindowUI.Instance.Show("Retry?", () =>
-                {
-                    SendLogin(OnComplete);
-                }, false, () =>
-                {
-                    Application.Quit();
-                });
-            }
-            else
-            {
-                OnLogin(lreq);
+            OnLogin(lreq);
 
-                CORE.Instance.DelayedInvokation(0.2f, () =>
-                 {
-                     OnComplete?.Invoke();
-                 });
-            }
+            CORE.Instance.DelayedInvokation(0.2f, () =>
+                {
+                    OnComplete?.Invoke();
+                });
         },
         node.ToString(),
         UrlParams,
-        true);
+        true,
+        (UnityWebRequest lreq) => 
+        {
+            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Login FAILED! - " + lreq.result.ToString(), Color.red, 3f, true));
+            WarningWindowUI.Instance.Show("Retry?", () =>
+            {
+                ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+
+                SendLogin(OnComplete);
+            }, false, () =>
+            {
+                Application.Quit();
+            });
+        });
     }
 
     public void SendCreateCharacter(string element = "fire", ActorData actor = null, Action OnComplete = null, Action OnError = null)
@@ -553,9 +558,13 @@ public class SocketHandler : MonoBehaviour
         if(SocketManager.State != SocketManager.States.Open)
         {
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Realm Temporarily Closed!", Colors.AsColor(Colors.COLOR_BAD), 3f, true));
+            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+
 
             WarningWindowUI.Instance.Show("Retry?", () =>
             {
+                ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+
                 SendConnectSocket(OnComplete);
             }, false, () =>
             {
