@@ -94,7 +94,7 @@ namespace NewResolutionDialog.Scripts.Controller
             {
                 if (hz != Screen.currentResolution.refreshRate)
                 {
-                    SetResolution(Screen.width, Screen.height, Screen.fullScreenMode, PlayerPrefs.GetInt(prefsKey_RefreshRate, 0));
+                    SetResolution(Screen.resolutions[0].width, Screen.resolutions[0].height, Screen.fullScreenMode, PlayerPrefs.GetInt(prefsKey_RefreshRate, 0));
                     UpdateDialogAfterEndOfFrame();
                 }
             }
