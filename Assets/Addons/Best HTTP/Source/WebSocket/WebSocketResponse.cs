@@ -112,6 +112,8 @@ namespace BestHTTP.WebSocket
         /// </summary>
         private DateTime lastPing = DateTime.MinValue;
 
+        private bool waitingForPong = false;
+
         /// <summary>
         /// A circular buffer to store the last N rtt times calculated by the pong messages.
         /// </summary>
@@ -376,6 +378,9 @@ namespace BestHTTP.WebSocket
                         WebSocketFrameReader frame = new WebSocketFrameReader();
                         frame.Read(this.Stream);
 
+                        if (HTTPManager.Logger.Level == Logger.Loglevels.All)
+                            HTTPManager.Logger.Information("WebSocketResponse", "Frame received: " + frame.Type, this.Context);
+
                         lastMessage = DateTime.UtcNow;
 
                         // A server MUST NOT mask any frames that it sends to the client.  A client MUST close a connection if it detects a masked frame.
@@ -434,6 +439,8 @@ namespace BestHTTP.WebSocket
                                 break;
 
                             case WebSocketFrameTypes.Pong:
+                                waitingForPong = false;
+
                                 try
                                 {
                                     // Get the ticks from the frame's payload
@@ -589,14 +596,14 @@ namespace BestHTTP.WebSocket
         {
             DateTime now = DateTime.UtcNow;
 
-            if (now - lastPing >= PingFrequnecy)
+            if (!waitingForPong && now - lastMessage >= PingFrequnecy)
                 SendPing();
 
-            if (now - lastMessage > this.WebSocket.CloseAfterNoMessage)
+            if (waitingForPong && now - lastPing > this.WebSocket.CloseAfterNoMessage)
             {
                 HTTPManager.Logger.Warning("WebSocketResponse", 
-                    string.Format("No message received in the given time! Closing WebSocket. LastMessage: {0}, PingFrequency: {1}, Close After: {2}, Now: {3}", 
-                    this.lastMessage, this.PingFrequnecy, this.WebSocket.CloseAfterNoMessage, now), this.Context);
+                    string.Format("No message received in the given time! Closing WebSocket. LastPing: {0}, PingFrequency: {1}, Close After: {2}, Now: {3}", 
+                    this.lastPing, this.PingFrequnecy, this.WebSocket.CloseAfterNoMessage, now), this.Context);
 
                 CloseWithError(HTTPRequestStates.Error, "No message received in the given time!");
             }
@@ -612,7 +619,10 @@ namespace BestHTTP.WebSocket
 
         private void SendPing()
         {
+            HTTPManager.Logger.Information("WebSocketResponse", "Sending Ping frame, waiting for a pong...", this.Context);
+
             lastPing = DateTime.UtcNow;
+            waitingForPong = true;
 
             try
             {

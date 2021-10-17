@@ -27,6 +27,9 @@ namespace BestHTTP.Connections.HTTP2
 
         public double Latency { get; private set; }
 
+        public HTTP2SettingsManager settings;
+        public HPACKEncoder HPACKEncoder;
+
         public LoggingContext Context { get; private set; }
 
         private DateTime lastPingSent = DateTime.MinValue;
@@ -41,13 +44,11 @@ namespace BestHTTP.Connections.HTTP2
         private ConcurrentQueue<HTTPRequest> requestQueue = new ConcurrentQueue<HTTPRequest>();
 
         private List<HTTP2Stream> clientInitiatedStreams = new List<HTTP2Stream>();
-        private HPACKEncoder HPACKEncoder;
 
         private ConcurrentQueue<HTTP2FrameHeaderAndPayload> newFrames = new ConcurrentQueue<HTTP2FrameHeaderAndPayload>();
 
         private List<HTTP2FrameHeaderAndPayload> outgoingFrames = new List<HTTP2FrameHeaderAndPayload>();
 
-        private HTTP2SettingsManager settings;
         private UInt32 remoteWindow;
         private DateTime lastInteraction;
         private DateTime goAwaySentAt = DateTime.MaxValue;
@@ -71,18 +72,28 @@ namespace BestHTTP.Connections.HTTP2
 
             this.settings = new HTTP2SettingsManager(this);
 
-            // Put the first request to the queue
-            this.requestQueue.Enqueue(conn.CurrentRequest);
+            Process(this.conn.CurrentRequest);
         }
 
         public void Process(HTTPRequest request)
         {
             HTTPManager.Logger.Information("HTTP2Handler", "Process request called", this.Context, request.Context);
 
-            this.lastInteraction = DateTime.UtcNow;
+            request.QueuedAt = DateTime.MinValue;
+            request.ProcessingStarted = this.lastInteraction = DateTime.UtcNow;
 
             this.requestQueue.Enqueue(request);
 
+            // Wee might added the request to a dead queue, signaling would be pointless.
+            // When the ConnectionEventHelper processes the Close state-change event
+            // requests in the queue going to be resent. (We should avoid resending the request just right now,
+            // as it might still select this connection/handler resulting in a infinite loop.)
+            if (Volatile.Read(ref this.threadExitCount) == 0)
+                this.newFrameSignal.Set();
+        }
+
+        public void SignalRunnerThread()
+        {
             this.newFrameSignal.Set();
         }
 
@@ -127,6 +138,7 @@ namespace BestHTTP.Connections.HTTP2
                     this.settings.InitiatedMySettings[HTTP2Settings.INITIAL_WINDOW_SIZE] = HTTPManager.HTTP2Settings.InitialStreamWindowSize;
                     this.settings.InitiatedMySettings[HTTP2Settings.MAX_CONCURRENT_STREAMS] = HTTPManager.HTTP2Settings.MaxConcurrentStreams;
                     this.settings.InitiatedMySettings[HTTP2Settings.ENABLE_CONNECT_PROTOCOL] = (uint)(HTTPManager.HTTP2Settings.EnableConnectProtocol ? 1 : 0);
+                    this.settings.InitiatedMySettings[HTTP2Settings.ENABLE_PUSH] = 0;
                     this.settings.SendChanges(this.outgoingFrames);
                     this.settings.RemoteSettings.OnSettingChangedEvent += OnRemoteSettingChanged;
 
@@ -428,31 +440,21 @@ namespace BestHTTP.Connections.HTTP2
                     this.clientInitiatedStreams[i].Abort("Connection closed unexpectedly");
                 this.clientInitiatedStreams.Clear();
 
-                HTTPRequest request = null;
-                while (this.requestQueue.TryDequeue(out request))
-                {
-                    HTTPManager.Logger.Information("HTTP2Handler", string.Format("Request '{0}' IsCancellationRequested: {1}", request.CurrentUri.ToString(), request.IsCancellationRequested.ToString()), this.Context);
-                    if (request.IsCancellationRequested)
-                    {
-                        request.Response = null;
-                        request.State = HTTPRequestStates.Aborted;
-                    }
-                    else
-                        RequestEventHelper.EnqueueRequestEvent(new RequestEventInfo(request, RequestEvents.Resend));
-                }
-
                 HTTPManager.Logger.Information("HTTP2Handler", "Sender thread closing", this.Context);
             }
 
             try
             {
-                // Works in the new runtime
-                if (this.conn.connector.TopmostStream != null)
-                    using (this.conn.connector.TopmostStream) { }
+                if (this.conn != null && this.conn.connector != null)
+                {
+                    // Works in the new runtime
+                    if (this.conn.connector.TopmostStream != null)
+                        using (this.conn.connector.TopmostStream) { }
 
-                // Works in the old runtime
-                if (this.conn.connector.Stream != null)
-                    using (this.conn.connector.Stream) { }
+                    // Works in the old runtime
+                    if (this.conn.connector.Stream != null)
+                        using (this.conn.connector.Stream) { }
+                }
             }
             catch
             { }
@@ -528,7 +530,7 @@ namespace BestHTTP.Connections.HTTP2
             {
                 //HTTPManager.Logger.Exception("HTTP2Handler", "", ex, this.Context);
 
-                this.isRunning = false;
+                //this.isRunning = false;
             }
             finally
             {
@@ -539,6 +541,8 @@ namespace BestHTTP.Connections.HTTP2
 
         private void TryToCleanup()
         {
+            this.isRunning = false;
+
             // First thread closing notifies the ConnectionEventHelper
             int counter = Interlocked.Increment(ref this.threadExitCount);
             if (counter == 1)
@@ -603,6 +607,18 @@ namespace BestHTTP.Connections.HTTP2
 
         private void Dispose(bool disposing)
         {
+            HTTPRequest request = null;
+            while (this.requestQueue.TryDequeue(out request))
+            {
+                HTTPManager.Logger.Information("HTTP2Handler", string.Format("Dispose - Request '{0}' IsCancellationRequested: {1}", request.CurrentUri.ToString(), request.IsCancellationRequested.ToString()), this.Context);
+                if (request.IsCancellationRequested)
+                {
+                    request.Response = null;
+                    request.State = HTTPRequestStates.Aborted;
+                }
+                else
+                    RequestEventHelper.EnqueueRequestEvent(new RequestEventInfo(request, RequestEvents.Resend));
+            }
         }
 
         ~HTTP2Handler()

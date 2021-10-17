@@ -59,7 +59,7 @@ namespace BestHTTP.SocketIO.Transports
 
 #if !UNITY_WEBGL || UNITY_EDITOR
             if (this.Manager.Options.HTTPRequestCustomizationCallback != null)
-                this.Manager.Options.HTTPRequestCustomizationCallback(this.Manager, Implementation.InternalRequest);
+                Implementation.OnInternalRequestCreated = (ws, internalRequest) => this.Manager.Options.HTTPRequestCustomizationCallback(this.Manager, internalRequest);
 #endif
 
             Implementation.OnOpen = OnOpen;
@@ -288,7 +288,10 @@ namespace BestHTTP.SocketIO.Transports
         {
             if (State == TransportStates.Closed ||
                 State == TransportStates.Paused)
+            {
+                HTTPManager.Logger.Information("WebSocketTransport", string.Format("Send - State == {0}, skipping packet sending!", State));
                 return;
+            }
 
             string encoded = packet.Encode();
 

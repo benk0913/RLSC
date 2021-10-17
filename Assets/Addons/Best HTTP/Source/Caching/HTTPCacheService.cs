@@ -350,31 +350,37 @@ namespace BestHTTP.Caching
                 return false;
 
             //http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.2
+            bool hasValidMaxAge = false;
             var cacheControls = response.GetHeaderValues("cache-control");
             if (cacheControls != null)
             {
                 if (cacheControls.Exists(headerValue =>
                 {
-                    string value = headerValue.ToLower();
-                    if (value.StartsWith("max-age"))
-                    {
-                        string[] kvp = headerValue.FindOption("max-age");
-                        if (kvp != null)
+                    HeaderParser parser = new HeaderParser(headerValue);
+                    if (parser.Values != null && parser.Values.Count > 0) {
+                        for (int i = 0; i < parser.Values.Count; ++i)
                         {
-                            // Some cache proxies will return float values
-                            double maxAge;
-                            if (double.TryParse(kvp[1], out maxAge))
+                            var value = parser.Values[i];
+
+                            // https://csswizardry.com/2019/03/cache-control-for-civilians/#no-store
+                            if (value.Key == "no-store")
+                                return true;
+
+                            if (value.Key == "max-age" && value.HasValue)
                             {
-                                // A negative max-age value is a no cache
-                                if (maxAge <= 0)
-                                    return false;
+                                double maxAge;
+                                if (double.TryParse(value.Value, out maxAge))
+                                {
+                                    // A negative max-age value is a no cache
+                                    if (maxAge <= 0)
+                                        return true;
+                                    hasValidMaxAge = true;
+                                }
                             }
                         }
-
                     }
 
-                    // https://csswizardry.com/2019/03/cache-control-for-civilians/#no-store
-                    return value.Contains("no-store");
+                    return false;
                 }))
                     return false;
             }
@@ -408,7 +414,7 @@ namespace BestHTTP.Caching
             if (response.GetFirstHeaderValue("Last-Modified") != null)
                 return true;
 
-            return false;
+            return hasValidMaxAge;
         }
 
         internal static HTTPCacheFileInfo Store(Uri uri, HTTPMethods method, HTTPResponse response)

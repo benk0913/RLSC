@@ -402,11 +402,37 @@ namespace BestHTTP.Connections
                     HTTPManager.Logger.Verbose("TCPConnector", string.Format("'{0}' - Connecting to {1}:{2}", request.CurrentUri.ToString(), uri.Host, uri.Port.ToString()), request.Context);
 
 #if !NETFX_CORE && (!UNITY_WEBGL || UNITY_EDITOR)
-                Client.SendBufferSize = HTTPManager.SendBufferSize;
-                Client.ReceiveBufferSize = HTTPManager.ReceiveBufferSize;
+                bool changed = false;
+                int? sendBufferSize = null, receiveBufferSize = null;
+
+                if (HTTPManager.SendBufferSize.HasValue)
+                {
+                    sendBufferSize = Client.SendBufferSize;
+                    Client.SendBufferSize = HTTPManager.SendBufferSize.Value;
+                    changed = true;
+                }
+
+                if (HTTPManager.ReceiveBufferSize.HasValue)
+                {
+                    receiveBufferSize = Client.ReceiveBufferSize;
+                    Client.ReceiveBufferSize = HTTPManager.ReceiveBufferSize.Value;
+                    changed = true;
+                }
 
                 if (HTTPManager.Logger.Level == Logger.Loglevels.All)
-                    HTTPManager.Logger.Verbose("TCPConnector", string.Format("'{0}' - Buffer sizes - Send: {1} Receive: {2} Blocking: {3}", request.CurrentUri.ToString(), Client.SendBufferSize.ToString(), Client.ReceiveBufferSize.ToString(), Client.Client.Blocking.ToString()), request.Context);
+                {
+                    if (changed)
+                        HTTPManager.Logger.Verbose("TCPConnector", string.Format("'{0}' - Buffer sizes changed - Send from: {1} to: {2}, Receive from: {3} to: {4}, Blocking: {5}",
+                                request.CurrentUri.ToString(),
+                                sendBufferSize,
+                                Client.SendBufferSize,
+                                receiveBufferSize,
+                                Client.ReceiveBufferSize,
+                                Client.Client.Blocking),
+                            request.Context);
+                    else
+                        HTTPManager.Logger.Verbose("TCPConnector", string.Format("'{0}' - Buffer sizes - Send: {1} Receive: {2} Blocking: {3}", request.CurrentUri.ToString(), Client.SendBufferSize, Client.ReceiveBufferSize, Client.Client.Blocking), request.Context);
+                }
 #endif
 
 #if NETFX_CORE && !UNITY_EDITOR && !ENABLE_IL2CPP
@@ -448,6 +474,9 @@ namespace BestHTTP.Connections
                 {
                     request.Timing.Add(TimingEventNames.DNS_Lookup);
                 }
+
+                if (HTTPManager.Logger.Level == Logger.Loglevels.All)
+                    HTTPManager.Logger.Verbose("TCPConnector", string.Format("'{0}' - DNS Query returned with addresses: {1}", request.CurrentUri.ToString(), addresses != null ? addresses.Length : -1), request.Context);
 
                 if (request.IsCancellationRequested)
                     throw new Exception("IsCancellationRequested");
@@ -501,7 +530,7 @@ namespace BestHTTP.Connections
 #endif
 
                 // proxy connect is done, we can set the stream to a buffered one. HTTPProxy requires the raw NetworkStream for HTTPResponse's ReadUnknownSize!
-                this.Stream = this.TopmostStream = new BufferedReadNetworkStream(Client.GetStream(), Math.Max(8 * 1024, HTTPManager.ReceiveBufferSize));
+                this.Stream = this.TopmostStream = new BufferedReadNetworkStream(Client.GetStream(), Math.Max(8 * 1024, HTTPManager.ReceiveBufferSize ?? Client.ReceiveBufferSize));
 
                 // We have to use Request.CurrentUri here, because uri can be a proxy uri with a different protocol
                 if (isSecure)
@@ -583,7 +612,8 @@ namespace BestHTTP.Connections
             {
                 try
                 {
-                    Stream.Close();
+                    if (Stream != null)
+                        Stream.Close();
                 }
                 catch { }
                 finally

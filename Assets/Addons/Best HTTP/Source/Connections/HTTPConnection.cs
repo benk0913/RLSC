@@ -84,13 +84,15 @@ namespace BestHTTP.Connections
                     if (HTTPManager.Logger.Level == Logger.Loglevels.All)
                         HTTPManager.Logger.Exception("HTTPConnection", "Connector.Connect", ex, this.Context, this.CurrentRequest.Context);
 
+                    
                     if (ex is TimeoutException)
                         this.CurrentRequest.State = HTTPRequestStates.ConnectionTimedOut;
-                    else
+                    else if (!this.CurrentRequest.IsTimedOut) // Do nothing here if Abort() got called on the request, its State is already set.
                     {
                         this.CurrentRequest.Exception = ex;
                         this.CurrentRequest.State = HTTPRequestStates.Error;
                     }
+
                     ConnectionEventHelper.EnqueueConnectionEvent(new ConnectionEventInfo(this, HTTPConnectionStates.Closed));
 
                     return;

@@ -80,18 +80,13 @@ namespace BestHTTP.SocketIO
         /// </summary>
         void ISocket.Open()
         {
+            HTTPManager.Logger.Information("Socket", string.Format("Open - Manager.State = {0}", Manager.State));
+
             // The transport already established the connection
             if (Manager.State == SocketManager.States.Open)
-                OnTransportOpen(Manager.Socket, null);
-            else
-            {
-                // We want to receive a message when we are connected.
-                Manager.Socket.Off("OnTransportConnected", OnTransportOpen);
-                Manager.Socket.On("OnTransportConnected", OnTransportOpen);
-
-                if (Manager.Options.AutoConnect && Manager.State == SocketManager.States.Initial)
+                OnTransportOpen();
+            else if (Manager.Options.AutoConnect && Manager.State == SocketManager.States.Initial)
                     Manager.Open();
-            }
         }
 
         /// <summary>
@@ -478,24 +473,32 @@ namespace BestHTTP.SocketIO
         #region Private Helper Functions
 
         /// <summary>
-        /// Called when a "connect" event received to the root namespace
+        /// Called when the underlying transport is connected
         /// </summary>
-        private void OnTransportOpen(Socket socket, Packet packet, params object[] args)
+        internal void OnTransportOpen()
         {
-            //if (this.Manager.Options.ServerVersion == SupportedSocketIOVersions.v2)
-            //{
-            //    // If this is not the root namespace, then we send a connect message to the server
-            //    if (this.Namespace != "/")
-            //        (Manager as IManager).SendPacket(new Packet(TransportEventTypes.Message, SocketIOEventTypes.Connect, this.Namespace, string.Empty));
-            //
-            //    // and we are now open
-            //    IsOpen = true;
-            //}
-            //else
+            HTTPManager.Logger.Information("Socket", "OnTransportOpen - IsOpen: " + this.IsOpen);
+
+            if (this.IsOpen)
+                return;
+
+            if (this.Namespace != "/" || this.Manager.Options.ServerVersion == SupportedSocketIOVersions.v3)
             {
-                string authData = this.Manager.Options.Auth != null ? this.Manager.Options.Auth(this.Manager, this) : "{}";
-                (Manager as IManager).SendPacket(new Packet(TransportEventTypes.Message, SocketIOEventTypes.Connect, this.Namespace, authData));
+                try
+                {
+                    string authData = null;
+                    if (this.Manager.Options.ServerVersion == SupportedSocketIOVersions.v3)
+                        authData = this.Manager.Options.Auth != null ? this.Manager.Options.Auth(this.Manager, this) : "{}";
+
+                    (Manager as IManager).SendPacket(new Packet(TransportEventTypes.Message, SocketIOEventTypes.Connect, this.Namespace, authData));
+                }
+                catch (Exception ex)
+                {
+                    HTTPManager.Logger.Exception("Socket", "OnTransportOpen", ex);
+                }
             }
+            else
+                this.IsOpen = true;
         }
 
         #endregion

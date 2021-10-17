@@ -55,6 +55,8 @@ namespace BestHTTP.Connections
 #endif
 
                 // Write the request to the stream
+                this.conn.CurrentRequest.QueuedAt = DateTime.MinValue;
+                this.conn.CurrentRequest.ProcessingStarted = DateTime.UtcNow;
                 this.conn.CurrentRequest.SendOutTo(this.conn.connector.Stream);
                 this.conn.CurrentRequest.Timing.Add(TimingEventNames.Request_Sent);
 
@@ -85,16 +87,20 @@ namespace BestHTTP.Connections
             {
                 this.conn.CurrentRequest.Response = null;
 
-                // We will try again only once
-                if (this.conn.CurrentRequest.Retries < this.conn.CurrentRequest.MaxRetries)
+                // Do nothing here if Abort() got called on the request, its State is already set.
+                if (!this.conn.CurrentRequest.IsTimedOut)
                 {
-                    this.conn.CurrentRequest.Retries++;
-                    resendRequest = true;
-                }
-                else
-                {
-                    this.conn.CurrentRequest.Exception = e;
-                    this.conn.CurrentRequest.State = HTTPRequestStates.ConnectionTimedOut;
+                    // We will try again only once
+                    if (this.conn.CurrentRequest.Retries < this.conn.CurrentRequest.MaxRetries)
+                    {
+                        this.conn.CurrentRequest.Retries++;
+                        resendRequest = true;
+                    }
+                    else
+                    {
+                        this.conn.CurrentRequest.Exception = e;
+                        this.conn.CurrentRequest.State = HTTPRequestStates.ConnectionTimedOut;
+                    }
                 }
 
                 proposedConnectionState = HTTPConnectionStates.Closed;
@@ -135,6 +141,7 @@ namespace BestHTTP.Connections
                 // Something gone bad, Response must be null!
                 this.conn.CurrentRequest.Response = null;
 
+                // Do nothing here if Abort() got called on the request, its State is already set.
                 if (!this.conn.CurrentRequest.IsCancellationRequested)
                 {
                     this.conn.CurrentRequest.Exception = e;
@@ -157,7 +164,8 @@ namespace BestHTTP.Connections
 
                         this.conn.CurrentRequest.Response = null;
 
-                        this.conn.CurrentRequest.State = this.conn.CurrentRequest.IsTimedOut ? HTTPRequestStates.TimedOut : HTTPRequestStates.Aborted;
+                        // The request's State already set, or going to be set soon in RequestEvents.cs.
+                        //this.conn.CurrentRequest.State = this.conn.CurrentRequest.IsTimedOut ? HTTPRequestStates.TimedOut : HTTPRequestStates.Aborted;
                     }
                     else if (resendRequest)
                     {

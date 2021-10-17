@@ -108,6 +108,12 @@ namespace BestHTTP.Connections
                                 if (HTTPManager.Logger.Level == Logger.Loglevels.All)
                                     HTTPManager.Logger.Verbose("HTTPConnection", string.Format("[{0}] - Redirected to Location: '{1}' redirectUri: '{1}'", context, location, redirectUri), loggingContext1, loggingContext2, loggingContext3);
 
+                                if (redirectUri == request.CurrentUri)
+                                {
+                                    HTTPManager.Logger.Information("HTTPConnection", string.Format("[{0}] - Redirected to the same location!", context), loggingContext1, loggingContext2, loggingContext3);
+                                    goto default;
+                                }
+
                                 // Let the user to take some control over the redirection
                                 if (!request.CallOnBeforeRedirection(redirectUri))
                                 {
@@ -323,10 +329,15 @@ namespace BestHTTP.Connections
 
             if (result == null)
             {
-                var uri = request.Uri;
-                var builder = new UriBuilder(uri.Scheme, uri.Host, uri.Port, location);
-                result = builder.Uri;
-
+                var baseURL = request.CurrentUri.GetComponents(UriComponents.SchemeAndServer, UriFormat.Unescaped);
+                bool endsWithSlash = baseURL[baseURL.Length - 1] == '/';
+                bool startsWithSlash = location[0] == '/';
+                if (endsWithSlash && startsWithSlash)
+                    result = new Uri(baseURL + location.Substring(1));
+                else if (!endsWithSlash && !startsWithSlash)
+                    result = new Uri(baseURL + '/' + location);
+                else
+                    result = new Uri(baseURL + location);
             }
 
             return result;

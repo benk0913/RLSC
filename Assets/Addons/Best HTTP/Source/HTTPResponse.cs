@@ -245,6 +245,9 @@ namespace BestHTTP
             }
             catch
             {
+                if (baseRequest.IsCancellationRequested)
+                    return false;
+
                 if (baseRequest.Retries >= baseRequest.MaxRetries)
                 {
                     HTTPManager.Logger.Warning("HTTPResponse", "Failed to read Status Line! Retry is enabled, returning with false.", this.Context, this.baseRequest.Context);

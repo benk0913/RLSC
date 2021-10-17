@@ -99,7 +99,8 @@ namespace BestHTTP
                                                           HTTPMethods.Delete.ToString().ToUpper(),
                                                           HTTPMethods.Patch.ToString().ToUpper(),
                                                           HTTPMethods.Merge.ToString().ToUpper(),
-                                                          HTTPMethods.Options.ToString().ToUpper()
+                                                          HTTPMethods.Options.ToString().ToUpper(),
+                                                          HTTPMethods.Connect.ToString().ToUpper(),
                                                       };
 
         /// <summary>
@@ -230,14 +231,31 @@ namespace BestHTTP
         public OnRequestFinishedDelegate Callback { get; set; }
 
         /// <summary>
+        /// When the request is queued for processing.
+        /// </summary>
+        public DateTime QueuedAt { get; internal set; }
+
+        public bool IsConnectTimedOut { get { return this.QueuedAt != DateTime.MinValue && DateTime.UtcNow - this.QueuedAt > this.ConnectTimeout; } }
+
+        /// <summary>
         /// When the processing of the request started
         /// </summary>
-        public DateTime ProcessingStarted { get; private set; }
+        public DateTime ProcessingStarted { get; internal set; }
 
         /// <summary>
         /// Returns true if the time passed the Timeout setting since processing started.
         /// </summary>
-        public bool IsTimedOut { get { return (!this.UseStreaming || (this.UseStreaming && this.EnableTimoutForStreaming)) && this.ProcessingStarted != DateTime.MinValue && DateTime.Now - this.ProcessingStarted > this.Timeout; } }
+        public bool IsTimedOut
+        {
+            get
+            {
+                DateTime now = DateTime.UtcNow;
+
+                return (!this.UseStreaming || (this.UseStreaming && this.EnableTimoutForStreaming)) &&
+                    ((this.ProcessingStarted != DateTime.MinValue && now - this.ProcessingStarted > this.Timeout) ||
+                     this.IsConnectTimedOut);
+            }
+        }
 
         /// <summary>
         /// Called for every fragment of data downloaded from the server. Return true if dataFrament is processed and the plugin can recycle the byte[].
@@ -262,7 +280,7 @@ namespace BestHTTP
         /// <summary>
         /// True if Abort() is called on this request.
         /// </summary>
-        public bool IsCancellationRequested { get; private set; }
+        public bool IsCancellationRequested { get; internal set; }
 
         /// <summary>
         /// Called when new data downloaded from the server.
@@ -327,7 +345,7 @@ namespace BestHTTP
 #endif
 
         /// <summary>
-        /// How many redirection supported for this request. The default is int.MaxValue. 0 or a negative value means no redirection supported.
+        /// How many redirection supported for this request. The default is 10. 0 or a negative value means no redirection supported.
         /// </summary>
         public int MaxRedirects { get; set; }
 
@@ -373,14 +391,17 @@ namespace BestHTTP
         public HTTPRequestStates State {
             get { return this._state; }
             internal set {
-                if (this._state != value)
+                lock (this)
                 {
-                    if (value == HTTPRequestStates.Processing)
-                        this.ProcessingStarted = DateTime.Now;
+                    if (this._state != value)
+                    {
+                        //if (this._state >= HTTPRequestStates.Finished && value >= HTTPRequestStates.Finished)
+                        //    return;
 
-                    this._state = value;
+                        this._state = value;
 
-                    RequestEventHelper.EnqueueRequestEvent(new RequestEventInfo(this, this._state));
+                        RequestEventHelper.EnqueueRequestEvent(new RequestEventInfo(this, this._state));
+                    }
                 }
             }
         }
@@ -644,7 +665,7 @@ namespace BestHTTP
             this.MaxFragmentQueueLength = 10;
 
             this.MaxRetries = methodType == HTTPMethods.Get ? 1 : 0;
-            this.MaxRedirects = int.MaxValue;
+            this.MaxRedirects = 10;
             this.RedirectCount = 0;
 #if !BESTHTTP_DISABLE_COOKIES
             this.IsCookiesEnabled = HTTPManager.IsCookiesEnabled;
@@ -1427,6 +1448,8 @@ namespace BestHTTP
         /// </summary>
         public HTTPRequest Send()
         {
+            this.IsCancellationRequested = false;
+
             return HTTPManager.SendRequest(this);
         }
 
@@ -1437,26 +1460,31 @@ namespace BestHTTP
         {
             VerboseLogging("Abort request!");
 
-            //  1.) set IsCancellationRequested to true here
-            //  2.) in the upload/download cycles and all the other places check for this previous flag. If set, abort any operation and fail fast. 
-            //          An aborted request will fault its processing connections too(in http1.x at least, in http2 it must trigger some special things)
-            //  3.) its processing connection (if any!) must set the request's state to aborted when it's handled the abortion
-            //  4.) start a timer right after 1.) to check the request's state. If the given time has been passed, and the request's state still isn't Aborted, hard abort it.
-            //  5.) connections must be able to handle this hard abortion too by do not processing it further when this state is detected
-            // A cancellation request means that the processing 
+            lock (this)
+            {
+                if (this.State >= HTTPRequestStates.Finished)
+                    return;
 
-            this.IsCancellationRequested = true;
+                this.IsCancellationRequested = true;
 
-            // If the response is an IProtocol implementation, call the protocol's cancellation.
-            IProtocol protocol = this.Response as IProtocol;
-            if (protocol != null)
-                protocol.CancellationRequested();
+                // If the response is an IProtocol implementation, call the protocol's cancellation.
+                IProtocol protocol = this.Response as IProtocol;
+                if (protocol != null)
+                    protocol.CancellationRequested();
 
-            // If processing of the request isn't started yet, set its state.
-            if (this.State < HTTPRequestStates.Processing)
-                this.State = this.IsTimedOut ? HTTPRequestStates.TimedOut : HTTPRequestStates.Aborted;
+                // There's a race-condition here, another thread might set it too.
+                this.Response = null;
+
+                // There's a race-condition here too, another thread might set it too.
+                //  In this case, both state going to be queued up that we have to handle in RequestEvents.cs.
+                if (this.IsTimedOut)
+                {
+                    this.State = this.IsConnectTimedOut ? HTTPRequestStates.ConnectionTimedOut : HTTPRequestStates.TimedOut;
+                }
+                else
+                    this.State = HTTPRequestStates.Aborted;
+
 #if !UNITY_WEBGL || UNITY_EDITOR
-            else
                 if (this.OnCancellationRequested != null)
                 {
                     try
@@ -1466,6 +1494,7 @@ namespace BestHTTP
                     catch { }
                 }
 #endif
+            }
         }
 
         /// <summary>

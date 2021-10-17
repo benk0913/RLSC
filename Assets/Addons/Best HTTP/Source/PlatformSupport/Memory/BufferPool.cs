@@ -169,21 +169,38 @@ namespace BestHTTP.PlatformSupport.Memory
             this.released = DateTime.UtcNow;
 #if UNITY_EDITOR
             if (BufferPool.EnableDebugStackTraceCollection)
-                this.stackTrace = System.Environment.StackTrace;
+                this.stackTrace = ProcessStackTrace(System.Environment.StackTrace);
             else
                 this.stackTrace = string.Empty;
 #endif
         }
 
+#if UNITY_EDITOR
+        private static string ProcessStackTrace(string stackTrace)
+        {
+            if (string.IsNullOrEmpty(stackTrace))
+                return null;
+
+            var lines = stackTrace.Split('\n');
+
+            StringBuilder sb = new StringBuilder(lines.Length - 3);
+            // skip top 4 lines that would show the logger.
+            for (int i = 3; i < lines.Length; ++i)
+                sb.Append(lines[i].Replace("BestHTTP.", ""));
+
+            return sb.ToString();
+        }
+#endif
+
         public override string ToString()
         {
 #if UNITY_EDITOR
             if (BufferPool.EnableDebugStackTraceCollection)
-                return string.Format("[BufferDesc Size: {0}, Released: {1}, StackTrace: {2}]", this.buffer.Length, this.released, this.stackTrace);
+                return string.Format("[BufferDesc Size: {0}, Released: {1}, Released StackTrace: {2}]", this.buffer.Length, DateTime.UtcNow - this.released, this.stackTrace);
             else
-                return string.Format("[BufferDesc Size: {0}, Released: {1}]", this.buffer.Length, this.released);
+                return string.Format("[BufferDesc Size: {0}, Released: {1}]", this.buffer.Length, DateTime.UtcNow - this.released);
 #else
-            return string.Format("[BufferDesc Size: {0}, Released: {1}]", this.buffer.Length, this.released);
+            return string.Format("[BufferDesc Size: {0}, Released: {1}]", this.buffer.Length, DateTime.UtcNow - this.released);
 #endif
         }
     }
@@ -210,7 +227,7 @@ namespace BestHTTP.PlatformSupport.Memory
                     Clear();
             }
         }
-        public static volatile bool _isEnabled = true;
+        private static volatile bool _isEnabled = true;
 
         /// <summary>
         /// Buffer entries that released back to the pool and older than this value are moved when next maintenance is triggered.
@@ -225,7 +242,7 @@ namespace BestHTTP.PlatformSupport.Memory
         /// <summary>
         /// Minimum buffer size that the plugin will allocate when the requested size is smaller than this value, and canBeLarger is set to true.
         /// </summary>
-        public static long MinBufferSize = 256;
+        public static long MinBufferSize = 32;
 
         /// <summary>
         /// Maximum size of a buffer that the plugin will store.
