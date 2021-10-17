@@ -61,6 +61,7 @@ namespace BestHTTP.SignalRCore.Transports
             var request = new HTTPRequest(BuildUri(this.connection.Uri), HTTPMethods.Post, OnHandshakeRequestFinished);
             request.Context.Add("Transport", this.Context);
 
+            this.stream.Reset();
             this.stream.Write(JsonProtocol.WithSeparator(string.Format("{{\"protocol\":\"{0}\", \"version\": 1}}", this.connection.Protocol.Name)));
 
             request.UploadStream = this.stream;
@@ -107,6 +108,8 @@ namespace BestHTTP.SignalRCore.Transports
 
             var request = new HTTPRequest(BuildUri(this.connection.Uri), HTTPMethods.Post, OnSendMessagesFinished);
             request.Context.Add("Transport", this.Context);
+
+            this.stream.Reset();
 
             BufferSegment buffer;
             while (this.outgoingMessages.TryDequeue(out buffer))
@@ -206,6 +209,9 @@ namespace BestHTTP.SignalRCore.Transports
 
             if (!string.IsNullOrEmpty(this.ErrorReason))
                 this.State = TransportStates.Failed;
+
+            // To skip disposing the stream (because we reuse it), set the request's UploadStream to null
+            req.UploadStream = null;
         }
 
         private void OnSendMessagesFinished(HTTPRequest req, HTTPResponse resp)
@@ -266,6 +272,9 @@ namespace BestHTTP.SignalRCore.Transports
 
             if (!string.IsNullOrEmpty(this.ErrorReason))
                 this.State = TransportStates.Failed;
+
+            // To skip disposing the stream (because we reuse it), set the request's UploadStream to null
+            req.UploadStream = null;
         }
 
         private void OnPollRequestFinished(HTTPRequest req, HTTPResponse resp)

@@ -803,8 +803,8 @@ namespace BestHTTP.SecureProtocol.Org.BouncyCastle.Crypto.Tls
                      * client.
                      */
                     bool serverSentEncryptThenMAC = TlsExtensionsUtilities.HasEncryptThenMacExtension(sessionServerExtensions);
-                    if (serverSentEncryptThenMAC && !TlsUtilities.IsBlockCipherSuite(selectedCipherSuite))
-                        throw new TlsFatalAlert(AlertDescription.illegal_parameter);
+                    //if (serverSentEncryptThenMAC && !TlsUtilities.IsBlockCipherSuite(selectedCipherSuite))
+                    //    throw new TlsFatalAlert(AlertDescription.illegal_parameter);
 
                     this.mSecurityParameters.encryptThenMac = serverSentEncryptThenMAC;
                 }

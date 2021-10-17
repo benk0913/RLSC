@@ -174,6 +174,11 @@ namespace BestHTTP.Core
             return this;
         }
 
+        public ConnectionBase Find(Predicate<ConnectionBase> match)
+        {
+            return this.Connections.Find(match);
+        }
+
         private bool CloseConnectionAfterInactivity(DateTime now, object context)
         {
             var conn = context as ConnectionBase;
@@ -182,7 +187,7 @@ namespace BestHTTP.Core
             if (closeConnection)
             {
                 HTTPManager.Logger.Information(typeof(HostConnection).Name, string.Format("CloseConnectionAfterInactivity - [{0}] Closing! State: {1}, Now: {2}, LastProcessTime: {3}, KeepAliveTime: {4}",
-                    conn.ToString(), conn.State, now, conn.LastProcessTime, conn.KeepAliveTime), this.Context, conn.Context);
+                    conn.ToString(), conn.State, now.ToString(System.Globalization.CultureInfo.InvariantCulture), conn.LastProcessTime.ToString(System.Globalization.CultureInfo.InvariantCulture), conn.KeepAliveTime), this.Context, conn.Context);
 
                 RemoveConnection(conn, HTTPConnectionStates.Closed);
                 return false;
@@ -221,11 +226,11 @@ namespace BestHTTP.Core
 
             if (DateTime.UtcNow - this.LastProtocolSupportUpdate >= TimeSpan.FromDays(1))
             {
-                HTTPManager.Logger.Verbose("HostConnection", string.Format("LoadFrom - Too Old! LastProtocolSupportUpdate: {0}, ProtocolSupport: {1}", this.LastProtocolSupportUpdate, this.ProtocolSupport), this.Context);
+                HTTPManager.Logger.Verbose("HostConnection", string.Format("LoadFrom - Too Old! LastProtocolSupportUpdate: {0}, ProtocolSupport: {1}", this.LastProtocolSupportUpdate.ToString(System.Globalization.CultureInfo.InvariantCulture), this.ProtocolSupport), this.Context);
                 this.ProtocolSupport = HostProtocolSupport.Unknown;                
             }
             else
-                HTTPManager.Logger.Verbose("HostConnection", string.Format("LoadFrom - LastProtocolSupportUpdate: {0}, ProtocolSupport: {1}", this.LastProtocolSupportUpdate, this.ProtocolSupport), this.Context);
+                HTTPManager.Logger.Verbose("HostConnection", string.Format("LoadFrom - LastProtocolSupportUpdate: {0}, ProtocolSupport: {1}", this.LastProtocolSupportUpdate.ToString(System.Globalization.CultureInfo.InvariantCulture), this.ProtocolSupport), this.Context);
         }
     }
 }

@@ -56,7 +56,7 @@ namespace BestHTTP.SocketIO
         /// <summary>
         /// Supported Socket.IO protocol version
         /// </summary>
-        public int ProtocolVersion { get { return this.Options.ServerVersion == SupportedSocketIOVersions.v3 ? 5 : 4; } }
+        public int ProtocolVersion { get { return this.Options.ServerVersion == SupportedSocketIOVersions.v3 ? 4 : 3; } }
 
         #region Public Properties
 
@@ -420,7 +420,12 @@ namespace BestHTTP.SocketIO
             if (PreviousState == States.Reconnecting)
                 (this as IManager).EmitEvent("reconnect_before_offline_packets");
 
-            (this as IManager).EmitEvent("OnTransportConnected");
+            for (int i = 0; i < Sockets.Count; ++i)
+            {
+                var socket = Sockets[i];
+                if (socket != null)
+                    socket.OnTransportOpen();
+            }
 
             ReconnectAttempts = 0;
 
@@ -497,6 +502,8 @@ namespace BestHTTP.SocketIO
         /// </summary>
         void IManager.SendPacket(Packet packet)
         {
+            HTTPManager.Logger.Information("SocketManager", "SendPacket " + packet.ToString());
+
             ITransport trans = SelectTransport();
 
             if (trans != null)
@@ -512,6 +519,8 @@ namespace BestHTTP.SocketIO
             }
             else
             {
+                HTTPManager.Logger.Information("SocketManager", "SendPacket - Offline stashing packet");
+
                 if (OfflinePackets == null)
                     OfflinePackets = new List<Packet>();
 
@@ -526,7 +535,10 @@ namespace BestHTTP.SocketIO
         void IManager.OnPacket(Packet packet)
         {
             if (State == States.Closed)
+            {
+                HTTPManager.Logger.Information("SocketManager", "OnPacket - State == States.Closed");
                 return;
+            }
 
             switch(packet.TransportEvent)
             {
@@ -535,12 +547,14 @@ namespace BestHTTP.SocketIO
                     {
                         Handshake = new HandshakeData();
                         if (!Handshake.Parse(packet.Payload))
-                            HTTPManager.Logger.Warning("SocketManager", "Expected handshake data, but wasn't able to pars. Payload: " + packet.Payload);
+                            HTTPManager.Logger.Warning("SocketManager", "Expected handshake data, but wasn't able to parse. Payload: " + packet.Payload);
 
                         (this as IManager).OnTransportConnected(Transport);
 
                         return;
                     }
+                    else
+                        HTTPManager.Logger.Information("SocketManager", "OnPacket - Already received handshake data!");
                     break;
 
                 case TransportEventTypes.Ping:

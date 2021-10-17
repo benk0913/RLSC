@@ -162,13 +162,13 @@ namespace BestHTTP.SignalRCore
 
         public void StartConnect()
         {
-            if (this.State != ConnectionStates.Initial && this.State != ConnectionStates.Redirected && this.State != ConnectionStates.Reconnecting)
+            if (this.State != ConnectionStates.Initial &&
+                this.State != ConnectionStates.Redirected &&
+                this.State != ConnectionStates.Reconnecting)
             {
                 HTTPManager.Logger.Warning("HubConnection", "StartConnect - Expected Initial or Redirected state, got " + this.State.ToString(), this.Context);
                 return;
             }
-
-            HTTPManager.Logger.Verbose("HubConnection", "StartConnect", this.Context);
 
             if (this.State == ConnectionStates.Initial)
             {
@@ -176,9 +176,12 @@ namespace BestHTTP.SignalRCore
                 HTTPManager.Heartbeats.Subscribe(this);
             }
 
+            HTTPManager.Logger.Verbose("HubConnection", $"StartConnect State: {this.State}, connectionStartedAt: {this.connectionStartedAt.ToString(System.Globalization.CultureInfo.InvariantCulture)}", this.Context);
+
             if (this.AuthenticationProvider != null && this.AuthenticationProvider.IsPreAuthRequired)
             {
                 HTTPManager.Logger.Information("HubConnection", "StartConnect - Authenticating", this.Context);
+
                 SetState(ConnectionStates.Authenticating);
 
                 this.AuthenticationProvider.OnAuthenticationSucceded += OnAuthenticationSucceded;
@@ -312,7 +315,7 @@ namespace BestHTTP.SignalRCore
                 case TransportTypes.WebSocket:
                     if (this.NegotiationResult != null && !IsTransportSupported("WebSockets"))
                     {
-                        SetState(ConnectionStates.Closed, "Couldn't use prefered transport, as the 'WebSockets' transport isn't supported by the server!");
+                        SetState(ConnectionStates.Closed, "Couldn't use preferred transport, as the 'WebSockets' transport isn't supported by the server!");
                         return;
                     }
 
@@ -324,7 +327,7 @@ namespace BestHTTP.SignalRCore
                 case TransportTypes.LongPolling:
                     if (this.NegotiationResult != null && !IsTransportSupported("LongPolling"))
                     {
-                        SetState(ConnectionStates.Closed, "Couldn't use prefered transport, as the 'LongPolling' transport isn't supported by the server!");
+                        SetState(ConnectionStates.Closed, "Couldn't use preferred transport, as the 'LongPolling' transport isn't supported by the server!");
                         return;
                     }
 
@@ -333,7 +336,7 @@ namespace BestHTTP.SignalRCore
                     break;
 
                 default:
-                    SetState(ConnectionStates.Closed, "Unsupportted transport: " + transport);
+                    SetState(ConnectionStates.Closed, "Unsupported transport: " + transport);
                     break;
             }
 
@@ -589,7 +592,7 @@ namespace BestHTTP.SignalRCore
             if (id < 0)
                 tcs.TrySetException(new Exception("Not in Connected state! Current state: " + this.State));
             else
-                cancellationToken.Register(() => tcs.SetCanceled());
+                cancellationToken.Register(() => tcs.TrySetCanceled());
 
             return tcs.Task;
         }
@@ -650,7 +653,7 @@ namespace BestHTTP.SignalRCore
             if (id < 0)
                 tcs.TrySetException(new Exception("Not in Connected state! Current state: " + this.State));
             else
-                cancellationToken.Register(() => tcs.SetCanceled());
+                cancellationToken.Register(() => tcs.TrySetCanceled());
 
             return tcs.Task;
         }
@@ -996,6 +999,11 @@ namespace BestHTTP.SignalRCore
                             break;
                         }
 
+                    case MessageTypes.Ping:
+                        // Send back an answer
+                        SendMessage(new Message() { type = MessageTypes.Ping });
+                        break;
+
                     case MessageTypes.Close:
                         SetState(ConnectionStates.Closed, message.error, message.allowReconnect);
                         if (this.Transport != null)
@@ -1158,6 +1166,23 @@ namespace BestHTTP.SignalRCore
                     break;
 
                 case ConnectionStates.Closed:
+                    // Go through all invocations and cancel them.
+                    var error = new Message();
+                    error.type = MessageTypes.Close;
+                    error.error = errorReason;
+
+                    foreach (var kvp in this.invocations)
+                    {
+                        try
+                        {
+                            kvp.Value.callback(error);
+                        }
+                        catch
+                        { }
+                    }
+
+                    this.invocations.Clear();
+
                     // No errorReason? It's an expected closure.
                     if (errorReason == null)
                     {
@@ -1181,7 +1206,7 @@ namespace BestHTTP.SignalRCore
                             // It's the first attempt after a successful connection
                             if (this.reconnectStartTime == DateTime.MinValue)
                             {
-                                this.reconnectStartTime = DateTime.Now;
+                                this.connectionStartedAt = this.reconnectStartTime = DateTime.Now;
 
                                 try
                                 {
@@ -1305,8 +1330,10 @@ namespace BestHTTP.SignalRCore
                     break;
 
                 case ConnectionStates.Reconnecting:
-                    if (DateTime.Now >= this.reconnectAt)
+                    if (this.reconnectAt != DateTime.MinValue && DateTime.Now >= this.reconnectAt)
                     {
+                        this.connectionStartedAt = DateTime.Now;
+                        this.reconnectAt = DateTime.MinValue;
                         this.StartConnect();
                     }
                     break;

@@ -54,12 +54,10 @@ namespace BestHTTP.Connections
 
             CurrentRequest.EnumerateHeaders((header, values) =>
                 {
-                    if (header != "Content-Length")
+                    if (!header.Equals("Content-Length"))
                         for (int i = 0; i < values.Count; ++i)
                             XHR_SetRequestHeader(NativeId, header, values[i]);
                 }, /*callBeforeSendCallback:*/ true);
-
-            byte[] body = CurrentRequest.GetEntityBody();
 
             XHR_SetResponseHandler(NativeId, WebGLConnection.OnResponse, WebGLConnection.OnError, WebGLConnection.OnTimeout, WebGLConnection.OnAborted);
             // Setting OnUploadProgress result in an addEventListener("progress", ...) call making the request non-simple.
@@ -70,7 +68,41 @@ namespace BestHTTP.Connections
 
             XHR_SetTimeout(NativeId, (uint)(CurrentRequest.ConnectTimeout.TotalMilliseconds + CurrentRequest.Timeout.TotalMilliseconds));
 
-            XHR_Send(NativeId, body, body != null ? body.Length : 0);
+            byte[] body = CurrentRequest.GetEntityBody();
+            int length = 0;
+            bool releaseBodyBuffer = false;
+
+            if (body == null)
+            {
+                var upStreamInfo = CurrentRequest.GetUpStream();
+                if (upStreamInfo.Stream != null)
+                {
+                    var internalBuffer = BufferPool.Get(upStreamInfo.Length > 0 ? upStreamInfo.Length : HTTPRequest.UploadChunkSize, true);
+                    using (BufferPoolMemoryStream ms = new BufferPoolMemoryStream(internalBuffer, 0, internalBuffer.Length, true, true, false, true))
+                    {
+                        var buffer = BufferPool.Get(HTTPRequest.UploadChunkSize, true);
+                        int readCount = -1;
+                        while ((readCount = upStreamInfo.Stream.Read(buffer, 0, buffer.Length)) > 0)
+                            ms.Write(buffer, 0, readCount);
+
+                        BufferPool.Release(buffer);
+
+                        length = (int)ms.Position;
+                        body = ms.GetBuffer();
+
+                        releaseBodyBuffer = true;
+                    }
+                }
+            }
+            else
+            {
+                length = body.Length;
+            }
+
+            XHR_Send(NativeId, body, length);
+
+            if (releaseBodyBuffer)
+                BufferPool.Release(body);
         }
 
 #region Callback Implementations

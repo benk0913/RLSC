@@ -100,6 +100,9 @@ var Lib_BEST_HTTP_WebGL_ES_Bridge =
 			console.log(id + ' ES_Create - onError');
 
 			es._callOnError(onError, id, "Unknown Error!");
+
+            if (e.target.readyState === 0)
+                event.eventImpl.close();
 		};
 
 		return es.Set(event);

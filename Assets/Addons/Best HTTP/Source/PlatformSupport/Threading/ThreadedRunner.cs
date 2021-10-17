@@ -96,6 +96,7 @@ namespace BestHTTP.PlatformSupport.Threading
             _task.Start();
 #else
             var thread = new Thread(new ParameterizedThreadStart((param) => job()));
+            thread.IsBackground = true;
             thread.Start();
 #endif
         }

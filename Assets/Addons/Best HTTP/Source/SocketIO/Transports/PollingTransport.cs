@@ -160,12 +160,21 @@ namespace BestHTTP.SocketIO.Transports
 
             try
             {
-                sendBuilder.Append(packets[0].Encode());
-
-                for (int i = 1; i < packets.Count; ++i)
+                for (int i = 0; i < packets.Count; ++i)
                 {
-                    sendBuilder.Append((char)0x1E);
-                    sendBuilder.Append(packets[i].Encode());
+                    var packet = packets[i];
+
+                    if (i > 0)
+                        sendBuilder.Append((char)0x1E);
+                    sendBuilder.Append(packet.Encode());
+
+                    if (packet.Attachments != null && packet.Attachments.Count > 0)
+                        for(int cv = 0; cv < packet.Attachments.Count; ++cv)
+                        {
+                            sendBuilder.Append((char)0x1E);
+                            sendBuilder.Append('b');
+                            sendBuilder.Append(Convert.ToBase64String(packet.Attachments[i]));
+                        }
                 }
 
                 packets.Clear();

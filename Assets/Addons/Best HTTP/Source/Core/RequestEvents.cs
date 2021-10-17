@@ -236,7 +236,7 @@ namespace BestHTTP.Core
         {
             HTTPRequest request = context as HTTPRequest;
 
-            if (request.State != HTTPRequestStates.Processing)
+            if (request.State >= HTTPRequestStates.Finished)
                 return false; // don't repeat
 
             // Protocols will shut down themselves
@@ -258,9 +258,27 @@ namespace BestHTTP.Core
         {
             HTTPRequest source = @event.SourceRequest;
 
+            // Because there's a race condition between setting the request's State in its Abort() function running on Unity's main thread
+            //  and the HTTP1/HTTP2 handlers running on an another one.
+            // Because of these race conditions cases violating expectations can be:
+            //  1.) State is finished but the response null
+            //  2.) State is (Connection)TimedOut and the response non-null
+            // We have to make sure that no callbacks are called twice and in the request must be in a consistent state!
+
+            //    State        | Request
+            //   ---------     +---------
+            // 1                  Null
+            //   Finished      |   Skip
+            //   Timeout/Abort |   Deliver
+            //                 
+            // 2                 Non-Null
+            //   Finished      |    Deliver
+            //   Timeout/Abort |    Skip
+
             switch (@event.State)
             {
-                case HTTPRequestStates.Processing:
+                case HTTPRequestStates.Queued:
+                    source.QueuedAt = DateTime.UtcNow;
                     if ((!source.UseStreaming && source.UploadStream == null) || source.EnableTimoutForStreaming)
                         BestHTTP.Extensions.Timer.Add(new TimerData(TimeSpan.FromSeconds(1), @event.SourceRequest, AbortRequestWhenTimedOut));
                     break;
@@ -269,6 +287,9 @@ namespace BestHTTP.Core
                 case HTTPRequestStates.TimedOut:
                 case HTTPRequestStates.Error:
                 case HTTPRequestStates.Aborted:
+                    source.Response = null;
+                    goto case HTTPRequestStates.Finished;
+
                 case HTTPRequestStates.Finished:
 
 #if !BESTHTTP_DISABLE_CACHING

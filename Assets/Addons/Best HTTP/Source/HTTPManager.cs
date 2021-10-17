@@ -43,7 +43,7 @@ namespace BestHTTP
             MaxConnectionIdleTime = TimeSpan.FromSeconds(20);
 
 #if !BESTHTTP_DISABLE_COOKIES
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
             // Under webgl when IsCookiesEnabled is true, it will set the withCredentials flag for the XmlHTTPRequest
             //  and that's different from the default behavior.
             // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials
@@ -85,7 +85,7 @@ namespace BestHTTP
 #region Global Options
 
         /// <summary>
-        /// The maximum active TCP connections that the client will maintain to a server. Default value is 4. Minimum value is 1.
+        /// The maximum active TCP connections that the client will maintain to a server. Default value is 6. Minimum value is 1.
         /// </summary>
         public static byte MaxConnectionPerServer
         {
@@ -248,12 +248,12 @@ namespace BestHTTP
         /// <summary>
         /// TCP Client's send buffer size.
         /// </summary>
-        public static int SendBufferSize = 65 * 1024;
+        public static int? SendBufferSize;
 
         /// <summary>
         /// TCP Client's receive buffer size.
         /// </summary>
-        public static int ReceiveBufferSize = 2 * 1024 * 1024;
+        public static int? ReceiveBufferSize;
 
         /// <summary>
         /// An IIOService implementation to handle filesystem operations.
@@ -269,7 +269,7 @@ namespace BestHTTP
         /// <summary>
         /// User-agent string that will be sent with each requests.
         /// </summary>
-        public static string UserAgent = "BestHTTP/2 v2.3.0";
+        public static string UserAgent = "BestHTTP/2 v2.5.2";
 
         /// <summary>
         /// It's true if the application is quitting and the plugin is shutting down itself.

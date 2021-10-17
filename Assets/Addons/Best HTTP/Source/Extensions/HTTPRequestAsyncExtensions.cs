@@ -258,7 +258,7 @@ namespace BestHTTP
             if (resp != null)
                 return new AsyncHTTPException(resp.StatusCode, resp.Message, resp.DataAsText);
             else if (ex != null)
-                return new AsyncHTTPException(errorMessage, ex);
+                return new AsyncHTTPException(ex.Message, ex);
             else
                 return new AsyncHTTPException(errorMessage);
         }

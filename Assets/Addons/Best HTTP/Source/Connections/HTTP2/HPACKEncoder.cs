@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace BestHTTP.Connections.HTTP2
 {
-    sealed class HPACKEncoder
+    public sealed class HPACKEncoder
     {
         private HTTP2SettingsManager settingsRegistry;
 

@@ -527,6 +527,7 @@ public class SocketHandler : MonoBehaviour
 #endif
 
         options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
+        options.AutoConnect = false;
 
         DisconnectSocket();
 

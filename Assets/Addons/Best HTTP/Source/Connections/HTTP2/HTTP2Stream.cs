@@ -35,7 +35,7 @@ namespace BestHTTP.Connections.HTTP2
     //                      END_STREAM flag present?                                   END_STREAM flag present?
     //
 
-    enum HTTP2StreamStates
+    public enum HTTP2StreamStates
     {
         Idle,
         //ReservedLocale,
@@ -46,7 +46,7 @@ namespace BestHTTP.Connections.HTTP2
         Closed
     }
 
-    sealed class HTTP2Stream
+    public sealed class HTTP2Stream
     {
         public UInt32 Id { get; private set; }
 
@@ -69,7 +69,7 @@ namespace BestHTTP.Connections.HTTP2
         private HTTP2StreamStates _state;
 
         private DateTime lastStateChangedAt;
-        private TimeSpan TimeSpentInCurrentState { get { return DateTime.Now - this.lastStateChangedAt; } }
+        //private TimeSpan TimeSpentInCurrentState { get { return DateTime.Now - this.lastStateChangedAt; } }
 
         /// <summary>
         /// This flag is checked by the connection to decide whether to do a new processing-frame sending round before sleeping until new data arrives
@@ -80,7 +80,7 @@ namespace BestHTTP.Connections.HTTP2
             {
                 // Don't let the connection sleep until
                 return this.outgoing.Count > 0 || // we already booked at least one frame in advance
-                       (this.State == HTTP2StreamStates.Open && this.remoteWindow > 0); // we are in the middle of sending request data
+                       (this.State == HTTP2StreamStates.Open && this.remoteWindow > 0 && this.lastReadCount > 0); // we are in the middle of sending request data
             }
         }
 
@@ -118,6 +118,7 @@ namespace BestHTTP.Connections.HTTP2
         private HTTP2Response response;
 
         private HTTP2Handler parent;
+        private int lastReadCount;
 
         /// <summary>
         /// Constructor to create a client stream.
@@ -156,8 +157,9 @@ namespace BestHTTP.Connections.HTTP2
         {
             if (this.AssignedRequest.IsCancellationRequested && !this.isRSTFrameSent)
             {
-                this.AssignedRequest.Response = null;
-                this.AssignedRequest.State = this.AssignedRequest.IsTimedOut ? HTTPRequestStates.TimedOut : HTTPRequestStates.Aborted;
+                // These two are already set in HTTPRequest's Abort().
+                //this.AssignedRequest.Response = null;
+                //this.AssignedRequest.State = this.AssignedRequest.IsTimedOut ? HTTPRequestStates.TimedOut : HTTPRequestStates.Aborted;
 
                 this.outgoing.Clear();
                 if (this.State != HTTP2StreamStates.Idle)
@@ -209,8 +211,9 @@ namespace BestHTTP.Connections.HTTP2
             }
             else if (this.AssignedRequest.IsCancellationRequested)
             {
-                this.AssignedRequest.Response = null;
-                this.AssignedRequest.State = this.AssignedRequest.IsTimedOut ? HTTPRequestStates.TimedOut : HTTPRequestStates.Aborted;
+                // These two are already set in HTTPRequest's Abort().
+                //this.AssignedRequest.Response = null;
+                //this.AssignedRequest.State = this.AssignedRequest.IsTimedOut ? HTTPRequestStates.TimedOut : HTTPRequestStates.Aborted;
 
                 this.State = HTTP2StreamStates.Closed;
             }
@@ -253,7 +256,7 @@ namespace BestHTTP.Connections.HTTP2
                 {
                     case HTTP2FrameTypes.HEADERS:
                     case HTTP2FrameTypes.CONTINUATION:
-                        if (this.State != HTTP2StreamStates.HalfClosedLocal)
+                        if (this.State != HTTP2StreamStates.HalfClosedLocal && this.State != HTTP2StreamStates.Open && this.State != HTTP2StreamStates.Idle)
                         {
                             // ERROR!
                             continue;
@@ -322,7 +325,7 @@ namespace BestHTTP.Connections.HTTP2
                         break;
 
                     case HTTP2FrameTypes.DATA:
-                        if (this.State != HTTP2StreamStates.HalfClosedLocal)
+                        if (this.State != HTTP2StreamStates.HalfClosedLocal && this.State != HTTP2StreamStates.Open)
                         {
                             // ERROR!
                             continue;
@@ -405,13 +408,13 @@ namespace BestHTTP.Connections.HTTP2
 
                         var rstStreamFrame = HTTP2FrameHelper.ReadRST_StreamFrame(frame);
 
-                        HTTPManager.Logger.Error("HTTP2Stream", string.Format("[{0}] RST Stream frame ({1}) received in state {2}!", this.Id, rstStreamFrame, this.State), this.Context, this.AssignedRequest.Context, this.parent.Context);
+                        //HTTPManager.Logger.Error("HTTP2Stream", string.Format("[{0}] RST Stream frame ({1}) received in state {2}!", this.Id, rstStreamFrame, this.State), this.Context, this.AssignedRequest.Context, this.parent.Context);
 
                         Abort(string.Format("RST_STREAM frame received! Error code: {0}({1})", rstStreamFrame.Error.ToString(), rstStreamFrame.ErrorCode));
                         break;
 
                     default:
-                        HTTPManager.Logger.Warning("HTTP2Stream", string.Format("[{0}] Unexpected frame ({1}) in state {2}!", this.Id, frame, this.State), this.Context, this.AssignedRequest.Context, this.parent.Context);
+                        HTTPManager.Logger.Warning("HTTP2Stream", string.Format("[{0}] Unexpected frame ({1}, Payload: {2}) in state {3}!", this.Id, frame, frame.PayloadAsHex(), this.State), this.Context, this.AssignedRequest.Context, this.parent.Context);
                         break;
                 }
 
@@ -449,7 +452,7 @@ namespace BestHTTP.Connections.HTTP2
                         HTTPCacheService.SetHeaders(this.AssignedRequest);
 #endif
 
-                    // hpack encode the request's header
+                    // hpack encode the request's headers
                     this.encoder.Encode(this, this.AssignedRequest, this.outgoing, this.Id);
 
                     // HTTP/2 uses DATA frames to carry message payloads.
@@ -464,7 +467,10 @@ namespace BestHTTP.Connections.HTTP2
                         this.AssignedRequest.Timing.Add(TimingEventNames.Request_Sent);
                     }
                     else
+                    {
                         this.State = HTTP2StreamStates.Open;
+                        this.lastReadCount = 1;
+                    }
                     break;
 
                 case HTTP2StreamStates.Open:
@@ -485,20 +491,24 @@ namespace BestHTTP.Connections.HTTP2
 
                     frame.Payload = BufferPool.Get(maxFrameSize, true);
 
-                    int readCount = this.uploadStreamInfo.Stream.Read(frame.Payload, 0, (int)Math.Min(maxFrameSize, int.MaxValue));
-                    if (readCount <= 0)
+                    // Expect a readCount of zero if it's end of the stream. But, to enable non-blocking scenario to wait for data, going to treat a negative value as no data.
+                    this.lastReadCount = this.uploadStreamInfo.Stream.Read(frame.Payload, 0, (int)Math.Min(maxFrameSize, int.MaxValue));
+                    if (this.lastReadCount <= 0)
                     {
                         BufferPool.Release(frame.Payload);
                         frame.Payload = null;
                         frame.PayloadLength = 0;
+
+                        if (this.lastReadCount < 0)
+                            break;
                     }
                     else
-                        frame.PayloadLength = (UInt32)readCount;
+                        frame.PayloadLength = (UInt32)this.lastReadCount;
 
                     frame.PayloadOffset = 0;
                     frame.DontUseMemPool = false;
 
-                    if (readCount <= 0)
+                    if (this.lastReadCount <= 0)
                     {
                         this.uploadStreamInfo.Stream.Dispose();
                         this.uploadStreamInfo = new HTTPRequest.UploadStreamInfo();
@@ -597,8 +607,9 @@ namespace BestHTTP.Connections.HTTP2
                 stream.AssignedRequest.State = HTTPRequestStates.Finished;
             else
             {
-                if (stream.AssignedRequest.State == HTTPRequestStates.Processing && stream.AssignedRequest.IsCancellationRequested)
-                    stream.AssignedRequest.State = stream.AssignedRequest.IsTimedOut ? HTTPRequestStates.TimedOut : HTTPRequestStates.Aborted;
+                // Already set in HTTPRequest's Abort().
+                //if (stream.AssignedRequest.State == HTTPRequestStates.Processing && stream.AssignedRequest.IsCancellationRequested)
+                //    stream.AssignedRequest.State = stream.AssignedRequest.IsTimedOut ? HTTPRequestStates.TimedOut : HTTPRequestStates.Aborted;
             }
         }
 
