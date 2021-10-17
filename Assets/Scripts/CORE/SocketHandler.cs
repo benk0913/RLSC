@@ -194,6 +194,7 @@ public class SocketHandler : MonoBehaviour
         SocketManager.Socket.On(SocketIOEventTypes.Disconnect, OnDisconnect);
     }
 
+
     #endregion
 
 
@@ -236,6 +237,16 @@ public class SocketHandler : MonoBehaviour
             {
                 timeout = 10f;
                 TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Please make sure Steam is running and online!", Colors.AsColor(Colors.COLOR_BAD), 3f, true));
+
+                WarningWindowUI.Instance.Show("Retry?", () => 
+                {
+                    GetSteamSession(OnComplete);
+                },false, () => 
+                {
+                    Application.Quit();
+                });
+
+                yield break;
             }
 
             yield return 0;
@@ -317,14 +328,25 @@ public class SocketHandler : MonoBehaviour
         {
             SendGeolocationRequest((UnityWebRequest response) =>
             {
-                JSONNode data = JSON.Parse(response.downloadHandler.text);
+                if (response.result == UnityWebRequest.Result.ConnectionError || response.result == UnityWebRequest.Result.ProtocolError|| response.result == UnityWebRequest.Result.DataProcessingError)
+                {
+                    CORE.Instance.LogMessage("Did NOT obtain GEOLOCATION ...");
 
-                CORE.Instance.LogMessage("Obtained GEOLOCATION - " + data["region"].Value);
+                    PlayerPrefs.SetString("region", "us");
+                    PlayerPrefs.Save();
 
-                PlayerPrefs.SetString("region", data["region"].Value);
-                PlayerPrefs.Save();
+                    SendLogin(OnComplete);
+                }
+                else
+                {
+                    JSONNode data = JSON.Parse(response.downloadHandler.text);
+                    CORE.Instance.LogMessage("Obtained GEOLOCATION - " + data["region"].Value);
 
-                SendLogin(OnComplete);
+                    PlayerPrefs.SetString("region", data["region"].Value);
+                    PlayerPrefs.Save();
+
+                    SendLogin(OnComplete);
+                }
             });
             return;
         }
@@ -353,13 +375,26 @@ public class SocketHandler : MonoBehaviour
 
         SendWebRequest(ServerEnvironment.HostUrl + "/login", (UnityWebRequest lreq) =>
         {
-            OnLogin(lreq);
-
-            CORE.Instance.DelayedInvokation(0.2f,()=>
+            if (lreq.result == UnityWebRequest.Result.DataProcessingError || lreq.result == UnityWebRequest.Result.ConnectionError || lreq.result == UnityWebRequest.Result.ProtocolError)
             {
-                OnComplete?.Invoke();
-            });
-            
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Login FAILED! - " + lreq.result.ToString(),Color.red,3f,true));
+                WarningWindowUI.Instance.Show("Retry?", () =>
+                {
+                    SendLogin(OnComplete);
+                }, false, () =>
+                {
+                    Application.Quit();
+                });
+            }
+            else
+            {
+                OnLogin(lreq);
+
+                CORE.Instance.DelayedInvokation(0.2f, () =>
+                 {
+                     OnComplete?.Invoke();
+                 });
+            }
         },
         node.ToString(),
         UrlParams,
@@ -502,9 +537,31 @@ public class SocketHandler : MonoBehaviour
 
         SocketManager.Open();
 
+        float timeout = 10f;
         while (SocketManager.State != SocketManager.States.Open)
         {
+            timeout -= Time.deltaTime;
             yield return 0;
+
+            if(timeout <= 0f)
+            {
+                break;
+            }
+        }
+
+        if(SocketManager.State != SocketManager.States.Open)
+        {
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Realm Temporarily Closed!", Colors.AsColor(Colors.COLOR_BAD), 3f, true));
+
+            WarningWindowUI.Instance.Show("Retry?", () =>
+            {
+                SendConnectSocket(OnComplete);
+            }, false, () =>
+            {
+                Application.Quit();
+            });
+
+            yield break;
         }
 
         OnComplete?.Invoke();

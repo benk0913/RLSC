@@ -97,19 +97,37 @@ public class PartyInvitePanelUI : MonoBehaviour
             return;
         }
 
+        if (!IsTopActiveRoll)
+            return;
+
         if (Input.GetKeyDown(InputMap.Map["Vote Option 1"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 3")))
         {
-            WarningWindowUI.Instance.Show("Are you sure?", () => {
-                if (IsTopActiveRoll)
+            if (CORE.Instance.IsUsingJoystick)
+            {
+                WarningWindowUI.Instance.Show("Accept? Are you sure?", () =>
+                {
+
                     Accept();
-            });
+                });
+            }
+            else
+            {
+                Accept();
+            }
         }
         else if (Input.GetKeyDown(InputMap.Map["Vote Option 2"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1")))
         {
-            WarningWindowUI.Instance.Show("Are you sure?", () => {
-                if (IsTopActiveRoll)
+            if (CORE.Instance.IsUsingJoystick)
+            {
+                WarningWindowUI.Instance.Show("Decline? Are you sure?", () =>
+                {
                     Decline();
-            });
+                });
+            }
+            else
+            {
+                Decline();
+            }
         }
 
     }

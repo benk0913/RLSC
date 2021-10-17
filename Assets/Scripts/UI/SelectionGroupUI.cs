@@ -92,7 +92,7 @@ public class SelectionGroupUI : MonoBehaviour
                 {
                     button.onClick.RemoveAllListeners();
                     button.onClick.AddListener(() => {
-                        Select(instance);
+                        Select(instance,true);
                     });
                 }
                 TMP_InputField input = selectable.GetComponent<TMP_InputField>();
@@ -100,7 +100,7 @@ public class SelectionGroupUI : MonoBehaviour
                 {
                     input.onSelect.RemoveAllListeners();
                     input.onSelect.AddListener((string value) => {
-                        Select(instance);
+                        Select(instance,true);
                     });
                 }
             }
@@ -239,14 +239,14 @@ public class SelectionGroupUI : MonoBehaviour
         }
     }
 
-    public void Select(SelectionGroupInstance target)
+    public void Select(SelectionGroupInstance target, bool withMouse = false)
     {
         if (!this.gameObject.activeInHierarchy)
         {
             return;
         }
 
-        if(ScrollRectSnapSupport)
+        if(ScrollRectSnapSupport && !withMouse)
         {
             ScrollRect sRect = target.CS.GetComponentInParent<ScrollRect>();
             if (sRect != null)
@@ -365,6 +365,7 @@ public class SelectionGroupUI : MonoBehaviour
                     CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'Above'");
                 return;
             }
+            
 
             Select(CurrentSelected.toUp);
             joystickPressedDelay = JOYSTICK_DELAY;
@@ -377,6 +378,7 @@ public class SelectionGroupUI : MonoBehaviour
                     CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'Below'");
                 return;
             }
+            
 
             Select(CurrentSelected.toDown);
             joystickPressedDelay = JOYSTICK_DELAY;
@@ -389,6 +391,7 @@ public class SelectionGroupUI : MonoBehaviour
                     CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'To Left'");
                 return;
             }
+            
 
             Select(CurrentSelected.toLeft);
             joystickPressedDelay = JOYSTICK_DELAY;
@@ -407,6 +410,7 @@ public class SelectionGroupUI : MonoBehaviour
         }
         else if((CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f && joystickPressedDelay > 0f))
         {
+
             joystickPressedDelay -= Time.deltaTime;
         }
 

@@ -119,27 +119,47 @@ public class LootRollItemUI : MonoBehaviour
             return;
         }
 
+        if(!IsTopActiveRoll)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(InputMap.Map["Vote Option 1"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 3")))
         {
-            WarningWindowUI.Instance.Show("Are you sure?", () => {
-                if (IsTopActiveRoll)
-                    Need();
-            });
+            if (CORE.Instance.IsUsingJoystick)
+            {
+                WarningWindowUI.Instance.Show("Vote to pick up the item?", () =>
+                {
+                        Need();
+                });
+            }
+            else
+                Need();
         }
         else if (Input.GetKeyDown(InputMap.Map["Vote Option 2"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 0")))
         {
-            WarningWindowUI.Instance.Show("Are you sure?", () => {
-                if (IsTopActiveRoll)
+            if (CORE.Instance.IsUsingJoystick)
+            {
+                WarningWindowUI.Instance.Show("Vote 'Greed' on the item?", () => {
                     Greed();
-            });
+                });
+            }
+            else
+                Greed();
         }
+
         else if (Input.GetKeyDown(InputMap.Map["Vote Option 3"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1")))
         {
-            WarningWindowUI.Instance.Show("Are you sure?", () => {
+            if (CORE.Instance.IsUsingJoystick)
+            {
+                WarningWindowUI.Instance.Show("Skip the item?", () =>
+                {
+                        Decline();
+                });
+            }
+            else
+                Decline();
 
-                if (IsTopActiveRoll)
-                    Decline();
-            });
         }
     }
 

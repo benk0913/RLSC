@@ -148,6 +148,10 @@ public class ActorSkin : MonoBehaviour
                     {
                         SetSkinColor(part, relevantColor);
                     }
+                    else
+                    {
+                        SetSkinColor(part, Color.white);
+                    }
                 }
             }
             else

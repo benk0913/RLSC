@@ -165,16 +165,19 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         CORE.ClearContainer(CashItemsInventoryContainer);
 
-        for (int i = 0; i < SocketHandler.Instance.CurrentUser.info.cashItems.Count; i++)
+        CORE.Instance.DelayedInvokation(0.5f, () => 
         {
-            InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUIUninteractable").GetComponent<InventorySlotUI>();
-            slot.SetItem(SocketHandler.Instance.CurrentUser.info.cashItems[i], null);
-            slot.transform.SetParent(CashItemsInventoryContainer, false);
-            slot.transform.localScale = Vector3.one;
-            slot.transform.position = Vector3.zero;
-        }
+            for (int i = 0; i < SocketHandler.Instance.CurrentUser.info.cashItems.Count; i++)
+            {
+                InventorySlotUI slot = ResourcesLoader.Instance.GetRecycledObject("InventorySlotUIUninteractable").GetComponent<InventorySlotUI>();
+                slot.SetItem(SocketHandler.Instance.CurrentUser.info.cashItems[i], null);
+                slot.transform.SetParent(CashItemsInventoryContainer, false);
+                slot.transform.localScale = Vector3.one;
+                slot.transform.position = Vector3.zero;
+            }
 
-        RefreshSelectionGroup();
+            RefreshSelectionGroup();
+        });
     }
 
     
@@ -375,6 +378,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
 
         RefreshSelectionGroup();
+
 
     }
 
