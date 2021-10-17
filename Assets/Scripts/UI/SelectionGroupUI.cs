@@ -113,6 +113,10 @@ public class SelectionGroupUI : MonoBehaviour
             float shortestLeft = Mathf.Infinity;
             float shortestUp = Mathf.Infinity;
             float shortestDown = Mathf.Infinity;
+            SelectionGroupInstance potentialRightShortest = null;
+            SelectionGroupInstance potentialLeftShortest = null;
+            SelectionGroupInstance potentialUpShortest = null;
+            SelectionGroupInstance potentialDownShortest = null;
 
             foreach (SelectionGroupInstance otherInstance in instances)
             {
@@ -129,39 +133,61 @@ public class SelectionGroupUI : MonoBehaviour
                 float distToDown = Vector2.Distance(otherAngel, -instance.CS.transform.up);
                 float distToLeft = Vector2.Distance(otherAngel, -instance.CS.transform.right);
 
-                if(distToRight < distToUp && distToRight < distToDown && distToRight < distToLeft) //ON RIGHT
+                if(instance.toRight == null && distToRight < distToUp && distToRight < distToDown && distToRight < distToLeft) //ON RIGHT
                 {
 
                     if (dist < shortestRight)
                     {
                         shortestRight = dist;
-                        instance.toRight = otherInstance;
+                        potentialRightShortest = otherInstance;
+
                     }
                 }
-                else if (distToUp < distToRight && distToUp < distToDown && distToUp < distToLeft) //ON UP
+                else if (instance.toUp == null && distToUp < distToRight && distToUp < distToDown && distToUp < distToLeft) //ON UP
                 {
                     if (dist < shortestUp)
                     {
                         shortestUp = dist;
-                        instance.toUp = otherInstance;
+                        potentialUpShortest = otherInstance;
                     }
                 }
-                else if (distToLeft < distToUp && distToLeft < distToDown && distToLeft < distToRight) //ON LEFT
+                else if (instance.toLeft == null && distToLeft < distToUp && distToLeft < distToDown && distToLeft < distToRight) //ON LEFT
                 {
                     if (dist < shortestLeft)
                     {
                         shortestLeft = dist;
-                        instance.toLeft = otherInstance;
+                        potentialLeftShortest = otherInstance;
                     }
                 }
-                else if (distToDown < distToUp && distToDown < distToRight && distToDown < distToLeft) //ON DOWN
+                else if (instance.toDown== null && distToDown < distToUp && distToDown < distToRight && distToDown < distToLeft) //ON DOWN
                 {
                     if (dist < shortestDown)
                     {
                         shortestDown = dist;
-                        instance.toDown = otherInstance;
+                        potentialDownShortest = otherInstance;
                     }
                 }
+            }
+
+            if(potentialDownShortest != null)
+            {
+                instance.toDown = potentialDownShortest;
+                potentialDownShortest.toUp = instance;
+            }
+            if (potentialUpShortest != null)
+            {
+                instance.toUp = potentialUpShortest;
+                potentialUpShortest.toDown = instance;
+            }
+            if (potentialRightShortest != null)
+            {
+                instance.toRight = potentialRightShortest;
+                potentialRightShortest.toLeft = instance;
+            }
+            if (potentialLeftShortest != null)
+            {
+                instance.toLeft = potentialLeftShortest;
+                potentialLeftShortest.toRight = instance;
             }
 
 

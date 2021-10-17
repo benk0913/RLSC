@@ -96,6 +96,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         CORE.Instance.SubscribeToEvent("CashShopUpdated", RefreshUI);
         CORE.Instance.SubscribeToEvent("InventoryUpdated",RefreshEQPState);
+        CORE.Instance.SubscribeToEvent("Disconnect", Hide);
 
         RefreshUI();
     }
