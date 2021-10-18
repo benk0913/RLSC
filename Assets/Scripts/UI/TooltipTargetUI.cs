@@ -8,7 +8,24 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField]
     public string Text;
 
+    [SerializeField]
+    public bool DontShowOnKeyboardFocus;
+
     public List<TooltipBonus> Bonuses;
+
+    void Awake()
+    {
+        if (!DontShowOnKeyboardFocus)
+        {
+            SelectionHandlerUI SelectionHandlerUI = gameObject.GetComponent<SelectionHandlerUI>();
+            if (SelectionHandlerUI == null)
+            {
+                SelectionHandlerUI = gameObject.AddComponent<SelectionHandlerUI>();   
+                SelectionHandlerUI.OnEnterEvent.AddListener(OnSelectionEnter);
+                SelectionHandlerUI.OnExitEvent.AddListener(OnSelectionExit);
+            }
+        }
+    }
 
     public void OnPointerEnterSimple()
     {

@@ -3653,6 +3653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &90281887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4900,6 +4901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Set Money
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &133266548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5643,6 +5645,7 @@ GameObject:
   - component: {fileID: 153142664}
   - component: {fileID: 153142662}
   - component: {fileID: 153142663}
+  - component: {fileID: 153142665}
   m_Layer: 5
   m_Name: Cash Shop Button
   m_TagString: Untagged
@@ -5740,6 +5743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: EQ Points Shop
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &153142664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5756,6 +5760,48 @@ MonoBehaviour:
   PointerUpSound: MouseClickUp
   PointerHoverSound: talksound
   PointerUnhoverSound: IconEnter
+--- !u!114 &153142665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153142660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 153142663}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 153142663}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &153142666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7032,6 +7078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Stop Searching...
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &188097359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9641,7 +9688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ServerEnvironment:
-    Environment: Prod
+    Environment: Dev
     Region: 
   CurrentUser:
     actor:
@@ -9751,7 +9798,7 @@ MonoBehaviour:
   UniqueNumber: 0
   SessionTicket: 
   TutorialIndex: 
-  RandomUser: 1
+  RandomUser: 0
 --- !u!114 &231128633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10654,6 +10701,7 @@ RectTransform:
   - {fileID: 388479651}
   - {fileID: 1949373986}
   - {fileID: 1072437276}
+  - {fileID: 291375193}
   - {fileID: 2085297298}
   - {fileID: 1774356457}
   m_Father: {fileID: 889270482}
@@ -11481,6 +11529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &277466064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12702,6 +12751,7 @@ GameObject:
   - component: {fileID: 291375196}
   - component: {fileID: 291375195}
   - component: {fileID: 291375194}
+  - component: {fileID: 291375198}
   m_Layer: 5
   m_Name: InviteButton (1)
   m_TagString: Untagged
@@ -12723,12 +12773,12 @@ RectTransform:
   - {fileID: 1868989811}
   - {fileID: 961219236}
   - {fileID: 1334663013}
-  m_Father: {fileID: 1072437276}
-  m_RootOrder: 2
+  m_Father: {fileID: 265385964}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50.89994, y: 14.872377}
+  m_AnchoredPosition: {x: -50.9, y: -15.052414}
   m_SizeDelta: {x: 34.262085, y: 29.744797}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &291375194
@@ -12743,7 +12793,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737b48a166fcbd849b062b1a7d076b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: Invite friends from steam!
+  Text: Invite Friends From Steam!
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &291375195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12838,6 +12889,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291375192}
   m_CullTransparentMesh: 1
+--- !u!114 &291375198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291375192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 291375194}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 291375194}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &291893059
 GameObject:
   m_ObjectHideFlags: 0
@@ -13230,6 +13323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Throw away some gold...
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &296411367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15529,6 +15623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Toggle Stats
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &383375247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21071,7 +21166,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1119599857}
   m_HandleRect: {fileID: 1119599856}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -23849,6 +23944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Add Friend
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &538880652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26810,6 +26906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &611690798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29847,6 +29944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Get more EQP!
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &656662224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31555,6 +31653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &696552226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32130,6 +32229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Throw away some gold...
+  DontShowOnKeyboardFocus: 0
 --- !u!1 &702587988
 GameObject:
   m_ObjectHideFlags: 0
@@ -34266,6 +34366,7 @@ GameObject:
   - component: {fileID: 740455947}
   - component: {fileID: 740455946}
   - component: {fileID: 740455948}
+  - component: {fileID: 740455949}
   m_Layer: 5
   m_Name: escape
   m_TagString: Untagged
@@ -34416,6 +34517,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Main Menu
+  DontShowOnKeyboardFocus: 0
+--- !u!114 &740455949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740455942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 740455948}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 740455948}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &743076679
 GameObject:
   m_ObjectHideFlags: 0
@@ -35909,6 +36053,7 @@ GameObject:
   - component: {fileID: 772932284}
   - component: {fileID: 772932283}
   - component: {fileID: 772932285}
+  - component: {fileID: 772932286}
   m_Layer: 5
   m_Name: buddies
   m_TagString: Untagged
@@ -36059,6 +36204,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Social
+  DontShowOnKeyboardFocus: 0
+--- !u!114 &772932286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772932279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &773255237
 GameObject:
   m_ObjectHideFlags: 0
@@ -49069,9 +49257,9 @@ RectTransform:
   m_Father: {fileID: 2100302224}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 95, y: -36.145}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 95, y: 0}
   m_SizeDelta: {x: 190, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068534205
@@ -49339,6 +49527,7 @@ GameObject:
   - component: {fileID: 1072437277}
   - component: {fileID: 1072437279}
   - component: {fileID: 1072437280}
+  - component: {fileID: 1072437281}
   m_Layer: 5
   m_Name: InviteButton
   m_TagString: Untagged
@@ -49359,7 +49548,6 @@ RectTransform:
   m_Children:
   - {fileID: 976837307}
   - {fileID: 571705009}
-  - {fileID: 291375193}
   m_Father: {fileID: 265385964}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49475,6 +49663,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Invite More Members!
+  DontShowOnKeyboardFocus: 0
+--- !u!114 &1072437281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072437275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1072437280}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1072437280}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1073415543
 GameObject:
   m_ObjectHideFlags: 0
@@ -50834,6 +51065,7 @@ GameObject:
   - component: {fileID: 1098816021}
   - component: {fileID: 1098816020}
   - component: {fileID: 1098816022}
+  - component: {fileID: 1098816023}
   m_Layer: 5
   m_Name: abilities
   m_TagString: Untagged
@@ -50984,6 +51216,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Abilities
+  DontShowOnKeyboardFocus: 0
+--- !u!114 &1098816023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098816016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1098816022}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1098816022}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1099627249
 GameObject:
   m_ObjectHideFlags: 0
@@ -53749,6 +54024,7 @@ GameObject:
   - component: {fileID: 1165368367}
   - component: {fileID: 1165368366}
   - component: {fileID: 1165368368}
+  - component: {fileID: 1165368369}
   m_Layer: 5
   m_Name: party
   m_TagString: Untagged
@@ -53899,6 +54175,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Party
+  DontShowOnKeyboardFocus: 0
+--- !u!114 &1165368369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165368362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1165368368}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1165368368}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1168849579
 GameObject:
   m_ObjectHideFlags: 0
@@ -56996,6 +57315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Strip Character
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &1228432702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57925,6 +58245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Accept Trade
+  DontShowOnKeyboardFocus: 0
 --- !u!1 &1246417292
 GameObject:
   m_ObjectHideFlags: 0
@@ -59592,6 +59913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Stop Queue
+  DontShowOnKeyboardFocus: 0
 --- !u!1 &1287149791
 GameObject:
   m_ObjectHideFlags: 0
@@ -68820,6 +69142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Reset
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &1473912566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70464,6 +70787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &1503066136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71964,6 +72288,7 @@ GameObject:
   - component: {fileID: 1526793951}
   - component: {fileID: 1526793950}
   - component: {fileID: 1526793949}
+  - component: {fileID: 1526793954}
   m_Layer: 5
   m_Name: ReportBug
   m_TagString: Untagged
@@ -72005,6 +72330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Report a BUG!
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &1526793950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72115,6 +72441,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526793947}
   m_CullTransparentMesh: 1
+--- !u!114 &1526793954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526793947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1526793949}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1526793949}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1527580990
 GameObject:
   m_ObjectHideFlags: 0
@@ -75690,6 +76058,7 @@ GameObject:
   - component: {fileID: 1654278155}
   - component: {fileID: 1654278154}
   - component: {fileID: 1654278156}
+  - component: {fileID: 1654278157}
   m_Layer: 5
   m_Name: inventory
   m_TagString: Untagged
@@ -75840,6 +76209,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Inventory
+  DontShowOnKeyboardFocus: 0
+--- !u!114 &1654278157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654278150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1654278156}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1654278156}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1658086942 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2631943444614629730, guid: 257ca08fd12bca64f9a614ec68935fa3, type: 3}
@@ -79895,7 +80307,7 @@ RectTransform:
   - {fileID: 188097357}
   - {fileID: 1491770224}
   m_Father: {fileID: 265385964}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -80804,6 +81216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Stop Trade
+  DontShowOnKeyboardFocus: 0
 --- !u!1 &1791933748
 GameObject:
   m_ObjectHideFlags: 0
@@ -85916,6 +86329,7 @@ GameObject:
   - component: {fileID: 1903106942}
   - component: {fileID: 1903106941}
   - component: {fileID: 1903106940}
+  - component: {fileID: 1903106945}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -85956,6 +86370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Settings
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &1903106941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86066,6 +86481,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903106938}
   m_CullTransparentMesh: 1
+--- !u!114 &1903106945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903106938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1903106940}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1903106940}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1907774974
 GameObject:
   m_ObjectHideFlags: 0
@@ -88351,6 +88808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Throw away some gold...
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &1954481612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91260,6 +91718,7 @@ GameObject:
   - component: {fileID: 2041713664}
   - component: {fileID: 2041713663}
   - component: {fileID: 2041713662}
+  - component: {fileID: 2041713667}
   m_Layer: 5
   m_Name: alignment
   m_TagString: Untagged
@@ -91300,6 +91759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: View Alignment Window
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &2041713663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91410,6 +91870,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041713660}
   m_CullTransparentMesh: 1
+--- !u!114 &2041713667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041713660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2045549604
 GameObject:
   m_ObjectHideFlags: 0
@@ -92937,7 +93439,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 265385964}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -93700,6 +94202,7 @@ GameObject:
   - component: {fileID: 2101659565}
   - component: {fileID: 2101659564}
   - component: {fileID: 2101659563}
+  - component: {fileID: 2101659568}
   m_Layer: 5
   m_Name: Cash Shop Button
   m_TagString: Untagged
@@ -93741,6 +94244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: EQ Points Shop
+  DontShowOnKeyboardFocus: 0
 --- !u!114 &2101659564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93851,6 +94355,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101659561}
   m_CullTransparentMesh: 1
+--- !u!114 &2101659568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101659561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b12c590859feb48b929086ae2600f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2101659563}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2101659563}
+        m_TargetAssemblyTypeName: TooltipTargetUI, Assembly-CSharp
+        m_MethodName: OnSelectionExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2103562972
 GameObject:
   m_ObjectHideFlags: 0
