@@ -512,6 +512,20 @@ public class SocketHandler : MonoBehaviour
         null,
         false);
     }
+
+    public void SendRealmCapacityRequest(int realmIndex, Action<UnityWebRequest> OnComplete = null)
+    {
+        Dictionary<string, string> UrlParams = new Dictionary<string, string>();
+        UrlParams.Add("realm", realmIndex.ToString());
+
+        SendWebRequest(ServerEnvironment.HostUrl + "/capacity", (UnityWebRequest ccreq) =>
+        {
+            OnComplete?.Invoke(ccreq);
+        },
+        null,
+        UrlParams,
+        false);
+    }
     
 
     Coroutine ConnectSocketRoutineInstance;

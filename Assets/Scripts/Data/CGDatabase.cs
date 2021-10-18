@@ -38,6 +38,10 @@ public class DatabaseContent
     [JsonIgnore]
     public List<RealmData> Realms = new List<RealmData>();
 
+    public List<RealmCapacity> RealmsCapacity = new List<RealmCapacity>();
+
+    public int RealmMaxConnectedPeople;
+
     public int RealmCap = 2;
 
     public VisualDatabase Visuals;
@@ -273,4 +277,11 @@ public class Vendor
 {
     public string id;
     public List<Item> itemsPool = new List<Item>();
+}
+
+[Serializable]
+public class RealmCapacity
+{
+    public float Percent;
+    public string Text;
 }

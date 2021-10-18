@@ -12,6 +12,8 @@ public class RealmSigilUI : MonoBehaviour
 
     public RealmData CurrentRealm;
 
+    public TextMeshProUGUI RealmCapacity;
+
     public void SetData(RealmData currentRealm)
     {
         this.CurrentRealm = currentRealm;
@@ -19,5 +21,12 @@ public class RealmSigilUI : MonoBehaviour
         this.RealmIcon.sprite = CurrentRealm.RealmIcon;
         this.RealmName.text = CurrentRealm.Name;
         this.RealmName.color = CurrentRealm.RealmColor;
+        // Realm capacity arrives in a delay, so default it to empty.
+        this.RealmCapacity.text = "";
+    }
+
+    public void SetCapacity(string capacity)
+    {
+        this.RealmCapacity.text = capacity;
     }
 }
