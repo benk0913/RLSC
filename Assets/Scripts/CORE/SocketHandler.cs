@@ -374,36 +374,52 @@ public class SocketHandler : MonoBehaviour
     }
 #endif
 
-        Dictionary<string, string> UrlParams = new Dictionary<string, string>();
-        UrlParams.Add("realm", SelectedRealmIndex.ToString());
-
-        SendWebRequest(ServerEnvironment.HostUrl + "/login", (UnityWebRequest lreq) =>
+        Action loginAction = () =>
         {
-            OnLogin(lreq);
+            Dictionary<string, string> UrlParams = new Dictionary<string, string>();
+            UrlParams.Add("realm", SelectedRealmIndex.ToString());
 
-            CORE.Instance.DelayedInvokation(0.2f, () =>
+            SendWebRequest(ServerEnvironment.HostUrl + "/login", (UnityWebRequest lreq) =>
+            {
+                OnLogin(lreq);
+
+                CORE.Instance.DelayedInvokation(0.2f, () =>
+                    {
+                        OnComplete?.Invoke();
+                    });
+            },
+            node.ToString(),
+            UrlParams,
+            true,
+            (UnityWebRequest lreq) => 
+            {
+                ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Login FAILED! - " + lreq.result.ToString(), Color.red, 3f, true));
+                WarningWindowUI.Instance.Show("Failed to login. Retry?", () =>
                 {
-                    OnComplete?.Invoke();
-                });
-        },
-        node.ToString(),
-        UrlParams,
-        true,
-        (UnityWebRequest lreq) => 
+                    ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+
+                    SendLogin(OnComplete);
+                }, false, () =>
+                {
+                    Application.Quit();
+                },"Login Error");
+            });
+        };
+
+        if (SelectedRealmIndex == -1)
         {
-            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
-
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Login FAILED! - " + lreq.result.ToString(), Color.red, 3f, true));
-            WarningWindowUI.Instance.Show("Failed to login. Retry?", () =>
+            RealmSelectionUI.Instance.Show((int selectedRealm) => 
             {
-                ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
-
-                SendLogin(OnComplete);
-            }, false, () =>
-            {
-                Application.Quit();
-            },"Login Error");
-        });
+                SelectedRealmIndex = selectedRealm;
+                loginAction.Invoke();
+            });
+        }
+        else
+        {
+            loginAction.Invoke();
+        }
     }
 
     public void SendCreateCharacter(string element = "fire", ActorData actor = null, Action OnComplete = null, Action OnError = null)

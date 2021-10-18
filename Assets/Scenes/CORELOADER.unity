@@ -3653,7 +3653,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &90281887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4901,7 +4900,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Set Money
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &133266548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5743,7 +5741,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: EQ Points Shop
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &153142664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7078,7 +7075,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Stop Searching...
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &188097359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11529,7 +11525,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &277466064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12794,7 +12789,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Invite Friends From Steam!
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &291375195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13323,7 +13317,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Throw away some gold...
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &296411367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15623,7 +15616,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Toggle Stats
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &383375247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17887,8 +17879,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1933340859}
   - {fileID: 773333432}
-  - {fileID: 1963464179}
   - {fileID: 870046156}
   - {fileID: 483267234}
   m_Father: {fileID: 889270482}
@@ -23944,7 +23936,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Add Friend
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &538880652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26906,7 +26897,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &611690798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29944,7 +29934,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Get more EQP!
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &656662224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31653,7 +31642,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &696552226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32229,7 +32217,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Throw away some gold...
-  DontShowOnKeyboardFocus: 0
 --- !u!1 &702587988
 GameObject:
   m_ObjectHideFlags: 0
@@ -34517,7 +34504,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Main Menu
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &740455949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36204,7 +36190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Social
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &772932286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36411,7 +36396,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 433333646}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -48324,6 +48309,7 @@ GameObject:
   - component: {fileID: 1045761494}
   - component: {fileID: 1045761495}
   - component: {fileID: 1045761496}
+  - component: {fileID: 1045761497}
   m_Layer: 5
   m_Name: SideButton
   m_TagString: Untagged
@@ -48489,6 +48475,33 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SideButtonUI, Assembly-CSharp
         m_MethodName: Toggle
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1045761497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045761489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Events:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1119393468}
+        m_TargetAssemblyTypeName: SelectionGroupUI, Assembly-CSharp
+        m_MethodName: RefreshGroup
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -49663,7 +49676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Invite More Members!
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1072437281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51216,7 +51228,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Abilities
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1098816023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54175,7 +54186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Party
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1165368369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57315,7 +57325,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Strip Character
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1228432702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58245,7 +58254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Accept Trade
-  DontShowOnKeyboardFocus: 0
 --- !u!1 &1246417292
 GameObject:
   m_ObjectHideFlags: 0
@@ -59913,7 +59921,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Stop Queue
-  DontShowOnKeyboardFocus: 0
 --- !u!1 &1287149791
 GameObject:
   m_ObjectHideFlags: 0
@@ -69142,7 +69149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Reset
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1473912566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70787,7 +70793,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: 
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1503066136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72330,7 +72335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Report a BUG!
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1526793950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76209,7 +76213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Inventory
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1654278157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81216,7 +81219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Stop Trade
-  DontShowOnKeyboardFocus: 0
 --- !u!1 &1791933748
 GameObject:
   m_ObjectHideFlags: 0
@@ -86370,7 +86372,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Settings
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1903106941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87715,6 +87716,96 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1931718013}
   m_CullTransparentMesh: 0
+--- !u!1 &1933340858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1933340859}
+  - component: {fileID: 1933340861}
+  - component: {fileID: 1933340860}
+  - component: {fileID: 1933340862}
+  m_Layer: 5
+  m_Name: inputmask
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1933340859
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933340858}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1963464179}
+  m_Father: {fileID: 433333646}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_SizeDelta: {x: 370.91, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1933340860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933340858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1933340861
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933340858}
+  m_CullTransparentMesh: 1
+--- !u!114 &1933340862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933340858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 0
 --- !u!1 &1936162297
 GameObject:
   m_ObjectHideFlags: 0
@@ -88808,7 +88899,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: Throw away some gold...
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &1954481612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89236,12 +89326,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 433333646}
-  m_RootOrder: 1
+  m_Father: {fileID: 1933340859}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_AnchoredPosition: {x: 0, y: -0.49998927}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1963464180
@@ -89309,7 +89399,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 1
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -91759,7 +91849,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: View Alignment Window
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &2041713663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94244,7 +94333,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: EQ Points Shop
-  DontShowOnKeyboardFocus: 0
 --- !u!114 &2101659564
 MonoBehaviour:
   m_ObjectHideFlags: 0

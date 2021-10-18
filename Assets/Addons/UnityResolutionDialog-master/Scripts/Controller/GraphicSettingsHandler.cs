@@ -33,8 +33,15 @@ namespace NewResolutionDialog.Scripts.Controller
         #region Dialog Getters
         string GetSelectedResolution()
         {
+            if (resolution.options.Count <= resolution.value)
+            {
+                return "";
+            }
+
             return resolution.options[resolution.value].text;
         }
+
+        
         string GetResolutionString()
         {
             return GetResolutionString(Screen.width, Screen.height);
@@ -469,7 +476,7 @@ namespace NewResolutionDialog.Scripts.Controller
         #endregion
 
         #region Apply Changes
-        void ApplySelectedResolution()
+        public void ApplySelectedResolution()
         {
             // in case resolution changed, we need to check whether the Hz selection still applies for the new resolution
             // if not we opt to go with the default '0' Hz

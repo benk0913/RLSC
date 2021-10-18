@@ -11,14 +11,15 @@ public class RealmSelectionUI : MonoBehaviour
 {
     public static RealmSelectionUI Instance;
     
-    Action<int> OnCompleteAction;
-
     [SerializeField]
     Transform RealmContainer;
 
     List<RealmSigilUI> realmSigils = new List<RealmSigilUI>();
 
     Dictionary<int, string> RealmsCapacity = new Dictionary<int, string>();
+
+    [SerializeField]
+    SelectionGroupUI SG;
 
     private void Awake()
     {
@@ -30,14 +31,12 @@ public class RealmSelectionUI : MonoBehaviour
     {
         this.gameObject.SetActive(true);
 
-        this.OnCompleteAction = onComplete;
-
         StopAllCoroutines();
-        StartCoroutine(PopulateRealms());
+        StartCoroutine(PopulateRealms(onComplete));
         
     }
 
-    IEnumerator PopulateRealms()
+    IEnumerator PopulateRealms(Action<int> onComplete)
     {
         RealmsCapacity.Clear();
         realmSigils.Clear();
@@ -54,26 +53,30 @@ public class RealmSelectionUI : MonoBehaviour
         {
             int realmIndex = i;
             RealmSigilUI realmSigil = ResourcesLoader.Instance.GetRecycledObject("RealmSigilUI").GetComponent<RealmSigilUI>();
-            realmSigil.SetData(CORE.Instance.Data.content.Realms[realmIndex]);
+            realmSigil.SetData(CORE.Instance.Data.content.Realms[realmIndex], () =>
+            {
+                onComplete(realmIndex);
+                Hide();
+            });
             // Fill capacity if it finished the request before rendering.
             if (RealmsCapacity.ContainsKey(realmIndex))
             {
                 realmSigil.SetCapacity(RealmsCapacity[realmIndex]);
             }
             realmSigil.transform.SetParent(RealmContainer, false);
-            realmSigil.GetComponent<Button>().onClick.RemoveAllListeners();
-            realmSigil.GetComponent<TooltipTargetUI>().Text = CORE.Instance.Data.content.Realms[realmIndex].Name;
+            
             realmSigils.Add(realmSigil);
 
             yield return 0;
 
-            realmSigil.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                this.OnCompleteAction(realmIndex); Hide();
-            });
 
             yield return new WaitForSeconds(0.1f);
         }
+
+
+        yield return new WaitForSeconds(0.1f);
+        
+        SG.RefreshGroup();
     }
 
     void RequestRealmsCapacity()

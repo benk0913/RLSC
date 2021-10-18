@@ -231,18 +231,20 @@ public class CORE : MonoBehaviour
         if(!isScreenValid)
         {
             LogMessage("Validating Screen Ratio");
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Readjusting Screen Ratio...", Color.yellow, 3f, false));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Readjusting Screen Ratio", Color.yellow, 3f, false));
 
-            for(int i=0;i<Screen.resolutions.Length;i++)
-            {
-                float currentRatio = ((float)Screen.resolutions[i].width / (float)Screen.resolutions[i].height);
-                if (currentRatio == 16f / 9f || Mathf.Approximately(currentRatio, 16f / 9f))
-                {
-                    CORE.Instance.DelayedInvokation(1f, () => { GraphicSettingsHandler.Instance.SetResolution(Screen.resolutions[i].width, Screen.resolutions[i].height); });
-                    return;
-                }
-            }
+            CORE.Instance.DelayedInvokation(1f, () => { GraphicSettingsHandler.Instance.ApplySelectedResolution(); });
+            //for(int i=0;i<Screen.resolutions.Length;i++)
+            //{
+            //    float currentRatio = ((float)Screen.resolutions[i].width / (float)Screen.resolutions[i].height);
+            //    if (currentRatio == 16f / 9f || Mathf.Approximately(currentRatio, 16f / 9f))
+            //    {
+            //        CORE.Instance.DelayedInvokation(1f, () => { GraphicSettingsHandler.Instance.SetResolution(Screen.resolutions[i].width, Screen.resolutions[i].height); });
+            //        return;
+            //    }
+            //}
 
+            //CORE.Instance.DelayedInvokation(1f, () => { GraphicSettingsHandler.Instance.SetResolution(1280, 720); });
         }
     }
     private void GameStatesChanges()

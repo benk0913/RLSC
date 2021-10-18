@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using EdgeworldBase;
 
 public class SelectionGroupUI : MonoBehaviour
 {
@@ -113,10 +114,6 @@ public class SelectionGroupUI : MonoBehaviour
             float shortestLeft = Mathf.Infinity;
             float shortestUp = Mathf.Infinity;
             float shortestDown = Mathf.Infinity;
-            SelectionGroupInstance potentialRightShortest = null;
-            SelectionGroupInstance potentialLeftShortest = null;
-            SelectionGroupInstance potentialUpShortest = null;
-            SelectionGroupInstance potentialDownShortest = null;
 
             foreach (SelectionGroupInstance otherInstance in instances)
             {
@@ -133,61 +130,40 @@ public class SelectionGroupUI : MonoBehaviour
                 float distToDown = Vector2.Distance(otherAngel, -instance.CS.transform.up);
                 float distToLeft = Vector2.Distance(otherAngel, -instance.CS.transform.right);
 
-                if(instance.toRight == null && distToRight < distToUp && distToRight < distToDown && distToRight < distToLeft) //ON RIGHT
+                if(distToRight < distToUp && distToRight < distToDown && distToRight < distToLeft) //ON RIGHT
                 {
 
                     if (dist < shortestRight)
                     {
                         shortestRight = dist;
-                        potentialRightShortest = otherInstance;
+                        instance.toRight = otherInstance;
 
                     }
                 }
-                else if (instance.toUp == null && distToUp < distToRight && distToUp < distToDown && distToUp < distToLeft) //ON UP
+                else if (distToUp < distToRight && distToUp < distToDown && distToUp < distToLeft) //ON UP
                 {
                     if (dist < shortestUp)
                     {
                         shortestUp = dist;
-                        potentialUpShortest = otherInstance;
+                        instance.toUp = otherInstance;
                     }
                 }
-                else if (instance.toLeft == null && distToLeft < distToUp && distToLeft < distToDown && distToLeft < distToRight) //ON LEFT
+                else if (distToLeft < distToUp && distToLeft < distToDown && distToLeft < distToRight) //ON LEFT
                 {
                     if (dist < shortestLeft)
                     {
                         shortestLeft = dist;
-                        potentialLeftShortest = otherInstance;
+                        instance.toLeft = otherInstance;
                     }
                 }
-                else if (instance.toDown== null && distToDown < distToUp && distToDown < distToRight && distToDown < distToLeft) //ON DOWN
+                else if (distToDown < distToUp && distToDown < distToRight && distToDown < distToLeft) //ON DOWN
                 {
                     if (dist < shortestDown)
                     {
                         shortestDown = dist;
-                        potentialDownShortest = otherInstance;
+                        instance.toDown = otherInstance;
                     }
                 }
-            }
-
-            if(potentialDownShortest != null)
-            {
-                instance.toDown = potentialDownShortest;
-                potentialDownShortest.toUp = instance;
-            }
-            if (potentialUpShortest != null)
-            {
-                instance.toUp = potentialUpShortest;
-                potentialUpShortest.toDown = instance;
-            }
-            if (potentialRightShortest != null)
-            {
-                instance.toRight = potentialRightShortest;
-                potentialRightShortest.toLeft = instance;
-            }
-            if (potentialLeftShortest != null)
-            {
-                instance.toLeft = potentialLeftShortest;
-                potentialLeftShortest.toRight = instance;
             }
 
 
@@ -377,7 +353,7 @@ public class SelectionGroupUI : MonoBehaviour
             return;
         }
         
-        if (CORE.Instance.IsTyping || CORE.Instance.IsLoading)
+        if (CORE.Instance.IsTyping || CORE.Instance.IsLoading || ResourcesLoader.Instance.LoadingWindowObject.activeInHierarchy)
         {
             return;
         }
@@ -445,7 +421,13 @@ public class SelectionGroupUI : MonoBehaviour
 
         if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
         {
-            if(CurrentSelected != null && CurrentSelected.CS != null)
+
+            if (CurrentSelectedSelectable.interactable == false)
+            {
+                return;
+            }
+
+            if (CurrentSelected != null && CurrentSelected.CS != null)
             {
                 AudioEntityUIHandle audioEntity = CurrentSelected.CS.GetComponent<AudioEntityUIHandle>();
                 if (audioEntity != null)

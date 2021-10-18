@@ -284,4 +284,7 @@ public class RealmCapacity
 {
     public float Percent;
     public string Text;
+
+    [JsonIgnore]
+    public Color Color;
 }
