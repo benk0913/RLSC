@@ -1768,6 +1768,8 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has joined the party!</color>");
 
         AudioControl.Instance.Play("getPartyAccept");
+
+        
     }
 
     public void OnPartyDecline(string eventName, JSONNode data)
@@ -1835,7 +1837,27 @@ public class SocketHandler : MonoBehaviour
 
     public void OnPartyStatus(string eventName, JSONNode data)
     {
+        bool hasJoinedParty = false;
+        if(CORE.Instance.CurrentParty == null)
+        {
+            hasJoinedParty = true;
+        }
+
         CORE.Instance.CurrentParty = JsonConvert.DeserializeObject<PartyData>(data["party"].ToString());
+
+        if(CORE.Instance.CurrentParty == null)
+        {
+            hasJoinedParty = false;
+        }
+
+        if(hasJoinedParty)
+        {
+            SteamMatchmaking.JoinLobby(new CSteamID(CORE.Instance.CurrentParty.steamLobbyId));
+        }
+        else if(CORE.Instance.CurrentParty == null)
+        {
+            SteamMatchmaking.LeaveLobby(new CSteamID(CORE.Instance.CurrentParty.steamLobbyId));
+        }
 
         List<ActorData> partyMembers = CORE.Instance.Room.Actors.FindAll(X => X.ActorEntity.InParty);
         partyMembers.ForEach(x => x.ActorEntity.InParty = false);

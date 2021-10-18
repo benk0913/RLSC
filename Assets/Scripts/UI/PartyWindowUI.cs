@@ -130,16 +130,33 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
     public void InviteMember()
     {
-        InputLabelWindow.Instance.Show("Invite Player", "Player Name...", (string name) => { SocketHandler.Instance.SendPartyInvite(name); });
+        if (CORE.Instance.IsWaitingForLobbyCreation)
+        {
+            return;
+        }
+
+        if (CORE.Instance.CurrentParty == null)
+        {
+            CreateParty();
+        }
+
+        CORE.Instance.ConditionalInvokation((X) => { return CORE.Instance.CurrentParty != null; }, () =>
+        {
+            InputLabelWindow.Instance.Show("Invite Player", "Player Name...", (string name) => { SocketHandler.Instance.SendPartyInvite(name); });
+        });
+
     }
     
     public void InviteMemberFromSteam()
     {
+        if (CORE.Instance.IsWaitingForLobbyCreation)
+        {
+            return;
+        }
+
         if (CORE.Instance.CurrentParty == null)
         {
-
-            SocketHandler.Instance.SendEvent("party_create", new JSONClass());
-
+            CreateParty();
         }
 
         CORE.Instance.ConditionalInvokation((X) => { return CORE.Instance.CurrentParty != null; }, () =>
@@ -149,8 +166,23 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         //SteamFriends.ActivateGameOverlayInviteDialog(new CSteamID(CORE.PlayerActor.steamID));
     }
 
+    public void CreateParty()
+    {
+        if(CORE.Instance.IsWaitingForLobbyCreation)
+        {
+            return;
+        }
+
+        CORE.Instance.IsWaitingForLobbyCreation = true;
+        
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, CORE.Instance.Data.content.MaxPartyMembers);
+
+        
+    }
+
     public void LeaveQueue()
     {
+
         ExpeditionQueTimerUI.Instance.StopSearching();
         QueuePanel.gameObject.SetActive(false);
     }

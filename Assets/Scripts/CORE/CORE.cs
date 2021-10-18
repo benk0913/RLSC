@@ -162,6 +162,9 @@ public class CORE : MonoBehaviour
         if(GetJoinRequestResponse == null)
             GetJoinRequestResponse = Callback<GameRichPresenceJoinRequested_t>.Create(OnGetJoinRequestResponse);
 
+        if (GetLobbyCreatedRespose == null)
+            GetLobbyCreatedRespose = Callback<LobbyCreated_t>.Create(OnGetLobbyCreatedResponse); 
+
         //Application.targetFrameRate = 60;
 
         Time.fixedDeltaTime = 0.01666667f;
@@ -185,7 +188,28 @@ public class CORE : MonoBehaviour
             CheckOOGInvitations();
     }
 
-    
+    protected Callback<LobbyCreated_t> GetLobbyCreatedRespose;
+    public bool IsWaitingForLobbyCreation;
+    void OnGetLobbyCreatedResponse(LobbyCreated_t pCallBack)
+    {
+        IsWaitingForLobbyCreation = false;
+
+        if (pCallBack.m_ulSteamIDLobby == 0)
+        {
+            LogMessage("STEAM - LOBBY CREATION FAILED | " + pCallBack.m_eResult.ToString());
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Created Steam Lobby Failed!", Color.red, 3, true));
+            return;
+        }
+
+        LogMessage("STEAM - LOBBY CREATED RESPONSE | key: " + pCallBack.m_ulSteamIDLobby);
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Party Created!", Color.green, 3, true));
+       
+
+        JSONNode node = new JSONClass();
+
+        node["steamLobbyId"] = pCallBack.m_ulSteamIDLobby.ToString();
+        SocketHandler.Instance.SendEvent("party_create", node);
+    }
 
     void OnApplicationFocus(bool focus)
     {
@@ -1004,6 +1028,7 @@ public class CORE : MonoBehaviour
 public class PartyData
 {
     public string partyId;
+    public ulong steamLobbyId;
     public string leaderName;
     public string[] members;
     public Dictionary<string, bool> membersOffline;
