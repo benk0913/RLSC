@@ -1842,22 +1842,25 @@ public class SocketHandler : MonoBehaviour
         {
             hasJoinedParty = true;
         }
+        PartyData newPartyData = JsonConvert.DeserializeObject<PartyData>(data["party"].ToString());
 
-        CORE.Instance.CurrentParty = JsonConvert.DeserializeObject<PartyData>(data["party"].ToString());
-
-        if(CORE.Instance.CurrentParty == null)
+        if (newPartyData == null)
         {
             hasJoinedParty = false;
         }
 
-        if(hasJoinedParty)
+        if (hasJoinedParty)
         {
-            SteamMatchmaking.JoinLobby(new CSteamID(CORE.Instance.CurrentParty.steamLobbyId));
+            SteamMatchmaking.JoinLobby(new CSteamID(newPartyData.steamLobbyId));
         }
-        else if(CORE.Instance.CurrentParty == null)
+        else if (newPartyData == null)
         {
             SteamMatchmaking.LeaveLobby(new CSteamID(CORE.Instance.CurrentParty.steamLobbyId));
         }
+
+        CORE.Instance.CurrentParty = newPartyData;
+
+
 
         List<ActorData> partyMembers = CORE.Instance.Room.Actors.FindAll(X => X.ActorEntity.InParty);
         partyMembers.ForEach(x => x.ActorEntity.InParty = false);
