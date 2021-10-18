@@ -47,6 +47,7 @@ public class RealmSelectionUI : MonoBehaviour
             realmSigil.SetData(CORE.Instance.Data.content.Realms[i]);
             realmSigil.transform.SetParent(RealmContainer, false);
             realmSigil.GetComponent<Button>().onClick.RemoveAllListeners();
+            realmSigil.GetComponent<TooltipTargetUI>().Text = CORE.Instance.Data.content.Realms[i].Name;
 
             yield return 0;
 

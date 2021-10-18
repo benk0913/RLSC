@@ -138,7 +138,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         if (CORE.Instance.CurrentParty == null)
         {
 
-            SocketHandler.Instance.SendEvent("create_party", new JSONClass());
+            SocketHandler.Instance.SendEvent("party_create", new JSONClass());
 
         }
 

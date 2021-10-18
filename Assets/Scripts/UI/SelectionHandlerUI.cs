@@ -3,6 +3,6 @@ using UnityEngine.Events;
 
 public class SelectionHandlerUI: MonoBehaviour
 {
-    public UnityEvent OnEnterEvent;
-    public UnityEvent OnExitEvent;
+    public UnityEvent OnEnterEvent = new UnityEvent();
+    public UnityEvent OnExitEvent = new UnityEvent();
 }
