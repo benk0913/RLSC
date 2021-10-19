@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.Networking;
+using SimpleJSON;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -58,6 +60,36 @@ public class MainMenuUI : MonoBehaviour
     {
         CORE.Instance.LogMessage("Auto Login");
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+        
+        string region = PlayerPrefs.GetString("region", "");
+        
+        if (string.IsNullOrEmpty(region))
+        {
+            SocketHandler.Instance.SendGeolocationRequest((UnityWebRequest response) =>
+            {
+                string regionToSet = "us";
+                if (response.result == UnityWebRequest.Result.ConnectionError || response.result == UnityWebRequest.Result.ProtocolError|| response.result == UnityWebRequest.Result.DataProcessingError)
+                {
+                    CORE.Instance.LogMessage("Did NOT obtain GEOLOCATION ...");
+                }
+                else
+                {
+                    JSONNode data = JSON.Parse(response.downloadHandler.text);
+                    CORE.Instance.LogMessage("Obtained GEOLOCATION - " + data["region"].Value);
+
+                    regionToSet = data["region"].Value;
+                }
+                PlayerPrefs.SetString("region", regionToSet);
+                PlayerPrefs.Save();
+
+                AutoLogin();
+            });
+            return;
+        }
+        else
+        {
+            SocketHandler.Instance.ServerEnvironment.Region = region;
+        }
 
         Action postRealmLogin = () => 
         {

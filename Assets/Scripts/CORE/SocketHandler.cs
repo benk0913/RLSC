@@ -341,39 +341,6 @@ public class SocketHandler : MonoBehaviour
 
     public void SendLogin(Action OnComplete)
     {
-        string region = PlayerPrefs.GetString("region", "");
-
-        if (string.IsNullOrEmpty(region))
-        {
-            SendGeolocationRequest((UnityWebRequest response) =>
-            {
-                if (response.result == UnityWebRequest.Result.ConnectionError || response.result == UnityWebRequest.Result.ProtocolError|| response.result == UnityWebRequest.Result.DataProcessingError)
-                {
-                    CORE.Instance.LogMessage("Did NOT obtain GEOLOCATION ...");
-
-                    PlayerPrefs.SetString("region", "us");
-                    PlayerPrefs.Save();
-
-                    SendLogin(OnComplete);
-                }
-                else
-                {
-                    JSONNode data = JSON.Parse(response.downloadHandler.text);
-                    CORE.Instance.LogMessage("Obtained GEOLOCATION - " + data["region"].Value);
-
-                    PlayerPrefs.SetString("region", data["region"].Value);
-                    PlayerPrefs.Save();
-
-                    SendLogin(OnComplete);
-                }
-            });
-            return;
-        }
-        else
-        {
-            ServerEnvironment.Region = region;
-        }
-
         JSONNode node = new JSONClass();
         
         node["skipTutorial"] = SessionTicket;
