@@ -880,7 +880,7 @@ public class SocketHandler : MonoBehaviour
                 CORE.Instance.NextScenePrediction = (string)data["nextScenePrediction"];
                 CORE.Instance.InvokeEvent("PredictionUpdate");
 
-                
+                Camera.main.transform.position = new Vector3(newSceneFocusCameraX, newSceneFocusCameraY, Camera.main.transform.position.z);
 
                 CORE.Instance.RefreshSceneInfo();
 
@@ -1869,25 +1869,30 @@ public class SocketHandler : MonoBehaviour
 
     public void OnPartyStatus(string eventName, JSONNode data)
     {
-        bool hasJoinedParty = false;
-        if(CORE.Instance.CurrentParty == null)
-        {
-            hasJoinedParty = true;
-        }
         PartyData newPartyData = JsonConvert.DeserializeObject<PartyData>(data["party"].ToString());
 
-        if (newPartyData == null)
+        if(CORE.Instance.CurrentParty == null && newPartyData != null) // Entering a party for hte first time 
         {
-            hasJoinedParty = false;
+            if(newPartyData.leaderName == CORE.PlayerActor.name)//Leader of the new party
+            {
+                SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, CORE.Instance.Data.content.MaxPartyMembers);
+            }
+            else if(newPartyData.steamLobbyId != default) //Not leader and steamid exists
+            {
+                SteamMatchmaking.JoinLobby(new CSteamID(newPartyData.steamLobbyId));
+            }
         }
-
-        if (hasJoinedParty)
-        {
-            SteamMatchmaking.JoinLobby(new CSteamID(newPartyData.steamLobbyId));
-        }
-        else if (newPartyData == null)
+        else if (CORE.Instance.CurrentParty != null && newPartyData == null) //Leaving a party
         {
             SteamMatchmaking.LeaveLobby(new CSteamID(CORE.Instance.CurrentParty.steamLobbyId));
+        }
+        else if(CORE.Instance.CurrentParty != null && newPartyData != null)
+        {
+            if(CORE.Instance.CurrentParty.steamLobbyId != newPartyData.steamLobbyId) //Still in a party, different steampartyid
+            {
+                SteamMatchmaking.LeaveLobby(new CSteamID(CORE.Instance.CurrentParty.steamLobbyId));
+                SteamMatchmaking.JoinLobby(new CSteamID(newPartyData.steamLobbyId));
+            }
         }
 
         CORE.Instance.CurrentParty = newPartyData;

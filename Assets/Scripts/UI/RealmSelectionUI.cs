@@ -44,10 +44,12 @@ public class RealmSelectionUI : MonoBehaviour
 
         RequestRealmsCapacity();
 
+        ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
         while(ResourcesLoader.Instance.m_bLoading)
         {
             yield return 0;
         }
+        ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
 
         for (int i = 0; i < CORE.Instance.Data.content.RealmCap; i++)
         {
@@ -70,11 +72,11 @@ public class RealmSelectionUI : MonoBehaviour
             yield return 0;
 
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
 
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         
         SG.RefreshGroup();
     }

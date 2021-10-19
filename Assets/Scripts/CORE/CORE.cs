@@ -135,7 +135,6 @@ public class CORE : MonoBehaviour
 
         ConditionalInvokation((x) => { return SteamAPI.Init(); }, () => 
         {
-            SteamUser.AdvertiseGame(new CSteamID(), 0, 0);
 
             string connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("connect_lobby");
             if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
@@ -162,6 +161,9 @@ public class CORE : MonoBehaviour
         if(GetJoinRequestResponse == null)
             GetJoinRequestResponse = Callback<GameRichPresenceJoinRequested_t>.Create(OnGetJoinRequestResponse);
 
+        if (GetJoinLobbyRequestResponse == null)
+            GetJoinLobbyRequestResponse = Callback<GameLobbyJoinRequested_t>.Create(OnGetJoinLobbyRequestResponse);
+
         if (GetLobbyCreatedRespose == null)
             GetLobbyCreatedRespose = Callback<LobbyCreated_t>.Create(OnGetLobbyCreatedResponse); 
 
@@ -175,12 +177,24 @@ public class CORE : MonoBehaviour
     }
 
 
+    protected Callback<GameLobbyJoinRequested_t> GetJoinLobbyRequestResponse;
+    void OnGetJoinLobbyRequestResponse(GameLobbyJoinRequested_t pCallBack)
+    {
+        LogMessage("STEAM - JOIN LOBBY RESPONSE | key: " + pCallBack.m_steamIDLobby);
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Joining a friend's lobby!", Color.green, 3, true));
+
+        pendingJoinParty = pCallBack.m_steamIDLobby.ToString();
+
+        if (SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
+            CheckOOGInvitations();
+    }
+
     protected Callback<GameRichPresenceJoinRequested_t> GetJoinRequestResponse;
     string pendingJoinParty = null;
     void OnGetJoinRequestResponse(GameRichPresenceJoinRequested_t pCallBack)
     {
-        LogMessage("STEAM - JOIN LOBBY RESPONSE | key: " + pCallBack.m_rgchConnect);
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Joining a friend's group!", Color.green, 3, true));
+        LogMessage("STEAM - JOIN GAME RESPONSE | key: " + pCallBack.m_rgchConnect);
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Joining a friend's game!", Color.green, 3, true));
 
         pendingJoinParty = pCallBack.m_rgchConnect;
 
@@ -202,13 +216,13 @@ public class CORE : MonoBehaviour
         }
 
         LogMessage("STEAM - LOBBY CREATED RESPONSE | key: " + pCallBack.m_ulSteamIDLobby);
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Party Created!", Color.green, 3, true));
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Lobby Created!", Color.green, 3, true));
        
 
         JSONNode node = new JSONClass();
 
         node["steamLobbyId"] = pCallBack.m_ulSteamIDLobby.ToString();
-        SocketHandler.Instance.SendEvent("party_create", node);
+        SocketHandler.Instance.SendEvent("party_steam_lobby_id", node);
     }
 
     void OnApplicationFocus(bool focus)
@@ -725,10 +739,9 @@ public class CORE : MonoBehaviour
         if(pendingJoinParty != null)
         {
             JSONNode node = new JSONClass();
-            node["partyId"] = pendingJoinParty;
+            node["steamLobbyId"] = pendingJoinParty;
             SocketHandler.Instance.SendEvent("party_auto_join", node);
         }
-
     }
 
     public void SetJoystickMode(bool isOn)
