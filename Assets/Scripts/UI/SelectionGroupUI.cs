@@ -83,6 +83,11 @@ public class SelectionGroupUI : MonoBehaviour
                     continue;
                 }
 
+                if(selectable.GetType() == typeof(Scrollbar))
+                {
+                    continue;
+                }
+
 
                 SelectionGroupInstance instance = new SelectionGroupInstance(selectable);
                 instances.Add(instance);

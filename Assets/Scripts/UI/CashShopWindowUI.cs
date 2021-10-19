@@ -305,7 +305,10 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
             {
                 CashShopWarningWindowUI.Instance.Show("You don't have enough EQP! ("+SocketHandler.Instance.CurrentUser.info.cashPoints+"/"+SelectedProduct.CurrentItem.CashItemPrice+")",()=>
                 {
-
+                    DeselectProduct();
+                    HideDisplayActor();
+                    Animer.SetTrigger("Main");
+                    Animer.SetTrigger("MorePoints");
                 });
 
                 return;
@@ -399,6 +402,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void BuyEQP(int dealIndex = 0)
     {
+        ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+
         JSONNode node = new JSONClass();
         node["dealIndex"].AsInt = dealIndex;
         SocketHandler.Instance.SendEvent("buy_eq", node);
@@ -414,8 +419,10 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     }
     void OnMicroTxnAuthorizationResponse(MicroTxnAuthorizationResponse_t pCallback) 
     {
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
-        
+        ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Checking Transaction", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
+
         JSONNode node = new JSONClass();
         node["orderId"] = pCallback.m_ulOrderID.ToString();
         node["transactionId"] = pCallback.m_ulOrderID.ToString();

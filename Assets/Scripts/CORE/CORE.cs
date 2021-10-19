@@ -203,11 +203,8 @@ public class CORE : MonoBehaviour
     }
 
     protected Callback<LobbyCreated_t> GetLobbyCreatedRespose;
-    public bool IsWaitingForLobbyCreation;
     void OnGetLobbyCreatedResponse(LobbyCreated_t pCallBack)
     {
-        IsWaitingForLobbyCreation = false;
-
         if (pCallBack.m_ulSteamIDLobby == 0)
         {
             LogMessage("STEAM - LOBBY CREATION FAILED | " + pCallBack.m_eResult.ToString());
@@ -271,7 +268,12 @@ public class CORE : MonoBehaviour
             LogMessage("Validating Screen Ratio");
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Readjusting Screen Ratio", Color.yellow, 3f, false));
 
-            CORE.Instance.DelayedInvokation(1f, () => { GraphicSettingsHandler.Instance.ApplySelectedResolution(); });
+            CORE.Instance.DelayedInvokation(1f, () => 
+            {
+                GraphicSettingsHandler.Instance.fullScreenMode.value = (int)FullScreenMode.FullScreenWindow;
+                GraphicSettingsHandler.Instance.OnFullScreenModeChanged();
+                GraphicSettingsHandler.Instance.ApplySelectedResolution();
+            });
             //for(int i=0;i<Screen.resolutions.Length;i++)
             //{
             //    float currentRatio = ((float)Screen.resolutions[i].width / (float)Screen.resolutions[i].height);
@@ -443,6 +445,11 @@ public class CORE : MonoBehaviour
         }
     }
 
+    public static string SplitCamelCase(string input)
+    {
+        return System.Text.RegularExpressions.Regex.Replace(input, "([A-Z])", " $1", System.Text.RegularExpressions.RegexOptions.Compiled).Trim();
+    }
+
     public void SubscribeToEvent(string eventKey, UnityAction action)
     {
         if (!DynamicEvents.ContainsKey(eventKey))
@@ -479,16 +486,19 @@ public class CORE : MonoBehaviour
         DynamicEvents[eventKey].Invoke();
     }
 
-    public void DelayedInvokation(float time, Action action)
+    public Coroutine DelayedInvokation(float time, Action action)
     {
-        StartCoroutine(DelayedInvokationRoutine(time, action));
+        Coroutine routine = null;
+        routine = StartCoroutine(DelayedInvokationRoutine(time, action,routine));
+        return routine;
     }
 
-    IEnumerator DelayedInvokationRoutine(float time, Action action)
+    IEnumerator DelayedInvokationRoutine(float time, Action action,Coroutine routine = null)
     {
         yield return new WaitForSeconds(time);
 
         action.Invoke();
+        routine = null;
     }
 
     public void ConditionalInvokation(Predicate<object> condition, Action action, float interval = 1f, bool repeat = false)
@@ -798,7 +808,7 @@ public class CORE : MonoBehaviour
                 {
                     SteamFriends.SetRichPresence("steam_display", "#Status_SunsetPort_" + realmSuffix);
                 }
-                else if (SceneManager.GetActiveScene().name == "Sunset Port Tavern")
+                else if (SceneManager.GetActiveScene().name == "SunsetPortTavern")
                 {
                     SteamFriends.SetRichPresence("steam_display", "#Status_SunsetPortTavern_" + realmSuffix);
                 }

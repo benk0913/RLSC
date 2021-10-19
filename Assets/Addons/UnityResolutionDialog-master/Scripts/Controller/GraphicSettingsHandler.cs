@@ -15,7 +15,7 @@ namespace NewResolutionDialog.Scripts.Controller
         #region Fields and Stuff
         [SerializeField] Dropdown resolution;
         [SerializeField] Dropdown refreshRate;
-        [SerializeField] Dropdown fullScreenMode;
+        [SerializeField] public Dropdown fullScreenMode;
         [SerializeField] Dropdown vSync;
         [SerializeField] Text vSyncNote;
         [SerializeField] Dropdown quality;

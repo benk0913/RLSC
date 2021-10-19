@@ -130,10 +130,6 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
     public void InviteMember()
     {
-        if (CORE.Instance.IsWaitingForLobbyCreation)
-        {
-            return;
-        }
 
         if (CORE.Instance.CurrentParty == null)
         {
@@ -149,10 +145,6 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
     
     public void InviteMemberFromSteam()
     {
-        if (CORE.Instance.IsWaitingForLobbyCreation)
-        {
-            return;
-        }
 
         if (CORE.Instance.CurrentParty == null)
         {
@@ -169,16 +161,8 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
     public void CreateParty()
     {
-        if(CORE.Instance.IsWaitingForLobbyCreation)
-        {
-            return;
-        }
-
-        CORE.Instance.IsWaitingForLobbyCreation = true;
-        
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, CORE.Instance.Data.content.MaxPartyMembers);
-
-        
+        JSONNode node = new JSONClass();
+        SocketHandler.Instance.SendEvent("party_create", node);
     }
 
     public void LeaveQueue()

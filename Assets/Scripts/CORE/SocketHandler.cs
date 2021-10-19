@@ -261,6 +261,7 @@ public class SocketHandler : MonoBehaviour
         ObtainSessionTicket(OnComplete);
     }
 
+    Coroutine currentTimeoutValidation;
     void ObtainSessionTicket(Action OnComplete)
     {
         this.OnCompleteSessionTicket = OnComplete;
@@ -277,7 +278,13 @@ public class SocketHandler : MonoBehaviour
         SteamUser.GetAuthSessionTicket(SessionPTicket,SessionTicketSize, out SessionPCBTicket);
 
         //Timeout validation
-        CORE.Instance.DelayedInvokation(10f, () => 
+
+        if(currentTimeoutValidation != null)
+        {
+            StopCoroutine(currentTimeoutValidation);
+        }
+
+        currentTimeoutValidation = CORE.Instance.DelayedInvokation(10f, () => 
         {
             if(string.IsNullOrEmpty(SessionTicket))
             {
@@ -316,6 +323,12 @@ public class SocketHandler : MonoBehaviour
         TutorialIndex = "";
         SessionTicket = "";
         ServerEnvironment.Region = "";
+
+        if(currentTimeoutValidation != null)
+        {
+            StopCoroutine(currentTimeoutValidation);
+            currentTimeoutValidation = null;
+        }
 
         CORE.Instance.LoadScene("MIDLOADER",()=> 
         {
