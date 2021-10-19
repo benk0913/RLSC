@@ -865,7 +865,8 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.CloseCurrentWindow();
         ScreenFaderUI.Instance.FadeToBlack(() =>
         {
-
+            float newSceneFocusCameraX = data["x"].AsFloat;
+            float newSceneFocusCameraY = data["y"].AsFloat;
 
             CORE.Instance.LoadScene(data["scene"].Value, () =>
             {
