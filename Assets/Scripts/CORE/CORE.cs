@@ -782,6 +782,34 @@ public class CORE : MonoBehaviour
         }
     }
 
+    public void UpdateSteamStatus()
+    {
+        if(SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            SteamFriends.SetRichPresence("steam_display", "#Status_AtMainMenu");
+        }
+        else
+        {
+            if (SocketHandler.Instance.SelectedRealmIndex != -1)
+            {
+                string realmSuffix = Data.content.Realms[SocketHandler.Instance.SelectedRealmIndex].Name;
+
+                if (SceneManager.GetActiveScene().name == "Sunset Port")
+                {
+                    SteamFriends.SetRichPresence("steam_display", "#Status_SunsetPort_" + realmSuffix);
+                }
+                else if (SceneManager.GetActiveScene().name == "Sunset Port Tavern")
+                {
+                    SteamFriends.SetRichPresence("steam_display", "#Status_SunsetPortTavern_" + realmSuffix);
+                }
+                else if (Data.content.Expeditions.Find(X => X.Floors.Find(f => f.PossibleChambers.Find(c => c == SceneManager.GetActiveScene().name) != null) != null) != null) // Is there an expedition with that scene?
+                {
+                    SteamFriends.SetRichPresence("steam_display", "#Status_Expedition_" + realmSuffix);
+                }
+            }
+        }
+    }
+
     #region Screen Effects
 
     public class ScreenEffectQueInstance

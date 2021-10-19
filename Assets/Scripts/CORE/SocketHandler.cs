@@ -872,6 +872,7 @@ public class SocketHandler : MonoBehaviour
 
             CORE.Instance.LoadScene(data["scene"].Value, () =>
             {
+                CORE.Instance.UpdateSteamStatus();
 
                 SendEvent("scene_loaded");
                 CORE.Instance.IsLoading = false;
