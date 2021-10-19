@@ -240,7 +240,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
             return;//Required so RefreshLooks wont wipe the emote...
         }
 
-        if(itemInstance.Data.Type.name == "Consume")
+        if(itemInstance.Data.Type.name == "Consume" || itemInstance.Data.Type.name == "Use")
         {
             CORE.Instance.ActivateParams(itemInstance.Data.OnUseParams,DisplayActor.AttachedCharacter);
             // return;//Required so RefreshLooks wont wipe the consumable...

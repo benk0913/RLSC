@@ -119,6 +119,8 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("cash_refresh", OnCashRefresh));
         SocketEventListeners.Add(new SocketEventListener("actor_change_looks", OnActorChangeLooks));
         SocketEventListeners.Add(new SocketEventListener("user_char_slots", OnUserCharSlots));
+        SocketEventListeners.Add(new SocketEventListener("actor_change_name_prompt", OnActorChangeNamePrompt));
+        SocketEventListeners.Add(new SocketEventListener("actor_change_name", OnActorChangeName));
 
         // Rolls
         SocketEventListeners.Add(new SocketEventListener("choose_item_roll", OnChooseItemRoll));
@@ -1587,6 +1589,35 @@ public class SocketHandler : MonoBehaviour
 
         actorDat.looks = newActorLooks;
         actorDat.ActorEntity.RefreshLooks();
+    }
+
+    public void OnActorChangeNamePrompt(string eventName, JSONNode data)
+    {
+        InputLabelWindow.Instance.Show("Change Name", "New name", (string newName) => 
+        {
+            JSONClass node = new JSONClass();
+
+            node["name"] = newName;
+            
+            SocketHandler.Instance.SendEvent("changed_name",node);
+        });
+    }
+
+    public void OnActorChangeName(string eventName, JSONNode data)
+    {
+        string actorId = data["actorId"].Value;
+
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+        string newName = data["name"].Value;
+        
+        actorDat.name = newName;
+        actorDat.ActorEntity.RefreshName();
+        CORE.Instance.InvokeEvent("StatsChanged");
     }
 
     public void OnChooseItemRoll(string eventName, JSONNode data)
