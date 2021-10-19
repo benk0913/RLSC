@@ -130,20 +130,21 @@ public class CORE : MonoBehaviour
 
         SteamAPI.Init();
 
-        //string launchCommandLine = "";
-        //SteamApps.GetLaunchCommandLine(out launchCommandLine,1024);
 
-        ConditionalInvokation((x) => { return SteamAPI.Init(); }, () => 
+        ConditionalInvokation((x) => { return SteamAPI.Init() && WarningWindowUI.Instance != null; }, () => 
         {
-
-            string connectLobbyUniqueKey = SteamApps.GetLaunchQueryParam("connect_lobby");
+            
+            string connectLobbyUniqueKey = "";
+            int cmnd = SteamApps.GetLaunchCommandLine(out connectLobbyUniqueKey, 260);
+            WarningWindowUI.Instance.Show("TEST " + connectLobbyUniqueKey + " | " + cmnd, () => { 
             if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
             {
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!"+ connectLobbyUniqueKey, Color.yellow, 1, true));
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!"+ connectLobbyUniqueKey+" | " + cmnd, Color.yellow, 1, false));
                 Debug.LogError("1 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
 
                 pendingJoinParty = connectLobbyUniqueKey;
             }
+            });
 
             //TODO ONLY FOR TEST, REMOVE LATER
             //string[] args = Environment.GetCommandLineArgs();
