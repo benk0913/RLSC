@@ -60,18 +60,32 @@ public class TimePhaseEntity : MonoBehaviour
 
     public void RefreshState()
     {
-        if(DefaultHandler && DefaultSun != null)
+        if (CORE.Instance.GameStates["phase"] == "Day")
+        {
+            ScreenFaderUI.Instance.FadeFromBlack(null, Color.white);
+        }
+        else if (CORE.Instance.GameStates["phase"] == "Night")
+        {
+            ScreenFaderUI.Instance.FadeFromBlack(null);
+        }        
+
+        if (DefaultHandler && DefaultSun != null)
         {
             if (CORE.Instance.GameStates.ContainsKey("phase"))
             {
-                if (CORE.Instance.GameStates["phase"] == "Day")
-                {
-                    DefaultSun.color = DefaultSunColor;
-                }
-                else if (CORE.Instance.GameStates["phase"] == "Night")
-                {
-                    DefaultSun.color = DefaultNightSunColor;
-                }
+
+
+                    if (CORE.Instance.GameStates["phase"] == "Day")
+                    {
+                        DefaultSun.color = DefaultSunColor;
+                    }
+                    else if (CORE.Instance.GameStates["phase"] == "Night")
+                    {
+                        DefaultSun.color = DefaultNightSunColor;
+                    }
+                    
+                   
+
             }
             else
             {
@@ -92,6 +106,8 @@ public class TimePhaseEntity : MonoBehaviour
         }
 
         scenario.OnPhase?.Invoke();
+
+  
     }
 }
 

@@ -12,6 +12,9 @@ public class DisplayEXPEntityUI : MonoBehaviour
     Image FillImage;
 
     [SerializeField]
+    Image ConstantFillImage;
+
+    [SerializeField]
     TextMeshProUGUI ExpValueText;
 
     [SerializeField]
@@ -42,6 +45,8 @@ public class DisplayEXPEntityUI : MonoBehaviour
 
         ExpValueText.text = Mathf.RoundToInt(expPercent * 100f) + "%";
         FillImage.fillAmount = expPercent;
+
+        ConstantFillImage.fillAmount = expPercent;
     }
 
     private int getLvlExpSnapshot()
@@ -110,11 +115,13 @@ public class DisplayEXPEntityUI : MonoBehaviour
             while(FillImage.fillAmount < 1f)
             {
                 FillImage.fillAmount += Time.deltaTime;
+                ConstantFillImage.fillAmount += Time.deltaTime;
                 yield return 0;
             }
 
             CurrentExp = 0;
             FillImage.fillAmount = 0f;
+            ConstantFillImage.fillAmount = 0f;
             ExpValueText.text = 0 +"%";
         }
         GainEXPText.text = "+" + (instance.CurrentEXP - CurrentExp);
@@ -132,6 +139,7 @@ public class DisplayEXPEntityUI : MonoBehaviour
             ExpValueText.text = Mathf.RoundToInt(Mathf.Min(100f, ((float)CurrentExp /(float)instance.LevelEXPSnapshot)*100f))+"%";
 
             FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, ((float)CurrentExp /(float)instance.LevelEXPSnapshot), t);
+            ConstantFillImage.fillAmount = FillImage.fillAmount;
 
             yield return 0;
         }

@@ -22,6 +22,9 @@ public class TextBubbleUI : MonoBehaviour
     [SerializeField]
     Image ChatBubbleImage;
 
+    [SerializeField]
+    VerticalLayoutGroup VerticalGroup;
+
 
     Transform CurrentAnchor;
 
@@ -104,6 +107,13 @@ public class TextBubbleUI : MonoBehaviour
 
 
             yield return new WaitForSeconds(0.025f);
+        }
+
+        if (ContentText.text.Length < 5)
+        {
+            VerticalGroup.enabled = false;
+            yield return 0;
+            VerticalGroup.enabled = true;
         }
 
         yield return new WaitForSeconds(2f + (message.Length * DELAY_PER_LETTER));

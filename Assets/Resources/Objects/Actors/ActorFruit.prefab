@@ -803,6 +803,7 @@ MonoBehaviour:
   - {fileID: -6673239203366972142, guid: c44cbf79e47371f4fa3667a7d6a6e9b8, type: 3}
   - {fileID: -3113338210459287708, guid: c44cbf79e47371f4fa3667a7d6a6e9b8, type: 3}
   Renderer: {fileID: 6080848259858808168}
+  AdjustScale: 1
   targetHeight: 1
 --- !u!1 &6226643659386252259
 GameObject:
@@ -990,12 +991,15 @@ MonoBehaviour:
   State:
     Data:
       actorId: 
-      scene: 
       x: 0
       y: 0
+      movementDirection: 0
       faceRight: 0
       name: 
       classJob: 
+      steamID: 0
+      alignmentGood: 0
+      karma: 0
       actorType: 
       prefab: 
       hp: 0
@@ -1011,27 +1015,48 @@ MonoBehaviour:
         HairColor: 
         Iris: 
       items: []
+      money: 0
       exp: 0
       level: 0
+      orbs: []
       attributes:
         Power: 0
         HP: 0
         Defense: 0
+        Block: 0
         CDReduction: 0
         CTReduction: 0
         Lifesteal: 0
-        CriticalChance: 0
         LongRangeMultiplier: 0
         ShortRangeMultiplier: 0
         WildMagicChance: 0
-        SingleTargetDamage: 0
-        AOEDamage: 0
         SpellDuration: 0
         AntiDebuff: 0
-        KnockbackResistance: 0
-        SmallerColliderSize: 0
         Threat: 0
         MovementSpeed: 0
+        JumpHeight: 0
+        DoubleCast: 0
+        Explode: 0
+        HpRegen: 0
+      computedAttributes:
+        Power: 0
+        HP: 0
+        Defense: 0
+        Block: 0
+        CDReduction: 0
+        CTReduction: 0
+        Lifesteal: 0
+        LongRangeMultiplier: 0
+        ShortRangeMultiplier: 0
+        WildMagicChance: 0
+        SpellDuration: 0
+        AntiDebuff: 0
+        Threat: 0
+        MovementSpeed: 0
+        JumpHeight: 0
+        DoubleCast: 0
+        Explode: 0
+        HpRegen: 0
       abilities: []
       ActorEntity: {fileID: 0}
       OnRefreshStates:
@@ -1045,6 +1070,7 @@ MonoBehaviour:
     IsPreparingAbility: 0
     PreparingAbilityCurrent: {fileID: 0}
     PreparingAbiityColliderObject: {fileID: 0}
+    ExecutingAbilityCollider: {fileID: 0}
     OnInterrupt:
       m_PersistentCalls:
         m_Calls: []
@@ -1062,15 +1088,23 @@ MonoBehaviour:
   Collider: {fileID: 1551737044}
   PassiveHitCollider: {fileID: 5445536399483497394}
   PlayerHalo: {fileID: 0}
+  NamePanel: {fileID: 0}
+  TooltipTarget: {fileID: 0}
+  IsDisplayActor: 0
   IsGrounded: 0
   CurrentGround: {fileID: 0}
+  Ghost: {fileID: 0}
   IsFlying: 0
   IsAttached: 0
   IsDead: 0
+  IsHarmless: 1
+  InParty: 0
   ClientMovingTowardsDir: 0
   GroundCheckDistance: 10
   GroundedDistance: 1
+  JumpCooldown: 0.5
   VelocityMinimumThreshold: 0.1
+  KnockbackAmount: 4
   LastAbility: {fileID: 0}
   JumpHeight: 20
   InterpolationSpeed: 25
@@ -1106,8 +1140,15 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  NoticeDistance: 0
+  Asleep: 1
+  DontInitiateSpells: 0
   ChaseDistance: 1
   FleeDistance: 10
+  HasTargetingLine: 0
+  IsJumping: 0
+  PatrolTargetArea: 0
+  PatrolElapseSpeed: 1
   FaceRenderer: {fileID: 1746519202790392636}
   IsTouched: 0
 --- !u!251 &5903810546018509834

@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &22220846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 22220848}
+  - component: {fileID: 22220847}
+  m_Layer: 0
+  m_Name: SPAWNER (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &22220847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22220846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobKey: ActorShellCrab
+  PlayersSpawner: 0
+  RespawnSeconds: 0
+  IrellevantMob: 0
+--- !u!4 &22220848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22220846}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39.4, y: -14.8, z: -648.6786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &33837555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2932,7 +2979,6 @@ MonoBehaviour:
   DefaultSun: {fileID: 0}
   DefaultSunColor: {r: 0, g: 0, b: 0, a: 0}
   DefaultNightSunColor: {r: 0.24705882, g: 0.26666668, b: 0.7294118, a: 1}
-  ListenToEvent: 0
 --- !u!4 &1098451936
 Transform:
   m_ObjectHideFlags: 0
@@ -6116,7 +6162,6 @@ MonoBehaviour:
   DefaultSun: {fileID: 0}
   DefaultSunColor: {r: 0, g: 0, b: 0, a: 0}
   DefaultNightSunColor: {r: 0.24705882, g: 0.26666668, b: 0.7294118, a: 1}
-  ListenToEvent: 0
 --- !u!1 &1995409137
 GameObject:
   m_ObjectHideFlags: 0

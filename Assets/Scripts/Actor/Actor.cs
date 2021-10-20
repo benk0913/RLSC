@@ -96,6 +96,8 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public bool disableGlide;
+
     public bool IsAttached;
 
     public bool IsCharmed
@@ -131,6 +133,8 @@ public class Actor : MonoBehaviour
     }
 
     public bool IsDead;
+
+    public bool isJumpingDown;
 
     public bool IsHarmless;
     public bool InParty;
@@ -349,9 +353,16 @@ public class Actor : MonoBehaviour
 
         if(IsGliding)
         {
-            if(Rigid.velocity.y < 0)
+            if(Rigid.velocity.y < 0 && !isJumpingDown )
             {
-                Rigid.velocity += Vector2.up/2f;//Compensate a little...
+                if (disableGlide)
+                {
+                    disableGlide = false;
+                }
+                else
+                {
+                    Rigid.velocity += Vector2.up / 2f;//Compensate a little...
+                }
             }
         }
         
@@ -575,6 +586,11 @@ public class Actor : MonoBehaviour
             GameObject colliderObj = AddColliderOnPosition(ability.Colliders.PrepareAbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
             State.PreparingAbiityColliderObject = colliderObj;
+        }
+
+        if(CORE.PlayerActor == this.State.Data)
+        {
+            ActorAbilitiesPanelUI.Instance.StartCasting(ability.CastingTime);
         }
     }
 
@@ -1436,6 +1452,7 @@ public class Actor : MonoBehaviour
 
     public void AttemptMoveDown()
     {
+        disableGlide = true;
         if (!CanAttemptToMove)
         {
             return;
@@ -1509,7 +1526,9 @@ public class Actor : MonoBehaviour
     private IEnumerator JumpDown(Collider2D Ground)
     {
         Physics2D.IgnoreCollision(Ground, Collider, true);
+        isJumpingDown = true;
         yield return new WaitForSeconds(0.5f);
+        isJumpingDown = false;
         Physics2D.IgnoreCollision(Ground, Collider, false);
     }
 
@@ -1812,6 +1831,11 @@ public class ActorState
 
             GameObject colliderObj = Data.ActorEntity.AddColliderOnPosition("InterruptAbilityCollider");
             colliderObj.GetComponent<AbilityCollider>().SetInfo(null, Data.ActorEntity);
+
+            if (CORE.PlayerActor == this.Data)
+            {
+                ActorAbilitiesPanelUI.Instance.StopCasting();
+            }
         }
 
         if(ExecutingAbilityCollider != null && ExecutingAbilityCollider.RemoveOnInterrupt)

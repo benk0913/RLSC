@@ -47,7 +47,7 @@ public class LootRollItemUI : MonoBehaviour
         {
             for (int i = 0; i < LootRollPanelUI.Instance.transform.childCount; i++)
             {
-                if (LootRollPanelUI.Instance.transform.GetChild(i).gameObject.activeInHierarchy)
+                if (LootRollPanelUI.Instance.transform.GetChild(i).gameObject.activeInHierarchy && !LootRollPanelUI.Instance.transform.GetChild(i).GetComponent<LootRollItemUI>().LockedPanel.activeInHierarchy)
                 {
                     if (LootRollPanelUI.Instance.transform.GetChild(i).gameObject == this.gameObject)
                         return true;
@@ -107,7 +107,8 @@ public class LootRollItemUI : MonoBehaviour
             yield return 0;
         }
 
-        Decline();
+        if(!LockedPanel.gameObject.activeInHierarchy)
+            Decline();
 
         TimerRoutineInstance = null;
     }

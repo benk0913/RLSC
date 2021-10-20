@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SettingsMenuUI : MonoBehaviour, WindowInterface
@@ -16,11 +17,60 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
     public GameObject KeyboardBindings;
     public GameObject ControllerBindings;
 
+    public bool PPVignette;
+    public bool PPBloom;
+    public bool PPMotionBlur;
+    public bool PPProjection;
+
+    public GameObject PPVignetteCheckmark;
+    public GameObject PPBloomCheckmark;
+    public GameObject PPMotionBlurCheckmark;
+    public GameObject PPProjectionCheckmark;
+
+    public VolumeProfile GlobalPostProccessProfile;
 
     void Awake()
     {
         Instance = this;
         Hide();
+    }
+
+    void Start()
+    {
+        PPVignette = PlayerPrefs.GetInt("PPVignette", 1) == 1 ? true : false;
+        PPBloom = PlayerPrefs.GetInt("PPBloom", 1) == 1 ? true : false;
+        PPMotionBlur = PlayerPrefs.GetInt("PPMotionBlur", 1) == 1 ? true : false;
+        PPProjection = PlayerPrefs.GetInt("PPProjection", 1) == 1 ? true : false;
+
+        PPMotionBlurCheckmark.SetActive(PPMotionBlur);
+        PPVignetteCheckmark.SetActive(PPVignette);
+        PPBloomCheckmark.SetActive(PPBloom);
+        PPProjectionCheckmark.SetActive(PPProjection);
+
+        VolumeComponent vc = GlobalPostProccessProfile.components.Find(x => x.name == "Vignette");
+        if (vc != null)
+        {
+            vc.active = PPVignette;
+        }
+
+        vc = GlobalPostProccessProfile.components.Find(x => x.name == "Bloom");
+        if (vc != null)
+        {
+            vc.active = PPBloom;
+        }
+
+        vc = GlobalPostProccessProfile.components.Find(x => x.name == "PaniniProjection");
+        if (vc != null)
+        {
+            vc.active = PPProjection;
+        }
+
+        vc = GlobalPostProccessProfile.components.Find(x => x.name == "MotionBlur");
+        if (vc != null)
+        {
+            vc.active = PPMotionBlur;
+        }
+
     }
 
     public void Hide()
@@ -90,6 +140,74 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
           {
                 Show(null, null);
             });
+        }
+    }
+
+    public void ToggleVignette()
+    {
+        PPVignette = !PPVignette;
+
+        PPVignetteCheckmark.SetActive(PPVignette);
+
+        PlayerPrefs.SetInt("PPVignette", PPVignette ? 1 : 0);
+        PlayerPrefs.Save();
+
+        VolumeComponent vc = GlobalPostProccessProfile.components.Find(x => x.name == "Vignette");
+
+        if(vc != null)
+        {
+            vc.active = PPVignette;
+        }
+    }
+
+    public void ToggleBloom()
+    {
+        PPBloom = !PPBloom;
+
+        PPBloomCheckmark.SetActive(PPBloom);
+
+        PlayerPrefs.SetInt("PPBloom", PPBloom ? 1 : 0);
+        PlayerPrefs.Save();
+
+        VolumeComponent vc = GlobalPostProccessProfile.components.Find(x => x.name == "Bloom");
+
+        if (vc != null)
+        {
+            vc.active = PPBloom;
+        }
+    }
+
+    public void TogglePaniniProjection()
+    {
+        PPProjection = !PPProjection;
+
+        PPProjectionCheckmark.SetActive(PPProjection);
+
+        PlayerPrefs.SetInt("PPProjection", PPProjection ? 1 : 0);
+        PlayerPrefs.Save();
+
+        VolumeComponent vc = GlobalPostProccessProfile.components.Find(x => x.name == "PaniniProjection");
+
+        if (vc != null)
+        {
+            vc.active = PPProjection;
+        }
+    }
+
+    public void ToggleMotionBlur()
+    {
+        PPMotionBlur = !PPMotionBlur;
+
+        PPMotionBlurCheckmark.SetActive(PPMotionBlur);
+
+        PlayerPrefs.SetInt("PPMotionBlur", PPMotionBlur ? 1 : 0);
+        PlayerPrefs.Save();
+
+        VolumeComponent vc = GlobalPostProccessProfile.components.Find(x => x.name == "MotionBlur");
+
+        if (vc != null)
+        {
+            vc.active = PPMotionBlur;
         }
     }
 

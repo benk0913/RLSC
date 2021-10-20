@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActorAbilitiesPanelUI : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
 
     [SerializeField]
     Transform abilitiesContainer;
+
+    [SerializeField]
+    Image CastFillBar;
+
 
     private void Awake()
     {
@@ -49,5 +54,43 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
             slot.transform.position = Vector3.zero;
             slot.SetAbilityState(abilityState,InputMap.Map["Ability"+i].ToString());
         }
+    }
+
+    public void StartCasting(float time)
+    {
+        if(StartCastingRoutineInstance != null)
+        {
+            StopCoroutine(StartCastingRoutineInstance);
+        }
+
+        StartCastingRoutineInstance = StartCoroutine(StartCastingRoutine(time));
+    }
+
+    public void StopCasting()
+    {
+        if (StartCastingRoutineInstance != null)
+        {
+            StopCoroutine(StartCastingRoutineInstance);
+        }
+
+        CastFillBar.fillAmount = 0f;
+
+        StartCastingRoutineInstance = null;
+    }
+
+    Coroutine StartCastingRoutineInstance;
+    IEnumerator StartCastingRoutine(float castingTime)
+    {
+        float startValue = castingTime;
+        while(castingTime > 0f)
+        {
+            CastFillBar.fillAmount = 1f-(castingTime / startValue);
+            castingTime -= Time.deltaTime;
+
+            yield return 0;
+        }
+
+        CastFillBar.fillAmount = 0f;
+        StartCastingRoutineInstance = null;
     }
 }

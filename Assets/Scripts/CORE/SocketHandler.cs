@@ -861,7 +861,10 @@ public class SocketHandler : MonoBehaviour
                 CORE.Instance.NextScenePrediction = (string)data["nextScenePrediction"];
                 CORE.Instance.InvokeEvent("PredictionUpdate");
 
-                Camera.main.transform.position = new Vector3(newSceneFocusCameraX, newSceneFocusCameraY, Camera.main.transform.position.z);
+                if (CameraChaseEntity.Instance != null && CameraChaseEntity.Instance.Speed > 0)
+                {
+                    CameraChaseEntity.Instance.transform.position = new Vector3(newSceneFocusCameraX, newSceneFocusCameraY, Camera.main.transform.position.z);
+                }
 
                 CORE.Instance.RefreshSceneInfo();
 
@@ -1077,6 +1080,14 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.SendEvent("dropped_item", node);
     }
 
+    public void SendDroppedEquip(string equipType)
+    {
+        JSONNode node = new JSONClass();
+        node["equipType"] = equipType;
+
+        SocketHandler.Instance.SendEvent("dropped_equip", node);
+    }
+
     public void SendUsedItem(int slotIndex, bool isCash)
     {
         JSONNode node = new JSONClass();
@@ -1130,6 +1141,11 @@ public class SocketHandler : MonoBehaviour
 
     protected void OnBitchPlease(string eventName, JSONNode data)
     {
+        if(CORE.Instance.NEVER_BITCH)
+        {
+            return;
+        }
+
         SendEvent("bitch_please", data);
     }
 

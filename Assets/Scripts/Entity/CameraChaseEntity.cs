@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class CameraChaseEntity : MonoBehaviour
@@ -33,7 +34,9 @@ public class CameraChaseEntity : MonoBehaviour
     FocusInstance CurrentFocus;
 
     Coroutine FocusRoutineInstance;
-    
+
+    Volume PostProccessHandler;
+
 
     private void Awake()
     {
@@ -43,6 +46,8 @@ public class CameraChaseEntity : MonoBehaviour
     private void Start()
     {
         CurrentCam = GetComponent<Camera>();
+        PostProccessHandler = GetComponent<Volume>();
+        PostProccessHandler.sharedProfile.components.Find(x => x.name == "Bloom");
         DefaultSize = CurrentCam.orthographicSize;
     }
 

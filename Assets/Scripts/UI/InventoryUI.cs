@@ -517,8 +517,14 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         AudioControl.Instance.Play(DeselectSound);
     }
 
+    Coroutine dropRoutine;
     public void AttemptDrop()
     {
+        if (dropRoutine != null)
+        {
+            return;
+        }
+
         if (SelectedSlot == null || SelectedSlot.CurrentItem == null)
         {
             return;
@@ -526,7 +532,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (SelectedSlot.IsEquipmentSlot)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("First unequip the item and only then, you may drop it.", Colors.AsColor(Colors.COLOR_BAD)));
+            SocketHandler.Instance.SendDroppedItem(SelectedSlot.transform.GetSiblingIndex());
+
             return;
         }
 

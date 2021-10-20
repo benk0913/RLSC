@@ -3,6 +3,7 @@ using EdgeworldBase;
 using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class AbilitiesUI : MonoBehaviour, WindowInterface
 {

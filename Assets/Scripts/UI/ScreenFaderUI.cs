@@ -24,8 +24,13 @@ public class ScreenFaderUI : MonoBehaviour
         Instance = this;
     }
 
-    public void FadeToBlack(Action onFade = null)
+    public void FadeToBlack(Action onFade = null, Color toCOlor = default)
     {
+        if (toCOlor == default)
+            toCOlor = Color.black;
+
+        FadeIMG.color = new Color(toCOlor.r, toCOlor.g, toCOlor.b,0f);
+
         OnFade = onFade;
 
         isFaded = true;
@@ -38,8 +43,13 @@ public class ScreenFaderUI : MonoBehaviour
         InterpolateRoutineInstance = StartCoroutine(InterpolateRoutine());
     }
 
-    public void FadeFromBlack(Action onClear = null)
+    public void FadeFromBlack(Action onClear = null, Color fromColor = default)
     {
+        if (fromColor == default)
+            fromColor = Color.black;
+
+        FadeIMG.color = fromColor;
+
         OnClear = onClear;
 
         isFaded = false;

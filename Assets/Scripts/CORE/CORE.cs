@@ -38,12 +38,14 @@ public class CORE : MonoBehaviour
     public PartyData CurrentParty;
 
     public Dictionary<string, string> GameStates = new Dictionary<string, string>();
-
+    
     public bool DEBUG = false;
 
     public bool DEBUG_SPAMMY_EVENTS = false;
 
     public Dictionary<string, UnityEvent> DynamicEvents = new Dictionary<string, UnityEvent>();
+
+    public bool NEVER_BITCH = false;
 
     public bool IsBitch;
     public bool InGame = false;
@@ -136,7 +138,8 @@ public class CORE : MonoBehaviour
             
             string connectLobbyUniqueKey = "";
             int cmnd = SteamApps.GetLaunchCommandLine(out connectLobbyUniqueKey, 260);
-            WarningWindowUI.Instance.Show("TEST " + connectLobbyUniqueKey + " | " + cmnd, () => { 
+            
+            //WarningWindowUI.Instance.Show("TEST " + connectLobbyUniqueKey + " | " + cmnd, () => { 
             if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
             {
                 TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!"+ connectLobbyUniqueKey+" | " + cmnd, Color.yellow, 1, false));
@@ -144,7 +147,7 @@ public class CORE : MonoBehaviour
 
                 pendingJoinParty = connectLobbyUniqueKey;
             }
-            });
+            //});
 
             //TODO ONLY FOR TEST, REMOVE LATER
             //string[] args = Environment.GetCommandLineArgs();
@@ -168,7 +171,7 @@ public class CORE : MonoBehaviour
         if (GetLobbyCreatedRespose == null)
             GetLobbyCreatedRespose = Callback<LobbyCreated_t>.Create(OnGetLobbyCreatedResponse); 
 
-        //Application.targetFrameRate = 60;
+        Application.targetFrameRate = 60;
 
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
@@ -311,10 +314,14 @@ public class CORE : MonoBehaviour
             //     }
             // }
 
+
             CORE.Instance.ShowScreenEffect("ScreenEffectLocation", ActiveSceneInfo.displyName);
 
             CurrentTimePhase = GameStates["phase"];
             RefreshSceneInfo();
+
+
+
         }
     }
 
