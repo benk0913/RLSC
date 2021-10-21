@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: 
     ExecuteAbilitySound: Ghostposses_Execute
     HitAbilitySound: 
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -34,11 +35,14 @@ MonoBehaviour:
   CastingTime: 3
   TargetCap: 1
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 2
-    Value: Ghostial Charm Trap
+    Value: Ghost Charm Trap
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams: []
   OnMissParams: []

@@ -561,6 +561,12 @@ public class Actor : MonoBehaviour
         }
         else
         {
+            if(!IsClientControl && State.IsPreparingAbility && State.Data.movementDirection != 0) //Prevent getting stuck in anim...
+            {
+                State.IsPreparingAbility = false;
+                Animer.SetTrigger("Break Cast");
+            }
+
             Rigid.position = Vector3.Lerp(Rigid.position, targetPosition, Time.deltaTime * InterpolationSpeed);
         }
 
@@ -1389,6 +1395,11 @@ public class Actor : MonoBehaviour
     {
         if(!AttemptLookLeft())
         {
+            if (!IsClientControl && State.IsPreparingAbility)
+            {
+
+            }
+
             return;
         }
 

@@ -135,31 +135,25 @@ public class CORE : MonoBehaviour
 
         ConditionalInvokation((x) => { return SteamAPI.Init() && WarningWindowUI.Instance != null; }, () => 
         {
-            
-            string connectLobbyUniqueKey = "";
-            int cmnd = SteamApps.GetLaunchCommandLine(out connectLobbyUniqueKey, 260);
-            
-            //WarningWindowUI.Instance.Show("TEST " + connectLobbyUniqueKey + " | " + cmnd, () => { 
-            if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
-            {
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!"+ connectLobbyUniqueKey+" | " + cmnd, Color.yellow, 1, false));
-                Debug.LogError("1 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
-
-                pendingJoinParty = connectLobbyUniqueKey;
-            }
-            //});
-
-            //TODO ONLY FOR TEST, REMOVE LATER
-            //string[] args = Environment.GetCommandLineArgs();
-            //string input = "";
-            //for (int i = 0; i < args.Length; i++)
+            //TODO - This is an old method, might aswell remove this section entirely
+            //string connectLobbyUniqueKey = "";
+            //int cmnd = SteamApps.GetLaunchCommandLine(out connectLobbyUniqueKey, 260);
+            //if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
             //{
-            //    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(("ARG " + i + ": " + args[i]), Color.yellow, 3f, false));
-            //    if (args[i] == "-folderInput")
-            //    {
-            //        input = args[i + 1];
-            //    }
+            //    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!"+ connectLobbyUniqueKey+" | " + cmnd, Color.yellow, 1, false));
+            //    Debug.LogError("1 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
+
+            //    pendingJoinParty = connectLobbyUniqueKey;
             //}
+            
+            string[] args = Environment.GetCommandLineArgs();
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (args[i].Contains("connect_lobby"))
+                {
+                    pendingJoinParty = args[i + 1];
+                }
+            }
         });
 
         if(GetJoinRequestResponse == null)
