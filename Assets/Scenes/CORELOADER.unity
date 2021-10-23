@@ -15485,6 +15485,7 @@ GameObject:
   - component: {fileID: 372977069}
   - component: {fileID: 372977071}
   - component: {fileID: 372977070}
+  - component: {fileID: 372977072}
   m_Layer: 5
   m_Name: MapWindow
   m_TagString: Untagged
@@ -15551,6 +15552,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372977068}
   m_CullTransparentMesh: 0
+--- !u!114 &372977072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372977068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7675e5bd799abdd45a352134f040b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsOpen: 0
+  OpenSound: MenuOpen
+  HideSound: MenuOpen
 --- !u!1 &383100884
 GameObject:
   m_ObjectHideFlags: 0
@@ -50522,7 +50538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 95, y: 0}
   m_SizeDelta: {x: 190, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068534205
