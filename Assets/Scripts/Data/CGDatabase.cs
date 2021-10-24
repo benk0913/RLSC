@@ -221,6 +221,12 @@ public class SceneInfo
 
     [JsonIgnore]
     public Sprite PredictionImage;
+
+    [JsonIgnore]
+    public string Map;
+
+    [JsonIgnore]
+    public string MapPoint;
 }
 
 [Serializable]
