@@ -1,3 +1,4 @@
+using I2.Loc;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     Dropdown RegionDropdown;
+
+    [SerializeField]
+    Dropdown LanguageDropdown;
 
     public GameObject KeyboardBindings;
     public GameObject ControllerBindings;
@@ -100,6 +104,42 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
             currentOption = RegionDropdown.options[0];
         }
         RegionDropdown.SetValueWithoutNotify(RegionDropdown.options.IndexOf(currentOption));
+
+
+        LanguageDropdown.ClearOptions();
+        List<Dropdown.OptionData> langOptions = new List<Dropdown.OptionData>();
+        foreach (string lang in CORE.Instance.Data.Localizator.mSource.GetLanguages())
+        {
+            langOptions.Add(new Dropdown.OptionData(lang));
+        }
+        LanguageDropdown.AddOptions(langOptions);
+
+        Dropdown.OptionData langCurrentOption = RegionDropdown.options.Find(x => x.text == LocalizationManager.CurrentLanguage);
+        if (langCurrentOption == null)
+        {
+            langCurrentOption = RegionDropdown.options[0];
+        }
+
+        LanguageDropdown.SetValueWithoutNotify(LanguageDropdown.options.IndexOf(langCurrentOption));
+
+    }
+
+    public void OnLanguageChanged(int optionIndex)
+    {
+        string language = PlayerPrefs.GetString("language");
+
+        string newLanguage = LanguageDropdown.options[optionIndex].text;
+
+        if (language == newLanguage)
+        {
+            return;
+        }
+
+
+        PlayerPrefs.SetString("language", newLanguage);
+        PlayerPrefs.Save();
+
+        LocalizationManager.CurrentLanguage = newLanguage;
     }
 
     public void OnRegionChanged(int optionIndex)

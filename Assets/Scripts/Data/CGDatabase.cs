@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using I2.Loc;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +29,9 @@ public class CGDatabase : ScriptableObject
 
     [JsonIgnore]
     public Sprite ErrorIcon;
+
+    [JsonIgnore]
+    public LanguageSourceAsset Localizator;
 }
 
 [Serializable]

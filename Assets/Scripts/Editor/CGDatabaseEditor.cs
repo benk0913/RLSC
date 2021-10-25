@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 using UnityEngine.Networking;
 using System.Text;
 using UnityEditor.SceneManagement;
+using System.Collections.Generic;
+using I2.Loc;
+using System.Linq;
 
 [CustomEditor(typeof(CGDatabase))]
 public class CGDatabaseEditor : Editor
@@ -50,6 +53,31 @@ public class CGDatabaseEditor : Editor
         
          if (GUILayout.Button("CUSTOM SCRIPT"))
         {
+            Debug.Log(InputMap.Map.Keys.Count);
+            List<string> terms = db.Localizator.mSource.GetTermsList();
+            List<string> newTerms = new List<string>();
+            for(int i=0;i<InputMap.Map.Keys.Count;i++)
+            {
+                string key = InputMap.Map.Keys.ElementAt(i);
+                Debug.Log(key);
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+
+                if (!terms.Contains(InputMap.Map[key].ToString()) && !newTerms.Contains(InputMap.Map[key].ToString()))
+                {
+                    newTerms.Add(InputMap.Map[key].ToString());
+                }
+            }
+
+            foreach (string newTerm in newTerms)
+            {
+                db.Localizator.mSource.AddTerm(newTerm, eTermType.Text, true);
+            }
+
+            
+            EditorUtility.SetDirty(db.Localizator);
             //ADD CUSTOM DROPS
             // ClassJob[] jobs = db.content.Classes.FindAll(x=>x.DropsOnDeath.Count > 0).ToArray();
             // foreach(ClassJob job in jobs)
@@ -88,12 +116,14 @@ public class CGDatabaseEditor : Editor
             //     EditorUtility.SetDirty(item);
             // }
 
-            string bigString = "";
-            foreach(Ability ability in db.content.Abilities)
-            {
-                bigString += System.Environment.NewLine + ability.name + " | " + ability.Description; 
-            }
-            Debug.Log(bigString);
+            //string bigString = "";
+            //foreach(Ability ability in db.content.Abilities)
+            //{
+            //    bigString += System.Environment.NewLine + ability.name + " | " + ability.Description; 
+            //}
+            //Debug.Log(bigString);
+
+
         }
         
         

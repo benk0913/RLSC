@@ -1,4 +1,5 @@
 ﻿using EdgeworldBase;
+using I2.Loc;
 using NewResolutionDialog.Scripts.Controller;
 using Newtonsoft.Json;
 using SimpleJSON;
