@@ -43,7 +43,10 @@ public class DialogDecisionUI : MonoBehaviour
             }
         }
 
-        DecisionLabel.text = CurrentDecision.Content;
+        string content = CurrentDecision.Content;
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(content, out content);
+
+        DecisionLabel.text = content;
 
         
     }

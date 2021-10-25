@@ -17,11 +17,12 @@ public class RandomStringEntity : MonoBehaviour
     void Refresh()
     {
         string message = Variety[Random.Range(0, Variety.Count)];
-        string newMsg = "";
-        if (CORE.Instance.Data.Localizator.mSource.TryGetTranslation(message, out newMsg))
+        string newMsg = message;
+        if(!CORE.Instance.Data.Localizator.mSource.TryGetTranslation(message, out newMsg))
         {
-            message = newMsg;
+            Debug.LogError("FAIL");
         }
+        message = newMsg;
 
         Label.text = message;
     }

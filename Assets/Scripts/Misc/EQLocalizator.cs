@@ -1,3 +1,4 @@
+using I2.Loc;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -31,10 +32,11 @@ public class EQLocalizator : MonoBehaviour
 
     void Translate()
     {
-        CORE.Instance.DelayedInvokation(0.1f, () => {
-            
+        System.Action translateAction = () => {
+
             string translation = label.text;
-            if (!CORE.Instance.Data.Localizator.mSource.TryGetTranslation(label.text, out translation))
+
+            if (!LocalizationManager.TryGetTranslation(label.text, out translation))
             {
                 return;
             }
@@ -50,6 +52,11 @@ public class EQLocalizator : MonoBehaviour
             }
 
             label.text = translation;
-        });
+        };
+
+        if (CORE.Instance != null)
+            CORE.Instance.DelayedInvokation(0.1f, translateAction);
+        else
+            translateAction.Invoke();
     }
 }

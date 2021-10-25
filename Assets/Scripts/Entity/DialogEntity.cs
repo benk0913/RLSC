@@ -135,6 +135,9 @@ public class DialogEntity : MonoBehaviour
         DecisionContainerUI.Instance.Hide();
 
         string content = CurrentDialog.DialogPieces[index].Content;
+
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(content, out content);
+
         CurrentBubble.Show(CurrentBubble.transform, content, Continue, CurrentDialog.IsFemale);
         CurrentDialog.DialogPieces[index].OnDialogPiece?.Invoke();
     }

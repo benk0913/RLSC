@@ -44,7 +44,10 @@ public class VendorSelectionUI : MonoBehaviour, WindowInterface
     public void RefreshUI(ItemData item)
     {   
         KeyText.text = "Press '" + InputMap.Map["Interact"].ToString() + "' To Purchase!";
-        NameLabel.text = item.name;
+
+        string itemName = item.DisplayName;
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemName, out itemName);
+        NameLabel.text = itemName;
         PriceLabel.text = item.VendorPrice.ToString("N0");
         PlayerMoneyLabel.text = CORE.Instance.Room.PlayerActor.money.ToString("N0");
         ItemDescriptionText.text = ItemsLogic.GetItemTooltip(item);

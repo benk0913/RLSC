@@ -1510,14 +1510,24 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
+        string hasPicedUp = " has picked up ";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation("% chance to ", out hasPicedUp);
+
+        string coins = "coins";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation("coins", out coins);
+
+        string hasPicedUpItem = " has picked up the item: '";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has picked up the item: '", out hasPicedUpItem);
+
+
         item.Entity.BePickedBy(actorDat.ActorEntity);
         if (item.Data.Type.name == "Money")
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " has picked up " + String.Format("{0:n0}", item.amount) + " coins</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + hasPicedUp + String.Format("{0:n0}", item.amount) + " "+coins+"</color>");
         }
         else
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " has picked up the item: '" + item.itemName + "'</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + hasPicedUpItem + item.itemName + "'</color>");
         }
 
         CORE.Instance.IsPickingUpItem = false;
@@ -1690,12 +1700,17 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
+        string hasWonItem = " has won the item: '";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has won the item: '", out hasWonItem);
+
+        string itemName = rolledItem.itemName;
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(rolledItem.itemName, out itemName);
 
         CORE.Instance.DelayedInvokation(2f, () =>
         {
             result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnCharWinner").GetComponent<ActorRollResultUI>();
             result.SetInfo(actorDat.ActorEntity, rolledItem.Data, 0);
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " has won the item: '" + rolledItem.itemName + "'</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + hasWonItem + itemName + "'</color>");
         });
     }
 
@@ -1772,19 +1787,28 @@ public class SocketHandler : MonoBehaviour
 
         if (!string.IsNullOrEmpty(leaderName))
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + " had invited you to a party!</color>");
+            string hasInvited = " had invited you to a party!";
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" had invited you to a party!", out hasInvited);
+
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + hasInvited+"</color>");
             LootRollPanelUI.Instance.AddPartyInvitation(leaderName);
         }
         else
         {
+            string hadInvitedYou = " has been invited to the party!";
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has been invited to the party!", out hadInvitedYou);
+
             string actorName = data["actorName"].Value;
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has been invited to the party!</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + "</color>");
         }
     }
 
     public void OnPartyInviteTimeout(string eventName, JSONNode data)
     {
-        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + "> The party invitation had timed out...</color>");
+        string hadInvitedYou = "The party invitation had timed out...";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation("The party invitation had timed out...", out hadInvitedYou);
+
+        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + "> "+ hadInvitedYou + "</color>");
         LootRollPanelUI.Instance.RemovePartyInvitation();
 
         AudioControl.Instance.Play("getPartyTimeout");
@@ -1794,7 +1818,10 @@ public class SocketHandler : MonoBehaviour
     {
         string actorName = data["actorName"].Value;
 
-        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has joined the party!</color>");
+        string hadInvitedYou = " has joined the party!";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has joined the party!", out hadInvitedYou);
+
+        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + "</color>");
 
         AudioControl.Instance.Play("getPartyAccept");
 
@@ -1808,7 +1835,10 @@ public class SocketHandler : MonoBehaviour
 
         if (reason == "decline")
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has declined the invitation.</color>");
+            string translatedPart = " has declined the invitation.";
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has declined the invitation.", out translatedPart);
+
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + translatedPart+"</color>");
             AudioControl.Instance.Play("getPartyDecline");
         }
         else if (reason == "timeout")
@@ -1829,12 +1859,18 @@ public class SocketHandler : MonoBehaviour
 
         if (reason == "leave")
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has left the party.</color>");
+            string translatedPart = " has left the party.";
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has left the party.", out translatedPart);
+
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + translatedPart+"</color>");
             AudioControl.Instance.Play("getPartyLeave");   
         }
         else if (reason == "kicked")
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " was kicked out of the party.</color>");
+            string translatedPart = " was kicked out of the party.";
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" was kicked out of the party.", out translatedPart);
+
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + translatedPart+"</color>");
             AudioControl.Instance.Play("getPartyKick");
         }
     }
@@ -1843,8 +1879,11 @@ public class SocketHandler : MonoBehaviour
     {
         string leaderName = data["leaderName"].Value;
 
-        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + " is now the party leader!</color>");
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(leaderName + " is now the party leader!"));
+        string translatedPart = " is now the party leader!";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" is now the party leader!", out translatedPart);
+
+        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + translatedPart+"</color>");
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(leaderName + translatedPart));
 
         AudioControl.Instance.Play("getPartyPromote");
     }
@@ -1856,11 +1895,19 @@ public class SocketHandler : MonoBehaviour
 
         if (isOffline)
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has gone offline</color>");
+            string translatedPart = " has gone offline";
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has gone offline", out translatedPart);
+
+
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + translatedPart+"</color>");
         }
         else
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + " has come online!</color>");
+            string translatedPart = " has come online!";
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has come online!", out translatedPart);
+
+
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + translatedPart +"</color>");
         }
     }
 

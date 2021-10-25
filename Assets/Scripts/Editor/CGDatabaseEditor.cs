@@ -70,12 +70,23 @@ public class CGDatabaseEditor : Editor
                         newTerms.Add(t.Text);
                     }
                 }
-            }
 
+                DialogEntity[] dialogEntities = rootObj.GetComponentsInChildren<DialogEntity>();
+
+                foreach (DialogEntity de in dialogEntities)
+                {
+                    DialogEntity.Dialog dialog = de.DefaultDialog;
+
+                    AddDialogtoLocalization(dialog,terms,newTerms);
+                }
+            }
+            
             foreach (string newTerm in newTerms)
             {
                 db.Localizator.mSource.AddTerm(newTerm, eTermType.Text, true);
             }
+
+
 
 
             EditorUtility.SetDirty(db.Localizator);
@@ -275,6 +286,33 @@ public class CGDatabaseEditor : Editor
         }
         
         
+    }
+
+    void AddDialogtoLocalization(DialogEntity.Dialog dialog, List<string> terms, List<string> newTerms)
+    {
+        foreach (DialogEntity.DialogPiece piece in dialog.DialogPieces)
+        {
+            if (string.IsNullOrEmpty(piece.Content)) continue;
+
+            if (!terms.Contains(piece.Content) && !newTerms.Contains(piece.Content))
+            {
+                newTerms.Add(piece.Content);
+            }
+
+
+        }
+
+        foreach (DialogEntity.DialogDecision decision in dialog.Decisions)
+        {
+            if (string.IsNullOrEmpty(decision.Content)) continue;
+
+            if (!terms.Contains(decision.Content) && !newTerms.Contains(decision.Content))
+            {
+                newTerms.Add(decision.Content);
+            }
+
+            AddDialogtoLocalization(decision.DefaultDialog, terms, newTerms);
+        }
     }
     
     public void SubFunctionA(ItemData item, SkinSet set)
