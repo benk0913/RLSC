@@ -14,18 +14,22 @@ public class ExpeditionQueTimerUI : MonoBehaviour
     public bool IsSearching;
 
     public DateTime QueueStartTime;
-
+    string msg = "";
     void Awake()
     {
         Instance = this;
         Hide();
+
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation("Queued For: ", out msg);
     }
 
     void Update()
     {
         TimeSpan dateDifference = DateTime.Now.Subtract(QueueStartTime);
-        
-        TimerLabel.text = "Queued For: "+dateDifference.ToString(@"mm\:ss");
+
+        TimerLabel.text = msg;
+
+        TimerLabel.text += dateDifference.ToString(@"mm\:ss");
     }
 
     public void Show(string ExeditionName)

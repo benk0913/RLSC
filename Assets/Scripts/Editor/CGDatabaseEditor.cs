@@ -50,16 +50,44 @@ public class CGDatabaseEditor : Editor
 
         DrawDefaultInspector();
 
-        
-         if (GUILayout.Button("CUSTOM SCRIPT"))
+        if (GUILayout.Button("CUSTOM SCRIPT 2"))
         {
-            Debug.Log(InputMap.Map.Keys.Count);
+            List<string> terms = db.Localizator.mSource.GetTermsList();
+            List<string> newTerms = new List<string>();
+
+            GameObject[] rootObjs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+
+            foreach(GameObject rootObj in rootObjs)
+            {
+                TooltipTargetUI[] tt = rootObj.GetComponentsInChildren<TooltipTargetUI>();
+
+                foreach(TooltipTargetUI t in tt)
+                {
+                    if (string.IsNullOrEmpty(t.Text)) continue;
+
+                    if (!terms.Contains(t.Text) && !newTerms.Contains(t.Text))
+                    {
+                        newTerms.Add(t.Text);
+                    }
+                }
+            }
+
+            foreach (string newTerm in newTerms)
+            {
+                db.Localizator.mSource.AddTerm(newTerm, eTermType.Text, true);
+            }
+
+
+            EditorUtility.SetDirty(db.Localizator);
+        }
+
+        if (GUILayout.Button("CUSTOM SCRIPT"))
+        {
             List<string> terms = db.Localizator.mSource.GetTermsList();
             List<string> newTerms = new List<string>();
             for(int i=0;i<InputMap.Map.Keys.Count;i++)
             {
                 string key = InputMap.Map.Keys.ElementAt(i);
-                Debug.Log(key);
                 if (!terms.Contains(key) && !newTerms.Contains(key))
                 {
                     newTerms.Add(key);
@@ -68,6 +96,126 @@ public class CGDatabaseEditor : Editor
                 if (!terms.Contains(InputMap.Map[key].ToString()) && !newTerms.Contains(InputMap.Map[key].ToString()))
                 {
                     newTerms.Add(InputMap.Map[key].ToString());
+                }
+            }
+
+            for (int i = 0; i < db.content.Abilities.Count; i++)
+            {
+                string key = db.content.Abilities[i].name;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.Abilities.Count; i++)
+            {
+                string key = db.content.Abilities[i].Description;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.Buffs.Count; i++)
+            {
+                string key = db.content.Buffs[i].name;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.Buffs.Count; i++)
+            {
+                string key = db.content.Buffs[i].Description;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            List<ItemData> megaListOfItems = new List<ItemData>();
+            megaListOfItems.AddRange(db.content.Items);
+            db.content.CashShop.CashShopStores.ForEach(X => megaListOfItems.AddRange(X.StoreItems));
+            for (int i = 0; i < megaListOfItems.Count; i++)
+            {
+                string key = megaListOfItems[i].DisplayName;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < megaListOfItems.Count; i++)
+            {
+                string key = megaListOfItems[i].Description;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.Classes.Count; i++)
+            {
+                string key = db.content.Classes[i].name;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.Equips.Count; i++)
+            {
+                string key = db.content.Equips[i].name;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.Expeditions.Count; i++)
+            {
+                string key = db.content.Expeditions[i].name;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.Realms.Count; i++)
+            {
+                string key = db.content.Realms[i].Name;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.Scenes.Count; i++)
+            {
+                string key = db.content.Scenes[i].displyName;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.States.Count; i++)
+            {
+                string key = db.content.States[i].name;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+            for (int i = 0; i < db.content.Visuals.BodyParts.Count; i++)
+            {
+                string key = db.content.Visuals.BodyParts[i].name;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
                 }
             }
 

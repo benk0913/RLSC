@@ -98,11 +98,16 @@ public class ItemsLogic
     public static string GetItemTooltip(ItemData itemData)
     {
         string text = itemData.DisplayName;
-        text += System.Environment.NewLine +"<i><color=" + Colors.COLOR_HIGHLIGHT + ">"+ CORE.SplitCamelCase(itemData.Type.name)+"</color></i>";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemData.DisplayName, out text);
 
+        string type = itemData.Type.name;
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemData.DisplayName, out type);
 
-
+        text += System.Environment.NewLine +"<i><color=" + Colors.COLOR_HIGHLIGHT + ">"+ CORE.SplitCamelCase(type)+"</color></i>";
+        
         string description = itemData.Description.Trim();
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemData.Description.Trim(), out description);
+
         if (!string.IsNullOrEmpty(description)) {
             text += System.Environment.NewLine + "<i>"+description+"</i>";
         }

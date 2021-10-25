@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class KeyBindingPieceUI : MonoBehaviour {
 
@@ -23,11 +24,24 @@ public class KeyBindingPieceUI : MonoBehaviour {
     Event keyEvent;
     Color initColor;
 
+    string internalTitle;
     public void SetInfo(string title, KeyCode key)
     {
+        internalTitle = title;
         CurrentKey = key;
-        m_txtTitle.text = title;
+
+        Action translateTitle = () =>
+        {
+            string toTitle = title;
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(title, out toTitle);
+
+            m_txtTitle.text = toTitle;
+        };
+
+        translateTitle.Invoke();
         m_txtKey.text = CurrentKey.ToString();
+
+        CORE.Instance.SubscribeToEvent("LanguageChanged", translateTitle.Invoke);
     }
 
     public void OnClick()
@@ -56,9 +70,9 @@ public class KeyBindingPieceUI : MonoBehaviour {
             {
                 if(keyEvent.keyCode != InputMap.Map["Exit"] && keyEvent.keyCode != InputMap.Map["Confirm"])
                 {
-                    InputMap.Map[m_txtTitle.text] = keyEvent.keyCode;
+                    InputMap.Map[internalTitle] = keyEvent.keyCode;
                     InputMap.SaveMap();
-                    SetInfo(m_txtTitle.text, keyEvent.keyCode);
+                    SetInfo(internalTitle, keyEvent.keyCode);
                     CORE.Instance.InvokeEvent("KeybindingsChanged");
                 }
 

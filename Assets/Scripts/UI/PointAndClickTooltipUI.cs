@@ -58,6 +58,13 @@ public class PointAndClickTooltipUI : MonoBehaviour
         {
             return;
         }
+
+        string newMsg = "";
+        if (CORE.Instance.Data.Localizator.mSource.TryGetTranslation(message, out newMsg))
+        {
+            message = newMsg;
+        }
+
         AnchorPosition = position;
         PivotX = pivotX;
         PivotY = pivotY;
@@ -95,6 +102,12 @@ public class PointAndClickTooltipUI : MonoBehaviour
         if (string.IsNullOrEmpty(message))
         {
             return;
+        }
+
+        string newMsg = "";
+        if (CORE.Instance.Data.Localizator.mSource.TryGetTranslation(message, out newMsg))
+        {
+            message = newMsg;            
         }
 
 

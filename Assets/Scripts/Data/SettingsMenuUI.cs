@@ -1,4 +1,5 @@
 using I2.Loc;
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -114,10 +115,10 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         }
         LanguageDropdown.AddOptions(langOptions);
 
-        Dropdown.OptionData langCurrentOption = RegionDropdown.options.Find(x => x.text == LocalizationManager.CurrentLanguage);
+        Dropdown.OptionData langCurrentOption = LanguageDropdown.options.Find(x => x.text == PlayerPrefs.GetString("language", "English"));
         if (langCurrentOption == null)
         {
-            langCurrentOption = RegionDropdown.options[0];
+            langCurrentOption = LanguageDropdown.options[0];
         }
 
         LanguageDropdown.SetValueWithoutNotify(LanguageDropdown.options.IndexOf(langCurrentOption));
@@ -126,20 +127,72 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
 
     public void OnLanguageChanged(int optionIndex)
     {
-        string language = PlayerPrefs.GetString("language");
-
-        string newLanguage = LanguageDropdown.options[optionIndex].text;
-
-        if (language == newLanguage)
+        Hide();
+        WarningWindowUI.Instance.Show("This will restart the application! ", () =>
         {
-            return;
-        }
+            string language = PlayerPrefs.GetString("language", "English");
 
+            string newLanguage = LanguageDropdown.options[optionIndex].text;
 
-        PlayerPrefs.SetString("language", newLanguage);
-        PlayerPrefs.Save();
+            if (language == newLanguage)
+            {
+                return;
+            }
 
-        LocalizationManager.CurrentLanguage = newLanguage;
+            PlayerPrefs.SetString("language", newLanguage);
+            PlayerPrefs.Save();
+
+            LocalizationManager.CurrentLanguage = newLanguage;
+            CORE.Instance.InvokeEvent("LanguageChanged");
+
+            Dropdown.OptionData langCurrentOption = LanguageDropdown.options.Find(x => x.text == PlayerPrefs.GetString("language", "English"));
+            if (langCurrentOption == null)
+            {
+                langCurrentOption = LanguageDropdown.options[0];
+            }
+
+            LanguageDropdown.SetValueWithoutNotify(LanguageDropdown.options.IndexOf(langCurrentOption));
+
+#if !UNITY_EDITOR
+            SteamAPI.Shutdown();
+
+            if (SteamAPI.RestartAppIfNecessary(new AppId_t(1780330)))
+            {
+                Application.Quit();
+                return;
+            }
+#endif
+        });
+    }
+
+    public void OnLanguageChanged(string languageKey)
+    {
+        Hide();
+        WarningWindowUI.Instance.Show("This will restart the application! ", () =>
+        {
+            PlayerPrefs.SetString("language", languageKey);
+            PlayerPrefs.Save();
+
+            LocalizationManager.CurrentLanguage = languageKey;
+            CORE.Instance.InvokeEvent("LanguageChanged");
+
+            Dropdown.OptionData langCurrentOption = LanguageDropdown.options.Find(x => x.text == PlayerPrefs.GetString("language", "English"));
+            if (langCurrentOption == null)
+            {
+                langCurrentOption = LanguageDropdown.options[0];
+            }
+
+            LanguageDropdown.SetValueWithoutNotify(LanguageDropdown.options.IndexOf(langCurrentOption));
+#if !UNITY_EDITOR
+            SteamAPI.Shutdown();
+
+            if (SteamAPI.RestartAppIfNecessary(new AppId_t(1780330)))
+            {
+                Application.Quit();
+                return;
+            }
+#endif
+        });
     }
 
     public void OnRegionChanged(int optionIndex)

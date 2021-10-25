@@ -16,6 +16,13 @@ public class RandomStringEntity : MonoBehaviour
 
     void Refresh()
     {
-        Label.text = Variety[Random.Range(0, Variety.Count)];
+        string message = Variety[Random.Range(0, Variety.Count)];
+        string newMsg = "";
+        if (CORE.Instance.Data.Localizator.mSource.TryGetTranslation(message, out newMsg))
+        {
+            message = newMsg;
+        }
+
+        Label.text = message;
     }
 }
