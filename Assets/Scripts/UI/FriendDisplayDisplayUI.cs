@@ -50,7 +50,10 @@ public class FriendDisplayDisplayUI : MonoBehaviour
         }
         else
         {
-            NameLabel.text = CurrentFriendData.name + " (offline)";
+            string translatedPart = " (offline)";
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(translatedPart, out translatedPart);
+            
+            NameLabel.text = CurrentFriendData.name + translatedPart;
             NameLabel.color = Color.grey;
         }
 

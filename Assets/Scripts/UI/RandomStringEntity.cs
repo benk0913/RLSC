@@ -9,13 +9,36 @@ public class RandomStringEntity : MonoBehaviour
 
     public TextMeshProUGUI Label;
 
+    bool toRefresh = false;
     private void OnEnable()
     {
-        Refresh();
+        toRefresh = true;
+    }
+
+    void Update()
+    {
+        if(toRefresh)
+        {
+            if(CORE.Instance == null)
+            {
+                return;
+            }
+
+            toRefresh = false;
+            Refresh();
+        }
     }
 
     void Refresh()
     {
-        Label.text = Variety[Random.Range(0, Variety.Count)];
+        string message = Variety[Random.Range(0, Variety.Count)];
+        string newMsg = message;
+        if(!CORE.Instance.Data.Localizator.mSource.TryGetTranslation(message, out newMsg))
+        {
+            Debug.LogError("FAIL");
+        }
+        message = newMsg;
+
+        Label.text = message;
     }
 }

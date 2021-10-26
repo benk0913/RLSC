@@ -30,12 +30,19 @@ public class ItemsLogic
         { "HpRegen", new DisplayAttribute(typeof(AttributeData).GetField("HpRegen"), "hpregen", "HP Regen","")},
         { "Default", new DisplayAttribute(null, "Default", "Default","")},
     };
+
     public static string GetTooltipTextFromItem(ItemData itemData)
     {
+        string onExecuteTranslate = " on execute";
+        string onHitTranslate = " on hit";
+
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" on execute", out onExecuteTranslate);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" on hit", out onHitTranslate);
+
         string text = "";
         text += GetTooltipTextFromAttributes(itemData.Stats);
-        text += GetTooltipTextFromAbilityParams(itemData.OnExecuteParams, " on execute");
-        text += GetTooltipTextFromAbilityParams(itemData.OnHitParams, " on hit");
+        text += GetTooltipTextFromAbilityParams(itemData.OnExecuteParams, onExecuteTranslate);
+        text += GetTooltipTextFromAbilityParams(itemData.OnHitParams, onHitTranslate);
         return text;
     }
 
@@ -50,8 +57,11 @@ public class ItemsLogic
             
             if (propertyValue > 0)
             {
+                string BoostKey = keyValuePair.Value.Name;
+                CORE.Instance.Data.Localizator.mSource.TryGetTranslation(keyValuePair.Value.Name, out BoostKey);
+
                 string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ?  "<sprite name=\"Default\">" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\">  ";
-                result += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + ">" + icon + keyValuePair.Value.Name + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
+                result += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + ">" + icon + BoostKey + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
             }
         }
         foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in DisplayAttributes)
@@ -60,8 +70,11 @@ public class ItemsLogic
 
             if (propertyValue < 0)
             {
+                string BoostKey = keyValuePair.Value.Name;
+                CORE.Instance.Data.Localizator.mSource.TryGetTranslation(keyValuePair.Value.Name, out BoostKey);
+
                 string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "<sprite name=\"Default\">" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\" tint=1>  ";
-                result += Environment.NewLine + "<color=" + Colors.COLOR_BAD + ">" + icon + keyValuePair.Value.Name + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
+                result += Environment.NewLine + "<color=" + Colors.COLOR_BAD + ">" + icon + BoostKey + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
             }
         }
 
@@ -79,7 +92,10 @@ public class ItemsLogic
 
             if (abilityParam.Condition && abilityParam.Condition.Type == ConditionType.Chance)
             {
-                abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) + "% chance to ";
+                string chanceTo = "% chance to ";
+                CORE.Instance.Data.Localizator.mSource.TryGetTranslation("% chance to ", out chanceTo);
+
+                abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) +chanceTo;
             }
 
             abilityParamText += abilityParam.Type.name + " on " + abilityParam.Targets.ToString() + whenCondition;
@@ -98,11 +114,16 @@ public class ItemsLogic
     public static string GetItemTooltip(ItemData itemData)
     {
         string text = itemData.DisplayName;
-        text += System.Environment.NewLine +"<i><color=" + Colors.COLOR_HIGHLIGHT + ">"+ CORE.SplitCamelCase(itemData.Type.name)+"</color></i>";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemData.DisplayName, out text);
 
+        string type = itemData.Type.name;
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemData.DisplayName, out type);
 
-
+        text += System.Environment.NewLine +"<i><color=" + Colors.COLOR_HIGHLIGHT + ">"+ CORE.SplitCamelCase(type)+"</color></i>";
+        
         string description = itemData.Description.Trim();
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemData.Description.Trim(), out description);
+
         if (!string.IsNullOrEmpty(description)) {
             text += System.Environment.NewLine + "<i>"+description+"</i>";
         }

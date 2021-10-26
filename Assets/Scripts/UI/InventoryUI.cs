@@ -188,7 +188,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         IsOpen = false;
         this.gameObject.SetActive(false);
 
-        CORE.Instance.UnsubscribeFromEvent("InventoryUpdated",()=>RefreshUI());
+        if(CORE.Instance != null)
+            CORE.Instance.UnsubscribeFromEvent("InventoryUpdated",()=>RefreshUI());
 
         AudioControl.Instance.Play(HideSound);
     }

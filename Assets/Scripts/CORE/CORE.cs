@@ -1,4 +1,5 @@
 ﻿using EdgeworldBase;
+using I2.Loc;
 using NewResolutionDialog.Scripts.Controller;
 using Newtonsoft.Json;
 using SimpleJSON;
@@ -135,6 +136,7 @@ public class CORE : MonoBehaviour
 
         ConditionalInvokation((x) => { return SteamAPI.Init() && WarningWindowUI.Instance != null; }, () => 
         {
+            LogMessage("Initializing Connection");
             //TODO - This is an old method, might aswell remove this section entirely
             //string connectLobbyUniqueKey = "";
             //int cmnd = SteamApps.GetLaunchCommandLine(out connectLobbyUniqueKey, 260);
@@ -154,6 +156,35 @@ public class CORE : MonoBehaviour
                     pendingJoinParty = args[i + 1];
                 }
             }
+
+
+            string lang = PlayerPrefs.GetString("language", "");
+
+            if (string.IsNullOrEmpty(lang))
+            {
+                Debug.Log("Using steam's UI language");
+                lang = SteamApps.GetCurrentGameLanguage();
+
+                if (lang == "Simplified Chinese")
+                {
+                    lang = "Chinese (Simplified)";
+                }
+
+                if (lang == "Spanish - Spain")
+                {
+                    lang = "Spanish";
+                }
+
+            }
+
+            PlayerPrefs.SetString("language", lang);
+            PlayerPrefs.Save();
+
+            LocalizationManager.CurrentLanguage = lang;
+            CORE.Instance.InvokeEvent("LanguageChanged");
+
+
+
         });
 
         if(GetJoinRequestResponse == null)
@@ -268,9 +299,13 @@ public class CORE : MonoBehaviour
 
             CORE.Instance.DelayedInvokation(1f, () => 
             {
-                GraphicSettingsHandler.Instance.fullScreenMode.value = (int)FullScreenMode.FullScreenWindow;
-                GraphicSettingsHandler.Instance.OnFullScreenModeChanged();
-                GraphicSettingsHandler.Instance.ApplySelectedResolution();
+                try
+                {
+                    GraphicSettingsHandler.Instance.fullScreenMode.value = (int)FullScreenMode.FullScreenWindow;
+                    GraphicSettingsHandler.Instance.OnFullScreenModeChanged();
+                    GraphicSettingsHandler.Instance.ApplySelectedResolution();
+                }
+                catch { }
             });
             //for(int i=0;i<Screen.resolutions.Length;i++)
             //{
@@ -1418,6 +1453,11 @@ public class RoomData
             actor.faceRight = bool.Parse(data["actorPositions"][i]["faceRight"]);
             actor.movementDirection = data["actorPositions"][i]["movementDirection"].AsInt;
         }
+    }
+
+    public static string StripHTML(string input)
+    {
+        return System.Text.RegularExpressions.Regex.Replace(input, "<.*?>", String.Empty);
     }
 
 }

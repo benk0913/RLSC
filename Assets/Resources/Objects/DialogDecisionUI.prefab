@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7051656863117572159}
   - component: {fileID: 507463083371198125}
   - component: {fileID: 5876054335671286471}
+  - component: {fileID: 5063991780184513273}
   m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -92,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.8
+  m_fontSize: 1
   m_fontSizeBase: 29.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -134,6 +135,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5063991780184513273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984544730288369575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d79966eaf35b2e4f9a8abe6ec818ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: {fileID: 5876054335671286471}
 --- !u!1 &7406903610111176057
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,11 +241,15 @@ MonoBehaviour:
   CurrentDecision:
     Content: 
     OnSelect: []
+    OnSelectInvokation:
+      m_PersistentCalls:
+        m_Calls: []
     DisplayConditions: []
     DisplayOnlyIfConditionsMet: 0
     DefaultDialog:
       DialogPieces: []
       Decisions: []
+      IsFemale: 0
   Butt: {fileID: 5809193188793813138}
   DecisionLabel: {fileID: 5876054335671286471}
 --- !u!114 &5809193188793813138

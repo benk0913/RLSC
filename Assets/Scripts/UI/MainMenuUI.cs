@@ -93,6 +93,7 @@ public class MainMenuUI : MonoBehaviour
 
         Action postRealmLogin = () => 
         {
+            CORE.Instance.LogMessage("Post Realm Login ("+ SocketHandler.Instance.SelectedRealmIndex+")");
             RealmSigil.SetData(CORE.Instance.Data.content.Realms[SocketHandler.Instance.SelectedRealmIndex]);
 
             if (!string.IsNullOrEmpty(SocketHandler.Instance.SessionTicket))

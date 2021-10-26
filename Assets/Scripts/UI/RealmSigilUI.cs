@@ -39,6 +39,8 @@ public class RealmSigilUI : MonoBehaviour
     {
         RealmCapacity cap = CORE.Instance.Data.content.RealmsCapacity.Find(x => x.Text == capacity);
 
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(capacity, out capacity);
+
         this.RealmCapacity.text = capacity;
         this.RealmCapacity.color = cap.Color;
 
