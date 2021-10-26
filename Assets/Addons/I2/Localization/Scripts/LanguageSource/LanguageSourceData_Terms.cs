@@ -44,6 +44,14 @@ namespace I2.Loc
 			return string.Empty;
 		}
 
+        public bool TryGetTranslationCodywise (string term, out string Translation, string overrideLanguage = null, string overrideSpecialization = null, bool skipDisabled = false, bool allowCategoryMistmatch = false)
+        {
+            bool result = TryGetTranslation(term, out Translation, overrideLanguage, overrideSpecialization, skipDisabled, allowCategoryMistmatch);
+            Translation = LocalizationManager.FixRTL_IfNeeded(Translation);
+
+            return result;
+        }
+
 		public bool TryGetTranslation (string term, out string Translation, string overrideLanguage=null, string overrideSpecialization=null, bool skipDisabled=false, bool allowCategoryMistmatch=false)
 		{
 			int Index = GetLanguageIndex( overrideLanguage==null ? LocalizationManager.CurrentLanguage : overrideLanguage, SkipDisabled: false );
@@ -64,8 +72,10 @@ namespace I2.Loc
 
 					if (!string.IsNullOrEmpty(Translation))
 					{
-						// has a valid translation
-						return true;
+                        
+
+                        // has a valid translation
+                        return true;
 					}
 
 					Translation = null;

@@ -13,6 +13,8 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     bool screenSpaceCamera;
 
+    bool IsTranslated = false;
+
     public void OnPointerEnterSimple()
     {
         OnPointerEnter(null);
@@ -21,7 +23,7 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnPointerEnter(PointerEventData eventData)
     {
         Vector3? posi = null;
-        PointAndClickTooltipUI.Instance.Show(Text, Bonuses,posi);
+        PointAndClickTooltipUI.Instance.Show(Text, Bonuses,posi,-1,-1,IsTranslated);
     }
 
     public void OnPointerExitSimple()
@@ -39,8 +41,10 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         PointAndClickTooltipUI.Instance.Hide();
     }
 
-    public void SetTooltip(string text, List<TooltipBonus> tooltipBonuses = null)
+    public void SetTooltip(string text, List<TooltipBonus> tooltipBonuses = null, bool isTranslated = false)
     {
+        this.IsTranslated = isTranslated;
+
         this.Text = text;
 
         this.Bonuses = tooltipBonuses;
@@ -48,12 +52,12 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void ShowOnPosition(Vector3 position, float pivotX = -1, float pivotY = -1)
     {
-        PointAndClickTooltipUI.Instance.Show(Text, Bonuses, position, pivotX, pivotY);
+        PointAndClickTooltipUI.Instance.Show(Text, Bonuses, position, pivotX, pivotY,IsTranslated);
     }
 
     public void ShowOnTransform(Transform trans, float pivotX = -1, float pivotY = -1)
     {
-        PointAndClickTooltipUI.Instance.Show(Text, Bonuses, trans, pivotX, pivotY);
+        PointAndClickTooltipUI.Instance.Show(Text, Bonuses, trans, pivotX, pivotY, IsTranslated);
     }
 
     public void OnSelectionEnter()

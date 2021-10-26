@@ -1515,13 +1515,13 @@ public class SocketHandler : MonoBehaviour
         }
 
         string hasPicedUp = " has picked up ";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation("% chance to ", out hasPicedUp);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("% chance to ", out hasPicedUp);
 
         string coins = "coins";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation("coins", out coins);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("coins", out coins);
 
         string hasPicedUpItem = " has picked up the item: '";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has picked up the item: '", out hasPicedUpItem);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has picked up the item: '", out hasPicedUpItem);
 
 
         item.Entity.BePickedBy(actorDat.ActorEntity);
@@ -1705,10 +1705,10 @@ public class SocketHandler : MonoBehaviour
         }
 
         string hasWonItem = " has won the item: '";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has won the item: '", out hasWonItem);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has won the item: '", out hasWonItem);
 
         string itemName = rolledItem.itemName;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(rolledItem.itemName, out itemName);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(rolledItem.itemName, out itemName);
 
         CORE.Instance.DelayedInvokation(2f, () =>
         {
@@ -1792,7 +1792,7 @@ public class SocketHandler : MonoBehaviour
         if (!string.IsNullOrEmpty(leaderName))
         {
             string hasInvited = " had invited you to a party!";
-            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" had invited you to a party!", out hasInvited);
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" had invited you to a party!", out hasInvited);
 
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + hasInvited+"</color>");
             LootRollPanelUI.Instance.AddPartyInvitation(leaderName);
@@ -1800,7 +1800,7 @@ public class SocketHandler : MonoBehaviour
         else
         {
             string hadInvitedYou = " has been invited to the party!";
-            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has been invited to the party!", out hadInvitedYou);
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has been invited to the party!", out hadInvitedYou);
 
             string actorName = data["actorName"].Value;
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + "</color>");
@@ -1810,7 +1810,7 @@ public class SocketHandler : MonoBehaviour
     public void OnPartyInviteTimeout(string eventName, JSONNode data)
     {
         string hadInvitedYou = "The party invitation had timed out...";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation("The party invitation had timed out...", out hadInvitedYou);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("The party invitation had timed out...", out hadInvitedYou);
 
         CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + "> "+ hadInvitedYou + "</color>");
         LootRollPanelUI.Instance.RemovePartyInvitation();
@@ -1823,7 +1823,7 @@ public class SocketHandler : MonoBehaviour
         string actorName = data["actorName"].Value;
 
         string hadInvitedYou = " has joined the party!";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has joined the party!", out hadInvitedYou);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has joined the party!", out hadInvitedYou);
 
         CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + "</color>");
 
@@ -1864,7 +1864,7 @@ public class SocketHandler : MonoBehaviour
         if (reason == "leave")
         {
             string translatedPart = " has left the party.";
-            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has left the party.", out translatedPart);
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has left the party.", out translatedPart);
 
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + translatedPart+"</color>");
             AudioControl.Instance.Play("getPartyLeave");   
@@ -1872,7 +1872,7 @@ public class SocketHandler : MonoBehaviour
         else if (reason == "kicked")
         {
             string translatedPart = " was kicked out of the party.";
-            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" was kicked out of the party.", out translatedPart);
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" was kicked out of the party.", out translatedPart);
 
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + translatedPart+"</color>");
             AudioControl.Instance.Play("getPartyKick");
@@ -1884,7 +1884,7 @@ public class SocketHandler : MonoBehaviour
         string leaderName = data["leaderName"].Value;
 
         string translatedPart = " is now the party leader!";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" is now the party leader!", out translatedPart);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" is now the party leader!", out translatedPart);
 
         CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + translatedPart+"</color>");
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(leaderName + translatedPart));
@@ -1900,7 +1900,7 @@ public class SocketHandler : MonoBehaviour
         if (isOffline)
         {
             string translatedPart = " has gone offline";
-            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has gone offline", out translatedPart);
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has gone offline", out translatedPart);
 
 
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + translatedPart+"</color>");
@@ -1908,7 +1908,7 @@ public class SocketHandler : MonoBehaviour
         else
         {
             string translatedPart = " has come online!";
-            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" has come online!", out translatedPart);
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has come online!", out translatedPart);
 
 
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + translatedPart +"</color>");

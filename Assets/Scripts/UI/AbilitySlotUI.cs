@@ -66,10 +66,10 @@ public class AbilitySlotUI : MonoBehaviour
         string tooltipString = "";
 
         string abilityName = abilityState.CurrentAbility.name;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(abilityState.CurrentAbility.name, out abilityName);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(abilityState.CurrentAbility.name, out abilityName);
 
         string abilityDesc = abilityState.CurrentAbility.Description;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(abilityState.CurrentAbility.Description, out abilityDesc);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(abilityState.CurrentAbility.Description, out abilityDesc);
 
         tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+abilityName+"</color>";
         tooltipString += System.Environment.NewLine + abilityDesc;
@@ -116,7 +116,7 @@ public class AbilitySlotUI : MonoBehaviour
             AbilityLock.SetActive(false);
         }
 
-        Tooltip.SetTooltip(tooltipString);
+        Tooltip.SetTooltip(tooltipString,null,true);
     }
 
     protected virtual void Update()

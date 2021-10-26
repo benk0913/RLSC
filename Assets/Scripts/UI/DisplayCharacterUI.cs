@@ -21,10 +21,10 @@ public class DisplayCharacterUI : MonoBehaviour//, IPointerClickHandler
     {
         OnClick = onClick;
         GetComponent<Button>().enabled = true;
-        string translatedPart = "Select Character: ";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation("Select Character: ", out translatedPart);
+        string translatedPart = "Select Character";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("Select Character", out translatedPart);
 
-        TooltipTarget.Text = translatedPart + AttachedCharacter.State.Data.name;
+        TooltipTarget.Text = translatedPart +": "+ AttachedCharacter.State.Data.name;
         AttachedCharacter.IsDisplayActor = true;
         Deselect();
     }

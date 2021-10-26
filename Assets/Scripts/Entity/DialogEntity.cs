@@ -136,7 +136,7 @@ public class DialogEntity : MonoBehaviour
 
         string content = CurrentDialog.DialogPieces[index].Content;
 
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(content, out content);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(content, out content);
 
         CurrentBubble.Show(CurrentBubble.transform, content, Continue, CurrentDialog.IsFemale);
         CurrentDialog.DialogPieces[index].OnDialogPiece?.Invoke();

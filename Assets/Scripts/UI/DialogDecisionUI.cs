@@ -44,7 +44,7 @@ public class DialogDecisionUI : MonoBehaviour
         }
 
         string content = CurrentDecision.Content;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(content, out content);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(content, out content);
 
         DecisionLabel.text = content;
 
