@@ -152,16 +152,8 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
             }
 
             LanguageDropdown.SetValueWithoutNotify(LanguageDropdown.options.IndexOf(langCurrentOption));
-
-#if !UNITY_EDITOR
-            SteamAPI.Shutdown();
-
-            if (SteamAPI.RestartAppIfNecessary(new AppId_t(1780330)))
-            {
-                Application.Quit();
-                return;
-            }
-#endif
+            
+            SocketHandler.Instance.LogOut();
         });
     }
 
@@ -183,15 +175,8 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
             }
 
             LanguageDropdown.SetValueWithoutNotify(LanguageDropdown.options.IndexOf(langCurrentOption));
-#if !UNITY_EDITOR
-            SteamAPI.Shutdown();
-
-            if (SteamAPI.RestartAppIfNecessary(new AppId_t(1780330)))
-            {
-                Application.Quit();
-                return;
-            }
-#endif
+            
+            SocketHandler.Instance.LogOut();
         });
     }
 

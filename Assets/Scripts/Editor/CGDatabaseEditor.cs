@@ -284,8 +284,42 @@ public class CGDatabaseEditor : Editor
 
 
         }
-        
-        
+
+
+        if (GUILayout.Button("CUSTOM SCRIPT 3 "))
+        {
+            List<string> terms = db.Localizator.mSource.GetTermsList();
+            List<string> newTerms = new List<string>();
+            
+
+            for (int i = 0; i < db.content.Scenes.Count; i++)
+            {
+                string key = db.content.Scenes[i].displyName;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+
+                key = db.content.Scenes[i].sceneName;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+            }
+
+
+
+            foreach (string newTerm in newTerms)
+            {
+                db.Localizator.mSource.AddTerm(newTerm, eTermType.Text, true);
+            }
+
+
+            EditorUtility.SetDirty(db.Localizator);
+
+
+        }
+
     }
 
     void AddDialogtoLocalization(DialogEntity.Dialog dialog, List<string> terms, List<string> newTerms)

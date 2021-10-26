@@ -7,7 +7,7 @@ public class ServerEnvironment
     [Popup("Local", "Dev", "Prod")]
     public string Environment;
     
-    [HideInInspector]
+    //[HideInInspector]
     public string Region;
     
     private string LocalHostUrl = "http://localhost:5000";

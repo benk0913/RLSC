@@ -368,16 +368,19 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void Hide()
     {
-        CORE.Instance.UnsubscribeFromEvent("CashShopUpdated", RefreshUI);
-        CORE.Instance.UnsubscribeFromEvent("InventoryUpdated",RefreshEQPState);
-
-        if(CORE.Instance != null && CORE.PlayerActor.ActorEntity != null)
+        if (CORE.Instance != null)
         {
-            CORE.IsMachinemaMode = false;
-            CORE.Instance.InvokeEvent("MachinemaModeRefresh");
-            CORE.Instance.RefreshSceneInfo();
-            
-            AudioControl.Instance.Play(HideSound);
+            CORE.Instance.UnsubscribeFromEvent("CashShopUpdated", RefreshUI);
+            CORE.Instance.UnsubscribeFromEvent("InventoryUpdated", RefreshEQPState);
+
+            if (CORE.PlayerActor.ActorEntity != null)
+            {
+                CORE.IsMachinemaMode = false;
+                CORE.Instance.InvokeEvent("MachinemaModeRefresh");
+                CORE.Instance.RefreshSceneInfo();
+
+                AudioControl.Instance.Play(HideSound);
+            }
         }
 
         IsOpen = false;

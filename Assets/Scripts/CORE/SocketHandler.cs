@@ -211,6 +211,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 #endif
+        CORE.Instance.LogMessage("Getting Session Ticket");
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Waiting for steam to initialize...", Colors.AsColor(Colors.COLOR_GOOD), 3f, false));
 
         if(GetSessionTicketRoutineInstance != null)
@@ -228,12 +229,12 @@ public class SocketHandler : MonoBehaviour
         float timeout = 10f;
         while(timeout > 0)
         {
-            if(SteamManager.Initialized)
+            timeout -= Time.deltaTime;
+
+            if (SteamManager.Initialized)
             {
                 break;
             }
-
-            timeout -= Time.deltaTime;
 
             if(timeout <= 0)
             {
@@ -264,6 +265,7 @@ public class SocketHandler : MonoBehaviour
     Coroutine currentTimeoutValidation;
     void ObtainSessionTicket(Action OnComplete)
     {
+        CORE.Instance.LogMessage("Getting Steam Session Ticket");
         this.OnCompleteSessionTicket = OnComplete;
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Getting Session...", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
         
@@ -301,6 +303,7 @@ public class SocketHandler : MonoBehaviour
     protected Callback<GetAuthSessionTicketResponse_t> GetAuthSessionTicketResponseCallbackContainer;
     void OnGetAuthSessionTicketResponse(GetAuthSessionTicketResponse_t pCallback) 
     {
+        CORE.Instance.LogMessage("SESSION TICKET RESPONSE");
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
         //System.Array.Resize(ref SessionPTicket, (int)SessionPCBTicket);
             
@@ -341,6 +344,7 @@ public class SocketHandler : MonoBehaviour
 
     public void SendLogin(Action OnComplete)
     {
+        CORE.Instance.LogMessage("Logging In");
         JSONNode node = new JSONClass();
         
         node["skipTutorial"] = SessionTicket;

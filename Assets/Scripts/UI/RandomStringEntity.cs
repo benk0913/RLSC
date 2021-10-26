@@ -9,9 +9,24 @@ public class RandomStringEntity : MonoBehaviour
 
     public TextMeshProUGUI Label;
 
+    bool toRefresh = false;
     private void OnEnable()
     {
-        Refresh();
+        toRefresh = true;
+    }
+
+    void Update()
+    {
+        if(toRefresh)
+        {
+            if(CORE.Instance == null)
+            {
+                return;
+            }
+
+            toRefresh = false;
+            Refresh();
+        }
     }
 
     void Refresh()

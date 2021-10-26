@@ -40,18 +40,30 @@ public class EQLocalizator : MonoBehaviour
             {
                 return;
             }
-
-            if (string.IsNullOrEmpty(translation))
+            else
             {
-                return;
+                if (string.IsNullOrEmpty(translation))
+                {
+                    return;
+                }
+
+                if (translation == label.text)
+                {
+                    return;
+                }
+
+                if (LocalizationManager.IsRTL(LocalizationManager.CurrentLanguageCode))
+                {
+                    label.text = LocalizationManager.ApplyRTLfix(label.text);
+                    return;
+                }
+                else
+                {
+                    label.text = translation;
+                }
             }
 
-            if (translation == label.text)
-            {
-                return;
-            }
 
-            label.text = translation;
         };
 
         if (CORE.Instance != null)
