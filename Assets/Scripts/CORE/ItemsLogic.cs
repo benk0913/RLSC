@@ -36,8 +36,8 @@ public class ItemsLogic
         string onExecuteTranslate = " on execute";
         string onHitTranslate = " on hit";
 
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" on execute", out onExecuteTranslate);
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(" on hit", out onHitTranslate);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" on execute", out onExecuteTranslate);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" on hit", out onHitTranslate);
 
         string text = "";
         text += GetTooltipTextFromAttributes(itemData.Stats);
@@ -58,7 +58,7 @@ public class ItemsLogic
             if (propertyValue > 0)
             {
                 string BoostKey = keyValuePair.Value.Name;
-                CORE.Instance.Data.Localizator.mSource.TryGetTranslation(keyValuePair.Value.Name, out BoostKey);
+                CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(keyValuePair.Value.Name, out BoostKey);
 
                 string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ?  "<sprite name=\"Default\">" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\">  ";
                 result += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + ">" + icon + BoostKey + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
@@ -71,7 +71,7 @@ public class ItemsLogic
             if (propertyValue < 0)
             {
                 string BoostKey = keyValuePair.Value.Name;
-                CORE.Instance.Data.Localizator.mSource.TryGetTranslation(keyValuePair.Value.Name, out BoostKey);
+                CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(keyValuePair.Value.Name, out BoostKey);
 
                 string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ? "<sprite name=\"Default\">" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\" tint=1>  ";
                 result += Environment.NewLine + "<color=" + Colors.COLOR_BAD + ">" + icon + BoostKey + " " + Mathf.RoundToInt( propertyValue * 100)+"%" + "</color>";
@@ -93,7 +93,7 @@ public class ItemsLogic
             if (abilityParam.Condition && abilityParam.Condition.Type == ConditionType.Chance)
             {
                 string chanceTo = "% chance to ";
-                CORE.Instance.Data.Localizator.mSource.TryGetTranslation("% chance to ", out chanceTo);
+                CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("% chance to ", out chanceTo);
 
                 abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) +chanceTo;
             }
@@ -114,15 +114,15 @@ public class ItemsLogic
     public static string GetItemTooltip(ItemData itemData)
     {
         string text = itemData.DisplayName;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemData.DisplayName, out text);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(itemData.DisplayName, out text);
 
         string type = itemData.Type.name;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemData.DisplayName, out type);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(itemData.DisplayName, out type);
 
         text += System.Environment.NewLine +"<i><color=" + Colors.COLOR_HIGHLIGHT + ">"+ CORE.SplitCamelCase(type)+"</color></i>";
         
         string description = itemData.Description.Trim();
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslation(itemData.Description.Trim(), out description);
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(itemData.Description.Trim(), out description);
 
         if (!string.IsNullOrEmpty(description)) {
             text += System.Environment.NewLine + "<i>"+description+"</i>";

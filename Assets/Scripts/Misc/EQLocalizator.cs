@@ -52,15 +52,8 @@ public class EQLocalizator : MonoBehaviour
                     return;
                 }
 
-                if (LocalizationManager.IsRTL(LocalizationManager.CurrentLanguageCode))
-                {
-                    label.text = LocalizationManager.ApplyRTLfix(label.text);
-                    return;
-                }
-                else
-                {
-                    label.text = translation;
-                }
+                label.text = translation;
+                
             }
 
 

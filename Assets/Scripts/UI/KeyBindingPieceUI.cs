@@ -33,7 +33,7 @@ public class KeyBindingPieceUI : MonoBehaviour {
         Action translateTitle = () =>
         {
             string toTitle = title;
-            CORE.Instance.Data.Localizator.mSource.TryGetTranslation(title, out toTitle);
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(title, out toTitle);
 
             m_txtTitle.text = toTitle;
         };

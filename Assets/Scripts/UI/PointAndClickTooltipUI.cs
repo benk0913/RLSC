@@ -52,18 +52,22 @@ public class PointAndClickTooltipUI : MonoBehaviour
         List<TooltipBonus> bonuses = null,
         Vector3? position = null,
         float pivotX = -1,
-        float pivotY = -1)
+        float pivotY = -1, bool alreadyTranslated = false)
     {
         if(string.IsNullOrEmpty(message))
         {
             return;
         }
 
-        string newMsg = "";
-        if (CORE.Instance.Data.Localizator.mSource.TryGetTranslation(message, out newMsg))
+        if (!alreadyTranslated)
         {
-            message = newMsg;
+            string newMsg = "";
+            if (CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(message, out newMsg))
+            {
+                message = newMsg;
+            }
         }
+        
 
         AnchorPosition = position;
         PivotX = pivotX;
@@ -97,17 +101,20 @@ public class PointAndClickTooltipUI : MonoBehaviour
     List<TooltipBonus> bonuses = null,
     Transform positionTransform = null,
     float pivotX = -1,
-    float pivotY = -1)
+    float pivotY = -1, bool alreadyTranslated = false)
     {
         if (string.IsNullOrEmpty(message))
         {
             return;
         }
 
-        string newMsg = "";
-        if (CORE.Instance.Data.Localizator.mSource.TryGetTranslation(message, out newMsg))
+        if (!alreadyTranslated)
         {
-            message = newMsg;            
+            string newMsg = "";
+            if (CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(message, out newMsg))
+            {
+                message = newMsg;
+            }
         }
 
 

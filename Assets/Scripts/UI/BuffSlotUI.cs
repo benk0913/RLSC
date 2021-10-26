@@ -38,9 +38,16 @@ public class BuffSlotUI : MonoBehaviour
 
         string tooltipString = "";
 
-        tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+ActiveBuffEffect.Name+"</color>";
-        tooltipString += ActiveBuffEffect.Description;
-        Tooltip.SetTooltip(tooltipString);
+
+        string buffName = ActiveBuffEffect.Name;
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(ActiveBuffEffect.Name, out buffName);
+
+        string buffDesc = ActiveBuffEffect.Description;
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(ActiveBuffEffect.Description, out buffDesc);
+
+        tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+buffName+"</color>";
+        tooltipString += buffDesc;
+        Tooltip.SetTooltip(tooltipString,null,true);
     }
 
     private void Update()

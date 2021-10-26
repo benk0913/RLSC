@@ -33,7 +33,7 @@ public class RandomStringEntity : MonoBehaviour
     {
         string message = Variety[Random.Range(0, Variety.Count)];
         string newMsg = message;
-        if(!CORE.Instance.Data.Localizator.mSource.TryGetTranslation(message, out newMsg))
+        if(!CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(message, out newMsg))
         {
             Debug.LogError("FAIL");
         }
