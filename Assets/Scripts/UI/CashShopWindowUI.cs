@@ -336,6 +336,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
             return;
         }
 
+        AudioControl.Instance.Play("CashShopSubCategoryClick");
+
         CORE.ClearContainer(CurrentFocusedStoreContainer);
 
         CORE.Instance.DelayedInvokation(0.01f,()=>

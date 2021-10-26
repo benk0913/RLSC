@@ -29,6 +29,8 @@ public class SelectionGroupUI : MonoBehaviour
 
     public bool Debug = false;
 
+    public bool InteractingWithKeyboard;
+
     private void Start()
     {
         RefreshGroup(false);
@@ -328,6 +330,12 @@ public class SelectionGroupUI : MonoBehaviour
 
         while(true)
         {
+            if(!InteractingWithKeyboard)
+            {
+                yield return 0;
+                continue;
+            }
+
             while (CORE.Instance.IsTyping)
             {
                 canvasGroup.alpha = 1;
@@ -372,8 +380,8 @@ public class SelectionGroupUI : MonoBehaviour
                     CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'Above'");
                 return;
             }
-            
 
+            InteractingWithKeyboard = true;
             Select(CurrentSelected.toUp);
             joystickPressedDelay = JOYSTICK_DELAY;
         }
@@ -385,8 +393,8 @@ public class SelectionGroupUI : MonoBehaviour
                     CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'Below'");
                 return;
             }
-            
 
+            InteractingWithKeyboard = true;
             Select(CurrentSelected.toDown);
             joystickPressedDelay = JOYSTICK_DELAY;
         }
@@ -398,8 +406,8 @@ public class SelectionGroupUI : MonoBehaviour
                     CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'To Left'");
                 return;
             }
-            
 
+            InteractingWithKeyboard = true;
             Select(CurrentSelected.toLeft);
             joystickPressedDelay = JOYSTICK_DELAY;
         }
@@ -411,7 +419,7 @@ public class SelectionGroupUI : MonoBehaviour
                     CORE.Instance.LogMessage("SelectionGroup -" + this.gameObject.name + " No 'To Right'");
                 return;
             }
-
+            InteractingWithKeyboard = true;
             Select(CurrentSelected.toRight);
             joystickPressedDelay = JOYSTICK_DELAY;
         }
@@ -426,7 +434,7 @@ public class SelectionGroupUI : MonoBehaviour
 
         if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
         {
-
+            InteractingWithKeyboard = true;
             if (CurrentSelectedSelectable.interactable == false)
             {
                 return;
