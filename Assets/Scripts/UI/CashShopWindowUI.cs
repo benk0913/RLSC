@@ -299,11 +299,11 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
 
 
-        CashShopWarningWindowUI.Instance.Show("Buy "+SelectedProduct.CurrentItem.DisplayName+" for "+SelectedProduct.CurrentItem.CashItemPrice+" EQP? ",()=>
+        CashShopWarningWindowUI.Instance.Show(CORE.QuickTranslate("Buy")+" "+ CORE.QuickTranslate(SelectedProduct.CurrentItem.DisplayName)+" "+CORE.QuickTranslate("for")+" "+SelectedProduct.CurrentItem.CashItemPrice+" "+CORE.QuickTranslate("EQP")+" ? ",()=>
         {     
             if(SocketHandler.Instance.CurrentUser.info.cashPoints < SelectedProduct.CurrentItem.CashItemPrice)
             {
-                CashShopWarningWindowUI.Instance.Show("You don't have enough EQP! ("+SocketHandler.Instance.CurrentUser.info.cashPoints+"/"+SelectedProduct.CurrentItem.CashItemPrice+")",()=>
+                CashShopWarningWindowUI.Instance.Show(CORE.QuickTranslate("You don't have enough EQP") +"! (" +SocketHandler.Instance.CurrentUser.info.cashPoints+"/"+SelectedProduct.CurrentItem.CashItemPrice+")",()=>
                 {
                     DeselectProduct();
                     HideDisplayActor();
