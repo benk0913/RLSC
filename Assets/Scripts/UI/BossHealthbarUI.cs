@@ -7,6 +7,7 @@ public class BossHealthbarUI : HealthbarUI
 {
     public static BossHealthbarUI Instance;
 
+
     private void Awake()
     {
         Instance = this;

@@ -205,7 +205,14 @@ public class CGDatabaseEditor : Editor
 
             for (int i = 0; i < db.content.Scenes.Count; i++)
             {
+                
                 string key = db.content.Scenes[i].displyName;
+                if (!terms.Contains(key) && !newTerms.Contains(key))
+                {
+                    newTerms.Add(key);
+                }
+
+                key = db.content.Scenes[i].sceneName;
                 if (!terms.Contains(key) && !newTerms.Contains(key))
                 {
                     newTerms.Add(key);
@@ -292,19 +299,9 @@ public class CGDatabaseEditor : Editor
             List<string> newTerms = new List<string>();
             
 
-            for (int i = 0; i < db.content.Scenes.Count; i++)
+            for (int i = 0; i < db.content.temporaryData.Count; i++)
             {
-                string key = db.content.Scenes[i].displyName;
-                if (!terms.Contains(key) && !newTerms.Contains(key))
-                {
-                    newTerms.Add(key);
-                }
-
-                key = db.content.Scenes[i].sceneName;
-                if (!terms.Contains(key) && !newTerms.Contains(key))
-                {
-                    newTerms.Add(key);
-                }
+                newTerms.Add(db.content.temporaryData[i].name);
             }
 
 

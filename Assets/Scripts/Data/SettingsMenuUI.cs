@@ -143,6 +143,7 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
             PlayerPrefs.Save();
 
             LocalizationManager.CurrentLanguage = newLanguage;
+            CORE.Instance.CurrentLanguage = newLanguage;
             CORE.Instance.InvokeEvent("LanguageChanged");
 
             Dropdown.OptionData langCurrentOption = LanguageDropdown.options.Find(x => x.text == PlayerPrefs.GetString("language", "English"));
@@ -166,6 +167,7 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
             PlayerPrefs.Save();
 
             LocalizationManager.CurrentLanguage = languageKey;
+            CORE.Instance.CurrentLanguage = languageKey;
             CORE.Instance.InvokeEvent("LanguageChanged");
 
             Dropdown.OptionData langCurrentOption = LanguageDropdown.options.Find(x => x.text == PlayerPrefs.GetString("language", "English"));

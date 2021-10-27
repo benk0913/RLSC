@@ -20,6 +20,9 @@ public class DisplayEXPEntityUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI GainEXPText;
 
+    [SerializeField]
+    TextMeshProUGUI LevelLabel;
+
     int CurrentExp;
 
     [SerializeField]
@@ -45,6 +48,8 @@ public class DisplayEXPEntityUI : MonoBehaviour
 
         ExpValueText.text = Mathf.RoundToInt(expPercent * 100f) + "%";
         FillImage.fillAmount = expPercent;
+
+        LevelLabel.text = CORE.Instance.Room.PlayerActor.level.ToString();
 
         ConstantFillImage.fillAmount = expPercent;
     }
@@ -103,6 +108,7 @@ public class DisplayEXPEntityUI : MonoBehaviour
     IEnumerator ShowRoutine(DisplayExpInstance instance)
     {
         GainEXPText.text = "";
+        
 
         while (CG.alpha < 1f)
         {
@@ -147,6 +153,8 @@ public class DisplayEXPEntityUI : MonoBehaviour
         GainEXPText.text = "";
 
         CurrentExp = instance.CurrentEXP;
+        LevelLabel.text = CORE.Instance.Room.PlayerActor.level.ToString();
+
 
         if (Que.Count <= 0)
         {

@@ -167,16 +167,23 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         RefreshUI(false);
 
+        string translatedDrop = "- Drop";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(translatedDrop, out translatedDrop);
+
+        string translatedUse = "- Use";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(translatedUse, out translatedUse);
+
 
         if (CORE.Instance.IsUsingJoystick)
         {
-            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + "B - Drop</color>";
-            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + "A - Use</color>";
+           
+            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + "B "+translatedDrop+"</color>";
+            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + "A "+ translatedUse +"</ color>";
         }
         else
         {
-            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + InputMap.Map["Drop Inventory Item"].ToString() + " - Drop</color>";
-            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + InputMap.Map["Use Inventory Item"].ToString() + " - Use</color>";
+            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + InputMap.Map["Drop Inventory Item"].ToString() + translatedDrop +"</color>";
+            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + InputMap.Map["Use Inventory Item"].ToString() +translatedUse+"</color>";
         }
 
         AudioControl.Instance.Play(ShowSound);

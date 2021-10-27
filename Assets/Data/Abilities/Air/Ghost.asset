@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ghost
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: ced6abbe21a991249a883df9fcb3bdef, type: 3}
-  Description: "Become Invulnerable for a short period of time.\n\n While invulnerable
-    you can still move around and use abilities."
+  Description: Become Invulnerable for a short period of time. While invulnerable
+    you can still move around and use abilities or spells.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -26,6 +26,7 @@ MonoBehaviour:
     PrepareAbilitySound: A_Whip_PrepareOGG
     ExecuteAbilitySound: A_GhostOGG
     HitAbilitySound: 
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -35,11 +36,14 @@ MonoBehaviour:
   CastingTime: 0.5
   TargetCap: 0
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: Ghost Shield
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams: []
   OnMissParams: []

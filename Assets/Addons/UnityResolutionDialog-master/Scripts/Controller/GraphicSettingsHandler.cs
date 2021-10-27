@@ -4,10 +4,8 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-#pragma warning disable 0649
+//#pragma warning disable 0649
 
-namespace NewResolutionDialog.Scripts.Controller
-{
     public class GraphicSettingsHandler : MonoBehaviour
     {
         public static GraphicSettingsHandler Instance;
@@ -206,6 +204,7 @@ namespace NewResolutionDialog.Scripts.Controller
             }
 
             quality.ClearOptions();
+            
             quality.AddOptions(options);
         }
 
@@ -533,4 +532,3 @@ namespace NewResolutionDialog.Scripts.Controller
         }
         #endregion
     }
-}

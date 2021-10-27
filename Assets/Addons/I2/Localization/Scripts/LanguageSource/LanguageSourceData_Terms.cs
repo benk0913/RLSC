@@ -44,6 +44,15 @@ namespace I2.Loc
 			return string.Empty;
 		}
 
+        public string GetTranslationCodwise(string term, string overrideLanguage = null, string overrideSpecialization = null, bool skipDisabled = false, bool allowCategoryMistmatch = false)
+        {
+            string translation = term;
+
+            TryGetTranslationCodywise(term, out translation, overrideLanguage, overrideSpecialization, skipDisabled, allowCategoryMistmatch);
+
+            return translation;
+        }
+
         public bool TryGetTranslationCodywise (string term, out string Translation, string overrideLanguage = null, string overrideSpecialization = null, bool skipDisabled = false, bool allowCategoryMistmatch = false)
         {
             bool result = TryGetTranslation(term, out Translation, overrideLanguage, overrideSpecialization, skipDisabled, allowCategoryMistmatch);

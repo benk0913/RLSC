@@ -25,7 +25,7 @@ public class ScreenEffectUISpellGain : ScreenEffectUI
         this.OrbIcon.sprite = abilityData.Icon;
         this.OrbNameLabel.text = abilityData.name;
 
-        this.KeyLabel.text = "Press '"+InputMap.Map["Abilities Window"].ToString()+"' to View";
+        this.KeyLabel.text = CORE.QuickTranslate("Press '"+InputMap.Map["Abilities Window"].ToString()+"' to View");
     }
 
 }
