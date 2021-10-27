@@ -64,15 +64,10 @@ public class AbilitySlotUI : MonoBehaviour
         IconImage.sprite = CurrentAbility.CurrentAbility.Icon;
 
         string tooltipString = "";
+        
 
-        string abilityName = abilityState.CurrentAbility.name;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(abilityState.CurrentAbility.name, out abilityName);
-
-        string abilityDesc = abilityState.CurrentAbility.Description;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(abilityState.CurrentAbility.Description, out abilityDesc);
-
-        tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+abilityName+"</color>";
-        tooltipString += System.Environment.NewLine + abilityDesc;
+        tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+CORE.QuickTranslate(abilityState.CurrentAbility.name)+ "</color>";
+        tooltipString += System.Environment.NewLine + CORE.QuickTranslate(abilityState.CurrentAbility.Description);
 
         // TODO do we want detailed tooltips?
         // tooltipString += System.Environment.NewLine + "CASTING TIME: "+abilityState.CurrentAbility.CastingTime;
@@ -108,7 +103,7 @@ public class AbilitySlotUI : MonoBehaviour
 
         if (abilityState.IsAbilityLocked)
         {
-            tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_BAD + "> - UNLOCK AT LEVEL "+abilityState.UnlockLevel+" - </color>";
+            tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_BAD + "> - "+CORE.QuickTranslate("UNLOCK AT LEVEL")+" "+abilityState.UnlockLevel+" - </color>";
             AbilityLock.SetActive(true);
         }
         else

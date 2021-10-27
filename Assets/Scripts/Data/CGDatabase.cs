@@ -37,7 +37,7 @@ public class CGDatabase : ScriptableObject
 [Serializable]
 public class DatabaseContent
 {
-    public List<ItemData> temporaryData = new List<ItemData>();
+    public List<BodyPart> temporaryData = new List<BodyPart>();
 
     [JsonIgnore]
     public List<RealmData> Realms = new List<RealmData>();

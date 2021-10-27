@@ -116,6 +116,8 @@ public class CORE : MonoBehaviour
 
     public bool IsAppInBackground = false;
 
+    public string CurrentLanguage = "";
+
     
 
     public WindowInterface CurrentWindow;
@@ -158,29 +160,29 @@ public class CORE : MonoBehaviour
             }
 
 
-            string lang = PlayerPrefs.GetString("language", "");
+            CurrentLanguage = PlayerPrefs.GetString("language", "");
 
-            if (string.IsNullOrEmpty(lang))
+            if (string.IsNullOrEmpty(CurrentLanguage))
             {
                 Debug.Log("Using steam's UI language");
-                lang = SteamApps.GetCurrentGameLanguage();
+                CurrentLanguage = SteamApps.GetCurrentGameLanguage();
 
-                if (lang == "Simplified Chinese")
+                if (CurrentLanguage == "Simplified Chinese")
                 {
-                    lang = "Chinese (Simplified)";
+                    CurrentLanguage = "Chinese (Simplified)";
                 }
 
-                if (lang == "Spanish - Spain")
+                if (CurrentLanguage == "Spanish - Spain")
                 {
-                    lang = "Spanish";
+                    CurrentLanguage = "Spanish";
                 }
 
             }
 
-            PlayerPrefs.SetString("language", lang);
+            PlayerPrefs.SetString("language", CurrentLanguage);
             PlayerPrefs.Save();
 
-            LocalizationManager.CurrentLanguage = lang;
+            LocalizationManager.CurrentLanguage = CurrentLanguage;
             CORE.Instance.InvokeEvent("LanguageChanged");
 
 
@@ -491,6 +493,17 @@ public class CORE : MonoBehaviour
     {
         return System.Text.RegularExpressions.Regex.Replace(input, "([A-Z])", " $1", System.Text.RegularExpressions.RegexOptions.Compiled).Trim();
     }
+
+    public static string StripHTML(string input)
+    {
+        return System.Text.RegularExpressions.Regex.Replace(input, "<.*?>", String.Empty);
+    }
+
+    public static string QuickTranslate(string text)
+    {
+        return Instance.Data.Localizator.mSource.GetTranslationCodwise(text);
+    }
+
 
     public void SubscribeToEvent(string eventKey, UnityAction action)
     {
@@ -1455,9 +1468,5 @@ public class RoomData
         }
     }
 
-    public static string StripHTML(string input)
-    {
-        return System.Text.RegularExpressions.Regex.Replace(input, "<.*?>", String.Empty);
-    }
-
+   
 }

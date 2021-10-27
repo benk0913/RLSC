@@ -12,6 +12,7 @@ public class RandomStringEntity : MonoBehaviour
     bool toRefresh = false;
     private void OnEnable()
     {
+        Label.text = "...";
         toRefresh = true;
     }
 
@@ -19,7 +20,7 @@ public class RandomStringEntity : MonoBehaviour
     {
         if(toRefresh)
         {
-            if(CORE.Instance == null)
+            if(CORE.Instance == null || string.IsNullOrEmpty(CORE.Instance.CurrentLanguage))
             {
                 return;
             }
@@ -31,14 +32,7 @@ public class RandomStringEntity : MonoBehaviour
 
     void Refresh()
     {
-        string message = Variety[Random.Range(0, Variety.Count)];
-        string newMsg = message;
-        if(!CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(message, out newMsg))
-        {
-            Debug.LogError("FAIL");
-        }
-        message = newMsg;
-
-        Label.text = message;
+        Debug.LogError(CORE.StripHTML(Variety[Random.Range(0, Variety.Count)]));
+        Label.text = CORE.QuickTranslate(CORE.StripHTML(Variety[Random.Range(0, Variety.Count)]));
     }
 }

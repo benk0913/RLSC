@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Fly
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: a731669898b53f843ba558fafc7af903, type: 3}
-  Description: 'Fly freely!
-
-    Be able to navigate in four directions while remaining
-    unaffected by gravity.'
+  Description: Fly freely! Be able to navigate in four directions while remaining
+    unaffected by the gravity.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -28,20 +26,24 @@ MonoBehaviour:
     PrepareAbilitySound: A_Fly_Prepare
     ExecuteAbilitySound: A_Fly_Execute
     HitAbilitySound: 
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
-  ScreenEffectObject: 
-  CD: 15
-  CastingTime: 0.5
-  OnlyIfGrounded: 0
-  IsCastingExternal: 0
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: Cast2
     ExecuteAnimation: Execute2
+  CD: 15
+  CastingTime: 0.5
   TargetCap: 0
+  OnlyIfGrounded: 0
+  AIViableRange: 0
+  IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: Flight
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams: []
   OnMissParams: []

@@ -33,16 +33,10 @@ public class ItemsLogic
 
     public static string GetTooltipTextFromItem(ItemData itemData)
     {
-        string onExecuteTranslate = " on execute";
-        string onHitTranslate = " on hit";
-
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" on execute", out onExecuteTranslate);
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" on hit", out onHitTranslate);
-
         string text = "";
         text += GetTooltipTextFromAttributes(itemData.Stats);
-        text += GetTooltipTextFromAbilityParams(itemData.OnExecuteParams, onExecuteTranslate);
-        text += GetTooltipTextFromAbilityParams(itemData.OnHitParams, onHitTranslate);
+        text += GetTooltipTextFromAbilityParams(itemData.OnExecuteParams, " on execute");
+        text += GetTooltipTextFromAbilityParams(itemData.OnHitParams, " on hit");
         return text;
     }
 
@@ -57,11 +51,8 @@ public class ItemsLogic
             
             if (propertyValue > 0)
             {
-                string BoostKey = keyValuePair.Value.Name;
-                CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(keyValuePair.Value.Name, out BoostKey);
-
                 string icon = string.IsNullOrEmpty(keyValuePair.Value.SpriteName) ?  "<sprite name=\"Default\">" : "<sprite name=\"" + keyValuePair.Value.SpriteName + "\">  ";
-                result += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + ">" + icon + BoostKey + " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
+                result += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + ">" + icon + CORE.QuickTranslate(keyValuePair.Value.Name)+ " +" + Mathf.RoundToInt(propertyValue * 100)+"%" + "</color>";
             }
         }
         foreach (KeyValuePair<string, DisplayAttribute> keyValuePair in DisplayAttributes)
@@ -92,13 +83,10 @@ public class ItemsLogic
 
             if (abilityParam.Condition && abilityParam.Condition.Type == ConditionType.Chance)
             {
-                string chanceTo = "% chance to ";
-                CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("% chance to ", out chanceTo);
-
-                abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) +chanceTo;
+                abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) + CORE.QuickTranslate("chance to");
             }
 
-            abilityParamText += abilityParam.Type.name + " on " + abilityParam.Targets.ToString() + whenCondition;
+            abilityParamText += CORE.QuickTranslate(abilityParam.Type.name) + " "+CORE.QuickTranslate("on")+" " + CORE.QuickTranslate(abilityParam.Targets.ToString()) + CORE.QuickTranslate(whenCondition);
             string value = abilityParam.ObjectValue == null ? abilityParam.Value : abilityParam.ObjectValue.name;
             if (!string.IsNullOrEmpty(value))
             {
@@ -113,23 +101,18 @@ public class ItemsLogic
 
     public static string GetItemTooltip(ItemData itemData)
     {
-        string text = itemData.DisplayName;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(itemData.DisplayName, out text);
+        string text = CORE.QuickTranslate(itemData.DisplayName);
 
-        string type = itemData.Type.name;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(itemData.DisplayName, out type);
-
-        text += System.Environment.NewLine +"<i><color=" + Colors.COLOR_HIGHLIGHT + ">"+ CORE.SplitCamelCase(type)+"</color></i>";
+        text += System.Environment.NewLine +"<i><color=" + Colors.COLOR_HIGHLIGHT + ">"+ CORE.SplitCamelCase(CORE.QuickTranslate(itemData.Type.name))+"</color></i>";
         
-        string description = itemData.Description.Trim();
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(itemData.Description.Trim(), out description);
+        string description = CORE.QuickTranslate(itemData.Description).Trim();
 
         if (!string.IsNullOrEmpty(description)) {
             text += System.Environment.NewLine + "<i>"+description+"</i>";
         }
 
         //text += System.Environment.NewLine + "<i><u><color=" + Colors.COLOR_HIGHLIGHT + "> Bonuses: </color></u></i>";
-        text += ItemsLogic.GetTooltipTextFromItem(itemData);
+        text += GetTooltipTextFromItem(itemData);
 
         return text;
     }

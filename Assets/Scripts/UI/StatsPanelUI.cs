@@ -45,7 +45,7 @@ public class StatsPanelUI : MonoBehaviour
         CORE.ClearContainer(Container);
 
         GenerateStatItem("Name", CurrentActor.name);
-        GenerateStatItem("Class", CurrentActor.ClassJobReference.name);
+        GenerateStatItem("Class", CORE.QuickTranslate(CurrentActor.ClassJobReference.name));
         GenerateStatItem("Level", CurrentActor.level.ToString());
         GenerateStatItem("EXP", CurrentActor.exp.ToString());
 
