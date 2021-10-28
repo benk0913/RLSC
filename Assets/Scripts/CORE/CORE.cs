@@ -156,6 +156,7 @@ public class CORE : MonoBehaviour
                 if (args[i].Contains("connect_lobby"))
                 {
                     pendingJoinParty = args[i + 1];
+                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Will auto-join as soon as your enter the matching realm!", Color.green, 4, false));
                 }
             }
 
@@ -221,7 +222,7 @@ public class CORE : MonoBehaviour
     }
 
     protected Callback<GameRichPresenceJoinRequested_t> GetJoinRequestResponse;
-    string pendingJoinParty = null;
+    public string pendingJoinParty = null;
     void OnGetJoinRequestResponse(GameRichPresenceJoinRequested_t pCallBack)
     {
         LogMessage("STEAM - JOIN GAME RESPONSE | key: " + pCallBack.m_rgchConnect);
@@ -801,11 +802,13 @@ public class CORE : MonoBehaviour
 
     public void CheckOOGInvitations()
     {
-        if(pendingJoinParty != null)
+        if(!string.IsNullOrEmpty(pendingJoinParty) && SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
         {
             JSONNode node = new JSONClass();
             node["steamLobbyId"] = pendingJoinParty;
             SocketHandler.Instance.SendEvent("party_auto_join", node);
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to join party...", Color.green, 3, false));
+            
         }
     }
 

@@ -879,7 +879,9 @@ public class SocketHandler : MonoBehaviour
                 }
                 
                 ScreenFaderUI.Instance.FadeFromBlack();
-                    
+
+                CORE.Instance.CheckOOGInvitations();
+
             });
         });
     }
@@ -1737,9 +1739,14 @@ public class SocketHandler : MonoBehaviour
 
         actorDat.ActorEntity.ShowTextBubble(data["message"].Value);
 
-        string chatlogMessage = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + "</color>: " + data["message"].Value;
+        string message = data["message"].Value;
 
-        CORE.Instance.AddChatMessage(chatlogMessage);
+        if (!string.IsNullOrEmpty(message))
+        {
+            string chatlogMessage = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + "</color>: " + message;
+
+            CORE.Instance.AddChatMessage(chatlogMessage);
+        }
     }
 
     // Party
@@ -1803,7 +1810,7 @@ public class SocketHandler : MonoBehaviour
             CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has been invited to the party!", out hadInvitedYou);
 
             string actorName = data["actorName"].Value;
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + "</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + hadInvitedYou +"</color>");
         }
     }
 
@@ -1825,7 +1832,7 @@ public class SocketHandler : MonoBehaviour
         string hadInvitedYou = " has joined the party!";
         CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has joined the party!", out hadInvitedYou);
 
-        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + "</color>");
+        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName +hadInvitedYou+ "</color>");
 
         AudioControl.Instance.Play("getPartyAccept");
 
@@ -1921,7 +1928,8 @@ public class SocketHandler : MonoBehaviour
 
         if(CORE.Instance.CurrentParty == null && newPartyData != null) // Entering a party for hte first time 
         {
-            if(newPartyData.leaderName == CORE.PlayerActor.name)//Leader of the new party
+            CORE.Instance.pendingJoinParty = String.Empty;
+            if (newPartyData.leaderName == CORE.PlayerActor.name)//Leader of the new party
             {
                 SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, CORE.Instance.Data.content.MaxPartyMembers);
             }

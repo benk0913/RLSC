@@ -12,9 +12,12 @@ public class RandomStringEntity : MonoBehaviour
     bool toRefresh = false;
     private void OnEnable()
     {
-        Label.text = "...";
+        currentMessage = Variety[Random.Range(0, Variety.Count)];
+        Label.text = currentMessage;
         toRefresh = true;
     }
+
+    string currentMessage;
 
     void Update()
     {
@@ -33,6 +36,6 @@ public class RandomStringEntity : MonoBehaviour
     void Refresh()
     {
         Debug.LogError(CORE.StripHTML(Variety[Random.Range(0, Variety.Count)]));
-        Label.text = CORE.QuickTranslate(CORE.StripHTML(Variety[Random.Range(0, Variety.Count)]));
+        Label.text = CORE.QuickTranslate(CORE.StripHTML(currentMessage));
     }
 }
