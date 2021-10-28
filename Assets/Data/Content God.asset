@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Content God
   m_EditorClassIdentifier: 
   ServerEnvironment:
-    Environment: Dev
-    Region: 
+    Environment: Prod
+    Region: eu
   DataPath: Data
   content:
     temporaryData: []
@@ -5938,6 +5938,51 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: 
       MapPoint: 
+    - sceneName: WizardForestCamp
+      displyName: Deep in the Wilderness
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: TavernEntrance
+        interactableId: 
+        positionX: -156
+        positionY: -23
+      - interactableName: NPC_Expeditioneer
+        interactableId: 
+        positionX: -160
+        positionY: -27
+      - interactableName: NPC_Wizard
+        interactableId: 
+        positionX: -38
+        positionY: -27
+      - interactableName: NPC_Wizard2
+        interactableId: 
+        positionX: -38
+        positionY: -27
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: -150
+        positionY: -27
+      playerSpawnX: -150.6
+      playerSpawnY: -22.8
+      Portals:
+      - name: Entrance
+        TargetScene: SunsetPortTavern
+        TargetSceneGate: TavernEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -155.84
+        portalPositionY: -23.15
+      Vendors: []
+      MusicTrack: IntermissionSong
+      Soundscape: Campfire SoundScape
+      NightMusicTrack: IntermissionSong
+      NightSoundscape: Campfire SoundScape
+      enablePvp: 0
+      displayTitleOnEnter: 1
+      PredictionImage: {fileID: 0}
+      Map: ExpeditionMap
+      MapPoint: Intermission4
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -6077,6 +6122,7 @@ MonoBehaviour:
     NpcItemsPoolLength: 3
     NpcItemsRefreshMinutes: 5
     ExpeditionQueueMatchDurationSeconds: 20
+    TaxiPrice: 50
     BaseCoinDrop: 5
   DefaultSpriteMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   ErrorIcon: {fileID: 21300000, guid: 88cc93b9033d1014f8728abbd467af91, type: 3}

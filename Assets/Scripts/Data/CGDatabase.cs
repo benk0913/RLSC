@@ -37,7 +37,8 @@ public class CGDatabase : ScriptableObject
 [Serializable]
 public class DatabaseContent
 {
-    public List<BodyPart> temporaryData = new List<BodyPart>();
+    [JsonIgnore]
+    public List<GEPlayDialog> temporaryData = new List<GEPlayDialog>();
 
     [JsonIgnore]
     public List<RealmData> Realms = new List<RealmData>();
@@ -128,6 +129,7 @@ public class DatabaseContent
     public int NpcItemsPoolLength;
     public int NpcItemsRefreshMinutes;
     public int ExpeditionQueueMatchDurationSeconds;
+    public int TaxiPrice = 50;
 
     public int BaseCoinDrop = 5;
 }

@@ -181,6 +181,8 @@ public class DialogEntity : MonoBehaviour
 
         public void SelectDecision()
         {
+            OnSelectInvokation?.Invoke();
+
             foreach (GameEvent gEvent in OnSelect)
             {
                 gEvent.Execute();

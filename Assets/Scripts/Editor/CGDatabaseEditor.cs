@@ -301,7 +301,7 @@ public class CGDatabaseEditor : Editor
 
             for (int i = 0; i < db.content.temporaryData.Count; i++)
             {
-                newTerms.Add(db.content.temporaryData[i].name);
+                AddDialogtoLocalization(db.content.temporaryData[i].Dialog, terms, newTerms);
             }
 
 

@@ -53,6 +53,17 @@ public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
                         return Inverse;
                     }
                 }
+            case ConditionType.HasMoney:
+                {
+                    if (CORE.PlayerActor.money >= int.Parse(Value))
+                    {
+                        return !Inverse;
+                    }
+                    else
+                    {
+                        return Inverse;
+                    }
+                }
         } 
 
         return !Inverse; //  True 
@@ -67,5 +78,6 @@ public enum ConditionType
     Staring,
     Chance,
 
-    InExpeditionQueue
+    InExpeditionQueue,
+    HasMoney
 }

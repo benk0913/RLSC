@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2117ed5eb5c7caf40864adf1d82f7b52, type: 3}
+  m_Name: Wizard Correct C
+  m_EditorClassIdentifier: 
+  DialogEntityGameObjectName: NPC_Wizard2
+  Dialog:
+    DialogPieces:
+    - Content: WOW! FOURTH Question!
+      OnDialogPiece:
+        m_PersistentCalls:
+          m_Calls: []
+    Decisions:
+    - Content: AWSOME!
+      OnSelect:
+      - {fileID: 11400000, guid: a03e3ee3c6ab3844fa0e27325dc62817, type: 2}
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces: []
+        Decisions: []
+        IsFemale: 0
+    - Content: k
+      OnSelect:
+      - {fileID: 11400000, guid: a03e3ee3c6ab3844fa0e27325dc62817, type: 2}
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces: []
+        Decisions: []
+        IsFemale: 0
+    - Content: ...
+      OnSelect:
+      - {fileID: 11400000, guid: a03e3ee3c6ab3844fa0e27325dc62817, type: 2}
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces: []
+        Decisions: []
+        IsFemale: 0
+    IsFemale: 0
