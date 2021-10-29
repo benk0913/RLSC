@@ -538,12 +538,6 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             return;
         }
 
-        if (SelectedSlot.IsEquipmentSlot)
-        {
-            SocketHandler.Instance.SendDroppedItem(SelectedSlot.transform.GetSiblingIndex());
-
-            return;
-        }
 
         if (SelectedSlot.IsTradeSlot)
         {
@@ -557,7 +551,14 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             return;
         }
 
-        SocketHandler.Instance.SendDroppedItem(SelectedSlot.transform.GetSiblingIndex());
+        if (SelectedSlot.IsEquipmentSlot)
+        {
+            SocketHandler.Instance.SendDroppedEquip(SelectedSlot.SlotType.name);
+        }
+        else
+        {
+            SocketHandler.Instance.SendDroppedItem(SelectedSlot.transform.GetSiblingIndex());
+        }
 
         Deselect();
 
