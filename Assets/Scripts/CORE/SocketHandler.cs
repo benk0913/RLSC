@@ -160,8 +160,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("friends_list_update", OnFriendsListUpdated));
 
         //Que
-        SocketEventListeners.Add(new SocketEventListener("que_update", OnQueUpdate));
-        SocketEventListeners.Add(new SocketEventListener("que_complete", OnQueComplete));
+        SocketEventListeners.Add(new SocketEventListener("login_queue_start", OnLoginQueueStart));
 
         //Emotes
         SocketEventListeners.Add(new SocketEventListener("actor_emoted", OnActorEmoted));
@@ -528,6 +527,23 @@ public class SocketHandler : MonoBehaviour
         UrlParams,
         false);
     }
+
+    public void SendLoginQueuePositionRequest(Action<JSONNode> OnComplete)
+    {
+        Dictionary<string, string> UrlParams = new Dictionary<string, string>();
+        UrlParams.Add("realm", SelectedRealmIndex.ToString());
+        UrlParams.Add("tutorialIndex", TutorialIndex.ToString());
+
+        SendWebRequest(ServerEnvironment.HostUrl + "/login-queue-position", (UnityWebRequest ccreq) =>
+        {
+            JSONNode data = JSON.Parse(ccreq.downloadHandler.text);
+
+            OnComplete.Invoke(data);
+        },
+        null,
+        UrlParams,
+        false);
+    }
     
 
     Coroutine ConnectSocketRoutineInstance;
@@ -549,6 +565,7 @@ public class SocketHandler : MonoBehaviour
 
         options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
         options.AutoConnect = false;
+        options.Reconnection = false;
 
         DisconnectSocket();
 
@@ -799,11 +816,9 @@ public class SocketHandler : MonoBehaviour
                 break;
             case SocketIOErrors.Custom:
                 // This error case is when having issues connecting to the game, e.g. when you're already connected on another PC.
-                JSONNode errorData = JSON.Parse(error.Message.ToString());
-                string errorMessage = errorData["message"];
+                string errorMessage = error.Message;
                 TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(errorMessage, Colors.AsColor(Colors.COLOR_BAD), 2, true));
                 CORE.Instance.LogMessageError("Server custom error. Message: " + errorMessage);
-                DisconnectSocket();
                 break;
             default:
                 CORE.Instance.LogMessageError("Server error!" + " Code: " + error.Code + ". Message: " + error.Message);
@@ -1032,14 +1047,9 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.InvokeEvent("FriendsUpdated");
     }
 
-    public void OnQueUpdate(string eventName, JSONNode data)
+    public void OnLoginQueueStart(string eventName, JSONNode data)
     {
-        QueWindowUI.Instance.Show(data["players_before"].AsInt);
-    }
-
-    public void OnQueComplete(string eventName, JSONNode data)
-    {
-        QueWindowUI.Instance.Hide();
+        QueWindowUI.Instance.Show(data["playersBefore"].AsInt);
     }
 
 
