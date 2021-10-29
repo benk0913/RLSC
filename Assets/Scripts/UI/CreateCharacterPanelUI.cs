@@ -387,6 +387,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
     {
         classJobIndex = index;
         DisplayActor.State.Data.classJob = Jobs[classJobIndex];
+        AudioControl.Instance.SetClassMusic(DisplayActor.State.Data.ClassJobReference);
         for(int i=0;i<JobFrames.Count;i++)
         {
             JobFrames[i].gameObject.SetActive(i==index);

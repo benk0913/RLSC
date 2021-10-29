@@ -857,6 +857,7 @@ public class CORE : MonoBehaviour
 
     public void UpdateSteamStatus()
     {
+        
         if(SceneManager.GetActiveScene().name == "MainMenu")
         {
             SteamFriends.SetRichPresence("steam_display", "#Status_AtMainMenu");
