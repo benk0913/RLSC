@@ -49,6 +49,7 @@ public class DatabaseContent
 
     public int RealmCap = 2;
 
+    [JsonIgnore]
     public VisualDatabase Visuals;
 
     public CashShopDatabase CashShop;
@@ -80,6 +81,7 @@ public class DatabaseContent
 
     public List<string> TimePhases = new List<string>();
     
+    [JsonIgnore]
     public AlignmentData alignmentData;
     public List<MoneyValueMap> MoneyValueMaps = new List<MoneyValueMap>();
     public string LatestVersion;
@@ -157,6 +159,7 @@ public class VisualDatabase
 [Serializable]
 public class CashShopDatabase
 {
+    [JsonIgnore]
     public List<CashShopStore> CashShopStores = new List<CashShopStore>();
 
     [Serializable]
@@ -198,6 +201,7 @@ public class SceneInfo
     [JsonIgnore]
     public string objectiveDescription;
 
+    [JsonIgnore]
     public string UniqueCompletionScreenEffect;
 
     public List<MobSpawn> Mobs = new List<MobSpawn>();
@@ -214,7 +218,7 @@ public class SceneInfo
     public string Soundscape;
 
 
-       [JsonIgnore]
+    [JsonIgnore]
     public string NightMusicTrack;
 
     [JsonIgnore]

@@ -12,11 +12,14 @@ public class ItemData : ScriptableObject
     [PreviewSprite]
     public Sprite Icon;
 
+    [JsonIgnore]
     public string DisplayName;
 
     [TextArea(3,6)]
+    [JsonIgnore]
     public string Description;
 
+    [JsonIgnore]
     public string UniquePrefab;
 
     public AttributeData Stats;
@@ -30,6 +33,7 @@ public class ItemData : ScriptableObject
 
     public ItemType Type;
 
+    [JsonIgnore]
     public ItemRarity Rarity;
 
     public bool CashShopItem = false;
