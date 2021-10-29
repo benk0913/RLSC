@@ -279,7 +279,7 @@ namespace EdgeworldBase
             while(t<1f)
             {
                 SetVolume("Music", Mathf.Lerp(initVolume, 0f, t), false);
-                t += Time.deltaTime * 2f;
+                t += Time.deltaTime;
                 yield return 0;
             }
 
@@ -292,7 +292,7 @@ namespace EdgeworldBase
             while (t < 1f)
             {
                 SetVolume("Music", Mathf.Lerp(0f, initVolume, t), false);
-                t += Time.deltaTime * 2f;
+                t += Time.deltaTime;
                 yield return 0;
             }
 

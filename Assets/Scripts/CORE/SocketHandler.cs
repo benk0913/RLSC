@@ -2174,11 +2174,10 @@ public class ActorData
     {
         get
         {
-            if (_classjobRef == null && !string.IsNullOrEmpty(classJob))
+            if ((_classjobRef == null && !string.IsNullOrEmpty(classJob)) || _classjobRef.name != classJob)
             {
                 _classjobRef = CORE.Instance.Data.content.Classes.Find(x => x.name == this.classJob);
             }
-
             return _classjobRef;
         }
         set
