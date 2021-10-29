@@ -823,7 +823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &104155901
 Animator:
   serializedVersion: 3
@@ -4829,7 +4829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378260, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378260, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: PortalReference.name
@@ -4837,7 +4837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378260, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: PortalReference.TargetScene
-      value: SunsetPortTavern
+      value: Sunset Port
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378260, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: PortalReference.TargetSceneGate
@@ -4897,15 +4897,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378266, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: Data.interactableName
-      value: TavernEntrance
+      value: Entrance
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350708563608, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_IsActive
@@ -12634,90 +12634,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultDialog:
     DialogPieces:
-    - Content: Stuck in the forest Adventurer?
+    - Content: Well well, look who's here...
       OnDialogPiece:
         m_PersistentCalls:
           m_Calls: []
-    - Content: Maybe I can help you with that!
-      OnDialogPiece:
-        m_PersistentCalls:
-          m_Calls: []
-    - Content: Maybe not...
-      OnDialogPiece:
-        m_PersistentCalls:
-          m_Calls: []
-    - Content: Do you have 50 gold? It mostly depends on that.
-      OnDialogPiece:
-        m_PersistentCalls:
-          m_Calls: []
-    - Content: Fifty, and I will bring you back to Sunset Port without losing a single
-        hair.
-      OnDialogPiece:
-        m_PersistentCalls:
-          m_Calls: []
-    Decisions:
-    - Content: OK. Here's the money. <color=yellow>(Pay 50 Gold)</color>
-      OnSelect:
-      - {fileID: 11400000, guid: 85e96717e5b13a647a27a926e3e68c91, type: 2}
-      OnSelectInvokation:
-        m_PersistentCalls:
-          m_Calls: []
-      DisplayConditions:
-      - {fileID: 11400000, guid: c980efca87746dd40ba0e563f4e5c0ae, type: 2}
-      DisplayOnlyIfConditionsMet: 0
-      DefaultDialog:
-        DialogPieces: []
-        Decisions: []
-        IsFemale: 0
-    - Content: I don't have that kind of money!
-      OnSelect: []
-      OnSelectInvokation:
-        m_PersistentCalls:
-          m_Calls: []
-      DisplayConditions: []
-      DisplayOnlyIfConditionsMet: 0
-      DefaultDialog:
-        DialogPieces:
-        - Content: Well with that I CAN'T help you.
-          OnDialogPiece:
-            m_PersistentCalls:
-              m_Calls: []
-        - Content: But maybe other travellers here can lend you some money...
-          OnDialogPiece:
-            m_PersistentCalls:
-              m_Calls: []
-        Decisions: []
-        IsFemale: 0
-    - Content: Not Interested.
-      OnSelect: []
-      OnSelectInvokation:
-        m_PersistentCalls:
-          m_Calls: []
-      DisplayConditions: []
-      DisplayOnlyIfConditionsMet: 0
-      DefaultDialog:
-        DialogPieces:
-        - Content: Alright, if you say so!
-          OnDialogPiece:
-            m_PersistentCalls:
-              m_Calls: []
-        Decisions: []
-        IsFemale: 0
-    - Content: Not Interested, thank you!
-      OnSelect: []
-      OnSelectInvokation:
-        m_PersistentCalls:
-          m_Calls: []
-      DisplayConditions: []
-      DisplayOnlyIfConditionsMet: 0
-      DefaultDialog:
-        DialogPieces:
-        - Content: Alright, if you say so!
-          OnDialogPiece:
-            m_PersistentCalls:
-              m_Calls: []
-        Decisions: []
-        IsFemale: 0
+    Decisions: []
     IsFemale: 0
   CurrentDialog:
     DialogPieces: []
@@ -12852,7 +12773,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.077147484, y: -0.26480913}
+  m_Offset: {x: -0.077147484, y: -1.7864447}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12863,7 +12784,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.3271465, y: 9.685472}
+  m_Size: {x: 6.3271465, y: 12.728743}
   m_EdgeRadius: 0
 --- !u!4 &2079474635
 Transform:
@@ -12873,7 +12794,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079474629}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -149.57, y: -26.76, z: 0}
+  m_LocalPosition: {x: -90.4, y: -19.1, z: 0}
   m_LocalScale: {x: 1.07915, y: 1.07915, z: 1.07915}
   m_Children:
   - {fileID: 1043351828}

@@ -51,6 +51,7 @@ namespace EdgeworldBase
             return m_dicVolumeGroup[tag];
         }
 
+        
 
 
         public void PlayInPosition(string gClip, Vector3 pos, float MaxDistance = 200f, float pitch = 1f)
@@ -170,10 +171,18 @@ namespace EdgeworldBase
             }
         }
 
-        public void SetVolume(string gTag, float gVolume)
+        public void ResetVolume(string gTag, bool save = true)
         {
-            PlayerPrefs.SetFloat(gTag, gVolume);
-            PlayerPrefs.Save();
+            SetVolume(gTag, PlayerPrefs.GetFloat(gTag), save);
+        }
+
+        public void SetVolume(string gTag, float gVolume, bool save = true)
+        {
+            if (save)
+            {
+                PlayerPrefs.SetFloat(gTag, gVolume);
+                PlayerPrefs.Save();
+            }
 
             if (gTag == "Music")
             {
@@ -245,6 +254,50 @@ namespace EdgeworldBase
             {
                 currentInstance.GetComponent<AudioSource>().volume = m_dicVolumeGroup[currentInstance.tag];
             }
+        }
+
+        public void SetCurrentClassMusic()
+        {
+            SetClassMusic(CORE.PlayerActor.ClassJobReference);
+        }
+
+        public void SetClassMusic(ClassJob classj)
+        {
+            if (SwitchMusicFadeInstance != null)
+            {
+                StopCoroutine(SwitchMusicFadeInstance);
+            }
+
+            SwitchMusicFadeInstance = StartCoroutine(SwitchMusicFade(classj.ClassMusic.name));
+        }
+
+        Coroutine SwitchMusicFadeInstance;
+        IEnumerator SwitchMusicFade(string musicKey)
+        {
+            float initVolume = PlayerPrefs.GetFloat("Music");
+            float t = 0f;
+            while(t<1f)
+            {
+                SetVolume("Music", Mathf.Lerp(initVolume, 0f, t), false);
+                t += Time.deltaTime * 2f;
+                yield return 0;
+            }
+
+            float currentPlaybackTime = MusicSource.time;
+
+            SetMusic(musicKey);
+            MusicSource.time = currentPlaybackTime;
+
+            t = 0f;
+            while (t < 1f)
+            {
+                SetVolume("Music", Mathf.Lerp(0f, initVolume, t), false);
+                t += Time.deltaTime * 2f;
+                yield return 0;
+            }
+
+
+            SwitchMusicFadeInstance = null;
         }
 
         public void SetMusic(string gClip, float fPitch = 1f)

@@ -29,6 +29,9 @@ public class ClassJob : ScriptableObject
     [JsonIgnore]
     public VideoClip ClassFeatureVideo;
 
+    [JsonIgnore]
+    public AudioClip ClassMusic;
+
     public List<ItemData> DropsOnDeath = new List<ItemData>();
     
     public float CoinDropMultiplier = 0f;

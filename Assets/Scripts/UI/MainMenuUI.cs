@@ -259,6 +259,8 @@ public class MainMenuUI : MonoBehaviour
 
         SelectedDisplayActor = displayActor;
         SelectedDisplayActor.Select();
+
+        PlayClassMusic(SelectedDisplayActor.AttachedCharacter.State.Data.ClassJobReference);
     }
 
     public void RemoveCharacterSelected()
@@ -313,6 +315,11 @@ public class MainMenuUI : MonoBehaviour
     public void ShowForums()
     {
         Steamworks.SteamFriends.ActivateGameOverlay("community");
+    }
+
+    public void PlayClassMusic(ClassJob cJob)
+    {
+        AudioControl.Instance.SetClassMusic(cJob);
     }
 }
 

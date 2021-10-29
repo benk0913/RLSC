@@ -127,77 +127,82 @@ public class CORE : MonoBehaviour
     {
         Instance = this;
 
-        if(SteamAPI.RestartAppIfNecessary(new AppId_t(1780330)))
+        if (!SocketHandler.Instance.RandomUser)
         {
-            Application.Quit();
-            return;
+            if (SteamAPI.RestartAppIfNecessary(new AppId_t(1780330)))
+            {
+                Application.Quit();
+                return;
+            }
+
+            SteamAPI.Init();
+            
+            ConditionalInvokation((x) => { return SteamAPI.Init() && WarningWindowUI.Instance != null; }, () => 
+            {
+                LogMessage("Initializing Connection");
+                //TODO - This is an old method, might aswell remove this section entirely
+                //string connectLobbyUniqueKey = "";
+                //int cmnd = SteamApps.GetLaunchCommandLine(out connectLobbyUniqueKey, 260);
+                //if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
+                //{
+                //    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!"+ connectLobbyUniqueKey+" | " + cmnd, Color.yellow, 1, false));
+                //    Debug.LogError("1 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
+
+                //    pendingJoinParty = connectLobbyUniqueKey;
+                //}
+            
+                string[] args = Environment.GetCommandLineArgs();
+                for (int i = 0; i < args.Length; i++)
+                {
+                    if (args[i].Contains("connect_lobby"))
+                    {
+                        pendingJoinParty = args[i + 1];
+                        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Will auto-join as soon as your enter the matching realm!", Color.green, 4, false));
+                    }
+                }
+
+
+                CurrentLanguage = PlayerPrefs.GetString("language", "");
+
+                if (string.IsNullOrEmpty(CurrentLanguage))
+                {
+                    Debug.Log("Using steam's UI language");
+                    CurrentLanguage = SteamApps.GetCurrentGameLanguage();
+
+                    if (CurrentLanguage == "Simplified Chinese")
+                    {
+                        CurrentLanguage = "Chinese (Simplified)";
+                    }
+
+                    if (CurrentLanguage == "Spanish - Spain")
+                    {
+                        CurrentLanguage = "Spanish";
+                    }
+
+                }
+
+                PlayerPrefs.SetString("language", CurrentLanguage);
+                PlayerPrefs.Save();
+
+                LocalizationManager.CurrentLanguage = CurrentLanguage;
+                CORE.Instance.InvokeEvent("LanguageChanged");
+
+
+
+            });
+
+            if(GetJoinRequestResponse == null)
+                GetJoinRequestResponse = Callback<GameRichPresenceJoinRequested_t>.Create(OnGetJoinRequestResponse);
+
+            if (GetJoinLobbyRequestResponse == null)
+                GetJoinLobbyRequestResponse = Callback<GameLobbyJoinRequested_t>.Create(OnGetJoinLobbyRequestResponse);
+
+            if (GetLobbyCreatedRespose == null)
+                GetLobbyCreatedRespose = Callback<LobbyCreated_t>.Create(OnGetLobbyCreatedResponse);
+
         }
 
-        SteamAPI.Init();
 
-
-        ConditionalInvokation((x) => { return SteamAPI.Init() && WarningWindowUI.Instance != null; }, () => 
-        {
-            LogMessage("Initializing Connection");
-            //TODO - This is an old method, might aswell remove this section entirely
-            //string connectLobbyUniqueKey = "";
-            //int cmnd = SteamApps.GetLaunchCommandLine(out connectLobbyUniqueKey, 260);
-            //if (!string.IsNullOrEmpty(connectLobbyUniqueKey))
-            //{
-            //    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Handling your specific request!"+ connectLobbyUniqueKey+" | " + cmnd, Color.yellow, 1, false));
-            //    Debug.LogError("1 SHOULD JOIN LOBBY " + connectLobbyUniqueKey);
-
-            //    pendingJoinParty = connectLobbyUniqueKey;
-            //}
-            
-            string[] args = Environment.GetCommandLineArgs();
-            for (int i = 0; i < args.Length; i++)
-            {
-                if (args[i].Contains("connect_lobby"))
-                {
-                    pendingJoinParty = args[i + 1];
-                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Will auto-join as soon as your enter the matching realm!", Color.green, 4, false));
-                }
-            }
-
-
-            CurrentLanguage = PlayerPrefs.GetString("language", "");
-
-            if (string.IsNullOrEmpty(CurrentLanguage))
-            {
-                Debug.Log("Using steam's UI language");
-                CurrentLanguage = SteamApps.GetCurrentGameLanguage();
-
-                if (CurrentLanguage == "Simplified Chinese")
-                {
-                    CurrentLanguage = "Chinese (Simplified)";
-                }
-
-                if (CurrentLanguage == "Spanish - Spain")
-                {
-                    CurrentLanguage = "Spanish";
-                }
-
-            }
-
-            PlayerPrefs.SetString("language", CurrentLanguage);
-            PlayerPrefs.Save();
-
-            LocalizationManager.CurrentLanguage = CurrentLanguage;
-            CORE.Instance.InvokeEvent("LanguageChanged");
-
-
-
-        });
-
-        if(GetJoinRequestResponse == null)
-            GetJoinRequestResponse = Callback<GameRichPresenceJoinRequested_t>.Create(OnGetJoinRequestResponse);
-
-        if (GetJoinLobbyRequestResponse == null)
-            GetJoinLobbyRequestResponse = Callback<GameLobbyJoinRequested_t>.Create(OnGetJoinLobbyRequestResponse);
-
-        if (GetLobbyCreatedRespose == null)
-            GetLobbyCreatedRespose = Callback<LobbyCreated_t>.Create(OnGetLobbyCreatedResponse); 
 
         Application.targetFrameRate = 60;
 

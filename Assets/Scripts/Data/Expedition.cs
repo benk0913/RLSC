@@ -12,8 +12,7 @@ public class Expedition : ScriptableObject
     public int PartyLengthMin;
     public int PartyLengthMax;
     public List<ExpeditionQueueRule> QueueRules = new List<ExpeditionQueueRule>();
-    public string StartScene;
-    public string StartSceneGate;
+
     public string EndTargetScene;
     public string EndTargetSceneGate;
 }
