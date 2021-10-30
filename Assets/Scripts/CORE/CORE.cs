@@ -126,9 +126,10 @@ public class CORE : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
-        if (!SocketHandler.Instance.RandomUser)
+#if DEV_BUILD || UNITY_EDITOR
+        if (!GetComponent<SocketHandler>().RandomUser)
         {
+#endif
             if (SteamAPI.RestartAppIfNecessary(new AppId_t(1780330)))
             {
                 Application.Quit();
@@ -199,8 +200,9 @@ public class CORE : MonoBehaviour
 
             if (GetLobbyCreatedRespose == null)
                 GetLobbyCreatedRespose = Callback<LobbyCreated_t>.Create(OnGetLobbyCreatedResponse);
-
+#if DEV_BUILD || UNITY_EDITOR
         }
+#endif
 
 
 
@@ -858,10 +860,12 @@ public class CORE : MonoBehaviour
 
     public void UpdateSteamStatus()
     {
-        if(SocketHandler.Instance.RandomUser)
+#if DEV_BUILD || UNITY_EDITOR
+        if (SocketHandler.Instance.RandomUser)
         {
             return;
         }
+#endif
 
         if(SceneManager.GetActiveScene().name == "MainMenu")
         {
