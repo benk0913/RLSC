@@ -69,9 +69,17 @@ public class InteractableEntity : MonoBehaviour
             IsBusy = true;
             BusyCooldown = 3f;
 
-            if (isClientOnly && NearbyActor != null)
+            if (isClientOnly)
             {
-                Interacted(NearbyActor.State.Data.actorId);
+                if (NearbyActor != null)
+                {
+                    Interacted(NearbyActor.State.Data.actorId);
+                }
+                else
+                {
+                    IsBusy = false;
+                    BusyCooldown = 0f;
+                }
                 return;
             }
 

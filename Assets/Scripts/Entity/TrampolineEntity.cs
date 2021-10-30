@@ -46,7 +46,7 @@ public class TrampolineEntity : MonoBehaviour
             InteractableCooldown -= Time.deltaTime;
         }
 
-        if (NearbyActor != null && Input.GetKeyDown(InputMap.Map["Jump"]) && NearbyActor.CanLookAround)
+        if (NearbyActor != null && (Input.GetKeyDown(InputMap.Map["Jump"]) || Input.GetKeyDown(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") > 0f)) && NearbyActor.CanLookAround)
         {
             Interact(NearbyActor);
         }
