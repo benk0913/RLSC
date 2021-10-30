@@ -41,6 +41,11 @@ public class InteractableEntity : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         Data = data;
+
+        if(string.IsNullOrEmpty(data.interactableId))
+        {
+            CORE.Instance.LogMessageError("Current interactable spawned with NO ID " + Data.interactableId);
+        }
     }
 
     

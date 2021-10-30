@@ -22,7 +22,7 @@ public class GEPlayDialog : GameEvent
             {
                 if(entity.gameObject.name == DialogEntityGameObjectName)
                 {
-                    entity.StartDialog(Dialog);
+                    CORE.Instance.DelayedInvokation(0.1f, () => { entity.StartDialog(Dialog); });
                     return;
                 }
             }

@@ -22,7 +22,8 @@ public class GERandomPlayDialog : GameEvent
             {
                 if(entity.gameObject.name == DialogEntityGameObjectName)
                 {
-                    entity.StartDialog(Dialogs[Random.Range(0,Dialogs.Count)]);
+                    CORE.Instance.DelayedInvokation(0.1f, () => { entity.StartDialog(Dialogs[Random.Range(0, Dialogs.Count)]); });
+                    
                     return;
                 }
             }

@@ -647,6 +647,7 @@ public class CORE : MonoBehaviour
     {
         InteractableData dataRef = Data.content.Interactables.Find(X => X.name == interactable.interactableName);
 
+
         if (dataRef == null)
         {
             LogMessageError("No known interactable " + interactable.interactableName);
@@ -857,7 +858,11 @@ public class CORE : MonoBehaviour
 
     public void UpdateSteamStatus()
     {
-        
+        if(SocketHandler.Instance.RandomUser)
+        {
+            return;
+        }
+
         if(SceneManager.GetActiveScene().name == "MainMenu")
         {
             SteamFriends.SetRichPresence("steam_display", "#Status_AtMainMenu");

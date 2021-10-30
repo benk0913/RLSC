@@ -903,6 +903,11 @@ public class SocketHandler : MonoBehaviour
 
     public void OnInteractableSpawn(string eventName, JSONNode data)
     {
+        if(string.IsNullOrEmpty(data["interactable"]["interactableId"]))
+        {
+            Debug.LogError("NO RECEIVED INTERACTABLE ID " + data["interactable"].ToString());
+        }
+
         CORE.Instance.SpawnInteractable(JsonConvert.DeserializeObject<Interactable>(data["interactable"].ToString()));
     }
 
