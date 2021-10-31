@@ -559,10 +559,7 @@ public class SocketHandler : MonoBehaviour
         options.AdditionalQueryParams.Add("tutorialVersion", Application.version);
         options.AdditionalQueryParams.Add("charIndex", CurrentUser.SelectedCharacterIndex.ToString());
         options.AdditionalQueryParams.Add("realm", SelectedRealmIndex.ToString());
-
-#if UNITY_EDITOR
-        options.AdditionalQueryParams.Add("isEditor", "1");
-#endif
+        options.AdditionalQueryParams.Add("unic0rn", ServerEnvironment.unic0rn);
 
         options.ConnectWith = BestHTTP.SocketIO.Transports.TransportTypes.WebSocket;
         options.AutoConnect = false;
