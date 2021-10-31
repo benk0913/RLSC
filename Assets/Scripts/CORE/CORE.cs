@@ -1449,8 +1449,8 @@ public class RoomData
         {
             ActorData actor = actorsToUpdate[i];
             node["actorPositions"][i]["actorId"] = actor.actorId;
-            node["actorPositions"][i]["x"] = actor.x.ToString();
-            node["actorPositions"][i]["y"] = actor.y.ToString();
+            node["actorPositions"][i]["x"].AsFloat = actor.x;
+            node["actorPositions"][i]["y"].AsFloat = actor.y;
             node["actorPositions"][i]["faceRight"].AsBool = actor.faceRight;
             node["actorPositions"][i]["movementDirection"].AsInt = actor.movementDirection;
         }
