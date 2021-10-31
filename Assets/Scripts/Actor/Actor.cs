@@ -846,7 +846,7 @@ public class Actor : MonoBehaviour
             if(!State.Data.isMob)
             {
                 JSONClass node = new JSONClass();
-                node["emote"] = "Eliminated Emote";
+                node["emoteRaw"] = "Eliminated Emote";
                 SocketHandler.Instance.SendEvent("emoted", node);
             }
         }
@@ -1619,7 +1619,7 @@ public class Actor : MonoBehaviour
         }
 
         JSONNode node = new JSONClass();
-        node["emote"] = emote.name;
+        node["emoteIndex"].AsInt = emoteIndex;
         SocketHandler.Instance.SendEvent("emoted", node);
     }
 
