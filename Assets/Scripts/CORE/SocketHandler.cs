@@ -412,7 +412,8 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["tutorialIndex"] = TutorialIndex;
         node["classJob"] = element;
-        node["actor"] = JSON.Parse(JsonConvert.SerializeObject(actor));
+        node["name"] = actor.name;
+        node["looks"] = JSON.Parse(JsonConvert.SerializeObject(actor.looks));
         
         Dictionary<string, string> UrlParams = new Dictionary<string, string>();
         UrlParams.Add("realm", SelectedRealmIndex.ToString());

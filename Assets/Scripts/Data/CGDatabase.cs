@@ -49,7 +49,6 @@ public class DatabaseContent
 
     public int RealmCap = 2;
 
-    [JsonIgnore]
     public VisualDatabase Visuals;
 
     public CashShopDatabase CashShop;
@@ -148,12 +147,36 @@ public class VisualDatabase
     [JsonIgnore]
     public List<SkinSet> SkinSets = new List<SkinSet>();
 
-    [JsonIgnore]
-    public List<Color> SkinColorPresets = new List<Color>();
-    [JsonIgnore]
-    public List<Color> HairColorPresets = new List<Color>();
-    [JsonIgnore]
-    public List<Color> IrisColorPresets = new List<Color>();
+    // Values that new characters can start with.
+
+    public ActorLooks AvailbleBodyParts;
+    
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public List<SkinSet> DefaultHair = new List<SkinSet>();
+
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public List<SkinSet> DefaultEyebrows = new List<SkinSet>();
+
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public List<SkinSet> DefaultEyes = new List<SkinSet>();
+
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public List<SkinSet> DefaultEars = new List<SkinSet>();
+
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public List<SkinSet> DefaultNose = new List<SkinSet>();
+
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public List<SkinSet> DefaultMouth = new List<SkinSet>();
+
+    [JsonConverter(typeof(ColorHexConverter))]
+    public List<Color> DefaultSkinColor = new List<Color>();
+
+    [JsonConverter(typeof(ColorHexConverter))]
+    public List<Color> DefaultHairColor = new List<Color>();
+
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public List<SkinSet> DefaultIris = new List<SkinSet>();
 }
 
 [Serializable]

@@ -22,18 +22,6 @@ public class CreateCharacterPanelUI : MonoBehaviour
     [SerializeField]
     UnityEvent OnCharacterCreationComplete;
 
-    public List<SkinSet> DefaultEars = new List<SkinSet>();
-    public List<SkinSet> DefaultEyebrows = new List<SkinSet>();
-    public List<SkinSet> DefaultEyes = new List<SkinSet>();
-    public List<SkinSet> DefaultHair = new List<SkinSet>();
-    public List<SkinSet> DefaultNose = new List<SkinSet>();
-    public List<SkinSet> DefaultMouth = new List<SkinSet>();
-    public List<SkinSet> DefaultIris = new List<SkinSet>();
-
-    public Color DefaultSkinColor;
-    public Color DefaultHairColor;
-
-    public string Job = "fire";
     public List<GameObject> JobFrames = new List<GameObject>();
     public List<GameObject> JobFrames2 = new List<GameObject>();
     public List<string> Jobs = new List<string>{"fire", "water", "earth", "air"};
@@ -69,18 +57,18 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
     public void Randomize()
     {
-        DisplayActor.State.Data.looks.Ears = DefaultEars[Random.Range(0,DefaultEars.Count)].name;
-        DisplayActor.State.Data.looks.Eyes = DefaultEyes[Random.Range(0, DefaultEyes.Count)].name;
-        DisplayActor.State.Data.looks.Hair = DefaultHair[Random.Range(0, DefaultHair.Count)].name;
-        DisplayActor.State.Data.looks.Nose = DefaultNose[Random.Range(0, DefaultNose.Count)].name;
-        DisplayActor.State.Data.looks.Mouth = DefaultMouth[Random.Range(0, DefaultMouth.Count)].name;
-        DisplayActor.State.Data.looks.Iris = DefaultIris[Random.Range(0, DefaultIris.Count)].name;
-        DisplayActor.State.Data.looks.Eyebrows = DefaultEyebrows[Random.Range(0, DefaultEyebrows.Count)].name;
+        DisplayActor.State.Data.looks.Ears = CORE.Instance.Data.content.Visuals.DefaultEars[Random.Range(0,CORE.Instance.Data.content.Visuals.DefaultEars.Count)].name;
+        DisplayActor.State.Data.looks.Eyes = CORE.Instance.Data.content.Visuals.DefaultEyes[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultEyes.Count)].name;
+        DisplayActor.State.Data.looks.Hair = CORE.Instance.Data.content.Visuals.DefaultHair[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultHair.Count)].name;
+        DisplayActor.State.Data.looks.Nose = CORE.Instance.Data.content.Visuals.DefaultNose[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultNose.Count)].name;
+        DisplayActor.State.Data.looks.Mouth = CORE.Instance.Data.content.Visuals.DefaultMouth[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultMouth.Count)].name;
+        DisplayActor.State.Data.looks.Iris = CORE.Instance.Data.content.Visuals.DefaultIris[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultIris.Count)].name;
+        DisplayActor.State.Data.looks.Eyebrows = CORE.Instance.Data.content.Visuals.DefaultEyebrows[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultEyebrows.Count)].name;
 
         DisplayActor.State.Data.looks.SkinColor = 
-            "#" + ColorUtility.ToHtmlStringRGB(CORE.Instance.Data.content.Visuals.SkinColorPresets[Random.Range(0, CORE.Instance.Data.content.Visuals.SkinColorPresets.Count)]);
+            "#" + ColorUtility.ToHtmlStringRGB(CORE.Instance.Data.content.Visuals.DefaultSkinColor[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultSkinColor.Count)]);
         DisplayActor.State.Data.looks.HairColor =
-            "#" + ColorUtility.ToHtmlStringRGB(CORE.Instance.Data.content.Visuals.HairColorPresets[Random.Range(0, CORE.Instance.Data.content.Visuals.HairColorPresets.Count)]);
+            "#" + ColorUtility.ToHtmlStringRGB(CORE.Instance.Data.content.Visuals.DefaultHairColor[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultHairColor.Count)]);
 
         RandomizeName();
         
@@ -148,189 +136,189 @@ public class CreateCharacterPanelUI : MonoBehaviour
 
      public void SetIrisColor(int irisIndex)
     {
-        DisplayActor.State.Data.looks.Iris = DefaultIris[irisIndex].name;
+        DisplayActor.State.Data.looks.Iris = CORE.Instance.Data.content.Visuals.DefaultIris[irisIndex].name;
         DisplayActor.RefreshLooks();
     }
 
     public void NextHair()
     {
-        int index = DefaultHair.IndexOf(DefaultHair.Find(x=>x.name == DisplayActor.State.Data.looks.Hair))+1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultHair.IndexOf(CORE.Instance.Data.content.Visuals.DefaultHair.Find(x=>x.name == DisplayActor.State.Data.looks.Hair))+1;
 
-        if(index >= DefaultHair.Count)
+        if(index >= CORE.Instance.Data.content.Visuals.DefaultHair.Count)
         {
             index = 0;
         }
 
-        DisplayActor.State.Data.looks.Hair = DefaultHair[index].name;
+        DisplayActor.State.Data.looks.Hair = CORE.Instance.Data.content.Visuals.DefaultHair[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void PreviousHair()
     {
-        int index = DefaultHair.IndexOf(DefaultHair.Find(x => x.name == DisplayActor.State.Data.looks.Hair))-1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultHair.IndexOf(CORE.Instance.Data.content.Visuals.DefaultHair.Find(x => x.name == DisplayActor.State.Data.looks.Hair))-1;
 
         if (index < 0)
         {
-            index = DefaultHair.Count - 1;
+            index = CORE.Instance.Data.content.Visuals.DefaultHair.Count - 1;
         }
 
-        DisplayActor.State.Data.looks.Hair = DefaultHair[index].name;
+        DisplayActor.State.Data.looks.Hair = CORE.Instance.Data.content.Visuals.DefaultHair[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void NextEyebrows()
     {
-        int index = DefaultEyebrows.IndexOf(DefaultEyebrows.Find(x => x.name == DisplayActor.State.Data.looks.Eyebrows)) + 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultEyebrows.IndexOf(CORE.Instance.Data.content.Visuals.DefaultEyebrows.Find(x => x.name == DisplayActor.State.Data.looks.Eyebrows)) + 1;
 
-        if (index >= DefaultEyebrows.Count)
+        if (index >= CORE.Instance.Data.content.Visuals.DefaultEyebrows.Count)
         {
             index = 0;
         }
 
-        DisplayActor.State.Data.looks.Eyebrows = DefaultEyebrows[index].name;
+        DisplayActor.State.Data.looks.Eyebrows = CORE.Instance.Data.content.Visuals.DefaultEyebrows[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void PreviousEyebrows()
     {
-        int index = DefaultEyebrows.IndexOf(DefaultEyebrows.Find(x => x.name == DisplayActor.State.Data.looks.Eyebrows)) - 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultEyebrows.IndexOf(CORE.Instance.Data.content.Visuals.DefaultEyebrows.Find(x => x.name == DisplayActor.State.Data.looks.Eyebrows)) - 1;
 
         if (index < 0)
         {
-            index = DefaultEyebrows.Count - 1;
+            index = CORE.Instance.Data.content.Visuals.DefaultEyebrows.Count - 1;
         }
 
-        DisplayActor.State.Data.looks.Eyebrows = DefaultEyebrows[index].name;
+        DisplayActor.State.Data.looks.Eyebrows = CORE.Instance.Data.content.Visuals.DefaultEyebrows[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void NextEyes()
     {
-        int index = DefaultEyes.IndexOf(DefaultEyes.Find(x => x.name == DisplayActor.State.Data.looks.Eyes)) + 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultEyes.IndexOf(CORE.Instance.Data.content.Visuals.DefaultEyes.Find(x => x.name == DisplayActor.State.Data.looks.Eyes)) + 1;
 
-        if (index >= DefaultEyes.Count)
+        if (index >= CORE.Instance.Data.content.Visuals.DefaultEyes.Count)
         {
             index = 0;
         }
 
-        DisplayActor.State.Data.looks.Eyes = DefaultEyes[index].name;
+        DisplayActor.State.Data.looks.Eyes = CORE.Instance.Data.content.Visuals.DefaultEyes[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void PreviousEyes()
     {
-        int index = DefaultEyes.IndexOf(DefaultEyes.Find(x => x.name == DisplayActor.State.Data.looks.Eyes)) - 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultEyes.IndexOf(CORE.Instance.Data.content.Visuals.DefaultEyes.Find(x => x.name == DisplayActor.State.Data.looks.Eyes)) - 1;
 
         if (index < 0)
         {
-            index = DefaultEyes.Count - 1;
+            index = CORE.Instance.Data.content.Visuals.DefaultEyes.Count - 1;
         }
 
-        DisplayActor.State.Data.looks.Eyes = DefaultEyes[index].name;
+        DisplayActor.State.Data.looks.Eyes = CORE.Instance.Data.content.Visuals.DefaultEyes[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void NextIris()
     {
-        int index = DefaultIris.IndexOf(DefaultIris.Find(x => x.name == DisplayActor.State.Data.looks.Iris)) + 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultIris.IndexOf(CORE.Instance.Data.content.Visuals.DefaultIris.Find(x => x.name == DisplayActor.State.Data.looks.Iris)) + 1;
 
-        if (index >= DefaultIris.Count)
+        if (index >= CORE.Instance.Data.content.Visuals.DefaultIris.Count)
         {
             index = 0;
         }
 
-        DisplayActor.State.Data.looks.Iris = DefaultIris[index].name;
+        DisplayActor.State.Data.looks.Iris = CORE.Instance.Data.content.Visuals.DefaultIris[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void PreviousIris()
     {
-        int index = DefaultIris.IndexOf(DefaultIris.Find(x => x.name == DisplayActor.State.Data.looks.Iris)) - 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultIris.IndexOf(CORE.Instance.Data.content.Visuals.DefaultIris.Find(x => x.name == DisplayActor.State.Data.looks.Iris)) - 1;
 
         if (index < 0)
         {
-            index = DefaultIris.Count - 1;
+            index = CORE.Instance.Data.content.Visuals.DefaultIris.Count - 1;
         }
 
-        DisplayActor.State.Data.looks.Iris = DefaultIris[index].name;
+        DisplayActor.State.Data.looks.Iris = CORE.Instance.Data.content.Visuals.DefaultIris[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void NextNose()
     {
-        int index = DefaultNose.IndexOf(DefaultNose.Find(x => x.name == DisplayActor.State.Data.looks.Nose)) + 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultNose.IndexOf(CORE.Instance.Data.content.Visuals.DefaultNose.Find(x => x.name == DisplayActor.State.Data.looks.Nose)) + 1;
 
-        if (index >= DefaultNose.Count)
+        if (index >= CORE.Instance.Data.content.Visuals.DefaultNose.Count)
         {
             index = 0;
         }
 
-        DisplayActor.State.Data.looks.Nose = DefaultNose[index].name;
+        DisplayActor.State.Data.looks.Nose = CORE.Instance.Data.content.Visuals.DefaultNose[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void PreviousNose()
     {
-        int index = DefaultNose.IndexOf(DefaultNose.Find(x => x.name == DisplayActor.State.Data.looks.Nose)) - 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultNose.IndexOf(CORE.Instance.Data.content.Visuals.DefaultNose.Find(x => x.name == DisplayActor.State.Data.looks.Nose)) - 1;
 
         if (index < 0)
         {
-            index = DefaultNose.Count - 1;
+            index = CORE.Instance.Data.content.Visuals.DefaultNose.Count - 1;
         }
 
-        DisplayActor.State.Data.looks.Nose = DefaultNose[index].name;
+        DisplayActor.State.Data.looks.Nose = CORE.Instance.Data.content.Visuals.DefaultNose[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void NextMouth()
     {
-        int index = DefaultMouth.IndexOf(DefaultMouth.Find(x => x.name == DisplayActor.State.Data.looks.Mouth)) + 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultMouth.IndexOf(CORE.Instance.Data.content.Visuals.DefaultMouth.Find(x => x.name == DisplayActor.State.Data.looks.Mouth)) + 1;
 
-        if (index >= DefaultMouth.Count)
+        if (index >= CORE.Instance.Data.content.Visuals.DefaultMouth.Count)
         {
             index = 0;
         }
 
-        DisplayActor.State.Data.looks.Mouth = DefaultMouth[index].name;
+        DisplayActor.State.Data.looks.Mouth = CORE.Instance.Data.content.Visuals.DefaultMouth[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void PreviousMouth()
     {
-        int index = DefaultMouth.IndexOf(DefaultMouth.Find(x => x.name == DisplayActor.State.Data.looks.Mouth)) - 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultMouth.IndexOf(CORE.Instance.Data.content.Visuals.DefaultMouth.Find(x => x.name == DisplayActor.State.Data.looks.Mouth)) - 1;
 
         if (index < 0)
         {
-            index = DefaultMouth.Count-1;
+            index = CORE.Instance.Data.content.Visuals.DefaultMouth.Count-1;
         }
 
-        DisplayActor.State.Data.looks.Mouth = DefaultMouth[index].name;
+        DisplayActor.State.Data.looks.Mouth = CORE.Instance.Data.content.Visuals.DefaultMouth[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void NextEars()
     {
-        int index = DefaultEars.IndexOf(DefaultEars.Find(x => x.name == DisplayActor.State.Data.looks.Ears)) + 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultEars.IndexOf(CORE.Instance.Data.content.Visuals.DefaultEars.Find(x => x.name == DisplayActor.State.Data.looks.Ears)) + 1;
 
-        if (index >= DefaultEars.Count)
+        if (index >= CORE.Instance.Data.content.Visuals.DefaultEars.Count)
         {
             index = 0;
         }
 
-        DisplayActor.State.Data.looks.Ears = DefaultEars[index].name;
+        DisplayActor.State.Data.looks.Ears = CORE.Instance.Data.content.Visuals.DefaultEars[index].name;
         DisplayActor.RefreshLooks();
     }
 
     public void PreviousEars()
     {
-        int index = DefaultEars.IndexOf(DefaultEars.Find(x => x.name == DisplayActor.State.Data.looks.Ears)) - 1;
+        int index = CORE.Instance.Data.content.Visuals.DefaultEars.IndexOf(CORE.Instance.Data.content.Visuals.DefaultEars.Find(x => x.name == DisplayActor.State.Data.looks.Ears)) - 1;
 
         if (index < 0)
         {
-            index = DefaultEars.Count-1;
+            index = CORE.Instance.Data.content.Visuals.DefaultEars.Count-1;
         }
 
-        DisplayActor.State.Data.looks.Ears = DefaultEars[index].name;
+        DisplayActor.State.Data.looks.Ears = CORE.Instance.Data.content.Visuals.DefaultEars[index].name;
         DisplayActor.RefreshLooks();
     }
 
