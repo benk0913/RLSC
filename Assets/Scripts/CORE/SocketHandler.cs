@@ -42,8 +42,10 @@ public class SocketHandler : MonoBehaviour
     public string SessionTicket;
 
     public string TutorialIndex;
-    
+
+#if DEV_BUILD || UNITY_EDITOR
     public bool RandomUser;
+#endif
 
     private void Awake()
     {
