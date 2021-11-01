@@ -233,6 +233,7 @@ public class SceneInfo
     public float playerSpawnY;
     public List<Portal> Portals = new List<Portal>();
     public List<VendorData> Vendors = new List<VendorData>();
+    public List<OnDemandParams> OnDemandParams = new List<OnDemandParams>();
 
     [JsonIgnore]
     public string MusicTrack;
