@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: W_DesperatePrayer_PrepareOGG
     ExecuteAbilitySound: W_DesperatePrayer_ExecuteOGG
     HitAbilitySound: W_HealOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: ScreenEffectDesperate
@@ -32,8 +33,9 @@ MonoBehaviour:
     ExecuteAnimation: Execute4
   CD: 25
   CastingTime: 1
-  TargetCap: 0
+  TargetCap: 10
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -41,4 +43,6 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 4
     Value: 30
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

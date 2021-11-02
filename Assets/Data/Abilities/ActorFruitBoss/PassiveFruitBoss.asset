@@ -25,20 +25,24 @@ MonoBehaviour:
     PrepareAbilitySound: 
     ExecuteAbilitySound: 
     HitAbilitySound: 
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
-  ScreenEffectObject: 
-  CD: 0
-  CastingTime: 0
-  OnlyIfGrounded: 0
-  IsCastingExternal: 0
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: 
     ExecuteAnimation: 
+  CD: 0
+  CastingTime: 0
   TargetCap: 0
+  OnlyIfGrounded: 0
+  AIViableRange: 0
+  IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     Targets: 0
     Value: 30
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

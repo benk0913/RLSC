@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: 
     ExecuteAbilitySound: 
     HitAbilitySound: F_FireOrbs_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -32,8 +33,9 @@ MonoBehaviour:
     ExecuteAnimation: Execute8
   CD: 1
   CastingTime: 1
-  TargetCap: 0
+  TargetCap: 20
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 1
   OnExecuteParams: []
   OnHitParams:
@@ -41,4 +43,6 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 0
     Value: 8
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

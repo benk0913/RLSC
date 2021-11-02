@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: E_Hook_PrepareOGG
     ExecuteAbilitySound: E_Hook_ExecuteOGG
     HitAbilitySound: sound_earth_2
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -32,8 +33,9 @@ MonoBehaviour:
     ExecuteAnimation: Execute3
   CD: 10
   CastingTime: 0.6
-  TargetCap: 0
+  TargetCap: 3
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -41,8 +43,12 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 0
     Value: Pull
+    ObjectValue: {fileID: 0}
+    Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 0
     Value: Hook Blind
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

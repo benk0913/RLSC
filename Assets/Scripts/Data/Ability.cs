@@ -31,9 +31,8 @@ public class Ability : ScriptableObject
 
     [JsonIgnore]
     public float CastingTime = 0.003f;//0.003f is the min (Lag Compensation).
-
-    [JsonIgnore]
-    public int TargetCap;
+    
+    public int TargetCap = 3;
 
     [JsonIgnore]
     public bool OnlyIfGrounded;
@@ -43,6 +42,8 @@ public class Ability : ScriptableObject
 
     [JsonIgnore]
     public bool IsCastingExternal;
+
+
 
 
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();

@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: 
     ExecuteAbilitySound: Slime Jump
     HitAbilitySound: 
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -32,13 +33,16 @@ MonoBehaviour:
     ExecuteAnimation: Jump
   CD: 1
   CastingTime: 0.5
-  TargetCap: 0
+  TargetCap: 10
   OnlyIfGrounded: 0
+  AIViableRange: 1
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: Engage
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams: []
   OnMissParams: []

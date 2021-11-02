@@ -25,24 +25,30 @@ MonoBehaviour:
     PrepareAbilitySound: W_Ressurect_Prepare
     ExecuteAbilitySound: W_Splash_Hit
     HitAbilitySound: 
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
-  ScreenEffectObject: 
-  CD: 1
-  CastingTime: 1
-  OnlyIfGrounded: 0
-  IsCastingExternal: 0
   Visuals:
+    ScreenEffectObject: 
     PreparingAnimation: Cast1
     ExecuteAnimation: Execute1
-  TargetCap: 0
+  CD: 1
+  CastingTime: 1
+  TargetCap: 6
+  OnlyIfGrounded: 0
+  AIViableRange: 0
+  IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: -9999999
+    ObjectValue: {fileID: 0}
+    Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: Caterpillar Rejuv Stun
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams: []
   OnMissParams: []

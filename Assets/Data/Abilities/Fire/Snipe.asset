@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: F_PiercingFlame_PrepareOGG
     ExecuteAbilitySound: sound_flamerelease
     HitAbilitySound: F_PiercingFlame_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -32,8 +33,9 @@ MonoBehaviour:
     ExecuteAnimation: Execute6
   CD: 12
   CastingTime: 1
-  TargetCap: 0
+  TargetCap: 3
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -41,4 +43,6 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 0
     Value: 120
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

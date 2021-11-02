@@ -26,6 +26,7 @@ MonoBehaviour:
     PrepareAbilitySound: E_Taunt_PrepareOGG
     ExecuteAbilitySound: E_Taunt_ExecuteOGG
     HitAbilitySound: sound_earth_2
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -33,13 +34,16 @@ MonoBehaviour:
     ExecuteAnimation: Execute4
   CD: 20
   CastingTime: 1.2
-  TargetCap: 0
+  TargetCap: 1
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: Earth Taunt
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams: []
   OnMissParams: []
