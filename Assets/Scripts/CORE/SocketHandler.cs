@@ -91,6 +91,7 @@ public class SocketHandler : MonoBehaviour
 
         SocketEventListeners.Add(new SocketEventListener("actor_hurt", OnActorHurt));
         SocketEventListeners.Add(new SocketEventListener("actor_interrupt", OnActorInterrupt));
+        SocketEventListeners.Add(new SocketEventListener("actor_reset_cd", OnActorResetCd));
 
         SocketEventListeners.Add(new SocketEventListener("interactable_spawn", OnInteractableSpawn));
         SocketEventListeners.Add(new SocketEventListener("interactable_despawn", OnInteractableDespawn));
@@ -1401,6 +1402,20 @@ public class SocketHandler : MonoBehaviour
         }
 
         actorDat.ActorEntity.State.Interrupt(data["putAbilityOnCd"].AsBool, data["putAllAbilitiesOnCd"].AsBool);
+    }
+
+    public void OnActorResetCd(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        if (actorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+        
+        actorDat.ActorEntity.ResetAbilitiesCooldown(data["abilityName"].Value);
     }
 
     public void OnActorSetStates(string eventName, JSONNode data)

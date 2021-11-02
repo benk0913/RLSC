@@ -154,9 +154,6 @@ public class Actor : MonoBehaviour
     protected Vector2 lastPosition;
     protected Vector2 lastLastPosition;
 
-
-    public Ability LastAbility;
-
     TextBubbleUI CurrentBubble;
 
 
@@ -631,8 +628,6 @@ public class Actor : MonoBehaviour
                 {
                     PutAbilityOnCooldown(abilityState);
                 }
-
-                LastAbility = ability;
             }
         }
         
@@ -1186,6 +1181,22 @@ public class Actor : MonoBehaviour
     public void PutAbilityOnCooldown(AbilityState abilityState)
     {
         abilityState.CurrentCD = abilityState.CurrentAbility.CD * (1f - State.Data.attributes.CDReduction);
+    }
+
+    public void ResetAbilitiesCooldown(string abilityName)
+    {
+        foreach (AbilityState abilityState in State.Abilities)
+        {
+            if (string.IsNullOrEmpty(abilityName) || abilityState.CurrentAbility.name == abilityName)
+            {
+                ResetAbilityCooldown(abilityState);
+            }
+        }
+    }
+
+    public void ResetAbilityCooldown(AbilityState abilityState)
+    {
+        abilityState.CurrentCD = 0;
     }
 
     public bool IsColliderOnCooldown(string colliderName)

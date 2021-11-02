@@ -1014,25 +1014,6 @@ public class CORE : MonoBehaviour
                     originCaster.ExecuteMovement(param.Value, casterActor);
                 }
             }
-            else if (param.Type.name == "Reset Last CD")
-            {
-                if (originCaster != null)
-                {
-                    if (originCaster.LastAbility == null)
-                    {
-                        continue;
-                    }
-
-                    originCaster.State.Abilities.Find(x => x.CurrentAbility.name == (originCaster.LastAbility.name)).CurrentCD = 0f;
-                }
-            }
-            else if (param.Type.name == "Reset All CD")
-            {
-                if (originCaster != null)
-                {
-                    originCaster.State.Abilities.ForEach(x => x.CurrentCD = 0f);
-                }
-            }
             else if (param.Type.name == "Change Looks")
             {
                 switch(param.Value)
