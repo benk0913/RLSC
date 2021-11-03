@@ -158,9 +158,9 @@ public class AbilityCollider : HitCollider
         }
     }
 
-    public override void SetInfo(Ability abilitySource, Actor actorSource, HitCollider parentCollider  = null)
+    public override void SetInfo(Ability abilitySource, Actor actorSource, string abilityInstanceId = "", HitCollider parentCollider  = null)
     {
-        base.SetInfo(abilitySource, actorSource, parentCollider);
+        base.SetInfo(abilitySource, actorSource, abilityInstanceId, parentCollider);
 
         if(StickToSkilledShot)
         {
@@ -211,7 +211,7 @@ public class AbilityCollider : HitCollider
 
         foreach(AbilityCollider child in ChildrenColliders)
         {
-            child.SetInfo(abilitySource,actorSource, this);
+            child.SetInfo(abilitySource, actorSource, abilityInstanceId, this);
         }
     }
 
@@ -254,7 +254,7 @@ public class AbilityCollider : HitCollider
                 GameObject clone = ResourcesLoader.Instance.GetRecycledObject(other.name);
 
                 AbilityCollider cloneAbilityCollider = clone.GetComponent<AbilityCollider>();
-                cloneAbilityCollider.SetInfo(otherAbilityCollider.AbilitySource, otherAbilityCollider.ActorSource);
+                cloneAbilityCollider.SetInfo(otherAbilityCollider.AbilitySource, otherAbilityCollider.ActorSource, otherAbilityCollider.AbilityInstanceId);
                 clone.transform.position = other.transform.position;
                 clone.transform.position += clone.transform.TransformDirection(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
                 clone.transform.localScale = other.transform.localScale;

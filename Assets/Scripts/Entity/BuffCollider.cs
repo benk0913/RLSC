@@ -53,12 +53,12 @@ public class BuffCollider : HitCollider
         Anim.SetBool("Ending", (BuffSource.CurrentLength < 2f));
     }
 
-    public void SetInfo(BuffState buffSource, Actor actorSource)
+    public void SetInfo(BuffState buffSource, Actor actorSource, string abilityInstanceId)
     {
         BuffSource = buffSource;
         ActorSource = actorSource;
 
-        SetInfo(buffSource.CurrentBuff.HitAbility, actorSource);
+        SetInfo(buffSource.CurrentBuff.HitAbility, actorSource, abilityInstanceId);
     }
 
     protected void OnTriggerEnter2D(Collider2D other)

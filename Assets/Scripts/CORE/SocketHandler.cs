@@ -1241,8 +1241,9 @@ public class SocketHandler : MonoBehaviour
         Vector2 position = new Vector2(data["x"].AsFloat, data["y"].AsFloat);
         bool faceRight = data["faceRight"].AsBool;
         bool castingExternal = data["castingExternal"].AsBool;
+        string abilityInstanceId = data["abilityInstanceId"].Value;
 
-        actorDat.ActorEntity.ExecuteAbility(ability, position, faceRight, castingExternal);
+        actorDat.ActorEntity.ExecuteAbility(ability, position, faceRight, castingExternal, abilityInstanceId);
 
 
     }
@@ -1304,11 +1305,12 @@ public class SocketHandler : MonoBehaviour
         }
 
         string buffName = data["buffName"];
+        string abilityInstanceId = data["abilityInstanceId"].Value;
         float duration = data["durationInSeconds"].AsFloat;
 
         Buff buff = CORE.Instance.Data.content.Buffs.Find(x => x.name == buffName);
 
-        actorDat.ActorEntity.AddBuff(buff, duration);
+        actorDat.ActorEntity.AddBuff(buff, duration, abilityInstanceId);
 
 
     }
