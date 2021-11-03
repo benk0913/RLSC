@@ -46,27 +46,21 @@ public class HitCollider : MonoBehaviour
         {
             return false;
         }
-        
-        if (AbilitySource.TargetCap > 0 && TimesHit >= AbilitySource.TargetCap)
+
+        if (CanSendEventForActor(actorVictim))
         {
-            return false;
+            JSONNode node = new JSONClass();
+            node["casterActorId"] = ActorSource.State.Data.actorId;
+            node["targetActorId"] = actorVictim.State.Data.actorId;
+            node["abilityName"] = AbilitySource.name;
+            node["abilityInstanceId"] = AbilityInstanceId;
+
+            SocketHandler.Instance.SendEvent("ability_hit", node);
         }
 
         TimesHit++;
         OnHitEvent?.Invoke();
 
-        if (!CanSendEventForActor(actorVictim))
-        {
-            return true;
-        }
-
-        JSONNode node = new JSONClass();
-        node["casterActorId"] = ActorSource.State.Data.actorId;
-        node["targetActorId"] = actorVictim.State.Data.actorId;
-        node["abilityName"] = AbilitySource.name;
-        node["abilityInstanceId"] = AbilityInstanceId;
-
-        SocketHandler.Instance.SendEvent("ability_hit", node);
         return true;
     }
 
