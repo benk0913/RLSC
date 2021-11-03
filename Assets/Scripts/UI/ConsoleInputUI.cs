@@ -26,9 +26,10 @@ public class ConsoleInputUI : MonoBehaviour
         Instance = this;
         Hide();
         
-    #if UNITY_EDITOR
-        inputField.placeholder.GetComponent<TextMeshProUGUI>().text = "/help";
-    #endif
+        if (Application.isEditor || CORE.Instance.Data.content.DangerousEveryoneIsAdmin)
+        {
+            inputField.placeholder.GetComponent<TextMeshProUGUI>().text = "/help";
+        }
     }
 
     public void AddLogMessage(string message)

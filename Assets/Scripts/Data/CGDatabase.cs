@@ -133,6 +133,8 @@ public class DatabaseContent
     public int TaxiPrice = 50;
 
     public int BaseCoinDrop = 5;
+
+    public bool DangerousEveryoneIsAdmin;
 }
 
 [Serializable]
