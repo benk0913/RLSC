@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SideButtonUI : MonoBehaviour, WindowInterface
 {
@@ -10,7 +11,8 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
     Animator Animer;
 
 
-
+    [SerializeField]
+    Button ReportBugButton;
 
     public bool isVisible;
 
@@ -45,5 +47,19 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
         {
             CORE.Instance.ShowSideButtonUiWindow();
         }
+    }
+
+    public void LockReportABug()
+    {
+        ReportBugButton.interactable = false;
+    }
+
+    public void SendReportABug()
+    {
+        CORE.Instance.ReportBug(()=>
+        {
+            LockReportABug(); 
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Thank you for the report!",Color.green,2f));
+        });
     }
 }

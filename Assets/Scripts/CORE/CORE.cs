@@ -469,7 +469,7 @@ public class CORE : MonoBehaviour
         }
     }
 
-    public void ReportBug()
+    public void ReportBug(Action onComplete = null)
     {
         InputLabelWindow.Instance.Show("Report a Bug", "What went wrong?", (string msg) => 
         {
@@ -477,6 +477,8 @@ public class CORE : MonoBehaviour
             node["message"] = msg;
 
             SocketHandler.Instance.SendEvent("report_bug", node);
+
+            onComplete?.Invoke();
         });
     }
 

@@ -268,11 +268,11 @@ namespace EdgeworldBase
                 StopCoroutine(SwitchMusicFadeInstance);
             }
 
-            SwitchMusicFadeInstance = StartCoroutine(SwitchMusicFade(classj.ClassMusic.name));
+            SwitchMusicFadeInstance = StartCoroutine(SwitchMusicFade(classj.ClassMusic.name, true));
         }
 
         Coroutine SwitchMusicFadeInstance;
-        IEnumerator SwitchMusicFade(string musicKey)
+        IEnumerator SwitchMusicFade(string musicKey, bool keepPlaybackTime = false)
         {
             float initVolume = PlayerPrefs.GetFloat("Music");
             float t = 0f;
@@ -286,7 +286,11 @@ namespace EdgeworldBase
             float currentPlaybackTime = MusicSource.time;
 
             SetMusic(musicKey);
-            MusicSource.time = currentPlaybackTime;
+
+            if(keepPlaybackTime)
+            {
+                MusicSource.time = currentPlaybackTime;
+            }
 
             t = 0f;
             while (t < 1f)

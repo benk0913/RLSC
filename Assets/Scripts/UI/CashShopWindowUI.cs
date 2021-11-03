@@ -174,7 +174,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         for (int i = 0; i < CORE.Instance.Data.content.CashShop.Prices.Count; i++)
         {
-            EQPCostLabels[i].text = "For $" + System.String.Format("{0:n0}", CORE.Instance.Data.content.CashShop.Prices[i].CostInUSD);
+            EQPCostLabels[i].text = CORE.QuickTranslate("For") +" "+ System.String.Format("{0:n0}", CORE.Instance.Data.content.CashShop.Prices[i].CostInUSD) +"<size=15>$</size>";
             EQPValueLabels[i].text = System.String.Format("{0:n0}", CORE.Instance.Data.content.CashShop.Prices[i].EQPValue);
         }
 

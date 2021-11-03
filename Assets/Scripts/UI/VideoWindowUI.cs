@@ -36,12 +36,15 @@ public class VideoWindowUI : MonoBehaviour
         Hide();
     }
 
+    void OnDisable()
+    {
+        if(previousMusicVolume != -1f)
+            AudioControl.Instance.SetVolume("Music",previousMusicVolume,false);
+    }
     public void Hide(bool accepted = false)
     {
         MoviePlayer.Stop();
 
-        if(previousMusicVolume != -1f)
-            AudioControl.Instance.SetVolume("Music",previousMusicVolume);
 
         if(!accepted)
         {
@@ -83,6 +86,8 @@ public class VideoWindowUI : MonoBehaviour
 
         LoadingWindow.SetActive(true);
 
+        previousMusicVolume = AudioControl.Instance.GetVolumeByTag("Music");
+
         while (!MoviePlayer.isPrepared)
         {
             timeout -= Time.deltaTime;
@@ -104,8 +109,8 @@ public class VideoWindowUI : MonoBehaviour
         MoviePlayer.Play();
         AcceptAction = acceptCallback;
         SkipAction = skipCallback;
-        previousMusicVolume = AudioControl.Instance.GetVolumeByTag("Music");
-        AudioControl.Instance.SetVolume("Music", 0f);
+        
+        AudioControl.Instance.SetVolume("Music", 0f, false);
 
         CORE.Instance.DelayedInvokation(0.1f, () => { SG.RefreshGroup(false); });
 
