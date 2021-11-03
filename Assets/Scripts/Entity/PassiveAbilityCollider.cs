@@ -34,7 +34,7 @@ public class PassiveAbilityCollider : HitCollider
         }
     }
 
-    public override void SetInfo(Ability abilitySource, Actor actorSource, HitCollider parentCollider = null)
+    public override void SetInfo(Ability abilitySource, Actor actorSource, string abilityInstanceId = "", HitCollider parentCollider = null)
     {
         base.SetInfo(abilitySource, actorSource);
 

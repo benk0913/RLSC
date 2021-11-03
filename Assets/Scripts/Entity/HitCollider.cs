@@ -26,14 +26,17 @@ public class HitCollider : MonoBehaviour
 
     protected int TimesHit = 0;
 
+    protected string AbilityInstanceId;
+
     public HitCollider ParentCollider;
 
-    public virtual void SetInfo(Ability abilitySource = null, Actor actorSource = null, HitCollider parentCollider = null)
+    public virtual void SetInfo(Ability abilitySource = null, Actor actorSource = null, string abilityInstanceId = "", HitCollider parentCollider = null)
     {
         this.ParentCollider = parentCollider;
 
         AbilitySource = abilitySource;
         ActorSource = actorSource;
+        AbilityInstanceId = abilityInstanceId;
         TimesHit = 0;
     }
 
@@ -61,6 +64,7 @@ public class HitCollider : MonoBehaviour
         node["casterActorId"] = ActorSource.State.Data.actorId;
         node["targetActorId"] = actorVictim.State.Data.actorId;
         node["abilityName"] = AbilitySource.name;
+        node["abilityInstanceId"] = AbilityInstanceId;
 
         SocketHandler.Instance.SendEvent("ability_hit", node);
         return true;
@@ -76,6 +80,7 @@ public class HitCollider : MonoBehaviour
         JSONNode node = new JSONClass();
         node["actorId"] = ActorSource.State.Data.actorId;
         node["abilityName"] = AbilitySource.name;
+        node["abilityInstanceId"] = AbilityInstanceId;
 
         SocketHandler.Instance.SendEvent("ability_miss", node);
     }

@@ -34,6 +34,8 @@ public class Ability : ScriptableObject
     
     public int TargetCap = 3;
 
+    public int MaxSameTargetHits = 1;
+
     [JsonIgnore]
     public bool OnlyIfGrounded;
 

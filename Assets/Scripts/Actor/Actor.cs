@@ -597,7 +597,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void ExecuteAbility(Ability ability, Vector3 position = default, bool faceRight = default, bool castingExternal = false)
+    public void ExecuteAbility(Ability ability, Vector3 position, bool faceRight, bool castingExternal, string abilityInstanceId)
     {
         bool isCastingExternal = castingExternal || ability.IsCastingExternal;
         if(IsClientControl)
@@ -657,7 +657,7 @@ public class Actor : MonoBehaviour
         {
             GameObject colliderObj = AddColliderOnPosition(ability.Colliders.AbilityColliderObject);
             State.ExecutingAbilityCollider = colliderObj.GetComponent<AbilityCollider>();
-            State.ExecutingAbilityCollider.SetInfo(ability, this);
+            State.ExecutingAbilityCollider.SetInfo(ability, this, abilityInstanceId);
 
             if (State.Data.isCharacter)
             {
@@ -882,7 +882,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void AddBuff(Buff buff, float duration)
+    public void AddBuff(Buff buff, float duration, string abilityInstanceId)
     {
         
         BuffState state = State.Buffs.Find(x => x.CurrentBuff.name == buff.name);
@@ -895,7 +895,7 @@ public class Actor : MonoBehaviour
             if (!string.IsNullOrEmpty(buff.BuffColliderObject))
             {
                 GameObject colliderObj = AddColliderOnPosition(buff.BuffColliderObject);
-                colliderObj.GetComponent<BuffCollider>().SetInfo(state, this);
+                colliderObj.GetComponent<BuffCollider>().SetInfo(state, this, abilityInstanceId);
 
                 state.EffectObject = colliderObj;
                 
