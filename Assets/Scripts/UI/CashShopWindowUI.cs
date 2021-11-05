@@ -206,7 +206,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         shortClickTimer = 1f;
         
-        DeselectProduct();
+        DeselectProduct(product.CurrentItem.Type == SelectedProduct.CurrentItem.Type);
 
         product.SetSelected();
         SelectedProduct = product;
@@ -276,12 +276,15 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         }
     }
 
-    public void DeselectProduct()
+    public void DeselectProduct(bool undress = false)
     {
         if(SelectedProduct != null)
         {
-            DisplayActor.AttachedCharacter.State.Data.equips.Remove(SelectedProduct.CurrentItem.Type.name);
-            DisplayActor.AttachedCharacter.RefreshLooks();
+            if (undress)
+            {
+                DisplayActor.AttachedCharacter.State.Data.equips.Remove(SelectedProduct.CurrentItem.Type.name);
+                DisplayActor.AttachedCharacter.RefreshLooks();
+            }
             
             SelectedProduct.SetDeselected();
             SelectedProduct = null;
