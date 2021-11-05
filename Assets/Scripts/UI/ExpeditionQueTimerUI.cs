@@ -20,7 +20,7 @@ public class ExpeditionQueTimerUI : MonoBehaviour
         Instance = this;
         Hide();
 
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("Queued For: ", out msg);
+        msg = CORE.QuickTranslate("Queued For: ");
     }
 
     void Update()

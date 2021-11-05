@@ -74,7 +74,7 @@ namespace I2.Loc
         {
             Debug.Log("ATTEMPTING FIX CHARACTER PROBLEMS ");
             List<string> termlist = mLanguageSource.GetTermsList();
-            termlist.RemoveAll((string term) => { return !term.Contains("!") && !term.Contains("?"); });
+            termlist.RemoveAll((string term) => { return !term.Contains("!") && !term.Contains("?") && !term.Contains(":");});
 
             List<int> relevantLanguages = new List<int>();
             relevantLanguages.Add(1);
@@ -89,6 +89,7 @@ namespace I2.Loc
 
                     termData.SetTranslation(langIndex,termData.GetTranslation(langIndex).Replace("！", "!"));
                     termData.SetTranslation(langIndex, termData.GetTranslation(langIndex).Replace("？", "?"));
+                    termData.SetTranslation(langIndex, termData.GetTranslation(langIndex).Replace("：", ":"));
 
                 }
             
