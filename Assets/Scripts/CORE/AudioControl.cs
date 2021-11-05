@@ -51,7 +51,7 @@ namespace EdgeworldBase
             return m_dicVolumeGroup[tag];
         }
 
-        
+
 
 
         public void PlayInPosition(string gClip, Vector3 pos, float MaxDistance = 200f, float pitch = 1f)
@@ -97,22 +97,22 @@ namespace EdgeworldBase
         }
 
         public void SetInBackground()
-        {      
+        {
             // MusicSource.Pause();
             // SoundscapeSource.Pause();
-            AudioListener.pause=true;
+            AudioListener.pause = true;
         }
 
         public void SetNoInBackground()
         {
-            AudioListener.pause=false;
+            AudioListener.pause = false;
 
-            if(MusicSource.time <= 1f)
+            if (MusicSource.time <= 1f)
             {
                 MusicSource.Play();
             }
 
-            if(SoundscapeSource.time <= 1f)
+            if (SoundscapeSource.time <= 1f)
             {
                 SoundscapeSource.Play();
             }
@@ -137,10 +137,10 @@ namespace EdgeworldBase
                 }
                 else
                 {
-                    if(currentAS.clip.name == gClip)
+                    if (currentAS.clip.name == gClip)
                     {
                         alreadyPlaying++;
-                        if(alreadyPlaying > 3)
+                        if (alreadyPlaying > 3)
                         {
                             return;
                         }
@@ -162,7 +162,7 @@ namespace EdgeworldBase
             instanceSource.clip = m_res.GetClip(gClip);
             instanceSource.Play();
 
-            if(!string.IsNullOrEmpty(gTag))
+            if (!string.IsNullOrEmpty(gTag))
                 currentInstance.tag = gTag;
 
             if (m_dicVolumeGroup.ContainsKey(currentInstance.tag))
@@ -276,7 +276,7 @@ namespace EdgeworldBase
         {
             float initVolume = PlayerPrefs.GetFloat("Music");
             float t = 0f;
-            while(t<1f)
+            while (t < 1f)
             {
                 SetVolume("Music", Mathf.Lerp(initVolume, 0f, t), false);
                 t += Time.deltaTime;
@@ -287,9 +287,13 @@ namespace EdgeworldBase
 
             SetMusic(musicKey);
 
-            if(keepPlaybackTime)
+            if (keepPlaybackTime)
             {
                 MusicSource.time = currentPlaybackTime;
+            }
+            else
+            {
+                MusicSource.time = 0f;
             }
 
             t = 0f;
@@ -327,8 +331,9 @@ namespace EdgeworldBase
                 MusicSource.Stop();
                 MusicSource.clip = ResourcesLoader.Instance.GetClip(gClip);
 
-                if(!CORE.Instance.IsAppInBackground)
+                if (!CORE.Instance.IsAppInBackground)
                 {
+                    MusicSource.time = 0f;
                     MusicSource.Play();
                 }
             }
@@ -357,7 +362,7 @@ namespace EdgeworldBase
                 SoundscapeSource.Stop();
                 SoundscapeSource.clip = ResourcesLoader.Instance.GetClip(gClip);
 
-                if(!CORE.Instance.IsAppInBackground)
+                if (!CORE.Instance.IsAppInBackground)
                 {
                     SoundscapeSource.Play();
                 }

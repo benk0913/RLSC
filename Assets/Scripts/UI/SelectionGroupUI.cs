@@ -20,6 +20,8 @@ public class SelectionGroupUI : MonoBehaviour
     public SelectionGroupInstance CurrentSelected;
     public Selectable CurrentSelectedSelectable;
 
+    public Selectable DefaultSelectable;
+
     public bool ScrollRectSnapSupport = false;
 
     public bool CompensateOnEmptySelections = false;
@@ -86,6 +88,16 @@ public class SelectionGroupUI : MonoBehaviour
                 }
 
                 if(selectable.GetType() == typeof(Scrollbar))
+                {
+                    continue;
+                }
+
+                if(selectable.GetType() == typeof(Dropdown))
+                {
+                    continue;
+                }
+
+                if(!selectable.interactable)
                 {
                     continue;
                 }
@@ -243,7 +255,14 @@ public class SelectionGroupUI : MonoBehaviour
             }
             else
             {
-                Select(instances[0]);
+                if(DefaultSelectable != null)
+                {
+                    Select(DefaultSelectable);
+                }
+                else
+                {
+                    Select(instances[0]);
+                }
             }
         }
     }

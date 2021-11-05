@@ -296,4 +296,53 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         CORE.IsMachinemaMode = true;
         CORE.Instance.InvokeEvent("MachinemaModeRefresh");
     }
+
+    public void TryNextInDropdown(Dropdown dropdown)
+    {
+        if(!dropdown.interactable)
+        {
+            return;
+        }
+
+        int targetValue = dropdown.value+1;
+
+        if(targetValue >= dropdown.options.Count)
+        {
+            targetValue = 0;
+        }
+
+        dropdown.SetValueWithoutNotify(targetValue);
+    }
+
+     public void TryPreviousDropdown(Dropdown dropdown)
+    {
+        if(!dropdown.interactable)
+        {
+            return;
+        }
+
+        int targetValue = dropdown.value - 1;
+
+        if(targetValue < 0)
+        {
+            targetValue = dropdown.options.Count - 1;
+        }
+
+        dropdown.SetValueWithoutNotify(targetValue);
+    }
+    
+    public void ConfirmDropdown(Dropdown dropdown)
+    {
+        if(!dropdown.interactable)
+        {
+            return;
+        }
+            
+        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Confirm Change to")+" "+dropdown.options[dropdown.value].text+"?",()=>
+        {
+
+
+            dropdown.onValueChanged.Invoke(dropdown.value);
+        });
+    }
 }
