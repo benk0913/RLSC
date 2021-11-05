@@ -241,7 +241,7 @@ public class MainMenuUI : MonoBehaviour
                  }
                  int maxCharacters = CORE.Instance.Data.content.MaxCharacters + SocketHandler.Instance.CurrentUser.info.additionalCharSlots;
                  CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Count < maxCharacters;
-                 CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : "Cannot have more than " + maxCharacters + " characters.");
+                 CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : CORE.QuickTranslate("Cannot have more than")+" " + maxCharacters + " "+ CORE.QuickTranslate("characters")+".");
 
                  CORE.Instance.DelayedInvokation(0f, () =>
                 {

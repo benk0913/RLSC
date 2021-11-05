@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -59,11 +59,40 @@ namespace I2.Loc
 				GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
 
-            if(GUILayout.Button("AUTO TRANSLATE ALL"))
+            //if(GUILayout.Button("AUTO TRANSLATE ALL"))
+            //{
+            //    GUITools.DelayedCall(()=>IterateAutoTranslateAll(mLanguageSource.GetLanguages()[0]));
+            //}
+            if (GUILayout.Button("FIX CHARACTER PROBLEMS"))
             {
-                GUITools.DelayedCall(()=>IterateAutoTranslateAll(mLanguageSource.GetLanguages()[0]));
+                GUITools.DelayedCall(() => FixCharacterProblems());
             }
 
+        }
+
+        public void FixCharacterProblems()
+        {
+            Debug.Log("ATTEMPTING FIX CHARACTER PROBLEMS ");
+            List<string> termlist = mLanguageSource.GetTermsList();
+            termlist.RemoveAll((string term) => { return !term.Contains("!") && !term.Contains("?"); });
+
+            List<int> relevantLanguages = new List<int>();
+            relevantLanguages.Add(1);
+            relevantLanguages.Add(7);
+
+            foreach(string term in termlist)
+            {
+                Debug.Log(term);
+                foreach (int langIndex in relevantLanguages)
+                {
+                    TermData termData = mLanguageSource.GetTermData(term);
+
+                    termData.SetTranslation(langIndex,termData.GetTranslation(langIndex).Replace("！", "!"));
+                    termData.SetTranslation(langIndex, termData.GetTranslation(langIndex).Replace("？", "?"));
+
+                }
+            
+            }
         }
 
         public void IterateAutoTranslateAll(string language)
