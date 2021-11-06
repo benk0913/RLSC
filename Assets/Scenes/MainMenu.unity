@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC601\uC5ED \uC120\uD0DD:"
+  m_text: 'Select Realm:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 993486835d3010f43adf5962135ff805, type: 2}
@@ -3601,7 +3601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.456}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 989.29, y: 270}
+  m_AnchoredPosition: {x: 989.2899, y: 270}
   m_SizeDelta: {x: 684, y: 1136}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &105379132
@@ -8491,6 +8491,7 @@ GameObject:
   - component: {fileID: 305551365}
   - component: {fileID: 305551367}
   - component: {fileID: 305551366}
+  - component: {fileID: 305551368}
   m_Layer: 5
   m_Name: Water
   m_TagString: Untagged
@@ -8558,6 +8559,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305551364}
   m_CullTransparentMesh: 1
+--- !u!114 &305551368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305551364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 305551366}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 383077027}
+        m_TargetAssemblyTypeName: ClassSelectionPanelUI, Assembly-CSharp
+        m_MethodName: SelectClass
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: a541fc971532da54ea76ffd9ad8070b9, type: 2}
+          m_ObjectArgumentAssemblyTypeName: ClassJob, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &308332266
 GameObject:
   m_ObjectHideFlags: 0
@@ -17913,7 +17970,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f6e3cb6c01ffdeb409ad663602df334e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62a9bb737c443864485706adc018baa5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -24304,7 +24361,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f6e3cb6c01ffdeb409ad663602df334e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62a9bb737c443864485706adc018baa5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -24817,7 +24874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD53C\uBD80\uC0C9"
+  m_text: Skin Color
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 6160e64696487ff45a6dffc76b9efdc6, type: 2}
@@ -33155,7 +33212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC5EC\uC790"
+  m_text: Female
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 993486835d3010f43adf5962135ff805, type: 2}
@@ -35307,7 +35364,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uB984..."
+  m_text: Name...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -36127,6 +36184,7 @@ GameObject:
   - component: {fileID: 1320825643}
   - component: {fileID: 1320825645}
   - component: {fileID: 1320825644}
+  - component: {fileID: 1320825646}
   m_Layer: 5
   m_Name: Wind
   m_TagString: Untagged
@@ -36194,6 +36252,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320825642}
   m_CullTransparentMesh: 1
+--- !u!114 &1320825646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320825642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1320825644}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 383077027}
+        m_TargetAssemblyTypeName: ClassSelectionPanelUI, Assembly-CSharp
+        m_MethodName: SelectClass
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: c6150352cd9f5db42b34b4d249e5bd71, type: 2}
+          m_ObjectArgumentAssemblyTypeName: ClassJob, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1320850820
 GameObject:
   m_ObjectHideFlags: 0
@@ -36252,7 +36366,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBA38\uB9AC \uC0C9\uAE54"
+  m_text: Hair Color
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 6160e64696487ff45a6dffc76b9efdc6, type: 2}
@@ -40286,6 +40400,7 @@ GameObject:
   - component: {fileID: 1435767170}
   - component: {fileID: 1435767172}
   - component: {fileID: 1435767171}
+  - component: {fileID: 1435767173}
   m_Layer: 5
   m_Name: Fire
   m_TagString: Untagged
@@ -40353,6 +40468,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435767169}
   m_CullTransparentMesh: 1
+--- !u!114 &1435767173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435767169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1435767171}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 383077027}
+        m_TargetAssemblyTypeName: ClassSelectionPanelUI, Assembly-CSharp
+        m_MethodName: SelectClass
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 96716ea7040a0304cbb813bee25f510c, type: 2}
+          m_ObjectArgumentAssemblyTypeName: ClassJob, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1439260115
 GameObject:
   m_ObjectHideFlags: 0
@@ -48022,7 +48193,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: '#D1CBA1'
+          m_StringArgument: '#C8BD9D'
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1612123780
@@ -48652,7 +48823,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB0A8\uC131"
+  m_text: Male
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 993486835d3010f43adf5962135ff805, type: 2}
@@ -49494,7 +49665,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC5BC\uB9AC \uC561\uC138\uC2A4"
+  m_text: Early Access
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
   m_sharedMaterial: {fileID: 7020748659007806953, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
@@ -50159,7 +50330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC131\uBCC4"
+  m_text: Gender
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 6160e64696487ff45a6dffc76b9efdc6, type: 2}
@@ -50953,7 +51124,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCE90\uB9AD\uD130 \uC120\uD0DD:"
+  m_text: 'Select Character:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
   m_sharedMaterial: {fileID: 7020748659007806953, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
@@ -55101,6 +55272,7 @@ GameObject:
   - component: {fileID: 1884753332}
   - component: {fileID: 1884753334}
   - component: {fileID: 1884753333}
+  - component: {fileID: 1884753335}
   m_Layer: 5
   m_Name: Earth
   m_TagString: Untagged
@@ -55168,6 +55340,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884753331}
   m_CullTransparentMesh: 1
+--- !u!114 &1884753335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884753331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1884753333}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 383077027}
+        m_TargetAssemblyTypeName: ClassSelectionPanelUI, Assembly-CSharp
+        m_MethodName: SelectClass
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 4f30f0753b0fdb6479c058f168861cfb, type: 2}
+          m_ObjectArgumentAssemblyTypeName: ClassJob, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1899733128
 GameObject:
   m_ObjectHideFlags: 0
@@ -59367,7 +59595,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f6e3cb6c01ffdeb409ad663602df334e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62a9bb737c443864485706adc018baa5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -62783,7 +63011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB208 \uC0C9\uAE54"
+  m_text: Eye Color
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38dab07944fbe6d418754cc9b7884840, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 6160e64696487ff45a6dffc76b9efdc6, type: 2}
@@ -63160,6 +63388,18 @@ PrefabInstance:
     - target: {fileID: 5655247046041533110, guid: e24d967d380766743ab2edf48b975919, type: 3}
       propertyPath: m_Name
       value: DisplayActor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923729474875433458, guid: e24d967d380766743ab2edf48b975919, type: 3}
+      propertyPath: m_Color.b
+      value: 0.61681205
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923729474875433458, guid: e24d967d380766743ab2edf48b975919, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7429
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923729474875433458, guid: e24d967d380766743ab2edf48b975919, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
       objectReference: {fileID: 0}
     - target: {fileID: 8340914329690722605, guid: e24d967d380766743ab2edf48b975919, type: 3}
       propertyPath: m_AnchorMax.y

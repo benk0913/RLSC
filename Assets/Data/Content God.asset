@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Content God
   m_EditorClassIdentifier: 
   ServerEnvironment:
-    Environment: Prod
+    Environment: Dev
     Region: eu
   DataPath: Data
   content:
@@ -756,6 +756,7 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 1e72437299a3e3c42bc4449ae4e11062, type: 2}
         - {fileID: 11400000, guid: edc866cc2869bb14291e230c1f1e33f4, type: 2}
         - {fileID: 11400000, guid: 5839233d87ba836478a0e863f2f6b909, type: 2}
+        - {fileID: 11400000, guid: ab8ce2b2d6835fb43a35314c78cd37ab, type: 2}
       - StoreKey: Skin Color
         StoreItems:
         - {fileID: 11400000, guid: 0ad56ea18f6f1e34185e577cc15046fe, type: 2}
@@ -1176,6 +1177,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6389501bd154499498928d532ab5339a, type: 2}
     - {fileID: 11400000, guid: efd79f1abade0a64680eb437c0652e95, type: 2}
     - {fileID: 11400000, guid: 07b9975ab806cbb42bc3455d716bd434, type: 2}
+    - {fileID: 11400000, guid: ab8ce2b2d6835fb43a35314c78cd37ab, type: 2}
     - {fileID: 11400000, guid: 9e5cc6f35530c38498a4e4cb9afaa203, type: 2}
     - {fileID: 11400000, guid: 1e72437299a3e3c42bc4449ae4e11062, type: 2}
     - {fileID: 11400000, guid: edc866cc2869bb14291e230c1f1e33f4, type: 2}
@@ -5680,14 +5682,14 @@ MonoBehaviour:
         respawnSeconds: 0
         IrellevantMob: 0
       Interactables:
+      - interactableName: TrainingSessionLever
+        interactableId: TrainingSessionLever
+        positionX: -18
+        positionY: -14
       - interactableName: GateRightInteractable
         interactableId: 
         positionX: 33
         positionY: -7
-      - interactableName: DarknessGateInteractable2
-        interactableId: DarknessGateInteractable2
-        positionX: -18
-        positionY: -13
       - interactableName: NPC_Trainer
         interactableId: 
         positionX: -27
@@ -6058,34 +6060,34 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
-      - interactableName: TavernEntrance
+      - interactableName: Entrance
         interactableId: 
-        positionX: -156
+        positionX: -160
         positionY: -23
       - interactableName: NPC_Expeditioneer
         interactableId: 
         positionX: -160
         positionY: -27
-      - interactableName: NPC_Wizard
+      - interactableName: NPC_Wizard2
         interactableId: 
         positionX: -38
         positionY: -27
-      - interactableName: NPC_Wizard2
+      - interactableName: NPC_Wizard
         interactableId: 
         positionX: -38
         positionY: -27
       - interactableName: NPC_Trainer
         interactableId: 
-        positionX: -150
-        positionY: -27
-      playerSpawnX: -150.6
-      playerSpawnY: -22.8
+        positionX: -90
+        positionY: -19
+      playerSpawnX: -154.6
+      playerSpawnY: -23.9
       Portals:
       - name: Entrance
-        TargetScene: SunsetPortTavern
+        TargetScene: Sunset Port
         TargetSceneGate: TavernEntrance
         IsExpeditionLocked: 0
-        portalPositionX: -155.84
+        portalPositionX: -159.7
         portalPositionY: -23.15
       Vendors: []
       OnDemandParams:
@@ -6114,6 +6116,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c284fc6f25a27d542902b8e2acc6bccd, type: 2}
     - {fileID: 11400000, guid: 66653ef37b3136b4eb124c885ec77a08, type: 2}
     - {fileID: 11400000, guid: 1035f07296947ac47ad7edbf4e2a4007, type: 2}
+    - {fileID: 11400000, guid: 3b06d24e28d5d98438867e84c750e570, type: 2}
     - {fileID: 11400000, guid: ec55653a982c5e2459ab1b835a9f890a, type: 2}
     - {fileID: 11400000, guid: 21a0d16d5a3654d43a8c2d5f2a39d5b6, type: 2}
     Expeditions:
