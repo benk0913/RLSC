@@ -1546,24 +1546,15 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        string hasPicedUp = " has picked up ";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("% chance to ", out hasPicedUp);
-
-        string coins = "coins";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("coins", out coins);
-
-        string hasPicedUpItem = " has picked up the item: '";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has picked up the item: '", out hasPicedUpItem);
-
 
         item.Entity.BePickedBy(actorDat.ActorEntity);
         if (item.Data.Type.name == "Money")
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + hasPicedUp + String.Format("{0:n0}", item.amount) + " "+coins+"</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + CORE.QuickTranslate(" has picked up ") + String.Format("{0:n0}", item.amount) + " "+CORE.QuickTranslate("coins")+"</color>");
         }
         else
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + hasPicedUpItem + item.itemName + "'</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the item") +": '"+ item.itemName + "'</color>");
         }
 
         CORE.Instance.IsPickingUpItem = false;
@@ -1724,7 +1715,7 @@ public class SocketHandler : MonoBehaviour
         string winningActorId = data["winningActorId"].Value;
         if (string.IsNullOrEmpty(winningActorId))
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No one has picked the item " + rolledItem.Data.DisplayName, Colors.AsColor(Colors.COLOR_BAD), 3f));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(CORE.QuickTranslate("No one has picked the item")+" " + CORE.QuickTranslate(rolledItem.Data.DisplayName), Colors.AsColor(Colors.COLOR_BAD), 3f));
             return;
         }
 
@@ -1736,17 +1727,12 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        string hasWonItem = " has won the item: '";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has won the item: '", out hasWonItem);
-
-        string itemName = rolledItem.itemName;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(rolledItem.itemName, out itemName);
 
         CORE.Instance.DelayedInvokation(2f, () =>
         {
             result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnCharWinner").GetComponent<ActorRollResultUI>();
             result.SetInfo(actorDat.ActorEntity, rolledItem.Data, 0);
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + hasWonItem + itemName + "'</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has won the item")+": '" + CORE.QuickTranslate(rolledItem.itemName) + "'</color>");
         });
     }
 
@@ -1858,11 +1844,8 @@ public class SocketHandler : MonoBehaviour
     public void OnPartyJoin(string eventName, JSONNode data)
     {
         string actorName = data["actorName"].Value;
-
-        string hadInvitedYou = " has joined the party!";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has joined the party!", out hadInvitedYou);
-
-        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName +hadInvitedYou+ "</color>");
+        
+        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName +CORE.QuickTranslate(" has joined the party!")+ " </color>");
 
         AudioControl.Instance.Play("getPartyAccept");
 

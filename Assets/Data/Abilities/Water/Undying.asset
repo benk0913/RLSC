@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Undying
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: c991693b50cd210419257b0518ee4e8d, type: 3}
-  Description: Prevent an ally or you from dying for a while
+  Description: Prevent an ally or yourself from dying for a span of time.
   Colliders:
     HitAbilityColliderObject: HealHit
     MissAbilityColliderObject: 
@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: W_Undying_PrepareOGG
     ExecuteAbilitySound: sound_watersplashs
     HitAbilitySound: W_HealOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -33,7 +34,9 @@ MonoBehaviour:
   CD: 25
   CastingTime: 1
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -41,4 +44,6 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: Refreshing Rush Undying
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

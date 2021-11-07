@@ -12,6 +12,13 @@ public class GEItemooni : GameEvent
     {
         base.Execute(obj);
         JSONNode node = new JSONClass();
+
+        AbilityParam itemAbilityParam = OnDemandParams.AbilityParams.Find(x => x.Type.name == "Add Item");
+        if (itemAbilityParam != null)
+        {
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + CORE.QuickTranslate(itemAbilityParam.Value) + " " +CORE.QuickTranslate("has been added to your inventory")+ "!'</color>");
+        }
+
         node["onDemandParamsId"] = OnDemandParams.name;
         SocketHandler.Instance.SendEvent("scene_on_demand_params", node);
     }

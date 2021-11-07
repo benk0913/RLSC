@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Liquid Bond
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 4c52f84f8697c774e8d378b0b54dde57, type: 3}
-  Description: Bind to an ally and both of you receive all damage, heal and buffs
-    from the other
+  Description: Bind yourself to an ally. This bond of water will make every effect,
+    which is set on one of you, good or bad, affect the other as well.
   Colliders:
     HitAbilityColliderObject: LiquidBondHit
     MissAbilityColliderObject: 
@@ -26,6 +26,7 @@ MonoBehaviour:
     PrepareAbilitySound: W_LiquidBond_PrepareOGG
     ExecuteAbilitySound: W_LiquidBond_ExecuteOGG
     HitAbilitySound: sound_heal
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -34,7 +35,9 @@ MonoBehaviour:
   CD: 20
   CastingTime: 1
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -42,4 +45,6 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: Liquid Bond Connection
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

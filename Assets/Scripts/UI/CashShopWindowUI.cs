@@ -205,8 +205,11 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         }
 
         shortClickTimer = 1f;
-        
-        DeselectProduct(product.CurrentItem.Type == SelectedProduct.CurrentItem.Type);
+
+        if (SelectedProduct != null)
+        {
+            DeselectProduct(product.CurrentItem.Type == SelectedProduct.CurrentItem.Type);
+        }
 
         product.SetSelected();
         SelectedProduct = product;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cleanse
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 6253c1699645948419bc1a6dbbd44475, type: 3}
-  Description: Remove all debuffs on an ally or yourself
+  Description: Remove all debuffs from an ally or from yourself. (by hitting nothing.)
   Colliders:
     HitAbilityColliderObject: HealHit
     MissAbilityColliderObject: 
@@ -34,6 +34,7 @@ MonoBehaviour:
   CD: 0.5
   CastingTime: 0.2
   TargetCap: 3
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0

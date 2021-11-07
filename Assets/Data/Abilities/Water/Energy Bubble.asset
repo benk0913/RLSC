@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Energy Bubble
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8d29b8ea0260bd643a02a8959ed9ec11, type: 3}
-  Description: Float a bubble that heals on impact
+  Description: Form a floating bubble that heals on impact with an ally.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -25,6 +25,7 @@ MonoBehaviour:
     PrepareAbilitySound: W_Bless_PrepareOGG
     ExecuteAbilitySound: W_Bubble_ExecuteOGG
     HitAbilitySound: W_EnergyBubble_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -33,7 +34,9 @@ MonoBehaviour:
   CD: 5
   CastingTime: 1
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -41,4 +44,6 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: 30
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

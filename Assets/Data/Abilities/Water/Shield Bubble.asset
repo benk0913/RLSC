@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Shield Bubble
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8eff94603aa55b24284f40c55a1f1119, type: 3}
-  Description: Float a bubble that on impact protects an ally
+  Description: Form a floating bubble, which would buff an ally with invulnerability
+    on impact.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -25,6 +26,7 @@ MonoBehaviour:
     PrepareAbilitySound: W_Bless_PrepareOGG
     ExecuteAbilitySound: W_Bubble_ExecuteOGG
     HitAbilitySound: W_ShieldBubble_HitOGG
+    HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
@@ -33,7 +35,9 @@ MonoBehaviour:
   CD: 5
   CastingTime: 1
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
+  AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
@@ -41,4 +45,6 @@ MonoBehaviour:
     Condition: {fileID: 0}
     Targets: 1
     Value: Frost Shield
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnMissParams: []

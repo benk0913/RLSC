@@ -68,6 +68,7 @@ public class AbilitySlotUI : MonoBehaviour
 
         tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+CORE.QuickTranslate(abilityState.CurrentAbility.name)+ "</color>";
         tooltipString += System.Environment.NewLine + CORE.QuickTranslate(abilityState.CurrentAbility.Description);
+        tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_HIGHLIGHT + ">" + CORE.QuickTranslate("cooldown")+": "+abilityState.CurrentAbility.CD+" "+CORE.QuickTranslate("seconds")+".</color>";
 
         // TODO do we want detailed tooltips?
         // tooltipString += System.Environment.NewLine + "CASTING TIME: "+abilityState.CurrentAbility.CastingTime;
