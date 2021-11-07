@@ -20,7 +20,7 @@ public class ExpeditionQueTimerUI : MonoBehaviour
         Instance = this;
         Hide();
 
-        msg = CORE.QuickTranslate("Queued For: ");
+        msg = CORE.QuickTranslate("Queued For")+": ";
     }
 
     void Update()

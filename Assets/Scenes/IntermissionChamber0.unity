@@ -1100,13 +1100,20 @@ MonoBehaviour:
     Decisions:
     - Content: Thank you!
       OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
       DisplayConditions: []
       DisplayOnlyIfConditionsMet: 0
       DefaultDialog:
         DialogPieces: []
         Decisions: []
+        IsFemale: 0
     - Content: Bye...
       OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
       DisplayConditions: []
       DisplayOnlyIfConditionsMet: 0
       DefaultDialog:
@@ -1116,9 +1123,12 @@ MonoBehaviour:
             m_PersistentCalls:
               m_Calls: []
         Decisions: []
+        IsFemale: 0
+    IsFemale: 0
   CurrentDialog:
     DialogPieces: []
     Decisions: []
+    IsFemale: 0
   CurrentIndex: 0
   CurrentBubble: {fileID: 108916384}
   isActiveDialog: 0
@@ -1211,8 +1221,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   InteractableCooldown: 0
+  BusyCooldown: 3
   IsBusy: 0
   isClientOnly: 1
+  Item: 0
+  MapInteractable: 0
 --- !u!61 &182074005
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6373,6 +6386,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1589865879959382616, guid: 2d35de274484d624ab4b0f4623678eaa, type: 3}
+      propertyPath: m_FrontSortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589865879959382616, guid: 2d35de274484d624ab4b0f4623678eaa, type: 3}
+      propertyPath: m_FrontSortingOrder
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589865879959382616, guid: 2d35de274484d624ab4b0f4623678eaa, type: 3}
+      propertyPath: m_FrontSortingLayerID
+      value: -1365627307
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589865879959382616, guid: 2d35de274484d624ab4b0f4623678eaa, type: 3}
+      propertyPath: m_IsCustomRangeActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304217227499906379, guid: 2d35de274484d624ab4b0f4623678eaa, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304217227499906379, guid: 2d35de274484d624ab4b0f4623678eaa, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1365627307
+      objectReference: {fileID: 0}
     - target: {fileID: 6066874185120847665, guid: 2d35de274484d624ab4b0f4623678eaa, type: 3}
       propertyPath: m_Name
       value: PredictionCircle

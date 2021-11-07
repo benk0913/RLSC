@@ -16,7 +16,21 @@ public class GEItemooni : GameEvent
         AbilityParam itemAbilityParam = OnDemandParams.AbilityParams.Find(x => x.Type.name == "Add Item");
         if (itemAbilityParam != null)
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + CORE.QuickTranslate(itemAbilityParam.Value) + " " +CORE.QuickTranslate("has been added to your inventory")+ "!'</color>");
+            string itemName = "";
+            if(!string.IsNullOrEmpty(itemAbilityParam.Value))
+            {
+                itemName = itemAbilityParam.Value;
+            }
+            else if (!string.IsNullOrEmpty(itemAbilityParam.Value2))
+            {
+                itemName = itemAbilityParam.Value2;
+            }
+            else
+            {
+                itemName = itemAbilityParam.ObjectValue.name;
+            }
+
+                CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + CORE.QuickTranslate(itemAbilityParam.Value) + " " +CORE.QuickTranslate("has been added to your inventory")+ "!'</color>");
         }
 
         node["onDemandParamsId"] = OnDemandParams.name;

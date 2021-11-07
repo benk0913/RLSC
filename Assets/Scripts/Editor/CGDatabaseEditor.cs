@@ -50,6 +50,29 @@ public class CGDatabaseEditor : Editor
 
         DrawDefaultInspector();
 
+        if (GUILayout.Button("FIX ALL SPRITEMASKS SCRIPT"))
+        {
+
+            GameObject[] rootObjs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+
+            foreach (GameObject rootObj in rootObjs)
+            {
+                SpriteMask[] tt = rootObj.GetComponentsInChildren<SpriteMask>();
+
+                foreach (SpriteMask t in tt)
+                {
+                    t.isCustomRangeActive = true;
+                    t.backSortingLayerID  = 0;
+                    t.frontSortingLayerID = 5;
+                    Debug.LogError(rootObj.name);
+                }
+
+
+            }
+
+            
+        }
+
         if (GUILayout.Button("CUSTOM SCRIPT 2"))
         {
             List<string> terms = db.Localizator.mSource.GetTermsList();
