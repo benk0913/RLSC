@@ -1550,11 +1550,11 @@ public class SocketHandler : MonoBehaviour
         item.Entity.BePickedBy(actorDat.ActorEntity);
         if (item.Data.Type.name == "Money")
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + CORE.QuickTranslate(" has picked up ") + String.Format("{0:n0}", item.amount) + " "+CORE.QuickTranslate("coins")+"</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up") +" " + String.Format("{0:n0}", item.amount) + " "+CORE.QuickTranslate("coins")+"</color>");
         }
         else
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the item") +": '"+ item.itemName + "'</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the item") +": '"+ CORE.QuickTranslate(item.itemName) + "'</color>");
         }
 
         CORE.Instance.IsPickingUpItem = false;
@@ -1845,7 +1845,7 @@ public class SocketHandler : MonoBehaviour
     {
         string actorName = data["actorName"].Value;
         
-        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName +CORE.QuickTranslate(" has joined the party!")+ " </color>");
+        CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName +" " +CORE.QuickTranslate("has joined the party")+"! </color>");
 
         AudioControl.Instance.Play("getPartyAccept");
 
