@@ -246,7 +246,7 @@ public class AbilityCollider : HitCollider
                     return;
                 }
 
-                if(BubblesDuplicated.Contains(otherAbilityCollider) || BubblesDuplicated.Count > 16)
+                if(BubblesDuplicated.Contains(otherAbilityCollider) || BubblesDuplicated.Count > 32)
                 {
                     return;
                 }
