@@ -83,10 +83,10 @@ public class ItemsLogic
 
             if (abilityParam.Condition && abilityParam.Condition.Type == ConditionType.Chance)
             {
-                abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) + CORE.QuickTranslate("chance to");
+                abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) +"% "+ CORE.QuickTranslate("chance to");
             }
 
-            abilityParamText += CORE.QuickTranslate(abilityParam.Type.name) + " "+CORE.QuickTranslate("on")+" " + CORE.QuickTranslate(abilityParam.Targets.ToString()) + CORE.QuickTranslate(whenCondition);
+            abilityParamText +=" "+ CORE.QuickTranslate(abilityParam.Type.name) + " "+CORE.QuickTranslate("on")+" " + CORE.QuickTranslate(abilityParam.Targets.ToString()) +" "+ CORE.QuickTranslate(whenCondition);
             string value = abilityParam.ObjectValue == null ? abilityParam.Value : abilityParam.ObjectValue.name;
             if (!string.IsNullOrEmpty(value))
             {

@@ -61,7 +61,7 @@ namespace EdgeworldBase
             {
                 if (debugMode)
                 {
-                    Debug.LogError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/UI ?)");
+                    CORE.Instance.LogMessageError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/UI ?)");
                 }
             }
 
@@ -76,7 +76,7 @@ namespace EdgeworldBase
             }
             else
             {
-                Debug.LogError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/UI ?)");
+                CORE.Instance.LogMessageError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/UI ?)");
             }
 
             return null;
@@ -90,7 +90,7 @@ namespace EdgeworldBase
             }
             else
             {
-                Debug.LogError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/Objects ?)");
+                CORE.Instance.LogMessageError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/Objects ?)");
             }
 
             return null;
@@ -104,7 +104,7 @@ namespace EdgeworldBase
             }
             else
             {
-                Debug.LogError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/Audio ?)");
+                CORE.Instance.LogMessageError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/Audio ?)");
             }
 
             return null;

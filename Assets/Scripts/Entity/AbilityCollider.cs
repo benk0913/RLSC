@@ -123,7 +123,7 @@ public class AbilityCollider : HitCollider
                 RaycastHit2D rhit = Physics2D.Raycast(SkilledShotPoint.position, Vector2.down, Mathf.Infinity, SkilledshotLayermask);
                 if (rhit && Vector2.Distance(rhit.point, SkilledShotPoint.position) > 0.1f)
                 {
-                    Debug.LogError(Vector2.Distance(rhit.point, SkilledShotPoint.position));
+                    CORE.Instance.LogMessageError(Vector2.Distance(rhit.point, SkilledShotPoint.position).ToString());
                     //TODO Remove?
                 }
                 else

@@ -15,6 +15,7 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
 
     public bool IsActive = false;
 
+    Dialog CurrentDialog;
     private void Awake()
     {
         Instance = this;
@@ -24,6 +25,16 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
     public void Show(ActorData actor, object data = null)
     {
         Show(actor, null);
+    }
+
+    public void ShowDialogSpecific(ActorData actor, Dialog dialog)
+    {
+        if(CurrentDialog == dialog && this.gameObject.activeInHierarchy)
+        {
+            return;
+        }
+
+        Show(actor,dialog.Decisions);
     }
 
     public void Show(ActorData actor, List<DialogDecision> decisions)

@@ -30,7 +30,7 @@ public class GEItemooni : GameEvent
                 itemName = itemAbilityParam.ObjectValue.name;
             }
 
-                CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + CORE.QuickTranslate(itemAbilityParam.Value) + " " +CORE.QuickTranslate("has been added to your inventory")+ "!'</color>");
+                CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + CORE.QuickTranslate(itemName) + " " +CORE.QuickTranslate("has been added to your inventory")+ "!'</color>");
         }
 
         node["onDemandParamsId"] = OnDemandParams.name;

@@ -904,7 +904,7 @@ public class SocketHandler : MonoBehaviour
     {
         if(string.IsNullOrEmpty(data["interactable"]["interactableId"]))
         {
-            Debug.LogError("NO RECEIVED INTERACTABLE ID " + data["interactable"].ToString());
+            CORE.Instance.LogMessageError("NO RECEIVED INTERACTABLE ID " + data["interactable"].ToString());
         }
 
         CORE.Instance.SpawnInteractable(JsonConvert.DeserializeObject<Interactable>(data["interactable"].ToString()));
@@ -1201,6 +1201,12 @@ public class SocketHandler : MonoBehaviour
         if (actorDat == null)
         {
             CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
+            return;
+        }
+
+        if(actorDat.ActorEntity == null)
+        {
+            CORE.Instance.LogMessageError("No actor entity for actorID " + data["actorId"].Value);
             return;
         }
 
@@ -1732,7 +1738,9 @@ public class SocketHandler : MonoBehaviour
         {
             result = ResourcesLoader.Instance.GetRecycledObject("ActorRollResultOnCharWinner").GetComponent<ActorRollResultUI>();
             result.SetInfo(actorDat.ActorEntity, rolledItem.Data, 0);
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has won the item")+": '" + CORE.QuickTranslate(rolledItem.itemName) + "'</color>");
+
+            string haswonthetext = rolledItem.Data.Type.name == "Orb"?  CORE.QuickTranslate("has won the orb") :  CORE.QuickTranslate("has won the item");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " +haswonthetext+": '" + CORE.QuickTranslate(rolledItem.itemName) + "'</color>");
         });
     }
 

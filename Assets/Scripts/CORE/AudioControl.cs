@@ -173,6 +173,7 @@ namespace EdgeworldBase
 
         public void ResetVolume(string gTag, bool save = true)
         {
+            Debug.LogError("VOLUME RESET!?!?!??");
             SetVolume(gTag, PlayerPrefs.GetFloat(gTag), save);
         }
 

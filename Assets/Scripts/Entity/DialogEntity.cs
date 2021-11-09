@@ -88,7 +88,7 @@ public class DialogEntity : MonoBehaviour
         {
             if (CurrentDialog.Decisions.Count > 0)
             {
-                DecisionContainerUI.Instance.Show(CORE.Instance.Room.PlayerActor, CurrentDialog.Decisions);
+                DecisionContainerUI.Instance.ShowDialogSpecific(CORE.Instance.Room.PlayerActor, CurrentDialog);
                 return;
             }
             else
@@ -112,7 +112,7 @@ public class DialogEntity : MonoBehaviour
             
             if (CurrentDialog.Decisions.Count > 0)
             {
-                DecisionContainerUI.Instance.Show(CORE.Instance.Room.PlayerActor, CurrentDialog.Decisions);
+                DecisionContainerUI.Instance.ShowDialogSpecific(CORE.Instance.Room.PlayerActor, CurrentDialog);
             }
             else
             {

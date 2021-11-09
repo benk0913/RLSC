@@ -81,10 +81,15 @@ public class HitCollider : MonoBehaviour
 
     protected virtual bool CanHitActor(Actor actorVictim)
     {
-
+        if(ActorSource == null || actorVictim == null)
+        {
+            CORE.Instance.LogMessageError("NO ACTOR? "+ActorSource+" "+actorVictim);
+            return false;
+        }
         //TODO - This is just a null check - didnt solve why theres no "State.Data" sometimes...
         if(ActorSource.State.Data == null ||  actorVictim.State.Data == null)
         {
+            CORE.Instance.LogMessageError("NO ACTOR? "+ActorSource+" "+actorVictim);
             return false;
         }
 

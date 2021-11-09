@@ -529,7 +529,7 @@ public class CORE : MonoBehaviour
     {
         if (!DynamicEvents.ContainsKey(eventKey))
         {
-            Debug.LogError("EVENT " + eventKey + " does not exist!");
+            CORE.Instance.LogMessageError("EVENT " + eventKey + " does not exist!");
             return;
         }
 
@@ -1183,6 +1183,11 @@ public class RoomData
         float mostThreat = Mathf.NegativeInfinity;
         for (int i = 0; i < Actors.Count; i++)
         {
+            if(Actors[i] == null || Actors[i].ActorEntity == null)
+            {
+                continue;
+            }
+
             if (Actors[i].ActorEntity.IsDead || Actors[i].isMob || Actors[i].states.ContainsKey("Untargetable"))
             {
                 continue;

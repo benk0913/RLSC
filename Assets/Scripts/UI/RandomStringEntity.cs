@@ -35,7 +35,6 @@ public class RandomStringEntity : MonoBehaviour
 
     void Refresh()
     {
-        Debug.LogError(CORE.StripHTML(Variety[Random.Range(0, Variety.Count)]));
         Label.text = CORE.QuickTranslate(CORE.StripHTML(currentMessage));
     }
 }

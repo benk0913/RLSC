@@ -336,6 +336,16 @@ public class SelectionGroupUI : MonoBehaviour
 
     public void Select(Selectable selectable)
     {
+        if(!instancesBySelectable.ContainsKey(selectable))
+        {
+            SelectionGroupInstance inst = instances.Find(x=>x.CS == selectable);
+            if(inst == null)
+            {
+                return;
+            }
+
+            Select(inst,false);
+        }
         Select(instancesBySelectable[selectable]);
     }
     
