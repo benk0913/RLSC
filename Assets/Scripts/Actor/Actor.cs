@@ -1340,7 +1340,7 @@ public class Actor : MonoBehaviour
             case "TeleportToPlayerFar":
                 {
 
-                    Actor furthestActor = CORE.Instance.Room.GetFurthestActor(this, true);
+                    Actor furthestActor = CORE.Instance.Room.GetFurthestActor(this, true, 0, 0);
 
                     if (furthestActor == null)
                     {
@@ -1378,20 +1378,20 @@ public class Actor : MonoBehaviour
                         break;
                     }
                     float direction = (nearestTarget.transform.position - transform.position).normalized.x;
-                    float actorEdge = nearestTarget.Rigid.position.x + nearestTarget.Collider.bounds.extents.x * direction;
+                    float targetEdge = nearestTarget.Rigid.position.x + nearestTarget.Collider.bounds.extents.x * direction;
                     float targetOffset = Collider.bounds.size.x * 2f;
-                    Vector2 targetPoint = new Vector2(actorEdge + targetOffset * direction, nearestTarget.Rigid.position.y);
-                    float actorBottom = nearestTarget.Rigid.position.y - nearestTarget.Collider.bounds.extents.y;
-                    Vector2 actorEdgeBottomPoint = new Vector2(actorEdge, actorBottom + GroundCheckDistance);
+                    Vector2 teleportPoint = new Vector2(targetEdge + targetOffset * direction, nearestTarget.Rigid.position.y);
+                    float targetBottom = nearestTarget.Rigid.position.y;
+                    Vector2 actorEdgeBottomPoint = new Vector2(targetEdge, targetBottom + GroundCheckDistance);
                     
                     // Verify there aren't walls
-                    RaycastHit2D raycastBottomHit = Physics2D.Raycast(actorEdgeBottomPoint, Vector2.right * direction, targetOffset, GroundMask);
-                    if (raycastBottomHit)
+                    RaycastHit2D raycastHitsSide = Physics2D.Raycast(actorEdgeBottomPoint, Vector2.right * direction, targetOffset, GroundMask);
+                    if (raycastHitsSide)
                     {
                         break;
                     }
                     CORE.Instance.DelayedInvokation(0.01f, () => { 
-                        transform.position = targetPoint;
+                        transform.position = teleportPoint;
                         Body.localScale = new Vector3(direction, 1f, 1f);
                     });
                     

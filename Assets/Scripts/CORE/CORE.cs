@@ -1224,17 +1224,17 @@ public class RoomData
         return leastThreatAct;
     }
 
-    public Actor GetFurthestActor(Actor from, bool LookForPlayer)
+    public Actor GetFurthestActor(Actor from, bool LookForPlayer, float maxYDistance = 12, float maxXDistance = 50)
     {
-        return GetDistancedActor(from, LookForPlayer, false);
+        return GetDistancedActor(from, LookForPlayer, false, maxYDistance, maxXDistance);
     }
 
-    public Actor GetNearestActor(Actor from, bool LookForPlayer)
+    public Actor GetNearestActor(Actor from, bool LookForPlayer, float maxYDistance = 12, float maxXDistance = 50)
     {
-        return GetDistancedActor(from, LookForPlayer, true);
+        return GetDistancedActor(from, LookForPlayer, true, maxYDistance, maxXDistance);
     }
 
-    public Actor GetDistancedActor(Actor from, bool LookForPlayer, bool IsNearest)
+    public Actor GetDistancedActor(Actor from, bool LookForPlayer, bool IsNearest, float maxYDistance = 12, float maxXDistance = 50)
     {
         float nearestDist = IsNearest ? Mathf.Infinity : 0;
         Actor nearestActor = null;
@@ -1266,14 +1266,14 @@ public class RoomData
 
             // The to actor is too far down/up
             float yDistance = Mathf.Abs(from.transform.position.y - to.transform.position.y);
-            if (yDistance > 12)
+            if (maxYDistance > 0 && yDistance > maxYDistance)
             {
                 continue;
             }
 
             // The to actor is too far left/right
             float xDistance = Mathf.Abs(from.transform.position.x - to.transform.position.x);
-            if (xDistance > 50)
+            if (maxXDistance > 0 && xDistance > maxXDistance)
             {
                 continue;
             }
