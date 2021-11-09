@@ -21,6 +21,8 @@ public class PointAndClickTooltipUI : MonoBehaviour
     Transform PositionTransform;
 
     private Vector3? AnchorPosition;
+
+    public bool LastIsMouse;
     private float PivotX;
     private float PivotY;
 
@@ -52,7 +54,9 @@ public class PointAndClickTooltipUI : MonoBehaviour
         List<TooltipBonus> bonuses = null,
         Vector3? position = null,
         float pivotX = -1,
-        float pivotY = -1, bool alreadyTranslated = false)
+        float pivotY = -1,
+        bool alreadyTranslated = false,
+        bool isMouse = false)
     {
         if(string.IsNullOrEmpty(message))
         {
@@ -68,7 +72,7 @@ public class PointAndClickTooltipUI : MonoBehaviour
             }
         }
         
-
+        LastIsMouse = isMouse;
         AnchorPosition = position;
         PivotX = pivotX;
         PivotY = pivotY;
@@ -123,6 +127,7 @@ public class PointAndClickTooltipUI : MonoBehaviour
 
         PositionTransform = positionTransform;
         AnchorPosition = PositionTransform.position;
+        LastIsMouse = false;
 
         PositionTooltip();
 
@@ -152,7 +157,17 @@ public class PointAndClickTooltipUI : MonoBehaviour
             AnchorPosition = PositionTransform.position;
         }
 
-        Vector3 BasePosition = AnchorPosition != null ? (Vector3)AnchorPosition : Input.mousePosition;
+        
+        Vector3 BasePosition;
+        
+        if(LastIsMouse)
+        {
+            BasePosition = Input.mousePosition;  
+        }
+        else
+        {
+            BasePosition = AnchorPosition != null ? (Vector3)AnchorPosition : Input.mousePosition;  
+        } 
         bool xInRightSide = BasePosition.x > Screen.width / 2;
         bool yInUpperSide = BasePosition.y > Screen.height / 2;
         bool topLeftCorner = !xInRightSide && yInUpperSide;

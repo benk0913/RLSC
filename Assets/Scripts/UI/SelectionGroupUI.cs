@@ -458,9 +458,6 @@ public class SelectionGroupUI : MonoBehaviour
             joystickPressedDelay -= Time.deltaTime;
         }
 
-
-
-
         if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
         {
             InteractingWithKeyboard = true;
@@ -508,6 +505,7 @@ public class SelectionGroupUI : MonoBehaviour
                     }
                 }
             }
+
 
             DoubleclickHandlerUI doubleclickHandler = CurrentSelectedSelectable.GetComponent<DoubleclickHandlerUI>();
             if (doubleclickHandler != null)

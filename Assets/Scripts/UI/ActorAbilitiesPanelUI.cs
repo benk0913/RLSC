@@ -42,7 +42,9 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
     public void SetActor(Actor actor)
     {
         playerActor = actor;
-
+        if(playerActor == null)
+            return;
+            
         CORE.ClearContainer(abilitiesContainer);
 
         foreach(AbilityState abilityState in playerActor.State.Abilities)

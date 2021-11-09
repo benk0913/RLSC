@@ -1558,6 +1558,10 @@ public class SocketHandler : MonoBehaviour
         {
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up") +" " + String.Format("{0:n0}", item.amount) + " "+CORE.QuickTranslate("coins")+"</color>");
         }
+        else if (item.Data.Type.name == "Orb")
+        {
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the orb") +": '"+ CORE.QuickTranslate(item.itemName) + "'</color>");
+        }
         else
         {
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the item") +": '"+ CORE.QuickTranslate(item.itemName) + "'</color>");
