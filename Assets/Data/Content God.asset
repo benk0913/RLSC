@@ -6125,8 +6125,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 55f7a0f906096f44f8541173f0fdace4, type: 2}
     ExpChart: 0000000064000000c80000009001000020030000dc050000280a0000681000000019000054240000
     TimePhases:
-    - Day
-    - Night
+    - Name: Day
+      DurationInMinutes: 40
+    - Name: Night
+      DurationInMinutes: 20
     alignmentData:
       MaxKarma: 100
       GoodAbilities:
@@ -6237,7 +6239,6 @@ MonoBehaviour:
     HpRegenSeconds: 5
     MaxPartyMembers: 5
     PartyInviteTimeoutSeconds: 15
-    TimePhasesDurationMinutes: 40
     NpcItemsPoolLength: 3
     NpcItemsRefreshMinutes: 5
     ExpeditionQueueMatchDurationSeconds: 20

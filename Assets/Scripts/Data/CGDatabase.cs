@@ -78,7 +78,7 @@ public class DatabaseContent
     
     public List<int> ExpChart = new List<int>();
 
-    public List<string> TimePhases = new List<string>();
+    public List<TimePhase> TimePhases = new List<TimePhase>();
     
     [JsonIgnore]
     public AlignmentData alignmentData;
@@ -126,7 +126,6 @@ public class DatabaseContent
     public int HpRegenSeconds;
     public int MaxPartyMembers;
     public int PartyInviteTimeoutSeconds;
-    public int TimePhasesDurationMinutes;
     public int NpcItemsPoolLength;
     public int NpcItemsRefreshMinutes;
     public int ExpeditionQueueMatchDurationSeconds;
@@ -329,4 +328,11 @@ public class RealmCapacity
 
     [JsonIgnore]
     public Color Color;
+}
+
+[Serializable]
+public class TimePhase
+{
+    public string Name;
+    public int DurationInMinutes;
 }
