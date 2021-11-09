@@ -15,6 +15,8 @@ public class Expedition : ScriptableObject
 
     public string EndTargetScene;
     public string EndTargetSceneGate;
+    public string SuccessTargetScene;
+    public string SuccessTargetSceneGate;
 }
 
 [Serializable]
