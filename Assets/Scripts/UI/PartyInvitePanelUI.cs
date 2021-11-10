@@ -134,6 +134,8 @@ public class PartyInvitePanelUI : MonoBehaviour
 
     public virtual void Decline()
     {
+        CORE.Instance.InvokeEvent("Declined Party Invite");
+
         SocketHandler.Instance.SendPartyInviteResponse(false);
         CG.interactable = false;
         LootRollPanelUI.Instance.RemovePartyInvitation(CurrentFromPlayer);

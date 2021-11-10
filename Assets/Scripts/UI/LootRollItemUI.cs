@@ -172,6 +172,8 @@ public class LootRollItemUI : MonoBehaviour
         SocketHandler.Instance.SendEvent("rolled_item_choice",node);
         CG.interactable = false;
         LockedPanel.gameObject.SetActive(true);
+
+        CORE.Instance.InvokeEvent("Declined Loot Roll");
     }
 
     public void Need()

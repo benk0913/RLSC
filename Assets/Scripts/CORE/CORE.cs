@@ -189,7 +189,7 @@ public class CORE : MonoBehaviour
                 CORE.Instance.InvokeEvent("LanguageChanged");
 
 
-
+                AchievementLogic.Instance.StartAchievementLogic();
             });
 
             if(GetJoinRequestResponse == null)

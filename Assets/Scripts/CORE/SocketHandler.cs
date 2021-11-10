@@ -166,6 +166,9 @@ public class SocketHandler : MonoBehaviour
         //Emotes
         SocketEventListeners.Add(new SocketEventListener("actor_emoted", OnActorEmoted));
 
+        //Achievments
+        SocketEventListeners.Add(new SocketEventListener("achievement", OnAchievment));
+
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -1475,6 +1478,25 @@ public class SocketHandler : MonoBehaviour
         }
 
         actorDat.ActorEntity.Emote(emote);
+    }
+
+    public void OnAchievment(string eventName, JSONNode data)
+    {
+        AchievementLogic.AchievementInstance achInst =  AchievementLogic.Instance.Instances.Find(x=>x.Key == data["key"].Value);
+
+        if(achInst == null)
+        {  
+            CORE.Instance.LogMessageError("No achievement with key "+data["key"].Value);
+            return;
+        }
+
+        if(achInst.State)
+        {
+            return;
+        }
+
+        achInst.State = true;
+        SteamUserStats.SetAchievement(achInst.Key);
     }
 
     public void OnItemsSpawn(string eventName, JSONNode data)
