@@ -762,6 +762,9 @@ public class CORE : MonoBehaviour
 
         InvokeEvent("NewSceneLoaded");
 
+        PlayerPrefs.SetString(SceneManager.GetActiveScene().name+"_vl","true");
+        PlayerPrefs.Save();
+
         if (sceneKey == "MainMenu")
         {
             if (InGame)

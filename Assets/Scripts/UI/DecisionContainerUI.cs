@@ -34,6 +34,8 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
             return;
         }
 
+        CurrentDialog = dialog;
+
         Show(actor,dialog.Decisions);
     }
 

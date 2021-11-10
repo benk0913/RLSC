@@ -17,6 +17,8 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
 
     public List<MapInstance> Maps = new List<MapInstance>();
 
+    public List<GameObject> VisitedLocations = new List<GameObject>();
+
     public GameObject MapMarker;
 
     private void Awake()
@@ -46,7 +48,17 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
         
         AudioControl.Instance.Play(OpenSound);
 
+        RefreshVisitedShades();
+
         DisplayLocation();
+    }
+
+    void RefreshVisitedShades()
+    {
+        foreach(GameObject shadeObj in VisitedLocations)
+        {
+            shadeObj.SetActive(!bool.Parse(PlayerPrefs.GetString(shadeObj.name+"_vl","false")));
+        }
     }
 
     public void DisplayLocation(string Map = "", string MapPoint = "")
