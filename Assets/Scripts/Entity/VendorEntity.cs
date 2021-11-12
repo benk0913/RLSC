@@ -19,6 +19,10 @@ public class VendorEntity : MonoBehaviour
 
     public bool IsFocusing = false;
 
+    float joystickPressedDelay;
+
+    const float JOYSTICK_DELAY = 0.1f;
+
 
     private void OnDisable()
     {
@@ -98,21 +102,28 @@ public class VendorEntity : MonoBehaviour
         {
             if(!WarningWindowUI.Instance.isActiveAndEnabled)
             {
-                if (Input.GetKeyDown(InputMap.Map["Move Right"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Right"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") > 0.3f))
+                if (Input.GetKeyDown(InputMap.Map["Move Right"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Right"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") > 0 && joystickPressedDelay <= 0f))
                 {
                     SetRightItem();
+                    joystickPressedDelay = JOYSTICK_DELAY;
                 }
-                else if (Input.GetKeyDown(InputMap.Map["Move Left"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Left"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") < -0.3f))
+                else if (Input.GetKeyDown(InputMap.Map["Move Left"])|| Input.GetKeyDown(InputMap.Map["Secondary Move Left"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") < 0 && joystickPressedDelay <= 0f))
                 {
                     SetLeftItem();
+                    joystickPressedDelay = JOYSTICK_DELAY;
                 }
-                else if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
+                else if(Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 0"))
                 {  
                     PurchaseItem(ItemIndex);
                 }
+                else if((CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") == 0f && Input.GetAxis("Vertical") == 0f && joystickPressedDelay > 0f))
+                {
+
+                    joystickPressedDelay -= Time.deltaTime;
+                }
             }
 
-            if (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8"))
+            if (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 1"))
             {
                 StopFocusing();
             }

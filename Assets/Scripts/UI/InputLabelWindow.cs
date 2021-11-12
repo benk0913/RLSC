@@ -42,7 +42,7 @@ public class InputLabelWindow : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8"))
+        if (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8")||  Input.GetButtonDown("Joystick 11"))
         {
             Hide();
         }

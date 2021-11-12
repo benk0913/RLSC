@@ -22,7 +22,7 @@ public class ActorControl : MonoBehaviour
             return;
         }
         
-        if(Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]) || Input.GetButtonDown("Joystick 10"))
+        if(Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]) || Input.GetButtonDown("Joystick 6") || Input.GetButtonDown("Joystick 7")|| Input.GetButtonDown("Joystick 9") ||  Input.GetButtonDown("Joystick 10"))
         {
             ConsoleInputUI.Instance.EnterPressed();
         }
@@ -52,17 +52,22 @@ public class ActorControl : MonoBehaviour
             CurrentActor.AttemptJump();
         }
 
+
         if(Input.GetButtonDown("Joystick 0"))
         {
-            CurrentActor.AttemptPrepareAbility(0);
+        }
+        else if(Input.GetButtonDown("Joystick 2"))
+        {
+            CurrentActor.AttemptPrepareAbility(2);
         }
         else if (Input.GetButtonDown("Joystick 1"))
         {
             CurrentActor.AttemptPrepareAbility(1);
+            ConsoleInputUI.Instance.Hide();
         }
         else if (Input.GetButtonDown("Joystick 3"))
         {
-            CurrentActor.AttemptPrepareAbility(2);
+            CurrentActor.AttemptPrepareAbility(0);
         }
         else if (Input.GetButtonDown("Joystick 4"))
         {

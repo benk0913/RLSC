@@ -32,6 +32,12 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     Button BuyButton;
 
     [SerializeField]
+    TextMeshProUGUI BuyButtonMouseLabel;
+
+    [SerializeField]
+    TextMeshProUGUI BuyButtonJoystickLabel;
+
+    [SerializeField]
     Animator Animer;
 
 
@@ -98,6 +104,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         CORE.Instance.SubscribeToEvent("InventoryUpdated",RefreshEQPState);
         CORE.Instance.SubscribeToEvent("Disconnect", Hide);
 
+
         RefreshUI();
     }
 
@@ -112,6 +119,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void Show(ActorData actorData, object data = null)
     {
+        
+
         IsOpen = true;
 
         CameraCanvas.worldCamera = Camera.main;
@@ -277,6 +286,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
             CORE.Instance.LogMessage(TEST);
         }
+
+        RefreshSelectionGroup();
     }
 
     public void DeselectProduct(bool undress = false)
@@ -294,6 +305,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         }
 
         BuyButton.gameObject.SetActive(false);
+
+        RefreshSelectionGroup();
     }
 
     public void BuyProduct()
@@ -408,6 +421,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
         RefreshSelectionGroup();
 
+        BuyButtonJoystickLabel.gameObject.SetActive(CORE.Instance.IsUsingJoystick);
+        BuyButtonMouseLabel.gameObject.SetActive(!CORE.Instance.IsUsingJoystick);
 
     }
 

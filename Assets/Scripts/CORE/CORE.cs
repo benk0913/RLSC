@@ -118,7 +118,13 @@ public class CORE : MonoBehaviour
 
     public string CurrentLanguage = "";
 
-    
+    float CursorTimer = 0f;
+    const float CURSOR_MAX_TIMER = 3f;
+
+
+    const float MAX_TIME_AFK = 900;
+
+    float TimeAFK = 0f;
 
     public WindowInterface CurrentWindow;
     public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
@@ -368,6 +374,40 @@ public class CORE : MonoBehaviour
     {
         SetJoystickMode(Input.GetJoystickNames().Length > 0);
         
+        if(Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0 || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
+        {
+            Cursor.visible = true;
+            CursorTimer = CURSOR_MAX_TIMER;
+        }
+
+        if(CursorTimer > 0f)
+        {
+            CursorTimer -= 1f * Time.deltaTime;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
+
+        if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open) //AFK HANDLING
+        {
+            if(Input.anyKey)
+            {
+                TimeAFK = 0f;
+            }
+
+            if(TimeAFK < MAX_TIME_AFK)
+            {
+                TimeAFK += Time.deltaTime;
+            }
+            else
+            {
+                TimeAFK = 0f;
+                ReturnToMainMenu();
+                WarningWindowUI.Instance.Show("Disconnected due to inactivity...",()=>{});
+            }
+        }
+
 
         if (InGame && !IsLoading && !IsTyping)
         {
@@ -379,13 +419,13 @@ public class CORE : MonoBehaviour
                 }
             }
 
-            if (IsUsingJoystick && Input.GetButtonDown("Joystick 8"))
+            if (IsUsingJoystick && (Input.GetButtonDown("Joystick 8") ||  Input.GetButtonDown("Joystick 11")))
             {
                 ShowSideButtonUiWindow();
             }
         }
 
-        if (IsMachinemaMode && (Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8")) && !CashShopWindowUI.Instance.IsOpen)
+        if (IsMachinemaMode && (Input.GetKeyDown(InputMap.Map["Exit"]) ||( Input.GetButtonDown("Joystick 8"))||  Input.GetButtonDown("Joystick 11")) && !CashShopWindowUI.Instance.IsOpen)
         {
             IsMachinemaMode = false;
             InvokeEvent("MachinemaModeRefresh");

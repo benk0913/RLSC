@@ -1556,6 +1556,11 @@ public class Actor : MonoBehaviour
 
     public void AttemptPrepareAbility(int abilityIndex)
     {
+        if(State.Abilities.Count <= abilityIndex)
+        {
+            return;
+        }
+
         if(!IsAbleToUseAbility(State.Abilities[abilityIndex].CurrentAbility))
         {
             return;

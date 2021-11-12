@@ -13,6 +13,11 @@ public class ConsoleInputUI : MonoBehaviour
     [SerializeField]
     TMP_InputField inputField;
 
+[SerializeField]
+    TextMeshProUGUI InputFieldLabel;
+
+    public int MaxLettersInMask = 30;
+
     public bool IsTyping;
 
     public List<string> LogMessages = new List<string>();
@@ -20,6 +25,7 @@ public class ConsoleInputUI : MonoBehaviour
     public int LogCap = 10;
 
     public Transform ChatLogContainer;
+
 
     private void Awake()
     {
@@ -32,6 +38,11 @@ public class ConsoleInputUI : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        InputFieldLabel.alignment = (InputFieldLabel.text.Length < MaxLettersInMask)?
+                                     TextAlignmentOptions.Left :  TextAlignmentOptions.Right;
+    }
     public void AddLogMessage(string message)
     {
         LogMessages.Add(message);
@@ -125,7 +136,7 @@ public class ConsoleInputUI : MonoBehaviour
 
     public void OnEndEdit()
     {
-        bool wasEnterPressed = Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]) || Input.GetButtonDown("Joystick 10");
+        bool wasEnterPressed = Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]) || Input.GetButtonDown("Joystick 9") || Input.GetButtonDown("Joystick 10");
         if (!wasEnterPressed)
         {
             CORE.Instance.DelayedInvokation(0, () => Hide());

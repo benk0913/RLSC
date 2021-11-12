@@ -131,7 +131,7 @@ public class CameraChaseEntity : MonoBehaviour
 
         while(true)
         {
-            if(Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8"))
+            if(Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8") ||  Input.GetButtonDown("Joystick 11"))
             {
                 break;
             }

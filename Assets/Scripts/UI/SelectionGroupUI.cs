@@ -345,6 +345,7 @@ public class SelectionGroupUI : MonoBehaviour
             }
 
             Select(inst,false);
+            return;
         }
         Select(instancesBySelectable[selectable]);
     }
@@ -458,7 +459,7 @@ public class SelectionGroupUI : MonoBehaviour
             joystickPressedDelay -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
+        if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 0"))
         {
             InteractingWithKeyboard = true;
             if (CurrentSelectedSelectable.interactable == false)

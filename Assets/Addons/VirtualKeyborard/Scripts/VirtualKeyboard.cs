@@ -23,6 +23,8 @@ namespace VirtualKeyboard
 
         public bool IsTyping;
 
+        public List<EmoteSlotUI> EmoteSlots = new List<EmoteSlotUI>();
+
         char[] _currentText = new char[0];
         // Start is called before the first frame update
         void Start()
@@ -61,6 +63,18 @@ namespace VirtualKeyboard
             ShowKeyboard(true);
 
             CORE.Instance.DelayedInvokation(0.5F, () => { SG.RefreshGroup(false); });
+
+            for(int i=1;i<9;i++)
+            {
+                if(CORE.PlayerActor.equips.ContainsKey("Emote "+i) && CORE.PlayerActor.equips["Emote "+i] != null)
+                {
+                    EmoteSlots[i-1].SetInfo(CORE.PlayerActor.equips["Emote "+i].itemName);
+                }
+                else
+                {
+                    EmoteSlots[i-1].SetInfo("");
+                }
+            }
         }
         
         public void Hide(bool submit = false)

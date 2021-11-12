@@ -52,11 +52,11 @@ public class WarningWindowUI : MonoBehaviour
 
     private void Update()
     {
-        if (!CantHide && Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8"))
+        if (!CantHide && Input.GetKeyDown(InputMap.Map["Exit"]) || Input.GetButtonDown("Joystick 8")||  Input.GetButtonDown("Joystick 11"))
         {
             Hide();
         }
-        else if (Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 2"))
+        else if (Input.GetKeyDown(InputMap.Map["Confirm"]) || Input.GetButtonDown("Joystick 0"))
         {
             Accept();
         }

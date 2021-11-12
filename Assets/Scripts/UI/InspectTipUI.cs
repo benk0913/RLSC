@@ -84,7 +84,7 @@ public class InspectTipUI : MonoBehaviour
             }
 
 
-            if ((!CORE.Instance.IsTyping && Input.GetKeyDown(InputMap.Map["Inspect"])) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 8")))
+            if ((!CORE.Instance.IsTyping && Input.GetKeyDown(InputMap.Map["Inspect"])) || (CORE.Instance.IsUsingJoystick && (Input.GetButtonDown("Joystick 8") ||  Input.GetButtonDown("Joystick 11"))))
             {
                 CORE.Instance.ShowInventoryUiWindow(currentActor.State.Data);
             }
