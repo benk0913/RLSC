@@ -1,10 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using EdgeworldBase;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundSettingsUI : MonoBehaviour {
+public class SoundSettingsUI : MonoBehaviour
+{
 
     [SerializeField]
     Slider MasterVolume;
@@ -17,7 +18,7 @@ public class SoundSettingsUI : MonoBehaviour {
 
     void Start()
     {
-        CORE.Instance.ConditionalInvokation(X=>!ResourcesLoader.Instance.m_bLoading,()=>{Init();});
+        CORE.Instance.ConditionalInvokation(X => !ResourcesLoader.Instance.m_bLoading, () => { Init(); });
     }
 
     public void Init()
