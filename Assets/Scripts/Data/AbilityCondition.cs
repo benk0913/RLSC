@@ -79,5 +79,6 @@ public enum ConditionType
     Chance,
 
     InExpeditionQueue,
-    HasMoney
+    HasMoney,
+    InExpedition
 }

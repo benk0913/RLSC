@@ -167,7 +167,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_emoted", OnActorEmoted));
 
         //Achievments
-        SocketEventListeners.Add(new SocketEventListener("achievement", OnAchievment));
+        SocketEventListeners.Add(new SocketEventListener("achievement_unlock", OnAchievment));
 
         foreach (SocketEventListener listener in SocketEventListeners)
         {
@@ -1482,13 +1482,18 @@ public class SocketHandler : MonoBehaviour
 
     public void OnAchievment(string eventName, JSONNode data)
     {
-        AchievementLogic.AchievementInstance achInst =  AchievementLogic.Instance.Instances.Find(x=>x.Key == data["key"].Value);
+        string achievementKey = data["achievementKey"].Value;
+        AchievementLogic.AchievementInstance achInst =  AchievementLogic.Instance.Instances.Find(x=>x.Key == achievementKey);
 
         if(achInst == null)
         {  
-            CORE.Instance.LogMessageError("No achievement with key "+data["key"].Value);
+            CORE.Instance.LogMessageError("No achievement with key "+achievementKey);
             return;
         }
+
+        JSONNode node = new JSONClass();
+        node["achievementName"] = data["achievementName"].Value;
+        SocketHandler.Instance.SendEvent("ack_achievement", node);
 
         if(achInst.State)
         {

@@ -537,6 +537,13 @@ public class CGDatabaseEditor : Editor
         {
             db.content.Emotes.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(Emote)) as Emote);
         }
+        
+        guids = AssetDatabase.FindAssets("t:AchievementData", new[] { "Assets/" + db.DataPath });
+        db.content.Achievements.Clear();
+        foreach (string guid in guids)
+        {
+            db.content.Achievements.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(AchievementData)) as AchievementData);
+        }
 
         db.content.ExpChart.Clear();
         for (int lvl = 1; lvl <= db.content.MaxLevel; lvl++) {

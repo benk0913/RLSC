@@ -79,6 +79,8 @@ public class DatabaseContent
     public List<int> ExpChart = new List<int>();
 
     public List<TimePhase> TimePhases = new List<TimePhase>();
+
+    public List<AchievementData> Achievements = new List<AchievementData>();
     
     [JsonIgnore]
     public AlignmentData alignmentData;

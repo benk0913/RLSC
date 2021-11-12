@@ -98,7 +98,7 @@ public class HitCollider : MonoBehaviour
             return false;
         }
 
-        bool inSameParty = ActorSource.State.Data.actorId == actorVictim.State.Data.actorId;
+        bool inSameParty = ActorSource.State.Data.actorId == actorVictim.State.Data.actorId || (ActorSource.State.Data.IsPlayer && actorVictim.State.Data.isBot);
         if (CORE.Instance != null && CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members != null && CORE.Instance.CurrentParty.members.Length > 1)
         {
             int matchingMembers = 0;
@@ -110,7 +110,7 @@ public class HitCollider : MonoBehaviour
                     matchingMembers++;
                 }
             }
-            inSameParty = matchingMembers == 2;
+            inSameParty = inSameParty || matchingMembers == 2;
         }
 
         bool isVictimAlly = ActorSource.State.Data.isMob == actorVictim.State.Data.isMob;
