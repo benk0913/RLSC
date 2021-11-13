@@ -35,8 +35,8 @@ public class ItemsLogic
     {
         string text = "";
         text += GetTooltipTextFromAttributes(itemData.Stats);
-        text += GetTooltipTextFromAbilityParams(itemData.OnExecuteParams, " on execute");
-        text += GetTooltipTextFromAbilityParams(itemData.OnHitParams, " on hit");
+        text += GetTooltipTextFromAbilityParams(itemData.OnExecuteParams, "on execute");
+        text += GetTooltipTextFromAbilityParams(itemData.OnHitParams, "on hit");
         return text;
     }
 
@@ -79,24 +79,28 @@ public class ItemsLogic
         {
             string abilityParamText = "";
 
-            abilityParamText += "<sprite name=\"crosshair\">  ";
-
             if (abilityParam.Condition && abilityParam.Condition.Type == ConditionType.Chance)
             {
-                abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) +"% "+ CORE.QuickTranslate("chance to");
+                abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) +"% "+ CORE.QuickTranslate("chance to") + " ";
             }
 
-            abilityParamText +=" "+ CORE.QuickTranslate(abilityParam.Type.name) + " "+CORE.QuickTranslate("on")+" " + CORE.QuickTranslate(abilityParam.Targets.ToString()) +" "+ CORE.QuickTranslate(whenCondition);
+            abilityParamText +=CORE.QuickTranslate(abilityParam.Type.name) + " "+CORE.QuickTranslate("on")+" " + CORE.QuickTranslate(abilityParam.Targets.ToString()) +" "+ CORE.QuickTranslate(whenCondition);
+            abilityParamText = Capitalize(abilityParamText);
+
             string value = abilityParam.ObjectValue == null ? abilityParam.Value : abilityParam.ObjectValue.name;
             if (!string.IsNullOrEmpty(value))
             {
                 abilityParamText += ": " + value;
             }
-            abilityParamText = char.ToUpper(abilityParamText[0]) + abilityParamText.Substring(1).ToLower();
 
-            text += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + ">" +  abilityParamText + "</color>";
+            text += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + "><sprite name=\"crosshair\">  " +  abilityParamText + "</color>";
         }
         return text;
+    }
+
+    private static string Capitalize(string text) 
+    {
+        return char.ToUpper(text[0]) + text.Substring(1).ToLower();
     }
 
     public static string GetItemTooltip(ItemData itemData)
