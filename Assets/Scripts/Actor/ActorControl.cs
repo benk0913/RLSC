@@ -27,6 +27,11 @@ public class ActorControl : MonoBehaviour
             ConsoleInputUI.Instance.EnterPressed();
         }
 
+        if(Input.GetKeyDown(InputMap.Map["Exit"]) && ConsoleInputUI.Instance.gameObject.activeInHierarchy)
+        {
+            ConsoleInputUI.Instance.Hide();
+        }
+
         if(Input.GetKey(InputMap.Map["Move Left"])|| Input.GetKey(InputMap.Map["Secondary Move Left"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Horizontal") < 0f))
         {
             ConsoleInputUI.Instance.HideIfEmpty();
