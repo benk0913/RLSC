@@ -19,7 +19,7 @@ public class AudioSourceController : MonoBehaviour
     {
         Source = GetComponent<AudioSource>();
 
-        Source.volume = AudioControl.Instance.GetVolumeByTag(VolumeTag);
+       
     }
 
     void Update()
@@ -38,11 +38,19 @@ public class AudioSourceController : MonoBehaviour
 
             float dist = Vector3.Distance(CORE.PlayerActor.ActorEntity.transform.position, Source.transform.position);
 
-            if(dist < Source.minDistance)
+            // if(dist < Source.minDistance)
+            // {
+            //     return;
+            // }
+             if(AudioControl.Instance.GetVolumeByTag(VolumeTag) < 0.1f)
             {
-                return;
+                Source.volume = AudioControl.Instance.GetVolumeByTag(VolumeTag);
             }
-
+            else
+            {
+                Source.volume = 1f;
+            }
+            
             AudioControl.Instance.GetComponent<AudioSource>().volume = Mathf.Lerp(0f, AudioControl.Instance.GetVolumeByTag("Music"), dist / Source.maxDistance);
             
         }

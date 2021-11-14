@@ -306,6 +306,11 @@ public class SocketHandler : MonoBehaviour
     protected Callback<GetAuthSessionTicketResponse_t> GetAuthSessionTicketResponseCallbackContainer;
     void OnGetAuthSessionTicketResponse(GetAuthSessionTicketResponse_t pCallback) 
     {
+        if(!string.IsNullOrEmpty(this.SessionTicket))
+        {
+            return;
+        }
+        
         CORE.Instance.LogMessage("SESSION TICKET RESPONSE");
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Connecting", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
         //System.Array.Resize(ref SessionPTicket, (int)SessionPCBTicket);

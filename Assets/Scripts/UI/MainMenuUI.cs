@@ -113,6 +113,8 @@ public class MainMenuUI : MonoBehaviour
                 {
                     SocketHandler.Instance.SendLogin(() =>
                     {
+                        
+                    
                         ResourcesLoader.Instance.RunWhenResourcesLoaded(() =>
                         {
                             ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
