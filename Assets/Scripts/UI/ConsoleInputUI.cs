@@ -16,7 +16,6 @@ public class ConsoleInputUI : MonoBehaviour
 [SerializeField]
     TextMeshProUGUI InputFieldLabel;
 
-    public int MaxLettersInMask = 30;
 
     public bool IsTyping;
 
@@ -38,11 +37,7 @@ public class ConsoleInputUI : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        InputFieldLabel.alignment = (InputFieldLabel.text.Length < MaxLettersInMask)?
-                                     TextAlignmentOptions.Left :  TextAlignmentOptions.Right;
-    }
+
     public void AddLogMessage(string message)
     {
         LogMessages.Add(message);
