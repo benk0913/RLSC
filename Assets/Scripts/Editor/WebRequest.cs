@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -5,7 +6,7 @@ using UnityEngine.Networking;
 class WebRequest
 {
     
-    public static void SendWebRequest(string url, string sentJson = "")
+    public static void SendWebRequest(string url, string sentJson = "", Action<UnityWebRequest> OnResponse = null)
     {
         UnityWebRequest request;
         
@@ -33,6 +34,8 @@ class WebRequest
             }
 
             Debug.Log("Response: " + url + " | " + SocketHandler.FormatJson(request.downloadHandler.text));
+
+            OnResponse?.Invoke(request);
         };
     }
 }

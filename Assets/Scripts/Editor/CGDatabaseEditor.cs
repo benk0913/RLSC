@@ -33,6 +33,24 @@ public class CGDatabaseEditor : Editor
         }
     }
 
+    public static CGDatabase GetCGInEditor(bool autofill = false)
+    {
+        string[] guids = AssetDatabase.FindAssets("t:CGDatabase", new[] { "Assets" });
+
+        foreach (string guid in guids)
+        {
+            CGDatabase db = AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(CGDatabase)) as CGDatabase;
+
+            if (autofill)
+            {
+                AutofillDatabase(db);
+            }
+            
+            return db;
+        }
+        return null;
+    }
+
     public override void OnInspectorGUI()
     {
         CGDatabase db = (CGDatabase)target;

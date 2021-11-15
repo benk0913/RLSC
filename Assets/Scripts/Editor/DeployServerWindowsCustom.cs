@@ -25,8 +25,9 @@ class DeployServerWindowsCustom : EditorWindow
         ServerEnvironment.Region = "eu"; // VIP users are in EU
 
         GUILayout.Space(20);
-        GUILayout.Label("~~~~~~Deploy Server~~~~~~", EditorStyles.boldLabel);
+        GUILayout.Label("~~~~~~Deploy Server~~~~~~", EditorStyles.largeLabel);
         GUILayout.Label("*LIVE SERVER, BE CAREFUL");
+        GUILayout.Space(10);
 
         initialConfirmationGroupEnabled = EditorGUILayout.BeginToggleGroup("I understand, let me through", initialConfirmationGroupEnabled);
         
