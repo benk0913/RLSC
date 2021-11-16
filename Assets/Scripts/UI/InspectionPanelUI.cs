@@ -23,18 +23,23 @@ public class InspectionPanelUI : MonoBehaviour
         {
             IsFocusingOnActor = false;
             CurrentActor = null;
-            CameraChaseEntity.Instance.ReferenceObject = null;
+
+            if(!CORE.PlayerActor.ActorEntity.IsDead)
+                CameraChaseEntity.Instance.ReferenceObject = null;
+
             return;
         }
 
         CurrentActor = currentActor;
         IsFocusingOnActor = true;
-        CameraChaseEntity.Instance.ReferenceObject = CurrentActor.ActorEntity.transform;
+
+        if(!CORE.PlayerActor.ActorEntity.IsDead)
+            CameraChaseEntity.Instance.ReferenceObject = CurrentActor.ActorEntity.transform;
     }
 
     void Update()
     {
-        if(CameraChaseEntity.Instance != null && (CurrentActor == null || CurrentActor.ActorEntity == null ))
+        if(CameraChaseEntity.Instance != null && (CurrentActor == null || CurrentActor.ActorEntity == null ) && !CORE.PlayerActor.ActorEntity.IsDead)
         {
             CameraChaseEntity.Instance.ReferenceObject = null;
             IsFocusingOnActor = false;

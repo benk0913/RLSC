@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1935860746220234754}
   m_Layer: 9
   m_Name: TrapCollider
-  m_TagString: Untagged
+  m_TagString: HitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,10 +226,12 @@ MonoBehaviour:
         m_CallState: 2
   CanMiss: 0
   HitOnlyGroundedActors: 0
+  ParentCollider: {fileID: 0}
   StickToActor: 0
   StickToActorFacing: 0
   StickToSkilledShot: 1
   HitEventOnWalls: 0
+  InitPosition: {x: 0, y: 0, z: 0}
   SkilledShotPoint: {fileID: 1392339480142145124}
   SkilledshotLayermask:
     serializedVersion: 2
@@ -237,11 +239,14 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
+  RepositionChildrenOnEnable: 0
   DuplicateBubbles: 0
   IsBubble: 0
   BubblesDuplicated: []
   AudioOnHit: E_Trap_HitOGG
   HitInterval: 0
+  RemoveOnInterrupt: 0
+  ChildrenColliders: []
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,6 +47,7 @@ public class AchievementLogic : MonoBehaviour
                                 {
                                     SteamUserStats.SetAchievement(uniqueAch.Key);
                                     CORE.Instance.UnsubscribeFromEvent("Declined Loot Roll", achAction);
+                                    SteamUserStats.StoreStats();
                                 };
                                 CORE.Instance.SubscribeToEvent("Declined Loot Roll", achAction);
 
@@ -64,7 +65,11 @@ public class AchievementLogic : MonoBehaviour
                                          CORE.PlayerActor.equips["Back"] != null &&
                                         CORE.PlayerActor.equips["Back"].itemName == "Fairy Wings";
                                     },
-                                    () => { SteamUserStats.SetAchievement(uniqueAch.Key); }
+                                    () => 
+                                    {
+                                         SteamUserStats.SetAchievement(uniqueAch.Key);
+                                         SteamUserStats.StoreStats();
+                                    }
                                     , 1f);
 
                                 break;
@@ -85,7 +90,10 @@ public class AchievementLogic : MonoBehaviour
                                SocketHandler.Instance.CurrentUser.chars.Find(fsc => fsc.level >= 10) != null &&
                                SocketHandler.Instance.CurrentUser.chars.FindAll(fc => fc.level >= 10).Count >= 4;
                                     },
-                                    () => { SteamUserStats.SetAchievement(uniqueAch.Key); }
+                                    () => { 
+                                        SteamUserStats.SetAchievement(uniqueAch.Key);
+                                        SteamUserStats.StoreStats();
+                                         }
                                     , 1f);
 
                                 break;
@@ -106,7 +114,10 @@ public class AchievementLogic : MonoBehaviour
 
                                         return true;
                                     },
-                                    () => { SteamUserStats.SetAchievement(uniqueAch.Key); }
+                                    () => { 
+                                        SteamUserStats.SetAchievement(uniqueAch.Key);
+                                        SteamUserStats.StoreStats();
+                                         }
                                     , 1f);
 
                                 break;
@@ -121,7 +132,10 @@ public class AchievementLogic : MonoBehaviour
                                SocketHandler.Instance.CurrentUser != null &&
                                SocketHandler.Instance.CurrentUser.chars.Find(fsc => fsc.level >= 10) != null;
                                     },
-                                    () => { SteamUserStats.SetAchievement(uniqueAch.Key); }
+                                    () => { 
+                                        SteamUserStats.SetAchievement(uniqueAch.Key);
+                                        SteamUserStats.StoreStats();
+                                         }
                                     , 1f);
 
                                 break;
@@ -131,7 +145,10 @@ public class AchievementLogic : MonoBehaviour
                                 AchievementInstance uniqueAch = ach;
                                 CORE.Instance.ConditionalInvokation(
                                     X => { return CORE.Instance.ActiveSceneInfo != null && CORE.Instance.ActiveSceneInfo.sceneName == "TavernPrivateRoom" && CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length > 1; },
-                                    () => { SteamUserStats.SetAchievement(uniqueAch.Key); }
+                                    () => { 
+                                        SteamUserStats.SetAchievement(uniqueAch.Key);
+                                        SteamUserStats.StoreStats();
+                                         }
                                     , 1f);
 
                                 break;
@@ -168,7 +185,10 @@ public class AchievementLogic : MonoBehaviour
 
                                         return true;
                                     },
-                                    () => { SteamUserStats.SetAchievement(uniqueAch.Key); }
+                                    () => { 
+                                        SteamUserStats.SetAchievement(uniqueAch.Key);
+                                        SteamUserStats.StoreStats();
+                                         }
                                     , 1f);
 
                                 break;
@@ -185,7 +205,9 @@ public class AchievementLogic : MonoBehaviour
                                 achAction = () =>
                                 {
                                     SteamUserStats.SetAchievement(uniqueAch.Key);
+                                    SteamUserStats.StoreStats();
                                     CORE.Instance.UnsubscribeFromEvent("Declined Party Invite", achAction);
+                                    
                                 };
                                 CORE.Instance.SubscribeToEvent("Declined Party Invite", achAction);
 
@@ -208,7 +230,10 @@ public class AchievementLogic : MonoBehaviour
                                          CORE.PlayerActor.equips["SkinHat"] != null &&
                                         CORE.PlayerActor.equips["SkinHat"].itemName == "EQ Alpha Pro Hat";
                                     },
-                                    () => { SteamUserStats.SetAchievement(uniqueAch.Key); }
+                                    () => { 
+                                        SteamUserStats.SetAchievement(uniqueAch.Key);
+                                        SteamUserStats.StoreStats();
+                                         }
                                     , 1f);
 
                                 break;

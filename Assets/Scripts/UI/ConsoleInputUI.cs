@@ -13,8 +13,11 @@ public class ConsoleInputUI : MonoBehaviour
     [SerializeField]
     TMP_InputField inputField;
 
-[SerializeField]
+    [SerializeField]
     TextMeshProUGUI InputFieldLabel;
+
+    [SerializeField]
+    ScrollRect ChatScroll;
 
 
     public bool IsTyping;
@@ -50,6 +53,11 @@ public class ConsoleInputUI : MonoBehaviour
         {
             RefreshChatLog();
         }
+        
+        CORE.Instance.DelayedInvokation(0.05f,()=>
+        {
+            ChatScroll.verticalNormalizedPosition = 0f;
+        });
     }
 
     public void RefreshChatLog()

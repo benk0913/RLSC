@@ -991,9 +991,26 @@ public class Actor : MonoBehaviour
 
         if(!CORE.IsMachinemaMode)
         {
-            HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+            HitLabelEntityUI label = null;
+            
+            if(source != null && source.State.Data.isCharacter && !source.State.Data.IsPlayer) // OTHER PLAYER
+            {
+                label =  ResourcesLoader.Instance.GetRecycledObject("HitLabelEntityAlly").GetComponent<HitLabelEntityUI>();
+                label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Colors.AsColor(Colors.COLOR_HIGHLIGHT_ALLY) : Colors.AsColor(Colors.COLOR_GOOD));
+            }
+            else if(source != null && source.State.Data.isMob) // MOB
+            {
+                label =  ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+                label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Colors.AsColor(Colors.COLOR_BAD) : Colors.AsColor(Colors.COLOR_GOOD));
+            }
+            else // PLAYER / MOB
+            {
+                label =  ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+                label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Colors.AsColor(Colors.COLOR_HIGHLIGHT) : Colors.AsColor(Colors.COLOR_GOOD));
+            }
+
             label.transform.position = transform.position;
-            label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Colors.AsColor(Colors.COLOR_HIGHLIGHT) : Colors.AsColor(Colors.COLOR_GOOD));
+            
         }
 
         if (damage > 0)

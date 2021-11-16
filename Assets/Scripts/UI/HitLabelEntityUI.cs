@@ -12,6 +12,8 @@ public class HitLabelEntityUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI Label;
 
+    public Color HighColor;
+
     public void SetLabel(string text, Color clr = default, float alpha = 1f)
     {
         Label.text = text;
@@ -29,7 +31,7 @@ public class HitLabelEntityUI : MonoBehaviour
 
             float t = ((float)numResult / 200f);
             Label.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 3, t);
-            Label.color = Color.Lerp(clr, Colors.AsColor(Colors.COLOR_BAD), t);
+            Label.color = Color.Lerp(clr, HighColor, t);
 
             if ((t > 0.5f))
             {
