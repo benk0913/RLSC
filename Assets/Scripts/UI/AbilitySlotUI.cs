@@ -102,9 +102,14 @@ public class AbilitySlotUI : MonoBehaviour
         // }
 
 
-        if (abilityState.IsAbilityLocked)
+        if (abilityState.IsLevelLocked)
         {
             tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_BAD + "> - "+CORE.QuickTranslate("UNLOCK AT LEVEL")+" "+abilityState.UnlockLevel+" - </color>";
+            AbilityLock.SetActive(true);
+        }
+        else if (abilityState.IsOrbLocked)
+        {
+            tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_BAD + "> - "+CORE.QuickTranslate("LOCKED BY ORB")+" - </color>";
             AbilityLock.SetActive(true);
         }
         else
