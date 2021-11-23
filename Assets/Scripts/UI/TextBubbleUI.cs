@@ -30,6 +30,10 @@ public class TextBubbleUI : MonoBehaviour
 
     Action OnHide;
 
+    void Start()
+    {
+        CORE.Instance.SubscribeToEvent("NewSceneLoaded",()=>{this.gameObject.SetActive(false);});
+    }
     public void Show(Transform anchor, string message, Action onHide = null, bool isFemale = false,Sprite skinSprite = null)
     {
         this.gameObject.SetActive(true);
