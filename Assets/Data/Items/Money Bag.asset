@@ -43,6 +43,7 @@ MonoBehaviour:
   Type: {fileID: 11400000, guid: 5bbe9426183acef449d9c64dda953cf9, type: 2}
   Rarity: {fileID: 11400000, guid: 3c7a55160e621724b964830f1f1c5b24, type: 2}
   CashShopItem: 0
+  OnlyOneAllowed: 0
   OrbColliderObject: 
   SkinOverride: []
   NewSkinOverride:
@@ -51,10 +52,10 @@ MonoBehaviour:
     TargetSpriteFemale: {fileID: 0}
     BareSkin: 0
     Hair: 0
+  HidingItemTypes: []
   States: []
   TypeBasedOverrides:
   - TypeKey: Hand Right
-    Skinset: {fileID: 0}
     nSkinset:
       Part: {fileID: 11400000, guid: e07d90460e5f49444b393a797eb2a9ee, type: 2}
       TargetSprite: {fileID: -3116577344070526120, guid: 844a86e33b1c94446acd8f83978b577c, type: 3}
@@ -66,6 +67,8 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: b3086b950e6c3d34d8cc83bed2cb4afc, type: 2}
     Condition: {fileID: 11400000, guid: d2b35af58d1426c46a81ab910afa79b9, type: 2}
-    Targets: 2
+    Targets: 0
     Value: 5
     ObjectValue: {fileID: 0}
+    Value2: 
+  OnUseParams: []
