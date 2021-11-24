@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Content God
   m_EditorClassIdentifier: 
   ServerEnvironment:
-    Environment: Dev
+    Environment: Prod
     Region: eu
   DataPath: Data
   content:
@@ -45,7 +45,7 @@ MonoBehaviour:
       Text: Full
       Color: {r: 1, g: 0, b: 0, a: 1}
     RealmMaxConnectedPeople: 200
-    RealmCap: 2
+    RealmCap: 1
     Visuals:
       BodyParts:
       - {fileID: 11400000, guid: 3d21b81f455eea5429be4576b42bb871, type: 2}
@@ -6085,7 +6085,7 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
-      - interactableName: Entrance
+      - interactableName: Exit
         interactableId: 
         positionX: -23
         positionY: -23
@@ -6105,10 +6105,16 @@ MonoBehaviour:
         interactableId: 
         positionX: -90
         positionY: -19
-      playerSpawnX: -154.6
+      playerSpawnX: -164.23
       playerSpawnY: -23.9
       Portals:
       - name: Entrance
+        TargetScene: Sunset Port
+        TargetSceneGate: TavernEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -156.2
+        portalPositionY: -23.2
+      - name: Exit
         TargetScene: Sunset Port
         TargetSceneGate: TavernEntrance
         IsExpeditionLocked: 0
@@ -6267,7 +6273,7 @@ MonoBehaviour:
     MinNameLength: 3
     HpRegenSeconds: 5
     MaxPartyMembers: 5
-    PartyInviteTimeoutSeconds: 15
+    PartyInviteTimeoutSeconds: 30
     NpcItemsPoolLength: 3
     NpcItemsRefreshMinutes: 5
     ExpeditionQueueMatchDurationSeconds: 20
