@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ActorSlime
   m_EditorClassIdentifier: 
   Icon: {fileID: -1933679314495529430, guid: 304f7d21b29981d40a86157d2f3d3f31, type: 3}
+  DisplayName: Small Slime
   Abilities:
   - Slime Hop
   PassiveAbility: PassiveSlimeBoss
@@ -38,13 +39,18 @@ MonoBehaviour:
   Immunity: []
   States: []
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
+  ClassFeatureVideo: {fileID: 0}
+  ClassMusic: {fileID: 0}
   DropsOnDeath: []
   CoinDropMultiplier: 0
+  OnGetHitParams: []
+  OnSomeoneExecutesParams: []
   OnDeathParams:
   - Type: {fileID: 11400000, guid: b3086b950e6c3d34d8cc83bed2cb4afc, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: 5
     ObjectValue: {fileID: 0}
+    Value2: 
   UniqueHurtSounds: []
   UniqueDeathSound: 

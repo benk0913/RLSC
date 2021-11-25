@@ -6,9 +6,35 @@ using UnityEngine;
 public class GEEnterExpedition : GameEvent
 {
     public string ExpeditionName = "Forest";
+
+    [SerializeField]
+    public int memberHardWarning = 3;
+
+    [SerializeField]
+    public int memberEasysWarning = 5;
+
     public override void Execute(System.Object obj = null)
     {
-        base.Execute(obj);
-        SocketHandler.Instance.SendEnterExpedition(ExpeditionName);
+        if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length == memberHardWarning)
+        {
+            WarningWindowUI.Instance.Show(memberHardWarning+" "+CORE.QuickTranslate("Member Expeditions are HARD")+"!",()=>
+            {
+                base.Execute(obj);
+                SocketHandler.Instance.SendEnterExpedition(ExpeditionName);
+            },false,null);
+        }
+        else if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length == memberEasysWarning)
+        {
+            WarningWindowUI.Instance.Show(memberEasysWarning+" "+CORE.QuickTranslate("Member Expeditions are easy and there is less loot for everyone")+"!",()=>
+            {
+                base.Execute(obj);
+                SocketHandler.Instance.SendEnterExpedition(ExpeditionName);
+            },false,null);
+        }
+        else 
+        {
+            base.Execute(obj);
+            SocketHandler.Instance.SendEnterExpedition(ExpeditionName);
+        }
     }
 }

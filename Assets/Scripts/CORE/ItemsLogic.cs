@@ -87,10 +87,18 @@ public class ItemsLogic
             abilityParamText +=CORE.QuickTranslate(abilityParam.Type.name) + " "+CORE.QuickTranslate("on")+" " + CORE.QuickTranslate(abilityParam.Targets.ToString()) +" "+ CORE.QuickTranslate(whenCondition);
             abilityParamText = Capitalize(abilityParamText);
 
+            
             string value = abilityParam.ObjectValue == null ? abilityParam.Value : abilityParam.ObjectValue.name;
             if (!string.IsNullOrEmpty(value))
             {
-                abilityParamText += ": " + value;
+                if(abilityParam.Type.name == "Spawn" && abilityParam.ObjectValue != null && !string.IsNullOrEmpty(((ClassJob)abilityParam.ObjectValue).DisplayName))
+                {
+                    abilityParamText += ": " + ((ClassJob)abilityParam.ObjectValue).DisplayName;
+                }
+                else
+                {
+                    abilityParamText += ": " + value;
+                }
             }
 
             text += Environment.NewLine + "<color=" + Colors.COLOR_GOOD + "><sprite name=\"crosshair\">  " +  abilityParamText + "</color>";

@@ -13,6 +13,9 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     Button ReportBugButton;
+    
+    [SerializeField]
+    Button AbordExpeditionButton;
 
     public bool isVisible;
 
@@ -29,12 +32,10 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
 
     public void Show(ActorData actorData, object data = null)
     {
-
-
         Animer.SetTrigger("Show");
         isVisible = true;
 
-
+        AbordExpeditionButton.gameObject.SetActive(CORE.Instance.Data.content.Expeditions.Find(X=>{ return X.ContainsScene(CORE.Instance.ActiveSceneInfo.sceneName);}) != null);
     }
 
     public void Toggle()
@@ -61,5 +62,10 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
             LockReportABug(); 
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Thank you for the report!",Color.green,2f));
         });
+    }
+
+    public void AbortExped()
+    {
+        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Are you sure")+"?",()=>SocketHandler.Instance.SendEvent("suicide"));
     }
 }

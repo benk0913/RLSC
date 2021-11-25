@@ -17,6 +17,22 @@ public class Expedition : ScriptableObject
     public string EndTargetSceneGate;
     public string SuccessTargetScene;
     public string SuccessTargetSceneGate;
+
+    public bool ContainsScene(string sceneName)
+    {
+        foreach (ExpeditionFloor floor in Floors)
+        {
+            foreach(string sceneChamber in floor.PossibleChambers)
+            {
+                if(sceneChamber == sceneName)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }
 
 [Serializable]

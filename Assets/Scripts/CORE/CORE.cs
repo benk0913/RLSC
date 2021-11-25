@@ -122,7 +122,7 @@ public class CORE : MonoBehaviour
     const float CURSOR_MAX_TIMER = 3f;
 
 
-    const float MAX_TIME_AFK = 900;
+    const float MAX_TIME_AFK = 7200;
 
     float TimeAFK = 0f;
 
