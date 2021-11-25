@@ -213,6 +213,7 @@ public class CORE : MonoBehaviour
 
 
         Application.targetFrameRate = 60;
+        System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
 
         Time.fixedDeltaTime = 0.01666667f;
         Application.runInBackground = true;
