@@ -121,7 +121,7 @@ class ServerDetails
 {
     public string region;
     public int realmIndex;
-    public int usersOnline;
+    public float usersOnline;
     public int usersInQueue;
     public string status;
 }
