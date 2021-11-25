@@ -125,7 +125,7 @@ public class LootRollItemUI : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(InputMap.Map["Vote Option 1"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 3")))
+        if ((Input.GetKeyDown(InputMap.Map["Vote Option 1"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 3"))) && !ConsoleInputUI.Instance.IsTyping)
         {
             if (CORE.Instance.IsUsingJoystick)
             {
@@ -137,7 +137,7 @@ public class LootRollItemUI : MonoBehaviour
             else
                 Need();
         }
-        else if (Input.GetKeyDown(InputMap.Map["Vote Option 2"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 0")))
+        else if ((Input.GetKeyDown(InputMap.Map["Vote Option 2"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 0"))) && !ConsoleInputUI.Instance.IsTyping)
         {
             if (CORE.Instance.IsUsingJoystick)
             {
@@ -149,7 +149,7 @@ public class LootRollItemUI : MonoBehaviour
                 Greed();
         }
 
-        else if (Input.GetKeyDown(InputMap.Map["Vote Option 3"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1")))
+        else if ((Input.GetKeyDown(InputMap.Map["Vote Option 3"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1"))) && !ConsoleInputUI.Instance.IsTyping)
         {
             if (CORE.Instance.IsUsingJoystick)
             {

@@ -13,6 +13,8 @@ public class ClassJob : ScriptableObject
     [PreviewSprite]
     public Sprite Icon;
 
+    public string DisplayName;
+
     public List<string> Abilities = new List<string>();
     
     public string PassiveAbility;

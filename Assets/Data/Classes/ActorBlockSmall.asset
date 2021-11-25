@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: ActorBlockSmall
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300002, guid: 53c7783affa2fbe4bbded61ac9c29b66, type: 3}
+  DisplayName: 
   Abilities:
   - TurtleSmashSmall
   - BlockEnrageHaste
   PassiveAbility: PassiveHitTurtleBossSmall
   Attributes:
     Power: 0
-    HP: 10
+    HP: 8
     Defense: 0
     Block: 0
     CDReduction: 0
@@ -39,8 +40,12 @@ MonoBehaviour:
   Immunity: []
   States: []
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
+  ClassFeatureVideo: {fileID: 0}
+  ClassMusic: {fileID: 0}
   DropsOnDeath: []
   CoinDropMultiplier: 2
+  OnGetHitParams: []
+  OnSomeoneExecutesParams: []
   OnDeathParams: []
   UniqueHurtSounds:
   - BlockOnHit3

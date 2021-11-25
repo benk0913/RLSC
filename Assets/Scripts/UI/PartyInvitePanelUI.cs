@@ -100,7 +100,7 @@ public class PartyInvitePanelUI : MonoBehaviour
         if (!IsTopActiveRoll)
             return;
 
-        if (Input.GetKeyDown(InputMap.Map["Vote Option 1"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 3")))
+        if ((Input.GetKeyDown(InputMap.Map["Vote Option 1"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 3")))&& !ConsoleInputUI.Instance.IsTyping)
         {
             if (CORE.Instance.IsUsingJoystick)
             {
@@ -115,7 +115,7 @@ public class PartyInvitePanelUI : MonoBehaviour
                 Accept();
             }
         }
-        else if (Input.GetKeyDown(InputMap.Map["Vote Option 2"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1")))
+        else if ((Input.GetKeyDown(InputMap.Map["Vote Option 2"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1"))) && !ConsoleInputUI.Instance.IsTyping)
         {
             if (CORE.Instance.IsUsingJoystick)
             {
