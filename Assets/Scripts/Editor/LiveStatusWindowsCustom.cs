@@ -37,6 +37,7 @@ class LiveStatusWindowsCustom : EditorWindow
         new DisplayServer("Online", 40, Server => "" + Server.usersOnline * 3),
         new DisplayServer("Queue", 40, Server => "" + Server.usersInQueue),
         new DisplayServer("Status", 40, Server => Server.status),
+        new DisplayServer("Time", 40, Server => Server.displayTime),
     };
     
 
@@ -124,6 +125,7 @@ class ServerDetails
     public float usersOnline;
     public int usersInQueue;
     public string status;
+    public string displayTime;
 }
 
 class DisplayServer

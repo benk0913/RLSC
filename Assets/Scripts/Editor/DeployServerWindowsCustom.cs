@@ -10,7 +10,6 @@ class DeployServerWindowsCustom : EditorWindow
     ServerEnvironment ServerEnvironment = new ServerEnvironment();
     bool initialConfirmationGroupEnabled;
     bool disconnectedAllGroupEnabled;
-    bool waitedForUpdateGroupEnabled;
     bool testedProdGroupEnabled;
 
     [MenuItem ("Build/Deploy Servers")]
@@ -46,14 +45,6 @@ class DeployServerWindowsCustom : EditorWindow
             UpdateCG();
         }
 
-        GUILayout.Space(10);
-
-        waitedForUpdateGroupEnabled = EditorGUILayout.BeginToggleGroup("I've waited 5 minutes", waitedForUpdateGroupEnabled);
-
-        if (GUILayout.Button("Enable login for VIP users only (~20 seconds)"))
-        {
-            UpdateServerStatus("vip");
-        }
 
         GUILayout.Space(10);
 
@@ -64,7 +55,6 @@ class DeployServerWindowsCustom : EditorWindow
             UpdateServerStatus("on");
         }
 
-        EditorGUILayout.EndToggleGroup();
 
         EditorGUILayout.EndToggleGroup();
 
