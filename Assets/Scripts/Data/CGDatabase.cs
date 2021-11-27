@@ -126,6 +126,7 @@ public class DatabaseContent
     public int MaxNameLength;
     public int MinNameLength;
     public int HpRegenSeconds;
+    public float HpRegen;
     public int MaxPartyMembers;
     public int PartyInviteTimeoutSeconds;
     public int NpcItemsPoolLength;
