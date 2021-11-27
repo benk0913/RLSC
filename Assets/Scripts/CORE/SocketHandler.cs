@@ -1100,10 +1100,11 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.SendEvent("picked_item", node);
     }
 
-    public void SendDroppedItem(int slotIndex)
+    public void SendDroppedItem(int slotIndex, int amount = 1)
     {
         JSONNode node = new JSONClass();
         node["slotIndex"].AsInt = slotIndex;
+        node["amount"].AsInt = amount;
 
         SocketHandler.Instance.SendEvent("dropped_item", node);
     }
