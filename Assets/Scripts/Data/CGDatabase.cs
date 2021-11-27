@@ -133,9 +133,8 @@ public class DatabaseContent
     public int NpcItemsRefreshMinutes;
     public int ExpeditionQueueMatchDurationSeconds;
     public int TaxiPrice = 50;
-
     public int BaseCoinDrop = 5;
-
+    public int MaxItemStack = 100;
     public bool DangerousEveryoneIsAdmin;
 }
 
