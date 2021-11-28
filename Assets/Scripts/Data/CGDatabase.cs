@@ -135,6 +135,9 @@ public class DatabaseContent
 
     public int BaseCoinDrop = 5;
 
+    public int MaxItemStack = 100;
+
+    public int SlotMachinePrice = 5;
     public bool DangerousEveryoneIsAdmin;
 }
 

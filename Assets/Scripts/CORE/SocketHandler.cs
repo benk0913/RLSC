@@ -169,6 +169,9 @@ public class SocketHandler : MonoBehaviour
         //Achievments
         SocketEventListeners.Add(new SocketEventListener("achievement_unlock", OnAchievment));
 
+        //Slotmachine
+        SocketEventListeners.Add(new SocketEventListener("slotmachine_result", OnSlotmachineResult));
+
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -1509,6 +1512,10 @@ public class SocketHandler : MonoBehaviour
         SteamUserStats.SetAchievement(achInst.Key);
     }
 
+    public void OnSlotmachineResult(string eventName, JSONNode data)
+    {
+        SlotMachineEntity.Instance.Spin((SlotMachineEntity.WinType)int.Parse(data["result"].Value));
+    }
     public void OnItemsSpawn(string eventName, JSONNode data)
     {
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
