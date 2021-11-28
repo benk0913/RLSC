@@ -865,6 +865,7 @@ MonoBehaviour:
       SteamItemDescription: Element Quest Points, used for in-app purchases
     Classes:
     - {fileID: 11400000, guid: a52fd69d1f2bf1a4391d03536414a1ea, type: 2}
+    - {fileID: 11400000, guid: 5cda58be31d534b4f94b85d644b9f8ed, type: 2}
     - {fileID: 11400000, guid: 4c517b12ca85b6c45921a6cb65749efa, type: 2}
     - {fileID: 11400000, guid: 0728a231f64bf5841a051a6ebead32e9, type: 2}
     - {fileID: 11400000, guid: 11659520b2258e0439b7bc9836e4bdd6, type: 2}
@@ -917,6 +918,7 @@ MonoBehaviour:
     Abilities:
     - {fileID: 11400000, guid: 3bcff0301aa8ae04ab59c2439349e274, type: 2}
     - {fileID: 11400000, guid: c43b041613882e9429b142df748d58d4, type: 2}
+    - {fileID: 11400000, guid: 02e95dac9b1d6b245b293c0dbaf21f78, type: 2}
     - {fileID: 11400000, guid: d1d27dc14a3312940bb5b0f5755ba6bb, type: 2}
     - {fileID: 11400000, guid: 6bd271e114edf0943948b1f3eca51205, type: 2}
     - {fileID: 11400000, guid: 1b111a0e7c1e5d440a4dde03128eaa76, type: 2}
@@ -1052,6 +1054,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 135bb3ea8a0387248b193d6d0a01fec5, type: 2}
     - {fileID: 11400000, guid: 0cfc3cd79fc8d5b4d88cf621ff36af2c, type: 2}
     - {fileID: 11400000, guid: 479a82489e244044f93cd23d33bf4ad1, type: 2}
+    - {fileID: 11400000, guid: 4fdf7df93fe19a7478e36bcec06772fc, type: 2}
     - {fileID: 11400000, guid: 4b0a39c3cf7da0e47a0611b5d70b085b, type: 2}
     - {fileID: 11400000, guid: 109cb7829be6a284db52a5591455f460, type: 2}
     - {fileID: 11400000, guid: b3b8474bc530dcc47a90f5febe18cdb3, type: 2}
@@ -6203,7 +6206,7 @@ MonoBehaviour:
         portalPositionY: -16.4
       Vendors: []
       OnDemandParams: []
-      MusicTrack: music_grasslands_1
+      MusicTrack: EarthTitle
       Soundscape: Beach SoundScape
       NightMusicTrack: PLACEHOLDER_town_night
       NightSoundscape: Sunset Port Night SoundScape
@@ -6293,7 +6296,7 @@ MonoBehaviour:
         portalPositionY: 40.2
       Vendors: []
       OnDemandParams: []
-      MusicTrack: music_grasslands_1
+      MusicTrack: EarthTitle
       Soundscape: Beach SoundScape
       NightMusicTrack: PLACEHOLDER_town_night
       NightSoundscape: Sunset Port Night SoundScape
@@ -6514,7 +6517,7 @@ MonoBehaviour:
         portalPositionY: -17.2
       Vendors: []
       OnDemandParams: []
-      MusicTrack: Valley
+      MusicTrack: WindTitle
       Soundscape: Valley SoundScape
       NightMusicTrack: 
       NightSoundscape: 
@@ -6719,7 +6722,7 @@ MonoBehaviour:
         portalPositionY: 4.7
       Vendors: []
       OnDemandParams: []
-      MusicTrack: music_grasslands_1
+      MusicTrack: FireTitle
       Soundscape: Beach SoundScape
       NightMusicTrack: PLACEHOLDER_town_night
       NightSoundscape: Sunset Port Night SoundScape
@@ -6819,8 +6822,8 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorShellCrab
-        positionX: 39.4
-        positionY: -14.8
+        positionX: 97.9
+        positionY: -9
         respawnSeconds: 0
         IrellevantMob: 0
       - monsterName: ActorSpikes
@@ -6934,7 +6937,7 @@ MonoBehaviour:
         portalPositionY: -25.3
       Vendors: []
       OnDemandParams: []
-      MusicTrack: music_grasslands_1
+      MusicTrack: FireTitle
       Soundscape: Beach SoundScape
       NightMusicTrack: PLACEHOLDER_town_night
       NightSoundscape: Sunset Port Night SoundScape
@@ -6978,6 +6981,136 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: HermitDen
+    - sceneName: OW_BeachWalk5
+      displyName: River Road 1
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSpikes
+        positionX: 276.3
+        positionY: -17.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 326.4
+        positionY: -17.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorShellCrabSmall
+        positionX: 38.4
+        positionY: -16.1
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 247.2
+        positionY: -15.1
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorShellCrab
+        positionX: 23.9
+        positionY: -16.1
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 266.1
+        positionY: -17.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSalamander
+        positionX: 182.2
+        positionY: 12.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 297.6
+        positionY: -17.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 286.9
+        positionY: -17.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 255.9
+        positionY: -17.4
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 307.7
+        positionY: -17.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 338.5
+        positionY: -17.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 282.9
+        positionY: 52.6
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 282.6
+        positionY: 65.7
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 318
+        positionY: -17.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 269.4
+        positionY: 59.9
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 347.8
+        positionY: -17.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorShellCrab
+        positionX: 70.6
+        positionY: -16.1
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: LeftEntrance
+        interactableId: 
+        positionX: -10
+        positionY: -15
+      - interactableName: "R\u0131ghtEnterance"
+        interactableId: 
+        positionX: 356
+        positionY: -1
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: LeftEntrance
+        TargetScene: BeachWalk4
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -9.8
+        portalPositionY: -15.17
+      - name: "R\u0131ghtEnterance"
+        TargetScene: OW_BeachWalk6
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 356.5
+        portalPositionY: -1.1
+      Vendors: []
+      OnDemandParams: []
+      MusicTrack: WaterTitle
+      Soundscape: Valley SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: HermitWalk (5)
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
