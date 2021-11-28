@@ -39,8 +39,9 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             return;
         }
 
-        if(eventData.pointerId != 0)
+        if(eventData.pointerId == 1) //Right click
         {
+            InventoryUI.Instance.AttemptDropStack(this);
             return;
         }
 
