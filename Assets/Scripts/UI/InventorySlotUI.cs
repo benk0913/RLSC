@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using TMPro;
 
 public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -15,9 +16,12 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [SerializeField]
     TooltipTargetUI TooltipTarget;
 
+
     [SerializeField]
     GameObject SelectedFrame;
 
+    [SerializeField]
+    TextMeshProUGUI AmountLabel;
     Action OnSelect;
 
     public bool IsEquipmentSlot;
@@ -105,6 +109,15 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         TooltipTarget.Text = ItemsLogic.GetItemTooltip(CurrentItem.Data);
 
+        if(CurrentItem.amount > 1)
+        {
+            AmountLabel.text = "x"+CurrentItem.amount;
+        }
+        else
+        {
+            AmountLabel.text = "";
+        }
+        
         Deselect();
     }
 

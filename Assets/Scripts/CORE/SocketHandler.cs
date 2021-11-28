@@ -1600,11 +1600,11 @@ public class SocketHandler : MonoBehaviour
         }
         else if (item.Data.Type.name == "Orb")
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the orb") +": '"+ CORE.QuickTranslate(item.itemName) + "'</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the orb") +": '"+ CORE.QuickTranslate(item.itemName) + "'"+(item.amount > 1? "x"+item.amount : "" )+"</color>");
         }
         else
         {
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the item") +": '"+ CORE.QuickTranslate(item.itemName) + "'</color>");
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the item") +": '"+ CORE.QuickTranslate(item.itemName) + "'"+(item.amount > 1? "x"+item.amount : "" )+"</color>");
         }
 
         CORE.Instance.IsPickingUpItem = false;
