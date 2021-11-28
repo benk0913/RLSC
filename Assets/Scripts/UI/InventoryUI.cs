@@ -386,6 +386,30 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         //Deselect();
     }
 
+    public void AttemptDropStack(InventorySlotUI inventorySlotUI)
+    {
+        if(inventorySlotUI.CurrentItem.Data.CashShopItem)
+        {
+            return;
+        }
+
+        int slotInex = inventorySlotUI.transform.GetSiblingIndex();
+        if(inventorySlotUI.CurrentItem.amount > 1)
+            {
+                InputLabelWindow.Instance.Show(CORE.QuickTranslate("How many items should you drop")+"?","Set Amount",(string finalValue)=>
+                {
+                    int finalValueInt = 0;
+                    if(int.TryParse(finalValue, out finalValueInt))
+                    {
+                        SocketHandler.Instance.SendDroppedItem(slotInex,finalValueInt);
+                    }
+                    else
+                    {
+                        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Wrong Amount")+"!",()=>{},false,null);
+                    }
+                });
+            }
+    }
 
     public void Select(InventorySlotUI slot) //TODO Bad imp, refactor in future
     {
