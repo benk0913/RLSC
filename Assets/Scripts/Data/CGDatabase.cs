@@ -126,18 +126,19 @@ public class DatabaseContent
     public int MaxNameLength;
     public int MinNameLength;
     public int HpRegenSeconds;
+    public float HpRegen;
     public int MaxPartyMembers;
     public int PartyInviteTimeoutSeconds;
     public int NpcItemsPoolLength;
     public int NpcItemsRefreshMinutes;
     public int ExpeditionQueueMatchDurationSeconds;
     public int TaxiPrice = 50;
-
     public int BaseCoinDrop = 5;
 
     public int MaxItemStack = 100;
 
     public int SlotMachinePrice = 5;
+
     public bool DangerousEveryoneIsAdmin;
 }
 

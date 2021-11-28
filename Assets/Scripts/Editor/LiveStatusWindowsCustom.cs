@@ -34,9 +34,10 @@ class LiveStatusWindowsCustom : EditorWindow
         new DisplayServer("Server", 70, Server => db.content.Realms[Server.realmIndex].Name),
         new DisplayServer("Region", 60, Server => Server.region),
         new DisplayServer("Realm", 40, Server => "" + Server.realmIndex),
-        new DisplayServer("Online", 40, Server => "" + Server.usersOnline),
+        new DisplayServer("Online", 40, Server => "" + Server.usersOnline * 3),
         new DisplayServer("Queue", 40, Server => "" + Server.usersInQueue),
         new DisplayServer("Status", 40, Server => Server.status),
+        new DisplayServer("Time", 40, Server => Server.displayTime),
     };
     
 
@@ -124,6 +125,7 @@ class ServerDetails
     public float usersOnline;
     public int usersInQueue;
     public string status;
+    public string displayTime;
 }
 
 class DisplayServer

@@ -31,6 +31,8 @@ public class ItemData : ScriptableObject
     //Between 0 to 1.
     public float DropChance = 1f;
 
+    public bool Stackable = false;
+
     public ItemType Type;
 
     [JsonIgnore]
