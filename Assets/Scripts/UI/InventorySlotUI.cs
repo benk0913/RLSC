@@ -39,9 +39,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             return;
         }
 
-        if(eventData.pointerId == 1) //Right click
+        if(eventData.pointerId != 0)
         {
-            InventoryUI.Instance.AttemptDropStack(this);
             return;
         }
 
@@ -79,6 +78,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     void RefreshUI()
     {
+        AmountLabel.text = "";
         if(CurrentItem == null || string.IsNullOrEmpty(CurrentItem.itemId))
         {
             IconImage.enabled = false;
@@ -113,10 +113,6 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if(CurrentItem.amount > 1)
         {
             AmountLabel.text = "x"+CurrentItem.amount;
-        }
-        else
-        {
-            AmountLabel.text = "";
         }
         
         Deselect();
