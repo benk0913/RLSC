@@ -37,6 +37,8 @@ public class ClassJob : ScriptableObject
     public List<ItemData> DropsOnDeath = new List<ItemData>();
     
     public float CoinDropMultiplier = 0f;
+
+    public float EXPMultiplier = 0f;
     
     public List<AbilityParam> OnGetHitParams = new List<AbilityParam>();
     

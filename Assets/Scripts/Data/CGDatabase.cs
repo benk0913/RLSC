@@ -242,6 +242,8 @@ public class SceneInfo
     public List<VendorData> Vendors = new List<VendorData>();
     public List<OnDemandParams> OnDemandParams = new List<OnDemandParams>();
 
+    public string RespawnMap = "Sunset Port";
+
     [JsonIgnore]
     public string MusicTrack;
 
@@ -268,6 +270,8 @@ public class SceneInfo
 
     [JsonIgnore]
     public string MapPoint;
+
+    
 }
 
 [Serializable]

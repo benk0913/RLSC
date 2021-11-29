@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ActorFlowerbeingMimic
   m_EditorClassIdentifier: 
   Icon: {fileID: -4996060153450700387, guid: 61d3ef9eab4b3894b9ad412cdf344ed7, type: 3}
+  DisplayName: 
   Abilities:
   - Flowerbeing Mimic Recast
   PassiveAbility: PassiveHitFlowerBeing
@@ -39,8 +40,11 @@ MonoBehaviour:
   States:
   - {fileID: 11400000, guid: 1e23eca48ae01954ca65056b99f77377, type: 2}
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
+  ClassFeatureVideo: {fileID: 0}
+  ClassMusic: {fileID: 0}
   DropsOnDeath: []
   CoinDropMultiplier: 2
+  EXPMultiplier: 3
   OnGetHitParams: []
   OnSomeoneExecutesParams:
   - Type: {fileID: 11400000, guid: a12c75dc551ac6e45852ebdeab522801, type: 2}
@@ -48,6 +52,7 @@ MonoBehaviour:
     Targets: 2
     Value: 
     ObjectValue: {fileID: 11400000, guid: 36df7b082c60e894f99c9e8e9e240ab8, type: 2}
+    Value2: 
   OnDeathParams: []
   UniqueHurtSounds:
   - FlowerOnHit

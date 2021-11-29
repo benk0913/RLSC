@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ActorFlowerbeing
   m_EditorClassIdentifier: 
   Icon: {fileID: 2635430504182236085, guid: 61d3ef9eab4b3894b9ad412cdf344ed7, type: 3}
+  DisplayName: 
   Abilities:
   - Flowerbeing Mirror Recast
   PassiveAbility: PassiveHitFlowerBeing
@@ -39,14 +40,18 @@ MonoBehaviour:
   States:
   - {fileID: 11400000, guid: 9dea26e2d504f6e4099c87406ba265fc, type: 2}
   ClassColor: {r: 0, g: 0, b: 0, a: 0}
+  ClassFeatureVideo: {fileID: 0}
+  ClassMusic: {fileID: 0}
   DropsOnDeath: []
   CoinDropMultiplier: 1
+  EXPMultiplier: 2
   OnGetHitParams:
   - Type: {fileID: 11400000, guid: a12c75dc551ac6e45852ebdeab522801, type: 2}
     Condition: {fileID: 0}
     Targets: 2
     Value: 
     ObjectValue: {fileID: 11400000, guid: c4e95ec475a2200419691acd0260e8b9, type: 2}
+    Value2: 
   OnSomeoneExecutesParams: []
   OnDeathParams: []
   UniqueHurtSounds:
