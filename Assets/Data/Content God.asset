@@ -7363,14 +7363,6 @@ MonoBehaviour:
         interactableId: 
         positionX: 340
         positionY: 95
-      - interactableName: LostTowerFloor2Entrance
-        interactableId: 
-        positionX: 340
-        positionY: 58
-      - interactableName: LostTowerFloor1Entrance
-        interactableId: 
-        positionX: 339
-        positionY: 10
       - interactableName: LowerEntrance
         interactableId: 
         positionX: 398
@@ -7379,6 +7371,14 @@ MonoBehaviour:
         interactableId: 
         positionX: 497
         positionY: -8
+      - interactableName: LostTowerFloor2Entrance
+        interactableId: 
+        positionX: 340
+        positionY: 58
+      - interactableName: LostTowerFloor1Entrance
+        interactableId: 
+        positionX: 339
+        positionY: 10
       - interactableName: LeftEntrance
         interactableId: 
         positionX: 113
@@ -7387,23 +7387,11 @@ MonoBehaviour:
       playerSpawnY: 0
       Portals:
       - name: LostTowerFloor3Entrance
-        TargetScene: OW_LostTowerFloor3
-        TargetSceneGate: WindowEntry
+        TargetScene: OW_LostTowerFloor1
+        TargetSceneGate: WindowEntry2
         IsExpeditionLocked: 0
         portalPositionX: 339.8
         portalPositionY: 95.3
-      - name: LostTowerFloor2Entrance
-        TargetScene: OW_LostTowerFloor2
-        TargetSceneGate: WindowEntry
-        IsExpeditionLocked: 0
-        portalPositionX: 339.8
-        portalPositionY: 57.7
-      - name: LostTowerFloor1Entrance
-        TargetScene: OW_LostTowerFloor1
-        TargetSceneGate: Entry
-        IsExpeditionLocked: 0
-        portalPositionX: 339
-        portalPositionY: 9.9
       - name: LowerEntrance
         TargetScene: OW_LostWalk3
         TargetSceneGate: RightEntrance
@@ -7416,6 +7404,18 @@ MonoBehaviour:
         IsExpeditionLocked: 0
         portalPositionX: 496.8
         portalPositionY: -7.5
+      - name: LostTowerFloor2Entrance
+        TargetScene: OW_LostTowerFloor1
+        TargetSceneGate: WindowEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 339.8
+        portalPositionY: 57.7
+      - name: LostTowerFloor1Entrance
+        TargetScene: OW_LostTowerFloor1
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 339
+        portalPositionY: 9.9
       - name: LeftEntrance
         TargetScene: OW_BeachWalk6
         TargetSceneGate: RightEntrance
@@ -7514,7 +7514,7 @@ MonoBehaviour:
         interactableId: 
         positionX: 106
         positionY: 6
-      - interactableName: TowerBossEntry
+      - interactableName: TowerChamberEntry
         interactableId: 
         positionX: 106
         positionY: 76
@@ -7535,12 +7535,12 @@ MonoBehaviour:
         IsExpeditionLocked: 0
         portalPositionX: 106.3
         portalPositionY: 6.5
-      - name: TowerBossEntry
-        TargetScene: OW_TowerBoss
+      - name: TowerChamberEntry
+        TargetScene: OW_LostTowerFloor2
         TargetSceneGate: Entry
         IsExpeditionLocked: 0
-        portalPositionX: 106.3
-        portalPositionY: 75.8
+        portalPositionX: 106
+        portalPositionY: 75.5
       - name: Entry
         TargetScene: OW_LostTowersPlaza
         TargetSceneGate: LostTowerFloor1Entrance
@@ -7557,7 +7557,109 @@ MonoBehaviour:
       OnDemandParams: []
       RespawnMap: Sunset Port
       MusicTrack: DarkMusic
-      Soundscape: soundscape_rain
+      Soundscape: soundscape_rain_hummed
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: LostTowers
+    - sceneName: OW_LostTowerFloor2
+      displyName: Lost Tower Preperation Chamber
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: Entry
+        interactableId: 
+        positionX: 83
+        positionY: -27
+      - interactableName: BossChamberEntry
+        interactableId: 
+        positionX: 111
+        positionY: -27
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entry
+        TargetScene: OW_LostTowerFloor1
+        TargetSceneGate: TowerChamberEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 82.99
+        portalPositionY: -27.28
+      - name: BossChamberEntry
+        TargetScene: OW_LostTowersChamber
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 111.03
+        portalPositionY: -27.28
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: DarkMusic
+      Soundscape: soundscape_rain_hummed
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: LostTowers
+    - sceneName: OW_LostTowersChamber
+      displyName: Lost Tower Boss Chamber
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSpikesDeadly
+        positionX: 83.7
+        positionY: -30.49
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 142.5
+        positionY: -30.49
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 114
+        positionY: -4.2
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 113.3
+        positionY: -7.6
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 111.5
+        positionY: -6.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton3
+        positionX: 134.5
+        positionY: -29
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: Entry
+        interactableId: 
+        positionX: 111
+        positionY: -27
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entry
+        TargetScene: OW_LostTowerFloor2
+        TargetSceneGate: BossChamberEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 111.03
+        portalPositionY: -27.28
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: music_qusetionmark
+      Soundscape: soundscape_rain_hummed
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
