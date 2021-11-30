@@ -36,20 +36,20 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
 
         CORE.Instance.SubscribeToEvent("MapUpdated", ()=> { DisplayLocation(); });
 
-        SetupTooltips();
+        // SetupTooltips();
     }
 
-    void SetupTooltips()
-    {
-        foreach(MapInstance map in Maps)
-        {
-            foreach(GameObject point in map.Points)
-            {
-                point.GetComponent<TooltipTargetUI>()?.SetTooltip(System.Text.RegularExpressions.Regex.Replace(point.name, "([a-z])([A-Z])", "$1 $2"));
+    // void SetupTooltips()
+    // {
+    //     foreach(MapInstance map in Maps)
+    //     {
+    //         foreach(GameObject point in map.Points)
+    //         {
+    //             point.GetComponent<TooltipTargetUI>()?.SetTooltip(System.Text.RegularExpressions.Regex.Replace(point.name, "([a-z])([A-Z])", "$1 $2"));
                 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 
     public void Show(ActorData actorData, object data = null)
     {
