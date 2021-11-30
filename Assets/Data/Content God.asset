@@ -6524,7 +6524,7 @@ MonoBehaviour:
         interactableId: 
         positionX: 489
         positionY: 14
-      - interactableName: "R\u0131ghtEntrance"
+      - interactableName: BeachEntry
         interactableId: 
         positionX: 442
         positionY: -91
@@ -6551,8 +6551,8 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
-      - name: RoadEntry
-        TargetScene: OW_RoadWalk1
+      - name: RightEntrance
+        TargetScene: OW_SunsetPort_Crossroads2
         TargetSceneGate: LeftEntrance
         IsExpeditionLocked: 0
         portalPositionX: 489.2
@@ -6582,7 +6582,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: SunsetSplit
     - sceneName: OW_PirateCove1
-      displyName: Derelict  Ship 1
+      displyName: ???
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -6663,7 +6663,7 @@ MonoBehaviour:
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
-      displayTitleOnEnter: 0
+      displayTitleOnEnter: 1
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: HermitWalk (3)
@@ -7166,7 +7166,7 @@ MonoBehaviour:
       MusicTrack: WaterTitle
       Soundscape: Valley SoundScape
       NightMusicTrack: 
-      NightSoundscape: 
+      NightSoundscape: Dark SoundScape
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
@@ -7272,7 +7272,7 @@ MonoBehaviour:
       MusicTrack: WaterTitle
       Soundscape: Valley SoundScape
       NightMusicTrack: 
-      NightSoundscape: 
+      NightSoundscape: Dark SoundScape
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
@@ -7397,7 +7397,7 @@ MonoBehaviour:
         portalPositionX: 339.8
         portalPositionY: 95.3
       - name: LowerEntrance
-        TargetScene: OW_LostWalk3
+        TargetScene: OW_LostRoad3
         TargetSceneGate: RightEntrance
         IsExpeditionLocked: 0
         portalPositionX: 398.2
@@ -7678,7 +7678,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: LostTowers
     - sceneName: OW_SecretBuilding
-      displyName: Secret Building
+      displyName: ???
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -7704,7 +7704,7 @@ MonoBehaviour:
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
-      displayTitleOnEnter: 0
+      displayTitleOnEnter: 1
       PredictionImage: {fileID: 0}
       Map: LostTowers
       MapPoint: LostWalk (4)
@@ -7714,43 +7714,13 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorSlime
-        positionX: 296.5
-        positionY: 16.7
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 242.2
-        positionY: 24.9
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 186
-        positionY: 18.9
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 137.1
-        positionY: 17.3
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 71.4
-        positionY: -8
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 357.2
-        positionY: -16.5
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 307.3
-        positionY: -41.1
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
         positionX: 237.2
         positionY: -35.4
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: 296.5
+        positionY: 16.7
         respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorSlime
@@ -7763,44 +7733,84 @@ MonoBehaviour:
         positionY: -38.2
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 319.3
-        positionY: 12.5
+      - monsterName: ActorSlime
+        positionX: 307.3
+        positionY: -41.1
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorSpikes
+      - monsterName: ActorSpikesDeadly
         positionX: 310.7
-        positionY: 13.3
+        positionY: 7.65
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 254.8
-        positionY: 11.4
+      - monsterName: ActorSlime
+        positionX: 357.2
+        positionY: -16.5
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorSpikes
+      - monsterName: ActorSpikesDeadly
+        positionX: 139.2
+        positionY: 6.32
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 255.69
+        positionY: 7.1400003
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 214.8
+        positionY: 6.4199996
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 319.3
+        positionY: 7.8399997
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
         positionX: 205
+        positionY: 14.32
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: 71.4
+        positionY: -8
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 204.4
+        positionY: 6.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 152.3
+        positionY: 6.440001
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: 137.1
         positionY: 17.3
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 214.8
-        positionY: 13.4
+      - monsterName: ActorSlime
+        positionX: 186
+        positionY: 18.9
         respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorSpikes
+        positionX: 304.39
+        positionY: 8.29
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: 242.2
+        positionY: 24.9
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
         positionX: 194.8
-        positionY: 14.6
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 152.3
-        positionY: 13.4
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSpikes
-        positionX: 139.2
-        positionY: 13.6
+        positionY: 6.18
         respawnSeconds: 8
         IrellevantMob: 1
       Interactables:
@@ -7817,12 +7827,12 @@ MonoBehaviour:
       Portals:
       - name: LeftEntrance
         TargetScene: OW_SunsetPort_Crossroads2
-        TargetSceneGate: BeachEntry
+        TargetSceneGate: LostRoadEntrance
         IsExpeditionLocked: 0
         portalPositionX: -10.9
         portalPositionY: -16.4
       - name: "R\u0131ghtEnterance"
-        TargetScene: OW_LostRoad1
+        TargetScene: OW_LostRoad2
         TargetSceneGate: LeftEntrance
         IsExpeditionLocked: 0
         portalPositionX: 399.4
@@ -7833,7 +7843,7 @@ MonoBehaviour:
       MusicTrack: Valley
       Soundscape: Valley SoundScape
       NightMusicTrack: 
-      NightSoundscape: 
+      NightSoundscape: Dark SoundScape
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
@@ -7844,14 +7854,44 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorSalamander
-        positionX: 365.8
-        positionY: -69.3
+      - monsterName: ActorSpikes
+        positionX: 261
+        positionY: -115.5
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorSalamander
-        positionX: 309.4
-        positionY: -0.3
+      - monsterName: ActorFlowerbeing
+        positionX: 358.4
+        positionY: -9.9
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 235.1
+        positionY: -113.4
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 222.5
+        positionY: -111.8
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorFlowerbeing
+        positionX: 211.4
+        positionY: -47.9
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorFlowerbeingWild
+        positionX: 147.2
+        positionY: -20.5
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 307.6
+        positionY: -115.5
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorFlowerbeing
+        positionX: 229.2
+        positionY: -19.4
         respawnSeconds: 12
         IrellevantMob: 1
       - monsterName: ActorSalamander
@@ -7859,29 +7899,59 @@ MonoBehaviour:
         positionY: -49.6
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeingWild
-        positionX: 358.4
-        positionY: -9.9
+      - monsterName: ActorSpikes
+        positionX: 328.8
+        positionY: -115.5
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeingWild
+      - monsterName: ActorSpikes
+        positionX: 273.6
+        positionY: -115.5
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 297.2
+        positionY: -115.5
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorFlowerbeing
         positionX: 376.2
         positionY: -68.7
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeingWild
-        positionX: 211.4
-        positionY: -47.9
+      - monsterName: ActorSalamander
+        positionX: 309.4
+        positionY: -0.3
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeingWild
-        positionX: 229.2
-        positionY: -19.4
+      - monsterName: ActorSpikes
+        positionX: 286.2
+        positionY: -115.5
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeingWild
-        positionX: 147.2
-        positionY: -20.5
+      - monsterName: ActorSalamander
+        positionX: 365.8
+        positionY: -69.3
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 246.4
+        positionY: -114.1
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 200.4
+        positionY: -113.4
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 319.3
+        positionY: -115.5
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 211.7
+        positionY: -111.6
         respawnSeconds: 12
         IrellevantMob: 1
       Interactables:
@@ -7936,12 +8006,224 @@ MonoBehaviour:
       MusicTrack: WindTitle
       Soundscape: Valley SoundScape
       NightMusicTrack: 
-      NightSoundscape: 
+      NightSoundscape: Dark SoundScape
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: SunetRoad (1)
+    - sceneName: OW_LostRoad2
+      displyName: Lost Road 2
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorRabbit
+        positionX: 121.4
+        positionY: -15.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorRabbit
+        positionX: 130.1
+        positionY: -14
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: LeftEntrance
+        interactableId: 
+        positionX: -11
+        positionY: -16
+      - interactableName: "R\u0131ghtEnterance"
+        interactableId: 
+        positionX: 197
+        positionY: -16
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: LeftEntrance
+        TargetScene: OW_LostRoad2
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -10.9
+        portalPositionY: -16.4
+      - name: "R\u0131ghtEnterance"
+        TargetScene: OW_LostRoad3
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 196.9
+        portalPositionY: -16.4
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: Valley
+      Soundscape: Valley SoundScape
+      NightMusicTrack: 
+      NightSoundscape: Dark SoundScape
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: LostWalk (2)
+    - sceneName: OW_LostRoad3
+      displyName: Lost Road 3
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSkeleton2
+        positionX: 157.9
+        positionY: -11
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 138.5
+        positionY: 53.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton2
+        positionX: 248.1
+        positionY: -6.1
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 129.1
+        positionY: 59.6
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 283.4
+        positionY: 20.6
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 124.1
+        positionY: -19.9
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 202.6
+        positionY: -6.1
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton3
+        positionX: 244.4
+        positionY: -6.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton2
+        positionX: 282.7
+        positionY: 20.9
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 106.2
+        positionY: -19.9
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 172.2
+        positionY: -8.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 166
+        positionY: -15.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 159.2
+        positionY: -15
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 153.5
+        positionY: -16.2
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 134.1
+        positionY: 59.6
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: LostRoadCaveEntrance
+        interactableId: 
+        positionX: 213
+        positionY: -14
+      - interactableName: LeftEntrance
+        interactableId: 
+        positionX: -11
+        positionY: -16
+      - interactableName: "R\u0131ghtEnterance"
+        interactableId: 
+        positionX: 295
+        positionY: 22
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: LostRoadCaveEntrance
+        TargetScene: OW_LostRoadCave
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 212.72
+        portalPositionY: -13.98
+      - name: LeftEntrance
+        TargetScene: OW_LostRoad2
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -10.9
+        portalPositionY: -16.4
+      - name: "R\u0131ghtEnterance"
+        TargetScene: OW_LostTowersPlaza
+        TargetSceneGate: LowerEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 295
+        portalPositionY: 21.7
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: WaterTitle
+      Soundscape: Valley SoundScape
+      NightMusicTrack: 
+      NightSoundscape: Dark SoundScape
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: LostWalk (3)
+    - sceneName: OW_LostRoadCave
+      displyName: ???
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: Entry
+        interactableId: 
+        positionX: 87
+        positionY: -23
+      - interactableName: NPC_KeeperBrother
+        interactableId: 
+        positionX: 59
+        positionY: -20
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entry
+        TargetScene: OW_LostRoad3
+        TargetSceneGate: LostRoadCaveEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 87.14
+        portalPositionY: -23
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: DarkMusic
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 1
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: LostWalk (3)
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
