@@ -12,17 +12,21 @@ public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
     [JsonConverter(typeof(StringEnumConverter))]
     public ConditionType Type;
     public string Value;
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public ScriptableObject ObjectValue;
     public bool Inverse;
 
     public bool IsValid(System.Object obj)
     {
+        string ActualValue = ObjectValue == null ? Value : ObjectValue.name;
+
         switch(Type)
         {
             case ConditionType.HasBuff:
                 {
                     Actor target = ((Actor)obj);
 
-                    if(target.State.Buffs.Find(x=>x.CurrentBuff.name == Value) != null)
+                    if(target.State.Buffs.Find(x=>x.CurrentBuff.name == ActualValue) != null)
                     {
                         return !Inverse; //  False
                     }
@@ -33,7 +37,7 @@ public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
                 }
             case ConditionType.Chance:
                 {
-                    if(UnityEngine.Random.Range(0f,1f) < float.Parse(Value))
+                    if(UnityEngine.Random.Range(0f,1f) < float.Parse(ActualValue))
                     {
                         return !Inverse; //  False
                     }
@@ -55,7 +59,18 @@ public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
                 }
             case ConditionType.HasMoney:
                 {
-                    if (CORE.PlayerActor.money >= int.Parse(Value))
+                    if (CORE.PlayerActor.money >= int.Parse(ActualValue))
+                    {
+                        return !Inverse;
+                    }
+                    else
+                    {
+                        return Inverse;
+                    }
+                }
+            case ConditionType.FinishedQuest:
+                {
+                    if (CORE.PlayerActor.quests.completed.ContainsKey(ActualValue))
                     {
                         return !Inverse;
                     }
@@ -80,5 +95,6 @@ public enum ConditionType
 
     InExpeditionQueue,
     HasMoney,
-    InExpedition
+    InExpedition,
+    FinishedQuest
 }

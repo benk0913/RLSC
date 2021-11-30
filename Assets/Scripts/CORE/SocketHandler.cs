@@ -172,6 +172,11 @@ public class SocketHandler : MonoBehaviour
         //Slotmachine
         SocketEventListeners.Add(new SocketEventListener("slotmachine_result", OnSlotmachineResult));
 
+        //Quests
+        SocketEventListeners.Add(new SocketEventListener("quest_start", OnQuestStart));
+        SocketEventListeners.Add(new SocketEventListener("quest_progress", OnQuestProgress));
+        SocketEventListeners.Add(new SocketEventListener("quest_complete", OnQuestComplete));
+
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -1512,11 +1517,70 @@ public class SocketHandler : MonoBehaviour
         achInst.State = true;
         SteamUserStats.SetAchievement(achInst.Key);
     }
+    
+    // Quests
+
+    public void SendQuestStart(string questName)
+    {
+        JSONNode node = new JSONClass();
+        node["questName"] = questName;
+
+        SendEvent("quest_started", node);
+    }
+
+    public void SendQuestComplete(string questName)
+    {
+        JSONNode node = new JSONClass();
+        node["questName"] = questName;
+
+        SendEvent("quest_completed", node);
+    }
+
+    public void OnQuestStart(string eventName, JSONNode data)
+    {
+        string questName = data["questName"].Value;
+
+        CurrentUser.actor.quests.started[questName] = new ActorQuestProgress();
+    }
+    
+    public void OnQuestProgress(string eventName, JSONNode data)
+    {
+        string questName = data["questName"].Value;
+        ActorQuestProgress quest = JsonConvert.DeserializeObject<ActorQuestProgress>(data["quest"].ToString());
+
+        CurrentUser.actor.quests.started[questName] = quest;
+        bool couldComplete = CurrentUser.actor.quests.canComplete.ContainsKey(questName);
+        bool canComplete = data["canComplete"].AsBool;
+        if (!couldComplete && canComplete)
+        {
+            // Quest is ready to complete!
+            CurrentUser.actor.quests.canComplete[questName] = 1;
+        }
+        else if (couldComplete && !canComplete)
+        {
+            // Quest was ready to complete, but not anymore (e.g. dropped the items needed)
+            CurrentUser.actor.quests.canComplete.Remove(questName);
+        }
+
+        // TODO refresh quest UI here
+    }
+    
+    public void OnQuestComplete(string eventName, JSONNode data)
+    {
+        string questName = data["questName"].Value;
+
+        CurrentUser.actor.quests.completed[questName] = 1;
+        CurrentUser.actor.quests.started.Remove(questName);
+        CurrentUser.actor.quests.canComplete.Remove(questName);
+
+        // TODO refresh quest UI here
+    }
 
     public void OnSlotmachineResult(string eventName, JSONNode data)
     {
         SlotMachineEntity.Instance.Spin((SlotMachineEntity.WinType)int.Parse(data["result"].Value));
     }
+
     public void OnItemsSpawn(string eventName, JSONNode data)
     {
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
@@ -2165,6 +2229,7 @@ public class ActorData
     public int level;
     public Dictionary<string, Item> equips = new Dictionary<string, Item>();
     public List<Item> orbs = new List<Item>();
+    public ActorQuests quests = new ActorQuests();
 
     public bool isMob
     {

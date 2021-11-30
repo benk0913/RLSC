@@ -562,6 +562,13 @@ public class CGDatabaseEditor : Editor
         {
             db.content.Achievements.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(AchievementData)) as AchievementData);
         }
+        
+        guids = AssetDatabase.FindAssets("t:QuestData", new[] { "Assets/" + db.DataPath });
+        db.content.Quests.Clear();
+        foreach (string guid in guids)
+        {
+            db.content.Quests.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(QuestData)) as QuestData);
+        }
 
         db.content.ExpChart.Clear();
         for (int lvl = 1; lvl <= db.content.MaxLevel; lvl++) {

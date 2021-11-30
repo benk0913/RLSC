@@ -81,6 +81,7 @@ public class DatabaseContent
     public List<TimePhase> TimePhases = new List<TimePhase>();
 
     public List<AchievementData> Achievements = new List<AchievementData>();
+    public List<QuestData> Quests = new List<QuestData>();
     
     [JsonIgnore]
     public AlignmentData alignmentData;
