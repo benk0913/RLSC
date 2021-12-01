@@ -141,6 +141,16 @@ public class InteractableEntity : MonoBehaviour
         IsBusy = state;
     }
 
+    public void Teleport(Transform targetTransform)
+    {
+        if(NearbyActor == null)
+        {
+            return;
+        }
+
+        NearbyActor.transform.position = targetTransform.position;
+    }
+
     private void Update()
     {
         if(IsBusy)
