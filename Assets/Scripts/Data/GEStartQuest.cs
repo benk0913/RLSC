@@ -15,13 +15,13 @@ public class GEStartQuest : GameEvent
 
         if(!TheQuest.CanStart)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Can not start queset! (Conditions Not met)",Color.red));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Can not start quest! (Conditions Not met)",Color.red));
             return;
         }
 
         if(CORE.PlayerActor.quests.started.ContainsKey(TheQuest.name))
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Can not start queset! (Already started)",Color.red));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Can not start quest! (Already started)",Color.red));
             return;
         }
 
