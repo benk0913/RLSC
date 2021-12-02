@@ -1542,17 +1542,15 @@ public class SocketHandler : MonoBehaviour
     {
         string questName = data["questName"].Value;
 
-        CurrentUser.actor.quests.started[questName] = new ActorQuestProgress();
-        
-        CORE.Instance.InvokeEvent("RefreshQuests");
+        CurrentUser.actor.quests.started[questName] = new Dictionary<string, Dictionary<string, int>>();
     }
     
     public void OnQuestProgress(string eventName, JSONNode data)
     {
         string questName = data["questName"].Value;
-        ActorQuestProgress quest = JsonConvert.DeserializeObject<ActorQuestProgress>(data["quest"].ToString());
-
-        CurrentUser.actor.quests.started[questName] = quest;
+        
+        CurrentUser.actor.quests.started[questName] = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, int>>>(data["quest"].ToString());
+        CurrentUser.actor.quests.RemoveQuestCache(questName);
         bool couldComplete = CurrentUser.actor.quests.canComplete.ContainsKey(questName);
         bool canComplete = data["canComplete"].AsBool;
         if (!couldComplete && canComplete)
@@ -1566,8 +1564,6 @@ public class SocketHandler : MonoBehaviour
             CurrentUser.actor.quests.canComplete.Remove(questName);
         }
 
-        // TODO refresh quest UI here
-
         CORE.Instance.InvokeEvent("RefreshQuests");
     }
     
@@ -1577,9 +1573,8 @@ public class SocketHandler : MonoBehaviour
 
         CurrentUser.actor.quests.completed[questName] = 1;
         CurrentUser.actor.quests.started.Remove(questName);
+        CurrentUser.actor.quests.RemoveQuestCache(questName);
         CurrentUser.actor.quests.canComplete.Remove(questName);
-
-        // TODO refresh quest UI here
 
         CORE.Instance.InvokeEvent("RefreshQuests");
     }
