@@ -13,9 +13,9 @@ public class GECompleteQuest : GameEvent
     {
         base.Execute(obj);
 
-        if(CORE.PlayerActor.quests.canComplete.ContainsKey(TheQuest.name) && CORE.PlayerActor.quests.canComplete[TheQuest.name] == 1)
+        if(!CORE.PlayerActor.quests.canComplete.ContainsKey(TheQuest.name) || CORE.PlayerActor.quests.canComplete[TheQuest.name] != 1)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Can not start quest! (Already started)",Color.red));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Can not complete quest!",Color.red));
             return;
         }   
 

@@ -11,6 +11,8 @@ public class QuestControlEntity : MonoBehaviour
 
     public GameObject HasQuestObject;
 
+    public GameObject HasQuestInProgressObject;
+
     public GameObject HasQuestCompleteObject;
 
     void Start()
@@ -24,10 +26,11 @@ public class QuestControlEntity : MonoBehaviour
     {
         foreach(QuestData quest in RelevantQuests)
         {
-            if(CORE.PlayerActor.quests.canComplete.ContainsKey(quest.name) && CORE.PlayerActor.quests.canComplete[quest.name] == 1)
+            if(quest.CanComplete)
             {
                 HasQuestCompleteObject.SetActive(true);
                 HasQuestObject.SetActive(false);
+                HasQuestInProgressObject.SetActive(false);
                 return;
             }
         }
@@ -39,10 +42,25 @@ public class QuestControlEntity : MonoBehaviour
             {
                 HasQuestObject.SetActive(true);
                 HasQuestCompleteObject.SetActive(false);
+                HasQuestInProgressObject.SetActive(false);
                 return;
             }
         }
 
+        
+        foreach(QuestData quest in RelevantQuests)
+        {
+            if(CORE.PlayerActor.quests.started.ContainsKey(quest.name) && !(CORE.PlayerActor.quests.canComplete.ContainsKey(quest.name) && CORE.PlayerActor.quests.canComplete[quest.name] == 1))
+            {
+                
+                HasQuestInProgressObject.SetActive(true);
+                HasQuestCompleteObject.SetActive(false);
+                HasQuestObject.SetActive(false);
+                return;
+            }
+        }
+
+        HasQuestInProgressObject.SetActive(false);
         HasQuestCompleteObject.SetActive(false);
         HasQuestObject.SetActive(false);
     }

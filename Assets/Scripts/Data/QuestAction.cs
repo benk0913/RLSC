@@ -7,4 +7,5 @@ using UnityEngine;
 [Serializable]
 public class QuestAction: ScriptableObject
 {
+    public string DisplayText;
 }

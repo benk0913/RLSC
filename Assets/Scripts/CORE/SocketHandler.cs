@@ -912,6 +912,8 @@ public class SocketHandler : MonoBehaviour
 
                 CORE.Instance.CheckOOGInvitations();
 
+                CORE.Instance.InvokeEvent("RefreshQuests");
+
             });
         });
     }

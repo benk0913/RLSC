@@ -16,6 +16,15 @@ public class QuestData: ScriptableObject
     public List<AbilityParam> Rewards;
 
     [JsonIgnore]
+    public bool CanComplete
+    {
+        get
+        {
+            return CORE.PlayerActor.quests.canComplete.ContainsKey(this.name) && CORE.PlayerActor.quests.canComplete[this.name] == 1;
+        }
+    }
+
+    [JsonIgnore]
     public bool CanStart
     {
         get
@@ -34,6 +43,11 @@ public class QuestData: ScriptableObject
                 {
                     return false;
                 }
+            }
+
+            if(CORE.PlayerActor.quests.started.ContainsKey(this.name))
+            {
+                return false;
             }
 
             return true;
