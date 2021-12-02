@@ -5,6 +5,7 @@ using UnityEngine;
 public class ConditionalInvokation : MonoBehaviour
 {
     public List<AbilityCondition> Conditions;
+    public List<GameCondition> GameConditions;
 
     public List<AbilityParam> Actions;
 
@@ -19,6 +20,14 @@ public class ConditionalInvokation : MonoBehaviour
     public void Validate()
     {
         foreach(AbilityCondition cond in Conditions)
+        {
+            if(!cond.IsValid(null))
+            {
+                return;
+            }
+        }
+        
+        foreach(GameCondition cond in GameConditions)
         {
             if(!cond.IsValid(null))
             {

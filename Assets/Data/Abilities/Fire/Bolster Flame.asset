@@ -36,25 +36,41 @@ MonoBehaviour:
   CD: 10
   CastingTime: 0.2
   TargetCap: 10
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
-    Condition: {fileID: 11400000, guid: 9a418fb78fefdcc4d9d2c4fd04298e7f, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 5d0966ed522270149865d8fb38d12fba, type: 2}
+      Inverse: 1
     Targets: 0
     Value: 10
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
-    Condition: {fileID: 11400000, guid: 012b6f3eee5fa3a499fab2658281fd9f, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 5d0966ed522270149865d8fb38d12fba, type: 2}
+      Inverse: 0
     Targets: 0
     Value: 80
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 9808926be5a20354592163dcf83d54da, type: 2}
-    Condition: {fileID: 11400000, guid: 012b6f3eee5fa3a499fab2658281fd9f, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 5d0966ed522270149865d8fb38d12fba, type: 2}
+      Inverse: 0
     Targets: 0
     Value: Ignited
     ObjectValue: {fileID: 0}

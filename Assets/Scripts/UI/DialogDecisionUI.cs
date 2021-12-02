@@ -42,6 +42,23 @@ public class DialogDecisionUI : MonoBehaviour
                 }
             }
         }
+        foreach (GameCondition condition in CurrentDecision.DisplayGameConditions)
+        {
+            if(!condition.IsValid(null))
+            {
+                if(decision.DisplayOnlyIfConditionsMet)
+                {
+                    this.gameObject.SetActive(false);
+                    return;
+                }
+                else
+                {
+                    Butt.interactable = false;
+                    
+                    break;
+                }
+            }
+        }
 
         string content = CurrentDecision.Content;
         CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(content, out content);

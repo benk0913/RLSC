@@ -1046,6 +1046,14 @@ public class CORE : MonoBehaviour
                 continue;
             }
 
+            foreach (GameCondition GameCondition in param.GameConditions)
+            {
+                if (!GameCondition.IsValid(originCaster))
+                {
+                    continue;
+                }
+            }
+
             if (param.Type.name == "Movement")
             {
                 if ((param.Targets == TargetType.Self || param.Targets == TargetType.FriendsAndSelf) && casterActor != null)

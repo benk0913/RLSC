@@ -8,6 +8,8 @@ using UnityEngine;
 public class QuestData: ScriptableObject
 {
     public List<AbilityCondition> StartConditions;
+    
+    public List<GameCondition> StartGameConditions;
 
     public List<QuestGoal> Goals;
 
@@ -21,6 +23,14 @@ public class QuestData: ScriptableObject
             foreach(AbilityCondition condition in StartConditions)
             {
                 if(!condition.IsValid(null))
+                {
+                    return false;
+                }
+            }
+
+            foreach (GameCondition condition in StartGameConditions)
+            {
+                if (!condition.IsValid(null))
                 {
                     return false;
                 }

@@ -60,6 +60,7 @@ public class AbilityParam
     public AbilityParamType Type;
     
     public AbilityCondition Condition;
+    public List<GameCondition> GameConditions = new List<GameCondition>();
 
     [JsonConverter(typeof(StringEnumConverter))]
     public TargetType Targets;
@@ -93,6 +94,8 @@ public class AbilityColliders
     [JsonIgnore]
     public AbilityCondition HitConditionObjectCondition;
 
+    [JsonIgnore]
+    public List<GameCondition> HitConditionObjectGameConditions = new List<GameCondition>();
 
 }
 

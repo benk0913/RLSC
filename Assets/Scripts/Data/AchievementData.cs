@@ -12,6 +12,6 @@ public class AchievementData: ScriptableObject
     [JsonConverter(typeof(ObjectNameConverter))]
     public List<ScriptableObject> ObjectValues;
     public List<string> Values;
-    public List<AbilityCondition> Conditions;
+    public List<GameCondition> GameConditions;
     public int Count = 1;
 }

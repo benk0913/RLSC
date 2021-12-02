@@ -714,9 +714,23 @@ public class Actor : MonoBehaviour
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
         
-        if(ability.Colliders.HitConditionObjectCondition != null 
-            && ability.Colliders.HitConditionObjectCondition.IsValid(this) 
-            && !string.IsNullOrEmpty(ability.Colliders.HitConditionObject))
+        bool isValidHitCondition = 
+            (ability.Colliders.HitConditionObjectCondition != null 
+                && ability.Colliders.HitConditionObjectCondition.IsValid(this));
+        
+        if (!isValidHitCondition && ability.Colliders.HitConditionObjectGameConditions.Count > 0)
+        {
+            isValidHitCondition = true;
+            foreach (GameCondition GameCondition in ability.Colliders.HitConditionObjectGameConditions)
+            {
+                if (!GameCondition.IsValid(this))
+                {
+                    isValidHitCondition = false;
+                }
+            }
+        }
+        
+        if(isValidHitCondition && !string.IsNullOrEmpty(ability.Colliders.HitConditionObject))
         {
             GameObject colliderObj = AddColliderOnPosition(ability.Colliders.HitConditionObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);

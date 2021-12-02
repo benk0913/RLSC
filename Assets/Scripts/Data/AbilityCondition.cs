@@ -5,9 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Condition", menuName = "Data/Condition", order = 2)]
+// ===================
+// THIS IS DEPRECATED - use GameCondition
+// ===================
+[CreateAssetMenu(fileName = "OldCondition", menuName = "Data/Condition/OldCondition", order = 2)]
 [Serializable]
-public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
+[Obsolete("Use GameCondition instead")]
+public class AbilityCondition : ScriptableObject, ConditionBase
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public ConditionType Type;
@@ -18,103 +22,7 @@ public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
 
     public bool IsValid(System.Object obj)
     {
-        string ActualValue = ObjectValue == null ? Value : ObjectValue.name;
-
-        switch(Type)
-        {
-            case ConditionType.HasBuff:
-                {
-                    Actor target = ((Actor)obj);
-
-                    if(target.State.Buffs.Find(x=>x.CurrentBuff.name == ActualValue) != null)
-                    {
-                        return !Inverse; //  False
-                    }
-                    else
-                    {
-                        return Inverse; //  True
-                    }
-                }
-            case ConditionType.Chance:
-                {
-                    if(UnityEngine.Random.Range(0f,1f) < float.Parse(ActualValue))
-                    {
-                        return !Inverse; //  False
-                    }
-                    else
-                    {
-                        return Inverse; //  True
-                    }
-                }
-            case ConditionType.InExpeditionQueue:
-                {
-                    if(ExpeditionQueTimerUI.Instance.IsSearching)
-                    {
-                        return !Inverse;
-                    }
-                    else
-                    {
-                        return Inverse;
-                    }
-                }
-            case ConditionType.HasMoney:
-                {
-                    if (CORE.PlayerActor.money >= int.Parse(ActualValue))
-                    {
-                        return !Inverse;
-                    }
-                    else
-                    {
-                        return Inverse;
-                    }
-                }
-            case ConditionType.FinishedQuest:
-                {
-                    if (CORE.PlayerActor.quests.completed.ContainsKey(ActualValue))
-                    {
-                        return !Inverse;
-                    }
-                    else
-                    {
-                        return Inverse;
-                    }
-                }
-            case ConditionType.CanFinishQuest:
-                {
-                    if (CORE.PlayerActor.quests.canComplete.ContainsKey(ActualValue))
-                    {
-                        return !Inverse;
-                    }
-                    else
-                    {
-                        return Inverse;
-                    }
-                }
-            case ConditionType.QuestStarted:
-                {
-                    if (CORE.PlayerActor.quests.started.ContainsKey(ActualValue))
-                    {
-                        return !Inverse;
-                    }
-                    else
-                    {
-                        return Inverse;
-                    }
-                }
-            case ConditionType.CanStartQuest:
-                {
-                    if (CORE.Instance.Data.content.Quests.Find(X=>X.name == ActualValue).CanStart)
-                    {
-                        return !Inverse;
-                    }
-                    else
-                    {
-                        return Inverse;
-                    }
-                }
-        } 
-
-        return !Inverse; //  True 
+        return ConditionLogic.IsValid(obj, ObjectValue, Value, Type.ToString(), Inverse);
     }
 }
 
@@ -133,4 +41,8 @@ public enum ConditionType
     QuestStarted,
     CanFinishQuest,
     CanStartQuest
+
+    // ===================
+    // THIS IS DEPRECATED - use GameCondition
+    // ===================
 }
