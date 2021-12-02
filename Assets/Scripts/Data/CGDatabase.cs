@@ -141,7 +141,7 @@ public class DatabaseContent
 
     public int MaxItemStack = 100;
 
-    public int SlotMachinePrice = 5;
+    public SlotsDatabase Slots;
 
     public bool DangerousEveryoneIsAdmin;
 }
@@ -349,4 +349,12 @@ public class TimePhase
 {
     public string Name;
     public int DurationInMinutes;
+}
+
+[Serializable]
+public class SlotsDatabase
+{
+    public int SlotMachinePrice = 5;
+
+    public List<AbilityParam> Rewards;
 }

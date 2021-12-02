@@ -8891,7 +8891,31 @@ MonoBehaviour:
     BaseExp: 1
     ExpeditionExpMultiplier: 0
     MaxItemStack: 20
-    SlotMachinePrice: 5
+    Slots:
+      SlotMachinePrice: 5
+      Rewards:
+      - Type: {fileID: 11400000, guid: 2bcc501bf1999c140baccace8307c8d5, type: 2}
+        Condition: {fileID: 0}
+        GameConditions:
+        - Type: {fileID: 11400000, guid: 84c7520e50ed3f2438862496439ab510, type: 2}
+          Value: 0.016
+          ObjectValue: {fileID: 0}
+          Inverse: 0
+        Targets: 2
+        Value: 100
+        ObjectValue: {fileID: 0}
+        Value2: 
+      - Type: {fileID: 11400000, guid: 2bcc501bf1999c140baccace8307c8d5, type: 2}
+        Condition: {fileID: 0}
+        GameConditions:
+        - Type: {fileID: 11400000, guid: 84c7520e50ed3f2438862496439ab510, type: 2}
+          Value: 0.1
+          ObjectValue: {fileID: 0}
+          Inverse: 0
+        Targets: 2
+        Value: 25
+        ObjectValue: {fileID: 0}
+        Value2: 
     DangerousEveryoneIsAdmin: 0
   DefaultSpriteMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   ErrorIcon: {fileID: 21300000, guid: 88cc93b9033d1014f8728abbd467af91, type: 3}

@@ -39,12 +39,12 @@ public class SlotMachineEntity : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        PriceField.text = "x"+ CORE.Instance.Data.content.SlotMachinePrice;
+        PriceField.text = "x"+ CORE.Instance.Data.content.Slots.SlotMachinePrice;
     }
 
     public void AttemptSlot()
     {
-        if(CORE.PlayerActor.money < CORE.Instance.Data.content.SlotMachinePrice)
+        if(CORE.PlayerActor.money < CORE.Instance.Data.content.Slots.SlotMachinePrice)
         {
             return;
         }
@@ -55,7 +55,7 @@ public class SlotMachineEntity : MonoBehaviour
         }
 
         Busy = true;
-        SocketHandler.Instance.SendEvent("SpinSlotMachine");
+        SocketHandler.Instance.SendEvent("used_slot_machine");
 
         if(DEBUG)
         {
@@ -153,8 +153,8 @@ public class SlotMachineEntity : MonoBehaviour
         SpinRoutineInstance = null;
     }
     public enum WinType
-{
-    Lose,Win,WinBig
-}
+    {
+        WinBig, Win, Lose
+    }
 }
 

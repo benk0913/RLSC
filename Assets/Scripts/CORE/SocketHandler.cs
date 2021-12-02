@@ -170,7 +170,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("achievement_unlock", OnAchievment));
 
         //Slotmachine
-        SocketEventListeners.Add(new SocketEventListener("slotmachine_result", OnSlotmachineResult));
+        SocketEventListeners.Add(new SocketEventListener("used_slot_machine", OnSlotmachineResult));
 
         //Quests
         SocketEventListeners.Add(new SocketEventListener("quest_start", OnQuestStart));
@@ -1586,7 +1586,7 @@ public class SocketHandler : MonoBehaviour
 
     public void OnSlotmachineResult(string eventName, JSONNode data)
     {
-        SlotMachineEntity.Instance.Spin((SlotMachineEntity.WinType)int.Parse(data["result"].Value));
+        SlotMachineEntity.Instance.Spin((SlotMachineEntity.WinType)data["rewardIndex"].AsInt);
     }
 
     public void OnItemsSpawn(string eventName, JSONNode data)
