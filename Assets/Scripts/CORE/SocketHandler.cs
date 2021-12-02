@@ -1526,6 +1526,7 @@ public class SocketHandler : MonoBehaviour
         node["questName"] = questName;
 
         SendEvent("quest_started", node);
+
     }
 
     public void SendQuestComplete(string questName)
@@ -1534,6 +1535,7 @@ public class SocketHandler : MonoBehaviour
         node["questName"] = questName;
 
         SendEvent("quest_completed", node);
+
     }
 
     public void OnQuestStart(string eventName, JSONNode data)
@@ -1541,6 +1543,8 @@ public class SocketHandler : MonoBehaviour
         string questName = data["questName"].Value;
 
         CurrentUser.actor.quests.started[questName] = new ActorQuestProgress();
+        
+        CORE.Instance.InvokeEvent("RefreshQuests");
     }
     
     public void OnQuestProgress(string eventName, JSONNode data)
@@ -1563,6 +1567,8 @@ public class SocketHandler : MonoBehaviour
         }
 
         // TODO refresh quest UI here
+
+        CORE.Instance.InvokeEvent("RefreshQuests");
     }
     
     public void OnQuestComplete(string eventName, JSONNode data)
@@ -1574,6 +1580,8 @@ public class SocketHandler : MonoBehaviour
         CurrentUser.actor.quests.canComplete.Remove(questName);
 
         // TODO refresh quest UI here
+
+        CORE.Instance.InvokeEvent("RefreshQuests");
     }
 
     public void OnSlotmachineResult(string eventName, JSONNode data)

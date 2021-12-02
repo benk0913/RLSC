@@ -79,6 +79,39 @@ public class AbilityCondition : ScriptableObject //TODO RENAME TO GameCondition
                         return Inverse;
                     }
                 }
+            case ConditionType.CanFinishQuest:
+                {
+                    if (CORE.PlayerActor.quests.canComplete.ContainsKey(ActualValue))
+                    {
+                        return !Inverse;
+                    }
+                    else
+                    {
+                        return Inverse;
+                    }
+                }
+            case ConditionType.QuestStarted:
+                {
+                    if (CORE.PlayerActor.quests.started.ContainsKey(ActualValue))
+                    {
+                        return !Inverse;
+                    }
+                    else
+                    {
+                        return Inverse;
+                    }
+                }
+            case ConditionType.CanStartQuest:
+                {
+                    if (CORE.Instance.Data.content.Quests.Find(X=>X.name == ActualValue).CanStart)
+                    {
+                        return !Inverse;
+                    }
+                    else
+                    {
+                        return Inverse;
+                    }
+                }
         } 
 
         return !Inverse; //  True 
@@ -96,5 +129,8 @@ public enum ConditionType
     InExpeditionQueue,
     HasMoney,
     InExpedition,
-    FinishedQuest
+    FinishedQuest,
+    QuestStarted,
+    CanFinishQuest,
+    CanStartQuest
 }

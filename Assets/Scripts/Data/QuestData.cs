@@ -12,4 +12,21 @@ public class QuestData: ScriptableObject
     public List<QuestGoal> Goals;
 
     public List<AbilityParam> Rewards;
+
+    [JsonIgnore]
+    public bool CanStart
+    {
+        get
+        {
+            foreach(AbilityCondition condition in StartConditions)
+            {
+                if(!condition.IsValid(null))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
 }
