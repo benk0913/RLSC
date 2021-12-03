@@ -78,7 +78,11 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     void RefreshUI()
     {
-        AmountLabel.text = "";
+        if(AmountLabel!=null)
+        {
+            AmountLabel.text = "";
+        }
+        
         if(CurrentItem == null || string.IsNullOrEmpty(CurrentItem.itemId))
         {
             IconImage.enabled = false;
