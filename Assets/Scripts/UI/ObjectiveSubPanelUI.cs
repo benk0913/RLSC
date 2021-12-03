@@ -51,14 +51,22 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler
             return;
         }
         ObjectiveLabel.text ="";
-        for(int i=0;i<CurrentQuest.Goals.Count;i++)
+        
+        if(CurrentQuest.Goals.Count == 0)
         {
-            QuestGoal objective = CurrentQuest.Goals[i];
-            ObjectiveLabel.text +=
-                   (string.IsNullOrEmpty(objective.Action.DisplayText)? "" : (CORE.QuickTranslate(objective.Action.DisplayText) + " - "))
-                +  (objective.ObjectValue == null? CORE.QuickTranslate(objective.Value) :  CORE.QuickTranslate(objective.ObjectValue.name)) 
-                +  " ("+questProgress.Values[i]+" / "+objective.Count+")"
-                +  System.Environment.NewLine;
+            ObjectiveLabel.text = CurrentQuest.name;
+        }
+        else
+        {
+            for(int i=0;i<CurrentQuest.Goals.Count;i++)
+            {
+                QuestGoal objective = CurrentQuest.Goals[i];
+                ObjectiveLabel.text +=
+                    (string.IsNullOrEmpty(objective.Action.DisplayText)? "" : (CORE.QuickTranslate(objective.Action.DisplayText) + " - "))
+                    +  (objective.ObjectValue == null? CORE.QuickTranslate(objective.Value) :  CORE.QuickTranslate(objective.ObjectValue.name)) 
+                    +  " ("+questProgress.Values[i]+" / "+objective.Count+")"
+                    +  System.Environment.NewLine;
+            }
         }
 
         if(CurrentQuest.CanComplete)
