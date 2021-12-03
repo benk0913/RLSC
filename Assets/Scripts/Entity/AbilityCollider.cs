@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class AbilityCollider : HitCollider
 {
-
+    static Dictionary<string, int> AbilitiesCollidersCounts = new Dictionary<string, int>();
     public bool StickToActor;
     public bool StickToActorFacing;
     public bool StickToSkilledShot;
@@ -161,6 +161,8 @@ public class AbilityCollider : HitCollider
     public override void SetInfo(Ability abilitySource, Actor actorSource, string abilityInstanceId = "", HitCollider parentCollider  = null)
     {
         base.SetInfo(abilitySource, actorSource, abilityInstanceId, parentCollider);
+        
+        incrementAbilityCollidersCount(AbilitySource.name);
 
         if(StickToSkilledShot)
         {
@@ -246,7 +248,7 @@ public class AbilityCollider : HitCollider
                     return;
                 }
 
-                if(BubblesDuplicated.Contains(otherAbilityCollider) || BubblesDuplicated.Count > 32)
+                if(BubblesDuplicated.Contains(otherAbilityCollider) || getAbilityCollidersCount(otherAbilityCollider.AbilitySource.name) > 32)
                 {
                     return;
                 }
@@ -293,6 +295,40 @@ public class AbilityCollider : HitCollider
         {
             this.AttemptMissAbility();
         }
+        decrementAbilityCollidersCount(AbilitySource.name);
     }
 
+    private void incrementAbilityCollidersCount(string abilityName)
+    {
+        if (AbilitiesCollidersCounts.ContainsKey(abilityName))
+        {
+            AbilitiesCollidersCounts[abilityName] = AbilitiesCollidersCounts[abilityName] + 1;
+        }
+        else 
+        {
+            AbilitiesCollidersCounts.Add(abilityName, 1);
+        }
+    }
+
+    private void decrementAbilityCollidersCount(string abilityName)
+    {
+        if (AbilitiesCollidersCounts.ContainsKey(abilityName))
+        {
+            AbilitiesCollidersCounts[abilityName] = AbilitiesCollidersCounts[abilityName] - 1;
+
+            if (AbilitiesCollidersCounts[abilityName] == 0)
+            {
+                AbilitiesCollidersCounts.Remove(abilityName);
+            }
+        }
+    }
+
+    private int getAbilityCollidersCount(string abilityName)
+    {
+        if (AbilitiesCollidersCounts.ContainsKey(abilityName))
+        {
+            return AbilitiesCollidersCounts[abilityName];
+        }
+        return 0;
+    }
 }
