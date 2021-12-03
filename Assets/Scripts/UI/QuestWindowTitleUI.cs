@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class QuestWindowTitleUI : MonoBehaviour, IPointerClickHandler
+public class QuestWindowTitleUI : MonoBehaviour
 {
     [SerializeField]
     TextMeshProUGUI TitleLabel;
@@ -26,7 +26,7 @@ public class QuestWindowTitleUI : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnClick()
     {
         QuestWindowUI.Instance.SelectQuest(this.CurrentQuest);
     }

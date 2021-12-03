@@ -48,11 +48,18 @@ public class InputLabelWindow : MonoBehaviour
         }
     }
 
-    public void Show(string title = "Set Amount", string fieldLabel = "Set Amount",  Action<string> acceptCallback = null)
+    public void Show(string title = "Set Amount", string fieldLabel = "Set Amount",  Action<string> acceptCallback = null, int defaultAmount = 0)
     {
         this.gameObject.SetActive(true);
 
-        Field.text = "";
+        if(defaultAmount != 0)
+        {
+            Field.text = defaultAmount.ToString();
+        }
+        else
+        {
+            Field.text = "";
+        }
 
 
 

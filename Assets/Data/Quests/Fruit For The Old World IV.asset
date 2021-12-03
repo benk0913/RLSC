@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47855a378ea5084bbf17a692b45aa8e, type: 3}
+  m_Name: Fruit For The Old World IV
+  m_EditorClassIdentifier: 
+  Description: The "Fruit Supplier" had tasked me to collect 20 units of Red Corn,
+    he has no idea where to find them, so I must do it myself.
+  StartConditions: []
+  StartGameConditions:
+  - Type: {fileID: 11400000, guid: 1f828a2f17e2a28449701238de9bb6db, type: 2}
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 38acfffe4b19a534abd89359c43b13aa, type: 2}
+    Inverse: 0
+  Goals:
+  - Action: {fileID: 11400000, guid: 3200dd04404bbac48bad5e46385140dd, type: 2}
+    ObjectValue: {fileID: 11400000, guid: cca245c378813254192665a355a58a24, type: 2}
+    Value: 
+    Count: 20
+  Rewards:
+  - Type: {fileID: 11400000, guid: 63fd1591cae8d4b4eb907de443b7b589, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 40
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 2bcc501bf1999c140baccace8307c8d5, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 80
+    ObjectValue: {fileID: 0}
+    Value2: 

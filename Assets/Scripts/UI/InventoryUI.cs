@@ -571,7 +571,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     {
                         WarningWindowUI.Instance.Show(CORE.QuickTranslate("Wrong Amount")+"!",()=>{},false,null);
                     }
-                });
+                },
+                slot.CurrentItem.amount);
             }
             else
             {

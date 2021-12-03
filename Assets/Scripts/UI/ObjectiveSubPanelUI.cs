@@ -85,23 +85,42 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler
 
     void Update()
     {
-        if(IsDragged)
+        if(preDragTresh > 0f)
         {
-            transform.position = Input.mousePosition;
-
-            if(Input.GetMouseButtonUp(0))
+            preDragTresh -= Time.deltaTime;
+        }
+        else
+        {
+            if(IsDragged)
             {
-                IsDragged = false;
-                DragEffect.SetActive(false);
+                transform.position = Input.mousePosition;
+
+                if(Input.GetMouseButtonUp(0))
+                {
+                    IsDragged = false;
+                    DragEffect.SetActive(false);
+                    preDragTresh = 0.1f;
+                }
             }
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            CORE.Instance.ShowQuestsUIWindow();
+            QuestWindowUI.Instance.SelectQuest(CurrentQuest);
+            return;
+        }
+
+        
         IsDragged = true;
         DragEffect.SetActive(true);
+        preDragTresh = 0.1f;
     }
+
+    float preDragTresh = 0.1f;
 
 
 }
