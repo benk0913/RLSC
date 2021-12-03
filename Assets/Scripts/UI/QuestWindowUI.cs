@@ -80,14 +80,9 @@ public class QuestWindowUI : MonoBehaviour, WindowInterface
 
         CORE.ClearContainer(QuestsContainer);
 
-
-        if (CORE.Instance.CurrentParty == null)
-        {
-            return;
-        }
-
         foreach (string quest in CORE.PlayerActor.quests.started.Keys)
         {
+            Debug.LogError("STARTED "+quest);
             QuestWindowTitleUI element = ResourcesLoader.Instance.GetRecycledObject("QuestWindowTitleUI").GetComponent<QuestWindowTitleUI>();
 
             element.SetInfo(CORE.PlayerActor.quests.GetQuestProgress(quest).QuestData);
