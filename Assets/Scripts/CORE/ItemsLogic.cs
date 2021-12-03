@@ -84,6 +84,14 @@ public class ItemsLogic
                 abilityParamText += Mathf.CeilToInt(float.Parse(abilityParam.Condition.Value) * 100) +"% "+ CORE.QuickTranslate("chance to") + " ";
             }
 
+            foreach (GameCondition GameCondition in abilityParam.GameConditions)
+            {
+                if (GameCondition.Type.name == "Chance")
+                {
+                    abilityParamText += Mathf.CeilToInt(float.Parse(GameCondition.Value) * 100) +"% "+ CORE.QuickTranslate("chance to") + " ";
+                }
+            }
+
             abilityParamText +=CORE.QuickTranslate(abilityParam.Type.name) + " "+CORE.QuickTranslate("on")+" " + CORE.QuickTranslate(abilityParam.Targets.ToString()) +" "+ CORE.QuickTranslate(whenCondition);
             abilityParamText = Capitalize(abilityParamText);
 
