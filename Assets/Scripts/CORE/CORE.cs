@@ -390,7 +390,7 @@ public class CORE : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open) //AFK HANDLING
+        if(SocketHandler.Instance != null && SocketHandler.Instance.SocketManager != null && SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open) //AFK HANDLING
         {
             if(Input.anyKey)
             {

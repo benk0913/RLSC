@@ -15,6 +15,8 @@ public class QuestsPanelUI : MonoBehaviour
 
     public Transform Container;
 
+
+
     void Start()
     {
         CORE.Instance.SubscribeToEvent("RefreshQuests", Refresh);
@@ -49,11 +51,19 @@ public class QuestsPanelUI : MonoBehaviour
                 continue;
             }
 
+            ActorQuestProgress progress = CORE.PlayerActor.quests.GetQuestProgress(questKey);
+            if(progress == null)
+            {
+                CORE.Instance.LogMessageError("NO PRGORESS? " + questKey);
+                continue;
+            }
+
             ObjectiveSubPanelUI objSubPanel = ResourcesLoader.Instance.GetRecycledObject("ObjectiveSubPanelUI").GetComponent<ObjectiveSubPanelUI>();
             objSubPanel.transform.SetParent(Container,false);
             objSubPanel.transform.localScale = Vector3.one;
-            objSubPanel.SetInfo(CORE.PlayerActor.quests.GetQuestProgress(questKey).QuestData);
-            createdYPush -= 30f;
+
+            objSubPanel.SetInfo(progress.QuestData);
+            createdYPush -= 60f;
             objSubPanel.transform.position = Container.transform.position + new Vector3(createdYPush,createdYPush,0);
         }
 

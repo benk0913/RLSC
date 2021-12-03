@@ -50,7 +50,7 @@ public class QuestControlEntity : MonoBehaviour
         
         foreach(QuestData quest in RelevantQuests)
         {
-            if(CORE.PlayerActor.quests.started.ContainsKey(quest.name) && !(CORE.PlayerActor.quests.canComplete.ContainsKey(quest.name) && CORE.PlayerActor.quests.canComplete[quest.name] == 1))
+            if(CORE.PlayerActor.quests.started.ContainsKey(quest.name) && !CORE.PlayerActor.quests.canComplete.ContainsKey(quest.name))
             {
                 
                 HasQuestInProgressObject.SetActive(true);

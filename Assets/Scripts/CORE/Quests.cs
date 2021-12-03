@@ -22,7 +22,12 @@ public class ActorQuests
     {
         if (!QuestProgressCache.ContainsKey(questName))
         {
-            QuestProgressCache[questName] = new ActorQuestProgress(questName, started[questName]);
+            if(!started.ContainsKey(questName))
+            {
+                return null;
+            }
+            
+            QuestProgressCache.Add(questName,new ActorQuestProgress(questName, started[questName]));
         }
         return QuestProgressCache[questName];
     }

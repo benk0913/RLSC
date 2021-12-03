@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using EdgeworldBase;
 
-public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
+public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField]
     Color ProgressColor;
@@ -21,6 +21,8 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler,IPointerUp
 
     public QuestData CurrentQuest;
     
+        public GameObject DragEffect;
+
     public bool IsDragged { get; private set; }
 
     void Start()
@@ -41,7 +43,13 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler,IPointerUp
         if(CurrentQuest == null) return;
 
         ActorQuestProgress questProgress = CORE.PlayerActor.quests.GetQuestProgress(CurrentQuest.name);
-
+        
+        if(questProgress == null)
+        {
+            CircleImage.color = ReadyColor;
+            ObjectiveLabel.text ="Quest Complete!";    
+            return;
+        }
         ObjectiveLabel.text ="";
         for(int i=0;i<CurrentQuest.Goals.Count;i++)
         {
@@ -72,16 +80,20 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler,IPointerUp
         if(IsDragged)
         {
             transform.position = Input.mousePosition;
+
+            if(Input.GetMouseButtonUp(0))
+            {
+                IsDragged = false;
+                DragEffect.SetActive(false);
+            }
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         IsDragged = true;
+        DragEffect.SetActive(true);
     }
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        IsDragged = false;
-    }
+
 }

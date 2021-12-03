@@ -20,7 +20,7 @@ public class QuestData: ScriptableObject
     {
         get
         {
-            return CORE.PlayerActor.quests.canComplete.ContainsKey(this.name) && CORE.PlayerActor.quests.canComplete[this.name] == 1;
+            return CORE.PlayerActor.quests.canComplete.ContainsKey(this.name);
         }
     }
 
@@ -45,6 +45,11 @@ public class QuestData: ScriptableObject
                 }
             }
 
+            if(CORE.PlayerActor.quests.completed.ContainsKey(this.name))
+            {
+                return false;
+            }
+            
             if(CORE.PlayerActor.quests.started.ContainsKey(this.name))
             {
                 return false;
