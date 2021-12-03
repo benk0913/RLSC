@@ -1545,6 +1545,8 @@ public class SocketHandler : MonoBehaviour
         string questName = data["questName"].Value;
 
         CurrentUser.actor.quests.started[questName] = new Dictionary<string, Dictionary<string, int>>();
+
+        AudioControl.Instance.Play("QuestStarted");
     }
     
     public void OnQuestProgress(string eventName, JSONNode data)
@@ -1567,6 +1569,8 @@ public class SocketHandler : MonoBehaviour
         }
 
         CORE.Instance.InvokeEvent("RefreshQuests");
+
+        
     }
     
     public void OnQuestComplete(string eventName, JSONNode data)
@@ -1579,6 +1583,8 @@ public class SocketHandler : MonoBehaviour
         CurrentUser.actor.quests.canComplete.Remove(questName);
 
         CORE.Instance.InvokeEvent("RefreshQuests");
+
+        AudioControl.Instance.Play("QuestComplete");
     }
 
     public void OnSlotmachineResult(string eventName, JSONNode data)

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using EdgeworldBase;
 
 public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 {
@@ -54,7 +55,11 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler,IPointerUp
 
         if(CurrentQuest.CanComplete)
         {
-            CircleImage.color = ReadyColor;
+            if(CircleImage.color != ReadyColor)
+            {
+                CircleImage.color = ReadyColor;
+                AudioControl.Instance.Play("QuestCanComplete");
+            }
         }
         else
         {
