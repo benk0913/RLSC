@@ -7,6 +7,9 @@ using UnityEngine;
 [Serializable]
 public class QuestData: ScriptableObject
 {
+    [TextArea(3,6)]
+    public string Description;
+
     public List<AbilityCondition> StartConditions;
     
     public List<GameCondition> StartGameConditions;
@@ -49,7 +52,7 @@ public class QuestData: ScriptableObject
             {
                 return false;
             }
-            
+
             if(CORE.PlayerActor.quests.started.ContainsKey(this.name))
             {
                 return false;

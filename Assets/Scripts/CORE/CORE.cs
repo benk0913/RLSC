@@ -292,6 +292,7 @@ public class CORE : MonoBehaviour
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
         WindowToKeyMap.Add(PartyWindowUI.Instance, InputMap.Map["Party Window"]);
+        WindowToKeyMap.Add(QuestWindowUI.Instance, InputMap.Map["Quests Window"]);
         WindowToKeyMap.Add(MapWindowUI.Instance, InputMap.Map["Map Window"]);
         // WindowToKeyMap.Add(AlignmentWindowUI.Instance, InputMap.Map["Alignment Window"]);
         WindowToKeyMap.Add(SettingsMenuUI.Instance, InputMap.Map["Settings Window"]);
@@ -469,6 +470,11 @@ public class CORE : MonoBehaviour
     public void ShowPartyUiWindow()
     {
         ShowWindow(PartyWindowUI.Instance);
+    }
+
+    public void ShowQuestsUIWindow()
+    {
+        ShowWindow(QuestWindowUI.Instance);
     }
 
     public void ShowFriendsWindow()
