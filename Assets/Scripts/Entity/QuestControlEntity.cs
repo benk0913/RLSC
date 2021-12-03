@@ -8,6 +8,7 @@ public class QuestControlEntity : MonoBehaviour
     // This is a quicker alternative to ConditionalInvokation.cs
     public List<QuestData> RelevantQuests = new List<QuestData>();
 
+    
 
     public GameObject HasQuestObject;
 
