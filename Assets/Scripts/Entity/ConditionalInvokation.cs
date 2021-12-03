@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ConditionalInvokation : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class ConditionalInvokation : MonoBehaviour
     public List<GameCondition> GameConditions;
 
     public List<AbilityParam> Actions;
+
+    public UnityEvent EventToInvoke;
 
     public string RefreshEventString = "RefreshQuests";
     void Start()
@@ -36,5 +39,7 @@ public class ConditionalInvokation : MonoBehaviour
         }
 
         CORE.Instance.ActivateParams(Actions);
+
+        EventToInvoke?.Invoke();
     }
 }
