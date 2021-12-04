@@ -17,6 +17,9 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     TextMeshProUGUI ObjectiveLabel;
 
+    [SerializeField]
+    Animator Anim;
+
     public Image CircleImage;
 
     public QuestData CurrentQuest;
@@ -85,25 +88,24 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler
 
     void Update()
     {
-        if(preDragTresh > 0f)
+        if(IsDragged)
         {
-            preDragTresh -= Time.deltaTime;
-        }
-        else
-        {
-            if(IsDragged)
-            {
-                transform.position = Input.mousePosition;
+            transform.position = Input.mousePosition;
 
-                if(Input.GetMouseButtonUp(0))
+            if(Input.GetMouseButtonUp(0))
+            {
+                IsDragged = false;
+                DragEffect.SetActive(false);
+                
+                if(PickPosition.x != Input.mousePosition.x)
                 {
-                    IsDragged = false;
-                    DragEffect.SetActive(false);
-                    preDragTresh = 0.1f;
+                    Anim.SetTrigger("Toggle");
                 }
             }
         }
     }
+
+    Vector3 PickPosition;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -117,10 +119,9 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler
         
         IsDragged = true;
         DragEffect.SetActive(true);
-        preDragTresh = 0.1f;
+        PickPosition = Input.mousePosition;
     }
 
-    float preDragTresh = 0.1f;
 
 
 }

@@ -5752,7 +5752,7 @@ MonoBehaviour:
         Value: 
         ObjectValue: {fileID: 11400000, guid: 0f12b7a1ef6758a4b902e1a05124f5cd, type: 2}
         Inverse: 0
-      DisplayOnlyIfConditionsMet: 0
+      DisplayOnlyIfConditionsMet: 1
       DefaultDialog:
         DialogPieces:
         - Content: GO BACK HOME!?
@@ -5788,6 +5788,38 @@ MonoBehaviour:
         - Content: Can't force you to do it.
           OnSelect:
           - {fileID: 11400000, guid: f0c8e08d34aa5b44ca95ebd6b58873b8, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 0
+    - Content: '<u>Quest: Find My Brother II</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 7c87c2aeb1485c747a02a7cb4134be07, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: Tell my brother I'm not coming back.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
           - {fileID: 11400000, guid: 5650a3876bc6d2548b90725c272240af, type: 2}
           OnSelectInvokation:
             m_PersistentCalls:
