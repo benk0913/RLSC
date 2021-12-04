@@ -319,6 +319,11 @@ public class MainMenuUI : MonoBehaviour
         Steamworks.SteamFriends.ActivateGameOverlay("community");
     }
 
+       public void ShowStorePage()
+    {
+        Steamworks.SteamFriends.ActivateGameOverlayToStore(new Steamworks.AppId_t(1780330), Steamworks.EOverlayToStoreFlag.k_EOverlayToStoreFlag_None);
+    }
+
     public void PlayClassMusic(ClassJob cJob)
     {
         AudioControl.Instance.SetClassMusic(cJob);

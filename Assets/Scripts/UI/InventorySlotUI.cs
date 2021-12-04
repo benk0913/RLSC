@@ -9,6 +9,7 @@ using TMPro;
 public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public Item CurrentItem;
+    public ItemData CurrentItemData;
 
     [SerializeField]
     Image IconImage;
@@ -67,11 +68,23 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         
         CurrentItem = item;
 
+        if(item != null)
+            CurrentItemData = item.Data;
+
         IsInspecting = isInspecting;
 
         this.SlotType = slotType;
 
         this.OnSelect = onSelect;
+
+        RefreshUI();
+    }
+
+    public void SetItem(ItemData itemData)
+    {
+        CurrentItemData = itemData;
+        IsInspecting = false;
+        OnSelect = null;
 
         RefreshUI();
     }
@@ -85,6 +98,17 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         
         if(CurrentItem == null || string.IsNullOrEmpty(CurrentItem.itemId))
         {
+            if(CurrentItemData != null)
+            {
+                IconImage.enabled = true;
+                IconImage.sprite = CurrentItemData.Icon;
+
+                TooltipTarget.Text = ItemsLogic.GetItemTooltip(CurrentItemData);
+                
+                Deselect();
+                return;
+            }
+            
             IconImage.enabled = false;
 
             if (IsEquipmentSlot)

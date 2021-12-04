@@ -64,9 +64,23 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler
             for(int i=0;i<CurrentQuest.Goals.Count;i++)
             {
                 QuestGoal objective = CurrentQuest.Goals[i];
+
+                string ObjectValueString =objective.Value;
+                if(objective.ObjectValue != null)
+                {
+                    if(objective.ObjectValue.GetType() == typeof(ClassJob))
+                    {
+                        ObjectValueString = ((ClassJob)objective.ObjectValue).DisplayName;
+                    }
+                    else
+                    {
+                        ObjectValueString = objective.ObjectValue.name;
+                    }
+                }
+
                 ObjectiveLabel.text +=
                     (string.IsNullOrEmpty(objective.Action.DisplayText)? "" : (CORE.QuickTranslate(objective.Action.DisplayText) + " - "))
-                    +  (objective.ObjectValue == null? CORE.QuickTranslate(objective.Value) :  CORE.QuickTranslate(objective.ObjectValue.name)) 
+                    +  CORE.QuickTranslate(ObjectValueString)
                     +  " ("+questProgress.Values[i]+" / "+objective.Count+")"
                     +  System.Environment.NewLine;
             }
@@ -97,7 +111,7 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler
                 IsDragged = false;
                 DragEffect.SetActive(false);
                 
-                if(PickPosition.x != Input.mousePosition.x)
+                if(Vector2.Distance(PickPosition, Input.mousePosition) < 0.1f)
                 {
                     Anim.SetTrigger("Toggle");
                 }

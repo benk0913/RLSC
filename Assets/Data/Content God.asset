@@ -1039,6 +1039,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 660e47016cd74a8458b71f558f27e787, type: 2}
     - {fileID: 11400000, guid: 7fe1208363346524ab14d1453cf957f1, type: 2}
     - {fileID: 11400000, guid: 868effaec9b9fe141a98f168c9133eb4, type: 2}
+    - {fileID: 11400000, guid: d1fec7b980d8d094494c67e836b983f9, type: 2}
     - {fileID: 11400000, guid: b7923037dd9721043a9be195c646591e, type: 2}
     - {fileID: 11400000, guid: db2d848cd9d151e40b13907bc1814460, type: 2}
     - {fileID: 11400000, guid: eae6059b9f87e7940ba82b78e6c840f9, type: 2}
@@ -1072,8 +1073,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: eb794106e6bd895499dd2b4e1235bc04, type: 2}
     - {fileID: 11400000, guid: 17977b446feb8bb4d9a2b0742055b894, type: 2}
     - {fileID: 11400000, guid: 6830e71e2cc66e041beed7e15adda5cf, type: 2}
+    - {fileID: 11400000, guid: eeb6ee7a9d239fc418101b483c654088, type: 2}
     - {fileID: 11400000, guid: 6874957c3a0522f45b043900955751d5, type: 2}
     - {fileID: 11400000, guid: 102887c39b14fb240ba974bfb0ecae31, type: 2}
+    - {fileID: 11400000, guid: e00f2ae63d6569f429c019949a86c8ac, type: 2}
     - {fileID: 11400000, guid: 4ca6690e18544124fa0d30eb98522dd8, type: 2}
     - {fileID: 11400000, guid: 00aa3c8b6f6e16441822ecaa963d38e4, type: 2}
     - {fileID: 11400000, guid: 1d8979a231848694b8c4898bae2c3748, type: 2}
@@ -1454,6 +1457,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c55a799ad2dbc3241ada4a8f6ee2d4a3, type: 2}
     - {fileID: 11400000, guid: 4f5c252ab73d59d48b8fcf57a2553aeb, type: 2}
     - {fileID: 11400000, guid: e983b9babb1449947a380e65beb70d65, type: 2}
+    - {fileID: 11400000, guid: 4546d2385e6716d45aeb4f5344d27d2d, type: 2}
+    - {fileID: 11400000, guid: 8211a38614dc4fc4b9693f196c751dd4, type: 2}
+    - {fileID: 11400000, guid: 67efa0e8f55d6a44f8ee3230efcdfc95, type: 2}
+    - {fileID: 11400000, guid: ef9e6a867d90868458e9f96d9e3bb5ef, type: 2}
+    - {fileID: 11400000, guid: f1a00489c7b06c24a983482d975a8f8c, type: 2}
+    - {fileID: 11400000, guid: fe9f9c937fa0b9940ac34b8ef063831b, type: 2}
+    - {fileID: 11400000, guid: f35907a61a2d7aa4885c9d2823fae534, type: 2}
+    - {fileID: 11400000, guid: 77c4f5c4faebf694c8d436140a142eaf, type: 2}
+    - {fileID: 11400000, guid: 92085bad32834934689a1c21ec9e5d77, type: 2}
     - {fileID: 11400000, guid: 3b917b8b86a37314ca7e4ac622b468aa, type: 2}
     - {fileID: 11400000, guid: 0bb8739256f85e5449ab5f7bd8f6a7a5, type: 2}
     - {fileID: 11400000, guid: a34c422b03e61564eaa91a0f2029783b, type: 2}
@@ -5228,6 +5240,10 @@ MonoBehaviour:
         interactableId: 
         positionX: 139
         positionY: -12
+      - interactableName: NPC_SIGN
+        interactableId: 
+        positionX: 116
+        positionY: 2
       - interactableName: NPC_CAT
         interactableId: 
         positionX: -13
@@ -5280,6 +5296,16 @@ MonoBehaviour:
         portalPositionX: -66.25
         portalPositionY: -7.91
       Vendors:
+      - ID: TownVendorNightNEW
+        Items:
+        - {fileID: 11400000, guid: c8a3cb7f993471f43a65c56960371741, type: 2}
+        - {fileID: 11400000, guid: aafc6c7e2d9a85b499e4bf0de205089d, type: 2}
+        - {fileID: 11400000, guid: fcc9f2ec1b1a76e4db0f0d4111764961, type: 2}
+        - {fileID: 11400000, guid: 194460a394f62b14c8d2c3b8d7cb1422, type: 2}
+        - {fileID: 11400000, guid: 21fe16960bbeb44438ef099649be99d9, type: 2}
+        - {fileID: 11400000, guid: d26e08196260bc448b91ff3471d8e504, type: 2}
+        - {fileID: 11400000, guid: c35c5387f27e10c4c9cbdfee1759dea9, type: 2}
+        - {fileID: 11400000, guid: a5096962d0368e74cb2f7c2cd797463e, type: 2}
       - ID: TownVendorDay
         Items:
         - {fileID: 11400000, guid: 430e8a6209e514c4ca5c4dc1013529d2, type: 2}
@@ -9397,6 +9423,37 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: DaydreamRoad (4)
+    - sceneName: TavernPrivateRoomSarah
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 1
+        positionY: 4
+      playerSpawnX: 2.05
+      playerSpawnY: -1.09
+      Portals:
+      - name: GuestRoomEntrance
+        TargetScene: SunsetPortTavern
+        TargetSceneGate: TavernGuestRoomEntrance
+        IsExpeditionLocked: 1
+        portalPositionX: 0.87
+        portalPositionY: 3.67
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -9418,6 +9475,7 @@ MonoBehaviour:
     Expeditions:
     - {fileID: 11400000, guid: 1049c1152bc701f4aae659e35ff5b404, type: 2}
     - {fileID: 11400000, guid: a90382295a280f34fb0e7447835c7063, type: 2}
+    - {fileID: 11400000, guid: a46d2ac9e5a7c0843855184554a49fe0, type: 2}
     - {fileID: 11400000, guid: 55f7a0f906096f44f8541173f0fdace4, type: 2}
     ExpChart: 0000000064000000c80000009001000020030000dc050000280a0000681000000019000054240000
     TimePhases:
@@ -9430,6 +9488,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6820923a93ccd4844b31fc03c16ac7d3, type: 2}
     - {fileID: 11400000, guid: 674f93b096775b746956d85cdca4f665, type: 2}
     Quests:
+    - {fileID: 11400000, guid: 9e4ba54a52b946142adc6ae3483e2b2f, type: 2}
+    - {fileID: 11400000, guid: 28e9e1f2ce3ced7458023ac782dcad59, type: 2}
+    - {fileID: 11400000, guid: c2323ad8ecb79624ab492a12208f711e, type: 2}
     - {fileID: 11400000, guid: 7cd2b2edca79eae4d9d2224fa25cd6a4, type: 2}
     - {fileID: 11400000, guid: 55fd0fcb0a4030848ba2755764f16613, type: 2}
     - {fileID: 11400000, guid: 1f66867b44fcf8141a8118625cd97ea9, type: 2}

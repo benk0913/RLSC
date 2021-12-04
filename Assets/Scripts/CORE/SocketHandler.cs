@@ -1538,6 +1538,31 @@ public class SocketHandler : MonoBehaviour
 
         SendEvent("quest_completed", node);
 
+        QuestData questData = CORE.Instance.Data.content.Quests.Find(x=>x.name == questName);
+
+        if(questData != null)
+        {
+            List<AbilityParam> abParams = questData.Rewards.FindAll(x=>x.Type.name == "Add Item");
+
+            if(abParams != null && abParams.Count > 0)
+            {
+                List<ItemData> items = new List<ItemData>();
+                foreach(AbilityParam abPar in abParams)
+                {
+                    if(abPar.ObjectValue != null)
+                    {
+                        items.Add((ItemData)abPar.ObjectValue);
+                    }
+                    else if (!string.IsNullOrEmpty(abPar.Value))
+                    {
+                        items.Add(CORE.Instance.Data.content.Items.Find(X=>X.name == abPar.Value));
+                    }
+                }
+
+                RewardsWindowUI.Instance.Show(items);
+            }
+    
+        }
     }
 
     public void OnQuestStart(string eventName, JSONNode data)

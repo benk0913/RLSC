@@ -1379,6 +1379,12 @@ public class RoomData
             return;
         }
 
+        if(actor.ActorEntity == null)
+        {
+            CORE.Instance.LogMessageError("No actorId " + actorID + " ENTITY in room.");
+            return;
+        }
+
         CORE.Destroy(actor.ActorEntity.gameObject);
 
         Actors.Remove(actor);
