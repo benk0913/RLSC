@@ -115,7 +115,8 @@ public class DatabaseContent
 
     public int AbilitiesMaxCount;
 
-    public int MaxInventorySlots;
+    public int MaxStartingInventorySlots;
+    public int MaxPossibleInventorySlots;
     public int MaxCashItemSlots;
     public int MaxChatLength;
     public int RollDurationSeconds;

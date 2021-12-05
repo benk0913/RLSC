@@ -115,6 +115,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_pick_item", OnActorPickItem));
         SocketEventListeners.Add(new SocketEventListener("orb_added", OnOrbAdded));
         SocketEventListeners.Add(new SocketEventListener("money_refresh", OnMoneyRefresh));
+        SocketEventListeners.Add(new SocketEventListener("inventory_refresh", OnInventoryRefresh));
 
         // Cash Items
         SocketEventListeners.Add(new SocketEventListener("cash_refresh", OnCashRefresh));
@@ -1743,6 +1744,15 @@ public class SocketHandler : MonoBehaviour
         int money = data["money"].AsInt;
 
         CORE.Instance.Room.PlayerActor.money = money;
+
+        CORE.Instance.InvokeEvent("InventoryUpdated");
+    }
+
+    public void OnInventoryRefresh(string eventName, JSONNode data)
+    {
+        List<Item> items = JsonConvert.DeserializeObject<List<Item>>(data["items"].ToString());;
+
+        CORE.Instance.Room.PlayerActor.items = items;
 
         CORE.Instance.InvokeEvent("InventoryUpdated");
     }
