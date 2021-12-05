@@ -26686,7 +26686,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -384
+  m_SortingOrder: 259
 --- !u!114 &1133334287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26705,10 +26705,6 @@ MonoBehaviour:
       OnDialogPiece:
         m_PersistentCalls:
           m_Calls: []
-    Decisions: []
-    IsFemale: 1
-  CurrentDialog:
-    DialogPieces: []
     Decisions:
     - Content: '<u>Complete Quest: Espionage</u>'
       OnSelect: []
@@ -26779,19 +26775,23 @@ MonoBehaviour:
       DisplayGameConditions:
       - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
         Value: 
-        ObjectValue: {fileID: 11400000, guid: c2323ad8ecb79624ab492a12208f711e, type: 2}
+        ObjectValue: {fileID: 11400000, guid: 241c13b714737a64486725b5a0857a0b, type: 2}
         Inverse: 0
       DisplayOnlyIfConditionsMet: 1
       DefaultDialog:
         DialogPieces:
-        - Content: Now hand me the journal.
+        - Content: Out of town huh?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Alright, you did well.
           OnDialogPiece:
             m_PersistentCalls:
               m_Calls: []
         Decisions:
         - Content: Accept
           OnSelect:
-          - {fileID: 11400000, guid: 6ecd3208352b20342b257bb87e8bf93a, type: 2}
+          - {fileID: 11400000, guid: f853212ec1aec024f93692efd012ea97, type: 2}
           OnSelectInvokation:
             m_PersistentCalls:
               m_Calls: []
@@ -26842,8 +26842,7 @@ MonoBehaviour:
               m_Calls: []
         Decisions:
         - Content: Yes
-          OnSelect:
-          - {fileID: 11400000, guid: 01e05fb9bef3ead40b49559e4853607a, type: 2}
+          OnSelect: []
           OnSelectInvokation:
             m_PersistentCalls:
               m_Calls: []
@@ -26913,6 +26912,78 @@ MonoBehaviour:
             Decisions: []
             IsFemale: 0
         IsFemale: 0
+    - Content: '<u>Start Quest: Espionage IV</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 33a0e9b3841f4d148a6ea835de5a4783, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: 'My master want''s to see you, he is camping somewhere on the
+            lost road.
+
+            Look for his tent.'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions:
+            - Content: Accept
+              OnSelect:
+              - {fileID: 11400000, guid: 2c094c55ee334bd49a7e99b628d40708, type: 2}
+              OnSelectInvokation:
+                m_PersistentCalls:
+                  m_Calls: []
+              DisplayConditions: []
+              DisplayGameConditions: []
+              DisplayOnlyIfConditionsMet: 0
+              DefaultDialog:
+                DialogPieces: []
+                Decisions: []
+                IsFemale: 0
+            - Content: Decline
+              OnSelect: []
+              OnSelectInvokation:
+                m_PersistentCalls:
+                  m_Calls: []
+              DisplayConditions: []
+              DisplayGameConditions: []
+              DisplayOnlyIfConditionsMet: 0
+              DefaultDialog:
+                DialogPieces: []
+                Decisions: []
+                IsFemale: 0
+            IsFemale: 0
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 0
     - Content: '<u>Start Quest: Espionage III</u>'
       OnSelect: []
       OnSelectInvokation:
@@ -26927,11 +26998,27 @@ MonoBehaviour:
       DisplayOnlyIfConditionsMet: 1
       DefaultDialog:
         DialogPieces:
-        - Content: Impressive!
+        - Content: 'My master is still interested in your service.
+
+            One
+            of our associates is working at the town''s dock, usually for a lousy
+            ship captain.'
           OnDialogPiece:
             m_PersistentCalls:
               m_Calls: []
-        - Content: You may have potential.
+        - Content: Speak to him on our behalf, he will greet you with our secret
+            phrase "Sheesh", you must then greet him with "Sheesh" again and ask
+            him about Donald.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Return back to me with whatever he reports.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'And remember, he works by day, so you''ll have to wait.
+
+'
           OnDialogPiece:
             m_PersistentCalls:
               m_Calls: []
@@ -27008,6 +27095,10 @@ MonoBehaviour:
             Decisions: []
             IsFemale: 0
         IsFemale: 0
+    IsFemale: 1
+  CurrentDialog:
+    DialogPieces: []
+    Decisions: []
     IsFemale: 0
   CurrentIndex: 0
   CurrentBubble: {fileID: 1347621450}
@@ -27159,7 +27250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133334285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 300.7, y: -23.4, z: 139.40842}
+  m_LocalPosition: {x: 274.9, y: -30.59, z: 139.40842}
   m_LocalScale: {x: 1.07915, y: 1.07915, z: 1.07915}
   m_Children:
   - {fileID: 1347621451}

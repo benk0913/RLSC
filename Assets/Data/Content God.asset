@@ -8379,6 +8379,10 @@ MonoBehaviour:
       Interactables:
       - interactableName: LeftEntrance
         interactableId: 
+        positionX: 42
+        positionY: -19
+      - interactableName: LeftEntrance
+        interactableId: 
         positionX: -11
         positionY: -16
       - interactableName: RightEntrance
@@ -8388,6 +8392,12 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: TentEntry
+        TargetScene: OW_LostRoadTent
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 41.7
+        portalPositionY: -18.8
       - name: LeftEntrance
         TargetScene: OW_LostRoad2
         TargetSceneGate: RightEntrance
@@ -9454,6 +9464,51 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: 
       MapPoint: 
+    - sceneName: OW_LostRoadTent
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorRabbit
+        positionX: 121.4
+        positionY: -15.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorRabbit
+        positionX: 130.1
+        positionY: -14
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: NPC_ninja
+        interactableId: 
+        positionX: 25
+        positionY: -16
+      - interactableName: Entry
+        interactableId: 
+        positionX: 31
+        positionY: -19
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entry
+        TargetScene: OW_LostRoad2
+        TargetSceneGate: TentEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 30.630003
+        portalPositionY: -18.8
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -9490,7 +9545,9 @@ MonoBehaviour:
     Quests:
     - {fileID: 11400000, guid: 9e4ba54a52b946142adc6ae3483e2b2f, type: 2}
     - {fileID: 11400000, guid: 28e9e1f2ce3ced7458023ac782dcad59, type: 2}
+    - {fileID: 11400000, guid: 241c13b714737a64486725b5a0857a0b, type: 2}
     - {fileID: 11400000, guid: c2323ad8ecb79624ab492a12208f711e, type: 2}
+    - {fileID: 11400000, guid: 33a0e9b3841f4d148a6ea835de5a4783, type: 2}
     - {fileID: 11400000, guid: 7cd2b2edca79eae4d9d2224fa25cd6a4, type: 2}
     - {fileID: 11400000, guid: 55fd0fcb0a4030848ba2755764f16613, type: 2}
     - {fileID: 11400000, guid: 1f66867b44fcf8141a8118625cd97ea9, type: 2}
