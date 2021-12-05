@@ -18053,7 +18053,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f1733a24070ad4b97c1a0cb03f82ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RelevantQuests: []
+  RelevantQuests:
+  - {fileID: 11400000, guid: 6bf605f7197eeaf428ed9d418329a45d, type: 2}
+  - {fileID: 11400000, guid: 61e7883459d427a4eb7d538b15df7af0, type: 2}
+  - {fileID: 11400000, guid: 20bcc4be0a497ba4f844957e70e18b88, type: 2}
   HasQuestObject: {fileID: 1344351851}
   HasQuestInProgressObject: {fileID: 53433348}
   HasQuestCompleteObject: {fileID: 1141949665}
@@ -58963,7 +58966,194 @@ MonoBehaviour:
       OnDialogPiece:
         m_PersistentCalls:
           m_Calls: []
-    Decisions: []
+    Decisions:
+    - Content: '<u>Complete Quest: Stranded Agent</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 6bf605f7197eeaf428ed9d418329a45d, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: Huh?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Sheesh
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: The master sent you?
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: The master sent you?
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Oh alright, I am not really making any progress...
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Oh alright, I am not really making any progress...
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Maybe you can help me too.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions:
+            - Content: Accept
+              OnSelect:
+              - {fileID: 11400000, guid: c05d067cce9b6fa4cbd81bc2e60cc63e, type: 2}
+              OnSelectInvokation:
+                m_PersistentCalls:
+                  m_Calls: []
+              DisplayConditions: []
+              DisplayGameConditions: []
+              DisplayOnlyIfConditionsMet: 0
+              DefaultDialog:
+                DialogPieces: []
+                Decisions: []
+                IsFemale: 0
+            IsFemale: 0
+        IsFemale: 0
+    - Content: '<u>Complete Quest: Lost Token</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 61e7883459d427a4eb7d538b15df7af0, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: Oh, how the hell did you find it?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Under my feet the entire time?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Well, that's how it is...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: cb53c6edb2662324ab65e294efcddcae, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 0
+    - Content: '<u>Start Quest: Lost Token I</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 61e7883459d427a4eb7d538b15df7af0, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: According to the sailor's journal, there needs to be a prison
+            of some sort here in this city's ruins.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: In it, one of the inmates possesses a token, the token our sailors
+            on the coast have been after.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: The first problem is that I can't find that prison anywhere.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: The second problem is that if there is a prison, it is probably
+            full of skeletons, which makes it hard to search.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: ce95ce335a309f443970aa5bb56adc1d, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 0
+    - Content: '<u>Start Quest: Lost Token II</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 20bcc4be0a497ba4f844957e70e18b88, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: Alright, let the master know our work here is done.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: f5e8ec8f9b135f841b53afdce73cce7e, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 0
     IsFemale: 1
   CurrentDialog:
     DialogPieces: []

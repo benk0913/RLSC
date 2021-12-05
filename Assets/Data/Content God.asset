@@ -897,6 +897,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ed6c23549776b5141a833822dba03896, type: 2}
     - {fileID: 11400000, guid: 6c894797d0742fd48bb61bce067cb4ed, type: 2}
     - {fileID: 11400000, guid: eb1a1c06de5d40545b1ea89337c1665f, type: 2}
+    - {fileID: 11400000, guid: 7d11865515d72e34b80f352ff32cda3e, type: 2}
     - {fileID: 11400000, guid: 4d8248fe38dafba4597372c4e7c3cab5, type: 2}
     - {fileID: 11400000, guid: 80a7a416d1cafc84ca8455498667f97f, type: 2}
     - {fileID: 11400000, guid: e35aaeda36cbe8146bf180cec3caffc2, type: 2}
@@ -1535,6 +1536,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5f9e471d3cacdf8448005fab79750d47, type: 2}
     - {fileID: 11400000, guid: 563331ea4ae0c484a8b1b248e2d6f0f7, type: 2}
     - {fileID: 11400000, guid: e647627804455a2489accd4dc069eff7, type: 2}
+    - {fileID: 11400000, guid: 012a03552139e1142b5ce5cc3acd719d, type: 2}
     - {fileID: 11400000, guid: cca245c378813254192665a355a58a24, type: 2}
     - {fileID: 11400000, guid: 22bb819c19f666f4eb5cce1422a94ef9, type: 2}
     Equips:
@@ -7799,6 +7801,10 @@ MonoBehaviour:
         respawnSeconds: 20
         IrellevantMob: 1
       Interactables:
+      - interactableName: LostTowerTunnelEntry
+        interactableId: 
+        positionX: 137
+        positionY: -43
       - interactableName: WindowEntry
         interactableId: 
         positionX: 106
@@ -7818,9 +7824,15 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: LostTowerTunnelEntry
+        TargetScene: OW_LostTowerTunnel
+        TargetSceneGate: TowerEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 136.8
+        portalPositionY: -43.4
       - name: WindowEntry
         TargetScene: OW_LostTowersPlaza
-        TargetSceneGate: LostTowerFloor1Entrance
+        TargetSceneGate: LostTowerFloor2Entrance
         IsExpeditionLocked: 0
         portalPositionX: 106.3
         portalPositionY: 6.5
@@ -7838,7 +7850,7 @@ MonoBehaviour:
         portalPositionY: -30.2
       - name: WindowEntry2
         TargetScene: OW_LostTowersPlaza
-        TargetSceneGate: LostTowerFloor2Entrance
+        TargetSceneGate: LostTowerFloor3Entrance
         IsExpeditionLocked: 0
         portalPositionX: 106.3
         portalPositionY: 41
@@ -7962,6 +7974,10 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
+      - interactableName: TunnelEntrance
+        interactableId: 
+        positionX: 95
+        positionY: -23
       - interactableName: Entry
         interactableId: 
         positionX: 116
@@ -7969,6 +7985,12 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: TunnelEntrance
+        TargetScene: OW_LostTowerTunnel
+        TargetSceneGate: SecretBuildingEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 95.38
+        portalPositionY: -22.7
       - name: Entry
         TargetScene: OW_LostTowersPlaza
         TargetSceneGate: SecretBuildingEntry
@@ -9497,6 +9519,107 @@ MonoBehaviour:
         IsExpeditionLocked: 0
         portalPositionX: 30.630003
         portalPositionY: -18.8
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_LostTowerTunnel
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorGhostSmall
+        positionX: 358
+        positionY: -74.5
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorGhostSmall
+        positionX: 201.1
+        positionY: -71.7
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton2
+        positionX: 201.1
+        positionY: -71.7
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton2
+        positionX: 156.8
+        positionY: -74.2
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton2
+        positionX: 303.6
+        positionY: -73.7
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeletonPrisoner
+        positionX: 217.4
+        positionY: -72.8
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeletonPrisoner
+        positionX: 154.9
+        positionY: -71.2
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeletonPrisoner
+        positionX: 85.3
+        positionY: -74.5
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeletonPrisoner
+        positionX: 286.5
+        positionY: -69.4
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeletonPrisoner
+        positionX: 248.5
+        positionY: -72.7
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeletonPrisoner
+        positionX: 178.5
+        positionY: -72.2
+        respawnSeconds: 10
+        IrellevantMob: 1
+      - monsterName: ActorSkeletonPrisoner
+        positionX: 108.9
+        positionY: -74
+        respawnSeconds: 10
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: TowerEntry
+        interactableId: 
+        positionX: 127
+        positionY: -76
+      - interactableName: SecretBuildingEntrance
+        interactableId: 
+        positionX: 357
+        positionY: -76
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: TowerEntry
+        TargetScene: LostTowerTunnelEntry
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 127.43
+        portalPositionY: -75.9
+      - name: SecretBuildingEntrance
+        TargetScene: OW_SecretBuilding
+        TargetSceneGate: TunnelEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 356.9
+        portalPositionY: -76.4
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
