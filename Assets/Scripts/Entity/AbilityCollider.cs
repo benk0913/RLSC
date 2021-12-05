@@ -162,7 +162,10 @@ public class AbilityCollider : HitCollider
     {
         base.SetInfo(abilitySource, actorSource, abilityInstanceId, parentCollider);
         
-        incrementAbilityCollidersCount(AbilitySource.name);
+        if (AbilitySource != null)
+        {
+            incrementAbilityCollidersCount(AbilitySource.name);
+        }
 
         if(StickToSkilledShot)
         {
@@ -295,7 +298,11 @@ public class AbilityCollider : HitCollider
         {
             this.AttemptMissAbility();
         }
-        decrementAbilityCollidersCount(AbilitySource.name);
+        
+        if (AbilitySource != null)
+        {
+            decrementAbilityCollidersCount(AbilitySource.name);
+        }
     }
 
     private void incrementAbilityCollidersCount(string abilityName)
