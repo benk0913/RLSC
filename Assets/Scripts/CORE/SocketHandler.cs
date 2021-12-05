@@ -1754,6 +1754,7 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.CurrentUser.info.cashPoints = cash;
 
         CORE.Instance.InvokeEvent("InventoryUpdated");
+        
     }
 
     public void OnUserCharSlots(string eventName, JSONNode data)

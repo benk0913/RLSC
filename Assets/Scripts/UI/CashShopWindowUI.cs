@@ -100,8 +100,6 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
             return;
         }
 
-        CORE.Instance.SubscribeToEvent("CashShopUpdated", RefreshUI);
-        CORE.Instance.SubscribeToEvent("InventoryUpdated",RefreshEQPState);
         CORE.Instance.SubscribeToEvent("Disconnect", Hide);
 
 
@@ -119,7 +117,8 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void Show(ActorData actorData, object data = null)
     {
-        
+        CORE.Instance.SubscribeToEvent("CashShopUpdated", RefreshUI);
+        CORE.Instance.SubscribeToEvent("InventoryUpdated",RefreshEQPState);
 
         IsOpen = true;
 
@@ -178,6 +177,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void RefreshEQPState()
     {
+        Debug.LogError("CASH REFRESH");
 
         EQPLabel.text = System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.info.cashPoints);
 
