@@ -1408,6 +1408,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e6747eab06092d343b9aa1c5a9e740cf, type: 2}
     - {fileID: 11400000, guid: 7f73d868f6090a844b853eabb75a525c, type: 2}
     - {fileID: 11400000, guid: a7d439dfbf126b845a9d098144331dec, type: 2}
+    - {fileID: 11400000, guid: 2968765d58379e641866d22031478d12, type: 2}
+    - {fileID: 11400000, guid: 5ee49b9d53d789d4ca2560ea34870e32, type: 2}
+    - {fileID: 11400000, guid: dfad9d5905f9abd4c923da1fa4d0017e, type: 2}
     - {fileID: 11400000, guid: d8c357c90edb1a741add8105374c6865, type: 2}
     - {fileID: 11400000, guid: b5f92c9f9a81cef4ea682b20596ae707, type: 2}
     - {fileID: 11400000, guid: 36ae7797e3063c7459df1c482e8dfafb, type: 2}
@@ -5229,6 +5232,10 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
+      - interactableName: NPC_Vendor_Goods
+        interactableId: 
+        positionX: 35
+        positionY: -10
       - interactableName: "R\u0131ghtEntrance"
         interactableId: 
         positionX: 194
@@ -5245,7 +5252,7 @@ MonoBehaviour:
         interactableId: 
         positionX: 139
         positionY: -12
-      - interactableName: NPC_SIGN
+      - interactableName: NPC_ESPIONAGE
         interactableId: 
         positionX: 116
         positionY: 2
@@ -5257,6 +5264,10 @@ MonoBehaviour:
         interactableId: 
         positionX: -32
         positionY: -7
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: -65
+        positionY: -1
       - interactableName: NPC_TownVendorNightNEW
         interactableId: 
         positionX: 3
@@ -5301,6 +5312,11 @@ MonoBehaviour:
         portalPositionX: -66.25
         portalPositionY: -7.91
       Vendors:
+      - ID: TownVendorGoods
+        Items:
+        - {fileID: 11400000, guid: 2968765d58379e641866d22031478d12, type: 2}
+        - {fileID: 11400000, guid: 5ee49b9d53d789d4ca2560ea34870e32, type: 2}
+        - {fileID: 11400000, guid: dfad9d5905f9abd4c923da1fa4d0017e, type: 2}
       - ID: TownVendorNightNEW
         Items:
         - {fileID: 11400000, guid: c8a3cb7f993471f43a65c56960371741, type: 2}
@@ -9535,7 +9551,7 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_LostTowerTunnel
-      displyName: 
+      displyName: Underground Tunnel
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -9626,15 +9642,15 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
+      MusicTrack: DarkMusic
       Soundscape: 
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
-      Map: 
-      MapPoint: 
+      Map: WorldMap
+      MapPoint: LostTowers
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}

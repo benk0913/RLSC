@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95219eb7d644f142a40a738ada1fec8, type: 3}
-  m_Name: Prisoners Token
+  m_Name: Homesick Gem - Sunset Port
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: a09e17c0b4bbee2439d89573dd14e924, type: 3}
-  DisplayName: Prisoners Token
-  Description: 
+  Icon: {fileID: 6584074654734728694, guid: 635d623fd7a3c484db85b5cad060fa24, type: 3}
+  DisplayName: Homesick Gem - Sunset Port
+  Description: Teleprot back to Sunset Port
   UniquePrefab: 
   Stats:
     Power: 0
@@ -35,11 +35,11 @@ MonoBehaviour:
     DoubleCast: 0
     Explode: 0
     HpRegen: 0
-  VendorPrice: 1
+  VendorPrice: 500
   CashItemPrice: 0
-  DropChance: 0.05
-  Stackable: 1
-  Type: {fileID: 11400000, guid: 8601957de11c6dd4c9de05c042a2a108, type: 2}
+  DropChance: 1
+  Stackable: 0
+  Type: {fileID: 11400000, guid: 170f59166a416b849afe012ad0bf53eb, type: 2}
   Rarity: {fileID: 11400000, guid: 3c7a55160e621724b964830f1f1c5b24, type: 2}
   CashShopItem: 0
   OnlyOneAllowed: 0
@@ -52,4 +52,11 @@ MonoBehaviour:
   Pool: []
   OnExecuteParams: []
   OnHitParams: []
-  OnUseParams: []
+  OnUseParams:
+  - Type: {fileID: 11400000, guid: 32366588d2df46748af900b728d0fe94, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: Sunset Port
+    ObjectValue: {fileID: 0}
+    Value2: 
