@@ -327,6 +327,7 @@ public class VendorData
 {
     public string ID;
     public List<ItemData> Items = new List<ItemData>();
+    public bool ShuffleItems = true;
 }
 
 [Serializable]
