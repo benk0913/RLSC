@@ -136,6 +136,7 @@ public class DatabaseContent
     public int TaxiPrice = 50;
     public int BaseCoinDrop = 1;
     public float ExpeditionCoinMultiplier = 5;
+    public float PlayerDeathCoinPercent = 0.05f;
     public int BaseExp = 1;
     public float ExpeditionExpMultiplier = 0;
 
