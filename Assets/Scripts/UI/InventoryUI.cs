@@ -619,6 +619,49 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }
         });
     }
+
+    public void RefreshInventorySlotIndex(int index)
+    {
+        if(!this.gameObject.activeInHierarchy)
+        {
+            return;
+        }
+        InventorySlotUI slot = ItemsContainer.GetChild(index).GetComponent<InventorySlotUI>();
+        slot.SetItem(currentActor.items[index], () => Select(slot));
+    }
+
+    public void RefreshCashShopSlotIndex(int index)
+    {
+        if(!this.gameObject.activeInHierarchy)
+        {
+            return;
+        }
+        InventorySlotUI slot = CashItemsContainer.GetChild(index).GetComponent<InventorySlotUI>();
+        slot.SetItem(SocketHandler.Instance.CurrentUser.info.cashItems[index], () => Select(slot));
+    }
+
+    // public void RefreshEquipmentSlot(string equipType)
+    // {
+    //     if(!this.gameObject.activeInHierarchy)
+    //     {
+    //         return;
+    //     }
+
+    //     List<EquippableSlot> EquipSlots = EquipSlotsByTab[CurrentEquipmentTab].Slots;
+    //     for (int i = 0; i < EquipSlots.Count; i++)
+    //     {
+    //         Item item = null;
+    //         currentActor.equips.TryGetValue(EquipSlots[i].Type.name, out item); 
+    //         InventorySlotUI slot = EquipSlots[i].Slot;
+            
+    //         slot.SetItem(item, () => {
+    //             if (!isInspecting)
+    //             {
+    //                 Select(slot);
+    //             }
+    //         }, EquipSlots[i].Type);
+    //     }
+    // }
 }
 
 [System.Serializable]

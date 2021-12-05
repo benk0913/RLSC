@@ -68,8 +68,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         
         CurrentItem = item;
 
-        if(item != null)
-            CurrentItemData = item.Data;
+        CurrentItemData = null;
 
         IsInspecting = isInspecting;
 

@@ -1638,13 +1638,16 @@ public class SocketHandler : MonoBehaviour
         if (isCash)
         {
             CurrentUser.info.cashItems[slotIndex] = item;
+            InventoryUI.Instance.RefreshCashShopSlotIndex(slotIndex);
         }
         else
         {
             CurrentUser.actor.items[slotIndex] = item;
+            InventoryUI.Instance.RefreshInventorySlotIndex(slotIndex);
         }
 
-        CORE.Instance.InvokeEvent("InventoryUpdated");
+        //CORE.Instance.InvokeEvent("InventoryUpdated");
+        
     }
 
     public void OnActorUpdateEquipSlot(string eventName, JSONNode data)
@@ -1669,6 +1672,7 @@ public class SocketHandler : MonoBehaviour
         {
             InventoryUI.Instance.EquippedItem(item);
             CORE.Instance.InvokeEvent("InventoryUpdated");
+           //InventoryUI.Instance.RefreshEquipmentSlot(equipType);
         }
         
     }
@@ -1966,8 +1970,8 @@ public class SocketHandler : MonoBehaviour
 
         if (!string.IsNullOrEmpty(leaderName))
         {
-            string hasInvited = " had invited you to a party!";
-            CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" had invited you to a party!", out hasInvited);
+            string hasInvited = " has invited you to a party!";
+            CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has invited you to a party!", out hasInvited);
 
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + hasInvited+"</color>");
             LootRollPanelUI.Instance.AddPartyInvitation(leaderName);
@@ -1984,8 +1988,8 @@ public class SocketHandler : MonoBehaviour
 
     public void OnPartyInviteTimeout(string eventName, JSONNode data)
     {
-        string hadInvitedYou = "The party invitation had timed out...";
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("The party invitation had timed out...", out hadInvitedYou);
+        string hadInvitedYou = "The party invitation has timed out...";
+        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise("The party invitation has timed out...", out hadInvitedYou);
 
         CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + "> "+ hadInvitedYou + "</color>");
         LootRollPanelUI.Instance.RemovePartyInvitation();
