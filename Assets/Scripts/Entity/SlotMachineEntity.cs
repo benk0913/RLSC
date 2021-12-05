@@ -74,7 +74,7 @@ public class SlotMachineEntity : MonoBehaviour
     {
         AudioControl.Instance.PlayInPosition(SpinSound,transform.position);
         Anim.SetTrigger("Spin");
-        int SpinCount = Random.Range(3,10);
+        int SpinCount = Random.Range(5,20);
         for(int i=0;i<SpinCount;i++)
         {
             SlotA.sprite = Blurs[Random.Range(0,Blurs.Count)];
