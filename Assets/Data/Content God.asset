@@ -986,6 +986,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c821f234518997f4abc1bf0c42fc767d, type: 2}
     - {fileID: 11400000, guid: 9c47ce5310feb2e48b6d4f52e30d0179, type: 2}
     - {fileID: 11400000, guid: 26ad2c546d9aace4196053459e21c514, type: 2}
+    - {fileID: 11400000, guid: 1bc048fcf461fb143aaa0f5c86ebdb0b, type: 2}
+    - {fileID: 11400000, guid: 03a6bd1f81b7bff4eb400909c854316d, type: 2}
     - {fileID: 11400000, guid: d1619de8f68d40041ae116c5cabc5c2e, type: 2}
     - {fileID: 11400000, guid: 223e9d5eadf61da4fb2e8382acb02c41, type: 2}
     - {fileID: 11400000, guid: a9e8faedaee35c14ba30ce8220383297, type: 2}
@@ -1114,6 +1116,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 946318128a58b2545a9c6960f13a64f4, type: 2}
     - {fileID: 11400000, guid: 79101fa84581b674bbbc30897da367b7, type: 2}
     - {fileID: 11400000, guid: 5fbedf07b6020d244bed5f3943ae0124, type: 2}
+    - {fileID: 11400000, guid: bb8e28264fee77945886ae81de9bb934, type: 2}
     - {fileID: 11400000, guid: 6e0b1f0985d5b4044b9e0646fea1046a, type: 2}
     - {fileID: 11400000, guid: 0c4fc0205cfea4142993f0d2ae4654e3, type: 2}
     - {fileID: 11400000, guid: 779fb6fa3a2b11544a2a3b569a3b4752, type: 2}
@@ -5329,6 +5332,7 @@ MonoBehaviour:
         - {fileID: 11400000, guid: d26e08196260bc448b91ff3471d8e504, type: 2}
         - {fileID: 11400000, guid: c35c5387f27e10c4c9cbdfee1759dea9, type: 2}
         - {fileID: 11400000, guid: a5096962d0368e74cb2f7c2cd797463e, type: 2}
+        ShuffleItems: 1
       - ID: TownVendorDay
         Items:
         - {fileID: 11400000, guid: 430e8a6209e514c4ca5c4dc1013529d2, type: 2}
@@ -5353,6 +5357,7 @@ MonoBehaviour:
         - {fileID: 11400000, guid: c55a799ad2dbc3241ada4a8f6ee2d4a3, type: 2}
         - {fileID: 11400000, guid: b2389236fdcca784fba89ead1db9db7a, type: 2}
         - {fileID: 11400000, guid: 9c8660a0259b09d41826645ade3e1c51, type: 2}
+        ShuffleItems: 1
       OnDemandParams: []
       RespawnMap: Sunset Port
       MusicTrack: Yo ho ho
@@ -7901,6 +7906,10 @@ MonoBehaviour:
         interactableId: 
         positionX: 111
         positionY: -27
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: 113
+        positionY: -27
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
@@ -7909,12 +7918,6 @@ MonoBehaviour:
         TargetSceneGate: TowerChamberEntry
         IsExpeditionLocked: 0
         portalPositionX: 82.99
-        portalPositionY: -27.28
-      - name: BossChamberEntry
-        TargetScene: OW_LostTowersChamber
-        TargetSceneGate: Entry
-        IsExpeditionLocked: 0
-        portalPositionX: 111.03
         portalPositionY: -27.28
       Vendors: []
       OnDemandParams: []
@@ -7933,14 +7936,44 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
+      - monsterName: ActorBat
+        positionX: 110.58
+        positionY: -9.73
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 111.75
+        positionY: -9.73
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 111.83
+        positionY: -7.06
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 111.5
+        positionY: -6.22
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 112.58
+        positionY: -11.24
+        respawnSeconds: 8
+        IrellevantMob: 1
       - monsterName: ActorSpikesDeadly
         positionX: 83.7
         positionY: -30.49
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorSpikesDeadly
-        positionX: 142.5
-        positionY: -30.49
+      - monsterName: ActorBatBig
+        positionX: 111.08
+        positionY: -14.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 109.49
+        positionY: -10.15
         respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorBatBig
@@ -7948,19 +7981,29 @@ MonoBehaviour:
         positionY: -4.2
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorBatBig
-        positionX: 113.3
-        positionY: -7.6
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorBatBig
-        positionX: 111.5
-        positionY: -6.3
+      - monsterName: ActorBat
+        positionX: 110.58
+        positionY: -9.73
         respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorSkeleton3
         positionX: 134.5
         positionY: -29
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 142.5
+        positionY: -30.49
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorTowerLord
+        positionX: 128.6
+        positionY: -21.5
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorBatBig
+        positionX: 113.3
+        positionY: -7.6
         respawnSeconds: 8
         IrellevantMob: 1
       Interactables:
@@ -9675,6 +9718,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1049c1152bc701f4aae659e35ff5b404, type: 2}
     - {fileID: 11400000, guid: a90382295a280f34fb0e7447835c7063, type: 2}
     - {fileID: 11400000, guid: a46d2ac9e5a7c0843855184554a49fe0, type: 2}
+    - {fileID: 11400000, guid: 6316f3673ceba114187e0f620dc19064, type: 2}
     - {fileID: 11400000, guid: 55f7a0f906096f44f8541173f0fdace4, type: 2}
     ExpChart: 0000000064000000c80000009001000020030000dc050000280a0000681000000019000054240000
     TimePhases:
