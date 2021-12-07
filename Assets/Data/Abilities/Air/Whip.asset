@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: A_Whip_PrepareOGG
     ExecuteAbilitySound: A_Whip_ExecuteOGG
@@ -43,8 +44,16 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: 18
     ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 1
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 0e02fe5e1a71afb40b335b3775c95175, type: 2}
     Value2: 
   OnMissParams: []
