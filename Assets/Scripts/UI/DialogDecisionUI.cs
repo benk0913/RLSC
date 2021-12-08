@@ -20,6 +20,14 @@ public class DialogDecisionUI : MonoBehaviour
         {
             return;
         }
+
+        foreach (AbilityCondition condition in CurrentDecision.DisplayConditions)
+        {
+            if(!condition.IsValid(null))
+            {
+                return;
+            }
+        }
         
         DecisionContainerUI.Instance.Hide();
         CurrentDecision.SelectDecision();
