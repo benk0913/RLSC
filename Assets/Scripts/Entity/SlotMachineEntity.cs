@@ -79,12 +79,23 @@ public class SlotMachineEntity : MonoBehaviour
     }
 
     Coroutine SpinRoutineInstance;
-    IEnumerator SpinRoutine(WinType type)
+    IEnumerator SpinRoutine(WinType type) //fornow result is hardcoded = 0-3 win, 4 - slime, 5 - reward, 6-big win, 7 lose
     {
+        
+            if(!CORE.IsMachinemaMode )
+            {
+                HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntityAlly").GetComponent<HitLabelEntityUI>();
+
+                label.SetLabel("Spin: "+CORE.Instance.Data.content.Slots.SlotMachinePrice, Color.yellow);
+
+                label.transform.position = transform.position;
+                
+            }
+
         CurrentGold.text = System.String.Format("{0:n0}", CORE.PlayerActor.money);
         AudioControl.Instance.PlayInPosition(SpinSound, transform.position);
         Anim.SetTrigger("Spin");
-        int SpinCount = Random.Range(5, 20);
+        int SpinCount = Random.Range(5, 15);
         for (int i = 0; i < SpinCount; i++)
         {
             SlotA.sprite = Blurs[Random.Range(0, Blurs.Count)];
@@ -95,6 +106,7 @@ public class SlotMachineEntity : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(0f, 0.05f));
         }
 
+        int result = (int)type;
         if (type == WinType.Lose)
         {
             List<Sprite> trueOptions = new List<Sprite>();
@@ -119,7 +131,7 @@ public class SlotMachineEntity : MonoBehaviour
         }
         else if (type == WinType.Reward)
         {
-            int result = Options.Count - 1;
+            
 
             SlotA.sprite = Options[result];
             AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
@@ -140,7 +152,6 @@ public class SlotMachineEntity : MonoBehaviour
         }
         else if (type == WinType.Slime)
         {
-            int result = Options.Count - 2;
 
             SlotA.sprite = Options[result];
             AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
@@ -159,9 +170,8 @@ public class SlotMachineEntity : MonoBehaviour
 
             AudioControl.Instance.PlayInPosition(SlotSlimeSound, transform.position);
         }
-        else if (type == WinType.Win)
+        else if (type == WinType.Win1 || type == WinType.Win2 ||type == WinType.Win3 ||  type == WinType.Win4)
         {
-            int result = Random.Range(0, Options.Count - 3);
 
             SlotA.sprite = Options[result];
             AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
@@ -184,17 +194,17 @@ public class SlotMachineEntity : MonoBehaviour
         {
 
 
-            SlotA.sprite = Options[Options.Count - 1];
+            SlotA.sprite = Options[5];
             AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
             yield return new WaitForSeconds(Random.Range(0f, 0.5f));
 
-            SlotB.sprite = Options[Options.Count - 1];
+            SlotB.sprite = Options[5];
             AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
             yield return new WaitForSeconds(Random.Range(0f, 0.5f));
 
-            SlotC.sprite = Options[Options.Count - 1];
+            SlotC.sprite = Options[5];
             AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
             yield return new WaitForSeconds(Random.Range(0f, 0.5f));
@@ -202,11 +212,39 @@ public class SlotMachineEntity : MonoBehaviour
             AudioControl.Instance.PlayInPosition(SlotWinBigSound, transform.position);
         }
 
+                
+        if ((int)type < CORE.Instance.Data.content.Slots.Rewards.Count) {
+            AbilityParam Reward = CORE.Instance.Data.content.Slots.Rewards[(int)type];
+
+
+            if(!CORE.IsMachinemaMode && Reward.Type != null)
+            {
+                HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntityAlly").GetComponent<HitLabelEntityUI>();
+
+                if(Reward.Type.name == "Gain Money")
+                {
+                    label.SetLabel("Earned: "+Reward.Value, Color.yellow);
+                }
+                else if(Reward.Type.name == "Spawn")
+                {
+                    label.SetLabel("SLIME!", Color.red);
+                }
+                else
+                {
+                    label.SetLabel("REWARD!", Color.green);
+                }
+
+                label.transform.position = transform.position;
+                
+            }
+            
+        }
+
         SpinRoutineInstance = null;
     }
     public enum WinType
     {
-        WinBig, Win, Reward, Slime, Lose
+        Win1,Win2,Win3,Win4, Slime,Reward,WinBig, Lose
     }
 }
 

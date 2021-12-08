@@ -1618,11 +1618,7 @@ public class SocketHandler : MonoBehaviour
     {
         int WinRewardIndex = data["rewardIndex"].AsInt;
         SlotMachineEntity.WinType WinType = (SlotMachineEntity.WinType)WinRewardIndex;
-        
-        if (WinRewardIndex < CORE.Instance.Data.content.Slots.Rewards.Count) {
-            AbilityParam Reward = CORE.Instance.Data.content.Slots.Rewards[WinRewardIndex];
-            // TODO show the proper win according to the abilityParam win
-        }
+
         SlotMachineEntity.Instance.Spin(WinType);
     }
 
