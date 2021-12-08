@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 1551737044}
   - component: {fileID: 1551737046}
   - component: {fileID: 7318722103061463516}
-  - component: {fileID: 1988141500076383285}
+  - component: {fileID: 4018855144712917049}
   m_Layer: 8
   m_Name: ActorPuffBunny
   m_TagString: Actor
@@ -953,7 +953,7 @@ MonoBehaviour:
   Rigid: {fileID: 1551737043}
   Body: {fileID: 1450574624275921511}
   PlayerControl: {fileID: 7318722103061463516}
-  AIControl: {fileID: 1988141500076383285}
+  AIControl: {fileID: 4018855144712917049}
   Animer: {fileID: 1968958247804861251}
   Skin: {fileID: 0}
   GroundMask:
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentActor: {fileID: 1551737046}
---- !u!114 &1988141500076383285
+--- !u!114 &4018855144712917049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1008,20 +1008,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7785496889078657400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a092977ecadb3f349b9a41d4377cc9c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3248b4929e02a8a4aa33d75aaefbe169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Act: {fileID: 1551737046}
-  ChaseBehaviour: 3
+  ChaseBehaviour: 2
   IsBoss: 0
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4097
   NoticeDistance: 15
   Asleep: 1
   DontInitiateSpells: 0
   ChaseDistance: 1
-  FleeDistance: 10
+  FleeDistance: 35
   HasTargetingLine: 0
   IsJumping: 1
   PatrolTargetArea: 1

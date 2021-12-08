@@ -1365,7 +1365,12 @@ public class Actor : MonoBehaviour
                 }
             case "Escape":
                 {
-                    MovementEffectRoutineInstance = StartCoroutine(MovementEscapeRoutine());
+                    MovementEffectRoutineInstance = StartCoroutine(MovementEscapeRoutine(1f));
+                    break;
+                }
+                case "EscapeSmall":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementEscapeRoutine(0.5f));
                     break;
                 }
             case "Pounce":
@@ -1802,9 +1807,9 @@ public class Actor : MonoBehaviour
         MovementEffectRoutineInstance = null;
     }
 
-    IEnumerator MovementEscapeRoutine()
+    IEnumerator MovementEscapeRoutine(float powerMult = 1f)
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 25, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 25 * powerMult, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
 

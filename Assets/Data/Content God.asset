@@ -939,6 +939,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3bcff0301aa8ae04ab59c2439349e274, type: 2}
     - {fileID: 11400000, guid: c43b041613882e9429b142df748d58d4, type: 2}
     - {fileID: 11400000, guid: 02e95dac9b1d6b245b293c0dbaf21f78, type: 2}
+    - {fileID: 11400000, guid: 3f0d1ab27c85a4e4b90eb6adf26a4842, type: 2}
     - {fileID: 11400000, guid: d1d27dc14a3312940bb5b0f5755ba6bb, type: 2}
     - {fileID: 11400000, guid: 6bd271e114edf0943948b1f3eca51205, type: 2}
     - {fileID: 11400000, guid: 1b111a0e7c1e5d440a4dde03128eaa76, type: 2}
@@ -982,6 +983,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d00c66bf0838ab14c8bdc4e1d49a8a91, type: 2}
     - {fileID: 11400000, guid: b0d5be31382a90546bf016a55aca8ffe, type: 2}
     - {fileID: 11400000, guid: 539935ce1ad6f2943a4f7a2816c2de26, type: 2}
+    - {fileID: 11400000, guid: 949b184eb5ca89c408d9698bb49a6919, type: 2}
     - {fileID: 11400000, guid: d15000ef0223f3449aa864a6bfaa883b, type: 2}
     - {fileID: 11400000, guid: cf28bb3650589b642bd9e154c5c4f964, type: 2}
     - {fileID: 11400000, guid: 335051bb704d08a4f8aeb34b9aef219e, type: 2}
@@ -1470,10 +1472,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d1e7b737b81ad2f4c8eef25a9dca03f8, type: 2}
     - {fileID: 11400000, guid: 4546d2385e6716d45aeb4f5344d27d2d, type: 2}
     - {fileID: 11400000, guid: 67efa0e8f55d6a44f8ee3230efcdfc95, type: 2}
-    - {fileID: 11400000, guid: ef9e6a867d90868458e9f96d9e3bb5ef, type: 2}
-    - {fileID: 11400000, guid: f1a00489c7b06c24a983482d975a8f8c, type: 2}
-    - {fileID: 11400000, guid: fe9f9c937fa0b9940ac34b8ef063831b, type: 2}
-    - {fileID: 11400000, guid: f35907a61a2d7aa4885c9d2823fae534, type: 2}
     - {fileID: 11400000, guid: 92085bad32834934689a1c21ec9e5d77, type: 2}
     - {fileID: 11400000, guid: dee5dbe8ba3bb6746ac9d0583431a1a4, type: 2}
     - {fileID: 11400000, guid: ac7df18154c9b424b9f9e781d6933ab7, type: 2}
@@ -1513,6 +1511,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6e5675d1716c37144a5b4977ee823509, type: 2}
     - {fileID: 11400000, guid: 1694f49046c9df343a78d726bf4e744e, type: 2}
     - {fileID: 11400000, guid: 9947cbd0f0f3663468c73c7aa9265b06, type: 2}
+    - {fileID: 11400000, guid: ef9e6a867d90868458e9f96d9e3bb5ef, type: 2}
+    - {fileID: 11400000, guid: f1a00489c7b06c24a983482d975a8f8c, type: 2}
+    - {fileID: 11400000, guid: fe9f9c937fa0b9940ac34b8ef063831b, type: 2}
+    - {fileID: 11400000, guid: f35907a61a2d7aa4885c9d2823fae534, type: 2}
     - {fileID: 11400000, guid: 39dfcf1d39fe691459dc1a0ab9635f95, type: 2}
     - {fileID: 11400000, guid: d6250070a48a5344a931cccc35c1a9c9, type: 2}
     - {fileID: 11400000, guid: e32992f0f9061694e9838088f1102f93, type: 2}
@@ -6092,10 +6094,18 @@ MonoBehaviour:
         interactableId: 
         positionX: 17
         positionY: 12
+      - interactableName: CaveEntrance
+        interactableId: 
+        positionX: -26
+        positionY: -8
       - interactableName: GateRightInteractable
         interactableId: 
         positionX: 1
         positionY: -4
+      - interactableName: SlotMachine
+        interactableId: 
+        positionX: 23
+        positionY: 12
       - interactableName: NPC_Keeper
         interactableId: 
         positionX: 44
@@ -6109,12 +6119,18 @@ MonoBehaviour:
         IsExpeditionLocked: 0
         portalPositionX: 17.41
         portalPositionY: 11.81
+      - name: CaveEntrance
+        TargetScene: OW_SunsetPortCave1
+        TargetSceneGate: TavernEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -25.9
+        portalPositionY: -8.27
       - name: TavernEntrance
         TargetScene: Sunset Port
         TargetSceneGate: TavernEntrance
         IsExpeditionLocked: 0
         portalPositionX: 1.18
-        portalPositionY: -4.04
+        portalPositionY: -3.95
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
@@ -6626,51 +6642,6 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorPuffBunny
-        positionX: 356
-        positionY: -13.4
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 465.3
-        positionY: 25.5
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 491.2
-        positionY: 18.5
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 430.2
-        positionY: 7.7
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 227.3
-        positionY: -18.3
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 218.9
-        positionY: -18.9
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 215.7
-        positionY: -17.7
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit
-        positionX: 269.98
-        positionY: -18.4
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit
-        positionX: 227.28
-        positionY: -18.29
-        respawnSeconds: 60
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 442.2
         positionY: 21.85
@@ -6691,10 +6662,25 @@ MonoBehaviour:
         positionY: -7.21
         respawnSeconds: 60
         IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 218.9
+        positionY: -18.9
+        respawnSeconds: 12
+        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 440
         positionY: 14.150002
         respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 491.2
+        positionY: 18.5
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 215.7
+        positionY: -17.7
+        respawnSeconds: 12
         IrellevantMob: 1
       - monsterName: ActorShellCrab
         positionX: 434.5
@@ -6704,6 +6690,11 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit
         positionX: 276.89
         positionY: 9.349999
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 227.28
+        positionY: -18.29
         respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
@@ -6741,6 +6732,11 @@ MonoBehaviour:
         positionY: -8.7
         respawnSeconds: 60
         IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 465.3
+        positionY: 25.5
+        respawnSeconds: 12
+        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 339.2
         positionY: -4.3
@@ -6754,6 +6750,11 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit
         positionX: 425.9
         positionY: 9.35
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 269.98
+        positionY: -18.4
         respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorShellCrabSmall
@@ -6781,11 +6782,6 @@ MonoBehaviour:
         positionY: -3.7899997
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 334.5
-        positionY: -19.9
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 287.19
         positionY: 18.800001
@@ -6806,20 +6802,25 @@ MonoBehaviour:
         positionY: -16.17
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 297.8
-        positionY: -65
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 280.95
         positionY: -0.95
         respawnSeconds: 60
         IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 430.2
+        positionY: 7.7
+        respawnSeconds: 12
+        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 341.8
         positionY: 3.1
         respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 356
+        positionY: -13.4
+        respawnSeconds: 12
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 414.3
@@ -6831,15 +6832,15 @@ MonoBehaviour:
         positionY: -4.09
         respawnSeconds: 60
         IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 227.3
+        positionY: -18.3
+        respawnSeconds: 12
+        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 205.59
         positionY: -9.76
         respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 307.4
-        positionY: -65.2
-        respawnSeconds: 12
         IrellevantMob: 1
       Interactables:
       - interactableName: RightEntrance
@@ -6850,14 +6851,26 @@ MonoBehaviour:
         interactableId: 
         positionX: 442
         positionY: -91
+      - interactableName: RightEntrance
+        interactableId: 
+        positionX: 312
+        positionY: -57
       - interactableName: LeftEntrance
         interactableId: 
         positionX: 104
         positionY: -17
       - interactableName: NPC_SIGN
         interactableId: 
-        positionX: 149
+        positionX: 147
+        positionY: -16
+      - interactableName: NPC_SIGN
+        interactableId: 
+        positionX: 141
         positionY: -17
+      - interactableName: NPC_Trainer1
+        interactableId: 
+        positionX: 322
+        positionY: -59
       - interactableName: NPC_SIGN
         interactableId: 
         positionX: 197
@@ -6893,6 +6906,12 @@ MonoBehaviour:
         IsExpeditionLocked: 0
         portalPositionX: 441.6
         portalPositionY: -90.7
+      - name: CaveEntrance
+        TargetScene: OW_SunsetPortCave2
+        TargetSceneGate: CrossroadEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 312
+        portalPositionY: -57.1
       - name: LeftEntrance
         TargetScene: Sunset Port
         TargetSceneGate: RightEntrance
@@ -8494,12 +8513,77 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
+      - monsterName: ActorSimpleFruit
+        positionX: 121.72
+        positionY: -3.02
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 124.7
+        positionY: -7.23
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 118.88
+        positionY: -9.35
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 93.73
+        positionY: -15.13
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 107.9
+        positionY: -13.38
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 104.799995
+        positionY: -6.5999994
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 114.1
+        positionY: -14.8
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 103.45
+        positionY: -15.81
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit
+        positionX: 88.9
+        positionY: -19.7
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: 384.7
+        positionY: -6.3
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: 372.3
+        positionY: -10
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSlime
+        positionX: 399.6
+        positionY: -8.9
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSalamanderSmall
+        positionX: 374.2
+        positionY: -71.2
+        respawnSeconds: 12
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 261
         positionY: -115.5
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeing
+      - monsterName: ActorMushroomSmall
         positionX: 358.4
         positionY: -9.9
         respawnSeconds: 12
@@ -8507,17 +8591,17 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit
         positionX: 344
         positionY: 12.660001
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
-        positionX: 210
-        positionY: -20.970001
-        respawnSeconds: 300
+        positionX: 99.420006
+        positionY: -17.950003
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
-        positionX: 200.7
-        positionY: -12.77
-        respawnSeconds: 300
+        positionX: 90.12
+        positionY: -9.750002
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 235.1
@@ -8527,19 +8611,19 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit
         positionX: 392.6
         positionY: -5.84
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 372.8
         positionY: 2.3599997
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 222.5
         positionY: -111.8
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeing
+      - monsterName: ActorMushroomSmall
         positionX: 211.4
         positionY: -47.9
         respawnSeconds: 12
@@ -8547,9 +8631,9 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit
         positionX: 354.7
         positionY: -3.8400002
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeingWild
+      - monsterName: ActorMushroomSmall
         positionX: 147.2
         positionY: -20.5
         respawnSeconds: 12
@@ -8559,7 +8643,7 @@ MonoBehaviour:
         positionY: -115.5
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeing
+      - monsterName: ActorMushroomSmall2
         positionX: 229.2
         positionY: -19.4
         respawnSeconds: 12
@@ -8567,7 +8651,7 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit
         positionX: 364.5
         positionY: -7.94
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSalamander
         positionX: 205.8
@@ -8577,12 +8661,12 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit
         positionX: 384.6
         positionY: -2.7399998
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 380.6
         positionY: 10.259999
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 343.79
@@ -8604,7 +8688,7 @@ MonoBehaviour:
         positionY: -115.5
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorFlowerbeing
+      - monsterName: ActorMushroomSmall2
         positionX: 376.2
         positionY: -68.7
         respawnSeconds: 12
@@ -8637,7 +8721,7 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit
         positionX: 353.1
         positionY: 30.6
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 319.3
@@ -8647,12 +8731,12 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit
         positionX: 394.2
         positionY: 3.96
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 340.7
         positionY: -3.04
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 211.7
@@ -8660,13 +8744,17 @@ MonoBehaviour:
         respawnSeconds: 12
         IrellevantMob: 1
       Interactables:
+      - interactableName: NPC_SIGN
+        interactableId: 
+        positionX: 68
+        positionY: -17
       - interactableName: "R\u0131ghtEntrance"
         interactableId: 
         positionX: 424
         positionY: 14
       - interactableName: LeftEntrance
         interactableId: 
-        positionX: 104
+        positionX: 17
         positionY: -17
       - interactableName: LostRoadEntrance
         interactableId: 
@@ -8697,7 +8785,7 @@ MonoBehaviour:
         TargetScene: OW_SunsetPort_Crossroads
         TargetSceneGate: RightEntrance
         IsExpeditionLocked: 0
-        portalPositionX: 104.3
+        portalPositionX: 16.9
         portalPositionY: -17.2
       - name: LostRoadEntrance
         TargetScene: OW_LostRoad1
@@ -9966,6 +10054,233 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: LostTowers
+    - sceneName: OW_SunsetPortCave1
+      displyName: Sunset Cave 1
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorBat
+        positionX: 119.7
+        positionY: 0.1
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 126.1
+        positionY: -10.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorGhostSmall
+        positionX: 83.82
+        positionY: -24.46
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 124.3
+        positionY: -27
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 122.7
+        positionY: -1.2
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 121
+        positionY: -32
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: TavernEntry
+        interactableId: 
+        positionX: 58
+        positionY: 0
+      - interactableName: Entry
+        interactableId: 
+        positionX: 62
+        positionY: -20
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: TavernEntrance
+        TargetScene: SunsetPortTavern
+        TargetSceneGate: CaveEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 58.09
+        portalPositionY: -0.07
+      - name: CaveEntrance
+        TargetScene: OW_SunsetPortCave2
+        TargetSceneGate: TavernEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 62.3
+        portalPositionY: -20.45
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: SunsetPort
+    - sceneName: OW_SunsetPortCave2
+      displyName: 'Sunset Cave 2 '
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSpikes
+        positionX: 156.1
+        positionY: 32.2
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 105.6
+        positionY: -21
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 80.9
+        positionY: -22.1
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 203
+        positionY: 21
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 100.4
+        positionY: -22.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 73.9
+        positionY: -4.2
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 157.4
+        positionY: 71.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 187.1
+        positionY: 73.9
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 80.1
+        positionY: -2.9
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 189.8
+        positionY: -9.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 186.2
+        positionY: 74.9
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorGhostSmall
+        positionX: 89.7
+        positionY: -20.2
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 156.1
+        positionY: 27.5
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 199.6
+        positionY: 47.6
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 161.2
+        positionY: 73.8
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 198.4
+        positionY: -3.6
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 197.5
+        positionY: 52.9
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 202.1
+        positionY: 15.4
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 186.8
+        positionY: 75.4
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 75.4
+        positionY: -21.7
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 199.1
+        positionY: 0.8
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 189.2
+        positionY: 73.3
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 186.1
+        positionY: -11.7
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: TavernEntrance
+        interactableId: 
+        positionX: 62
+        positionY: -19
+      - interactableName: CrossroadEntrance
+        interactableId: 
+        positionX: 163
+        positionY: 55
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: TavernEntrance
+        TargetScene: OW_SunsetPortCave1
+        TargetSceneGate: CaveEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 61.9
+        portalPositionY: -19.48
+      - name: CrossroadEntrance
+        TargetScene: OW_SunsetPort_Crossroads
+        TargetSceneGate: CaveEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 163.36
+        portalPositionY: 55.38
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: SunsetSplit
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -10018,8 +10333,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7905986fd48275448858026c7f2bd571, type: 2}
     - {fileID: 11400000, guid: 38acfffe4b19a534abd89359c43b13aa, type: 2}
     - {fileID: 11400000, guid: 9b03d1e65fc6fbf40aeadb3500f86613, type: 2}
+    - {fileID: 11400000, guid: 42e0fd2537a17b44cb69726fd5998886, type: 2}
     - {fileID: 11400000, guid: 61e7883459d427a4eb7d538b15df7af0, type: 2}
     - {fileID: 11400000, guid: 20bcc4be0a497ba4f844957e70e18b88, type: 2}
+    - {fileID: 11400000, guid: 09866368ec5f08e4d85438cc3ba207a5, type: 2}
     - {fileID: 11400000, guid: e902b1f398915214dacd2fe333df5d64, type: 2}
     - {fileID: 11400000, guid: 9b025b7671a7a154580d929bf303ce43, type: 2}
     - {fileID: 11400000, guid: 6bf605f7197eeaf428ed9d418329a45d, type: 2}

@@ -1698,6 +1698,10 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
+        if(actorDat.IsPlayer)
+        {
+            CORE.Instance.IsPickingUpItem = false;
+        }
 
         item.Entity.BePickedBy(actorDat.ActorEntity);
         if (item.Data.Type.name == "Money")
