@@ -48,6 +48,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
         // Randomize whether a female or not only at the beginning.
         DisplayActor.State.Data.looks.IsFemale = Random.Range(0, 2) == 0;
         
+        RandomizeName();
         Randomize();
 
         UpdateClassJob(classJobIndex);
@@ -69,8 +70,6 @@ public class CreateCharacterPanelUI : MonoBehaviour
             "#" + ColorUtility.ToHtmlStringRGB(CORE.Instance.Data.content.Visuals.DefaultSkinColor[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultSkinColor.Count)]);
         DisplayActor.State.Data.looks.HairColor =
             "#" + ColorUtility.ToHtmlStringRGB(CORE.Instance.Data.content.Visuals.DefaultHairColor[Random.Range(0, CORE.Instance.Data.content.Visuals.DefaultHairColor.Count)]);
-
-        RandomizeName();
         
         DisplayActor.RefreshLooks();
     }
