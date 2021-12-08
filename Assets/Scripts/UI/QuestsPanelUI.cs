@@ -63,11 +63,26 @@ public class QuestsPanelUI : MonoBehaviour
             objSubPanel.transform.localScale = Vector3.one;
 
             objSubPanel.SetInfo(progress.QuestData);
-            createdYPush -= 30f;
-            objSubPanel.transform.position = Container.childCount > 0?
-             Container.GetChild(0).position + new Vector3(0f,createdYPush,0) 
-             :
-            Container.transform.position + new Vector3(createdYPush,createdYPush,0);
+            createdYPush -= 40f;
+
+            if(Container.childCount > 0)
+            {
+                Transform mostLowLeftChild = Container.GetChild(Container.childCount-1);
+                for(int i=0;i<Container.childCount;i++)
+                {
+                    if(Container.GetChild(i).position.x < mostLowLeftChild.position.x && Container.GetChild(i).position.y < mostLowLeftChild.position.y)
+                    {
+                        mostLowLeftChild = Container.GetChild(i);
+                    }
+                }
+
+                objSubPanel.transform.position = mostLowLeftChild.position + new Vector3(0f,createdYPush,0);
+            }
+            else
+            {
+                objSubPanel.transform.position = Container.transform.position + new Vector3(createdYPush,createdYPush,0);
+            }
+            
         }
 
         //REMOVE OLD

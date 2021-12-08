@@ -17,6 +17,13 @@ public class DisplayCharacterUI : MonoBehaviour//, IPointerClickHandler
     [SerializeField]
     GameObject SelectionObject;
 
+    void OnEnable()
+    {
+        if(AttachedCharacter != null)
+        {
+            AttachedCharacter.IsDisplayActor = true;
+        }
+    }
     public void SetInfo(Action onClick = null)
     {
         OnClick = onClick;

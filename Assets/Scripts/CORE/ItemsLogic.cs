@@ -122,7 +122,8 @@ public class ItemsLogic
     public static string GetItemTooltip(ItemData itemData)
     {
         string text = CORE.QuickTranslate(itemData.DisplayName);
-
+        
+        text += System.Environment.NewLine +"<i><color=#" + ColorUtility.ToHtmlStringRGB(itemData.Rarity.RarityColor)+ ">"+ CORE.SplitCamelCase(CORE.QuickTranslate(itemData.Rarity.name))+"</color></i>";
         text += System.Environment.NewLine +"<i><color=" + Colors.COLOR_HIGHLIGHT + ">"+ CORE.SplitCamelCase(CORE.QuickTranslate(itemData.Type.name))+"</color></i>";
         
         string description = CORE.QuickTranslate(itemData.Description).Trim();

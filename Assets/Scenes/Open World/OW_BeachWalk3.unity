@@ -1637,6 +1637,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &208167266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 208167268}
+  - component: {fileID: 208167267}
+  m_Layer: 0
+  m_Name: SPAWNER (29)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &208167267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208167266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobKey: ActorSimpleFruit5
+  PlayersSpawner: 0
+  RespawnSeconds: 60
+  IrellevantMob: 1
+--- !u!4 &208167268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208167266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 183.7, y: -1.2, z: -648.6786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 184
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224461486
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,7 +3155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MobKey: ActorSimpleFruit5
   PlayersSpawner: 0
-  RespawnSeconds: 300
+  RespawnSeconds: 60
   IrellevantMob: 1
 --- !u!4 &413779680
 Transform:
@@ -5569,6 +5616,89 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 91
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &615893915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 615893917}
+  - component: {fileID: 615893916}
+  m_Layer: 0
+  m_Name: tree_palm1 (23)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &615893916
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615893915}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7280b74a94019c84aaadab358aaa77b3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1602939605
+  m_SortingLayer: -1
+  m_SortingOrder: 63
+  m_Sprite: {fileID: 21300000, guid: b7e4bf2ae56ab314cb8b041a427361a9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6.96, y: 10.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &615893917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615893915}
+  m_LocalRotation: {x: -0, y: -0, z: 0.079472646, w: 0.9968371}
+  m_LocalPosition: {x: 142.5, y: -7.3, z: 0}
+  m_LocalScale: {x: 2.4512088, y: 2.4512088, z: 2.4512088}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 179
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.117}
 --- !u!1 &627870370
 GameObject:
   m_ObjectHideFlags: 0
@@ -7324,7 +7454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MobKey: ActorSimpleFruit5
   PlayersSpawner: 0
-  RespawnSeconds: 300
+  RespawnSeconds: 60
   IrellevantMob: 1
 --- !u!4 &765798502
 Transform:
@@ -8649,6 +8779,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 120
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &887619385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 887619387}
+  - component: {fileID: 887619386}
+  m_Layer: 0
+  m_Name: SPAWNER (31)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &887619386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887619385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobKey: ActorSimpleFruit4
+  PlayersSpawner: 0
+  RespawnSeconds: 60
+  IrellevantMob: 1
+--- !u!4 &887619387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887619385}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 141, y: 0.1, z: -648.6786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 186
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &918109078
 GameObject:
   m_ObjectHideFlags: 0
@@ -8814,6 +8991,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 50
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &925757042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925757044}
+  - component: {fileID: 925757043}
+  m_Layer: 0
+  m_Name: SPAWNER (32)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &925757043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925757042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobKey: ActorSimpleFruit4
+  PlayersSpawner: 0
+  RespawnSeconds: 60
+  IrellevantMob: 1
+--- !u!4 &925757044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925757042}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 130.3, y: -2.3, z: -648.6786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 187
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &949168867
 GameObject:
@@ -9876,6 +10100,89 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 112
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1089589662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089589664}
+  - component: {fileID: 1089589663}
+  m_Layer: 0
+  m_Name: tree_palm1 (22)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1089589663
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089589662}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7280b74a94019c84aaadab358aaa77b3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1602939605
+  m_SortingLayer: -1
+  m_SortingOrder: 63
+  m_Sprite: {fileID: 21300000, guid: b7e4bf2ae56ab314cb8b041a427361a9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6.96, y: 10.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1089589664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089589662}
+  m_LocalRotation: {x: -0, y: -0, z: 0.079472646, w: 0.9968371}
+  m_LocalPosition: {x: 132.8, y: -10, z: 0}
+  m_LocalScale: {x: 2.4512088, y: 2.4512088, z: 2.4512088}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 178
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.117}
 --- !u!1 &1091306574
 GameObject:
   m_ObjectHideFlags: 0
@@ -10098,7 +10405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MobKey: ActorSimpleFruit4
   PlayersSpawner: 0
-  RespawnSeconds: 300
+  RespawnSeconds: 60
   IrellevantMob: 1
 --- !u!4 &1099424571
 Transform:
@@ -10932,6 +11239,53 @@ Transform:
   m_Father: {fileID: 539859603}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.621}
+--- !u!1 &1205692178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1205692180}
+  - component: {fileID: 1205692179}
+  m_Layer: 0
+  m_Name: SPAWNER (27)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1205692179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205692178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobKey: ActorSimpleFruit4
+  PlayersSpawner: 0
+  RespawnSeconds: 60
+  IrellevantMob: 1
+--- !u!4 &1205692180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205692178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 273.5, y: 24.7, z: -648.6786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 182
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1232638491
 GameObject:
   m_ObjectHideFlags: 0
@@ -11500,6 +11854,89 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1388922817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1388922819}
+  - component: {fileID: 1388922818}
+  m_Layer: 0
+  m_Name: tree_palm1 (24)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1388922818
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388922817}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7280b74a94019c84aaadab358aaa77b3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1602939605
+  m_SortingLayer: -1
+  m_SortingOrder: 63
+  m_Sprite: {fileID: 21300000, guid: b7e4bf2ae56ab314cb8b041a427361a9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6.96, y: 10.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1388922819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388922817}
+  m_LocalRotation: {x: -0, y: -0, z: -0.062151194, w: 0.9980667}
+  m_LocalPosition: {x: 180.6, y: -7.7, z: 0}
+  m_LocalScale: {x: 2.4512088, y: 2.4512088, z: 2.4512088}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 180
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.127}
 --- !u!1 &1392607614
 GameObject:
   m_ObjectHideFlags: 0
@@ -11657,7 +12094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MobKey: ActorSimpleFruit5
   PlayersSpawner: 0
-  RespawnSeconds: 300
+  RespawnSeconds: 60
   IrellevantMob: 1
 --- !u!4 &1405061736
 Transform:
@@ -12990,7 +13427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MobKey: ActorSimpleFruit5
   PlayersSpawner: 0
-  RespawnSeconds: 300
+  RespawnSeconds: 60
   IrellevantMob: 1
 --- !u!4 &1586342124
 Transform:
@@ -13643,7 +14080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MobKey: ActorSimpleFruit4
   PlayersSpawner: 0
-  RespawnSeconds: 300
+  RespawnSeconds: 60
   IrellevantMob: 1
 --- !u!4 &1672675314
 Transform:
@@ -13690,7 +14127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MobKey: ActorSimpleFruit5
   PlayersSpawner: 0
-  RespawnSeconds: 300
+  RespawnSeconds: 60
   IrellevantMob: 1
 --- !u!4 &1673195159
 Transform:
@@ -13882,6 +14319,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 147
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1696924136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1696924138}
+  - component: {fileID: 1696924137}
+  m_Layer: 0
+  m_Name: SPAWNER (28)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1696924137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696924136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobKey: ActorSimpleFruit4
+  PlayersSpawner: 0
+  RespawnSeconds: 60
+  IrellevantMob: 1
+--- !u!4 &1696924138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696924136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 181.6, y: -0.4, z: -648.6786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 183
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1704290061
 GameObject:
@@ -17976,6 +18460,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2047501862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2047501864}
+  - component: {fileID: 2047501863}
+  m_Layer: 0
+  m_Name: SPAWNER (30)
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2047501863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047501862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0878103cb3b6749a7f1ae0a5879f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobKey: ActorSimpleFruit5
+  PlayersSpawner: 0
+  RespawnSeconds: 60
+  IrellevantMob: 1
+--- !u!4 &2047501864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047501862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 137.3, y: -0.1, z: -648.6786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 185
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2088198379
 GameObject:
   m_ObjectHideFlags: 0
@@ -18169,6 +18700,89 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2110920797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2110920799}
+  - component: {fileID: 2110920798}
+  m_Layer: 0
+  m_Name: tree_palm1 (25)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &2110920798
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110920797}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7280b74a94019c84aaadab358aaa77b3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1602939605
+  m_SortingLayer: -1
+  m_SortingOrder: -41
+  m_Sprite: {fileID: 21300000, guid: 90075e9691b7d934ea05c8a426c87c57, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6.96, y: 10.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &2110920799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110920797}
+  m_LocalRotation: {x: -0, y: -0, z: 0.13847932, w: -0.9903653}
+  m_LocalPosition: {x: 271.9, y: 16.6, z: 0}
+  m_LocalScale: {x: 2.4512088, y: 2.4512088, z: 2.4512088}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 181
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15.92}
 --- !u!1 &2118603652
 GameObject:
   m_ObjectHideFlags: 0

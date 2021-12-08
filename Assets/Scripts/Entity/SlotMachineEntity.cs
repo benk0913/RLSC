@@ -18,6 +18,10 @@ public class SlotMachineEntity : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI PriceField;
 
+    [SerializeField]
+    TextMeshProUGUI CurrentGold;
+
+
     public Animator Anim;
 
     public List<Sprite> Options = new List<Sprite>();
@@ -29,6 +33,10 @@ public class SlotMachineEntity : MonoBehaviour
 
     public string SlotWinSound;
 
+    public string SlotRewardSound;
+
+    public string SlotSlimeSound;
+
     public string SlotWinBigSound;
 
     [SerializeField]
@@ -39,17 +47,18 @@ public class SlotMachineEntity : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        PriceField.text = "x"+ CORE.Instance.Data.content.Slots.SlotMachinePrice;
+        PriceField.text = "x" + CORE.Instance.Data.content.Slots.SlotMachinePrice;
+        CurrentGold.text = System.String.Format("{0:n0}", CORE.PlayerActor.money);
     }
 
     public void AttemptSlot()
     {
-        if(CORE.PlayerActor.money < CORE.Instance.Data.content.Slots.SlotMachinePrice)
+        if (CORE.PlayerActor.money < CORE.Instance.Data.content.Slots.SlotMachinePrice)
         {
             return;
         }
 
-        if(SpinRoutineInstance != null)
+        if (SpinRoutineInstance != null)
         {
             return;
         }
@@ -57,9 +66,9 @@ public class SlotMachineEntity : MonoBehaviour
         Busy = true;
         SocketHandler.Instance.SendEvent("used_slot_machine");
 
-        if(DEBUG)
+        if (DEBUG)
         {
-            Spin((WinType)Random.Range(0,3));
+            Spin((WinType)Random.Range(0, 3));
         }
     }
 
@@ -72,89 +81,132 @@ public class SlotMachineEntity : MonoBehaviour
     Coroutine SpinRoutineInstance;
     IEnumerator SpinRoutine(WinType type)
     {
-        AudioControl.Instance.PlayInPosition(SpinSound,transform.position);
+        CurrentGold.text = System.String.Format("{0:n0}", CORE.PlayerActor.money);
+        AudioControl.Instance.PlayInPosition(SpinSound, transform.position);
         Anim.SetTrigger("Spin");
-        int SpinCount = Random.Range(5,20);
-        for(int i=0;i<SpinCount;i++)
+        int SpinCount = Random.Range(5, 20);
+        for (int i = 0; i < SpinCount; i++)
         {
-            SlotA.sprite = Blurs[Random.Range(0,Blurs.Count)];
-            yield return new WaitForSeconds(Random.Range(0f,0.05f));
-            SlotB.sprite = Blurs[Random.Range(0,Blurs.Count)];
-            yield return new WaitForSeconds(Random.Range(0f,0.05f));
-            SlotC.sprite = Blurs[Random.Range(0,Blurs.Count)];
-            yield return new WaitForSeconds(Random.Range(0f,0.05f));
+            SlotA.sprite = Blurs[Random.Range(0, Blurs.Count)];
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
+            SlotB.sprite = Blurs[Random.Range(0, Blurs.Count)];
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
+            SlotC.sprite = Blurs[Random.Range(0, Blurs.Count)];
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
         }
 
-        if(type == WinType.Lose)
+        if (type == WinType.Lose)
         {
             List<Sprite> trueOptions = new List<Sprite>();
             trueOptions.AddRange(Options);
 
-            SlotA.sprite = trueOptions[Random.Range(0,trueOptions.Count)];
+            SlotA.sprite = trueOptions[Random.Range(0, trueOptions.Count)];
             trueOptions.Remove(SlotA.sprite);
-            AudioControl.Instance.PlayInPosition(slotHitSound,transform.position);
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
-            yield return new WaitForSeconds(Random.Range(0f,0.05f));
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
 
-            SlotB.sprite = trueOptions[Random.Range(0,trueOptions.Count)];
+            SlotB.sprite = trueOptions[Random.Range(0, trueOptions.Count)];
             trueOptions.Remove(SlotB.sprite);
-            AudioControl.Instance.PlayInPosition(slotHitSound,transform.position);
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
-            yield return new WaitForSeconds(Random.Range(0f,0.05f));
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
 
-            SlotC.sprite = trueOptions[Random.Range(0,trueOptions.Count)];
+            SlotC.sprite = trueOptions[Random.Range(0, trueOptions.Count)];
             trueOptions.Remove(SlotC.sprite);
-            AudioControl.Instance.PlayInPosition(slotHitSound,transform.position);
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
         }
-        else if(type == WinType.Win)
+        else if (type == WinType.Reward)
         {
-            int result = Random.Range(0,Options.Count-1);
+            int result = Options.Count - 1;
 
-            SlotA.sprite =Options[result];
-            AudioControl.Instance.PlayInPosition(slotHitSound,transform.position);
+            SlotA.sprite = Options[result];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
-            yield return new WaitForSeconds(Random.Range(0f,0.05f));
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
 
-            SlotB.sprite =Options[result];
-            AudioControl.Instance.PlayInPosition(slotHitSound,transform.position);
+            SlotB.sprite = Options[result];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
-            yield return new WaitForSeconds(Random.Range(0f,0.05f));
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
 
             SlotC.sprite = Options[result];
-            AudioControl.Instance.PlayInPosition(slotHitSound,transform.position);
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
-            yield return new WaitForSeconds(Random.Range(0f,00.5f));
+            yield return new WaitForSeconds(Random.Range(0f, 00.5f));
 
-            AudioControl.Instance.PlayInPosition(SlotWinSound,transform.position);
+            AudioControl.Instance.PlayInPosition(SlotRewardSound, transform.position);
         }
-        else if(type == WinType.WinBig)
+        else if (type == WinType.Slime)
         {
-    
+            int result = Options.Count - 2;
 
-            SlotA.sprite =Options[Options.Count-1];
-            AudioControl.Instance.PlayInPosition(slotHitSound,transform.position);
+            SlotA.sprite = Options[result];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
-            yield return new WaitForSeconds(Random.Range(0f,0.5f));
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
 
-            SlotB.sprite =Options[Options.Count-1];
-            AudioControl.Instance.PlayInPosition(slotHitSound,transform.position);
+            SlotB.sprite = Options[result];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
-            yield return new WaitForSeconds(Random.Range(0f,0.5f));
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
 
-            SlotC.sprite = Options[Options.Count-1];
-            AudioControl.Instance.PlayInPosition(slotHitSound,transform.position);
+            SlotC.sprite = Options[result];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
 
-            yield return new WaitForSeconds(Random.Range(0f,0.5f));
+            yield return new WaitForSeconds(Random.Range(0f, 00.5f));
 
-            AudioControl.Instance.PlayInPosition(SlotWinBigSound,transform.position);
+            AudioControl.Instance.PlayInPosition(SlotSlimeSound, transform.position);
+        }
+        else if (type == WinType.Win)
+        {
+            int result = Random.Range(0, Options.Count - 3);
+
+            SlotA.sprite = Options[result];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
+
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
+
+            SlotB.sprite = Options[result];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
+
+            yield return new WaitForSeconds(Random.Range(0f, 0.05f));
+
+            SlotC.sprite = Options[result];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
+
+            yield return new WaitForSeconds(Random.Range(0f, 00.5f));
+
+            AudioControl.Instance.PlayInPosition(SlotWinSound, transform.position);
+        }
+        else if (type == WinType.WinBig)
+        {
+
+
+            SlotA.sprite = Options[Options.Count - 1];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
+
+            yield return new WaitForSeconds(Random.Range(0f, 0.5f));
+
+            SlotB.sprite = Options[Options.Count - 1];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
+
+            yield return new WaitForSeconds(Random.Range(0f, 0.5f));
+
+            SlotC.sprite = Options[Options.Count - 1];
+            AudioControl.Instance.PlayInPosition(slotHitSound, transform.position);
+
+            yield return new WaitForSeconds(Random.Range(0f, 0.5f));
+
+            AudioControl.Instance.PlayInPosition(SlotWinBigSound, transform.position);
         }
 
         SpinRoutineInstance = null;
     }
     public enum WinType
     {
-        WinBig, Win, Lose
+        WinBig, Win, Reward, Slime, Lose
     }
 }
 

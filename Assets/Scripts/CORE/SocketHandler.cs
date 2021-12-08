@@ -1594,6 +1594,7 @@ public class SocketHandler : MonoBehaviour
             CurrentUser.actor.quests.canComplete.Remove(questName);
         }
 
+        AudioControl.Instance.Play("sound_boop");
         CORE.Instance.InvokeEvent("RefreshQuests");
 
         
@@ -1712,7 +1713,6 @@ public class SocketHandler : MonoBehaviour
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the item") +": '"+ CORE.QuickTranslate(item.itemName) + "'"+(item.amount > 1? "x"+item.amount : "" )+"</color>");
         }
 
-        CORE.Instance.IsPickingUpItem = false;
     }
 
     public void OnOrbAdded(string eventName, JSONNode data)

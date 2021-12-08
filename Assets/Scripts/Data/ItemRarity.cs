@@ -14,5 +14,6 @@ public class ItemRarity : ScriptableObject
 
     [JsonIgnore]
     public Color RarityColor;
+
 }
 

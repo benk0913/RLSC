@@ -831,6 +831,7 @@ public class CORE : MonoBehaviour
 
     }
 
+    Coroutine PickupBusyRoutineInstance;
     public void AttemptPickUpItem(Item item)
     {
         if (IsPickingUpItem)
@@ -840,6 +841,17 @@ public class CORE : MonoBehaviour
 
         SocketHandler.Instance.SendPickedItem(item.itemId);
         IsPickingUpItem = true;
+
+        if(PickupBusyRoutineInstance != null)
+        {
+            StopCoroutine(PickupBusyRoutineInstance);
+        }
+
+        PickupBusyRoutineInstance = DelayedInvokation(3f,()=>
+        {
+            IsPickingUpItem = false; 
+            PickupBusyRoutineInstance= null;
+        });
     }
 
     void EnterGame()

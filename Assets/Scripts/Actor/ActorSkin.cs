@@ -201,9 +201,16 @@ public class ActorSkin : MonoBehaviour
             OrbEffects.RemoveAt(0);
         }
 
+        List<string> orbsAdded = new List<string>();
         foreach(Item orb in Act.State.Data.orbs)
         {
+            if(orbsAdded.Contains(orb.itemName))
+            {
+                continue;
+            }
+            
             AddOrb(orb);
+            orbsAdded.Add(orb.itemName);
         }
     }
 

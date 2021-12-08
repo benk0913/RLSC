@@ -1348,6 +1348,11 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f,1.25f));
                     break;
                 }
+            case "SalamanderDashSmall":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(1f,0.5f));
+                    break;   
+                }
             case "DashUpwards":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashUpwardsRoutine());
