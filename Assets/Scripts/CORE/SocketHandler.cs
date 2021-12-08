@@ -1615,7 +1615,14 @@ public class SocketHandler : MonoBehaviour
 
     public void OnSlotmachineResult(string eventName, JSONNode data)
     {
-        SlotMachineEntity.Instance.Spin((SlotMachineEntity.WinType)data["rewardIndex"].AsInt);
+        int WinRewardIndex = data["rewardIndex"].AsInt;
+        SlotMachineEntity.WinType WinType = (SlotMachineEntity.WinType)WinRewardIndex;
+        
+        if (WinRewardIndex < CORE.Instance.Data.content.Slots.Rewards.Count) {
+            AbilityParam Reward = CORE.Instance.Data.content.Slots.Rewards[WinRewardIndex];
+            // TODO show the proper win according to the abilityParam win
+        }
+        SlotMachineEntity.Instance.Spin(WinType);
     }
 
     public void OnItemsSpawn(string eventName, JSONNode data)
