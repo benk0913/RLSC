@@ -67,9 +67,14 @@ public class QuestsPanelUI : MonoBehaviour
 
             if(Container.childCount > 0)
             {
-                Transform mostLowLeftChild = Container.GetChild(Container.childCount-1);
+                Transform mostLowLeftChild = Container.GetChild(Container.childCount-2);
                 for(int i=0;i<Container.childCount;i++)
                 {
+                    if(Container.GetChild(i) == objSubPanel.transform)
+                    {
+                        continue;
+                    }
+                    
                     if(Container.GetChild(i).position.x < mostLowLeftChild.position.x && Container.GetChild(i).position.y < mostLowLeftChild.position.y)
                     {
                         mostLowLeftChild = Container.GetChild(i);
