@@ -142,7 +142,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     public void Show(ActorData ofActor, object data = null)
     {
-        CORE.Instance.SubscribeToEvent("InventoryUpdated",()=>RefreshUI());
+        CORE.Instance.SubscribeToEvent("InventoryUpdated", RefreshUI);
 
         IsOpen = true;
         this.gameObject.SetActive(true);
@@ -196,7 +196,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         this.gameObject.SetActive(false);
 
         if(CORE.Instance != null)
-            CORE.Instance.UnsubscribeFromEvent("InventoryUpdated",()=>RefreshUI());
+            CORE.Instance.UnsubscribeFromEvent("InventoryUpdated", RefreshUI);
 
         AudioControl.Instance.Play(HideSound);
     }
@@ -207,6 +207,11 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         {
             InspectPanel.SetActor(null);
         }
+    }
+
+    public void RefreshUI()
+    {
+        RefreshUI(true);
     }
 
     public void RefreshUI(bool restoreSelectionPlacement = true)
