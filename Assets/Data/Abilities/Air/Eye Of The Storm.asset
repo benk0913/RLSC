@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareEyeOfTheStorm
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: A_EyeOfTheStorm_PrepareOGG
     ExecuteAbilitySound: A_EyeOfTheStorm_ExecuteOGG
@@ -34,13 +35,15 @@ MonoBehaviour:
     ExecuteAnimation: Execute5
   CD: 25
   CastingTime: 0.5
-  TargetCap: 6
+  TargetCap: 10
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: Rock Stun
     ObjectValue: {fileID: 0}
@@ -48,12 +51,14 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 1
     Value: Pull
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 1
     Value: Invulnerability
     ObjectValue: {fileID: 0}

@@ -48,6 +48,10 @@ public class SlotMachineEntity : MonoBehaviour
     {
         Instance = this;
         PriceField.text = "x" + CORE.Instance.Data.content.Slots.SlotMachinePrice;
+    }
+
+    void Update()
+    {
         CurrentGold.text = System.String.Format("{0:n0}", CORE.PlayerActor.money);
     }
 
@@ -92,7 +96,6 @@ public class SlotMachineEntity : MonoBehaviour
                 
             }
 
-        CurrentGold.text = System.String.Format("{0:n0}", CORE.PlayerActor.money);
         AudioControl.Instance.PlayInPosition(SpinSound, transform.position);
         Anim.SetTrigger("Spin");
         int SpinCount = Random.Range(5, 15);
@@ -217,10 +220,14 @@ public class SlotMachineEntity : MonoBehaviour
             AbilityParam Reward = CORE.Instance.Data.content.Slots.Rewards[(int)type];
 
 
-            if(!CORE.IsMachinemaMode && Reward.Type != null)
+            if(!CORE.IsMachinemaMode)
             {
                 HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntityAlly").GetComponent<HitLabelEntityUI>();
 
+                if(Reward.Type == null)
+                {
+                    label.SetLabel("--", Color.gray);
+                }
                 if(Reward.Type.name == "Gain Money")
                 {
                     label.SetLabel("Earned: "+Reward.Value, Color.yellow);

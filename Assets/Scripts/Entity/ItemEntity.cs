@@ -51,7 +51,7 @@ public class ItemEntity : MonoBehaviour
             return;
         }
 
-        InteractableCooldown = 0.5f;
+        InteractableCooldown = 0.2f;
 
         CORE.Instance.AttemptPickUpItem(CurrentItem);
     }

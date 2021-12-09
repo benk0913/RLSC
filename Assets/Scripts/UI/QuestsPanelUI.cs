@@ -59,7 +59,7 @@ public class QuestsPanelUI : MonoBehaviour
             }
 
             ObjectiveSubPanelUI objSubPanel = ResourcesLoader.Instance.GetRecycledObject("ObjectiveSubPanelUI").GetComponent<ObjectiveSubPanelUI>();
-            objSubPanel.transform.SetParent(Container,false);
+            
             objSubPanel.transform.localScale = Vector3.one;
 
             objSubPanel.SetInfo(progress.QuestData);
@@ -67,7 +67,8 @@ public class QuestsPanelUI : MonoBehaviour
 
             if(Container.childCount > 0)
             {
-                Transform mostLowLeftChild = Container.GetChild(Container.childCount-2);
+                Transform mostLowLeftChild = Container.GetChild(Container.childCount-1);
+                objSubPanel.transform.SetParent(Container,false);
                 for(int i=0;i<Container.childCount;i++)
                 {
                     if(Container.GetChild(i) == objSubPanel.transform)
@@ -85,6 +86,7 @@ public class QuestsPanelUI : MonoBehaviour
             }
             else
             {
+                objSubPanel.transform.SetParent(Container,false);
                 objSubPanel.transform.position = Container.transform.position + new Vector3(createdYPush,createdYPush,0);
             }
             

@@ -107,8 +107,8 @@ public class LootRollItemUI : MonoBehaviour
             yield return 0;
         }
 
-        if(!LockedPanel.gameObject.activeInHierarchy)
-            Decline();
+        // if(!LockedPanel.gameObject.activeInHierarchy)
+        Decline();
 
         TimerRoutineInstance = null;
     }

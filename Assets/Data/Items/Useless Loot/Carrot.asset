@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: -6038265909064636227, guid: 6c2f4c227b2bdb1458f3db525af74766, type: 3}
   DisplayName: Carrot
-  Description: 
+  Description: Consume for speed!
   UniquePrefab: 
   Stats:
     Power: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
   CashItemPrice: 0
   DropChance: 1
   Stackable: 1
-  Type: {fileID: 11400000, guid: 8601957de11c6dd4c9de05c042a2a108, type: 2}
+  Type: {fileID: 11400000, guid: 170f59166a416b849afe012ad0bf53eb, type: 2}
   Rarity: {fileID: 11400000, guid: 3c7a55160e621724b964830f1f1c5b24, type: 2}
   CashShopItem: 0
   OnlyOneAllowed: 0
@@ -52,4 +52,11 @@ MonoBehaviour:
   Pool: []
   OnExecuteParams: []
   OnHitParams: []
-  OnUseParams: []
+  OnUseParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 0e02fe5e1a71afb40b335b3775c95175, type: 2}
+    Value2: 

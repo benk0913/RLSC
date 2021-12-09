@@ -1333,6 +1333,11 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementWindPushRoutine(casterActor));
                     break;
                 }
+            case "DashForward1/2":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f,0.5f));
+                    break;
+                }
             case "DashForward":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine());
