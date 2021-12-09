@@ -34133,8 +34133,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1602939605
-  m_SortingLayer: -1
+  m_SortingLayerID: -1365627307
+  m_SortingLayer: 2
   m_SortingOrder: 88
   m_Sprite: {fileID: -2237756762598508969, guid: 27339faa4737e47bbbfc2471fcd2d5de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -41715,23 +41715,6 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     Decisions:
-    - Content: Enter An Expedition
-      OnSelect:
-      - {fileID: 11400000, guid: c61c06807fa23a748b768dad6875ef3d, type: 2}
-      OnSelectInvokation:
-        m_PersistentCalls:
-          m_Calls: []
-      DisplayConditions: []
-      DisplayGameConditions: []
-      DisplayOnlyIfConditionsMet: 0
-      DefaultDialog:
-        DialogPieces:
-        - Content: Sure thing!
-          OnDialogPiece:
-            m_PersistentCalls:
-              m_Calls: []
-        Decisions: []
-        IsFemale: 0
     - Content: I am looking for a group...
       OnSelect:
       - {fileID: 11400000, guid: 1cc59ceb4fe0e0e419e0e89d65d3bdaa, type: 2}
@@ -41766,6 +41749,23 @@ MonoBehaviour:
             m_PersistentCalls:
               m_Calls: []
         - Content: You will have to wait a little bit for other players to join!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions: []
+        IsFemale: 0
+    - Content: Enter An Expedition
+      OnSelect:
+      - {fileID: 11400000, guid: c61c06807fa23a748b768dad6875ef3d, type: 2}
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: Sure thing!
           OnDialogPiece:
             m_PersistentCalls:
               m_Calls: []

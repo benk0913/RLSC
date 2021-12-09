@@ -27564,6 +27564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RelevantQuests:
   - {fileID: 11400000, guid: 90cc7b5d868ecfb41bb15650c8b87c5f, type: 2}
+  - {fileID: 11400000, guid: 7976e80ee00a88b43ad4435f636cc313, type: 2}
   HasQuestObject: {fileID: 2016758638}
   HasQuestInProgressObject: {fileID: 1011271831}
   HasQuestCompleteObject: {fileID: 8200201}
@@ -52870,6 +52871,85 @@ MonoBehaviour:
             Decisions: []
             IsFemale: 0
         IsFemale: 1
+    - Content: '<u>Quest: The Source Of Evil</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 7976e80ee00a88b43ad4435f636cc313, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: A vast ruin, mass destruction due to some horrific accident, disaster
+            or terrorizing force.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: This much is obvious.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: But, in its center, a mystery.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: The Tower
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Why is this large tower still intact?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: My best guess is that within it's chambers,
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: at the top of this harsh brutal structure, lies a clue to our
+            second question;
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: What is the source of this horror?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Questions we must find an answer to.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: 6ab1d64c24b73c140b8d8231adda6550, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
     - Content: '<u>Quest Complete: Undead Cleansing</u>'
       OnSelect: []
       OnSelectInvokation:
@@ -52930,6 +53010,64 @@ MonoBehaviour:
         - Content: Accept
           OnSelect:
           - {fileID: 11400000, guid: 8f11dfe530423dc41a5c2938b0136da1, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: '<u>Quest Complete: The Source Of Evil</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 7976e80ee00a88b43ad4435f636cc313, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: A powerful wizard?, practicing dark magic?, at the top of the
+            tower?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Well, I should have guessed!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: You are truely standing tall and true at the frontier of our conflict!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: See this reward as my very personal thanks to you!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: 492d6649560b11d4a970c0e47c4b02d4, type: 2}
           OnSelectInvokation:
             m_PersistentCalls:
               m_Calls: []

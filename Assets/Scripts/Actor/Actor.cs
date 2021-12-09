@@ -813,6 +813,10 @@ public class Actor : MonoBehaviour
         CORE.Instance.InvokeEvent("ActorDied");
         Shadow.gameObject.SetActive(false);
 
+        if(this.State.Data.ClassJobReference.OnDeathParams != null && this.State.Data.ClassJobReference.OnDeathParams.Count > 0)
+        {
+            CORE.Instance.ActivateParams(this.State.Data.ClassJobReference.OnDeathParams);
+        }
 
         if (!string.IsNullOrEmpty(State.Data.ClassJobReference.UniqueDeathSound))
         {

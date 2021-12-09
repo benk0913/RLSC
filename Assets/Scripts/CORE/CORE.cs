@@ -1,4 +1,4 @@
-﻿using EdgeworldBase;
+using EdgeworldBase;
 using I2.Loc;
 using NewResolutionDialog.Scripts.Controller;
 using Newtonsoft.Json;
@@ -769,6 +769,7 @@ public class CORE : MonoBehaviour
         ConsoleInputUI.Instance.ClearLog();
         LootRollPanelUI.Instance.ClearContainer();
         ExpeditionQueTimerUI.Instance.Hide();
+        QuestsPanelUI.Instance.Wipe();
         CORE.Instance.InvokeEvent("PartyUpdated");
     }
 
@@ -847,7 +848,7 @@ public class CORE : MonoBehaviour
             StopCoroutine(PickupBusyRoutineInstance);
         }
 
-        PickupBusyRoutineInstance = DelayedInvokation(3f,()=>
+        PickupBusyRoutineInstance = DelayedInvokation(1f,()=>
         {
             IsPickingUpItem = false; 
             PickupBusyRoutineInstance= null;
@@ -1139,6 +1140,10 @@ public class CORE : MonoBehaviour
 
                                     
                 casterActor.RefreshLooks();
+            }
+            else if(param.Type.name == "SetAchievement")
+            {
+                AchievementLogic.Instance.SetAchievment(param.Value);
             }
         }
     }

@@ -43,6 +43,7 @@ public class QuestWindowUI : MonoBehaviour, WindowInterface
         }
 
         CORE.Instance.SubscribeToEvent("RefreshQuests", RefreshUI);
+        CORE.Instance.SubscribeToEvent("RefreshQuests", RefreshUI);
         
         RefreshUI();
     }

@@ -972,7 +972,7 @@ public class SocketHandler : MonoBehaviour
 
     public void OnExpUpdate(string eventName, JSONNode data)
     {
-        //int prevExp = CurrentUser.actor.exp;
+        int prevExp = CurrentUser.actor.exp;
 
         CurrentUser.actor.exp = data["exp"].AsInt;
 
@@ -980,6 +980,16 @@ public class SocketHandler : MonoBehaviour
         //{
         //    return;
         //}
+
+        if(!CORE.IsMachinemaMode )
+        {
+            HitLabelEntityUI label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntityAlly").GetComponent<HitLabelEntityUI>();
+
+            label.SetLabel("<size=50>+EXP "+Mathf.RoundToInt(Mathf.Abs(prevExp - CurrentUser.actor.exp))+"</size>", Color.yellow);
+
+            label.transform.position = CurrentUser.actor.ActorEntity.transform.position;
+            
+        }
 
         DisplayEXPEntityUI.Instance.Show(CurrentUser.actor.exp);
     }

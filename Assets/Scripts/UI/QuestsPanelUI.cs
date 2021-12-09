@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class QuestsPanelUI : MonoBehaviour
 {
+    public static QuestsPanelUI Instance;
 
     [SerializeField]
     TextMeshProUGUI QuestCountLabel;
@@ -16,6 +17,10 @@ public class QuestsPanelUI : MonoBehaviour
     public Transform Container;
 
 
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -105,4 +110,9 @@ public class QuestsPanelUI : MonoBehaviour
     }
 
     
+    public void Wipe()
+    {
+         CORE.ClearContainer(Container);
+    }
+
 }
