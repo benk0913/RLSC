@@ -18,6 +18,8 @@ public class QuestData: ScriptableObject
 
     public List<AbilityParam> Rewards;
 
+    public string Origin = "Unknown";
+
     [JsonIgnore]
     public bool CanComplete
     {

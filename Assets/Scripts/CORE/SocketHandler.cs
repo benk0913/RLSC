@@ -1843,7 +1843,7 @@ public class SocketHandler : MonoBehaviour
         int.TryParse(eqpgained, out parsedInt);
         if(parsedInt != 0)
         {
-            WarningWindowUI.Instance.Show("PROMO CODE CONFIRMED <color=purple>(+"+parsedInt+" EQP!)</color>",()=>{CashShopWindowUI.Instance.Show();},true,null,"Great!");
+            WarningWindowUI.Instance.Show("PROMO CODE CONFIRMED <color=purple>(+"+parsedInt+" EQP!)</color>",()=>{CashShopWindowUI.Instance.Show(CORE.PlayerActor);},true,null,"Great!");
         }
         else
         {

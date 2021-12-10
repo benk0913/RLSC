@@ -95,6 +95,7 @@ public class QuestWindowUI : MonoBehaviour, WindowInterface
         {
             SelectedTitleLabel.text = CORE.QuickTranslate(SelectedQuest.name);
             SelectedDescriptionLabel.text = CORE.QuickTranslate(SelectedQuest.Description);
+            SelectedDescriptionLabel.text += System.Environment.NewLine + CORE.QuickTranslate("Quest Origin")+": " + CORE.QuickTranslate(SelectedQuest.Origin);
         }
         else
         {

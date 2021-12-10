@@ -391,24 +391,25 @@ public class CORE : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if(SocketHandler.Instance != null && SocketHandler.Instance.SocketManager != null && SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open) //AFK HANDLING
-        {
-            if(Input.anyKey)
-            {
-                TimeAFK = 0f;
-            }
+        //TODO ADD LATER
+        // if(SocketHandler.Instance != null && SocketHandler.Instance.SocketManager != null && SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open) //AFK HANDLING
+        // {
+        //     if(Input.anyKey)
+        //     {
+        //         TimeAFK = 0f;
+        //     }
 
-            if(TimeAFK < MAX_TIME_AFK)
-            {
-                TimeAFK += Time.deltaTime;
-            }
-            else
-            {
-                TimeAFK = 0f;
-                ReturnToMainMenu();
-                WarningWindowUI.Instance.Show("Disconnected due to inactivity...",()=>{});
-            }
-        }
+            // if(TimeAFK < MAX_TIME_AFK)
+            // {
+            //     TimeAFK += Time.deltaTime;
+            // }
+            // else
+            // {
+            //     TimeAFK = 0f;
+            //     ReturnToMainMenu();
+            //     WarningWindowUI.Instance.Show("Disconnected due to inactivity...",()=>{});
+            // }
+        // }
 
 
         if (InGame && !IsLoading && !IsTyping)
