@@ -343,7 +343,6 @@ public class SocketHandler : MonoBehaviour
         CurrentUser.info = null;
         TutorialIndex = "";
         SessionTicket = "";
-        ServerEnvironment.Region = "";
 
         if(currentTimeoutValidation != null)
         {

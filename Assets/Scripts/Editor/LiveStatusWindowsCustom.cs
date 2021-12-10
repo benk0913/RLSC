@@ -51,7 +51,6 @@ class LiveStatusWindowsCustom : EditorWindow
     void OnGUI ()
     {
         ServerEnvironment.Environment = "Prod";
-        ServerEnvironment.Region = "eu";
 
         GUILayout.Space(20);
 

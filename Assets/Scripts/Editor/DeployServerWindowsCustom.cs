@@ -21,7 +21,6 @@ class DeployServerWindowsCustom : EditorWindow
     void OnGUI ()
     {
         ServerEnvironment.Environment = "Prod";
-        ServerEnvironment.Region = "eu"; // VIP users are in EU
 
         GUILayout.Space(20);
         GUILayout.Label("~~~~~~Deploy Server~~~~~~", EditorStyles.largeLabel);

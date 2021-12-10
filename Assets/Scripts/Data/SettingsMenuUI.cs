@@ -96,7 +96,7 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         RegionDropdown.ClearOptions();
         List<Dropdown.OptionData> regionOptions = new List<Dropdown.OptionData>();
         regionOptions.Add(new Dropdown.OptionData("us"));
-        regionOptions.Add(new Dropdown.OptionData("eu"));
+        // regionOptions.Add(new Dropdown.OptionData("eu"));
         //regionOptions.Add(new Dropdown.OptionData("sea"));
         RegionDropdown.AddOptions(regionOptions);
         Dropdown.OptionData currentOption =  RegionDropdown.options.Find(x => x.text == SocketHandler.Instance.ServerEnvironment.Region);
@@ -184,43 +184,45 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
 
     public void OnRegionChanged(int optionIndex)
     {
-        string region = PlayerPrefs.GetString("region");
+        // only one region for now so this isn't needed
+        
+        // string region = PlayerPrefs.GetString("region");
 
-        string newRegion = RegionDropdown.options[optionIndex].text;
+        // string newRegion = RegionDropdown.options[optionIndex].text;
 
-        if (region == newRegion)
-        {
-            return;
-        }
+        // if (region == newRegion)
+        // {
+        //     return;
+        // }
 
-        Hide();
+        // Hide();
 
-        System.Action changeRegionAction = () =>
-        {
-            SocketHandler.Instance.SelectedRealmIndex = -1;
-            PlayerPrefs.SetInt("SelectedRealmIndex", -1);
-            PlayerPrefs.Save();
+        // System.Action changeRegionAction = () =>
+        // {
+        //     SocketHandler.Instance.SelectedRealmIndex = -1;
+        //     PlayerPrefs.SetInt("SelectedRealmIndex", -1);
+        //     PlayerPrefs.Save();
 
-            PlayerPrefs.SetString("region", newRegion);
-            PlayerPrefs.Save();
+        //     PlayerPrefs.SetString("region", newRegion);
+        //     PlayerPrefs.Save();
 
-            SocketHandler.Instance.LogOut();
-        };
+        //     SocketHandler.Instance.LogOut();
+        // };
 
-        if (!CORE.Instance.InGame)
-        {
-            changeRegionAction?.Invoke();
-        }
-        else
-        {
-            WarningWindowUI.Instance.Show("Warning! Changing your region to " + newRegion + " will reuslt in disconnection from the game!", () =>
-            {
-                changeRegionAction.Invoke();
-            }, false, () =>
-          {
-                Show(null, null);
-            });
-        }
+        // if (!CORE.Instance.InGame)
+        // {
+        //     changeRegionAction?.Invoke();
+        // }
+        // else
+        // {
+        //     WarningWindowUI.Instance.Show("Warning! Changing your region to " + newRegion + " will reuslt in disconnection from the game!", () =>
+        //     {
+        //         changeRegionAction.Invoke();
+        //     }, false, () =>
+        //   {
+        //         Show(null, null);
+        //     });
+        // }
     }
 
     public void ToggleVignette()

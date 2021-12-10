@@ -8,14 +8,13 @@ public class ServerEnvironment
     public string Environment;
     
     //[HideInInspector]
-    public string Region;
+    public string Region = "us";
     
     private string LocalHostUrl = "http://localhost:5000";
 #if UNITY_EDITOR
     private string DevHostUrl = "https://lul2.herokuapp.com";
 #endif
     private string ProdHostUrlUs = "http://eq-1786457703.us-east-1.elb.amazonaws.com";
-    private string ProdHostUrlEu = "http://eq-1685188041.eu-central-1.elb.amazonaws.com";
     private string SocketPath = "/socket.io/";
     private string CGPath = "/update-content";
     public string HostUrl
@@ -35,8 +34,6 @@ public class ServerEnvironment
                     {
                         switch(Region)
                         {
-                            case "eu":
-                                return ProdHostUrlEu;
                             default:
                                 return ProdHostUrlUs;
                         }
