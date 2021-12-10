@@ -455,4 +455,15 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         node["authorized"].AsBool = pCallback.m_bAuthorized == 1;
         SocketHandler.Instance.SendEvent("buy_eq_steam_answer", node);
     }
+
+    public void ShowPromotionalCodePrompt()
+    {
+        Hide();
+        InputLabelWindow.Instance.Show("Promo Code:","Enter your PROMO CODE",(string givenCode)=>
+        {
+            JSONClass node = new JSONClass();
+            node["code"] = givenCode;
+            SocketHandler.Instance.SendEvent("promo_Code",node);
+        });
+    }
 }

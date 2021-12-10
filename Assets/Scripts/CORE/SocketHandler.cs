@@ -123,6 +123,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("user_char_slots", OnUserCharSlots));
         SocketEventListeners.Add(new SocketEventListener("actor_change_name_prompt", OnActorChangeNamePrompt));
         SocketEventListeners.Add(new SocketEventListener("actor_change_name", OnActorChangeName));
+        SocketEventListeners.Add(new SocketEventListener("promo_code_confirmed", OnPromoCodeConfirmed));
 
         // Rolls
         SocketEventListeners.Add(new SocketEventListener("choose_item_roll", OnChooseItemRoll));
@@ -1834,6 +1835,22 @@ public class SocketHandler : MonoBehaviour
         actorDat.name = newName;
         actorDat.ActorEntity.RefreshName();
         CORE.Instance.InvokeEvent("StatsChanged");
+    }
+
+    public void OnPromoCodeConfirmed(string eventName, JSONNode data)
+    {
+        string eqpgained = data["eqp"].Value;
+        int parsedInt = 0;
+        int.TryParse(eqpgained, out parsedInt);
+        if(parsedInt != 0)
+        {
+            WarningWindowUI.Instance.Show("PROMO CODE CONFIRMED <color=purple>(+"+parsedInt+" EQP!)</color>",()=>{CashShopWindowUI.Instance.Show();},true,null,"Great!");
+        }
+        else
+        {
+            WarningWindowUI.Instance.Show("Promo Code Denied",null);
+        }
+
     }
 
     public void OnChooseItemRoll(string eventName, JSONNode data)
