@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Invisible Hand
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 5b3fe6e42a3e1a54aa129155713dc2cc, type: 3}
-  DisplayName: Invisible Hand
+  DisplayName: Invisible Weapon
   Description: '
 
 '
@@ -40,12 +40,19 @@ MonoBehaviour:
   VendorPrice: 0
   CashItemPrice: 5
   DropChance: 0
+  Stackable: 0
   Type: {fileID: 11400000, guid: 6bbfef2a83dc14141b341dd0c260f55e, type: 2}
   Rarity: {fileID: 11400000, guid: 3c7a55160e621724b964830f1f1c5b24, type: 2}
   CashShopItem: 1
+  OnlyOneAllowed: 0
   OrbColliderObject: 
   SkinOverride: []
-  NewSkinOverride: []
+  NewSkinOverride:
+  - Part: {fileID: 11400000, guid: e07d90460e5f49444b393a797eb2a9ee, type: 2}
+    TargetSprite: {fileID: 0}
+    TargetSpriteFemale: {fileID: 0}
+    BareSkin: 0
+    Hair: 0
   HidingItemTypes: []
   States: []
   TypeBasedOverrides:

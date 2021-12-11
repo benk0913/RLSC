@@ -1282,7 +1282,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 08c03fd7559d39f40aeed234062816a2, type: 2}
     - {fileID: 11400000, guid: ebfed092473b9434a8de55182f5013e7, type: 2}
     - {fileID: 11400000, guid: 0d64c0cb9ce266c48bd2f67977c18382, type: 2}
+    - {fileID: 11400000, guid: 69b9b2233ee5e844e8ae23813e2720df, type: 2}
     - {fileID: 11400000, guid: 12683701bbc4c4a4d9a2134dfa511633, type: 2}
+    - {fileID: 11400000, guid: 0c9274db74826564caa52220f400083d, type: 2}
     - {fileID: 11400000, guid: 835d9241a41846249b89a0446e6e51c3, type: 2}
     - {fileID: 11400000, guid: 8472c80feb9c6da44ab7f3ca4ea8f375, type: 2}
     - {fileID: 11400000, guid: 8fe59520a837f014c98550f823131f10, type: 2}
@@ -1467,6 +1469,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e070dd7d219b62c4f8311c4adeb143f7, type: 2}
     - {fileID: 11400000, guid: 712fcd50b4002fb46922d803f48bf89a, type: 2}
     - {fileID: 11400000, guid: 21fe16960bbeb44438ef099649be99d9, type: 2}
+    - {fileID: 11400000, guid: f18f24c706e61394ab77b4041dc18da3, type: 2}
     - {fileID: 11400000, guid: d1e7b737b81ad2f4c8eef25a9dca03f8, type: 2}
     - {fileID: 11400000, guid: 4546d2385e6716d45aeb4f5344d27d2d, type: 2}
     - {fileID: 11400000, guid: 67efa0e8f55d6a44f8ee3230efcdfc95, type: 2}
@@ -1681,7 +1684,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 78486bb258dfa604e8b86cc6678c8633, type: 2}
     - {fileID: 11400000, guid: 37350f994bd2f7940a125ecdf1eebe96, type: 2}
     - {fileID: 11400000, guid: 0702ed5474682344c9e4bf7e90d134c8, type: 2}
+    - {fileID: 11400000, guid: 1fdeaf2d0fee5ca45b8885457fa45cd9, type: 2}
     - {fileID: 11400000, guid: 88c3789f1ead25b4f9f401df04c4a8bd, type: 2}
+    - {fileID: 11400000, guid: a51958ec5a3fa9f4bab9780bf9aab166, type: 2}
     - {fileID: 11400000, guid: d60a177cc38d11743855e64cff660c18, type: 2}
     - {fileID: 11400000, guid: 6f5f69d825c20524e855751e408f4eb0, type: 2}
     - {fileID: 11400000, guid: f14a9c80d8026e044bed478b97511c17, type: 2}
@@ -5394,7 +5399,6 @@ MonoBehaviour:
       - ID: TownVendorNightNEW
         Items:
         - {fileID: 11400000, guid: ea98da07642f5734685e9a304335ebdc, type: 2}
-        - {fileID: 11400000, guid: c10e72a180e8fd14999116ea14027a41, type: 2}
         - {fileID: 11400000, guid: bb6970918901e8f42bb2e7b6ca51fb44, type: 2}
         - {fileID: 11400000, guid: 3b1aee532e09efb4a8ac2d431122fa0c, type: 2}
         - {fileID: 11400000, guid: c8a3cb7f993471f43a65c56960371741, type: 2}
@@ -6362,7 +6366,7 @@ MonoBehaviour:
       - monsterName: ActorShellCrab
         positionX: 39.4
         positionY: -14.8
-        respawnSeconds: 0
+        respawnSeconds: 30
         IrellevantMob: 0
       - monsterName: ActorSimpleFruit4
         positionX: 149.3
@@ -6372,7 +6376,7 @@ MonoBehaviour:
       - monsterName: ActorShellCrab
         positionX: 71.2
         positionY: -14.8
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit5
         positionX: 170.9
@@ -6402,17 +6406,12 @@ MonoBehaviour:
       - monsterName: ActorShellCrabSmall
         positionX: 155.3
         positionY: -14.3
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit5
         positionX: 25.9
         positionY: 2.8
         respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorShellCrabSmall
-        positionX: 111.6
-        positionY: -13.6
-        respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit4
         positionX: 69.25
@@ -6425,14 +6424,9 @@ MonoBehaviour:
         respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorShellCrab
-        positionX: 177.8
-        positionY: -12.6
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorShellCrab
         positionX: 211.7
         positionY: -9.5
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       Interactables:
       - interactableName: LeftEntrance
@@ -6475,66 +6469,11 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorSimpleFruit4
-        positionX: 167.07
-        positionY: 42.43
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit4
-        positionX: 175.15
-        positionY: 43.41
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit4
-        positionX: 206.4
-        positionY: 42.03
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit4
-        positionX: 221.57
-        positionY: 40.32
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit4
-        positionX: 228.66
-        positionY: 43.41
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit5
-        positionX: 229.51
-        positionY: 42.23
-        respawnSeconds: 60
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit5
         positionX: 230.04
         positionY: 42.76
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorSimpleFruit5
-        positionX: 220.98
-        positionY: 39.74
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit5
-        positionX: 206.01
-        positionY: 41.38
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit5
-        positionX: 166.57
-        positionY: 42.21
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit5
-        positionX: 175.2
-        positionY: 42.04
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorShellCrab
-        positionX: 39.4
-        positionY: -14.8
-        respawnSeconds: 0
-        IrellevantMob: 0
       - monsterName: ActorSimpleFruit4
         positionX: 139.2
         positionY: 9.1
@@ -6545,10 +6484,35 @@ MonoBehaviour:
         positionY: -3.2
         respawnSeconds: 60
         IrellevantMob: 1
+      - monsterName: ActorSimpleFruit5
+        positionX: 229.51
+        positionY: 42.23
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit5
+        positionX: 206.01
+        positionY: 41.38
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit4
+        positionX: 206.4
+        positionY: 42.03
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit5
+        positionX: 166.57
+        positionY: 42.21
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit4
+        positionX: 221.57
+        positionY: 40.32
+        respawnSeconds: 60
+        IrellevantMob: 1
       - monsterName: ActorShellCrab
         positionX: 71.2
         positionY: -14.8
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit5
         positionX: 78.37
@@ -6560,50 +6524,60 @@ MonoBehaviour:
         positionY: 2.22
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorShellCrab
-        positionX: 83
-        positionY: -11.9
-        respawnSeconds: 8
+      - monsterName: ActorSimpleFruit4
+        positionX: 167.07
+        positionY: 42.43
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit5
         positionX: 106.4
         positionY: -9.2
         respawnSeconds: 60
         IrellevantMob: 1
+      - monsterName: ActorSimpleFruit5
+        positionX: 220.98
+        positionY: 39.74
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit4
+        positionX: 228.66
+        positionY: 43.41
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit4
+        positionX: 175.15
+        positionY: 43.41
+        respawnSeconds: 60
+        IrellevantMob: 1
       - monsterName: ActorShellCrabSmall
         positionX: 207
         positionY: -18.2
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorShellCrabSmall
-        positionX: 75
-        positionY: -13.6
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorShellCrabSmall
         positionX: 155.3
         positionY: -14.3
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorShellCrabSmall
-        positionX: 111.6
-        positionY: -13.6
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorShellCrab
         positionX: 177.8
         positionY: -12.6
-        respawnSeconds: 8
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit5
+        positionX: 175.2
+        positionY: 42.04
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorShellCrab
         positionX: 211.7
         positionY: -9.5
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorShellCrab
         positionX: 140.8
         positionY: -7.5
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       Interactables:
       - interactableName: LeftEntrance
@@ -6646,6 +6620,16 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
+      - monsterName: ActorPuffBunny
+        positionX: 214.67
+        positionY: -19.27
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 212.23
+        positionY: -18.85
+        respawnSeconds: 15
+        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 442.2
         positionY: 21.85
@@ -6666,11 +6650,6 @@ MonoBehaviour:
         positionY: -7.21
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 218.9
-        positionY: -18.9
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 440
         positionY: 14.150002
@@ -6679,17 +6658,12 @@ MonoBehaviour:
       - monsterName: ActorPuffBunny
         positionX: 491.2
         positionY: 18.5
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 215.7
-        positionY: -17.7
-        respawnSeconds: 12
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorShellCrab
         positionX: 434.5
         positionY: -86.5
-        respawnSeconds: 12
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 276.89
@@ -6739,7 +6713,7 @@ MonoBehaviour:
       - monsterName: ActorPuffBunny
         positionX: 465.3
         positionY: 25.5
-        respawnSeconds: 12
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 339.2
@@ -6764,7 +6738,7 @@ MonoBehaviour:
       - monsterName: ActorShellCrabSmall
         positionX: 445.1
         positionY: -90
-        respawnSeconds: 12
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 230.92
@@ -6774,12 +6748,12 @@ MonoBehaviour:
       - monsterName: ActorShellCrabSmall
         positionX: 421.69998
         positionY: -86.9
-        respawnSeconds: 12
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSalamander
         positionX: 282.9
         positionY: -16.5
-        respawnSeconds: 12
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 265.74
@@ -6814,7 +6788,7 @@ MonoBehaviour:
       - monsterName: ActorPuffBunny
         positionX: 430.2
         positionY: 7.7
-        respawnSeconds: 12
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 341.8
@@ -6824,7 +6798,7 @@ MonoBehaviour:
       - monsterName: ActorPuffBunny
         positionX: 356
         positionY: -13.4
-        respawnSeconds: 12
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 414.3
@@ -6839,7 +6813,7 @@ MonoBehaviour:
       - monsterName: ActorPuffBunny
         positionX: 227.3
         positionY: -18.3
-        respawnSeconds: 12
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 205.59
@@ -6942,47 +6916,32 @@ MonoBehaviour:
       - monsterName: ActorSkeleton
         positionX: 68.39
         positionY: -8.68
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton2
         positionX: 81.4
         positionY: -22.84
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSkeleton2
-        positionX: 122.17
-        positionY: -9.35
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSkeleton
-        positionX: 85.21
-        positionY: -8.77
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton
         positionX: 75.9
         positionY: -9.25
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton2
         positionX: 79.31
         positionY: -6.87
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorGhostSmall
         positionX: 75.7
         positionY: -21.98
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSkeleton
-        positionX: 87.39
-        positionY: -23.12
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton
         positionX: 122.55
         positionY: -10.01
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       Interactables:
       - interactableName: Entry
@@ -7025,9 +6984,39 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorSimpleFruit4
-        positionX: 130.3
-        positionY: -2.3
+      - monsterName: ActorShellCrab
+        positionX: 448.6
+        positionY: 6.5
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit5
+        positionX: 183.7
+        positionY: -1.2
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorShellCrabSmall
+        positionX: 439.7
+        positionY: 12.1
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit5
+        positionX: 150.4
+        positionY: 20.5
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSkeleton
+        positionX: 393
+        positionY: 8.3
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorShellCrab
+        positionX: 335.3
+        positionY: 12.5
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit5
+        positionX: 146.3
+        positionY: 19.3
         respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit4
@@ -7035,74 +7024,24 @@ MonoBehaviour:
         positionY: 0.1
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorSimpleFruit5
-        positionX: 137.3
-        positionY: -0.1
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit5
-        positionX: 183.7
-        positionY: -1.2
-        respawnSeconds: 60
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit4
-        positionX: 181.6
-        positionY: -0.4
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit4
-        positionX: 273.5
-        positionY: 24.7
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorShellCrabSmall
-        positionX: 157.8
-        positionY: -6
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorShellCrab
-        positionX: 448.6
-        positionY: 6.5
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorShellCrabSmall
-        positionX: 439.7
-        positionY: 12.1
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit5
-        positionX: 150.4
-        positionY: 20.5
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorShellCrab
-        positionX: 103.1
-        positionY: -7.4
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSkeleton
-        positionX: 393
-        positionY: 8.3
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorShellCrab
-        positionX: 335.3
-        positionY: 12.5
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSimpleFruit5
-        positionX: 146.3
-        positionY: 19.3
+        positionX: 130.3
+        positionY: -2.3
         respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorShellCrabSmall
         positionX: 223.4
         positionY: 14.8
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit4
         positionX: 361.3
         positionY: 27.2
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit4
+        positionX: 273.5
+        positionY: 24.7
         respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit5
@@ -7114,11 +7053,6 @@ MonoBehaviour:
         positionX: 320.5
         positionY: 20.5
         respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorShellCrabSmall
-        positionX: 100.9
-        positionY: -5.1
-        respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit4
         positionX: 322.7
@@ -7133,32 +7067,37 @@ MonoBehaviour:
       - monsterName: ActorSkeleton
         positionX: 392.5
         positionY: 7.1
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSkeleton2
         positionX: 380.2
         positionY: 6.1
-        respawnSeconds: 8
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit4
+        positionX: 181.6
+        positionY: -0.4
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorShellCrab
         positionX: 302.6
         positionY: 11.8
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorShellCrab
-        positionX: 117.7
-        positionY: -5.2
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorShellCrabSmall
         positionX: 298.5
         positionY: 15.3
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSkeleton
         positionX: 418.7
         positionY: 8.7
-        respawnSeconds: 8
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorSimpleFruit5
+        positionX: 137.3
+        positionY: -0.1
+        respawnSeconds: 60
         IrellevantMob: 1
       Interactables:
       - interactableName: LeftEntrance
@@ -7214,17 +7153,17 @@ MonoBehaviour:
       - monsterName: ActorSkeleton
         positionX: 68.39
         positionY: -8.68
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton2
         positionX: 81.4
         positionY: -22.84
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton2
         positionX: 122.17
         positionY: -9.35
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorCoveTreasureChest
         positionX: 70.2
@@ -7232,39 +7171,24 @@ MonoBehaviour:
         respawnSeconds: 180
         IrellevantMob: 1
       - monsterName: ActorSkeleton
-        positionX: 85.21
-        positionY: -8.77
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSkeleton
         positionX: 75.9
         positionY: -9.25
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton3
         positionX: 94.4
         positionY: -9.5
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorSkeleton2
-        positionX: 79.31
-        positionY: -6.87
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorGhostSmall
-        positionX: 75.7
-        positionY: -21.98
-        respawnSeconds: 8
-        IrellevantMob: 1
       - monsterName: ActorGhostSmall
         positionX: 87.39
         positionY: -23.12
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton
         positionX: 122.55
         positionY: -10.01
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       Interactables:
       - interactableName: Entry
@@ -7300,13 +7224,8 @@ MonoBehaviour:
       - monsterName: ActorSimpleFruit4
         positionX: 139.7
         positionY: 6.58
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorShellCrab
-        positionX: 97.9
-        positionY: -9
-        respawnSeconds: 0
-        IrellevantMob: 0
       - monsterName: ActorSpikes
         positionX: 432.5
         positionY: -34.5
@@ -7330,17 +7249,17 @@ MonoBehaviour:
       - monsterName: ActorShellCrab
         positionX: 101.2
         positionY: -7.4
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit5
         positionX: 185.7
         positionY: 2.8
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorShellCrabBig
         positionX: 350
         positionY: -20.1
-        respawnSeconds: 15
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 422.2
@@ -7355,17 +7274,17 @@ MonoBehaviour:
       - monsterName: ActorShellCrabBig
         positionX: 441.5
         positionY: -23.1
-        respawnSeconds: 15
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit5
         positionX: 138.3
         positionY: 6.58
-        respawnSeconds: 300
+        respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorShellCrab
         positionX: 188.3
         positionY: -2.4
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 413.4
@@ -7380,12 +7299,12 @@ MonoBehaviour:
       - monsterName: ActorShellCrab
         positionX: 232.4
         positionY: 9.6
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorShellCrab
         positionX: 147.8
         positionY: -1.8
-        respawnSeconds: 8
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 404.2
@@ -7501,12 +7420,12 @@ MonoBehaviour:
       - monsterName: ActorSpikes
         positionX: 276.3
         positionY: -17.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 326.4
         positionY: -17.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 142.2
@@ -7526,12 +7445,12 @@ MonoBehaviour:
       - monsterName: ActorShellCrabSmall
         positionX: 38.4
         positionY: -16.1
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 247.2
         positionY: -15.1
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 352.4
@@ -7541,7 +7460,7 @@ MonoBehaviour:
       - monsterName: ActorShellCrab
         positionX: 23.9
         positionY: -16.1
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 160.3
@@ -7576,7 +7495,7 @@ MonoBehaviour:
       - monsterName: ActorSpikes
         positionX: 266.1
         positionY: -17.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 148.4
@@ -7586,12 +7505,12 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 182.2
         positionY: 12.3
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 297.6
         positionY: -17.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 162.4
@@ -7601,12 +7520,12 @@ MonoBehaviour:
       - monsterName: ActorSpikes
         positionX: 286.9
         positionY: -17.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 255.9
         positionY: -17.4
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 206.7
@@ -7616,17 +7535,17 @@ MonoBehaviour:
       - monsterName: ActorSpikes
         positionX: 307.7
         positionY: -17.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 338.5
         positionY: -17.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorBat
         positionX: 282.9
         positionY: 52.6
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 191.9
@@ -7646,22 +7565,22 @@ MonoBehaviour:
       - monsterName: ActorBatBig
         positionX: 282.6
         positionY: 65.7
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 318
         positionY: -17.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorBat
         positionX: 269.4
         positionY: 59.9
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 347.8
         positionY: -17.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 240.8
@@ -7671,7 +7590,7 @@ MonoBehaviour:
       - monsterName: ActorShellCrab
         positionX: 70.6
         positionY: -16.1
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 135.6
@@ -8371,90 +8290,60 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorPuffBunny
-        positionX: 125.7
-        positionY: -40.6
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 140.7
-        positionY: -40
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 372.1
-        positionY: -18.1
-        respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 361.2
-        positionY: -16.9
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorSlime
         positionX: 237.2
         positionY: -35.4
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSlime
         positionX: 296.5
         positionY: 16.7
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 207.2
-        positionY: -23.4
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSlime
         positionX: 139.3
         positionY: -38.2
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 307.3
-        positionY: -41.1
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikesDeadly
         positionX: 310.7
         positionY: 7.65
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSlime
         positionX: 357.2
         positionY: -16.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikesDeadly
         positionX: 139.2
         positionY: 6.32
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikesDeadly
         positionX: 255.69
         positionY: 7.1400003
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikesDeadly
         positionX: 214.8
         positionY: 6.4199996
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikesDeadly
         positionX: 319.3
         positionY: 7.8399997
-        respawnSeconds: 8
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 125.7
+        positionY: -40.6
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikesDeadly
         positionX: 205
         positionY: 14.32
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 71.4
-        positionY: -8
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikesDeadly
         positionX: 204.4
@@ -8464,17 +8353,7 @@ MonoBehaviour:
       - monsterName: ActorSpikesDeadly
         positionX: 152.3
         positionY: 6.440001
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 137.1
-        positionY: 17.3
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 186
-        positionY: 18.9
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 304.39
@@ -8489,12 +8368,17 @@ MonoBehaviour:
       - monsterName: ActorSlime
         positionX: 242.2
         positionY: 24.9
-        respawnSeconds: 8
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorPuffBunny
+        positionX: 140.7
+        positionY: -40
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikesDeadly
         positionX: 194.8
         positionY: 6.18
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       Interactables:
       - interactableName: LeftEntrance
@@ -8552,25 +8436,15 @@ MonoBehaviour:
         positionY: 12.660001
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 399.6
-        positionY: -8.9
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 88.9
         positionY: -19.7
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 263.1
-        positionY: -45.7
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorPuffBunny
         positionX: 266.3
         positionY: -51.9
-        respawnSeconds: 12
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 99.420006
@@ -8597,15 +8471,10 @@ MonoBehaviour:
         positionY: -5.84
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 372.3
-        positionY: -10
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorPuffBunny
         positionX: 202
         positionY: -22
-        respawnSeconds: 12
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 372.8
@@ -8635,7 +8504,7 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 205.8
         positionY: -49.6
-        respawnSeconds: 12
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 384.6
@@ -8647,11 +8516,6 @@ MonoBehaviour:
         positionY: -3.02
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 393.8
-        positionY: -14.6
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 124.7
         positionY: -7.23
@@ -8660,17 +8524,12 @@ MonoBehaviour:
       - monsterName: ActorPuffBunny
         positionX: 206.3
         positionY: -22.9
-        respawnSeconds: 12
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 380.6
         positionY: 10.259999
         respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 384.7
-        positionY: -6.3
-        respawnSeconds: 12
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 343.79
@@ -8697,11 +8556,6 @@ MonoBehaviour:
         positionY: -115.5
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 202.6
-        positionY: -19.2
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 297.2
         positionY: -115.5
@@ -8710,7 +8564,7 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 309.4
         positionY: -0.3
-        respawnSeconds: 12
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 286.2
@@ -8720,12 +8574,12 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 365.8
         positionY: -69.3
-        respawnSeconds: 12
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSalamanderSmall
         positionX: 374.2
         positionY: -71.2
-        respawnSeconds: 12
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 246.4
@@ -8747,11 +8601,6 @@ MonoBehaviour:
         positionY: -115.5
         respawnSeconds: 12
         IrellevantMob: 1
-      - monsterName: ActorPuffBunny
-        positionX: 354.8
-        positionY: -13.2
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 93.73
         positionY: -15.13
@@ -8765,7 +8614,7 @@ MonoBehaviour:
       - monsterName: ActorPuffBunny
         positionX: 196.4
         positionY: -52.1
-        respawnSeconds: 12
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 340.7
@@ -8775,7 +8624,7 @@ MonoBehaviour:
       - monsterName: ActorPuffBunny
         positionX: 137.4
         positionY: -24.7
-        respawnSeconds: 12
+        respawnSeconds: 30
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 118.88
@@ -8862,10 +8711,15 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorPuffBunny
-        positionX: 163.9
-        positionY: -17.4
-        respawnSeconds: 12
+      - monsterName: ActorRabbit
+        positionX: 121.4
+        positionY: -15.3
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorRabbit
+        positionX: 130.1
+        positionY: -14
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorPuffBunny
         positionX: 23.9
@@ -8873,19 +8727,9 @@ MonoBehaviour:
         respawnSeconds: 12
         IrellevantMob: 1
       - monsterName: ActorPuffBunny
-        positionX: 19.2
-        positionY: -18
+        positionX: 163.9
+        positionY: -17.4
         respawnSeconds: 12
-        IrellevantMob: 1
-      - monsterName: ActorRabbit
-        positionX: 121.4
-        positionY: -15.3
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorRabbit
-        positionX: 130.1
-        positionY: -14
-        respawnSeconds: 8
         IrellevantMob: 1
       Interactables:
       - interactableName: LeftEntrance
@@ -8941,57 +8785,42 @@ MonoBehaviour:
       - monsterName: ActorSkeleton2
         positionX: 157.9
         positionY: -11
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorBat
         positionX: 138.5
         positionY: 53.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton2
         positionX: 248.1
         positionY: -6.1
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorBat
         positionX: 129.1
         positionY: 59.6
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton
         positionX: 283.4
         positionY: 20.6
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSkeleton
-        positionX: 124.1
-        positionY: -19.9
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton
         positionX: 202.6
         positionY: -6.1
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton3
         positionX: 244.4
         positionY: -6.3
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSkeleton2
-        positionX: 282.7
-        positionY: 20.9
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSkeleton
         positionX: 106.2
         positionY: -19.9
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSkeleton
-        positionX: 172.2
-        positionY: -8.3
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 166
@@ -9011,7 +8840,7 @@ MonoBehaviour:
       - monsterName: ActorBatBig
         positionX: 134.1
         positionY: 59.6
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       Interactables:
       - interactableName: LeftEntrance
@@ -9112,17 +8941,12 @@ MonoBehaviour:
       - monsterName: ActorMushroomSmall
         positionX: 397.1
         positionY: 39.2
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 303.35
         positionY: 5.33
         respawnSeconds: 300
-        IrellevantMob: 1
-      - monsterName: ActorSalamander
-        positionX: 321.5
-        positionY: 8.2
-        respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 460
@@ -9132,12 +8956,7 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 419.2
         positionY: -14.4
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorMushroomSmall2
-        positionX: 448.4
-        positionY: 10.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 248.54
@@ -9147,17 +8966,12 @@ MonoBehaviour:
       - monsterName: ActorFlowerbeing
         positionX: 252.6
         positionY: -15.1
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorSalamander
-        positionX: 391.3
-        positionY: 40.3
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSlime
         positionX: 394
         positionY: 43
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 244.1
@@ -9167,7 +8981,7 @@ MonoBehaviour:
       - monsterName: ActorMushroomSmall
         positionX: 380.1
         positionY: -15.5
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 488.8
@@ -9202,12 +9016,12 @@ MonoBehaviour:
       - monsterName: ActorMushroomSmall2
         positionX: 314.2
         positionY: 5.6
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSalamander
         positionX: 503
         positionY: 9.8
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 414.1
@@ -9218,11 +9032,6 @@ MonoBehaviour:
         positionX: 396.7
         positionY: 55.1
         respawnSeconds: 300
-        IrellevantMob: 1
-      - monsterName: ActorSlime
-        positionX: 389.9
-        positionY: 42.2
-        respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 312.13
@@ -9247,7 +9056,7 @@ MonoBehaviour:
       - monsterName: ActorSlime
         positionX: 386.5
         positionY: 42.2
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 321.01
@@ -9257,7 +9066,7 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 449.8
         positionY: 11.3
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 527.5
@@ -9267,7 +9076,7 @@ MonoBehaviour:
       - monsterName: ActorFlowerbeing
         positionX: 452.3
         positionY: 13.9
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit3
         positionX: 449.3
@@ -9405,26 +9214,6 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorSalamanderSmall
-        positionX: 273.4
-        positionY: 25
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 270.3
-        positionY: 25.2
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 261.2
-        positionY: -25.5
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 184.7
-        positionY: -95
-        respawnSeconds: 0
-        IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 242.5
         positionY: 27.3
@@ -9453,17 +9242,27 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 45.8
         positionY: -87.1
-        respawnSeconds: 0
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSalamander
         positionX: 315.8
         positionY: -89.2
-        respawnSeconds: 0
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 20.8
         positionY: 29
         respawnSeconds: 300
+        IrellevantMob: 1
+      - monsterName: ActorSalamanderSmall
+        positionX: 184.7
+        positionY: -95
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSalamanderSmall
+        positionX: 270.3
+        positionY: 25.2
+        respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 396.7
@@ -9488,7 +9287,7 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 209.7
         positionY: -92.3
-        respawnSeconds: 0
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 314
@@ -9503,7 +9302,7 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 165.1
         positionY: -86.8
-        respawnSeconds: 0
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 27.7
@@ -9514,6 +9313,16 @@ MonoBehaviour:
         positionX: 403.7
         positionY: 48.8
         respawnSeconds: 300
+        IrellevantMob: 1
+      - monsterName: ActorSalamanderSmall
+        positionX: 261.2
+        positionY: -25.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSalamanderSmall
+        positionX: 273.4
+        positionY: 25
+        respawnSeconds: 0
         IrellevantMob: 1
       Interactables:
       - interactableName: RightEntrance
@@ -9601,40 +9410,20 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorSalamanderSmall
-        positionX: 284.6
-        positionY: 52.7
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 291.2
-        positionY: 53.6
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 266.9
-        positionY: 18
-        respawnSeconds: 0
+      - monsterName: ActorSalamander
+        positionX: 261.6
+        positionY: 17
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSalamanderSmall
         positionX: 102.8
         positionY: 12.7
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 99.1
-        positionY: 13.3
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorSalamander
-        positionX: 261.6
-        positionY: 17
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSalamander
         positionX: 110.1
         positionY: 12.9
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 112.5
@@ -9649,7 +9438,12 @@ MonoBehaviour:
       - monsterName: ActorShellCrab
         positionX: 142
         positionY: -11.9
-        respawnSeconds: 8
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorSalamanderSmall
+        positionX: 284.6
+        positionY: 52.7
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 314.1
@@ -9659,7 +9453,17 @@ MonoBehaviour:
       - monsterName: ActorSalamander
         positionX: 285.6
         positionY: 52.4
-        respawnSeconds: 8
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorSalamanderSmall
+        positionX: 291.2
+        positionY: 53.6
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorSalamanderSmall
+        positionX: 266.9
+        positionY: 18
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 210.9
@@ -9671,15 +9475,20 @@ MonoBehaviour:
         positionY: -2
         respawnSeconds: 300
         IrellevantMob: 1
+      - monsterName: ActorSalamanderSmall
+        positionX: 99.1
+        positionY: 13.3
+        respawnSeconds: 15
+        IrellevantMob: 1
       - monsterName: ActorSalamander
         positionX: 209.1
         positionY: 51.2
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSalamander
         positionX: 316.1
         positionY: 17.8
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit2
         positionX: 307.4
@@ -10263,27 +10072,22 @@ MonoBehaviour:
       - monsterName: ActorBat
         positionX: 119.7
         positionY: 0.1
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorGhostSmall
         positionX: 83.82
         positionY: -24.46
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorBat
         positionX: 124.3
         positionY: -27
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorBat
-        positionX: 122.7
-        positionY: -1.2
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorBat
-        positionX: 121
-        positionY: -32
-        respawnSeconds: 8
+        positionX: 49.8
+        positionY: -9.4
+        respawnSeconds: 15
         IrellevantMob: 1
       Interactables:
       - interactableName: TavernEntry
@@ -10326,6 +10130,16 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
+      - monsterName: ActorBat
+        positionX: 97.6
+        positionY: 2.7
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 150.84
+        positionY: 21.65
+        respawnSeconds: 15
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 156.1
         positionY: 32.2
@@ -10351,25 +10165,15 @@ MonoBehaviour:
         positionY: -22.5
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorBat
-        positionX: 73.9
-        positionY: -4.2
-        respawnSeconds: 8
-        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 157.4
         positionY: 71.3
         respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorBat
-        positionX: 187.1
-        positionY: 73.9
-        respawnSeconds: 8
-        IrellevantMob: 1
-      - monsterName: ActorBat
         positionX: 80.1
         positionY: -2.9
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 189.8
@@ -10379,7 +10183,7 @@ MonoBehaviour:
       - monsterName: ActorGhostSmall
         positionX: 89.7
         positionY: -20.2
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 156.1
@@ -10414,7 +10218,7 @@ MonoBehaviour:
       - monsterName: ActorBat
         positionX: 186.8
         positionY: 75.4
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 75.4
@@ -10429,7 +10233,7 @@ MonoBehaviour:
       - monsterName: ActorBat
         positionX: 189.2
         positionY: 73.3
-        respawnSeconds: 8
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 186.1
@@ -10720,18 +10524,51 @@ MonoBehaviour:
         Condition: {fileID: 0}
         GameConditions:
         - Type: {fileID: 11400000, guid: 84c7520e50ed3f2438862496439ab510, type: 2}
-          Value: 0.01
+          Value: 0.003
           ObjectValue: {fileID: 0}
           Inverse: 0
         Targets: 2
         Value: 
         ObjectValue: {fileID: 11400000, guid: 21fe16960bbeb44438ef099649be99d9, type: 2}
         Value2: 
+      - Type: {fileID: 11400000, guid: 801798a1757a02c4aa3c6f24bb1d4b2e, type: 2}
+        Condition: {fileID: 0}
+        GameConditions:
+        - Type: {fileID: 11400000, guid: 84c7520e50ed3f2438862496439ab510, type: 2}
+          Value: 0.003
+          ObjectValue: {fileID: 0}
+          Inverse: 0
+        Targets: 2
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: f18f24c706e61394ab77b4041dc18da3, type: 2}
+        Value2: 
+      - Type: {fileID: 11400000, guid: 801798a1757a02c4aa3c6f24bb1d4b2e, type: 2}
+        Condition: {fileID: 0}
+        GameConditions:
+        - Type: {fileID: 11400000, guid: 84c7520e50ed3f2438862496439ab510, type: 2}
+          Value: 0.003
+          ObjectValue: {fileID: 0}
+          Inverse: 0
+        Targets: 2
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 0c9274db74826564caa52220f400083d, type: 2}
+        Value2: 
+      - Type: {fileID: 11400000, guid: 801798a1757a02c4aa3c6f24bb1d4b2e, type: 2}
+        Condition: {fileID: 0}
+        GameConditions:
+        - Type: {fileID: 11400000, guid: 84c7520e50ed3f2438862496439ab510, type: 2}
+          Value: 0.003
+          ObjectValue: {fileID: 0}
+          Inverse: 0
+        Targets: 2
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 69b9b2233ee5e844e8ae23813e2720df, type: 2}
+        Value2: 
       - Type: {fileID: 11400000, guid: 2bcc501bf1999c140baccace8307c8d5, type: 2}
         Condition: {fileID: 0}
         GameConditions:
         - Type: {fileID: 11400000, guid: 84c7520e50ed3f2438862496439ab510, type: 2}
-          Value: 0.01
+          Value: 0.008
           ObjectValue: {fileID: 0}
           Inverse: 0
         Targets: 2

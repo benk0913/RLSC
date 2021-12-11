@@ -148,7 +148,7 @@ public class InteractableEntity : MonoBehaviour
             return;
         }
 
-        NearbyActor.transform.position = targetTransform.position;
+        NearbyActor.transform.position = new Vector3(targetTransform.position.x,targetTransform.position.y,NearbyActor.transform.position.z);
     }
 
     private void Update()
