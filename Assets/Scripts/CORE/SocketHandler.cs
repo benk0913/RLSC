@@ -100,7 +100,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("room_states", OnRoomStates));
         SocketEventListeners.Add(new SocketEventListener("room_vendors", OnVendorUpdate));
 
-        SocketEventListeners.Add(new SocketEventListener("game_states", OnGameStates));
+        SocketEventListeners.Add(new SocketEventListener("phase", OnPhase));
 
         SocketEventListeners.Add(new SocketEventListener("exp_update", OnExpUpdate));
         SocketEventListeners.Add(new SocketEventListener("level_up", OnLevelUp));
@@ -964,10 +964,18 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.InvokeEvent("RoomStatesChanged");
     }
 
-    public void OnGameStates(string eventName, JSONNode data)
+    public void OnPhase(string eventName, JSONNode data)
     {
-        CORE.Instance.GameStates = JsonConvert.DeserializeObject<Dictionary<string, string>>(data["states"].ToString());
-        CORE.Instance.InvokeEvent("GameStatesChanged");
+        string Phase = data["phase"].Value;
+        int MinutesIntoCycle = data["minutesIntoCycle"].AsInt;
+        int MinutesUntilNextPhase = data["minutesUntilNextPhase"].AsInt;
+        if (Phase != CORE.Instance.TimePhase)
+        {
+            CORE.Instance.TimePhase = Phase;
+            CORE.Instance.InvokeEvent("PhaseChanged");
+        }
+        
+        // TODO update clock here using MinutesIntoCycle and MinutesUntilNextPhase
     }
 
     public void OnExpUpdate(string eventName, JSONNode data)

@@ -35,7 +35,7 @@ public class TimePhaseEntity : MonoBehaviour
             }
         }
 
-        CORE.Instance.SubscribeToEvent("GameStatesChanged", SwitchState);
+        CORE.Instance.SubscribeToEvent("PhaseChanged", SwitchState);
         
         RefreshState();
     }
@@ -60,45 +60,30 @@ public class TimePhaseEntity : MonoBehaviour
 
     public void RefreshState()
     {
-        if (CORE.Instance.GameStates["phase"] == "Day")
+        if (CORE.Instance.TimePhase == "Day")
         {
             ScreenFaderUI.Instance.FadeFromBlack(null, Color.white);
         }
-        else if (CORE.Instance.GameStates["phase"] == "Night")
+        else if (CORE.Instance.TimePhase == "Night")
         {
             ScreenFaderUI.Instance.FadeFromBlack(null);
         }        
 
         if (DefaultHandler && DefaultSun != null)
         {
-            if (CORE.Instance.GameStates.ContainsKey("phase"))
-            {
 
-
-                    if (CORE.Instance.GameStates["phase"] == "Day")
-                    {
-                        DefaultSun.color = DefaultSunColor;
-                    }
-                    else if (CORE.Instance.GameStates["phase"] == "Night")
-                    {
-                        DefaultSun.color = DefaultNightSunColor;
-                    }
-                    
-                   
-
-            }
-            else
+            if (CORE.Instance.TimePhase == "Day")
             {
                 DefaultSun.color = DefaultSunColor;
             }
+            else if (CORE.Instance.TimePhase == "Night")
+            {
+                DefaultSun.color = DefaultNightSunColor;
+            }
+                    
         }
 
-        if (!CORE.Instance.GameStates.ContainsKey("phase"))
-        {
-            return;
-        }
-
-        TimePhaseScenario scenario = TimePhaseScenarios.Find(x => x.TimePhase.ToString() == CORE.Instance.GameStates["phase"]);
+        TimePhaseScenario scenario = TimePhaseScenarios.Find(x => x.TimePhase.ToString() == CORE.Instance.TimePhase);
 
         if(scenario == null)
         {

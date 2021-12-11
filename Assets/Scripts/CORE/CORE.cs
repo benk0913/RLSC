@@ -1,4 +1,4 @@
-using EdgeworldBase;
+﻿using EdgeworldBase;
 using I2.Loc;
 using NewResolutionDialog.Scripts.Controller;
 using Newtonsoft.Json;
@@ -38,7 +38,7 @@ public class CORE : MonoBehaviour
 
     public PartyData CurrentParty;
 
-    public Dictionary<string, string> GameStates = new Dictionary<string, string>();
+    public string TimePhase = "Day";
     
     public bool DEBUG = false;
 
@@ -54,7 +54,7 @@ public class CORE : MonoBehaviour
 
     public bool IsPickingUpItem = false;
     public static bool IsMachinemaMode;
-    public bool GameStatesInitialized;
+    public bool PhaseInitialized;
     public string CurrentTimePhase;
 
     public bool IsUsingJoystick;
@@ -287,7 +287,7 @@ public class CORE : MonoBehaviour
         SubscribeToEvent("ActorDied", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorResurrected", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorChangedStates", () => { Room.RefreshThreat(); });
-        SubscribeToEvent("GameStatesChanged", () => { GameStatesChanges(); });
+        SubscribeToEvent("PhaseChanged", () => { PhaseChange(); });
 
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
@@ -338,24 +338,24 @@ public class CORE : MonoBehaviour
             //CORE.Instance.DelayedInvokation(1f, () => { GraphicSettingsHandler.Instance.SetResolution(1280, 720); });
         }
     }
-    private void GameStatesChanges()
+    private void PhaseChange()
     {
-        if (!GameStatesInitialized)
+        if (!PhaseInitialized)
         {
-            GameStatesInitialized = true;
+            PhaseInitialized = true;
             return;
         }
 
 
-        if (GameStates["phase"] != CurrentTimePhase)
+        if (TimePhase != CurrentTimePhase)
         {
             // if (!this.Room.HasEnemies && InGame)
             // {
-            //     if (GameStates["phase"] == "Day")
+            //     if (TimePhase == "Day")
             //     {
             //         ShowScreenEffect("ScreenEffectChamberToDay", null, false);
             //     }
-            //     else if (GameStates["phase"] == "Night")
+            //     else if (TimePhase == "Night")
             //     {
             //         ShowScreenEffect("ScreenEffectChamberToNight", null, false);
             //     }
@@ -364,7 +364,7 @@ public class CORE : MonoBehaviour
 
             CORE.Instance.ShowScreenEffect("ScreenEffectLocation", ActiveSceneInfo.displyName);
 
-            CurrentTimePhase = GameStates["phase"];
+            CurrentTimePhase = TimePhase;
             RefreshSceneInfo();
 
 
@@ -1155,7 +1155,7 @@ public class CORE : MonoBehaviour
 
         if (info != null)
         {
-            if (CORE.Instance.GameStates["phase"] == "Day")
+            if (CORE.Instance.TimePhase == "Day")
             {
                 if (!string.IsNullOrEmpty(info.MusicTrack))
                 {
@@ -1171,7 +1171,7 @@ public class CORE : MonoBehaviour
                     AudioControl.Instance.SetSoundscape(null);
                 }
             }
-            else if (CORE.Instance.GameStates["phase"] == "Night")
+            else if (CORE.Instance.TimePhase == "Night")
             {
                 if (!string.IsNullOrEmpty(info.NightMusicTrack))
                 {
