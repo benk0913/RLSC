@@ -2016,17 +2016,17 @@ public class SocketHandler : MonoBehaviour
 
     public void OnPartyInvite(string eventName, JSONNode data)
     {
-        string leaderName = data["leaderName"].Value;
+        string inviterName = data["inviterName"].Value;
 
         AudioControl.Instance.Play("getPartyInvite");
 
-        if (!string.IsNullOrEmpty(leaderName))
+        if (!string.IsNullOrEmpty(inviterName))
         {
             string hasInvited = " has invited you to a party!";
             CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(" has invited you to a party!", out hasInvited);
 
-            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + leaderName + hasInvited+"</color>");
-            LootRollPanelUI.Instance.AddPartyInvitation(leaderName);
+            CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + inviterName + hasInvited+"</color>");
+            LootRollPanelUI.Instance.AddPartyInvitation(inviterName);
         }
         else
         {
