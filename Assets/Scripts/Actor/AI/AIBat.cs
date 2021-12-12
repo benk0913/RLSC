@@ -58,18 +58,22 @@ public class AIBat : ActorAI
             return;
         }
 
-        if (CurrentTarget.transform.position.x > transform.position.x && !rhitRight)
+        float verticalDistance = Mathf.Abs(CurrentTarget.transform.position.y -  transform.position.y);
+        float horizontalDistance  = Mathf.Abs(CurrentTarget.transform.position.x - transform.position.x);
+        if(verticalDistance - horizontalDistance < 1f)//Not that high or not that low
         {
-            Act.AttemptMoveRight();
-        }
-        else if (CurrentTarget.transform.position.x < transform.position.x && !rhitLeft)
-        {
-            Act.AttemptMoveLeft();
+            if (CurrentTarget.transform.position.x > transform.position.x && !rhitRight)
+            {
+                Act.AttemptMoveRight();
+            }
+            else if (CurrentTarget.transform.position.x < transform.position.x && !rhitLeft)
+            {
+                Act.AttemptMoveLeft();
+            }
         }
 
         if (CurrentTarget.transform.position.y > transform.position.y)
         {
-
             Act.AttemptMoveUp();
         }
         else if (CurrentTarget.transform.position.y < transform.position.y)

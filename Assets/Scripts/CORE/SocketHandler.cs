@@ -178,7 +178,11 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("quest_start", OnQuestStart));
         SocketEventListeners.Add(new SocketEventListener("quest_progress", OnQuestProgress));
         SocketEventListeners.Add(new SocketEventListener("quest_complete", OnQuestComplete));
-
+        
+        //MAINTAINANCE
+        SocketEventListeners.Add(new SocketEventListener("server_message", OnServerMessage));
+        SocketEventListeners.Add(new SocketEventListener("cg_update_Pause", OnCGUpdate));
+        
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -1632,6 +1636,29 @@ public class SocketHandler : MonoBehaviour
         AudioControl.Instance.Play("QuestComplete");
     }
 
+     public void OnServerMessage(string eventName, JSONNode data)
+    {
+        string message = data["message"].Value;
+
+        CORE.Instance.AddChatMessage(message);
+    }
+
+     public void OnCGUpdate(string eventName, JSONNode data)
+    {
+        bool state = data["state"].AsBool;
+        
+        if(state)
+        {
+            CORE.Instance.AddChatMessage("<color=red><i>-- Server Quick Update | Please Wait --</i></color>");
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            CORE.Instance.AddChatMessage("<color=green><i>-- Server Quick Update COMPLETE --</i></color>");
+            Time.timeScale = 1f;
+        }
+    }
+
     public void OnSlotmachineResult(string eventName, JSONNode data)
     {
         int WinRewardIndex = data["rewardIndex"].AsInt;
@@ -1980,6 +2007,7 @@ public class SocketHandler : MonoBehaviour
 
         if (!string.IsNullOrEmpty(message))
         {
+            message = RichTextRemover.RemoveRichText(message);
             string chatlogMessage = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + "</color>: " + message;
 
             CORE.Instance.AddChatMessage(chatlogMessage);

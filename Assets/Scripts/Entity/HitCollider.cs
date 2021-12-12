@@ -47,6 +47,11 @@ public class HitCollider : MonoBehaviour
             return false;
         }
 
+        if(ParentCollider != null)
+        {
+            return ParentCollider.AttemptHitAbility(actorVictim);
+        }
+
         if (CanSendEventForActor(actorVictim))
         {
             JSONNode node = new JSONClass();
