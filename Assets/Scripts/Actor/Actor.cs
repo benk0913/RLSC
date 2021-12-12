@@ -336,7 +336,7 @@ public class Actor : MonoBehaviour
         }
         else
         {
-            if(Vector2.Distance(transform.position,Vector3.zero) > 10000f)
+            if(Vector2.Distance(transform.position,Vector3.zero) > 5000f)
             {
                 if(CORE.Instance.ActiveSceneInfo.Portals.Count > 0)
                 {
