@@ -1846,16 +1846,29 @@ public class SocketHandler : MonoBehaviour
 
     public void OnPromoCodeConfirmed(string eventName, JSONNode data)
     {
-        string eqpgained = data["eqp"].Value;
-        int parsedInt = 0;
-        int.TryParse(eqpgained, out parsedInt);
-        if(parsedInt != 0)
+        string promoCode = data["code"].Value;
+        int eqpGained = 0;
+
+        PromoCode promoData = CORE.Instance.Data.content.Promos.Find(x=>x.Key == promoCode);
+
+        if(promoData != null)
         {
-            WarningWindowUI.Instance.Show("PROMO CODE CONFIRMED <color=purple>(+"+parsedInt+" EQP!)</color>",()=>{CashShopWindowUI.Instance.Show(CORE.PlayerActor);},true,null,"Great!");
+            foreach(AbilityParam abPar in promoData.Rewards)
+            {
+                if (abPar.Type.name == "Gain EQP")
+                {
+                    eqpGained += int.Parse(abPar.Value);
+                }
+            }
+        }
+
+        if(eqpGained > 0)
+        {
+            WarningWindowUI.Instance.Show("PROMO CODE CONFIRMED <color=purple>(+"+eqpGained+" EQP!)</color>",()=>{CORE.Instance.ShowInAppShopWindow();},true,null,"Great!");
         }
         else
         {
-            WarningWindowUI.Instance.Show("Promo Code Denied",null);
+            WarningWindowUI.Instance.Show("PROMO CODE CONFIRMED",()=>{},true,null,"Great!");
         }
 
     }

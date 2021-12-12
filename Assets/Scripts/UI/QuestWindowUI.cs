@@ -49,6 +49,7 @@ public class QuestWindowUI : MonoBehaviour, WindowInterface
     }
 
 
+    [Obsolete("Do not call Show directly. Call `CORE.Instance.ShowWindow()` instead.")]
     public void Show(ActorData actorData, object data = null)
     {
         IsOpen = true;
@@ -64,6 +65,7 @@ public class QuestWindowUI : MonoBehaviour, WindowInterface
         CORE.Instance.DelayedInvokation(0.1f, () => SelectionGroup.RefreshGroup(true));
     }
 
+    [Obsolete("Do not call Hide directly. Call `CORE.Instance.CloseCurrentWindow()` instead.")]
     public void Hide()
     {
         IsOpen = false;

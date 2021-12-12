@@ -145,6 +145,8 @@ public class DatabaseContent
 
     public SlotsDatabase Slots;
 
+    public List<PromoCode> Promos;
+
     public bool DangerousEveryoneIsAdmin;
 }
 

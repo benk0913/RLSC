@@ -37,6 +37,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         Hide();
     }
 
+    [Obsolete("Do not call Show directly. Call `CORE.Instance.ShowWindow()` instead.")]
     public void Show(ActorData actorData, object data = null)
     {
         IsOpen = true;
@@ -50,6 +51,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         AudioControl.Instance.Play(OpenSound);
     }
 
+    [Obsolete("Do not call Hide directly. Call `CORE.Instance.CloseCurrentWindow()` instead.")]
     public void Hide()
     {
         IsOpen = false;

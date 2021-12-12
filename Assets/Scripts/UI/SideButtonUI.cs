@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,12 +25,14 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
         Instance = this;
     }
 
+    [Obsolete("Do not call Hide directly. Call `CORE.Instance.CloseCurrentWindow()` instead.")]
     public void Hide()
     {
         Animer.SetTrigger("Hide");
         isVisible = false;
     }
 
+    [Obsolete("Do not call Show directly. Call `CORE.Instance.ShowWindow()` instead.")]
     public void Show(ActorData actorData, object data = null)
     {
         Animer.SetTrigger("Show");

@@ -1,4 +1,5 @@
 ﻿using EdgeworldBase;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,6 +52,7 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
     //     }
     // }
 
+    [Obsolete("Do not call Show directly. Call `CORE.Instance.ShowWindow()` instead.")]
     public void Show(ActorData actorData, object data = null)
     {
         IsOpen = true;
@@ -114,6 +116,7 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
         MapMarker.transform.position = mapPointInstance.transform.position;
     }
 
+    [Obsolete("Do not call Hide directly. Call `CORE.Instance.CloseCurrentWindow()` instead.")]
     public void Hide()
     {
         IsOpen = false;

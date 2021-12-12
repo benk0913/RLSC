@@ -115,6 +115,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     }
 
 
+    [Obsolete("Do not call Show directly. Call `CORE.Instance.ShowWindow()` instead.")]
     public void Show(ActorData actorData, object data = null)
     {
         CORE.Instance.SubscribeToEvent("CashShopUpdated", RefreshUI);
@@ -387,6 +388,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         CORE.Instance.DelayedInvokation(0.3f,()=>SelectionGroup.RefreshGroup());
     }
 
+    [Obsolete("Do not call Hide directly. Call `CORE.Instance.CloseCurrentWindow()` instead.")]
     public void Hide()
     {
         if (CORE.Instance != null)
@@ -458,12 +460,12 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void ShowPromotionalCodePrompt()
     {
-        Hide();
+        CORE.Instance.CloseCurrentWindow();
         InputLabelWindow.Instance.Show("Promo Code:","Enter your PROMO CODE",(string givenCode)=>
         {
             JSONClass node = new JSONClass();
             node["code"] = givenCode;
-            SocketHandler.Instance.SendEvent("promo_Code",node);
+            SocketHandler.Instance.SendEvent("use_promo",node);
         });
     }
 }

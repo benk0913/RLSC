@@ -3,8 +3,9 @@ using System;
 
 public interface WindowInterface 
 {
-    [Obsolete("Bob stop using this method directly. Call CORE.Instance.ShowWindow instead.")]
+    [Obsolete("Do not call Show directly. Call `CORE.Instance.ShowWindow()` instead.")]
     void Show(ActorData actorData, object data);
 
+    [Obsolete("Do not call Hide directly. Call `CORE.Instance.CloseCurrentWindow()` instead.")]
     void Hide();
 }
