@@ -334,6 +334,22 @@ public class Actor : MonoBehaviour
         {
             UpdateFromActorData();
         }
+        else
+        {
+            if(Vector2.Distance(transform.position,Vector3.zero) > 10000f)
+            {
+                if(CORE.Instance.ActiveSceneInfo.Portals.Count > 0)
+                {
+                    transform.position =new Vector3(CORE.Instance.ActiveSceneInfo.Portals[0].portalPositionX,CORE.Instance.ActiveSceneInfo.Portals[0].portalPositionY,transform.position.z);
+                }
+                else
+                {
+                    transform.position = Vector2.zero;
+                }
+
+                Rigid.velocity = Vector3.zero;
+            }
+        }
     }
 
     protected void FixedUpdate()
