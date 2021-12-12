@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareGhostCollider
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: A_Whip_PrepareOGG
     ExecuteAbilitySound: A_GhostOGG
@@ -35,15 +36,17 @@ MonoBehaviour:
   CD: 15
   CastingTime: 0.5
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
-    Value: Ghost Shield
-    ObjectValue: {fileID: 0}
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 638698d4e1b8ed04cbf7b52aca17714c, type: 2}
     Value2: 
   OnHitParams: []
   OnMissParams: []
