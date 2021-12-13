@@ -17,6 +17,8 @@ public class Expedition : ScriptableObject
     public string EndTargetSceneGate;
     public string SuccessTargetScene;
     public string SuccessTargetSceneGate;
+    public bool RequireAllInSameRoomToEnter;
+    public List<AbilityParam> OnPlayerDeathParams;
 
     public bool ContainsScene(string sceneName)
     {
