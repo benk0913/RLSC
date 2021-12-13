@@ -43,7 +43,7 @@ public class SocketHandler : MonoBehaviour
 
     public string TutorialIndex;
 
-#if DEV_BUILD || UNITY_EDITOR
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
     public bool RandomUser;
 #endif
 
@@ -222,7 +222,7 @@ public class SocketHandler : MonoBehaviour
 
     public void GetSteamSession(Action OnComplete = null)
     {
-#if DEV_BUILD || UNITY_EDITOR
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         if (RandomUser) {
             OnComplete?.Invoke();
             return;
@@ -371,9 +371,9 @@ public class SocketHandler : MonoBehaviour
         node["skipTutorial"] = SessionTicket;
         node["tutorialVersion"] = Application.version;
         
-#if DEV_BUILD || UNITY_EDITOR
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
     if (RandomUser) {
-    #if DEV_BUILD
+    #if DEVELOPMENT_BUILD
         node["randomUser"] = "dev";
     #elif UNITY_EDITOR
         node["randomUser"] = "editor";
