@@ -498,10 +498,41 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else if (!SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick equip
                 {
+                    if(BankPanelUI.Instance.gameObject.activeInHierarchy)
+                    {
+                        for(int i=0;i<BankPanelUI.Instance.BankInventoryContainer.childCount;i++)
+                        {
+                            InventorySlotUI bankSlot = BankPanelUI.Instance.BankInventoryContainer.GetChild(i).GetComponent<InventorySlotUI>();
+                            if(bankSlot.CurrentItem == null)
+                            {
+                                BankPanelUI.Instance.SetItemInBank(SelectedSlot,bankSlot);
+                                return;
+                            }
+                        }
+                        WarningWindowUI.Instance.Show("Bank Is FULL",null);
+                        return;
+
+                    }
+
                     SocketHandler.Instance.SendUsedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
                 }
                 else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick unequip
                 {
+                     if(BankPanelUI.Instance.gameObject.activeInHierarchy)
+                    {
+                        for(int i=0;i<BankPanelUI.Instance.BankInventoryContainer.childCount;i++)
+                        {
+                            InventorySlotUI bankSlot = BankPanelUI.Instance.BankInventoryContainer.GetChild(i).GetComponent<InventorySlotUI>();
+                            if(bankSlot.CurrentItem == null)
+                            {
+                                BankPanelUI.Instance.BankFromEquipSlot(SelectedSlot,bankSlot);
+                                return;
+                            }
+                        }
+                        WarningWindowUI.Instance.Show("Bank Is FULL",null);
+                        return;
+
+                    }
                     SocketHandler.Instance.SendUnequippedItem(SelectedSlot.SlotType.name);
                 }
                 else if (SelectedSlot.IsEquipmentSlot & slot.IsEquipmentSlot) //Reposition equipment
