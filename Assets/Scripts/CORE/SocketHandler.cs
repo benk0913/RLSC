@@ -224,7 +224,6 @@ public class SocketHandler : MonoBehaviour
     {
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
         if (RandomUser) {
-            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
             OnComplete?.Invoke();
             return;
         }
