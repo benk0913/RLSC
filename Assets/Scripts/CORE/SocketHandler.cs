@@ -971,15 +971,14 @@ public class SocketHandler : MonoBehaviour
     public void OnPhase(string eventName, JSONNode data)
     {
         string Phase = data["phase"].Value;
-        int MinutesIntoCycle = data["minutesIntoCycle"].AsInt;
-        int MinutesUntilNextPhase = data["minutesUntilNextPhase"].AsInt;
+        float PhaseFraction = data["phaseFraction"].AsFloat; // 0-1
         if (Phase != CORE.Instance.TimePhase)
         {
             CORE.Instance.TimePhase = Phase;
             CORE.Instance.InvokeEvent("PhaseChanged");
         }
         
-        // TODO update clock here using MinutesIntoCycle and MinutesUntilNextPhase
+        // TODO update clock here using PhaseFraction
     }
 
     public void OnExpUpdate(string eventName, JSONNode data)
