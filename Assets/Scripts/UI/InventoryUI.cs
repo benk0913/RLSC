@@ -413,7 +413,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 {
                     if(slot == SelectedSlot)// Doubleclick
                     {
-                        BankPanelUI.Instance.RetreiveItem(SelectedSlot);    
+                        BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
                         return;
                     }
                     
@@ -421,7 +421,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 if(slot.IsEquipmentSlot) //From bank slot to equip slot 
                 {
-                    BankPanelUI.Instance.EquipFromBankSlot(SelectedSlot,slot);
+                    BankPanelUI.Instance.BankFromEquipSlot(SelectedSlot,slot);
                     return;
                 }
                 else //From bank slot to other (inventory) slot 
@@ -435,7 +435,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 {
                     if(slot == SelectedSlot)// Doubleclick
                     {
-                        BankPanelUI.Instance.RetreiveItem(SelectedSlot);    
+                        BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
                         return;
                     }
                     
@@ -500,18 +500,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 {
                     if(BankPanelUI.Instance.gameObject.activeInHierarchy)
                     {
-                        for(int i=0;i<BankPanelUI.Instance.BankInventoryContainer.childCount;i++)
-                        {
-                            InventorySlotUI bankSlot = BankPanelUI.Instance.BankInventoryContainer.GetChild(i).GetComponent<InventorySlotUI>();
-                            if(bankSlot.CurrentItem == null)
-                            {
-                                BankPanelUI.Instance.SetItemInBank(SelectedSlot,bankSlot);
-                                return;
-                            }
-                        }
-                        WarningWindowUI.Instance.Show("Bank Is FULL",null);
+                        BankPanelUI.Instance.UsedInventoryItem(SelectedSlot);
                         return;
-
                     }
 
                     SocketHandler.Instance.SendUsedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
@@ -520,16 +510,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 {
                      if(BankPanelUI.Instance.gameObject.activeInHierarchy)
                     {
-                        for(int i=0;i<BankPanelUI.Instance.BankInventoryContainer.childCount;i++)
-                        {
-                            InventorySlotUI bankSlot = BankPanelUI.Instance.BankInventoryContainer.GetChild(i).GetComponent<InventorySlotUI>();
-                            if(bankSlot.CurrentItem == null)
-                            {
-                                BankPanelUI.Instance.BankFromEquipSlot(SelectedSlot,bankSlot);
-                                return;
-                            }
-                        }
-                        WarningWindowUI.Instance.Show("Bank Is FULL",null);
+                        BankPanelUI.Instance.UsedEquipItem(SelectedSlot);
                         return;
 
                     }

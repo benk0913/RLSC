@@ -94,25 +94,32 @@ public class BankPanelUI : MonoBehaviour
         },SocketHandler.Instance.CurrentUser.info.bankMoney);
     }
 
-    internal void RetreiveItem(InventorySlotUI selectedSlot)
+    internal void UsedBankItem(InventorySlotUI selectedSlot)
     {
-        for(int i=0;i<CORE.PlayerActor.items.Count;i++)
-        {
-            if(CORE.PlayerActor.items[i] == null)
-            {
-                RetreiveItemToSlot(selectedSlot,InventoryUI.Instance.ItemsContainer.GetChild(i).GetComponent<InventorySlotUI>());
-                return;
-            }
-        }
+        JSONClass node = new JSONClass();
+        node["bankSlotIndex"].AsInt = selectedSlot.transform.GetSiblingIndex();
+        SocketHandler.Instance.SendEvent("bank_used_bank_item", node);
+    }
 
-        WarningWindowUI.Instance.Show("Inventory is FULL",null);
+    internal void UsedInventoryItem(InventorySlotUI selectedSlot)
+    {
+        JSONClass node = new JSONClass();
+        node["inventorySlotIndex"].AsInt = selectedSlot.transform.GetSiblingIndex();
+        SocketHandler.Instance.SendEvent("bank_used_inventory_item", node);
+    }
+
+    internal void UsedEquipItem(InventorySlotUI selectedSlot)
+    {
+        JSONClass node = new JSONClass();
+        node["equipType"] = selectedSlot.SlotType.name;
+        SocketHandler.Instance.SendEvent("bank_used_equip_item", node);
     }
 
     internal void SwapBankSlot(InventorySlotUI slotA, InventorySlotUI slotB)
     {
         JSONClass node = new JSONClass();
-        node["slotIndexA"].AsInt = slotA.transform.GetSiblingIndex();
-        node["slotIndexB"].AsInt = slotB.transform.GetSiblingIndex();
+        node["slotIndex1"].AsInt = slotA.transform.GetSiblingIndex();
+        node["slotIndex2"].AsInt = slotB.transform.GetSiblingIndex();
         SocketHandler.Instance.SendEvent("bank_swap_slot",node);
     }
 
@@ -121,23 +128,15 @@ public class BankPanelUI : MonoBehaviour
         JSONClass node = new JSONClass();
         node["bankSlotIndex"].AsInt = bankSlot.transform.GetSiblingIndex();
         node["inventorySlotIndex"].AsInt = inventorySlot.transform.GetSiblingIndex();
-        SocketHandler.Instance.SendEvent("bank_retreive_to_slot",node);
-    }
-
-    internal void EquipFromBankSlot(InventorySlotUI bankSlot, InventorySlotUI equipSlot)
-    {
-        JSONClass node = new JSONClass();
-        node["bankSlotIndex"].AsInt = bankSlot.transform.GetSiblingIndex();
-        node["equipSlotType"] = equipSlot.SlotType.name;
-        SocketHandler.Instance.SendEvent("bank_equip_from_bank",node);
+        SocketHandler.Instance.SendEvent("bank_to_inventory",node);
     }
 
     internal void BankFromEquipSlot(InventorySlotUI equipSlot, InventorySlotUI bankSlot)
     {
         JSONClass node = new JSONClass();
         node["bankSlotIndex"].AsInt = bankSlot.transform.GetSiblingIndex();
-        node["equipSlotType"] = equipSlot.SlotType.name;
-        SocketHandler.Instance.SendEvent("bank_equip_to_bank",node);
+        node["equipType"] = equipSlot.SlotType.name;
+        SocketHandler.Instance.SendEvent("bank_from_equip",node);
     }
 
     internal void SetItemInBank(InventorySlotUI inventorySlot, InventorySlotUI bankSlot)
@@ -145,6 +144,6 @@ public class BankPanelUI : MonoBehaviour
         JSONClass node = new JSONClass();
         node["bankSlotIndex"].AsInt = bankSlot.transform.GetSiblingIndex();
         node["inventorySlotIndex"].AsInt = inventorySlot.transform.GetSiblingIndex();
-        SocketHandler.Instance.SendEvent("bank_set_item",node);
+        SocketHandler.Instance.SendEvent("bank_from_inventory",node);
     }
 }

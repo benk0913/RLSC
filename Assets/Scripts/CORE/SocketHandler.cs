@@ -1699,10 +1699,17 @@ public class SocketHandler : MonoBehaviour
         Item item = JsonConvert.DeserializeObject<Item>(data["item"].ToString());
 
         bool isCash = data["isCash"].AsBool;
+        bool isBank = data["isBank"].AsBool;
         if (isCash)
         {
             CurrentUser.info.cashItems[slotIndex] = item;
             InventoryUI.Instance.RefreshCashShopSlotIndex(slotIndex);
+        }
+        else if (isBank)
+        {
+            CurrentUser.info.bankItems[slotIndex] = item;
+            // TODO update only the item index?
+            CORE.Instance.InvokeEvent("BankUpdated");
         }
         else
         {
