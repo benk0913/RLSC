@@ -16,10 +16,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     ActorData currentActor;
 
     [SerializeField]
-    Transform ItemsContainer;
+    public Transform ItemsContainer;
 
     [SerializeField]
-    Transform CashItemsContainer;
+    public Transform CashItemsContainer;
 
     [SerializeField]
     SelectionGroupUI SelectionGroup;
@@ -407,7 +407,51 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (SelectedSlot != null)
         {
-            if(SelectedSlot.IsTradeSlot)
+            if(SelectedSlot.IsBankSlot)
+            {
+                if(slot.IsBankSlot) //From bank slot to bank slot 
+                {
+                    if(slot == SelectedSlot)// Doubleclick
+                    {
+                        BankPanelUI.Instance.RetreiveItem(SelectedSlot);    
+                        return;
+                    }
+                    
+                    BankPanelUI.Instance.SwapBankSlot(SelectedSlot,slot);
+                }
+                if(slot.IsEquipmentSlot) //From bank slot to equip slot 
+                {
+                    BankPanelUI.Instance.EquipFromBankSlot(SelectedSlot,slot);
+                    return;
+                }
+                else //From bank slot to other (inventory) slot 
+                {
+                    BankPanelUI.Instance.RetreiveItemToSlot(SelectedSlot,slot);
+                }
+            }
+            else if(slot.IsBankSlot)
+            {
+                if(SelectedSlot.IsBankSlot) //From trade slot to trade slot 
+                {
+                    if(slot == SelectedSlot)// Doubleclick
+                    {
+                        BankPanelUI.Instance.RetreiveItem(SelectedSlot);    
+                        return;
+                    }
+                    
+                    BankPanelUI.Instance.SwapBankSlot(SelectedSlot,slot);
+                }
+                if(SelectedSlot.IsEquipmentSlot) //From equip slot to bank slot 
+                {
+                    BankPanelUI.Instance.BankFromEquipSlot(SelectedSlot,slot);
+                    return;
+                }
+                else //From inventory slot to bank slot 
+                {
+                    BankPanelUI.Instance.SetItemInBank(SelectedSlot,slot);
+                }
+            }
+            else if(SelectedSlot.IsTradeSlot)
             {
                 if(slot.IsTradeSlot) //From trade slot to trade slot 
                 {

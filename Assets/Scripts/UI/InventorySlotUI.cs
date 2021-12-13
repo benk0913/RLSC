@@ -73,6 +73,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         CurrentItemData = null;
 
         IsInspecting = isInspecting;
+        IsBankSlot = false;
 
         this.SlotType = slotType;
 

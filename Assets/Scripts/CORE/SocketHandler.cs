@@ -183,6 +183,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("server_message", OnServerMessage));
         SocketEventListeners.Add(new SocketEventListener("cg_update_Pause", OnCGUpdate));
         
+        //Bank
+        SocketEventListeners.Add(new SocketEventListener("bank_refresh", OnBankRefresh));
+
         foreach (SocketEventListener listener in SocketEventListeners)
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
@@ -1660,6 +1663,16 @@ public class SocketHandler : MonoBehaviour
         }
     }
 
+    public void OnBankRefresh(string eventName, JSONNode data)
+    {
+        List<Item> items = JsonConvert.DeserializeObject<List<Item>>(data["items"].ToString());
+
+        CurrentUser.info.bankItems = items;
+        CurrentUser.info.bankMoney = data["money"].AsInt;
+
+        CORE.Instance.InvokeEvent("BankUpdated");
+    }
+
     public void OnSlotmachineResult(string eventName, JSONNode data)
     {
         int WinRewardIndex = data["rewardIndex"].AsInt;
@@ -2337,6 +2350,9 @@ public class UserInfo
     public int cashPoints;
 
     public int additionalCharSlots;
+
+    public List<Item> bankItems;
+    public int bankMoney;
 }
 
 [Serializable]
