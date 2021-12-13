@@ -1651,11 +1651,13 @@ public class SocketHandler : MonoBehaviour
         {
             CORE.Instance.AddChatMessage("<color=red><i>-- Server Quick Update | Please Wait --</i></color>");
             Time.timeScale = 0f;
+            SmallLoadingWindow.Instance.Show();
         }
         else
         {
             CORE.Instance.AddChatMessage("<color=green><i>-- Server Quick Update COMPLETE --</i></color>");
             Time.timeScale = 1f;
+            SmallLoadingWindow.Instance.Hide();
         }
     }
 
