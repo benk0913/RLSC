@@ -123,6 +123,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
         Hide();
     }
     
@@ -206,6 +210,11 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         if(InspectPanel.IsFocusingOnActor)
         {
             InspectPanel.SetActor(null);
+        }
+
+        if(BankPanelUI.Instance.gameObject.activeInHierarchy)
+        {
+            BankPanelUI.Instance.Hide();
         }
     }
 

@@ -28,6 +28,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public bool IsEquipmentSlot;
 
     public bool IsTradeSlot;
+    
+    public bool IsBankSlot;
 
     public ItemType SlotType = null;
 
