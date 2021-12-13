@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareCleanse
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: W_Undying_PrepareOGG
     ExecuteAbilitySound: sound_watersplashs
@@ -42,8 +43,16 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 1
-    Value: Refreshing Rush Undying
-    ObjectValue: {fileID: 0}
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: d7293f9faa0679348a180dec120f3b5d, type: 2}
     Value2: 
-  OnMissParams: []
+  OnMissParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: d7293f9faa0679348a180dec120f3b5d, type: 2}
+    Value2: 
