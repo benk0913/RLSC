@@ -1215,7 +1215,7 @@ public class PartyData
     public ulong steamLobbyId;
     public string leaderName;
     public string[] members;
-    public Dictionary<string, string> membersScenes;
+    public Dictionary<string, string[]> scenesToMembers;
     public Dictionary<string, bool> membersOffline;
 
     [JsonIgnore]
