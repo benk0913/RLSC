@@ -74,7 +74,17 @@ public class InspectionPanelUI : MonoBehaviour
     
     public void AddFriend()
     {
-        SteamFriends.ActivateGameOverlayToUser("friendadd", new CSteamID(CurrentActor.steamID));
+        foreach(UserData.FriendData friend in SocketHandler.Instance.CurrentUser.friends)
+        {
+            if(friend.name == CurrentActor.name)
+            {
+                CORE.Instance.ShowFriendsWindow();
+                return;
+            }
+        }
+
+        SocketHandler.Instance.SendEvent("add_friend",CurrentActor.name);
+        //SteamFriends.ActivateGameOverlayToUser("friendadd", new CSteamID(CurrentActor.steamID));
     }
 
     public void SendPrivateMessage()

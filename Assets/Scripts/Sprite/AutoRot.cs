@@ -7,6 +7,6 @@ public class AutoRot : MonoBehaviour {
 
     void Update()
     {
-        transform.Rotate(transform.forward * Speed * Time.deltaTime);
+        transform.Rotate(transform.forward * Speed * Time.unscaledDeltaTime);
     }
 }

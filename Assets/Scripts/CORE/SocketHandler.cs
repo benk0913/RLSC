@@ -2323,6 +2323,8 @@ public class UserData
     {
         public string name;
         public bool isOnline;
+
+        public ulong steamID;
     }
 }
 

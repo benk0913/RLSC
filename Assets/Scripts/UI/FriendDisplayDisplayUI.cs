@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Steamworks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -83,6 +84,10 @@ public class FriendDisplayDisplayUI : MonoBehaviour
     public void InviteToParty()
     {
         SocketHandler.Instance.SendPartyInvite(CurrentFriendData.name);
+    }
+     public void OpenAccountProfile()
+    {
+        SteamFriends.ActivateGameOverlayToUser("steamid",new CSteamID(CurrentFriendData.steamID));
     }
 
  
