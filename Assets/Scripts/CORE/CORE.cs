@@ -132,7 +132,7 @@ public class CORE : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-#if DEV_BUILD || UNITY_EDITOR
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         if (!GetComponent<SocketHandler>().RandomUser)
         {
 #endif
@@ -206,7 +206,7 @@ public class CORE : MonoBehaviour
 
             if (GetLobbyCreatedRespose == null)
                 GetLobbyCreatedRespose = Callback<LobbyCreated_t>.Create(OnGetLobbyCreatedResponse);
-#if DEV_BUILD || UNITY_EDITOR
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         }
 #endif
 
