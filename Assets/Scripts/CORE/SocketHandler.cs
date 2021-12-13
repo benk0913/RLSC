@@ -2358,7 +2358,7 @@ public class UserInfo
 
     public int additionalCharSlots;
 
-    public List<Item> bankItems;
+    public List<Item> bankItems = new List<Item>();
     public int bankMoney;
 }
 
