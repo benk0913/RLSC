@@ -24,10 +24,18 @@ public class BankPanelUI : MonoBehaviour
 
     public void Show()
     {
-        InventoryUI.Instance.Show(CORE.PlayerActor);
+        CORE.Instance.ShowInventoryUiWindow();
+        
         this.gameObject.SetActive(true);
 
-        RefreshUI();
+        CORE.Instance.DelayedInvokation(0.1f,()=>
+        {
+            RefreshUI();
+            CORE.Instance.DelayedInvokation(0.1f,()=>
+            {
+                InventoryUI.Instance.SelectionGroup.RefreshGroup();
+            });
+        });
     }
 
     public void RefreshUI()
@@ -38,6 +46,8 @@ public class BankPanelUI : MonoBehaviour
         }
 
         MoneyLabel.text = System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.info.bankMoney);
+
+        CORE.ClearContainer(BankInventoryContainer);
 
         for(int i=0;i<SocketHandler.Instance.CurrentUser.info.bankItems.Count;i++)
         {

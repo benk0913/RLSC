@@ -20,6 +20,8 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
 
     public List<GameObject> VisitedLocations = new List<GameObject>();
 
+    public Transform MapPinsContainer;
+
     public GameObject MapMarker;
 
     private void Awake()
@@ -114,6 +116,37 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
 
         MapMarker.SetActive(true);
         MapMarker.transform.position = mapPointInstance.transform.position;
+
+        CORE.ClearContainer(MapPinsContainer);
+        
+         List<GameObject> Points = new List<GameObject>();
+        if(CORE.Instance.CurrentParty != null)
+        {
+            foreach(string key in CORE.Instance.CurrentParty.scenesToMembers.Keys)
+            {
+                GameObject point = Points.Find(X=>X.name == key);
+                
+                GameObject pin = null;
+                if(point == null)
+                {
+                    mapInstance.Points.Find(X=>X.name == key);
+
+                    if(point == null)
+                    {
+                        continue;
+                    }
+                    
+
+                     pin = ResourcesLoader.Instance.GetRecycledObject("MapFriendLocation");
+                    pin.transform.SetParent(MapPinsContainer,false);
+                    pin.transform.position = point.transform.position;
+                    pin.transform.localScale = Vector3.one;
+                    pin.GetComponent<TooltipTargetUI>().SetTooltip(key);
+                }
+
+                pin.GetComponent<TooltipTargetUI>().Text += System.Environment.NewLine+CORE.Instance.CurrentParty.scenesToMembers[key];
+            }
+        }
     }
 
     [Obsolete("Do not call Hide directly. Call `CORE.Instance.CloseCurrentWindow()` instead.")]

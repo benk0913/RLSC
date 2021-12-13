@@ -22,7 +22,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     public Transform CashItemsContainer;
 
     [SerializeField]
-    SelectionGroupUI SelectionGroup;
+    public SelectionGroupUI SelectionGroup;
 
     [SerializeField]
     GameObject SelectedPanel;
@@ -212,10 +212,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             InspectPanel.SetActor(null);
         }
 
-        if(BankPanelUI.Instance.gameObject.activeInHierarchy)
-        {
-            BankPanelUI.Instance.Hide();
-        }
+        BankPanelUI.Instance.Hide();
     }
 
     public void RefreshUI()
@@ -414,6 +411,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(slot == SelectedSlot)// Doubleclick
                     {
                         BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
+                        UndragItem(SelectedSlot);
                         return;
                     }
                     
@@ -436,6 +434,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(slot == SelectedSlot)// Doubleclick
                     {
                         BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
+                        UndragItem(SelectedSlot);
                         return;
                     }
                     
@@ -458,6 +457,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(slot == SelectedSlot)// Doubleclick
                     {
                         TradeWindowUI.Instance.SetItem(null,SelectedSlot);    
+                        UndragItem(SelectedSlot);
                     }
                     return;
                 }
@@ -477,6 +477,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(slot == SelectedSlot) // Doubleclick
                     {
                         TradeWindowUI.Instance.SetItem(null,slot);    
+                        UndragItem(SelectedSlot);
                     }
                     return;
                 }
