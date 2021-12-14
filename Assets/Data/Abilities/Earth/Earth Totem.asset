@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareTrap
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: Totems
     ExecuteAbilitySound: 
@@ -33,7 +34,7 @@ MonoBehaviour:
     PreparingAnimation: Cast5
     ExecuteAnimation: Execute5
   CD: 30
-  CastingTime: 2
+  CastingTime: 1.5
   TargetCap: 1
   MaxSameTargetHits: 1
   OnlyIfGrounded: 1
@@ -42,6 +43,7 @@ MonoBehaviour:
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 2f3bcc93099b30545b1dc1397e16a5de, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: Earth Totem Interactable
     ObjectValue: {fileID: 0}

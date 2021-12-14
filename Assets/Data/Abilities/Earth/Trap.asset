@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareTrap
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: E_Trap_PrepareOGG
     ExecuteAbilitySound: E_Trap_ExecuteOGG
@@ -32,8 +33,9 @@ MonoBehaviour:
     PreparingAnimation: Cast5
     ExecuteAnimation: Execute5
   CD: 15
-  CastingTime: 2
-  TargetCap: 1
+  CastingTime: 0.8
+  TargetCap: 3
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 1
   AIViableRange: 0
   IsCastingExternal: 0
@@ -41,14 +43,16 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: Trap Immobilize
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
-    Value: 10
+    Value: 20
     ObjectValue: {fileID: 0}
     Value2: 
   OnMissParams: []

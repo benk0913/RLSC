@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mudshot
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: a3617e29cb805e343a0c0e53a9cf17fd, type: 3}
-  Description: Throw mud to slow an enemy.
+  Description: Throw piercing mud to slow all enemies ahead.
   Colliders:
     HitAbilityColliderObject: MudshotHit
     MissAbilityColliderObject: 
@@ -32,10 +32,10 @@ MonoBehaviour:
     ScreenEffectObject: 
     PreparingAnimation: Cast1
     ExecuteAnimation: Execute3
-  CD: 1
+  CD: 0.5
   CastingTime: 0.5
   TargetCap: 10
-  MaxSameTargetHits: 10
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
     Condition: {fileID: 0}
     GameConditions: []
     Targets: 0
-    Value: 16
+    Value: 12
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}

@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Eye Of The Storm
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: db3f97037978c2d45a6c136601b00e49, type: 3}
-  Description: Immediately pull EVERY ALLY in the room to your position in exchange
-    for a temporary stun and a very long cooldown.
+  Description: Immediately pull EVERY ALLY in the room to your position.
   Colliders:
     HitAbilityColliderObject: MudshotHit
     MissAbilityColliderObject: 
@@ -40,14 +39,7 @@ MonoBehaviour:
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
-  OnExecuteParams:
-  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
-    Condition: {fileID: 0}
-    GameConditions: []
-    Targets: 2
-    Value: Rock Stun
-    ObjectValue: {fileID: 0}
-    Value2: 
+  OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}

@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Earthquake
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 2e0f5a97fdb2f404c92cad718687f45a, type: 3}
-  Description: Shake the earth, stunning EVERY ENEMY that touches the ground. Unfortunately,
-    you are stunned as well as the others, by this vast release of energy.
+  Description: Shake the earth, stunning EVERY ENEMY that touches the ground.
   Colliders:
     HitAbilityColliderObject: MudshotHit
     MissAbilityColliderObject: 
@@ -22,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareEarthquake
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: E_EarthQuake_PrepareOGG
     ExecuteAbilitySound: E_EarthQuake_ExecuteOGG
@@ -39,22 +39,18 @@ MonoBehaviour:
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
-  OnExecuteParams:
-  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
-    Condition: {fileID: 0}
-    Targets: 2
-    Value: Earthquake Stun
-    ObjectValue: {fileID: 0}
-    Value2: 
+  OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: Earthquake Stun
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: 40
     ObjectValue: {fileID: 0}

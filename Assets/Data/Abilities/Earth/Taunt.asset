@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Taunt
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 55813074ad72e354897d9443f90ccae5, type: 3}
-  Description: Gain a 50 Threat buff, which will cause enemies to focus on you for
-    a short period of time.
+  Description: Become tankier - temporarily gain damage reduction, block chance,
+    debuffs reduction and threat.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareTaunt
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: E_Taunt_PrepareOGG
     ExecuteAbilitySound: E_Taunt_ExecuteOGG
@@ -35,12 +36,14 @@ MonoBehaviour:
   CD: 20
   CastingTime: 1.2
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: Earth Taunt
     ObjectValue: {fileID: 0}

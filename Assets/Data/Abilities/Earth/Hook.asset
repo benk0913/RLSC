@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hook
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: a83164186a2f6c149ba7d1cda89f709c, type: 3}
-  Description: Instantly pull an enemy to your position.
+  Description: Instantly pull an enemy to your position, blinding them.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: E_Hook_PrepareOGG
     ExecuteAbilitySound: E_Hook_ExecuteOGG
@@ -31,9 +32,10 @@ MonoBehaviour:
     ScreenEffectObject: 
     PreparingAnimation: Cast1
     ExecuteAnimation: Execute3
-  CD: 10
+  CD: 12
   CastingTime: 0.6
-  TargetCap: 3
+  TargetCap: 10
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
@@ -41,12 +43,14 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: Pull
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: Hook Blind
     ObjectValue: {fileID: 0}

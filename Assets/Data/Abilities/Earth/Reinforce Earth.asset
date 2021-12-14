@@ -21,10 +21,10 @@ MonoBehaviour:
 
     Slow - Becomes Immobilized.
 
-    Immobilize - Becomes Stunned.
+    Immobilize / Silence -
+    Becomes Stunned.
 
-    Stun
-    - Receives Damage.'
+    Stun - Receives Damage.'
   Colliders:
     HitAbilityColliderObject: ReinforceEarthHit
     MissAbilityColliderObject: 
@@ -32,6 +32,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareEarthSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: E_ReinforceEarth_PrepareOGG
     ExecuteAbilitySound: E_ReinforceEarth_HitOGG
@@ -44,7 +45,7 @@ MonoBehaviour:
     ExecuteAnimation: Execute3
   CD: 14
   CastingTime: 0.8
-  TargetCap: 3
+  TargetCap: 10
   MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
@@ -53,24 +54,39 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 11400000, guid: 18837ffdc92cd2f4c8d1ec67c56e58e7, type: 2}
+    GameConditions: []
     Targets: 0
-    Value: 60
+    Value: 80
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 11400000, guid: 5fc87f4113d25ef4d9705992de3056cf, type: 2}
+    GameConditions: []
+    Targets: 0
+    Value: Reinforce Earth Stun
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: 69bf9e6b0e20a0146a70ab2d0e0abd58, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: a0c8c64f3d109e64c840160f5e873e9e, type: 2}
+      Inverse: 0
     Targets: 0
     Value: Reinforce Earth Stun
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 11400000, guid: a3b30c45872d464408c0d60e175ce5b1, type: 2}
+    GameConditions: []
     Targets: 0
     Value: Reinforce Earth Immobilize
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: Mud Slow
     ObjectValue: {fileID: 0}

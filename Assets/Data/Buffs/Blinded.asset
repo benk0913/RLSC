@@ -13,35 +13,37 @@ MonoBehaviour:
   m_Name: Blinded
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 81c94dc1766060747a800f063c646772, type: 3}
-  Description: Cannot damage through physical touch.
+  Description: Cannot damage through physical touch nor do any spells.
   BuffColliderObject: BlindedBuffEffect
   BuffMaterial: {fileID: 2100000, guid: 56be59d47eae7a742a4386a245f1c493, type: 2}
-  Length: 5
+  Length: 2.5
   isDebuff: 1
   ShowBuffIcon: 1
   Attributes:
     Power: 0
     HP: 0
     Defense: 0
+    Block: 0
     CDReduction: 0
     CTReduction: 0
     Lifesteal: 0
-    CriticalChance: 0
     LongRangeMultiplier: 0
     ShortRangeMultiplier: 0
     WildMagicChance: 0
-    SingleTargetDamage: 0
-    AOEDamage: 0
     SpellDuration: 0
     AntiDebuff: 0
-    KnockbackResistance: 0
-    SmallerColliderSize: 0
     Threat: 0
     MovementSpeed: 0
+    JumpHeight: 0
+    DoubleCast: 0
+    Explode: 0
+    HpRegen: 0
   HitAbility: {fileID: 0}
   OnStartSound: 
   OnEndSound: 
   States:
   - {fileID: 11400000, guid: 8150775d081127143916dfbe2294d7f8, type: 2}
+  - {fileID: 11400000, guid: a0c8c64f3d109e64c840160f5e873e9e, type: 2}
   OnStart: []
   OnEnd: []
+  OnTakeDamage: []

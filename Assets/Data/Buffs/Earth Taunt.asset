@@ -13,35 +13,36 @@ MonoBehaviour:
   m_Name: Earth Taunt
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 55813074ad72e354897d9443f90ccae5, type: 3}
-  Description: "Gain 50 Threat for a span of time. \nThis will most likely cause
-    all nearby enemies to target you."
+  Description: "Gain defensive stats and threat for a span of time. \nThis will most
+    likely cause all nearby enemies to target you."
   BuffColliderObject: TauntBuffEffect
   BuffMaterial: {fileID: 0}
-  Length: 10
+  Length: 12
   isDebuff: 0
   ShowBuffIcon: 1
   Attributes:
     Power: 0
     HP: 0
-    Defense: 0
+    Defense: 0.25
+    Block: 0.25
     CDReduction: 0
     CTReduction: 0
     Lifesteal: 0
-    CriticalChance: 0
     LongRangeMultiplier: 0
     ShortRangeMultiplier: 0
     WildMagicChance: 0
-    SingleTargetDamage: 0
-    AOEDamage: 0
     SpellDuration: 0
-    AntiDebuff: 0
-    KnockbackResistance: 0
-    SmallerColliderSize: 0
-    Threat: 50
+    AntiDebuff: 0.25
+    Threat: 0.5
     MovementSpeed: 0
+    JumpHeight: 0
+    DoubleCast: 0
+    Explode: 0
+    HpRegen: 0
   HitAbility: {fileID: 0}
   OnStartSound: 
   OnEndSound: 
   States: []
   OnStart: []
   OnEnd: []
+  OnTakeDamage: []
