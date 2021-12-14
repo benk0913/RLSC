@@ -412,15 +412,15 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     {
                         BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
                         UndragItem(SelectedSlot);
-                        return;
                     }
-                    
-                    BankPanelUI.Instance.SwapBankSlot(SelectedSlot,slot);
+                    else 
+                    {
+                        BankPanelUI.Instance.SwapBankSlot(SelectedSlot,slot);
+                    }
                 }
-                if(slot.IsEquipmentSlot) //From bank slot to equip slot 
+                else if(slot.IsEquipmentSlot) //From bank slot to equip slot 
                 {
                     BankPanelUI.Instance.BankFromEquipSlot(SelectedSlot,slot);
-                    return;
                 }
                 else //From bank slot to other (inventory) slot 
                 {
@@ -435,15 +435,15 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     {
                         BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
                         UndragItem(SelectedSlot);
-                        return;
                     }
-                    
-                    BankPanelUI.Instance.SwapBankSlot(SelectedSlot,slot);
+                    else
+                    {
+                        BankPanelUI.Instance.SwapBankSlot(SelectedSlot,slot);
+                    }
                 }
-                if(SelectedSlot.IsEquipmentSlot) //From equip slot to bank slot 
+                else if(SelectedSlot.IsEquipmentSlot) //From equip slot to bank slot 
                 {
-                    BankPanelUI.Instance.BankFromEquipSlot(SelectedSlot,slot);
-                    return;
+                    BankPanelUI.Instance.BankFromEquipSlot(slot, SelectedSlot);
                 }
                 else //From inventory slot to bank slot 
                 {
@@ -459,9 +459,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                         TradeWindowUI.Instance.SetItem(null,SelectedSlot);    
                         UndragItem(SelectedSlot);
                     }
-                    return;
                 }
-                if(slot.IsEquipmentSlot) //From trade slot to other slot 
+                else if(slot.IsEquipmentSlot) //From trade slot to other slot 
                 {
                     TradeWindowUI.Instance.SetItem(null,SelectedSlot);
                 }
@@ -479,9 +478,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                         TradeWindowUI.Instance.SetItem(null,slot);    
                         UndragItem(SelectedSlot);
                     }
-                    return;
                 }
-                if(SelectedSlot.IsEquipmentSlot) //From equip slot to trade slot 
+                else if(SelectedSlot.IsEquipmentSlot) //From equip slot to trade slot 
                 {
                     return;
                 }
@@ -505,8 +503,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                         UndragItem(SelectedSlot);
                         return;
                     }
-
-                    SocketHandler.Instance.SendUsedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
+                    else 
+                    {
+                        SocketHandler.Instance.SendUsedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
+                    }
                 }
                 else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick unequip
                 {
@@ -517,7 +517,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                         return;
 
                     }
-                    SocketHandler.Instance.SendUnequippedItem(SelectedSlot.SlotType.name);
+                    else
+                    {
+                        SocketHandler.Instance.SendUnequippedItem(SelectedSlot.SlotType.name);
+                    }
                 }
                 else if (SelectedSlot.IsEquipmentSlot & slot.IsEquipmentSlot) //Reposition equipment
                 {

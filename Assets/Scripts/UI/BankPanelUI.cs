@@ -141,12 +141,12 @@ public class BankPanelUI : MonoBehaviour
         SocketHandler.Instance.SendEvent("bank_to_inventory",node);
     }
 
-    internal void BankFromEquipSlot(InventorySlotUI equipSlot, InventorySlotUI bankSlot)
+    internal void BankFromEquipSlot(InventorySlotUI bankSlot, InventorySlotUI equipSlot)
     {
         JSONClass node = new JSONClass();
         node["bankSlotIndex"].AsInt = bankSlot.transform.GetSiblingIndex();
         node["equipType"] = equipSlot.SlotType.name;
-        SocketHandler.Instance.SendEvent("bank_from_equip",node);
+        SocketHandler.Instance.SendEvent("bank_to_equip",node);
     }
 
     internal void SetItemInBank(InventorySlotUI inventorySlot, InventorySlotUI bankSlot)
