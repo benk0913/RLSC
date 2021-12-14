@@ -502,6 +502,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(BankPanelUI.Instance.gameObject.activeInHierarchy)
                     {
                         BankPanelUI.Instance.UsedInventoryItem(SelectedSlot);
+                        UndragItem(SelectedSlot);
                         return;
                     }
 
@@ -512,6 +513,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                      if(BankPanelUI.Instance.gameObject.activeInHierarchy)
                     {
                         BankPanelUI.Instance.UsedEquipItem(SelectedSlot);
+                        UndragItem(SelectedSlot);
                         return;
 
                     }
