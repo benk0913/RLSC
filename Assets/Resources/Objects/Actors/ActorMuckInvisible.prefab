@@ -583,11 +583,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5952646397111703715}
-  - component: {fileID: 1551737043}
   - component: {fileID: 1551737044}
   - component: {fileID: 1551737046}
   - component: {fileID: 7318722103061463516}
   - component: {fileID: -5763259039081295835}
+  - component: {fileID: -3813164180778699699}
   m_Layer: 8
   m_Name: ActorMuckInvisible
   m_TagString: Actor
@@ -613,27 +613,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1551737043
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7785496889078657400}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &1551737044
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -758,7 +737,7 @@ MonoBehaviour:
     OnInterrupt:
       m_PersistentCalls:
         m_Calls: []
-  Rigid: {fileID: 1551737043}
+  Rigid: {fileID: -3813164180778699699}
   Body: {fileID: 1450574624275921511}
   PlayerControl: {fileID: 7318722103061463516}
   AIControl: {fileID: -5763259039081295835}
@@ -834,6 +813,27 @@ MonoBehaviour:
   IsJumping: 0
   PatrolTargetArea: 0
   PatrolElapseSpeed: 1
+--- !u!50 &-3813164180778699699
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785496889078657400}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1382260785445379380
 PrefabInstance:
   m_ObjectHideFlags: 0
