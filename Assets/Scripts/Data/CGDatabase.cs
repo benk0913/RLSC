@@ -115,10 +115,9 @@ public class DatabaseContent
 
     public int AbilitiesMaxCount;
 
-    public int MaxStartingInventorySlots;
-    public int MaxPossibleInventorySlots;
-    public int MaxStartingBankSlots;
-    public int MaxPossibleBankSlots;
+    public InventoryLikeDatabase InventoryData;
+    public InventoryLikeDatabase BankData;
+
     public int MaxCashItemSlots;
     public int MaxChatLength;
     public int RollDurationSeconds;
@@ -364,4 +363,13 @@ public class SlotsDatabase
     public int SlotMachinePrice = 5;
 
     public List<AbilityParam> Rewards;
+}
+
+[Serializable]
+public class InventoryLikeDatabase
+{
+    public int StartingSlots;
+    public int MaxSlots;
+    public int IncreaseSlotsAmount;
+    public List<int> BuySlotsPrices;
 }
