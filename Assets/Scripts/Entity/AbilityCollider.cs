@@ -62,6 +62,7 @@ public class AbilityCollider : HitCollider
                 else
                 {
                     obj.transform.position = transform.position;
+                    obj.transform.localScale = transform.localScale;
                 }
 
                 AbilityCollider abilityCol = obj.GetComponent<AbilityCollider>();

@@ -171,22 +171,28 @@ MonoBehaviour:
         m_CallState: 2
   CanMiss: 0
   HitOnlyGroundedActors: 0
+  AbilityInstanceId: 
+  ParentCollider: {fileID: 0}
   StickToActor: 0
   StickToActorFacing: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 0
+  InitPosition: {x: 0, y: 0, z: 0}
   SkilledShotPoint: {fileID: 0}
   SkilledshotLayermask:
     serializedVersion: 2
     m_Bits: 0
   InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: PainBubblePopHit
+  onHitObject: BorrowPainBubblePopHit
   OnHitSource: {fileID: 373754984257336489}
+  RepositionChildrenOnEnable: 0
   DuplicateBubbles: 0
   IsBubble: 1
   BubblesDuplicated: []
   AudioOnHit: sound_earth_4
   HitInterval: 0
+  RemoveOnInterrupt: 0
+  ChildrenColliders: []
 --- !u!114 &7937529260699182551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +273,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -349,6 +356,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -431,6 +439,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -515,6 +524,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
