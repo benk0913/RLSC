@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareMudshot
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: 
     ExecuteAbilitySound: sound_earth_3
@@ -31,10 +32,10 @@ MonoBehaviour:
     ScreenEffectObject: 
     PreparingAnimation: Cast1
     ExecuteAnimation: Execute3
-  CD: 1.5
+  CD: 1
   CastingTime: 0.5
-  TargetCap: 1
-  MaxSameTargetHits: 1
+  TargetCap: 10
+  MaxSameTargetHits: 10
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
@@ -42,12 +43,14 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
-    Value: 24
+    Value: 16
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: Mud Slow Short
     ObjectValue: {fileID: 0}
