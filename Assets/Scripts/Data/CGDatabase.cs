@@ -132,6 +132,7 @@ public class DatabaseContent
     public float HpRegen;
     public int MaxPartyMembers;
     public int PartyInviteTimeoutSeconds;
+    public float OnHitBonusesInternalCdSeconds;
     public int NpcItemsPoolLength;
     public int NpcItemsRefreshMinutes;
     public int ExpeditionQueueMatchDurationSeconds;
