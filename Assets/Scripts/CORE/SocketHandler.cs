@@ -33,6 +33,13 @@ public class SocketHandler : MonoBehaviour
 
     public int UniqueNumber = 0;
 
+    private List<string> SPAMMY_EVENTS = new List<string>()
+    {
+        "p",
+        "actors_moved",
+        "move_actors"
+    };
+
 
     //STEAM
     int SessionTicketSize = 1024;
@@ -75,7 +82,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_despawn", OnActorDespawn));
         SocketEventListeners.Add(new SocketEventListener("move_actors", OnMoveActors));
 
-        SocketEventListeners.Add(new SocketEventListener("bitch_please", OnBitchPlease));
+        SocketEventListeners.Add(new SocketEventListener("p", OnPing));
         SocketEventListeners.Add(new SocketEventListener("actor_bitch", OnActorBitch));
 
         SocketEventListeners.Add(new SocketEventListener("actor_prepare_ability", OnActorPrepareAbility));
@@ -194,7 +201,7 @@ public class SocketHandler : MonoBehaviour
 
     void AddEventListenerLogging(string eventName, JSONNode data)
     {
-        if (!CORE.Instance.DEBUG || (!CORE.Instance.DEBUG_SPAMMY_EVENTS && (!string.IsNullOrEmpty(data["actorPositions"].ToString()) || !string.IsNullOrEmpty(data["actorMoved"].ToString()))))
+        if (!CORE.Instance.DEBUG || (!CORE.Instance.DEBUG_SPAMMY_EVENTS && SPAMMY_EVENTS.Contains(eventName)))
         {
             return;
         }
@@ -815,7 +822,7 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
-        if (CORE.Instance.DEBUG && (eventKey != "actors_moved" || CORE.Instance.DEBUG_SPAMMY_EVENTS))
+        if (CORE.Instance.DEBUG && (!SPAMMY_EVENTS.Contains(eventKey) || CORE.Instance.DEBUG_SPAMMY_EVENTS))
         {
             CORE.Instance.LogMessage("Sending Event: " + eventKey + " | " + FormatJson(node.ToString()));
         }
@@ -1203,14 +1210,10 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.Room.ReceiveActorPositions(data);
     }
 
-    protected void OnBitchPlease(string eventName, JSONNode data)
+    protected void OnPing(string eventName, JSONNode data)
     {
-        if(CORE.Instance.NEVER_BITCH)
-        {
-            return;
-        }
-
-        SendEvent("bitch_please", data);
+        JSONNode node = new JSONClass();
+        SendEvent("p", node);
     }
 
     protected void OnActorBitch(string eventName, JSONNode data)
