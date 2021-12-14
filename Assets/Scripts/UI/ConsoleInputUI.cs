@@ -157,6 +157,8 @@ public class ConsoleInputUI : MonoBehaviour
         else
         {
             node["message"] = inputField.text;
+            // node["channel"] = ""; // party, whisper
+            // node["whisperName"] = "";
             SocketHandler.Instance.SendEvent("console_message", node);
         }
         inputField.text = "";
