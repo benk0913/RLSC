@@ -26,7 +26,7 @@ public class HitCollider : MonoBehaviour
 
     protected int TimesHit = 0;
 
-    protected string AbilityInstanceId;
+    public string AbilityInstanceId;
 
     public HitCollider ParentCollider;
 

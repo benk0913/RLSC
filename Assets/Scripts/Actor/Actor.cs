@@ -950,6 +950,11 @@ public class Actor : MonoBehaviour
         else
         {
             state.CurrentLength = duration;
+            
+            if (state.EffectObject != null)
+            {
+                state.EffectObject.GetComponent<BuffCollider>().AbilityInstanceId = abilityInstanceId;
+            }
         }
 
         if (CORE.Instance.Room.PlayerActor.ActorEntity == this)
