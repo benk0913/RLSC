@@ -84,7 +84,7 @@ public class BankPanelUI : MonoBehaviour
     {
         int currentLevel = ((BankInventoryContainer.childCount-1)-CORE.Instance.Data.content.BankData.StartingSlots)/CORE.Instance.Data.content.BankData.IncreaseSlotsAmount;
         
-        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Increase Bank Capacity?, this will cost you ")+CORE.Instance.Data.content.BankData.BuySlotsPrices[currentLevel]+CORE.QuickTranslate(" gold!"),()=>
+        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Increase Bank Capacity? This will cost you ")+CORE.Instance.Data.content.BankData.BuySlotsPrices[currentLevel]+CORE.QuickTranslate(" gold!"),()=>
         {
             SocketHandler.Instance.SendEvent("increase_bank_slots");
         });
