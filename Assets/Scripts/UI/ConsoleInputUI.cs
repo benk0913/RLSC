@@ -17,6 +17,12 @@ public class ConsoleInputUI : MonoBehaviour
     TextMeshProUGUI InputFieldLabel;
 
     [SerializeField]
+    TextMeshProUGUI PlaceholderLabel;
+
+    [SerializeField]
+    TMP_InputField WhisperTarget;
+
+    [SerializeField]
     ScrollRect ChatScroll;
 
     [SerializeField]
@@ -25,18 +31,19 @@ public class ConsoleInputUI : MonoBehaviour
 
     public bool IsTyping;
 
-    public List<string> LogMessages = new List<string>();
+    public List<LogMessageInstance> LogMessages = new List<LogMessageInstance>();
 
     public int LogCap = 10;
 
     public Transform ChatLogContainer;
 
-    List<string> Channels = new List<string>();
-    public string CurrentChannel = "all";
+    public List<ChatChannel> Channels = new List<ChatChannel>();
+    public string CurrentChannelKey = "all";
 
     private void Awake()
     {
         Instance = this;
+        RefreshChannelState();
         Hide();
         
         if (Application.isEditor || CORE.Instance.Data.content.DangerousEveryoneIsAdmin)
@@ -45,10 +52,19 @@ public class ConsoleInputUI : MonoBehaviour
         }
     }
 
-
-    public void AddLogMessage(string message)
+    void Update()
     {
-        LogMessages.Add(message);
+        if(Input.GetKeyDown(InputMap.Map["Change Chat Channel"]))
+        {
+            TabChannel();
+        }
+    }
+
+
+    public void AddLogMessage(string message,string channel = "all")
+    {
+        LogMessages.Add(new LogMessageInstance(message,channel));
+
         if (LogMessages.Count > LogCap)
         {
             LogMessages.RemoveAt(0);
@@ -75,13 +91,63 @@ public class ConsoleInputUI : MonoBehaviour
             logPiece.transform.SetParent(ChatLogContainer, false);
             logPiece.transform.localScale = Vector3.one;
             logPiece.transform.position = Vector3.zero;
-            logPiece.text = LogMessages[i];
+            logPiece.text = LogMessages[i].Message;
+            
+            if(string.IsNullOrEmpty(LogMessages[i].Channel) || LogMessages[i].Channel == "all")
+                logPiece.color=Color.white;
+            else
+                logPiece.color = Channels.Find(x=>x.ChannelKey==LogMessages[i].Channel).ChannelColor;
         }
     }
 
     public void OnDropdownChangeChannel(int dropdownIndex)
     {
-        CurrentChannel = Channels[dropdownIndex];
+        CurrentChannelKey = Channels[dropdownIndex].ChannelKey;
+        
+        WhisperTarget.gameObject.SetActive(CurrentChannelKey == "whisper");
+        
+        if(string.IsNullOrEmpty(CurrentChannelKey) || CurrentChannelKey == "all")
+        {
+            InputFieldLabel.color = Color.black;
+            PlaceholderLabel.color = Color.black;
+        }
+        else
+        {
+            InputFieldLabel.color = Channels[dropdownIndex].ChannelColor;
+            PlaceholderLabel.color = Channels[dropdownIndex].ChannelColor;
+        }
+        
+    }
+
+    public void TabChannel()
+    {
+        if(string.IsNullOrEmpty(CurrentChannelKey))
+        {
+            CurrentChannelKey = "all";
+        }
+
+        int nextChannel = Channels.IndexOf(Channels.Find(x=>x.ChannelKey == CurrentChannelKey))+1;
+
+        if(nextChannel >= Channels.Count)
+        {
+            nextChannel = 0;
+        }
+
+        CurrentChannelKey = Channels[nextChannel].ChannelKey;
+        
+        if(CurrentChannelKey == "all")
+        {
+            InputFieldLabel.color = Color.black;
+            PlaceholderLabel.color = Color.black;
+        }
+        else
+        {
+            InputFieldLabel.color = Channels[nextChannel].ChannelColor;
+            PlaceholderLabel.color = Channels[nextChannel].ChannelColor;
+        }
+
+        WhisperTarget.gameObject.SetActive(CurrentChannelKey == "whisper");
+        ChannelDropdown.value = ChannelDropdown.options.IndexOf(ChannelDropdown.options.Find(x=>x.text == CurrentChannelKey));
     }
 
     public void RefreshChannelState()
@@ -90,9 +156,10 @@ public class ConsoleInputUI : MonoBehaviour
 
         List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
 
-        foreach(string channelKey in Channels)
-        options.Add(new TMP_Dropdown.OptionData(channelKey));
-
+        foreach(ChatChannel channel in Channels)
+        {
+            options.Add(new TMP_Dropdown.OptionData(channel.ChannelKey));
+        }
 
         ChannelDropdown.AddOptions(options);
     }
@@ -179,9 +246,28 @@ public class ConsoleInputUI : MonoBehaviour
         }
         else
         {
+            if(string.IsNullOrEmpty(CurrentChannelKey))
+            {
+                CurrentChannelKey = "all";
+            }
+
+            if(CurrentChannelKey == "whisper")
+            {
+                if(string.IsNullOrEmpty(WhisperTarget.text))
+                {
+                    char[] chr = new char[] {' '};
+                    string[] splitword = inputField.text.Split(chr, 2);
+                    string firstWord = splitword [0];   
+                    inputField.text.Remove(0,firstWord.Length);
+                    WhisperTarget.text = firstWord;
+                }
+
+                node["whisperName"] = WhisperTarget.text; 
+            }
+
             node["message"] = inputField.text;
-            // node["channel"] = ""; // party, whisper
-            // node["whisperName"] = "";
+            node["channel"] = CurrentChannelKey;
+
             SocketHandler.Instance.SendEvent("console_message", node);
         }
         inputField.text = "";
@@ -193,4 +279,26 @@ public class ConsoleInputUI : MonoBehaviour
         CORE.ClearContainer(ChatLogContainer);
         LogMessages.Clear();
     }
+
 }
+
+public class LogMessageInstance
+{
+    public string Message;
+    public string Channel;
+
+    public LogMessageInstance(string message = "",string channel = "all")
+    {
+        this.Message = message;
+        this.Channel = channel;
+    }
+}
+
+[System.Serializable]
+public class ChatChannel
+{
+    public string ChannelKey;
+
+    public Color ChannelColor;
+}
+

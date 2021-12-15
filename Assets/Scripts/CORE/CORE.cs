@@ -1052,10 +1052,10 @@ public class CORE : MonoBehaviour
 
     #endregion
 
-    public void AddChatMessage(string chatlogMessage)
+    public void AddChatMessage(string chatlogMessage, string channel = "all")
     {
-        DefaultChatLogUI.Instance.AddLogMessage(chatlogMessage);
-        ConsoleInputUI.Instance.AddLogMessage(chatlogMessage);
+        DefaultChatLogUI.Instance.AddLogMessage(chatlogMessage,channel);
+        ConsoleInputUI.Instance.AddLogMessage(chatlogMessage,channel);
     }
 
     public void ActivateParams(List<AbilityParam> onExecuteParams, Actor casterActor = null, Actor originCaster = null)

@@ -32,7 +32,7 @@ public class DefaultChatLogUI : MonoBehaviour
         }
     }
 
-    public void AddLogMessage(string message)
+    public void AddLogMessage(string message,string channel = "all")
     {
 
 
@@ -41,6 +41,15 @@ public class DefaultChatLogUI : MonoBehaviour
         logPiece.transform.localScale = Vector3.one;
         logPiece.transform.position = Vector3.zero;
         logPiece.text = message;
+
+        if(string.IsNullOrEmpty(channel) || channel == "all") // for performance
+        {
+            logPiece.color=Color.white;
+        }
+        else
+        {
+            logPiece.color = ConsoleInputUI.Instance.Channels.Find(X=>X.ChannelKey==channel).ChannelColor;   
+        }
 
         if (ShortLogCG.transform.childCount > ShortLogCap)
         {

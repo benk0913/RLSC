@@ -2015,6 +2015,7 @@ public class SocketHandler : MonoBehaviour
         string message = data["message"].Value;
         string actorName = data["actorName"].Value;
 
+        Debug.LogError("ON ACTOR "+message+" | " + channel);
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
         if (actorDat != null && actorDat.ActorEntity != null)
         {
@@ -2024,7 +2025,7 @@ public class SocketHandler : MonoBehaviour
         message = RichTextRemover.RemoveRichText(message);
         string chatlogMessage = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + "</color>: " + message;
 
-        CORE.Instance.AddChatMessage(chatlogMessage);
+        CORE.Instance.AddChatMessage(chatlogMessage,channel);
     }
 
     // Party
