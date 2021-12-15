@@ -149,6 +149,8 @@ public class DatabaseContent
 
     public List<PromoCode> Promos;
 
+    public FriendsData Friends;
+
     public bool DangerousEveryoneIsAdmin;
 }
 
@@ -373,4 +375,10 @@ public class InventoryLikeDatabase
     public int MaxSlots;
     public int IncreaseSlotsAmount;
     public List<int> BuySlotsPrices;
+}
+
+[Serializable]
+public class FriendsData
+{
+    public int FriendRequestTimeoutSeconds;
 }
