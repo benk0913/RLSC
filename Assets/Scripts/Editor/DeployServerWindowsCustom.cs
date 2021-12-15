@@ -9,8 +9,11 @@ class DeployServerWindowsCustom : EditorWindow
 {
     ServerEnvironment ServerEnvironment = new ServerEnvironment();
     bool initialConfirmationGroupEnabled;
+    bool secondConfirmationGroupEnabled;
     bool disconnectedAllGroupEnabled;
     bool testedProdGroupEnabled;
+    
+    string disconnectWarning = "The server will be going down for maintenance in a minute";
 
     [MenuItem ("Build/Deploy Servers")]
     public static void  ShowWindow ()
@@ -29,6 +32,16 @@ class DeployServerWindowsCustom : EditorWindow
 
         initialConfirmationGroupEnabled = EditorGUILayout.BeginToggleGroup("I understand, let me through", initialConfirmationGroupEnabled);
         
+        disconnectWarning = GUILayout.TextField(disconnectWarning);
+        if (GUILayout.Button("Warn about servers going down"))
+        {
+            UpdateServerStatus("warn", disconnectWarning);
+        }
+
+        GUILayout.Space(10);
+
+        secondConfirmationGroupEnabled = EditorGUILayout.BeginToggleGroup("People have been warned enough time before", secondConfirmationGroupEnabled);
+
         if (GUILayout.Button("Disconnect ALL users & prevent login (~20 seconds)"))
         {
             UpdateServerStatus("off");
@@ -60,13 +73,16 @@ class DeployServerWindowsCustom : EditorWindow
         EditorGUILayout.EndToggleGroup();
 
         EditorGUILayout.EndToggleGroup();
+
+        EditorGUILayout.EndToggleGroup();
     }
 
-    void UpdateServerStatus(string status)
+    void UpdateServerStatus(string status, string warning = "")
     {
         JSONNode node = new JSONClass();
         
         node["status"] = status;
+        node["warning"] = warning;
         node["unic0rn"] = ServerEnvironment.unic0rn;
 
         WebRequest.SendWebRequest(ServerEnvironment.HostUrl + "/update-login-status", node.ToString());
