@@ -1236,7 +1236,20 @@ public class Actor : MonoBehaviour
 
     public void PutAbilityOnCooldown(AbilityState abilityState)
     {
-        abilityState.CurrentCD = abilityState.CurrentAbility.CD / (1f + State.Data.attributes.CDReduction);
+        abilityState.CurrentCD = CalculateTimeReduction(abilityState.CurrentAbility.CD, State.Data.attributes.CDReduction);
+    }
+
+    public void PutAbilityOnCastingTime(AbilityState abilityState)
+    {
+        abilityState.CurrentCastingTime = CalculateTimeReduction(abilityState.CurrentAbility.CastingTime, State.Data.attributes.CTReduction);
+    }
+
+    public float CalculateTimeReduction(float BaseTime, float ModifierPercent)
+    {
+        // I know it's complex but life isn't flair hagai.
+        return ModifierPercent >= 0
+                ? BaseTime / (1f + ModifierPercent)
+                : BaseTime * (1f - ModifierPercent);
     }
 
     public void ResetAbilitiesCooldown(string abilityName)
@@ -1639,7 +1652,7 @@ public class Actor : MonoBehaviour
 
         AbilityState abilityState = State.Abilities[abilityIndex];
 
-        abilityState.CurrentCastingTime = abilityState.CurrentAbility.CastingTime / (1f + State.Data.attributes.CTReduction);
+        PutAbilityOnCastingTime(abilityState);
 
         PrepareAbility(abilityState.CurrentAbility);
 
