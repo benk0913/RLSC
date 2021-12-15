@@ -124,12 +124,13 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
         {
             foreach(string key in CORE.Instance.CurrentParty.scenesToMembers.Keys)
             {
-                GameObject point = Points.Find(X=>X.name == key);
+                string mapPointKey = CORE.Instance.Data.content.Scenes.Find(X=>X.displyName == key).MapPoint;
+                GameObject point = Points.Find(X=>X.name == mapPointKey);
                 
                 GameObject pin = null;
                 if(point == null)
                 {
-                    mapInstance.Points.Find(X=>X.name == key);
+                    mapInstance.Points.Find(X=>X.name == mapPointKey);
 
                     if(point == null)
                     {

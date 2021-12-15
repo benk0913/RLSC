@@ -19,6 +19,9 @@ public class ConsoleInputUI : MonoBehaviour
     [SerializeField]
     ScrollRect ChatScroll;
 
+    [SerializeField]
+    TMP_Dropdown ChannelDropdown;
+
 
     public bool IsTyping;
 
@@ -28,6 +31,8 @@ public class ConsoleInputUI : MonoBehaviour
 
     public Transform ChatLogContainer;
 
+    List<string> Channels = new List<string>();
+    public string CurrentChannel = "all";
 
     private void Awake()
     {
@@ -72,6 +77,24 @@ public class ConsoleInputUI : MonoBehaviour
             logPiece.transform.position = Vector3.zero;
             logPiece.text = LogMessages[i];
         }
+    }
+
+    public void OnDropdownChangeChannel(int dropdownIndex)
+    {
+        CurrentChannel = Channels[dropdownIndex];
+    }
+
+    public void RefreshChannelState()
+    {
+        ChannelDropdown.ClearOptions();
+
+        List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+
+        foreach(string channelKey in Channels)
+        options.Add(new TMP_Dropdown.OptionData(channelKey));
+
+
+        ChannelDropdown.AddOptions(options);
     }
 
     public void EnterPressed()

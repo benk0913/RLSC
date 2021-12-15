@@ -880,6 +880,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4c517b12ca85b6c45921a6cb65749efa, type: 2}
     - {fileID: 11400000, guid: 0728a231f64bf5841a051a6ebead32e9, type: 2}
     - {fileID: 11400000, guid: 11659520b2258e0439b7bc9836e4bdd6, type: 2}
+    - {fileID: 11400000, guid: e4c0342d422356f4dac6943eb53c9d1d, type: 2}
     - {fileID: 11400000, guid: c390f7879186fba40ab83b1b20ac3e6c, type: 2}
     - {fileID: 11400000, guid: 101920bb804d5fd48acc239fc4ab14ff, type: 2}
     - {fileID: 11400000, guid: 11fbdea4c4841934da1f88b2b1c69df2, type: 2}
@@ -944,6 +945,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3bcff0301aa8ae04ab59c2439349e274, type: 2}
     - {fileID: 11400000, guid: c43b041613882e9429b142df748d58d4, type: 2}
     - {fileID: 11400000, guid: 02e95dac9b1d6b245b293c0dbaf21f78, type: 2}
+    - {fileID: 11400000, guid: d36198cce2fbe314d81198cf98d102b9, type: 2}
     - {fileID: 11400000, guid: 3f0d1ab27c85a4e4b90eb6adf26a4842, type: 2}
     - {fileID: 11400000, guid: d1d27dc14a3312940bb5b0f5755ba6bb, type: 2}
     - {fileID: 11400000, guid: 6bd271e114edf0943948b1f3eca51205, type: 2}
@@ -988,6 +990,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8f78e72393829ae4cbb37d8afdd0ec5a, type: 2}
     - {fileID: 11400000, guid: c18f1593b56d5be4997250a67a842255, type: 2}
     - {fileID: 11400000, guid: d00c66bf0838ab14c8bdc4e1d49a8a91, type: 2}
+    - {fileID: 11400000, guid: d1b900fdf6a8f4c4383254fc75a0617e, type: 2}
     - {fileID: 11400000, guid: b0d5be31382a90546bf016a55aca8ffe, type: 2}
     - {fileID: 11400000, guid: 539935ce1ad6f2943a4f7a2816c2de26, type: 2}
     - {fileID: 11400000, guid: 949b184eb5ca89c408d9698bb49a6919, type: 2}
@@ -1105,6 +1108,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 13e2597682b5c3d4cb8c4690463a272b, type: 2}
     - {fileID: 11400000, guid: b3af736332df7ce48bf155c4db2cbf00, type: 2}
     - {fileID: 11400000, guid: f835c53cddf36664d80e46725b80fdeb, type: 2}
+    - {fileID: 11400000, guid: 51297c15f3dbbe34ea625a7f31149a38, type: 2}
     - {fileID: 11400000, guid: c77522f8141ba784a97986b79902e13f, type: 2}
     - {fileID: 11400000, guid: ec9b9dc36eba3c343adb1948b890a491, type: 2}
     - {fileID: 11400000, guid: 2f1453362378e5040a70faf639d20cfc, type: 2}
@@ -1134,7 +1138,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4caf3de50578deb4ead4541a4bb4f03f, type: 2}
     - {fileID: 11400000, guid: 75947b1e9c2b7d74a9eff8fbe3b6f997, type: 2}
     - {fileID: 11400000, guid: bfe3d5b9d307cc74faff9f8607db6c4f, type: 2}
-    - {fileID: 11400000, guid: 38315d8c81597444c8b9f65f7f354530, type: 2}
     - {fileID: 11400000, guid: f3535dab674690c48a8ff0ed9d4d3813, type: 2}
     - {fileID: 11400000, guid: fc11fdc7b358ef54181bb1cb277636b6, type: 2}
     - {fileID: 11400000, guid: 01bb46704bd795242a52025af39a406b, type: 2}
@@ -1158,6 +1161,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bb8e28264fee77945886ae81de9bb934, type: 2}
     - {fileID: 11400000, guid: 6e0b1f0985d5b4044b9e0646fea1046a, type: 2}
     - {fileID: 11400000, guid: 0c4fc0205cfea4142993f0d2ae4654e3, type: 2}
+    - {fileID: 11400000, guid: 38315d8c81597444c8b9f65f7f354530, type: 2}
     - {fileID: 11400000, guid: 779fb6fa3a2b11544a2a3b569a3b4752, type: 2}
     - {fileID: 11400000, guid: f97f4147b3901d24fa87fdff103e9476, type: 2}
     - {fileID: 11400000, guid: 0e02fe5e1a71afb40b335b3775c95175, type: 2}
@@ -2610,7 +2614,7 @@ MonoBehaviour:
     - sceneName: IntermissionChamber3
       displyName: Hollow Shelter
       objectiveDescription: Enjoy the respite this camp provides.
-      UniqueCompletionScreenEffect: ScreenEffectExpeditionComplete
+      UniqueCompletionScreenEffect: ScreenEffectChamberCompleteSubtle
       Mobs:
       - monsterName: ActorTreasureChestFinal
         positionX: -131.37567
@@ -10569,8 +10573,8 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
-      Map: 
-      MapPoint: 
+      Map: ExpeditionMap
+      MapPoint: intermission4
     - sceneName: FCMonsterQuest_SwampB
       displyName: Through The Swamp B
       objectiveDescription: 
@@ -10800,16 +10804,21 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
-      Map: 
-      MapPoint: 
+      Map: ExpeditionMap
+      MapPoint: intermission4
     - sceneName: FCMonsterQuest_SwampC
-      displyName: 
+      displyName: Through The Swamp C
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
       - monsterName: ActorMuckInvisible
         positionX: 77.6
         positionY: -32.51
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlimeSmallSwamp
+        positionX: 334.3
+        positionY: -20.9
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorMuckInvisible
@@ -10822,6 +10831,11 @@ MonoBehaviour:
         positionY: -32.51
         respawnSeconds: 0
         IrellevantMob: 1
+      - monsterName: ActorSlimeSmallSwamp
+        positionX: 292.1
+        positionY: -18.8
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorMuckInvisible
         positionX: 49.3
         positionY: -32.51
@@ -10832,16 +10846,21 @@ MonoBehaviour:
         positionY: -32.51
         respawnSeconds: 0
         IrellevantMob: 1
-      - monsterName: ActorMuckInvisible
-        positionX: 18.059998
-        positionY: -36.211597
+      - monsterName: ActorCaterpillarFree
+        positionX: 26.6
+        positionY: -24.7
         respawnSeconds: 0
-        IrellevantMob: 1
+        IrellevantMob: 0
       - monsterName: ActorMuckInvisible
         positionX: 61
         positionY: -32.51
         respawnSeconds: 0
         IrellevantMob: 1
+      - monsterName: ActorCaterpillarFree
+        positionX: 231.3
+        positionY: -26.6
+        respawnSeconds: 0
+        IrellevantMob: 0
       - monsterName: ActorMuckInvisible
         positionX: 162.7
         positionY: -32.51
@@ -10852,6 +10871,11 @@ MonoBehaviour:
         positionY: -32.51
         respawnSeconds: 0
         IrellevantMob: 1
+      - monsterName: ActorCaterpillarFree
+        positionX: 126.1
+        positionY: -30.1
+        respawnSeconds: 0
+        IrellevantMob: 0
       - monsterName: ActorMuckInvisible
         positionX: 114.6
         positionY: -32.51
@@ -10880,6 +10904,11 @@ MonoBehaviour:
       - monsterName: ActorMuckInvisible
         positionX: 20.57
         positionY: -32.51
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlimeSmallSwamp
+        positionX: 310.1
+        positionY: -11.9
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorMuckInvisible
@@ -10912,9 +10941,19 @@ MonoBehaviour:
         positionY: -32.51
         respawnSeconds: 0
         IrellevantMob: 1
+      - monsterName: ActorSlimeSmallSwamp
+        positionX: 266.4
+        positionY: -18.2
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorMuckInvisible
         positionX: 324.9
         positionY: -32.51
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlimeSmallSwamp
+        positionX: 335.7
+        positionY: -7
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorMuckInvisible
@@ -10925,6 +10964,11 @@ MonoBehaviour:
       - monsterName: ActorMuckInvisible
         positionX: 264.5
         positionY: -32.51
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSlimeSmallSwamp
+        positionX: 346.8
+        positionY: -15.3
         respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorMuckInvisible
@@ -10957,6 +11001,11 @@ MonoBehaviour:
         positionY: -32.51
         respawnSeconds: 0
         IrellevantMob: 1
+      - monsterName: ActorSlimeSmallSwamp
+        positionX: 304
+        positionY: -4.3
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorMuckInvisible
         positionX: 336.4
         positionY: -32.51
@@ -10965,8 +11014,8 @@ MonoBehaviour:
       Interactables:
       - interactableName: GateRightInteractable
         interactableId: 
-        positionX: 342
-        positionY: 22
+        positionX: 352
+        positionY: -22
       playerSpawnX: -50.2
       playerSpawnY: -25.5
       Portals:
@@ -10974,20 +11023,20 @@ MonoBehaviour:
         TargetScene: 
         TargetSceneGate: 
         IsExpeditionLocked: 1
-        portalPositionX: 341.8
-        portalPositionY: 22.4
+        portalPositionX: 352.3
+        portalPositionY: -21.8
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: Foresty
+      Soundscape: soundscape_rain
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
-      Map: 
-      MapPoint: 
+      Map: ExpeditionMap
+      MapPoint: intermission4
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
