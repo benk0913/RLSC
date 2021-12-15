@@ -1236,7 +1236,7 @@ public class Actor : MonoBehaviour
 
     public void PutAbilityOnCooldown(AbilityState abilityState)
     {
-        abilityState.CurrentCD = abilityState.CurrentAbility.CD * (1f - State.Data.attributes.CDReduction);
+        abilityState.CurrentCD = abilityState.CurrentAbility.CD / (1f + State.Data.attributes.CDReduction);
     }
 
     public void ResetAbilitiesCooldown(string abilityName)
@@ -1639,7 +1639,7 @@ public class Actor : MonoBehaviour
 
         AbilityState abilityState = State.Abilities[abilityIndex];
 
-        abilityState.CurrentCastingTime = abilityState.CurrentAbility.CastingTime * (1f - State.Data.attributes.CTReduction);
+        abilityState.CurrentCastingTime = abilityState.CurrentAbility.CastingTime / (1f + State.Data.attributes.CTReduction);
 
         PrepareAbility(abilityState.CurrentAbility);
 

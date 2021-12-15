@@ -14,7 +14,7 @@ public class ItemsLogic
         { "HP", new DisplayAttribute(typeof(AttributeData).GetField("HP"), "icat_0", "HP","")},
         { "Defense", new DisplayAttribute(typeof(AttributeData).GetField("Defense"), "icat_10", "Damage Reduction","")},
         { "Block", new DisplayAttribute(typeof(AttributeData).GetField("Block"), "icat_10", "Block","")},
-        { "CDReduction", new DisplayAttribute(typeof(AttributeData).GetField("CDReduction"), "icat_8", "Lower Cooldowns","")},
+        { "CDReduction", new DisplayAttribute(typeof(AttributeData).GetField("CDReduction"), "icat_8", "Faster Cooldowns","")},
         { "CTReduction", new DisplayAttribute(typeof(AttributeData).GetField("CTReduction"), "icat_7", "Faster Casting Time","")},
         { "Lifesteal", new DisplayAttribute(typeof(AttributeData).GetField("Lifesteal"), "lifesteal", "Lifesteal","")},
         { "LongRangeMultiplier", new DisplayAttribute(typeof(AttributeData).GetField("LongRangeMultiplier"), "crosshair", "Long Range Damage","")},
