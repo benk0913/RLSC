@@ -26,7 +26,7 @@ public class HitLabelEntityUI : MonoBehaviour
             if(numResult == 0)
             {
                 Label.text = "BLOCK";
-                AudioControl.Instance.PlayInPosition("sound_blocked_hit", transform.position);
+                
             }
 
             float t = ((float)numResult / 200f);

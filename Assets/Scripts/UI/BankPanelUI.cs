@@ -14,6 +14,8 @@ public class BankPanelUI : MonoBehaviour
 
     public TextMeshProUGUI MoneyLabel;
 
+    [SerializeField]
+    Transform InventoryPlusButton;
 
     void Awake()
     {
@@ -59,6 +61,18 @@ public class BankPanelUI : MonoBehaviour
             slot.transform.localScale = Vector3.one;
             slot.transform.position = Vector3.zero;
         }
+
+        if(CORE.Instance.Data.content.BankData.MaxSlots > BankInventoryContainer.childCount)
+        {
+            InventoryPlusButton.SetParent(BankInventoryContainer,false);
+            InventoryPlusButton.gameObject.SetActive(true);
+            InventoryPlusButton.transform.localScale = Vector3.one;
+            InventoryPlusButton.transform.position = Vector3.zero;
+        }
+        else
+        {
+            InventoryPlusButton.gameObject.SetActive(false);
+        }
     }
 
     public void Hide()
@@ -66,6 +80,15 @@ public class BankPanelUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+     public void IncreaseSlotSize()
+    {
+        int currentLevel = ((BankInventoryContainer.childCount-1)-CORE.Instance.Data.content.BankData.StartingSlots)/CORE.Instance.Data.content.BankData.IncreaseSlotsAmount;
+        
+        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Increase Bank Capacity?, this will cost you ")+CORE.Instance.Data.content.BankData.BuySlotsPrices[currentLevel]+CORE.QuickTranslate(" gold!"),()=>
+        {
+            SocketHandler.Instance.SendEvent("increase_bank_slots");
+        });
+    }
     public void DepositMoney()
     {
         InputLabelWindow.Instance.Show("Deposit Money",default,(string setValue)=>

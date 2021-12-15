@@ -818,6 +818,18 @@ public class Actor : MonoBehaviour
         Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f, (float)State.Data.hp / (float)State.Data.MaxHP));
     }
 
+    public void BlockEffect(Actor source = null)
+    {
+        if(this.State.Data.ClassJobReference.UniqueBlockSounds != null && this.State.Data.ClassJobReference.UniqueBlockSounds.Count > 0)
+        {
+            AudioControl.Instance.PlayInPosition(this.State.Data.ClassJobReference.UniqueBlockSounds[UnityEngine.Random.Range(0,this.State.Data.ClassJobReference.UniqueBlockSounds.Count)], transform.position);
+        }
+        else
+        {
+            AudioControl.Instance.PlayInPosition("sound_blocked_hit", transform.position);   
+        }
+    }
+
 
     public void Ded()
     {
@@ -1055,6 +1067,10 @@ public class Actor : MonoBehaviour
         if (damage > 0)
         {
             HurtEffect(source);
+        }
+        else if (damage == 0)
+        {
+            BlockEffect(source);
         }
         else if (damage < 0)
         {
