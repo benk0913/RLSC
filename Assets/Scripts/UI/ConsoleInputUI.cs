@@ -58,6 +58,44 @@ public class ConsoleInputUI : MonoBehaviour
         {
             TabChannel();
         }
+        
+        if(!string.IsNullOrEmpty(inputField.text))
+        {
+            char[] chr = new char[] {' '};
+            string[] splitword = inputField.text.Split(chr, 2);
+            if(splitword.Length > 0)
+            {
+                string firstWord = splitword [0];   
+
+                switch(firstWord)
+                {
+                    case "/whisper":
+                    {
+                        inputField.text = inputField.text.Remove(0,firstWord.Length);
+                        SetChannel(Channels.Find(X=>X.ChannelKey =="whisper"));
+                        ChannelDropdown.value = ChannelDropdown.options.IndexOf(ChannelDropdown.options.Find(x=>x.text == CurrentChannelKey));
+                        break;
+                    }
+                    case "/party":
+                    {
+                        inputField.text = inputField.text.Remove(0,firstWord.Length);
+                        SetChannel(Channels.Find(X=>X.ChannelKey =="party"));
+                        ChannelDropdown.value = ChannelDropdown.options.IndexOf(ChannelDropdown.options.Find(x=>x.text == CurrentChannelKey));
+                        break;
+                    }
+                    case "/all":
+                    {
+                        inputField.text = inputField.text.Remove(0,firstWord.Length);
+                        SetChannel(Channels.Find(X=>X.ChannelKey =="all"));
+                        ChannelDropdown.value = ChannelDropdown.options.IndexOf(ChannelDropdown.options.Find(x=>x.text == CurrentChannelKey));
+                        break;
+                    }
+
+                }
+            }
+        }
+
+        
     }
 
 
@@ -102,8 +140,12 @@ public class ConsoleInputUI : MonoBehaviour
 
     public void OnDropdownChangeChannel(int dropdownIndex)
     {
-        CurrentChannelKey = Channels[dropdownIndex].ChannelKey;
-        
+        SetChannel(Channels[dropdownIndex]);
+    }
+    
+    public void SetChannel(ChatChannel channel)
+    {
+        CurrentChannelKey = channel.ChannelKey;
         WhisperTarget.gameObject.SetActive(CurrentChannelKey == "whisper");
         
         if(string.IsNullOrEmpty(CurrentChannelKey) || CurrentChannelKey == "all")
@@ -113,10 +155,9 @@ public class ConsoleInputUI : MonoBehaviour
         }
         else
         {
-            InputFieldLabel.color = Channels[dropdownIndex].ChannelColor;
-            PlaceholderLabel.color = Channels[dropdownIndex].ChannelColor;
+            InputFieldLabel.color =channel.ChannelColor;
+            PlaceholderLabel.color =channel.ChannelColor;
         }
-        
     }
 
     public void TabChannel()
@@ -133,20 +174,8 @@ public class ConsoleInputUI : MonoBehaviour
             nextChannel = 0;
         }
 
-        CurrentChannelKey = Channels[nextChannel].ChannelKey;
-        
-        if(CurrentChannelKey == "all")
-        {
-            InputFieldLabel.color = Color.black;
-            PlaceholderLabel.color = Color.black;
-        }
-        else
-        {
-            InputFieldLabel.color = Channels[nextChannel].ChannelColor;
-            PlaceholderLabel.color = Channels[nextChannel].ChannelColor;
-        }
+        SetChannel(Channels[nextChannel]);
 
-        WhisperTarget.gameObject.SetActive(CurrentChannelKey == "whisper");
         ChannelDropdown.value = ChannelDropdown.options.IndexOf(ChannelDropdown.options.Find(x=>x.text == CurrentChannelKey));
     }
 
@@ -258,7 +287,7 @@ public class ConsoleInputUI : MonoBehaviour
                     char[] chr = new char[] {' '};
                     string[] splitword = inputField.text.Split(chr, 2);
                     string firstWord = splitword [0];   
-                    inputField.text.Remove(0,firstWord.Length);
+                    inputField.text = inputField.text.Remove(0,firstWord.Length);
                     WhisperTarget.text = firstWord;
                 }
 
