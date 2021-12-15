@@ -48,7 +48,8 @@ public class ActorAI : MonoBehaviour
         }
     }
 
-
+    bool tooFarAwayX = true;
+    bool tooFarAwayY = true;
     protected bool lastIsBitch;
 
     protected RaycastHit2D rhitLeft;
@@ -429,8 +430,18 @@ Coroutine TemporaryPatrolRoutine;
             yield break;
         }
 
-        while (ChaseBehaviour == AIChaseBehaviour.Chase && ChaseDistance > 0 && Vector2.Distance(transform.position, CurrentTarget.transform.position) > ChaseDistance)
+
+        
+        tooFarAwayX = true;
+        tooFarAwayY = true;
+
+        while (ChaseBehaviour == AIChaseBehaviour.Chase 
+        &&
+         ((Act.IsFlying && tooFarAwayX && tooFarAwayY) || (!Act.IsFlying && tooFarAwayX)))
         {
+            tooFarAwayX = ChaseDistance > 0 && Mathf.Abs(transform.position.x - CurrentTarget.transform.position.x) > ChaseDistance;
+            tooFarAwayY = ChaseDistance > 0 && Mathf.Abs(transform.position.y - CurrentTarget.transform.position.y) > ChaseDistance;
+
             MoveToTarget();
             yield return 0;
         }
