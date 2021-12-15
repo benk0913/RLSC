@@ -150,6 +150,8 @@ public class DatabaseContent
     public List<PromoCode> Promos;
 
     public FriendsData Friends;
+    
+    public GuildsData Guilds;
 
     public bool DangerousEveryoneIsAdmin;
 }
@@ -381,4 +383,27 @@ public class InventoryLikeDatabase
 public class FriendsData
 {
     public int FriendRequestTimeoutSeconds;
+}
+
+[Serializable]
+public class GuildsData
+{
+    public int CreateGuildCostScraps;
+
+    public int GuildInviteTimeoutSeconds;
+
+    public int GuildNameLengthMin;
+    
+    public int GuildNameLengthMax;
+
+    public List<int> UpgradeCosts;
+
+    public List<GuildUpgrade> Upgrades;   
+}
+
+[Serializable]
+public class GuildUpgrade
+{
+    public string Key;
+    public string DisplayName;
 }
