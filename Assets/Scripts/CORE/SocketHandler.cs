@@ -2011,31 +2011,20 @@ public class SocketHandler : MonoBehaviour
     public void OnActorChatMessage(string eventName, JSONNode data)
     {
         string actorId = data["actorId"].Value;
+        string channel = data["channel"].Value; // party, whisper
+        string message = data["message"].Value;
+        string actorName = data["actorName"].Value;
 
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == actorId);
-        if (actorDat == null)
+        if (actorDat != null && actorDat.ActorEntity != null)
         {
-            CORE.Instance.LogMessageError("No actor with ID " + data["actorId"].Value);
-            return;
+            actorDat.ActorEntity.ShowTextBubble(message);
         }
 
-        if (actorDat.ActorEntity == null)
-        {
-            CORE.Instance.LogMessageError("No entity to actor with ID " + data["actorId"].Value);
-            return;
-        }
+        message = RichTextRemover.RemoveRichText(message);
+        string chatlogMessage = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorName + "</color>: " + message;
 
-        actorDat.ActorEntity.ShowTextBubble(data["message"].Value);
-
-        string message = data["message"].Value;
-
-        if (!string.IsNullOrEmpty(message))
-        {
-            message = RichTextRemover.RemoveRichText(message);
-            string chatlogMessage = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + "</color>: " + message;
-
-            CORE.Instance.AddChatMessage(chatlogMessage);
-        }
+        CORE.Instance.AddChatMessage(chatlogMessage);
     }
 
     // Party
