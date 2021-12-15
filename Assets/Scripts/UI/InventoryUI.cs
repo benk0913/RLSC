@@ -73,6 +73,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     InspectionPanelUI InspectPanel;
 
     [SerializeField]
+    Transform InventoryPlusButton;
+
+
+    [SerializeField]
     public List<GameObject> InventoryTabsSelectedHalos;
 
     [SerializeField]
@@ -143,6 +147,17 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             currentlyDraggedItem.transform.position = Input.mousePosition;
         }
     }
+
+    public void IncreaseSlotSize()
+    {
+        int currentLevel = ((ItemsContainer.childCount-1)-CORE.Instance.Data.content.InventoryData.StartingSlots)/CORE.Instance.Data.content.InventoryData.IncreaseSlotsAmount;
+        
+        WarningWindowUI.Instance.Show("Increase Inventory Capacity?, this will cost you "+CORE.Instance.Data.content.InventoryData.BuySlotsPrices[currentLevel]+" gold!",()=>
+        {
+            SocketHandler.Instance.SendEvent("increase_inventory_slots");
+        });
+    }
+
 
     public void Show(ActorData ofActor, object data = null)
     {
@@ -244,8 +259,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     slot.transform.SetParent(CashItemsContainer, false);
                     slot.transform.localScale = Vector3.one;
                     slot.transform.position = Vector3.zero;
-
                 }
+
+                InventoryPlusButton.gameObject.SetActive(false);
+
             }
             else
             {
@@ -261,6 +278,14 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     slot.transform.localScale = Vector3.one;
                     slot.transform.position = Vector3.zero;
 
+                }
+
+                if(CORE.Instance.Data.content.InventoryData.MaxSlots > ItemsContainer.childCount)
+                {
+                    InventoryPlusButton.SetParent(ItemsContainer,false);
+                    InventoryPlusButton.gameObject.SetActive(true);
+                    InventoryPlusButton.transform.localScale = Vector3.one;
+                    InventoryPlusButton.transform.position = Vector3.zero;
                 }
             }
         }
