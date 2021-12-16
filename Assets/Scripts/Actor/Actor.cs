@@ -1914,17 +1914,9 @@ public class Actor : MonoBehaviour
 
     IEnumerator BeThrownToKettleRoutine()
     {
-        float Height = UnityEngine.Random.Range(1f,3f);
         GameObject targetKettle = GameObject.Find("ActorKettle");
-        float t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime/2f;
-            
-            Rigid.position = Util.SplineLerpY(Rigid.position,targetKettle.transform.position,Height,t);
-
-            yield return new WaitForFixedUpdate();
-        }
+        Rigid.position =targetKettle.transform.position;
+        yield return 0;
         MovementEffectRoutineInstance = null;
     }
 
