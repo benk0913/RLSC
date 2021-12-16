@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: KettleCleanse
+  m_Name: PassiveHitKettleCleanser
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 6253c1699645948419bc1a6dbbd44475, type: 3}
-  Description: Remove all debuffs from an ally or from yourself. (by hitting nothing.)
+  Icon: {fileID: 21300000, guid: 375250ac166e1ad4eaf2cfdbbaa0ca83, type: 3}
+  Description: 
   Colliders:
-    HitAbilityColliderObject: HealHit
+    HitAbilityColliderObject: 
     MissAbilityColliderObject: 
-    AbilityColliderObject: KettleCleanseCollider
-    PrepareAbilityColliderObject: PrepareCleanse
+    AbilityColliderObject: 
+    PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
     HitConditionObjectGameConditions: []
   Sounds:
-    PrepareAbilitySound: W_Cleanse_PrepareOGG
-    ExecuteAbilitySound: W_Cleanse_ExecuteOGG
-    HitAbilitySound: W_Cleanse_HitOGG
+    PrepareAbilitySound: 
+    ExecuteAbilitySound: 
+    HitAbilitySound: 
     HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
-    PreparingAnimation: Cast6
-    ExecuteAnimation: Execute7
-  CD: 0.5
-  CastingTime: 0.2
-  TargetCap: 3
+    PreparingAnimation: 
+    ExecuteAnimation: 
+  CD: 0
+  CastingTime: 0
+  TargetCap: 0
   MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
@@ -47,5 +47,12 @@ MonoBehaviour:
     Targets: 5
     Value: 
     ObjectValue: {fileID: 11400000, guid: 11339a8dafce44e409b75da49d44566f, type: 2}
+    Value2: 
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 9999
+    ObjectValue: {fileID: 0}
     Value2: 
   OnMissParams: []

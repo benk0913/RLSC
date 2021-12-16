@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorKettle
+  m_Name: ActorKettleCleanser
   m_EditorClassIdentifier: 
-  Icon: {fileID: 2805405277917967216, guid: 30a053f32f52fb544bea65896966efee, type: 3}
+  Icon: {fileID: 21300068, guid: 374e0445c78ff8a498aa23d396168720, type: 3}
   DisplayName: 
   Abilities: []
-  PassiveAbility: KettlePassiveHit
+  PassiveAbility: PassiveHitKettleCleanser
   Attributes:
     Power: 0
-    HP: 0
+    HP: -1
     Defense: 0
     Block: 0
     CDReduction: 0
@@ -45,16 +45,7 @@ MonoBehaviour:
   EXPMultiplier: 0
   OnGetHitParams: []
   OnSomeoneExecutesParams: []
-  OnDeathParams:
-  - Type: {fileID: 11400000, guid: 925789fd29bf01b4794f3effafc40709, type: 2}
-    Condition: {fileID: 0}
-    GameConditions: []
-    Targets: 2
-    Value: 
-    ObjectValue: {fileID: 11400000, guid: 79d9ba76e4fb5ba4eb7338cb23cda7a4, type: 2}
-    Value2: 
-  UniqueHurtSounds:
-  - sound_blocked_hit
-  - CrabBlockSound
+  OnDeathParams: []
+  UniqueHurtSounds: []
   UniqueBlockSounds: []
-  UniqueDeathSound: sound_watersplashs
+  UniqueDeathSound: 
