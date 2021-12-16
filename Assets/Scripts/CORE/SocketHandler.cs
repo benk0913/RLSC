@@ -167,7 +167,9 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("player_dont_accept_trade", OnPlayerDontAccept));
 
         //Friends
-        SocketEventListeners.Add(new SocketEventListener("friends_list_update", OnFriendsListUpdated));
+        SocketEventListeners.Add(new SocketEventListener("friends_invite", OnFriendInvite));
+        SocketEventListeners.Add(new SocketEventListener("friends_status", OnFriendsStatus));
+        SocketEventListeners.Add(new SocketEventListener("friend_delete", OnFriendDelete));
 
         //Que
         SocketEventListeners.Add(new SocketEventListener("login_queue_start", OnLoginQueueStart));
@@ -1095,10 +1097,38 @@ public class SocketHandler : MonoBehaviour
         TradeWindowUI.Instance.DontAcceptTrade(byWho);
     }
 
-    public void OnFriendsListUpdated(string eventName, JSONNode data)
+    public void OnFriendInvite(string eventName, JSONNode data)
     {
-        CurrentUser.friends = JsonConvert.DeserializeObject<UserData.FriendData[]>(data["friends"].ToString());
+        string actorName = data["actorName"].Value;
+        // TODO show invitaion window, reply to event "friend_add_response" with "accept" as true/false, and duration is CG.Friends.FriendRequestTimeoutSeconds
+    }
+
+    public void OnFriendsStatus(string eventName, JSONNode data)
+    {
+        List<FriendData> FriendsUpdates = JsonConvert.DeserializeObject<List<FriendData>>(data["friendsToUpdate"].ToString());
+        foreach (FriendData FriendUpdate in FriendsUpdates)
+        {
+            if (FriendsDataHandler.Instance.Friends.ContainsKey(FriendUpdate.userId))
+            {
+                FriendsDataHandler.Instance.Friends[FriendUpdate.userId] = FriendUpdate;
+            }
+            else
+            {
+                FriendsDataHandler.Instance.Friends.Add(FriendUpdate.userId, FriendUpdate);
+            }
+        }
+
         CORE.Instance.InvokeEvent("FriendsUpdated");
+    }
+
+    public void OnFriendDelete(string eventName, JSONNode data)
+    {
+        string userId = data["userId"].Value;
+        if (FriendsDataHandler.Instance.Friends.ContainsKey(userId))
+        {
+            FriendsDataHandler.Instance.Friends.Remove(userId);
+            CORE.Instance.InvokeEvent("FriendsUpdated");
+        } 
     }
 
     public void OnLoginQueueStart(string eventName, JSONNode data)
@@ -2327,18 +2357,7 @@ public class UserData
 
     public UserInfo info;
 
-    public FriendData[] friends;
-
     public int SelectedCharacterIndex;
-
-    [Serializable]
-    public class FriendData
-    {
-        public string name;
-        public bool isOnline;
-
-        public ulong steamID;
-    }
 }
 
 [Serializable]
