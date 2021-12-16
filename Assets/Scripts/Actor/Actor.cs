@@ -1915,8 +1915,9 @@ public class Actor : MonoBehaviour
     IEnumerator BeThrownToKettleRoutine()
     {
         GameObject targetKettle = GameObject.Find("ActorKettle");
-        Rigid.position =targetKettle.transform.position;
+        Rigid.position = targetKettle.transform.position;
         yield return 0;
+        Rigid.position = targetKettle.transform.position;
         MovementEffectRoutineInstance = null;
     }
 
