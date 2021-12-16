@@ -181,24 +181,31 @@ public class MainMenuUI : MonoBehaviour
     {
         WarningWindowUI.Instance.Show("Delete this character forever and ever!?", () =>
         {
-            ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
-            SocketHandler.Instance.SendDeleteCharacter(actorId, () =>
+            InputLabelWindow.Instance.Show("Type 'DELETE'","For Extra Validation",(string result)=>
             {
-                ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
-                List<ActorData> characters = new List<ActorData>();
-                foreach(ActorData chara in SocketHandler.Instance.CurrentUser.chars)
+                if(result.ToLower() == "delete")
                 {
-                    if(chara.actorId == actorId)
+                    ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+                    SocketHandler.Instance.SendDeleteCharacter(actorId, () =>
                     {
-                        continue;
-                    }
+                        ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+                        List<ActorData> characters = new List<ActorData>();
+                        foreach(ActorData chara in SocketHandler.Instance.CurrentUser.chars)
+                        {
+                            if(chara.actorId == actorId)
+                            {
+                                continue;
+                            }
 
-                    characters.Add(chara);
+                            characters.Add(chara);
+                        }
+
+                        SocketHandler.Instance.CurrentUser.chars = characters;
+                        RefreshUserInfo();
+                    });
                 }
-
-                SocketHandler.Instance.CurrentUser.chars = characters;
-                RefreshUserInfo();
             });
+            
 
         });
     }

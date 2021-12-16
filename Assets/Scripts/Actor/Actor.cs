@@ -1916,7 +1916,7 @@ public class Actor : MonoBehaviour
     {
 
         GameObject targetKettle = GameObject.Find("ActorKettle");
-        if(Vector2.Distance(targetKettle.transform.position, transform.position) <1f)
+        if(Vector2.Distance(targetKettle.transform.position, transform.position) < 3f)
         {
             MovementEffectRoutineInstance = null;
             yield break;
