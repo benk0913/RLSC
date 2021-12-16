@@ -152,7 +152,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     {
         int currentLevel = ((ItemsContainer.childCount-1)-CORE.Instance.Data.content.InventoryData.StartingSlots)/CORE.Instance.Data.content.InventoryData.IncreaseSlotsAmount;
         
-        WarningWindowUI.Instance.Show("Increase Inventory Capacity?, this will cost you "+CORE.Instance.Data.content.InventoryData.BuySlotsPrices[currentLevel]+" gold!",()=>
+        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Increase Inventory Capacity?, this will cost you ")+CORE.Instance.Data.content.InventoryData.BuySlotsPrices[currentLevel]+CORE.QuickTranslate(" gold!"),()=>
         {
             SocketHandler.Instance.SendEvent("increase_inventory_slots");
         });
@@ -287,6 +287,11 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     InventoryPlusButton.transform.localScale = Vector3.one;
                     InventoryPlusButton.transform.position = Vector3.zero;
                 }
+                else
+                {
+                    InventoryPlusButton.gameObject.SetActive(false);
+                }
+                
             }
         }
 
@@ -343,6 +348,11 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             CORE.Instance.DelayedInvokation(0f,()=>{
                 ContainersScrolls[index].verticalNormalizedPosition = 1f;
             });
+        }
+
+        if(IsCashTab)
+        {
+            BankPanelUI.Instance.Hide();
         }
     }
 

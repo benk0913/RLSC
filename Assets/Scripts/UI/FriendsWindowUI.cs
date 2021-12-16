@@ -84,11 +84,12 @@ public class FriendsWindowUI : MonoBehaviour, WindowInterface
             return;
         }
 
-        foreach (FriendData member in SocketHandler.Instance.CurrentUser.friends)
+        foreach (var KeyValuePair in FriendsDataHandler.Instance.Friends)
         {
+            FriendData Friend = KeyValuePair.Value;
             FriendDisplayDisplayUI element = ResourcesLoader.Instance.GetRecycledObject("FriendDisplay").GetComponent<FriendDisplayDisplayUI>();
 
-            element.SetInfo(member);
+            element.SetInfo(Friend);
             element.transform.SetParent(FriendsContainer, false);
             element.transform.localScale = Vector3.one;
             element.transform.position = Vector3.zero;
@@ -101,7 +102,11 @@ public class FriendsWindowUI : MonoBehaviour, WindowInterface
 
     public void AddMember()
     {
-        InputLabelWindow.Instance.Show("Add Friend", "Player Name...", (string name) => { SocketHandler.Instance.SendEvent("add_friend",name); });
+        InputLabelWindow.Instance.Show("Add Friend", "Player Name...", (string name) =>
+        {    
+            JSONNode node = new JSONClass();
+            node["actorName"] = name;
+            SocketHandler.Instance.SendEvent("friend_add", node);
+        });
     }
-
 }

@@ -771,6 +771,7 @@ public class CORE : MonoBehaviour
         ConsoleInputUI.Instance.ClearLog();
         LootRollPanelUI.Instance.ClearContainer();
         ExpeditionQueTimerUI.Instance.Hide();
+        FriendsDataHandler.Instance.ClearFriends();
         QuestsPanelUI.Instance.Wipe();
         CORE.Instance.InvokeEvent("PartyUpdated");
     }

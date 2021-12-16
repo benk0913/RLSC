@@ -74,17 +74,18 @@ public class InspectionPanelUI : MonoBehaviour
     
     public void AddFriend()
     {
-        foreach(UserData.FriendData friend in SocketHandler.Instance.CurrentUser.friends)
+        foreach (var KeyValuePair in FriendsDataHandler.Instance.Friends)
         {
-            if(friend.name == CurrentActor.name)
+            FriendData Friend = KeyValuePair.Value;
+            if(Friend.currentName == CurrentActor.name)
             {
                 CORE.Instance.ShowFriendsWindow();
                 return;
             }
         }
-
-        SocketHandler.Instance.SendEvent("add_friend",CurrentActor.name);
-        //SteamFriends.ActivateGameOverlayToUser("friendadd", new CSteamID(CurrentActor.steamID));
+        JSONNode node = new JSONClass();
+        node["actorName"] = CurrentActor.name;
+        SocketHandler.Instance.SendEvent("friend_add", node);
     }
 
     public void SendPrivateMessage()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SimpleJSON;
 using Steamworks;
 using TMPro;
 using UnityEngine;
@@ -46,7 +47,13 @@ public class FriendDisplayDisplayUI : MonoBehaviour
     {
         if(CurrentFriendData.isOnline)
         {
-            NameLabel.text = CurrentFriendData.name;
+            string displayName = CurrentFriendData.currentName;
+            if (CurrentFriendData.currentName != CurrentFriendData.mainActorName)
+            {
+                // If the friend is playing on a different char, show the original name too
+                displayName += " (" + CurrentFriendData.mainActorName + ")";
+            }
+            NameLabel.text = CurrentFriendData.mainActorName;
             NameLabel.color = Colors.AsColor(Colors.COLOR_TEXT);
         }
         else
@@ -54,7 +61,7 @@ public class FriendDisplayDisplayUI : MonoBehaviour
             string translatedPart = " (offline)";
             CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(translatedPart, out translatedPart);
             
-            NameLabel.text = CurrentFriendData.name + translatedPart;
+            NameLabel.text = CurrentFriendData.mainActorName + translatedPart;
             NameLabel.color = Color.grey;
         }
 
@@ -63,7 +70,7 @@ public class FriendDisplayDisplayUI : MonoBehaviour
         {
             foreach(string partyMemberName in CORE.Instance.CurrentParty.members)
             {
-                if(partyMemberName == CurrentFriendData.name)
+                if(partyMemberName == CurrentFriendData.mainActorName)
                 {
                     InviteButton.SetActive(false);
                     break;
@@ -75,19 +82,21 @@ public class FriendDisplayDisplayUI : MonoBehaviour
 
     public void RemoveFriend()
     {
-        WarningWindowUI.Instance.Show("Remove "+CurrentFriendData.name+" from the friends list!?",()=>
-        {
-            SocketHandler.Instance.SendEvent("remove_friend",CurrentFriendData.name);
+        WarningWindowUI.Instance.Show("Remove "+CurrentFriendData.mainActorName+" from the friends list!?",()=>
+        {   
+            JSONNode node = new JSONClass();
+            node["friendUserId"] = CurrentFriendData.userId;
+            SocketHandler.Instance.SendEvent("friend_delete", node);
         });
     }
 
     public void InviteToParty()
     {
-        SocketHandler.Instance.SendPartyInvite(CurrentFriendData.name);
+        SocketHandler.Instance.SendPartyInvite(CurrentFriendData.mainActorName);
     }
      public void OpenAccountProfile()
     {
-        SteamFriends.ActivateGameOverlayToUser("steamid",new CSteamID(CurrentFriendData.steamID));
+        SteamFriends.ActivateGameOverlayToUser("steamid",new CSteamID(CurrentFriendData.steamId));
     }
 
  

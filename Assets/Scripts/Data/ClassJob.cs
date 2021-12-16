@@ -50,5 +50,8 @@ public class ClassJob : ScriptableObject
     public List<string> UniqueHurtSounds = new List<string>();
 
     [JsonIgnore]
+    public List<string> UniqueBlockSounds = new List<string>();
+    
+    [JsonIgnore]
     public string UniqueDeathSound;
 }
