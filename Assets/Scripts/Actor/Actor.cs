@@ -1468,6 +1468,11 @@ public class Actor : MonoBehaviour
                     CORE.Instance.DelayedInvokation(0.1f, () => { transform.position = casterActor.Rigid.position; });
                     break;
                 }
+            case "BeThrownToKettle":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(BeThrownToKettleRoutine());
+                    break;
+                }
             case "Backstepped":
                 {
 
@@ -1897,6 +1902,22 @@ public class Actor : MonoBehaviour
 
         MovementEffectRoutineInstance = null;
 
+    }
+
+    IEnumerator BeThrownToKettleRoutine()
+    {
+        float Height = UnityEngine.Random.Range(1f,3f);
+        GameObject targetKettle = GameObject.Find("ActorKettle");
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime/2f;
+            
+            Rigid.position = Util.SplineLerpY(Rigid.position,targetKettle.transform.position,Height,t);
+
+            yield return new WaitForFixedUpdate();
+        }
+        MovementEffectRoutineInstance = null;
     }
 
     #endregion
