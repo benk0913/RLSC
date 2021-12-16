@@ -1914,7 +1914,13 @@ public class Actor : MonoBehaviour
 
     IEnumerator BeThrownToKettleRoutine()
     {
+
         GameObject targetKettle = GameObject.Find("ActorKettle");
+        if(Vector2.Distance(targetKettle.transform.position, transform.position) <1f)
+        {
+            MovementEffectRoutineInstance = null;
+            yield break;
+        }
         Rigid.position = targetKettle.transform.position;
         yield return 0;
         Rigid.position = targetKettle.transform.position;
