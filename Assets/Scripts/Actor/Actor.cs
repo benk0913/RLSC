@@ -132,6 +132,14 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public bool IsFriendsInvulnerable
+    {
+        get
+        {
+            return State.Data.states.ContainsKey("Friends Invulnerable");
+        }
+    }
+
     public bool IsDead;
 
     public bool isJumpingDown;

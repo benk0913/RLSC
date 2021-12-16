@@ -191,10 +191,37 @@ public class HitCollider : MonoBehaviour
             return false;
         }
 
+
+        bool Invulnerable = false;
         if (!isVictimAlly && actorVictim.IsInvulnerable)
         {
-            return false;
+            Invulnerable = true;
         }
+
+        if (inSameParty && actorVictim.IsFriendsInvulnerable)
+        {
+            Invulnerable = true;
+        }
+
+        if (Invulnerable)
+        {
+            // Invulnerability is handled by the server, except movement.
+            foreach (var abilityParam in AbilitySource.OnExecuteParams)
+            {
+                if (abilityParam.Type.name == "Movement")
+                {
+                    return false;
+                }
+            }
+            foreach (var abilityParam in AbilitySource.OnHitParams)
+            {
+                if (abilityParam.Type.name == "Movement")
+                {
+                    return false;
+                }
+            }
+        }
+
 
         return true;
     }
