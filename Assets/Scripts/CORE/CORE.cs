@@ -291,7 +291,7 @@ public class CORE : MonoBehaviour
 
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
-        WindowToKeyMap.Add(FriendsWindowUI.Instance, InputMap.Map["Friends Window"]);
+        // WindowToKeyMap.Add(FriendsWindowUI.Instance, InputMap.Map["Friends Window"]);
         WindowToKeyMap.Add(PartyWindowUI.Instance, InputMap.Map["Party Window"]);
         WindowToKeyMap.Add(QuestWindowUI.Instance, InputMap.Map["Quests Window"]);
         WindowToKeyMap.Add(MapWindowUI.Instance, InputMap.Map["Map Window"]);
