@@ -33,6 +33,8 @@ public class ItemData : ScriptableObject
 
     public bool Stackable = false;
 
+    public bool RollInExped = true;
+
     public ItemType Type;
 
     [JsonIgnore]
