@@ -127,25 +127,26 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
                 string mapPointKey = CORE.Instance.Data.content.Scenes.Find(X=>X.displyName == key).MapPoint;
                 GameObject point = Points.Find(X=>X.name == mapPointKey);
                 
-                GameObject pin = null;
                 if(point == null)
                 {
-                    mapInstance.Points.Find(X=>X.name == mapPointKey);
+                    GameObject mapPoint = mapInstance.Points.Find(X=>X.name == mapPointKey);
 
-                    if(point == null)
+                    if(mapPoint == null)
                     {
                         continue;
                     }
-                    
 
-                     pin = ResourcesLoader.Instance.GetRecycledObject("MapFriendLocation");
-                    pin.transform.SetParent(MapPinsContainer,false);
-                    pin.transform.position = point.transform.position;
-                    pin.transform.localScale = Vector3.one;
-                    pin.GetComponent<TooltipTargetUI>().SetTooltip(key);
+                    point = ResourcesLoader.Instance.GetRecycledObject("MapFriendLocation");
+                    point.transform.SetParent(MapPinsContainer,false);
+                    point.transform.position = mapPoint.transform.position;
+                    point.transform.localScale = Vector3.one;
+                    point.GetComponent<TooltipTargetUI>().SetTooltip(key);
+                }
+                else
+                {
+                    point.GetComponent<TooltipTargetUI>().Text += System.Environment.NewLine+CORE.Instance.CurrentParty.scenesToMembers[key];   
                 }
 
-                pin.GetComponent<TooltipTargetUI>().Text += System.Environment.NewLine+CORE.Instance.CurrentParty.scenesToMembers[key];
             }
         }
     }

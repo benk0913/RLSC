@@ -14,7 +14,8 @@ public class AIWillowKing : ActorAI
 
             while (SelectedAbility == null)
             {
-                if (Act.State.Buffs.Find(X=>X.CurrentBuff.name.Contains("Protection")) == null)
+                List<AbilityState> cdProtections = Act.State.Abilities.FindAll(x => x.CurrentAbility.name.Contains("Protection") && x.CurrentCD > 0f);
+                if (Act.State.Buffs.Find(X=>X.CurrentBuff.name.Contains("Protection")) == null && (cdProtections == null || cdProtections.Count == 0))
                 {
                     int rndProt = Random.Range(0,3);
 
