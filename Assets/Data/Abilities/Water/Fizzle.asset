@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareWaterSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: W_Fizzle_PrepareOGG
     ExecuteAbilitySound: W_Fizzle_ExecuteOGG
@@ -33,7 +34,7 @@ MonoBehaviour:
     PreparingAnimation: Cast2
     ExecuteAnimation: Execute2
   CD: 5
-  CastingTime: 1
+  CastingTime: 0.5
   TargetCap: 10
   MaxSameTargetHits: 1
   OnlyIfGrounded: 0
@@ -43,6 +44,7 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 1
     Value: Fizzle Energy
     ObjectValue: {fileID: 0}
