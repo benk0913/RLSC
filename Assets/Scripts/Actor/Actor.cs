@@ -1810,7 +1810,7 @@ public class Actor : MonoBehaviour
         while (t < 1f)
         {
             t += Time.deltaTime * 1;
-            Rigid.position += initDir*4* (1f-t) * Time.deltaTime;
+            Rigid.position += initDir*48* (1f-t) * Time.deltaTime;
 
             Rigid.velocity = Vector2.zero;
 
@@ -1832,7 +1832,7 @@ public class Actor : MonoBehaviour
         while(t<1f)
         {
             t += Time.deltaTime  * 2f * (1f/duration);
-            Rigid.position += initDir  * speed * 4f * Time.deltaTime;
+            Rigid.position += initDir  * speed * 48f * Time.deltaTime;
 
             yield return new WaitForFixedUpdate();
         }
@@ -1903,7 +1903,7 @@ public class Actor : MonoBehaviour
         while (t < 1f)
         {
             t += Time.deltaTime * 4f;
-            Rigid.position += initDir * 6f * Time.deltaTime;
+            Rigid.position += initDir * 72f * Time.deltaTime;
 
             yield return new WaitForFixedUpdate();
         }
