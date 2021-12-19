@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Frost Shield
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8eff94603aa55b24284f40c55a1f1119, type: 3}
-  Description: Invulnerable to damage and debuffs
+  Description: Protection from most of the damage
   BuffColliderObject: ShieldBuffEffect
   BuffMaterial: {fileID: 0}
   Length: 4
@@ -22,7 +22,7 @@ MonoBehaviour:
   Attributes:
     Power: 0
     HP: 0
-    Defense: 0
+    Defense: 0.85
     Block: 0
     CDReduction: 0
     CTReduction: 0
@@ -41,8 +41,7 @@ MonoBehaviour:
   HitAbility: {fileID: 0}
   OnStartSound: 
   OnEndSound: 
-  States:
-  - {fileID: 11400000, guid: 3e8a9ede5d286654f912327fdf8ae35f, type: 2}
+  States: []
   OnStart: []
   OnEnd: []
   OnTakeDamage: []

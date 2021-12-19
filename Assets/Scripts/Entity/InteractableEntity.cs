@@ -203,7 +203,8 @@ public class InteractableEntity : MonoBehaviour
 
         NearbyActor = nearActor;
 
-        OnHover?.Invoke();
+        if(!CORE.IsMachinemaMode)
+            OnHover?.Invoke();
     }
 
     private void OnTriggerExit2D(Collider2D collision)

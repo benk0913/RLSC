@@ -17,6 +17,10 @@ public class BankPanelUI : MonoBehaviour
     [SerializeField]
     Transform InventoryPlusButton;
 
+    [SerializeField]
+    SelectionGroupUI SG;
+
+
     void Awake()
     {
         Instance = this;
@@ -33,10 +37,6 @@ public class BankPanelUI : MonoBehaviour
         CORE.Instance.DelayedInvokation(0.1f,()=>
         {
             RefreshUI();
-            CORE.Instance.DelayedInvokation(0.1f,()=>
-            {
-                InventoryUI.Instance.SelectionGroup.RefreshGroup();
-            });
         });
     }
 
@@ -73,6 +73,8 @@ public class BankPanelUI : MonoBehaviour
         {
             InventoryPlusButton.gameObject.SetActive(false);
         }
+
+        CORE.Instance.DelayedInvokation(0.1f,()=>SG.RefreshGroup());
     }
 
     public void Hide()

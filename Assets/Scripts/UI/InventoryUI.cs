@@ -655,6 +655,12 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             TradeWindowUI.Instance.SetItem(null,SelectedSlot);
             return;
         }
+
+        if(SelectedSlot.IsBankSlot)
+        {
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Can't drop directly from bank!", Color.red));
+            return;
+        }
         
         if (IsCashTab)
         {

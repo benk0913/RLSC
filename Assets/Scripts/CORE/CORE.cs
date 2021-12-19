@@ -434,6 +434,12 @@ public class CORE : MonoBehaviour
             IsMachinemaMode = false;
             InvokeEvent("MachinemaModeRefresh");
         }
+
+        if(Input.GetKeyDown(InputMap.Map["Hide GUI"]))
+        {
+            IsMachinemaMode = !IsMachinemaMode;
+            InvokeEvent("MachinemaModeRefresh");
+        }
     }
 
     public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed = null, ActorData ofActor = null, object data = null)
