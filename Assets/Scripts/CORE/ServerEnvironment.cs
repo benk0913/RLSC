@@ -11,7 +11,7 @@ public class ServerEnvironment
     public string Region = "us";
     
     private string LocalHostUrl = "http://localhost:5000";
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
     private string DevHostUrl = "https://lul2.herokuapp.com";
 #endif
     private string ProdHostUrlUs = "http://eq-1786457703.us-east-1.elb.amazonaws.com";
@@ -25,7 +25,7 @@ public class ServerEnvironment
             {
                 case "Local":
                     return LocalHostUrl;
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
                 case "Dev":
                     return DevHostUrl;
 #endif
@@ -54,7 +54,7 @@ public class ServerEnvironment
                 case "Local":
                     return "kekw";
                 default:
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
                 case "Dev":
                     return "b0ss";
 #endif

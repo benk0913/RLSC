@@ -10,7 +10,7 @@ public class DEV_ItemsView : MonoBehaviour
 
     private void Start()
     {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         CORE.Instance.ConditionalInvokation((object o) =>
         {
             return Input.GetKeyDown(KeyCode.PageUp);
