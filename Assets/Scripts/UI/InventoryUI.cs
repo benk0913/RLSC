@@ -228,6 +228,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         }
 
         BankPanelUI.Instance.Hide();
+        ScrapWindowUI.Instance.Hide();
     }
 
     public void RefreshUI()
@@ -353,6 +354,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         if(IsCashTab)
         {
             BankPanelUI.Instance.Hide();
+            ScrapWindowUI.Instance.Hide();
         }
     }
 
