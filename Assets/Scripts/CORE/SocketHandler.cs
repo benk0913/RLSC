@@ -1,4 +1,4 @@
-﻿using BestHTTP.SocketIO;
+using BestHTTP.SocketIO;
 using BestHTTP.SocketIO.Events;
 using EdgeworldBase;
 using Newtonsoft.Json;
@@ -199,6 +199,31 @@ public class SocketHandler : MonoBehaviour
         {
             listener.InternalCallback = AddEventListenerLogging + listener.InternalCallback;
         }
+    }
+
+    internal void SendDonateScrapToGuild(int finalValueInt)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void SendGuildInvite(string name)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void SendGuildPromote(string currentMemberName)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void SendGuildLeave()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void SendGuildKick(string currentMemberName)
+    {
+        throw new NotImplementedException();
     }
 
     void AddEventListenerLogging(string eventName, JSONNode data)

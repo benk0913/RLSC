@@ -38,6 +38,8 @@ public class CORE : MonoBehaviour
 
     public PartyData CurrentParty;
 
+    public PartyData CurrentGuild;
+
     public string TimePhase = "Day";
     
     public bool DEBUG = false;
@@ -291,7 +293,8 @@ public class CORE : MonoBehaviour
 
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
-        // WindowToKeyMap.Add(FriendsWindowUI.Instance, InputMap.Map["Friends Window"]);
+        WindowToKeyMap.Add(FriendsWindowUI.Instance, InputMap.Map["Friends Window"]);
+        WindowToKeyMap.Add(GuildWindowUI.Instance, InputMap.Map["Guild Window"]);
         WindowToKeyMap.Add(PartyWindowUI.Instance, InputMap.Map["Party Window"]);
         WindowToKeyMap.Add(QuestWindowUI.Instance, InputMap.Map["Quests Window"]);
         WindowToKeyMap.Add(MapWindowUI.Instance, InputMap.Map["Map Window"]);
@@ -444,6 +447,16 @@ public class CORE : MonoBehaviour
 
     public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed = null, ActorData ofActor = null, object data = null)
     {
+        if(WindowToShow.GetType() == typeof(FriendsWindowUI))
+        {
+            return;
+        }
+
+        if(WindowToShow.GetType() == typeof(GuildWindowUI) && CurrentGuild == null)
+        {
+            return;
+        }
+
         bool isTargetWindowClosed = CurrentWindow != WindowToShow;
         bool closedAWindow = CurrentWindow != null;
         CloseCurrentWindow();
@@ -488,6 +501,15 @@ public class CORE : MonoBehaviour
     public void ShowFriendsWindow()
     {
         ShowWindow(FriendsWindowUI.Instance);
+    }
+
+    public void ShowGuildWindow()
+    {
+        if(CurrentGuild == null)
+        {
+            WarningWindowUI.Instance.Show(CORE.QuickTranslate("You are not in a guild")+"!",null);
+        }
+        ShowWindow(GuildWindowUI.Instance);
     }
 
     public void ShowMapWindow()
