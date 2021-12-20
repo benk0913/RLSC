@@ -81,7 +81,8 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         IsOpen = false;
         this.gameObject.SetActive(false);
 
-        AudioControl.Instance.Play(HideSound);
+        if(AudioControl.Instance != null)
+            AudioControl.Instance.Play(HideSound);
     }
     
     public void MatchQueueRefresh()

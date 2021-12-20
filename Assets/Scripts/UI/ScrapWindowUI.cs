@@ -77,12 +77,14 @@ public class ScrapWindowUI : MonoBehaviour
             return;
         }
 
-
-        JSONClass node = new JSONClass();
-        node["itemID"] = CurrentItem.itemId;
-        SocketHandler.Instance.SendEvent("scrap_item",node);
-        CurrentItem = null;
-        RefreshUI();
+         WarningWindowUI.Instance.Show("Are you Sure?",()=>
+         {
+            JSONClass node = new JSONClass();
+            node["itemID"] = CurrentItem.itemId;
+            SocketHandler.Instance.SendEvent("scrap_item",node);
+            CurrentItem = null;
+            RefreshUI();
+         });
     }
 
     public void Clear()
