@@ -145,6 +145,7 @@ public class DatabaseContent
 
     public int MaxItemStack = 100;
 
+    public int ScrapCost = 30;
     public SlotsDatabase Slots;
 
     public List<PromoCode> Promos;

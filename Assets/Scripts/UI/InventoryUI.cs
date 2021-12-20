@@ -464,7 +464,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             }
             else if(slot.IsBankSlot)
             {
-                if(SelectedSlot.IsBankSlot) //From trade slot to trade slot 
+                if(SelectedSlot.IsBankSlot) //From bank slot to bank slot 
                 {
                     if(slot == SelectedSlot)// Doubleclick
                     {
@@ -483,6 +483,26 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 else //From inventory slot to bank slot 
                 {
                     BankPanelUI.Instance.SetItemInBank(SelectedSlot,slot);
+                }
+            }
+            else if(slot.IsScrapSlot)
+            {
+                if(SelectedSlot.IsScrapSlot) //From trade slot to trade slot 
+                {
+                    if(slot == SelectedSlot)// Doubleclick
+                    {
+                        ScrapWindowUI.Instance.Clear();    
+                        UndragItem(SelectedSlot);
+                    }
+
+                }
+                else if(SelectedSlot.IsEquipmentSlot) //From equip slot to scrap slot 
+                {
+                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("First UNEQUIP the item, then scrap it.", Color.red));
+                }
+                else //From inventory slot to scrap slot
+                {
+                    ScrapWindowUI.Instance.SetItem(SelectedSlot.CurrentItem);
                 }
             }
             else if(SelectedSlot.IsTradeSlot)
@@ -535,6 +555,12 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(BankPanelUI.Instance.gameObject.activeInHierarchy)
                     {
                         BankPanelUI.Instance.UsedInventoryItem(SelectedSlot);
+                        UndragItem(SelectedSlot);
+                        return;
+                    }
+                    else if(ScrapWindowUI.Instance.gameObject.activeInHierarchy)
+                    {
+                        ScrapWindowUI.Instance.SetItem(SelectedSlot.CurrentItem);
                         UndragItem(SelectedSlot);
                         return;
                     }

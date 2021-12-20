@@ -31,6 +31,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     
     public bool IsBankSlot;
 
+    public bool IsScrapSlot;
+
     public ItemType SlotType = null;
 
     public bool IsInspecting = false;
@@ -74,7 +76,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         IsInspecting = isInspecting;
         IsBankSlot = false;
-
+        IsScrapSlot = false;
+        
         this.SlotType = slotType;
 
         this.OnSelect = onSelect;
