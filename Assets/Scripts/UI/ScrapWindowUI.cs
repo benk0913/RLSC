@@ -73,7 +73,7 @@ public class ScrapWindowUI : MonoBehaviour
 
         if(CORE.PlayerActor.money < CORE.Instance.Data.content.ScrapCost)
         {
-            WarningWindowUI.Instance.Show(CORE.QuickTranslate("Not enough money")+"! ("+CORE.PlayerActor+"/"+CORE.Instance.Data.content.ScrapCost+")",null);
+            WarningWindowUI.Instance.Show(CORE.QuickTranslate("Not enough money")+"! ("+CORE.PlayerActor.money+"/"+CORE.Instance.Data.content.ScrapCost+")",null);
             return;
         }
 
