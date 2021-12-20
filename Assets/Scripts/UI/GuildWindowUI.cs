@@ -62,6 +62,11 @@ public class GuildWindowUI : MonoBehaviour, WindowInterface
     [Obsolete("Do not call Show directly. Call `CORE.Instance.ShowWindow()` instead.")]
     public void Show(ActorData actorData, object data = null)
     {
+        if(string.IsNullOrEmpty(CORE.Instance.CurrentGuild.leaderName))
+        {
+            return;
+        }
+
         IsOpen = true;
 
         this.gameObject.SetActive(true);
@@ -71,7 +76,7 @@ public class GuildWindowUI : MonoBehaviour, WindowInterface
 
         RefreshUI();
         
-        if (CORE.Instance.CurrentGuild == null || CORE.Instance.CurrentGuild.members.Length >= CORE.Instance.Data.content.MaxPartyMembers)
+        if (string.IsNullOrEmpty(CORE.Instance.CurrentGuild.leaderName) || CORE.Instance.CurrentGuild.members.Length >= CORE.Instance.Data.content.MaxPartyMembers)
         {
             InviteButton.SetActive(false);
         }
@@ -106,7 +111,7 @@ public class GuildWindowUI : MonoBehaviour, WindowInterface
         CORE.ClearContainer(GuildMembersContainer);
 
 
-        if (CORE.Instance.CurrentGuild == null)
+        if (string.IsNullOrEmpty(CORE.Instance.CurrentGuild.leaderName))
         {
             return;
         }

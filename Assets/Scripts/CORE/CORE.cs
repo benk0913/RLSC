@@ -452,7 +452,7 @@ public class CORE : MonoBehaviour
             return;
         }
 
-        if(WindowToShow.GetType() == typeof(GuildWindowUI) && CurrentGuild == null)
+        if(WindowToShow.GetType() == typeof(GuildWindowUI) &&  string.IsNullOrEmpty(CurrentGuild.leaderName))
         {
             return;
         }
@@ -505,7 +505,7 @@ public class CORE : MonoBehaviour
 
     public void ShowGuildWindow()
     {
-        if(CurrentGuild == null)
+        if(string.IsNullOrEmpty(CurrentGuild.leaderName))
         {
             WarningWindowUI.Instance.Show(CORE.QuickTranslate("You are not in a guild")+"!",null);
         }

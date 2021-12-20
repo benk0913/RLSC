@@ -1412,12 +1412,12 @@ public class Actor : MonoBehaviour
                 }
             case "SalamanderDash":
                 {
-                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f,1.25f));
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f,0.625f));
                     break;
                 }
             case "SalamanderDashSmall":
                 {
-                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(1f,0.5f));
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(1f,0.25f));
                     break;   
                 }
             case "DashUpwards":
