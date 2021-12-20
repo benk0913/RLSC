@@ -55,7 +55,7 @@ public class GuildMemberDisplayUI : MonoBehaviour
 
     public void OnGuildUpdated()
     {
-        if(string.IsNullOrEmpty(CORE.Instance.CurrentGuild.leaderName))
+        if(CORE.Instance.CurrentGuild == null)
         {
             return;
         }
