@@ -909,6 +909,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2e8239e0ab18d1e4f8af9dd8255e36e7, type: 2}
     - {fileID: 11400000, guid: 61d4a9a4e3354c346bc6898ba6c32c78, type: 2}
     - {fileID: 11400000, guid: 28dba195f74afac40a136f2375bfb6a9, type: 2}
+    - {fileID: 11400000, guid: 4d04c0fdd07556948801bc47812c1f79, type: 2}
     - {fileID: 11400000, guid: 958d8a61aba1a1540a278c6f0cf7b9bb, type: 2}
     - {fileID: 11400000, guid: 30cd5a1eeab7c294796c3dcaf53e625b, type: 2}
     - {fileID: 11400000, guid: 8a957e38fb70eda41bf70bd86fbfbfcf, type: 2}
@@ -5412,6 +5413,75 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: 
       MapPoint: 
+    - sceneName: Potential_Start
+      displyName: The Edgeworld!
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorShellCrabWeak
+        positionX: 137.6
+        positionY: -18.6
+        respawnSeconds: 30
+        IrellevantMob: 0
+      - monsterName: ActorShellCrabWeak
+        positionX: 95.4
+        positionY: -19.4
+        respawnSeconds: 30
+        IrellevantMob: 0
+      - monsterName: ActorShellCrabWeak
+        positionX: 241.9
+        positionY: -12.7
+        respawnSeconds: 30
+        IrellevantMob: 0
+      - monsterName: ActorShellCrabWeak
+        positionX: 179.1
+        positionY: -18.6
+        respawnSeconds: 30
+        IrellevantMob: 0
+      - monsterName: ActorShellCrabWeak
+        positionX: 211.7
+        positionY: -16.6
+        respawnSeconds: 30
+        IrellevantMob: 0
+      - monsterName: ActorShellCrabWeak
+        positionX: 124.9
+        positionY: -18.3
+        respawnSeconds: 30
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 245
+        positionY: -11
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: 134
+        positionY: -10
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: -8
+        positionY: -10
+      playerSpawnX: 0.37
+      playerSpawnY: -9.03
+      Portals:
+      - name: EndPortalA
+        TargetScene: Sunset Port
+        TargetSceneGate: 
+        IsExpeditionLocked: 0
+        portalPositionX: 244.9
+        portalPositionY: -10.6
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Potential_Start
+      MusicTrack: music_grasslands_1
+      Soundscape: Beach SoundScape
+      NightMusicTrack: 
+      NightSoundscape: Sunset Port Night SoundScape
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: SunsetPort
     - sceneName: Sunset Port
       displyName: Sunset Port
       objectiveDescription: 
@@ -11830,6 +11900,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6820923a93ccd4844b31fc03c16ac7d3, type: 2}
     - {fileID: 11400000, guid: 674f93b096775b746956d85cdca4f665, type: 2}
     Quests:
+    - {fileID: 11400000, guid: b77a35ccb631d4e428cb6486fc4ca3f0, type: 2}
     - {fileID: 11400000, guid: 9e4ba54a52b946142adc6ae3483e2b2f, type: 2}
     - {fileID: 11400000, guid: 28e9e1f2ce3ced7458023ac782dcad59, type: 2}
     - {fileID: 11400000, guid: 241c13b714737a64486725b5a0857a0b, type: 2}
@@ -11882,7 +11953,7 @@ MonoBehaviour:
     - moneyItem: {fileID: 11400000, guid: 94662d86b6b151344bf6d363eba82855, type: 2}
       minAmount: 100000
     LatestVersion: 0.43
-    StartingScene: Sunset Port
+    StartingScene: Potential_Start
     HumanPrefab: ActorHuman
     BaseAttributes:
       Power: 0
