@@ -9,6 +9,13 @@ public class RewardsWindowUI : MonoBehaviour
 {
     public static RewardsWindowUI Instance;
 
+    [SerializeField]
+    TextMeshProUGUI XPGainedLabel;
+
+    [SerializeField]
+    TextMeshProUGUI MoneyGainedLabel;
+
+
     public Transform Container;
 
 
@@ -35,9 +42,16 @@ public class RewardsWindowUI : MonoBehaviour
         }
     }
 
-    public void Show(List<ItemData> itemRewards)
+    public void Show(List<ItemData> itemRewards, int xp, int money)
     {
         this.gameObject.SetActive(true);
+
+        XPGainedLabel.gameObject.SetActive(xp > 0);
+        XPGainedLabel.text = CORE.QuickTranslate("+"+System.String.Format("{0:n0}", xp)+" EXP");
+
+        MoneyGainedLabel.gameObject.SetActive(money > 0);
+        MoneyGainedLabel.text = CORE.QuickTranslate("+"+System.String.Format("{0:n0}", money));
+
         AudioControl.Instance.Play("sound_reward2");
 
         CORE.ClearContainer(Container);

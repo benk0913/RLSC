@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareWaterSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: W_Splash_PrepareOGG
     ExecuteAbilitySound: voice_watersplash2
@@ -31,8 +32,8 @@ MonoBehaviour:
     ScreenEffectObject: 
     PreparingAnimation: Cast4
     ExecuteAnimation: Execute4
-  CD: 0.5
-  CastingTime: 0.5
+  CD: 0.25
+  CastingTime: 0.25
   TargetCap: 3
   MaxSameTargetHits: 1
   OnlyIfGrounded: 0
@@ -42,14 +43,16 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: 1d7afcae3dbafe140b41a3f772030c9f, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
-    Value: 12
+    Value: 10
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: a606211bb21ffeb45ae90aa94e749759, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 1
-    Value: 12
+    Value: 10
     ObjectValue: {fileID: 0}
     Value2: 
   OnMissParams: []

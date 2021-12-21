@@ -1627,9 +1627,22 @@ public class SocketHandler : MonoBehaviour
         {
             List<AbilityParam> abParams = questData.Rewards.FindAll(x=>x.Type.name == "Add Item");
 
+            int moneyGained = 0;
+            int xpGained = 0;
+            AbilityParam gainXPParam = questData.Rewards.Find(x=>x.Type.name == "Gain Exp");
+
+            if(gainXPParam != null)
+                xpGained += int.Parse(gainXPParam.Value);
+
+            AbilityParam gainMoneyParam = questData.Rewards.Find(x=>x.Type.name == "Gain Exp");
+
+            if(gainMoneyParam != null)
+                moneyGained += int.Parse(gainMoneyParam.Value);
+
+            
+            List<ItemData> items = new List<ItemData>();
             if(abParams != null && abParams.Count > 0)
             {
-                List<ItemData> items = new List<ItemData>();
                 foreach(AbilityParam abPar in abParams)
                 {
                     if(abPar.ObjectValue != null)
@@ -1642,9 +1655,11 @@ public class SocketHandler : MonoBehaviour
                     }
                 }
 
-                RewardsWindowUI.Instance.Show(items);
+                
             }
-    
+
+            RewardsWindowUI.Instance.Show(items,xpGained, moneyGained);
+
         }
     }
 
