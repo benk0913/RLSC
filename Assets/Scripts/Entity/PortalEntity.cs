@@ -9,6 +9,9 @@ public class PortalEntity : MonoBehaviour
     [SerializeField]
     SpriteRenderer GateSymbol;
 
+    [SerializeField]
+    string EnterWarning = "";
+
     public UnityEvent OnLock;
     public UnityEvent OnUnlock;
     public bool IsLocked;
@@ -50,6 +53,12 @@ public class PortalEntity : MonoBehaviour
             return;
         }
 
+        if(!string.IsNullOrEmpty(EnterWarning))
+        {
+            WarningWindowUI.Instance.Show(EnterWarning,()=>{SocketHandler.Instance.SendEnterPortal(PortalReference);});
+            return;
+        }
+        
         SocketHandler.Instance.SendEnterPortal(PortalReference);
     }
 
