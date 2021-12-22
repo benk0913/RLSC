@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareMudshot
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: 
     ExecuteAbilitySound: E_Splinter_ExecuteOGG
@@ -36,19 +37,22 @@ MonoBehaviour:
   CastingTime: 0.1
   TargetCap: 1
   MaxSameTargetHits: 1
-  OnlyIfGrounded: 0
+  OnlyIfGrounded: 1
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 0
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: 15
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: Splinter Stun
     ObjectValue: {fileID: 0}

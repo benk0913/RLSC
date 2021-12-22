@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: A_AerialReach_PrepareOGG
     ExecuteAbilitySound: 
@@ -34,12 +35,15 @@ MonoBehaviour:
   CD: 3
   CastingTime: 0.003
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 1
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: TeleportToPlayerFar
     ObjectValue: {fileID: 0}
