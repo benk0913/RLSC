@@ -670,11 +670,8 @@ public class Actor : MonoBehaviour
                 Animer.Play(ability.Visuals.ExecuteAnimation);
             }
 
-            if (!CORE.Instance.CAN_MOVE_IN_SPELLS)
-            {
-                transform.position = position;
-                Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
-            }
+            transform.position = position;
+            Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
 
             State.IsPreparingAbility = false;
             State.PreparingAbiityColliderObject = null;
@@ -1706,6 +1703,15 @@ public class Actor : MonoBehaviour
         node["x"] = transform.position.x.ToString();
         node["y"] = transform.position.y.ToString();
         node["faceRight"] = (Body.localScale.x < 0).ToString();
+        if (CORE.Instance.CAN_MOVE_IN_SPELLS)
+        {
+            string abilityInstanceId = "client-ability-" + Util.GenerateUniqueID();
+            node["abilityInstanceId"] = abilityInstanceId;
+            if (State.Data.IsPlayer)
+            {
+                ExecuteAbility(ability, transform.position, Body.localScale.x < 0, false, abilityInstanceId);
+            }
+        }
         SocketHandler.Instance.SendEvent("executed_ability", node);
     }
 
