@@ -217,7 +217,7 @@ public class Actor : MonoBehaviour
         get
         {
             return !IsStunned
-            && !State.IsPreparingAbility
+            && (CORE.Instance.CAN_MOVE_IN_SPELLS || !State.IsPreparingAbility)
             && IsInputEnabled
             && !IsDead;
         }
@@ -670,8 +670,11 @@ public class Actor : MonoBehaviour
                 Animer.Play(ability.Visuals.ExecuteAnimation);
             }
 
-            transform.position = position;
-            Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
+            if (!CORE.Instance.CAN_MOVE_IN_SPELLS)
+            {
+                transform.position = position;
+                Body.localScale = new Vector3(faceRight ? -1 : 1, 1, 1);
+            }
 
             State.IsPreparingAbility = false;
             State.PreparingAbiityColliderObject = null;

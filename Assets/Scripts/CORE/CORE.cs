@@ -50,6 +50,8 @@ public class CORE : MonoBehaviour
 
     public bool NEVER_BITCH = false;
 
+    public bool CAN_MOVE_IN_SPELLS = false;
+
     public bool IsBitch;
     public bool InGame = false;
     public bool IsLoading = false;
