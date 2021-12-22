@@ -1,4 +1,4 @@
-using BestHTTP.SocketIO;
+﻿using BestHTTP.SocketIO;
 using BestHTTP.SocketIO.Events;
 using EdgeworldBase;
 using Newtonsoft.Json;
@@ -1351,9 +1351,10 @@ public class SocketHandler : MonoBehaviour
         bool castingExternal = data["castingExternal"].AsBool;
         string abilityInstanceId = data["abilityInstanceId"].Value;
 
-        actorDat.ActorEntity.ExecuteAbility(ability, position, faceRight, castingExternal, abilityInstanceId);
-
-
+        if (!CORE.Instance.CAN_MOVE_IN_SPELLS || !actorDat.IsPlayer || castingExternal)
+        {
+            actorDat.ActorEntity.ExecuteAbility(ability, position, faceRight, castingExternal, abilityInstanceId);
+        }
     }
 
     public void OnActorAbilityHit(string eventName, JSONNode data)
