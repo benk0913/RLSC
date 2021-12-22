@@ -558,13 +558,11 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     {
                         BankPanelUI.Instance.UsedInventoryItem(SelectedSlot);
                         UndragItem(SelectedSlot);
-                        return;
                     }
                     else if(ScrapWindowUI.Instance.gameObject.activeInHierarchy)
                     {
                         ScrapWindowUI.Instance.SetItem(SelectedSlot.CurrentItem);
                         UndragItem(SelectedSlot);
-                        return;
                     }
                     else 
                     {
@@ -577,7 +575,6 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     {
                         BankPanelUI.Instance.UsedEquipItem(SelectedSlot);
                         UndragItem(SelectedSlot);
-                        return;
 
                     }
                     else
