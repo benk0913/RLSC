@@ -212,12 +212,24 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public bool CanMoveBySpell
+    {
+        get
+        {
+            if (CORE.Instance.CAN_MOVE_IN_SPELLS)
+            {
+                return !State.IsPreparingAbility || State.PreparingAbilityCurrent.CanMoveInCast;
+            }
+            return !State.IsPreparingAbility;
+        }
+    }
+
     public bool CanLookAround
     {
         get
         {
             return !IsStunned
-            && (CORE.Instance.CAN_MOVE_IN_SPELLS || !State.IsPreparingAbility)
+            && CanMoveBySpell
             && IsInputEnabled
             && !IsDead;
         }
