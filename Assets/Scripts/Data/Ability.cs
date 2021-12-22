@@ -45,7 +45,8 @@ public class Ability : ScriptableObject
     [JsonIgnore]
     public bool IsCastingExternal;
 
-
+    [JsonIgnore]
+    public bool CanMoveInCast;
 
 
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
