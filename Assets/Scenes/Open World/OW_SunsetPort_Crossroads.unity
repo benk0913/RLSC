@@ -6680,6 +6680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RelevantQuests:
   - {fileID: 11400000, guid: 42e0fd2537a17b44cb69726fd5998886, type: 2}
+  - {fileID: 11400000, guid: c5005692267aac447b61db7f738591ba, type: 2}
   HasQuestObject: {fileID: 1840198606}
   HasQuestInProgressObject: {fileID: 287844291}
   HasQuestCompleteObject: {fileID: 1506157416}
@@ -12181,6 +12182,71 @@ MonoBehaviour:
             Decisions: []
             IsFemale: 0
         IsFemale: 0
+    - Content: '<u>Quest: In The Halflight 2</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: c5005692267aac447b61db7f738591ba, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: 'Someone arrived at the Inn the other day... '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: She claims she saw a MUD GROG!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Now, for me... I don't believe in that at all!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Mud Grogs don't exist, they are a myth.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: But the townspeople are scared.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'They want me to get in the cave again and '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: DEAL WITH THE MUD GROG
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: I told them they must be crazy but they wouldn't listen.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: So, can you help me deal with the Mud Grog?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: c49e006bd85870a4d9d5c8d203d90940, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 0
     - Content: '<u>Complete Quest: In The Halflight</u>'
       OnSelect: []
       OnSelectInvokation:
@@ -12219,6 +12285,55 @@ MonoBehaviour:
         - Content: Accept
           OnSelect:
           - {fileID: 11400000, guid: 6d622a5f7c858794f9eeab63d5450004, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 0
+    - Content: '<u>Complete Quest: In The Halflight 2</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: c5005692267aac447b61db7f738591ba, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: THERE WAS A MUD GROG?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: IN THE CAVE?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: B-but... They don't exist...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: THEY DO!?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Oh my!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: d841de77871c1744985b077e622916f4, type: 2}
           OnSelectInvokation:
             m_PersistentCalls:
               m_Calls: []
