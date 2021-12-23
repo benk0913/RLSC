@@ -37,7 +37,6 @@ public class ItemData : ScriptableObject
 
     public ItemType Type;
 
-    [JsonIgnore]
     public ItemRarity Rarity;
 
     public bool CashShopItem = false;

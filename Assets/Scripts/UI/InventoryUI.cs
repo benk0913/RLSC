@@ -448,7 +448,6 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(slot == SelectedSlot)// Doubleclick
                     {
                         BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
-                        UndragItem(SelectedSlot);
                     }
                     else 
                     {
@@ -471,7 +470,6 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(slot == SelectedSlot)// Doubleclick
                     {
                         BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
-                        UndragItem(SelectedSlot);
                     }
                     else
                     {
@@ -494,7 +492,6 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(slot == SelectedSlot)// Doubleclick
                     {
                         ScrapWindowUI.Instance.Clear();    
-                        UndragItem(SelectedSlot);
                     }
 
                 }
@@ -504,7 +501,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else //From inventory slot to scrap slot
                 {
-                    ScrapWindowUI.Instance.SetItem(SelectedSlot.CurrentItem);
+                    ScrapWindowUI.Instance.SetItem(SelectedSlot.CurrentItem, SelectedSlot.transform.GetSiblingIndex());
                 }
             }
             else if(SelectedSlot.IsTradeSlot)
@@ -514,7 +511,6 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(slot == SelectedSlot)// Doubleclick
                     {
                         TradeWindowUI.Instance.SetItem(null,SelectedSlot);    
-                        UndragItem(SelectedSlot);
                     }
                 }
                 else if(slot.IsEquipmentSlot) //From trade slot to other slot 
@@ -533,12 +529,11 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(slot == SelectedSlot) // Doubleclick
                     {
                         TradeWindowUI.Instance.SetItem(null,slot);    
-                        UndragItem(SelectedSlot);
                     }
                 }
                 else if(SelectedSlot.IsEquipmentSlot) //From equip slot to trade slot 
                 {
-                    return;
+                    // do nothing
                 }
                 else //From inventory slot to trade slot 
                 {
@@ -557,12 +552,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     if(BankPanelUI.Instance.gameObject.activeInHierarchy)
                     {
                         BankPanelUI.Instance.UsedInventoryItem(SelectedSlot);
-                        UndragItem(SelectedSlot);
                     }
                     else if(ScrapWindowUI.Instance.gameObject.activeInHierarchy)
                     {
-                        ScrapWindowUI.Instance.SetItem(SelectedSlot.CurrentItem);
-                        UndragItem(SelectedSlot);
+                        ScrapWindowUI.Instance.SetItem(SelectedSlot.CurrentItem, SelectedSlot.transform.GetSiblingIndex());
                     }
                     else 
                     {
@@ -571,11 +564,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else if (SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick unequip
                 {
-                     if(BankPanelUI.Instance.gameObject.activeInHierarchy)
+                    if (BankPanelUI.Instance.gameObject.activeInHierarchy)
                     {
                         BankPanelUI.Instance.UsedEquipItem(SelectedSlot);
-                        UndragItem(SelectedSlot);
-
                     }
                     else
                     {
