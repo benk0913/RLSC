@@ -915,6 +915,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8a957e38fb70eda41bf70bd86fbfbfcf, type: 2}
     - {fileID: 11400000, guid: 27752c8c6161aee41a88917740bd26cb, type: 2}
     - {fileID: 11400000, guid: 70e0d31af847a104faa118b6fc01a097, type: 2}
+    - {fileID: 11400000, guid: 9f457b3bd5ba3314b8bdd9536a1e6594, type: 2}
     - {fileID: 11400000, guid: ed6c23549776b5141a833822dba03896, type: 2}
     - {fileID: 11400000, guid: 6c894797d0742fd48bb61bce067cb4ed, type: 2}
     - {fileID: 11400000, guid: eb1a1c06de5d40545b1ea89337c1665f, type: 2}
@@ -1691,6 +1692,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5f9e471d3cacdf8448005fab79750d47, type: 2}
     - {fileID: 11400000, guid: 563331ea4ae0c484a8b1b248e2d6f0f7, type: 2}
     - {fileID: 11400000, guid: e647627804455a2489accd4dc069eff7, type: 2}
+    - {fileID: 11400000, guid: b86cb2bdb6e44914ab6115422425f83c, type: 2}
     - {fileID: 11400000, guid: 93bcab51f1c34714d86e1c6d1c9e28bf, type: 2}
     - {fileID: 11400000, guid: bba9aa117cc92b349874c2539eb4b368, type: 2}
     - {fileID: 11400000, guid: 012a03552139e1142b5ce5cc3acd719d, type: 2}
@@ -10762,6 +10764,10 @@ MonoBehaviour:
         respawnSeconds: 0
         IrellevantMob: 1
       Interactables:
+      - interactableName: Entry
+        interactableId: 
+        positionX: 254
+        positionY: 10
       - interactableName: SunsetCaveEntrance
         interactableId: 
         positionX: -40
@@ -10773,6 +10779,12 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: ShroomEntrance
+        TargetScene: OW_ShroomCave
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 254.5
+        portalPositionY: 9.9
       - name: SunsetCaveEntrance
         TargetScene: OW_SunsetPortCave3
         TargetSceneGate: DeepCaveEntrance
@@ -12455,6 +12467,101 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: SunsetPort
+    - sceneName: OW_ShroomCave
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorMushroomSmall
+        positionX: 89.7
+        positionY: 1.6999998
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: 134.9
+        positionY: -11.3
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: 129.7
+        positionY: -7.8
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: 91.2
+        positionY: -2.4
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: 127.1
+        positionY: -4.4
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorSimpleShroom
+        positionX: 92
+        positionY: -29.6
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall2
+        positionX: 131.7
+        positionY: -12.2
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: 93.5
+        positionY: 5.9
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: 128.5
+        positionY: -11
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorSimpleShroom
+        positionX: 117.2
+        positionY: -25.7
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorSimpleShroom
+        positionX: 71.1
+        positionY: -27.3
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall2
+        positionX: 91.2
+        positionY: -2.4
+        respawnSeconds: 15
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: Entry
+        interactableId: 
+        positionX: 51
+        positionY: -26
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: 123
+        positionY: -23
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entry
+        TargetScene: OW_SunsetPortCave4
+        TargetSceneGate: ShroomEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 51.09
+        portalPositionY: -25.84
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -12515,6 +12622,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5f4f127772b106a4aaa20f32c7e127e7, type: 2}
     - {fileID: 11400000, guid: 61e7883459d427a4eb7d538b15df7af0, type: 2}
     - {fileID: 11400000, guid: 20bcc4be0a497ba4f844957e70e18b88, type: 2}
+    - {fileID: 11400000, guid: df6edad209a69c041b4a5c5a5d288993, type: 2}
     - {fileID: 11400000, guid: 09866368ec5f08e4d85438cc3ba207a5, type: 2}
     - {fileID: 11400000, guid: e902b1f398915214dacd2fe333df5d64, type: 2}
     - {fileID: 11400000, guid: 9b025b7671a7a154580d929bf303ce43, type: 2}
