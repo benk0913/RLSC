@@ -76,7 +76,6 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         IsInspecting = isInspecting;
         IsBankSlot = false;
-        IsScrapSlot = false;
         
         this.SlotType = slotType;
 
