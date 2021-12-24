@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: ChargeCollider
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: 
     ExecuteAbilitySound: F_FireSurgeOGG
@@ -34,12 +35,15 @@ MonoBehaviour:
   CD: 10
   CastingTime: 0.01
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 1
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 3a324772d7eee094a956d79f860f9248, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: 
     ObjectValue: {fileID: 0}

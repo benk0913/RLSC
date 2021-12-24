@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareEarthSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: E_Wall_PrepareOGG
     ExecuteAbilitySound: 
@@ -35,9 +36,11 @@ MonoBehaviour:
   CD: 10
   CastingTime: 0.6
   TargetCap: 1
-  OnlyIfGrounded: 0
+  MaxSameTargetHits: 1
+  OnlyIfGrounded: 1
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 1
   OnExecuteParams: []
   OnHitParams: []
   OnMissParams: []

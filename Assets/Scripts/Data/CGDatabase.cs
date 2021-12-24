@@ -153,6 +153,8 @@ public class DatabaseContent
     public FriendsData Friends;
     
     public GuildsData Guilds;
+    
+    public List<RarirtyToScrap> RarirtyToScrapGains; 
 
     public bool DangerousEveryoneIsAdmin;
 }
@@ -407,4 +409,15 @@ public class GuildUpgrade
 {
     public string Key;
     public string DisplayName;
+}
+
+[Serializable]
+public class RarirtyToScrap
+{
+    public ItemRarity Rarity;
+
+    public int ScrapGained;
+
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public ItemData ScrapItemGained;
 }

@@ -212,12 +212,24 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public bool CanMoveBySpell
+    {
+        get
+        {
+            if (CORE.Instance.CAN_MOVE_IN_SPELLS)
+            {
+                return !State.IsPreparingAbility || State.PreparingAbilityCurrent.CanMoveInCast;
+            }
+            return !State.IsPreparingAbility;
+        }
+    }
+
     public bool CanLookAround
     {
         get
         {
             return !IsStunned
-            && !State.IsPreparingAbility
+            && CanMoveBySpell
             && IsInputEnabled
             && !IsDead;
         }
@@ -1703,6 +1715,15 @@ public class Actor : MonoBehaviour
         node["x"] = transform.position.x.ToString();
         node["y"] = transform.position.y.ToString();
         node["faceRight"] = (Body.localScale.x < 0).ToString();
+        if (CORE.Instance.CAN_MOVE_IN_SPELLS)
+        {
+            string abilityInstanceId = "client-ability-" + Util.GenerateUniqueID();
+            node["abilityInstanceId"] = abilityInstanceId;
+            if (State.Data.IsPlayer)
+            {
+                ExecuteAbility(ability, transform.position, Body.localScale.x < 0, false, abilityInstanceId);
+            }
+        }
         SocketHandler.Instance.SendEvent("executed_ability", node);
     }
 

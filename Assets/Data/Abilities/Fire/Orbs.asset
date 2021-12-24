@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareFireSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: F_FireOrbs_PrepareOGG
     ExecuteAbilitySound: 
@@ -34,12 +35,15 @@ MonoBehaviour:
   CD: 25
   CastingTime: 1
   TargetCap: 0
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 1
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: Fire Orbs Buff
     ObjectValue: {fileID: 0}

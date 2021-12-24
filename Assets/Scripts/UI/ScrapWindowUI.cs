@@ -20,6 +20,8 @@ public class ScrapWindowUI : MonoBehaviour
 
     Item CurrentItem;
 
+    int SlotIndex;
+
     public GameObject ClearButton;
 
     void Awake()
@@ -37,8 +39,9 @@ public class ScrapWindowUI : MonoBehaviour
         SetItem(null);
     }
 
-    public void SetItem(Item item = null)
+    public void SetItem(Item item = null, int slotIndex = 0)
     {
+        SlotIndex = slotIndex;
         CurrentItem = item;
         RefreshUI();
     }
@@ -79,7 +82,7 @@ public class ScrapWindowUI : MonoBehaviour
          WarningWindowUI.Instance.Show("Are you Sure?",()=>
          {
             JSONClass node = new JSONClass();
-            node["itemID"] = CurrentItem.itemId;
+            node["slotIndex"].AsInt = SlotIndex;
             SocketHandler.Instance.SendEvent("scrap_item",node);
             CurrentItem = null;
             RefreshUI();

@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareBless
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: W_Bless_PrepareOGG
     ExecuteAbilitySound: sound_watersplashs
@@ -39,10 +40,12 @@ MonoBehaviour:
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 1
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a606211bb21ffeb45ae90aa94e749759, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 1
     Value: 60
     ObjectValue: {fileID: 0}
@@ -50,6 +53,7 @@ MonoBehaviour:
   OnMissParams:
   - Type: {fileID: 11400000, guid: a606211bb21ffeb45ae90aa94e749759, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: 60
     ObjectValue: {fileID: 0}

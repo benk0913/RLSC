@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareWaterSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: W_Bless_PrepareOGG
     ExecuteAbilitySound: W_Bubble_ExecuteOGG
@@ -38,10 +39,12 @@ MonoBehaviour:
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 1
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: 40
     ObjectValue: {fileID: 0}

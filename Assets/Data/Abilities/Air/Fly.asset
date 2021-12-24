@@ -22,6 +22,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: A_Fly_Prepare
     ExecuteAbilitySound: A_Fly_Execute
@@ -35,12 +36,15 @@ MonoBehaviour:
   CD: 15
   CastingTime: 0.5
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 1
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: Flight
     ObjectValue: {fileID: 0}
