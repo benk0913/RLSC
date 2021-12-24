@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class AbilitySlotUI : MonoBehaviour
+public class AbilitySlotUI : MonoBehaviour, IPointerClickHandler
 {
     public AbilityState CurrentAbility;
 
@@ -156,5 +157,10 @@ public class AbilitySlotUI : MonoBehaviour
             CastingCooldownImage.fillAmount = CurrentAbility.CurrentCastingTime / CurrentAbility.CurrentAbility.CastingTime;
             CastingCooldownLabel.text = Mathf.RoundToInt(CurrentAbility.CurrentCastingTime).ToString();
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        CORE.PlayerActor.ActorEntity.AttemptPrepareAbility(transform.GetSiblingIndex());
     }
 }

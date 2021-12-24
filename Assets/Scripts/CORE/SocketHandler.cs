@@ -668,6 +668,7 @@ public class SocketHandler : MonoBehaviour
 
         CORE.Instance.LogMessage("Connected To Socket.");
 
+
         ConnectSocketRoutineInstance = null;
     }
 

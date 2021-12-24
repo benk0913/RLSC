@@ -911,13 +911,23 @@ public class CORE : MonoBehaviour
 
     public void CheckOOGInvitations()
     {
-        if(!string.IsNullOrEmpty(pendingJoinParty) && SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
+        if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
         {
-            JSONNode node = new JSONClass();
-            node["steamLobbyId"] = pendingJoinParty;
-            SocketHandler.Instance.SendEvent("party_auto_join", node);
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to join party...", Color.green, 3, false));
+            if(!string.IsNullOrEmpty(pendingJoinParty))
+            {
+                JSONNode node = new JSONClass();
+                node["steamLobbyId"] = pendingJoinParty;
+                SocketHandler.Instance.SendEvent("party_auto_join", node);
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to join party...", Color.green, 3, false));
+
+            }
+
             
+            //TODO Remove HACK
+            SocketHandler.Instance.SendStartExpeditionQueue("Forest");
+            CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
+                ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
+            });
         }
     }
 
