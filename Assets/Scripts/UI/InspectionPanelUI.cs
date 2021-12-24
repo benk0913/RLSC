@@ -1,7 +1,4 @@
 using SimpleJSON;
-using Steamworks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InspectionPanelUI : MonoBehaviour
@@ -69,7 +66,9 @@ public class InspectionPanelUI : MonoBehaviour
 
     public void OpenAccountProfile()
     {
+        #if !UNITY_ANDROID && !UNITY_IOS
         SteamFriends.ActivateGameOverlayToUser("steamid",new CSteamID(CurrentActor.steamID));
+        #endif
     }
     
     public void AddFriend()
@@ -90,6 +89,8 @@ public class InspectionPanelUI : MonoBehaviour
 
     public void SendPrivateMessage()
     {
+        #if !UNITY_ANDROID && !UNITY_IOS
         SteamFriends.ActivateGameOverlayToUser("chat", new CSteamID(CurrentActor.steamID));
+        #endif
     }
 }

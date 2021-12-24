@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+#if !UNITY_ANDROID && !UNITY_IOS
 using Steamworks;
+#endif
 using UnityEngine;
 using UnityEngine.Events;
 
 public class AchievementLogic : MonoBehaviour
 {
     public static AchievementLogic Instance;
+    
+#if !UNITY_ANDROID && !UNITY_IOS
     public List<AchievementInstance> Instances = new List<AchievementInstance>();
 
     public List<ScriptableObject> QuizzWhizzQuestionsAsked = new List<ScriptableObject>();
@@ -15,6 +19,7 @@ public class AchievementLogic : MonoBehaviour
     {
         Instance = this;
     }
+
 
     protected Callback<UserAchievementStored_t> GetUserAchievmentStored;
     void OnUserAchievmentStored(UserAchievementStored_t pCallBack)
@@ -252,10 +257,12 @@ public class AchievementLogic : MonoBehaviour
         SteamUserStats.StoreStats();
     }
 
+#endif
     [System.Serializable]
     public class AchievementInstance
     {
         public string Key;
         public bool State;
     }
+    
 }
