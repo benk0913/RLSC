@@ -40,7 +40,6 @@ public class ScrapWindowUI : MonoBehaviour
     public void SetItem(Item item = null)
     {
         CurrentItem = item;
-        ScrapSlot.IsScrapSlot = true;
         RefreshUI();
     }
 
@@ -52,7 +51,7 @@ public class ScrapWindowUI : MonoBehaviour
         }
 
         PriceLabel.text =  System.String.Format("{0:n0}", CORE.Instance.Data.content.ScrapCost)+"c";
-        ScrapSlot.SetItem(CurrentItem);
+        ScrapSlot.SetItem(CurrentItem, ()=>{InventoryUI.Instance.Select(ScrapSlot);});
 
         ClearButton.SetActive(CurrentItem != null);
 
