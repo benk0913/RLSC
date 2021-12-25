@@ -909,6 +909,8 @@ public class CORE : MonoBehaviour
         InGame = false;
     }
 
+
+    bool autoExpededOnce = false;
     public void CheckOOGInvitations()
     {
         if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
@@ -924,10 +926,14 @@ public class CORE : MonoBehaviour
 
             
             //TODO Remove HACK
-            SocketHandler.Instance.SendStartExpeditionQueue("Forest");
-            CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
-                ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
-            });
+            if(!ExpeditionQueTimerUI.Instance.IsSearching && !autoExpededOnce)
+            {
+                SocketHandler.Instance.SendStartExpeditionQueue("Forest");
+                CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
+                    autoExpededOnce = true;
+                    ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
+                });
+            }
         }
     }
 

@@ -405,7 +405,7 @@ Coroutine TemporaryPatrolRoutine;
                 }
                 else
                 {
-                    yield return StartCoroutine(PatrolRightFor(2f));
+                    yield return StartCoroutine(PatrolRightFor(1f));
                     yield break;
                 }
             }
@@ -417,7 +417,7 @@ Coroutine TemporaryPatrolRoutine;
                 }
                 else
                 {
-                    yield return StartCoroutine(PatrolLeftFor(2f));
+                    yield return StartCoroutine(PatrolLeftFor(1f));
                     yield break;
                 }
             }
@@ -437,7 +437,7 @@ Coroutine TemporaryPatrolRoutine;
 
         while (ChaseBehaviour == AIChaseBehaviour.Chase 
         &&
-         ((Act.IsFlying && tooFarAwayX && tooFarAwayY) || (!Act.IsFlying && tooFarAwayX)))
+         ((Act.IsFlying && (tooFarAwayX || tooFarAwayY)) || (!Act.IsFlying && tooFarAwayX)))
         {
             tooFarAwayX = ChaseDistance > 0 && Mathf.Abs(transform.position.x - CurrentTarget.transform.position.x) > ChaseDistance;
             tooFarAwayY = ChaseDistance > 0 && Mathf.Abs(transform.position.y - CurrentTarget.transform.position.y) > ChaseDistance;
