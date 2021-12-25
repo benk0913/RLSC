@@ -320,6 +320,8 @@ public class CORE : MonoBehaviour
 
     void ValidateScreenRatio()
     {
+        
+            #if !UNITY_ANDROID && !UNITY_IOS
         bool isScreenValid = (((float)Screen.width / (float)Screen.height) == 16f / 9f) || Mathf.Approximately(((float)Screen.width / (float)Screen.height), 16f / 9f);
 
         if(!isScreenValid)
@@ -331,12 +333,10 @@ public class CORE : MonoBehaviour
             {
                 try
                 {
-                    #if !UNITY_ANDROID && !UNITY_IOS
                     GraphicSettingsHandler.Instance.fullScreenMode.value = (int)FullScreenMode.FullScreenWindow;
                     GraphicSettingsHandler.Instance.OnFullScreenModeChanged();
                     GraphicSettingsHandler.Instance.ApplySelectedResolution();
-                    #endif
-                }
+                    
                 catch { }
             });
             //for(int i=0;i<Screen.resolutions.Length;i++)
@@ -351,6 +351,8 @@ public class CORE : MonoBehaviour
 
             //CORE.Instance.DelayedInvokation(1f, () => { GraphicSettingsHandler.Instance.SetResolution(1280, 720); });
         }
+        #endif
+                
     }
     private void PhaseChange()
     {
