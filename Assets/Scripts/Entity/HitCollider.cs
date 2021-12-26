@@ -196,7 +196,7 @@ public class HitCollider : MonoBehaviour
             return false;
         }
 
-        if (inSameParty && actorVictim.IsFriendsInvulnerable)
+        if (inSameParty && actorVictim.IsFriendsInvulnerable && !actorVictim.IsDead)
         {
             return false;
         }
