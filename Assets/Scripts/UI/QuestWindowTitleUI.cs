@@ -12,9 +12,17 @@ public class QuestWindowTitleUI : MonoBehaviour
     public QuestData CurrentQuest;
 
 
-    public void SetInfo(QuestData quest)
+    public void SetInfo(QuestData quest,string title= "")
     {
         this.CurrentQuest = quest;
+        if(CurrentQuest == null)
+        {
+            if(!string.IsNullOrEmpty(title))
+            {
+                TitleLabel.text = CORE.QuickTranslate(title);
+            }
+            return;
+        }
 
         if(CORE.PlayerActor.quests.completed.ContainsKey(CurrentQuest.name))
         {
@@ -28,6 +36,8 @@ public class QuestWindowTitleUI : MonoBehaviour
 
     public void OnClick()
     {
+        if(this.CurrentQuest == null)    return;
+
         QuestWindowUI.Instance.SelectQuest(this.CurrentQuest);
     }
 }
