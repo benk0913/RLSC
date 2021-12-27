@@ -9,11 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5640343549950210140}
-  - component: {fileID: 965614658671903719}
   - component: {fileID: 8828462007906258999}
-  - component: {fileID: 9186244042202787834}
   - component: {fileID: 5091728705347182029}
-  - component: {fileID: 6431469058905062309}
   m_Layer: 9
   m_Name: MainBossBullets (20)
   m_TagString: HitCollider
@@ -37,21 +34,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &965614658671903719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68829979816861897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &8828462007906258999
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -64,7 +46,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -78,48 +60,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &9186244042202787834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68829979816861897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &5091728705347182029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,30 +72,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 6431469058905062309}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &6431469058905062309
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68829979816861897}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &72479380021906545
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,11 +84,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 72479380021906556}
-  - component: {fileID: 72479380021906558}
   - component: {fileID: 5167047717427482149}
-  - component: {fileID: 712169162564152354}
   - component: {fileID: 9014070987023819255}
-  - component: {fileID: 651967596367569256}
   m_Layer: 9
   m_Name: MainBossBullets (8)
   m_TagString: HitCollider
@@ -193,21 +109,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &72479380021906558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72479380021906545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &5167047717427482149
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,7 +121,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,48 +135,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &712169162564152354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72479380021906545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &9014070987023819255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,30 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 651967596367569256}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &651967596367569256
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72479380021906545}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &72479380468270952
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,11 +325,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5668201611154805977}
-  - component: {fileID: 5921825727444711820}
   - component: {fileID: 4596743986878839409}
-  - component: {fileID: 807073082710328386}
   - component: {fileID: 4200333268857184528}
-  - component: {fileID: 2142414807517982091}
   m_Layer: 9
   m_Name: MainBossBullets (21)
   m_TagString: HitCollider
@@ -515,21 +350,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5921825727444711820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861519278019294450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &4596743986878839409
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -542,7 +362,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -556,48 +376,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &807073082710328386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861519278019294450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &4200333268857184528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,30 +388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 2142414807517982091}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &2142414807517982091
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861519278019294450}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &1099702774892269911
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,11 +649,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1384930291788341079}
-  - component: {fileID: 1384930291788341077}
   - component: {fileID: 6164363400039488782}
-  - component: {fileID: 2007232467812515593}
   - component: {fileID: 8007774599199748828}
-  - component: {fileID: 1960609882567225923}
   m_Layer: 9
   m_Name: MainBossBullets (6)
   m_TagString: HitCollider
@@ -920,21 +674,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1384930291788341077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384930291788341082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &6164363400039488782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -947,7 +686,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -961,48 +700,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &2007232467812515593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384930291788341082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &8007774599199748828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,30 +712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 1960609882567225923}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &1960609882567225923
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384930291788341082}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &1614343826061190754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,11 +807,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3075126442957572564}
-  - component: {fileID: 5170460217292414720}
   - component: {fileID: 2537361359582401069}
-  - component: {fileID: 5073543976405427791}
   - component: {fileID: 3959743739440438906}
-  - component: {fileID: 1066821820207154883}
   m_Layer: 9
   m_Name: MainBossBullets (17)
   m_TagString: HitCollider
@@ -1159,21 +832,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5170460217292414720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628860246773557966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &2537361359582401069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1186,7 +844,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -1200,48 +858,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &5073543976405427791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628860246773557966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &3959743739440438906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,30 +870,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 1066821820207154883}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &1066821820207154883
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628860246773557966}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &1690123266862344203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,11 +1131,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1998575336486402277}
-  - component: {fileID: 1998575336486402279}
   - component: {fileID: 6703652801473280700}
-  - component: {fileID: 1395834571861285051}
   - component: {fileID: 7468459105287034222}
-  - component: {fileID: 1419024356705703409}
   m_Layer: 9
   m_Name: MainBossBullets (2)
   m_TagString: HitCollider
@@ -1564,21 +1156,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1998575336486402279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998575336486402280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &6703652801473280700
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1591,7 +1168,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -1605,48 +1182,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &1395834571861285051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998575336486402280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &7468459105287034222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1659,30 +1194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 1419024356705703409}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &1419024356705703409
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998575336486402280}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &2041370569068043599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,11 +1206,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 925736559358858176}
-  - component: {fileID: 5187015017475834296}
   - component: {fileID: 7121123392185606967}
-  - component: {fileID: 7513131273926149095}
   - component: {fileID: 2696278496256589696}
-  - component: {fileID: 639821463530246395}
   m_Layer: 9
   m_Name: MainBossBullets (12)
   m_TagString: HitCollider
@@ -1720,21 +1231,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5187015017475834296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041370569068043599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &7121123392185606967
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1747,7 +1243,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -1761,48 +1257,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &7513131273926149095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041370569068043599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &2696278496256589696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1815,30 +1269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 639821463530246395}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &639821463530246395
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041370569068043599}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &2042193287604808967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,11 +1364,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2042193288768398867}
-  - component: {fileID: 2042193288768398865}
   - component: {fileID: 6549121028902560842}
-  - component: {fileID: 1491833258593912397}
   - component: {fileID: 6939560665991383960}
-  - component: {fileID: 1466604983486565127}
   m_Layer: 9
   m_Name: MainBossBullets (10)
   m_TagString: HitCollider
@@ -1959,21 +1389,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2042193288768398865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042193288768398878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &6549121028902560842
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1986,7 +1401,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -2000,48 +1415,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &1491833258593912397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042193288768398878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &6939560665991383960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,30 +1427,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 1466604983486565127}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &1466604983486565127
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042193288768398878}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &2155321219707090413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2087,10 +1439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1926480654025753898}
-  - component: {fileID: 9010293034138271831}
   - component: {fileID: 6838114264269153554}
-  - component: {fileID: 3280130093232885423}
-  - component: {fileID: 1209012320634196659}
   m_Layer: 9
   m_Name: MainBossBullets (14)
   m_TagString: HitCollider
@@ -2114,21 +1463,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9010293034138271831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2155321219707090413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &6838114264269153554
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2141,7 +1475,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -2155,69 +1489,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &3280130093232885423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2155321219707090413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
---- !u!50 &1209012320634196659
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2155321219707090413}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &2281130990231196430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,11 +1913,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2799962550121572230}
-  - component: {fileID: 2799962550121572228}
   - component: {fileID: 6948774964734043615}
-  - component: {fileID: 3330458735041841112}
   - component: {fileID: 6539896586505161229}
-  - component: {fileID: 3374965876826983058}
   m_Layer: 9
   m_Name: MainBossBullets (9)
   m_TagString: HitCollider
@@ -2670,21 +1938,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2799962550121572228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2799962550121572235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &6948774964734043615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2697,7 +1950,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -2711,48 +1964,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &3330458735041841112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2799962550121572235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &6539896586505161229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2765,30 +1976,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 3374965876826983058}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &3374965876826983058
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2799962550121572235}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &2810002566913204948
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,11 +2403,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4111100956681566853}
-  - component: {fileID: 4111100956681566855}
   - component: {fileID: 9203639723295832284}
-  - component: {fileID: 3598038560519051995}
   - component: {fileID: 4977751753455785742}
-  - component: {fileID: 3531013450664187793}
   m_Layer: 9
   m_Name: MainBossBullets (5)
   m_TagString: HitCollider
@@ -3241,21 +2428,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4111100956681566855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111100956681566856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &9203639723295832284
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3268,7 +2440,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -3282,48 +2454,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &3598038560519051995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111100956681566856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &4977751753455785742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3336,30 +2466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 3531013450664187793}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &3531013450664187793
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111100956681566856}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &4146105985084532049
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,11 +2478,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1803703510965999645}
-  - component: {fileID: 2113510512974934859}
   - component: {fileID: 4858166416287073501}
-  - component: {fileID: 1620886619516503205}
   - component: {fileID: 8639683451220922527}
-  - component: {fileID: 836251941747661135}
   m_Layer: 9
   m_Name: MainBossBullets (15)
   m_TagString: HitCollider
@@ -3397,21 +2503,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2113510512974934859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4146105985084532049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &4858166416287073501
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3424,7 +2515,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -3438,48 +2529,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &1620886619516503205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4146105985084532049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &8639683451220922527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3492,30 +2541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 836251941747661135}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &836251941747661135
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4146105985084532049}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &4340130621589422572
 GameObject:
   m_ObjectHideFlags: 0
@@ -3608,10 +2636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4349132787046339650}
-  - component: {fileID: 4349132787046339648}
   - component: {fileID: 8858382706369353243}
-  - component: {fileID: 3798897001719297052}
-  - component: {fileID: 3771210214319339862}
   m_Layer: 9
   m_Name: MainBossBullets
   m_TagString: HitCollider
@@ -3635,21 +2660,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4349132787046339648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4349132787046339663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &8858382706369353243
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3662,7 +2672,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -3676,69 +2686,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &3798897001719297052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4349132787046339663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
---- !u!50 &3771210214319339862
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4349132787046339663}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &4349132787920658262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3831,11 +2778,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4872904011771712946}
-  - component: {fileID: 4872904011771712944}
   - component: {fileID: 366055427886520299}
-  - component: {fileID: 5423272838571898348}
   - component: {fileID: 4591734490550777913}
-  - component: {fileID: 5453075120434739366}
   m_Layer: 9
   m_Name: MainBossBullets (7)
   m_TagString: HitCollider
@@ -3859,21 +2803,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4872904011771712944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4872904011771712959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &366055427886520299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3886,7 +2815,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -3900,48 +2829,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &5423272838571898348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4872904011771712959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &4591734490550777913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3954,30 +2841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 5453075120434739366}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &5453075120434739366
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4872904011771712959}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &4872904013745462950
 GameObject:
   m_ObjectHideFlags: 0
@@ -4070,11 +2936,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5150167587065485574}
-  - component: {fileID: 8338907687020552247}
   - component: {fileID: 3226141266934201876}
-  - component: {fileID: 1103930782973598007}
   - component: {fileID: 4608499883758473230}
-  - component: {fileID: 3896455373652152656}
   m_Layer: 9
   m_Name: MainBossBullets (11)
   m_TagString: HitCollider
@@ -4098,21 +2961,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8338907687020552247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4931996754361990505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &3226141266934201876
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4125,7 +2973,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -4139,48 +2987,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &1103930782973598007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4931996754361990505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &4608499883758473230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4193,30 +2999,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 3896455373652152656}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &3896455373652152656
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4931996754361990505}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &5163848416527612392
 GameObject:
   m_ObjectHideFlags: 0
@@ -4309,11 +3094,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3223557367769485828}
-  - component: {fileID: 582593716668378885}
   - component: {fileID: 5014108036512588917}
-  - component: {fileID: 6574983683114829879}
   - component: {fileID: 2086501707259597272}
-  - component: {fileID: 6858629413000694270}
   m_Layer: 9
   m_Name: MainBossBullets (13)
   m_TagString: HitCollider
@@ -4337,21 +3119,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &582593716668378885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5400127212308708597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &5014108036512588917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4364,7 +3131,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -4378,48 +3145,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &6574983683114829879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5400127212308708597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &2086501707259597272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4432,30 +3157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 6858629413000694270}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &6858629413000694270
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5400127212308708597}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &5448639836095727802
 GameObject:
   m_ObjectHideFlags: 0
@@ -4553,6 +3257,7 @@ GameObject:
   - component: {fileID: 4942819435946848028}
   - component: {fileID: 3486392835436454601}
   - component: {fileID: 4933147008133259862}
+  - component: {fileID: 663836725438194463}
   m_Layer: 9
   m_Name: RightFaceBossBullets
   m_TagString: HitCollider
@@ -4683,29 +3388,7 @@ MonoBehaviour:
   AudioOnHit: sound_earth_4
   HitInterval: 0
   RemoveOnInterrupt: 0
-  ChildrenColliders:
-  - {fileID: 3798897001719297052}
-  - {fileID: 7093184636765164403}
-  - {fileID: 1395834571861285051}
-  - {fileID: 5937702647687922393}
-  - {fileID: 6880052077874072585}
-  - {fileID: 3598038560519051995}
-  - {fileID: 2007232467812515593}
-  - {fileID: 5423272838571898348}
-  - {fileID: 712169162564152354}
-  - {fileID: 3330458735041841112}
-  - {fileID: 1491833258593912397}
-  - {fileID: 1103930782973598007}
-  - {fileID: 7513131273926149095}
-  - {fileID: 6574983683114829879}
-  - {fileID: 3280130093232885423}
-  - {fileID: 1620886619516503205}
-  - {fileID: 8641869756842038600}
-  - {fileID: 5073543976405427791}
-  - {fileID: 4832823711631180091}
-  - {fileID: 649976427379364593}
-  - {fileID: 9186244042202787834}
-  - {fileID: 807073082710328386}
+  ChildrenColliders: []
 --- !u!114 &3486392835436454601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4742,6 +3425,328 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!66 &663836725438194463
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511053126068768591}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 1
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 5167047717427482149}
+    m_ColliderPaths:
+    - - X: -543638437
+        Y: 434114624
+      - X: -543638437
+        Y: 449181824
+      - X: -558960960
+        Y: 449181531
+      - X: -558960667
+        Y: 434114624
+  - m_Collider: {fileID: 4596743986878839409}
+    m_ColliderPaths:
+    - - X: 217361579
+        Y: 587114624
+      - X: 217361579
+        Y: 602181824
+      - X: 202038992
+        Y: 602181531
+      - X: 202039285
+        Y: 587114624
+  - m_Collider: {fileID: 6164363400039488782}
+    m_ColliderPaths:
+    - - X: -437638437
+        Y: 434114624
+      - X: -437638437
+        Y: 449181824
+      - X: -452960992
+        Y: 449181531
+      - X: -452960699
+        Y: 434114624
+  - m_Collider: {fileID: 2537361359582401069}
+    m_ColliderPaths:
+    - - X: -387638437
+        Y: 587114624
+      - X: -387638437
+        Y: 602181824
+      - X: -402960992
+        Y: 602181531
+      - X: -402960699
+        Y: 587114624
+  - m_Collider: {fileID: 6703652801473280700}
+    m_ColliderPaths:
+    - - X: -34638401
+        Y: 434114624
+      - X: -34638401
+        Y: 449181824
+      - X: -49960976
+        Y: 449181531
+      - X: -49960683
+        Y: 434114624
+  - m_Collider: {fileID: 7121123392185606967}
+    m_ColliderPaths:
+    - - X: -86638445
+        Y: 587114624
+      - X: -86638445
+        Y: 602181824
+      - X: -101961024
+        Y: 602181531
+      - X: -101960731
+        Y: 587114624
+  - m_Collider: {fileID: 6549121028902560842}
+    m_ColliderPaths:
+    - - X: 167361579
+        Y: 434114624
+      - X: 167361579
+        Y: 449181824
+      - X: 152038992
+        Y: 449181531
+      - X: 152039285
+        Y: 434114624
+  - m_Collider: {fileID: 6838114264269153554}
+    m_ColliderPaths:
+    - - X: 297361563
+        Y: 587114624
+      - X: 297361563
+        Y: 602181824
+      - X: 282039008
+        Y: 602181531
+      - X: 282039301
+        Y: 587114624
+  - m_Collider: {fileID: 6948774964734043615}
+    m_ColliderPaths:
+    - - X: 342361563
+        Y: 434114624
+      - X: 342361563
+        Y: 449181824
+      - X: 327039008
+        Y: 449181531
+      - X: 327039301
+        Y: 434114624
+  - m_Collider: {fileID: 9203639723295832284}
+    m_ColliderPaths:
+    - - X: -336638437
+        Y: 434114624
+      - X: -336638437
+        Y: 449181824
+      - X: -351961024
+        Y: 449181531
+      - X: -351960731
+        Y: 434114624
+  - m_Collider: {fileID: 4858166416287073501}
+    m_ColliderPaths:
+    - - X: -286638437
+        Y: 587114624
+      - X: -286638437
+        Y: 602181824
+      - X: -301961024
+        Y: 602181531
+      - X: -301960731
+        Y: 587114624
+  - m_Collider: {fileID: 8858382706369353243}
+    m_ColliderPaths:
+    - - X: 247361579
+        Y: 434114624
+      - X: 247361579
+        Y: 449181824
+      - X: 232038992
+        Y: 449181531
+      - X: 232039285
+        Y: 434114624
+  - m_Collider: {fileID: 366055427886520299}
+    m_ColliderPaths:
+    - - X: -437638437
+        Y: 434114624
+      - X: -437638437
+        Y: 449181824
+      - X: -452960992
+        Y: 449181531
+      - X: -452960699
+        Y: 434114624
+  - m_Collider: {fileID: 3226141266934201876}
+    m_ColliderPaths:
+    - - X: 114361539
+        Y: 587114624
+      - X: 114361539
+        Y: 602181824
+      - X: 99038960
+        Y: 602181531
+      - X: 99039253
+        Y: 587114624
+  - m_Collider: {fileID: 5014108036512588917}
+    m_ColliderPaths:
+    - - X: -182638421
+        Y: 587114624
+      - X: -182638421
+        Y: 602181824
+      - X: -197961008
+        Y: 602181531
+      - X: -197960715
+        Y: 587114624
+  - m_Collider: {fileID: 1237912074059968014}
+    m_ColliderPaths:
+    - - X: -232638421
+        Y: 434114624
+      - X: -232638421
+        Y: 449181824
+      - X: -247961008
+        Y: 449181531
+      - X: -247960715
+        Y: 434114624
+  - m_Collider: {fileID: 2488514591093750368}
+    m_ColliderPaths:
+    - - X: -493638405
+        Y: 587114624
+      - X: -493638405
+        Y: 602181824
+      - X: -508960992
+        Y: 602181531
+      - X: -508960699
+        Y: 587114624
+  - m_Collider: {fileID: 2031648483593183454}
+    m_ColliderPaths:
+    - - X: -136638453
+        Y: 434114624
+      - X: -136638453
+        Y: 449181824
+      - X: -151961024
+        Y: 449181531
+      - X: -151960731
+        Y: 434114624
+  - m_Collider: {fileID: 1380147232510781237}
+    m_ColliderPaths:
+    - - X: 392361563
+        Y: 587114624
+      - X: 392361563
+        Y: 602181824
+      - X: 377039008
+        Y: 602181531
+      - X: 377039301
+        Y: 587114624
+  - m_Collider: {fileID: 3181552660930687348}
+    m_ColliderPaths:
+    - - X: 64361535
+        Y: 434114624
+      - X: 64361535
+        Y: 449181824
+      - X: 49038964
+        Y: 449181531
+      - X: 49039257
+        Y: 434114624
+  - m_Collider: {fileID: 9101078450974559326}
+    m_ColliderPaths:
+    - - X: -387638437
+        Y: 587114624
+      - X: -387638437
+        Y: 602181824
+      - X: -402960992
+        Y: 602181531
+      - X: -402960699
+        Y: 587114624
+  - m_Collider: {fileID: 8828462007906258999}
+    m_ColliderPaths:
+    - - X: 15361600
+        Y: 587114624
+      - X: 15361600
+        Y: 602181824
+      - X: 39026
+        Y: 602181531
+      - X: 39319
+        Y: 587114624
+  m_CompositePaths:
+    m_Paths:
+    - - {x: -49.36387, y: 58.711464}
+      - {x: -49.36387, y: 60.21818}
+      - {x: -50.8961, y: 60.218124}
+      - {x: -50.89604, y: 58.711464}
+    - - {x: -38.763874, y: 58.711464}
+      - {x: -38.763874, y: 60.21818}
+      - {x: -40.2961, y: 60.218124}
+      - {x: -40.296043, y: 58.711464}
+    - - {x: -28.663872, y: 58.711464}
+      - {x: -28.663872, y: 60.21818}
+      - {x: -30.196102, y: 60.218124}
+      - {x: -30.196045, y: 58.711464}
+    - - {x: -18.263872, y: 58.711464}
+      - {x: -18.263872, y: 60.21818}
+      - {x: -19.7961, y: 60.218124}
+      - {x: -19.796041, y: 58.711464}
+    - - {x: -8.663874, y: 58.711464}
+      - {x: -8.663874, y: 60.21818}
+      - {x: -10.196102, y: 60.218124}
+      - {x: -10.196044, y: 58.711464}
+    - - {x: 1.5361307, y: 58.711464}
+      - {x: 1.5361307, y: 60.21818}
+      - {x: 0.0039026001, y: 60.218124}
+      - {x: 0.0039612, y: 58.711464}
+    - - {x: 11.436125, y: 58.711464}
+      - {x: 11.436125, y: 60.21818}
+      - {x: 9.903896, y: 60.218124}
+      - {x: 9.9039545, y: 58.711464}
+    - - {x: 21.736128, y: 58.711464}
+      - {x: 21.736128, y: 60.21818}
+      - {x: 20.2039, y: 60.218124}
+      - {x: 20.203959, y: 58.711464}
+    - - {x: 29.736128, y: 58.711464}
+      - {x: 29.736128, y: 60.21818}
+      - {x: 28.203901, y: 60.218124}
+      - {x: 28.203959, y: 58.711464}
+    - - {x: 39.23613, y: 58.711464}
+      - {x: 39.23613, y: 60.21818}
+      - {x: 37.7039, y: 60.218124}
+      - {x: 37.70396, y: 58.711464}
+    - - {x: -54.363873, y: 43.411465}
+      - {x: -54.363873, y: 44.918182}
+      - {x: -55.896095, y: 44.918125}
+      - {x: -55.896038, y: 43.411465}
+    - - {x: -43.763874, y: 43.411465}
+      - {x: -43.763874, y: 44.918182}
+      - {x: -45.2961, y: 44.918125}
+      - {x: -45.296043, y: 43.411465}
+    - - {x: -33.66387, y: 43.411465}
+      - {x: -33.66387, y: 44.918182}
+      - {x: -35.196102, y: 44.918125}
+      - {x: -35.196045, y: 43.411465}
+    - - {x: -23.263872, y: 43.411465}
+      - {x: -23.263872, y: 44.918182}
+      - {x: -24.7961, y: 44.918125}
+      - {x: -24.796041, y: 43.411465}
+    - - {x: -13.663876, y: 43.411465}
+      - {x: -13.663876, y: 44.918182}
+      - {x: -15.196102, y: 44.918125}
+      - {x: -15.196043, y: 43.411465}
+    - - {x: -3.4638696, y: 43.411465}
+      - {x: -3.4638696, y: 44.918182}
+      - {x: -4.9960976, y: 44.918125}
+      - {x: -4.9960394, y: 43.411465}
+    - - {x: 6.436124, y: 43.411465}
+      - {x: 6.436124, y: 44.918182}
+      - {x: 4.9038963, y: 44.918125}
+      - {x: 4.9039555, y: 43.411465}
+    - - {x: 16.736128, y: 43.411465}
+      - {x: 16.736128, y: 44.918182}
+      - {x: 15.203899, y: 44.918125}
+      - {x: 15.2039585, y: 43.411465}
+    - - {x: 24.736128, y: 43.411465}
+      - {x: 24.736128, y: 44.918182}
+      - {x: 23.2039, y: 44.918125}
+      - {x: 23.203959, y: 43.411465}
+    - - {x: 34.23613, y: 43.411465}
+      - {x: 34.23613, y: 44.918182}
+      - {x: 32.7039, y: 44.918125}
+      - {x: 32.70396, y: 43.411465}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &5537871912120059400
 GameObject:
   m_ObjectHideFlags: 0
@@ -5249,11 +4254,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6312225205984947287}
-  - component: {fileID: 6312225205984947285}
   - component: {fileID: 1237912074059968014}
-  - component: {fileID: 6880052077874072585}
   - component: {fileID: 3134664980070482396}
-  - component: {fileID: 6887334162845204803}
   m_Layer: 9
   m_Name: MainBossBullets (4)
   m_TagString: HitCollider
@@ -5277,21 +4279,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6312225205984947285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6312225205984947290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &1237912074059968014
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5304,7 +4291,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -5318,48 +4305,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &6880052077874072585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6312225205984947290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &3134664980070482396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5372,30 +4317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 6887334162845204803}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &6887334162845204803
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6312225205984947290}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &6312225207261783875
 GameObject:
   m_ObjectHideFlags: 0
@@ -5488,11 +4412,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6255235809656653362}
-  - component: {fileID: 7533101691530890499}
   - component: {fileID: 2488514591093750368}
-  - component: {fileID: 4832823711631180091}
   - component: {fileID: 1506317219702451329}
-  - component: {fileID: 119595222281252719}
   m_Layer: 9
   m_Name: MainBossBullets (18)
   m_TagString: HitCollider
@@ -5516,21 +4437,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7533101691530890499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6322912396202720604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &2488514591093750368
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5543,7 +4449,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -5557,48 +4463,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &4832823711631180091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6322912396202720604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &1506317219702451329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5611,30 +4475,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 119595222281252719}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &119595222281252719
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6322912396202720604}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &6522804976133106067
 GameObject:
   m_ObjectHideFlags: 0
@@ -5727,11 +4570,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6522804978060714631}
-  - component: {fileID: 6522804978060714629}
   - component: {fileID: 2031648483593183454}
-  - component: {fileID: 5937702647687922393}
   - component: {fileID: 2782308401961488140}
-  - component: {fileID: 5947168367047053203}
   m_Layer: 9
   m_Name: MainBossBullets (3)
   m_TagString: HitCollider
@@ -5755,21 +4595,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6522804978060714629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6522804978060714634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &2031648483593183454
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5782,7 +4607,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -5796,48 +4621,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &5937702647687922393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6522804978060714634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &2782308401961488140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5850,30 +4633,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 5947168367047053203}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &5947168367047053203
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6522804978060714634}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &6907017121515264946
 GameObject:
   m_ObjectHideFlags: 0
@@ -5966,11 +4728,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4378043983892043260}
-  - component: {fileID: 1832228526412751052}
   - component: {fileID: 1380147232510781237}
-  - component: {fileID: 649976427379364593}
   - component: {fileID: 6627481878065167714}
-  - component: {fileID: 6466044903168296136}
   m_Layer: 9
   m_Name: MainBossBullets (19)
   m_TagString: HitCollider
@@ -5994,21 +4753,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1832228526412751052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7307468673806929452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &1380147232510781237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6021,7 +4765,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -6035,48 +4779,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &649976427379364593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7307468673806929452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &6627481878065167714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6089,30 +4791,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 6466044903168296136}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &6466044903168296136
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7307468673806929452}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &7328687089827438612
 GameObject:
   m_ObjectHideFlags: 0
@@ -6371,11 +5052,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7679570097236996909}
-  - component: {fileID: 7679570097236996911}
   - component: {fileID: 3181552660930687348}
-  - component: {fileID: 7093184636765164403}
   - component: {fileID: 1624187589278785190}
-  - component: {fileID: 7106239166374420025}
   m_Layer: 9
   m_Name: MainBossBullets (1)
   m_TagString: HitCollider
@@ -6399,21 +5077,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7679570097236996911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679570097236996896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &3181552660930687348
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6426,7 +5089,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -6440,48 +5103,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &7093184636765164403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679570097236996896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &1624187589278785190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6494,30 +5115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 7106239166374420025}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &7106239166374420025
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679570097236996896}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &7679570097419122745
 GameObject:
   m_ObjectHideFlags: 0
@@ -6610,11 +5210,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1428104426772911346}
-  - component: {fileID: 241896968516371769}
   - component: {fileID: 9101078450974559326}
-  - component: {fileID: 8641869756842038600}
   - component: {fileID: 5271525072027312792}
-  - component: {fileID: 693472563287447921}
   m_Layer: 9
   m_Name: MainBossBullets (16)
   m_TagString: HitCollider
@@ -6638,21 +5235,6 @@ Transform:
   m_Father: {fileID: 5511053126068768578}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &241896968516371769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8107070794658803872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bdc50b409f10841ac874559e513588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &9101078450974559326
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6665,7 +5247,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.029957056, y: 1.4648204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -6679,48 +5261,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5322866, y: 1.5067196}
   m_EdgeRadius: 0
---- !u!114 &8641869756842038600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8107070794658803872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActorSource: {fileID: 0}
-  AbilitySource: {fileID: 0}
-  targetType: 0
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanMiss: 0
-  HitOnlyGroundedActors: 0
-  AbilityInstanceId: 
-  ParentCollider: {fileID: 4942819435946848028}
-  StickToActor: 0
-  StickToActorFacing: 0
-  StickToSkilledShot: 0
-  HitEventOnWalls: 1
-  InitPosition: {x: 0, y: 0, z: 0}
-  SkilledShotPoint: {fileID: 0}
-  SkilledshotLayermask:
-    serializedVersion: 2
-    m_Bits: 0
-  InitForce: {x: 0, y: 0, z: 0}
-  onHitObject: MudshotHit
-  OnHitSource: {fileID: 0}
-  RepositionChildrenOnEnable: 0
-  DuplicateBubbles: 0
-  IsBubble: 0
-  BubblesDuplicated: []
-  AudioOnHit: sound_earth_4
-  HitInterval: 0
-  RemoveOnInterrupt: 0
-  ChildrenColliders: []
 --- !u!114 &5271525072027312792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6733,30 +5273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbaabb5de60b154bb1b180fd7d9fd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 693472563287447921}
+  Rigid: {fileID: 0}
   DirectionBasedOnScale: 1
   Direction: {x: 25, y: 0}
---- !u!50 &693472563287447921
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8107070794658803872}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &8122765859298693287
 GameObject:
   m_ObjectHideFlags: 0
