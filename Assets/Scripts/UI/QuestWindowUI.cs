@@ -85,16 +85,26 @@ public class QuestWindowUI : MonoBehaviour, WindowInterface
 
         foreach(QuestData quest in CORE.Instance.Data.content.Quests)
         {
+            if(quest == null)
+            {
+                continue;
+            }
+
             QuestWindowTitleUI element = ResourcesLoader.Instance.GetRecycledObject("QuestWindowTitleUI").GetComponent<QuestWindowTitleUI>();
 
             element.transform.SetParent(QuestsContainer, false);
             element.transform.localScale = Vector3.one;
             element.transform.position = Vector3.zero;
 
-            if (CORE.PlayerActor.quests.started.ContainsKey(quest.name) || CORE.PlayerActor.quests.completed.ContainsKey(quest.name))
+            if (CORE.PlayerActor.quests.started.ContainsKey(quest.name))
             {
                 element.SetInfo(CORE.PlayerActor.quests.GetQuestProgress(quest.name).QuestData);
                 element.transform.SetAsFirstSibling();
+            }
+            else if(CORE.PlayerActor.quests.completed.ContainsKey(quest.name))
+            {
+                element.SetInfo(null,"<s>" +quest.name+"</s>");
+                element.transform.SetAsLastSibling();
             }
             else
             {

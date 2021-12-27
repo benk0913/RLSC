@@ -37,6 +37,13 @@ namespace I2.Loc
 
         public static bool TryGetTranslation(string Term, out string Translation, bool FixForRTL = true, int maxLineLengthForRTL = 0, bool ignoreRTLnumbers = true, bool applyParameters = false, GameObject localParametersRoot = null, string overrideLanguage = null, bool allowLocalizedParameters=true)
         {
+               if(LocalizationManager.CurrentLanguage.ToLower().Contains("english"))
+                {
+                    Translation = Term;
+                    return true;
+                }
+
+
             Translation = null;
             if (string.IsNullOrEmpty(Term))
                 return false;

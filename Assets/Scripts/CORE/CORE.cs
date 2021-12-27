@@ -592,6 +592,11 @@ public class CORE : MonoBehaviour
 
     public static string QuickTranslate(string text)
     {
+        if(LocalizationManager.CurrentLanguage.ToLower().Contains("english"))
+        {
+            return text;
+        }
+
         return Instance.Data.Localizator.mSource.GetTranslationCodwise(text);
     }
 
