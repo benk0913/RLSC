@@ -119,33 +119,38 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
 
         CORE.ClearContainer(MapPinsContainer);
         
-         List<GameObject> Points = new List<GameObject>();
+        List<GameObject> Points = new List<GameObject>();
         if(CORE.Instance.CurrentParty != null)
         {
-            foreach(string key in CORE.Instance.CurrentParty.scenesToMembers.Keys)
+            foreach(string mapKey in CORE.Instance.CurrentParty.scenesToMembers.Keys)
             {
-                string mapPointKey = CORE.Instance.Data.content.Scenes.Find(X=>X.displyName == key).MapPoint;
-                GameObject point = Points.Find(X=>X.name == mapPointKey);
-                
-                if(point == null)
+                foreach(string player in CORE.Instance.CurrentParty.scenesToMembers[mapKey])
                 {
-                    GameObject mapPoint = mapInstance.Points.Find(X=>X.name == mapPointKey);
+                    string mapPointKey = CORE.Instance.Data.content.Scenes.Find(X=>X.sceneName == mapKey).MapPoint;
 
-                    if(mapPoint == null)
+                    GameObject point = Points.Find(X=>X.name == mapPointKey);
+                    
+                    if(point == null)
                     {
-                        continue;
-                    }
+                        GameObject mapPoint = mapInstance.Points.Find(X=>X.name == mapPointKey);
 
-                    point = ResourcesLoader.Instance.GetRecycledObject("MapFriendLocation");
-                    point.transform.SetParent(MapPinsContainer,false);
-                    point.transform.position = mapPoint.transform.position;
-                    point.transform.localScale = Vector3.one;
-                    point.GetComponent<TooltipTargetUI>().SetTooltip(key);
+                        if(mapPoint == null)
+                        {
+                            continue;
+                        }
+
+                        point = ResourcesLoader.Instance.GetRecycledObject("MapFriendLocation");
+                        point.transform.SetParent(MapPinsContainer,false);
+                        point.transform.position = mapPoint.transform.position;
+                        point.transform.localScale = Vector3.one;
+                        point.GetComponent<TooltipTargetUI>().SetTooltip("<u>"+mapKey+"</u>"+ System.Environment.NewLine+player);
+                    }
+                    else
+                    {
+                        point.GetComponent<TooltipTargetUI>().Text += System.Environment.NewLine+player;   
+                    }
                 }
-                else
-                {
-                    point.GetComponent<TooltipTargetUI>().Text += System.Environment.NewLine+CORE.Instance.CurrentParty.scenesToMembers[key];   
-                }
+
 
             }
         }
