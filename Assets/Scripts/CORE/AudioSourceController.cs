@@ -11,6 +11,8 @@ public class AudioSourceController : MonoBehaviour
     [SerializeField]
     string VolumeTag = "Untagged";
 
+    public float MinVolumePrecent = 0.1f;
+
     public bool TakeOverMusic;
 
     
@@ -42,7 +44,7 @@ public class AudioSourceController : MonoBehaviour
             // {
             //     return;
             // }
-             if(AudioControl.Instance.GetVolumeByTag(VolumeTag) < 0.1f)
+             if(AudioControl.Instance.GetVolumeByTag(VolumeTag) < MinVolumePrecent)
             {
                 Source.volume = AudioControl.Instance.GetVolumeByTag(VolumeTag);
             }
