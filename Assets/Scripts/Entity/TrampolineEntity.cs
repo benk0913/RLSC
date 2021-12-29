@@ -9,6 +9,11 @@ public class TrampolineEntity : MonoBehaviour
     [SerializeField]
     float InteractableCooldown = 0f;
 
+
+
+    [SerializeField]
+    float InteractableCooldownValue = 2f;
+
     [SerializeField]
     Vector2 ForceDirection;
 
@@ -30,7 +35,7 @@ public class TrampolineEntity : MonoBehaviour
             return;
         }
 
-        InteractableCooldown = 2f;
+        InteractableCooldown = InteractableCooldownValue;
 
         Anim.SetTrigger("Activate");
         actor.Rigid.velocity = Vector2.zero;

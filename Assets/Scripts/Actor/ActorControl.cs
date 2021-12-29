@@ -87,9 +87,19 @@ public class ActorControl : MonoBehaviour
             int abilitiesLength = CurrentActor.State.Data.abilities.Count;
         for(int i = 0; i < abilitiesLength; i++)
         {
-            if (Input.GetKeyDown(InputMap.Map["Ability"+i]))
+            // if (Input.GetKeyDown(InputMap.Map["Ability"+i]))
+            // {
+            //     CurrentActor.AttemptPrepareAbility(i);
+            // }
+
+            if (Input.GetKey(InputMap.Map["Ability"+i]))
             {
-                CurrentActor.AttemptPrepareAbility(i);
+                AbilityState abilityState = CurrentActor.State.Abilities[i];
+
+                if(abilityState.CurrentCastingTime <= 0f && abilityState.CurrentCD <= 0)
+                {
+                    CurrentActor.AttemptPrepareAbility(i);
+                }
             }
         }
         

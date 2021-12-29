@@ -1202,6 +1202,14 @@ public class CORE : MonoBehaviour
             {
                 AchievementLogic.Instance.SetAchievment(param.Value);
             }
+            else  if (param.Type.name == "Flip Screen")
+            {
+                CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,180f);
+            }
+            else  if (param.Type.name == "Unflip Screen")
+            {
+                CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,0f);
+            }
         }
     }
 
