@@ -143,7 +143,7 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
                         point.transform.SetParent(MapPinsContainer,false);
                         point.transform.position = mapPoint.transform.position;
                         point.transform.localScale = Vector3.one;
-                        point.GetComponent<TooltipTargetUI>().SetTooltip("<u>"+mapKey+"</u>"+ System.Environment.NewLine+player);
+                        point.GetComponent<TooltipTargetUI>().SetTooltip("<u>"+CORE.Instance.Data.content.Scenes.Find(X=>X.sceneName == mapKey).displyName+"</u>"+ System.Environment.NewLine+player);
                     }
                     else
                     {
