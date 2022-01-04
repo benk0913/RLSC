@@ -1,4 +1,5 @@
 ﻿using EdgeworldBase;
+using I2.Loc;
 using Newtonsoft.Json;
 using SimpleJSON;
 #if !UNITY_ANDROID && !UNITY_IOS
@@ -336,7 +337,7 @@ public class CORE : MonoBehaviour
                     GraphicSettingsHandler.Instance.fullScreenMode.value = (int)FullScreenMode.FullScreenWindow;
                     GraphicSettingsHandler.Instance.OnFullScreenModeChanged();
                     GraphicSettingsHandler.Instance.ApplySelectedResolution();
-                    
+                }
                 catch { }
             });
             //for(int i=0;i<Screen.resolutions.Length;i++)
