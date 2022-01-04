@@ -225,3 +225,39 @@
 [2021-12-13 01:30:14] [Roaming Config] OnRemoteStorageSyncedClient() - result OK
 [2021-12-13 01:30:15] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
 [2021-12-13 01:40:10] [Roaming Config] PerformSyncCloud - all sync'd up
+
+
+[2021-12-25 14:31:26] [AppID 7] Starting sync (init,)
+[2021-12-25 14:31:26] [AppID 7] AutoCloud checking local state for user 33262196
+[2021-12-25 14:31:26] [AppID 7] (ValidateCache) File 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder\userdata\33262196\7\remote\serverbrowser_hist.vdf' timestamp or SHA mismatch with cache - setting local changes
+[2021-12-25 14:31:26] [U:1:33262196] [AppID 7] Init cache request complete
+[2021-12-25 14:31:27] [Roaming Config] PerformSyncCloud - evaluating sync state
+[2021-12-25 14:31:27] [AppID 7] Starting sync (eval,)
+[2021-12-25 14:31:27] [AppID 7] AutoCloud checking local state for user 33262196
+[2021-12-25 14:31:28] [AppID 7] Need to sync from local change number '0' to global change number '16853836260121640129', but not attempting now
+[2021-12-25 14:31:28] [AppID 7] serverbrowser_hist.vdf has local changes but mismatch - creating a conflict. Local/Remote SHA: 8e4890f98cc566fa1cefb092291afa66d320e187 / aacbf18554f5e7bdb74c362e8aa377132d407739, Timestamps: 1640353219 / 1640428546, persist state: 0 / 0
+[2021-12-25 14:31:28] [AppID 7] Sync conflict for file serverbrowser_hist.vdf
+[2021-12-25 14:31:28] [AppID 7] Eval complete
+[2021-12-25 14:31:28] [Roaming Config] OnRemoteStorageStateEvaluated - result OK
+[2021-12-25 14:31:28] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2021-12-25 14:31:28] [Roaming Config] PerformSyncCloud - conflict detected, accepting remote files
+[2021-12-25 14:31:28] [AppID 7] Starting sync (down,resolve,)
+[2021-12-25 14:31:28] [AppID 7] Attempting to sync from local change number '0' to global change number '16853836260121640129'
+[2021-12-25 14:31:28] [AppID 7] serverbrowser_hist.vdf already marked as conflicting. Local/Remote SHA: 8e4890f98cc566fa1cefb092291afa66d320e187 / aacbf18554f5e7bdb74c362e8aa377132d407739, Local/Remote persist state: 0 / 0
+[2021-12-25 14:31:28] [AppID 7] Resolving file serverbrowser_hist.vdf from state 4, bUseLocal = false
+[2021-12-25 14:31:28] [AppID 7] Resolving file sharedconfig.vdf from state 1 - synchronized, leaving
+[2021-12-25 14:31:28] [AppID 7] Need to download file serverbrowser_hist.vdf
+[2021-12-25 14:31:29] [AppID 7] HTTP download for file 'serverbrowser_hist.vdf' from host 'steamcloud-eu-ams.storage.googleapis.com' beginning. . .
+[2021-12-25 14:31:29] [AppID 7] HTTP download for file 'serverbrowser_hist.vdf' from host 'steamcloud-eu-ams.storage.googleapis.com' - Success.
+[2021-12-25 14:31:29] [AppID 7] Download OK for file serverbrowser_hist.vdf
+[2021-12-25 14:31:29] [AppID 7] Download complete, result OK
+[2021-12-25 14:31:29] [Roaming Config] OnRemoteStorageConflictResolution - result OK
+[2021-12-25 14:31:29] [AppID 7] Successfully synced to ChangeNumber 16853836260121640129
+[2021-12-25 14:31:29] [AppID 7] Starting sync (down,)
+[2021-12-25 14:31:29] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2021-12-25 14:31:29] [AppID 7] Currently already synced to global change number '16853836260121640129', should be nothing to download
+[2021-12-25 14:31:29] [AppID 7] Download complete in build list
+[2021-12-25 14:31:29] [AppID 7] Successfully synced to ChangeNumber 0
+[2021-12-25 14:31:29] [Roaming Config] OnRemoteStorageSyncedClient() - result OK
+[2021-12-25 14:31:29] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2021-12-25 14:41:28] [Roaming Config] PerformSyncCloud - all sync'd up

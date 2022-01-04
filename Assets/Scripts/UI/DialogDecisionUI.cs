@@ -73,11 +73,8 @@ public class DialogDecisionUI : MonoBehaviour
                 }
             }
         }
-
-        string content = CurrentDecision.Content;
-        CORE.Instance.Data.Localizator.mSource.TryGetTranslationCodywise(content, out content);
-
-        DecisionLabel.text = content;
+        
+        DecisionLabel.text = CORE.QuickTranslate(CurrentDecision.Content);
 
         
     }

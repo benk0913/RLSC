@@ -23,6 +23,9 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
     [SerializeField]
     GameObject QueuePanel;
 
+    [SerializeField]
+    GameObject EnlistPanel;
+
     public bool IsOpen;
 
     public string OpenSound;
@@ -86,6 +89,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
     public void MatchQueueRefresh()
     {
         QueuePanel.gameObject.SetActive(ExpeditionQueTimerUI.Instance.IsSearching);
+        EnlistPanel.gameObject.SetActive(!ExpeditionQueTimerUI.Instance.IsSearching);
     }
 
     public void RefreshUI()
@@ -173,5 +177,11 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
         ExpeditionQueTimerUI.Instance.StopSearching();
         QueuePanel.gameObject.SetActive(false);
+        EnlistPanel.gameObject.SetActive(true);
+    }
+
+    public void EnterQueue()
+    {
+        SocketHandler.Instance.SendStartExpeditionQueue("Forest");
     }
 }

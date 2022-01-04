@@ -796,7 +796,7 @@ public class Actor : MonoBehaviour
 
     public void HurtEffect(Actor source = null)
     {
-        if (!State.IsPreparingAbility && !IsDead)
+        if (!State.IsPreparingAbility && !IsDead && !State.Data.ClassJobReference.NoHurtAnimation)
         {
             Animer.Play("Hurt" + UnityEngine.Random.Range(1, 5));
         }
@@ -812,6 +812,7 @@ public class Actor : MonoBehaviour
 
         if (IsClientControl && ((AIControl != null && !AIControl.IsBoss) || State.Data.IsPlayer))
         {
+            Rigid.velocity = new Vector2(0f,Rigid.velocity.y);
             Rigid.AddForce(((transform.position - source.transform.position).normalized)*KnockbackAmount, ForceMode2D.Impulse);
         }
 

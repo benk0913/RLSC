@@ -334,7 +334,7 @@ public class MainMenuUI : MonoBehaviour
 
        public void ShowStorePage()
     {
-        Application.OpenURL("https://discord.gg/nnB9V4hr");
+        Application.OpenURL("https://discord.gg/NbZgMpRxqr");
         //Steamworks.SteamFriends.ActivateGameOverlayToStore(new Steamworks.AppId_t(1780330), Steamworks.EOverlayToStoreFlag.k_EOverlayToStoreFlag_None);
     }
 

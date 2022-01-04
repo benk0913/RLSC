@@ -27565,6 +27565,11 @@ MonoBehaviour:
   RelevantQuests:
   - {fileID: 11400000, guid: 90cc7b5d868ecfb41bb15650c8b87c5f, type: 2}
   - {fileID: 11400000, guid: 7976e80ee00a88b43ad4435f636cc313, type: 2}
+  - {fileID: 11400000, guid: 71ad520507207be4f930796d4d637594, type: 2}
+  - {fileID: 11400000, guid: 1437b279393d19b4288c5744b87423d5, type: 2}
+  - {fileID: 11400000, guid: 1d8bca08fa83361479c93fc762a2556f, type: 2}
+  - {fileID: 11400000, guid: 95f70c4211ca72e4a8a75a7fd31f517b, type: 2}
+  - {fileID: 11400000, guid: fa742b90e962a6a42b349172847905be, type: 2}
   HasQuestObject: {fileID: 2016758638}
   HasQuestInProgressObject: {fileID: 1011271831}
   HasQuestCompleteObject: {fileID: 8200201}
@@ -52871,6 +52876,302 @@ MonoBehaviour:
             Decisions: []
             IsFemale: 0
         IsFemale: 1
+    - Content: '<u>Quest: The Virtuous</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 95f70c4211ca72e4a8a75a7fd31f517b, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: 'The Priests of the old world have set us '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: unreasonable goals.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: But lack of reason only belongs to the non-believers!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: We are here to do a job!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: To cleanse this place from its unholy circumstance!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: ecb2d399ba236e94494860f439c22ca6, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: '<u>Quest: The Rightous</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 1d8bca08fa83361479c93fc762a2556f, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: We have to continue... The priests...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: They must not be ignored!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: 77efaa7d1c4d3cb47abf6beed88cd58f, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: '<u>Quest: The Saint</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 71ad520507207be4f930796d4d637594, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: The priests have sent their emissary.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: They ignored my message...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'They want us to '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: continue
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: 9e8e4e438edf08449a9017ce92859078, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: '<u>Quest: The Holy</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 1437b279393d19b4288c5744b87423d5, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: ...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: I don't feel so good...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'I would really rather... Just rest today...
+
+'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: 44227dac998de4e4480c8e184de91830, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: '<u>Quest: The Missed Opportunity</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: fa742b90e962a6a42b349172847905be, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: Don't worry, I'm not sending you on to another meaningless mission.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: I just want you to do one last thing for me.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Go back to Sunset Port. Deliver this message for me.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: The priests must know of my resignation, last act of loyalty on
+            my behalf.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'They also must know of your hard and true effort. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: You have invested more time than they deserve.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: And they must know this mission is lost and worthless.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: The Innkeeper is in-charge of sending letters back home.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: 86de472140b37934384ec189e3ca6d7a, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
     - Content: '<u>Quest: The Source Of Evil</u>'
       OnSelect: []
       OnSelectInvokation:
@@ -53033,6 +53334,235 @@ MonoBehaviour:
             Decisions: []
             IsFemale: 0
         IsFemale: 1
+    - Content: '<u>Quest Complete: The Virtuous</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 95f70c4211ca72e4a8a75a7fd31f517b, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: The priests are not satisfied, they ...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: they...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: they want more!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: We have to work harder!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: 2fa92458b562b574b92d46b8dc0ad4ba, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: '<u>Quest Complete: The Rightous</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 1d8bca08fa83361479c93fc762a2556f, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: I'm tired.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: It doesn't look like we are making any progress...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: I'll let them know this mission is...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: 19be1cc6c1636024989ac7edfb7a9dc4, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: '<u>Quest Complete: The Saint</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 71ad520507207be4f930796d4d637594, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: What are we doing?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: What is all that for?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Do they even harm anyone...?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: I would have sought answers to these questions if I had any more
+            vitality in me.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: 493fdaae261d2844cb06f326457a4689, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: '<u>Quest Complete: The Holy</u>'
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 1437b279393d19b4288c5744b87423d5, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: There is no cure to this place...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: For months we have been struggling with the undead...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: But they keep coming...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Months spent... Gone... For nothing.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Might aswell have never been, time that will never return.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Accept
+          OnSelect:
+          - {fileID: 11400000, guid: fd568c9e7c6f3e1408dd038f23858566, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        - Content: Decline
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
     - Content: '<u>Quest Complete: The Source Of Evil</u>'
       OnSelect: []
       OnSelectInvokation:
@@ -53090,6 +53620,18 @@ MonoBehaviour:
             DialogPieces: []
             Decisions: []
             IsFemale: 0
+        IsFemale: 1
+    - Content: Leave
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces: []
+        Decisions: []
         IsFemale: 1
     IsFemale: 1
   CurrentDialog:

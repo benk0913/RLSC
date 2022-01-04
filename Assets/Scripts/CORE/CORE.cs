@@ -600,6 +600,11 @@ public class CORE : MonoBehaviour
 
     public static string QuickTranslate(string text)
     {
+        if(LocalizationManager.CurrentLanguage.ToLower().Contains("english"))
+        {
+            return text;
+        }
+
         return Instance.Data.Localizator.mSource.GetTranslationCodwise(text);
     }
 
@@ -917,6 +922,8 @@ public class CORE : MonoBehaviour
         InGame = false;
     }
 
+
+    bool autoExpededOnce = false;
     public void CheckOOGInvitations()
     {
         if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
@@ -933,11 +940,15 @@ public class CORE : MonoBehaviour
             }
 
 #endif
-            //TODO Remove HACK
-            SocketHandler.Instance.SendStartExpeditionQueue("Forest");
-            CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
-                ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
-            });
+            if(!ExpeditionQueTimerUI.Instance.IsSearching && !autoExpededOnce)
+            {
+                SocketHandler.Instance.SendStartExpeditionQueue("Forest");
+                CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
+                    autoExpededOnce = true;
+                    ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
+                });
+            }
+
         }
     }
 
@@ -1205,6 +1216,14 @@ public class CORE : MonoBehaviour
                 #if !UNITY_ANDROID && !UNITY_IOS
                 AchievementLogic.Instance.SetAchievment(param.Value);
                 #endif
+            }
+            else  if (param.Type.name == "Flip Screen")
+            {
+                CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,180f);
+            }
+            else  if (param.Type.name == "Unflip Screen")
+            {
+                CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,0f);
             }
         }
     }

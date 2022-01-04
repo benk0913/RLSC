@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2117ed5eb5c7caf40864adf1d82f7b52, type: 3}
+  m_Name: Night Vendor End Dialog
+  m_EditorClassIdentifier: 
+  DialogEntityGameObjectName: NPC_NightVendorFree
+  Dialog:
+    DialogPieces:
+    - Content: 'YES! They exist, and I know where! '
+      OnDialogPiece:
+        m_PersistentCalls:
+          m_Calls: []
+    - Content: Don't be confused with any normal fish, these JUMP OFF THE WATER!
+      OnDialogPiece:
+        m_PersistentCalls:
+          m_Calls: []
+    - Content: They don't have mercy for the likes of us.
+      OnDialogPiece:
+        m_PersistentCalls:
+          m_Calls: []
+    - Content: ' How I wish I could have had my revenge...'
+      OnDialogPiece:
+        m_PersistentCalls:
+          m_Calls: []
+    - Content: But at my current state, I can barely struggle through a meal...
+      OnDialogPiece:
+        m_PersistentCalls:
+          m_Calls: []
+    Decisions:
+    - Content: 'Maybe I can help you! '
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: You? You don't seem like a serious monster hunter!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Only maybe an inn nagger, and a lame one.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Let me try!
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: Alright, I'll test you.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Get me 10 Scrap, just 10.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Do that and I'll take you more seriously.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions:
+            - Content: Accept
+              OnSelect:
+              - {fileID: 11400000, guid: c58bc8e17a1bb294bae39a8919684487, type: 2}
+              - {fileID: 11400000, guid: 9f3f0d2e59c4369459ffcb9cf77681ed, type: 2}
+              OnSelectInvokation:
+                m_PersistentCalls:
+                  m_Calls: []
+              DisplayConditions: []
+              DisplayGameConditions: []
+              DisplayOnlyIfConditionsMet: 0
+              DefaultDialog:
+                DialogPieces: []
+                Decisions: []
+                IsFemale: 0
+            - Content: Decline
+              OnSelect: []
+              OnSelectInvokation:
+                m_PersistentCalls:
+                  m_Calls: []
+              DisplayConditions: []
+              DisplayGameConditions: []
+              DisplayOnlyIfConditionsMet: 0
+              DefaultDialog:
+                DialogPieces: []
+                Decisions: []
+                IsFemale: 0
+            IsFemale: 0
+        - Content: Sure, I don't need your approval.
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: Nope, and I don't need yours...
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions: []
+            IsFemale: 0
+        - Content: Leave...
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 0
+    - Content: Leave
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces: []
+        Decisions: []
+        IsFemale: 0
+    IsFemale: 0

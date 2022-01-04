@@ -54,4 +54,7 @@ public class ClassJob : ScriptableObject
     
     [JsonIgnore]
     public string UniqueDeathSound;
+
+    [JsonIgnore]
+    public bool NoHurtAnimation = false;
 }

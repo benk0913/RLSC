@@ -55,7 +55,7 @@ namespace I2.Loc
 
         public bool TryGetTranslationCodywise (string term, out string Translation, string overrideLanguage = null, string overrideSpecialization = null, bool skipDisabled = false, bool allowCategoryMistmatch = false)
         {
-			if(LocalizationManager.CurrentLanguage.Contains("English"))
+			if(LocalizationManager.CurrentLanguage.ToLower().Contains("english"))
 			{
 				Translation = term;
 				return true;

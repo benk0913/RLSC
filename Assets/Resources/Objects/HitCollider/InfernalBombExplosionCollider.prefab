@@ -130,10 +130,13 @@ MonoBehaviour:
       m_Calls: []
   CanMiss: 0
   HitOnlyGroundedActors: 0
+  AbilityInstanceId: 
+  ParentCollider: {fileID: 0}
   StickToActor: 0
   StickToActorFacing: 0
-  StickToSkilledShot: 1
+  StickToSkilledShot: 0
   HitEventOnWalls: 0
+  InitPosition: {x: 0, y: 0, z: 0}
   SkilledShotPoint: {fileID: 6335503056476850520}
   SkilledshotLayermask:
     serializedVersion: 2
@@ -141,12 +144,14 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
+  RepositionChildrenOnEnable: 0
   DuplicateBubbles: 0
   IsBubble: 0
   BubblesDuplicated: []
   AudioOnHit: 
   HitInterval: 0
   RemoveOnInterrupt: 0
+  ChildrenColliders: []
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0
