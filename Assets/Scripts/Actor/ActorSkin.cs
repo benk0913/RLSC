@@ -29,6 +29,23 @@ public class ActorSkin : MonoBehaviour
 
     public List<SpriteRenderer> PartsHiddenByEmote = new List<SpriteRenderer>();
 
+    public Animator BlinkAnimer;
+
+    float timeTillBlink = 4f;
+
+    void Update()
+    {
+        if(timeTillBlink > 0f || EmoteRoutineInstance != null)
+        {
+            timeTillBlink -= Time.deltaTime;
+        }
+        else
+        {
+            timeTillBlink = Random.Range(3f,6f);
+            BlinkAnimer.SetTrigger("Blink");
+        }
+        
+    }
     void OnDisable()
     {
         EmoteRoutineInstance = null;

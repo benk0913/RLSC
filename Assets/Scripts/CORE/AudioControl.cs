@@ -38,6 +38,13 @@ namespace EdgeworldBase
             SetMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1f));
 
             MusicSource.volume = m_dicVolumeGroup["Music"];
+            if(MusicSource.volume <= 0f)
+            {
+                PlayerPrefs.SetFloat("Music",0.6f);
+                m_dicVolumeGroup["Music"] = 0.6f;
+                MusicSource.volume = 0.6f;
+            }
+
             SoundscapeSource.volume = m_dicVolumeGroup["Soundscape"];
 
         }

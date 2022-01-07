@@ -18,6 +18,9 @@ public class InteractableEntity : MonoBehaviour
     public float InteractableCooldown = 0f;
 
     public float BusyCooldown = 3f;
+    
+    public bool Once = false;
+    bool onced;
 
     public bool IsBusy;
 
@@ -61,6 +64,13 @@ public class InteractableEntity : MonoBehaviour
         {
             return;
         }
+
+        if(Once && onced)
+        {
+            return;
+        }
+        
+        onced = true;
 
         CORE.Instance.DelayedInvokation(0.1f,()=> // Delayed in order to interact with all nearby interactables.
         {

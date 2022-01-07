@@ -104,7 +104,16 @@ namespace EdgeworldBase
             }
             else
             {
-                CORE.Instance.LogMessageError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/Audio ?)");
+                AudioClip clip = Resources.Load<AudioClip>("nonPreload/"+gKey);
+
+                if(clip == null)
+                {
+                    CORE.Instance.LogMessageError("Resource Loader - " + gKey + " could not be provided by the dictionary. (Doesn't exists in the Resources/Audio ?)");
+                }
+                else
+                {
+                    return clip;
+                }
             }
 
             return null;
