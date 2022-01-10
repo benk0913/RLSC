@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using SimpleJSON;
+#if !UNITY_ANDROID && !UNITY_IOS
 using Steamworks;
+#endif
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -96,7 +98,9 @@ public class FriendDisplayDisplayUI : MonoBehaviour
     }
      public void OpenAccountProfile()
     {
+        #if !UNITY_ANDROID && !UNITY_IOS
         SteamFriends.ActivateGameOverlayToUser("steamid",new CSteamID(CurrentFriendData.steamId));
+        #endif
     }
 
  

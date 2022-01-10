@@ -4,7 +4,9 @@ using EdgeworldBase;
 using Newtonsoft.Json;
 using PlatformSupport.Collections.ObjectModel;
 using SimpleJSON;
+#if !UNITY_ANDROID && !UNITY_IOS
 using Steamworks;
+#endif
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -320,6 +322,7 @@ public class SocketHandler : MonoBehaviour
     Coroutine currentTimeoutValidation;
     void ObtainSessionTicket(Action OnComplete)
     {
+#if !UNITY_ANDROID && !UNITY_IOS
         CORE.Instance.LogMessage("Getting Steam Session Ticket");
         this.OnCompleteSessionTicket = OnComplete;
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Getting Session...", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
@@ -348,11 +351,14 @@ public class SocketHandler : MonoBehaviour
                 GetSteamSession(OnComplete);
             }
         });
-        
+#else
+        this.SessionTicket = UnityEngine.Random.Range(0,9999).ToString();
+#endif
+
 
     }
 
-
+#if !UNITY_ANDROID && !UNITY_IOS
     Action OnCompleteSessionTicket;
     protected Callback<GetAuthSessionTicketResponse_t> GetAuthSessionTicketOnCompleteCallbackContainer;
     protected Callback<GetAuthSessionTicketResponse_t> GetAuthSessionTicketResponseCallbackContainer;
@@ -377,6 +383,7 @@ public class SocketHandler : MonoBehaviour
         CORE.Instance.LogMessage("Current session: "+this.SessionTicket);
         
     }
+#endif
 
     public void LogOut()
     {
@@ -1584,6 +1591,7 @@ public class SocketHandler : MonoBehaviour
 
     public void OnAchievment(string eventName, JSONNode data)
     {
+        #if !UNITY_ANDROID && !UNITY_IOS
         string achievementKey = data["achievementKey"].Value;
         AchievementLogic.AchievementInstance achInst =  AchievementLogic.Instance.Instances.Find(x=>x.Key == achievementKey);
 
@@ -1604,6 +1612,7 @@ public class SocketHandler : MonoBehaviour
 
         achInst.State = true;
         SteamUserStats.SetAchievement(achInst.Key);
+        #endif
     }
     
     // Quests
@@ -2281,6 +2290,7 @@ public class SocketHandler : MonoBehaviour
     {
         PartyData newPartyData = JsonConvert.DeserializeObject<PartyData>(data["party"].ToString());
 
+        #if !UNITY_ANDROID && !UNITY_IOS
         if(CORE.Instance.CurrentParty == null && newPartyData != null) // Entering a party for hte first time 
         {
             CORE.Instance.pendingJoinParty = String.Empty;
@@ -2305,6 +2315,7 @@ public class SocketHandler : MonoBehaviour
                 SteamMatchmaking.JoinLobby(new CSteamID(newPartyData.steamLobbyId));
             }
         }
+        #endif
 
         CORE.Instance.CurrentParty = newPartyData;
 

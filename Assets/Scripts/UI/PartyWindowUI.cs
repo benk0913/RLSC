@@ -1,7 +1,9 @@
 ﻿using System;
 using EdgeworldBase;
 using SimpleJSON;
+#if !UNITY_ANDROID && !UNITY_IOS
 using Steamworks;
+#endif
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -150,9 +152,10 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
 
     }
     
+    #if !UNITY_ANDROID && !UNITY_IOS
     public void InviteMemberFromSteam()
     {
-
+        
         if (CORE.Instance.CurrentParty == null)
         {
             CreateParty();
@@ -165,6 +168,7 @@ public class PartyWindowUI : MonoBehaviour, WindowInterface
         });
         //SteamFriends.ActivateGameOverlayInviteDialog(new CSteamID(CORE.PlayerActor.steamID));
     }
+    #endif
 
     public void CreateParty()
     {

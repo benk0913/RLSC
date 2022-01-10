@@ -3,7 +3,9 @@ using I2.Loc;
 using NewResolutionDialog.Scripts.Controller;
 using Newtonsoft.Json;
 using SimpleJSON;
+#if !UNITY_ANDROID && !UNITY_IOS
 using Steamworks;
+#endif
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -136,6 +138,7 @@ public class CORE : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+#if !UNITY_ANDROID && !UNITY_IOS
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
         if (!GetComponent<SocketHandler>().RandomUser)
         {
@@ -213,7 +216,7 @@ public class CORE : MonoBehaviour
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
         }
 #endif
-
+#endif
 
 
         Application.targetFrameRate = 60;
@@ -228,7 +231,7 @@ public class CORE : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-
+#if !UNITY_ANDROID && !UNITY_IOS
     protected Callback<GameLobbyJoinRequested_t> GetJoinLobbyRequestResponse;
     void OnGetJoinLobbyRequestResponse(GameLobbyJoinRequested_t pCallBack)
     {
@@ -273,6 +276,7 @@ public class CORE : MonoBehaviour
         node["steamLobbyId"] = pCallBack.m_ulSteamIDLobby.ToString();
         SocketHandler.Instance.SendEvent("party_steam_lobby_id", node);
     }
+#endif
 
     void OnApplicationFocus(bool focus)
     {
@@ -920,6 +924,7 @@ public class CORE : MonoBehaviour
     {
         if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
         {
+            #if !UNITY_ANDROID && !UNITY_IOS
             if(!string.IsNullOrEmpty(pendingJoinParty))
             {
                 JSONNode node = new JSONClass();
@@ -928,6 +933,7 @@ public class CORE : MonoBehaviour
                 TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to join party...", Color.green, 3, false));
 
             }
+            #endif
 
             
             //TODO Remove HACK
@@ -988,7 +994,7 @@ public class CORE : MonoBehaviour
             return;
         }
 #endif
-
+#if !UNITY_ANDROID && !UNITY_IOS
         if(SceneManager.GetActiveScene().name == "MainMenu")
         {
             SteamFriends.SetRichPresence("steam_display", "#Status_AtMainMenu");
@@ -1013,6 +1019,7 @@ public class CORE : MonoBehaviour
                 }
             }
         }
+#endif
     }
 
     #region Screen Effects
@@ -1200,7 +1207,9 @@ public class CORE : MonoBehaviour
             }
             else if(param.Type.name == "SetAchievement")
             {
+#if !UNITY_ANDROID && !UNITY_IOS
                 AchievementLogic.Instance.SetAchievment(param.Value);
+#endif
             }
             else  if (param.Type.name == "Flip Screen")
             {

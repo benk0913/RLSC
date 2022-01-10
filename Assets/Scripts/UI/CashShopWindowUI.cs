@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using EdgeworldBase;
 using SimpleJSON;
+#if !UNITY_ANDROID && !UNITY_IOS
 using Steamworks;
+#endif
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -436,9 +438,13 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         node["dealIndex"].AsInt = dealIndex;
         SocketHandler.Instance.SendEvent("buy_eq", node);
         
+#if !UNITY_ANDROID && !UNITY_IOS
         RegisterSteamInAppWindow();
+#endif
     }
 
+
+#if !UNITY_ANDROID && !UNITY_IOS
     protected Callback<MicroTxnAuthorizationResponse_t> MicroTxnAuthorizationCallbackContainer;
     void RegisterSteamInAppWindow()
     {
@@ -457,6 +463,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         node["authorized"].AsBool = pCallback.m_bAuthorized == 1;
         SocketHandler.Instance.SendEvent("buy_eq_steam_answer", node);
     }
+#endif
 
     public void ShowPromotionalCodePrompt()
     {

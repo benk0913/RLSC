@@ -43,7 +43,12 @@ public class MainMenuUI : MonoBehaviour
 
     public void OpenURL(string url)
     {
+#if !UNITY_ANDROID && !UNITY_IOS
         Steamworks.SteamFriends.ActivateGameOverlayToWebPage(url);//TODO Change to in-steam UI 
+#else
+        Application.OpenURL(url);
+#endif
+
     }
     private void Awake()
     {
@@ -323,7 +328,9 @@ public class MainMenuUI : MonoBehaviour
 
     public void ShowForums()
     {
+#if !UNITY_ANDROID && !UNITY_IOS
         Steamworks.SteamFriends.ActivateGameOverlay("community");
+#endif
     }
 
        public void ShowStorePage()

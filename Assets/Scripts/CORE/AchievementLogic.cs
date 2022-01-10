@@ -1,3 +1,4 @@
+#if !UNITY_ANDROID && !UNITY_IOS
 using System.Collections;
 using System.Collections.Generic;
 using Steamworks;
@@ -259,3 +260,4 @@ public class AchievementLogic : MonoBehaviour
         public bool State;
     }
 }
+#endif
