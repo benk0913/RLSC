@@ -15,6 +15,8 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
 
     public bool IsActive = false;
 
+    public GameObject SkipText;
+
     Dialog CurrentDialog;
     private void Awake()
     {
@@ -39,9 +41,20 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
         Show(actor,dialog.Decisions);
     }
 
+    public void ShowSkipText()
+    {
+        SkipText.SetActive(true);
+    }
+
+    public void HideSkipText()
+    {
+        SkipText.SetActive(false);
+    }
+
     public void Show(ActorData actor, List<DialogDecision> decisions)
     {
         this.gameObject.SetActive(true);
+        ShowSkipText();
 
         CurrentTarget = actor.ActorEntity.transform;
         CurrentDecisions = decisions;
@@ -77,6 +90,7 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
     {
         IsActive = false;
         this.gameObject.SetActive(false);
+        HideSkipText();
     }
 
     private void Update()
