@@ -15,6 +15,9 @@ public class CameraChaseEntity : MonoBehaviour
     [SerializeField]
     Camera FocusCam;
 
+    [SerializeField]
+    float MobileSize = 0.6f;
+
     public float Speed = 1f;
 
 
@@ -48,6 +51,14 @@ public class CameraChaseEntity : MonoBehaviour
         CurrentCam = GetComponent<Camera>();
         PostProccessHandler = GetComponent<Volume>();
         PostProccessHandler.sharedProfile.components.Find(x => x.name == "Bloom");
+
+        #if UNITY_ANDROID || UNITY_IOS
+        if(Speed > 0f)
+        {
+             CurrentCam.orthographicSize *= MobileSize;
+        }
+        #endif
+
         DefaultSize = CurrentCam.orthographicSize;
     }
 

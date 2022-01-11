@@ -46,16 +46,16 @@ public class PartyMemberDisplayUI : MonoBehaviour
 
     void OnEnable()
     {
-        CORE.Instance.SubscribeToEvent("PartyUpdated", OnPartyUpdated);
-        OnPartyUpdated();
+        CORE.Instance.SubscribeToEvent("PartyUpdated", OnGuildUpdated);
+        OnGuildUpdated();
     }
 
     private void OnDisable()
     {
-        CORE.Instance.UnsubscribeFromEvent("PartyUpdated", OnPartyUpdated);
+        CORE.Instance.UnsubscribeFromEvent("PartyUpdated", OnGuildUpdated);
     }
 
-    public void OnPartyUpdated()
+    public void OnGuildUpdated()
     {
         if(CORE.Instance.CurrentParty == null)
         {

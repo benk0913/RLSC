@@ -41,11 +41,17 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
 
     void Start()
     {
+#if UNITY_ANDROID || UNITY_IOS
+        PPVignette = PlayerPrefs.GetInt("PPVignette", 0) == 1 ? true : false;
+        PPBloom = PlayerPrefs.GetInt("PPBloom", 0) == 1 ? true : false;
+        PPMotionBlur = PlayerPrefs.GetInt("PPMotionBlur", 0) == 1 ? true : false;
+        PPProjection = PlayerPrefs.GetInt("PPProjection", 0) == 1 ? true : false;
+#else
         PPVignette = PlayerPrefs.GetInt("PPVignette", 1) == 1 ? true : false;
         PPBloom = PlayerPrefs.GetInt("PPBloom", 1) == 1 ? true : false;
         PPMotionBlur = PlayerPrefs.GetInt("PPMotionBlur", 1) == 1 ? true : false;
         PPProjection = PlayerPrefs.GetInt("PPProjection", 1) == 1 ? true : false;
-
+#endif
         PPMotionBlurCheckmark.SetActive(PPMotionBlur);
         PPVignetteCheckmark.SetActive(PPVignette);
         PPBloomCheckmark.SetActive(PPBloom);

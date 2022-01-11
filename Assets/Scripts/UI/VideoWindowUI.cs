@@ -38,10 +38,7 @@ public class VideoWindowUI : MonoBehaviour
 
     void OnDisable()
     {
-        if(previousMusicVolume != -1f || previousMusicVolume != 0.6f)
-            AudioControl.Instance.SetVolume("Music",previousMusicVolume,false);
-        else
-            AudioControl.Instance.SetVolume("Music",0.6f,false);
+        AudioControl.Instance.SetVolume("Music",0.6f,false);
     }
     public void Hide(bool accepted = false)
     {
@@ -56,7 +53,7 @@ public class VideoWindowUI : MonoBehaviour
         {
             AcceptAction?.Invoke();
         }
-        
+        AudioControl.Instance.SetVolume("Music",0.6f,false);
         this.gameObject.SetActive(false);
     }
 
@@ -114,7 +111,7 @@ public class VideoWindowUI : MonoBehaviour
         
         AudioControl.Instance.SetVolume("Music", 0f, false);
 
-        CORE.Instance.DelayedInvokation(0.1f, () => { SG.RefreshGroup(false); });
+        CORE.Instance.DelayedInvokation(0.1f, () => { AudioControl.Instance.SetVolume("Music",0.6f,false);SG.RefreshGroup(false); });
 
         if(!MoviePlayer.isPrepared)
         {

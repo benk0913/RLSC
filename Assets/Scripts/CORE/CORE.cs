@@ -1,6 +1,8 @@
 ﻿using EdgeworldBase;
 using I2.Loc;
+#if !UNITY_ANDROID && !UNITY_IOS
 using NewResolutionDialog.Scripts.Controller;
+#endif
 using Newtonsoft.Json;
 using SimpleJSON;
 #if !UNITY_ANDROID && !UNITY_IOS
@@ -320,6 +322,7 @@ public class CORE : MonoBehaviour
 
     void ValidateScreenRatio()
     {
+        #if !UNITY_ANDROID && !UNITY_IOS
         bool isScreenValid = (((float)Screen.width / (float)Screen.height) == 16f / 9f) || Mathf.Approximately(((float)Screen.width / (float)Screen.height), 16f / 9f);
 
         if(!isScreenValid)
@@ -349,6 +352,7 @@ public class CORE : MonoBehaviour
 
             //CORE.Instance.DelayedInvokation(1f, () => { GraphicSettingsHandler.Instance.SetResolution(1280, 720); });
         }
+        #endif
     }
     private void PhaseChange()
     {

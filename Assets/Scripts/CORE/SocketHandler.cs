@@ -16,6 +16,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+#if UNITY_ANDROID
+using GooglePlayGames;
+#endif
 
 public class SocketHandler : MonoBehaviour
 {
@@ -262,7 +265,7 @@ public class SocketHandler : MonoBehaviour
 
     public void GetSteamSession(Action OnComplete = null)
     {
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
+#if DEVELOPMENT_BUILD || UNITY_EDITOR || UNITY_ANDROID //TODO Remove UNITY ANDROID
         if (RandomUser) {
             OnComplete?.Invoke();
             return;
@@ -351,8 +354,10 @@ public class SocketHandler : MonoBehaviour
                 GetSteamSession(OnComplete);
             }
         });
+#elif UNITY_ANDROID
+        this.SessionTicket = PlayGamesPlatform.Instance.localUser.id;
 #else
-        this.SessionTicket = UnityEngine.Random.Range(0,9999).ToString();
+        this.SessionTicket = "unknown_"+UnityEngine.Random.Range(0,9999);
 #endif
 
 
