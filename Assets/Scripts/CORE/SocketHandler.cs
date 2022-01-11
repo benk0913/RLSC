@@ -18,6 +18,7 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 #if UNITY_ANDROID
 using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 #endif
 
 public class SocketHandler : MonoBehaviour
@@ -289,6 +290,9 @@ public class SocketHandler : MonoBehaviour
         float timeout = 10f;
         while(timeout > 0)
         {
+            #if UNITY_ANDROID || !UNITY_IOS
+            break;
+#endif
             timeout -= Time.deltaTime;
 
             if (SteamManager.Initialized)
@@ -355,8 +359,21 @@ public class SocketHandler : MonoBehaviour
             }
         });
 #elif UNITY_ANDROID
-        this.SessionTicket = PlayGamesPlatform.Instance.localUser.id;
+                     PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) =>
+                     {
+                        if(result == SignInStatus.Success)
+                        {
+                                this.SessionTicket = PlayGamesPlatform.Instance.GetIdToken();
+                                OnComplete?.Invoke();
+                                WarningWindowUI.Instance.Show("Test "+this.SessionTicket,null);
+                        }
+                        else
+                        {
+                            CORE.Instance.DelayedInvokation(1f,()=>ObtainSessionTicket(OnComplete));
+                        }
+                    });
 #else
+
         this.SessionTicket = "unknown_"+UnityEngine.Random.Range(0,9999);
 #endif
 
@@ -1050,10 +1067,17 @@ public class SocketHandler : MonoBehaviour
             label.SetLabel("<size=50>+EXP "+Mathf.RoundToInt(Mathf.Abs(prevExp - CurrentUser.actor.exp))+"</size>", Color.yellow);
 
             label.transform.position = CurrentUser.actor.ActorEntity.transform.position;
-            
-        }
 
-        DisplayEXPEntityUI.Instance.Show(CurrentUser.actor.exp);
+            HomingObject Orb =  ResourcesLoader.Instance.GetRecycledObject("EXP Orb").GetComponent<HomingObject>();
+            Orb.transform.position = CORE.PlayerActor.ActorEntity.transform.position;
+            Orb.HomeToTarget(Camera.main.ScreenToWorldPoint(DisplayEXPEntityUI.Instance.transform.position),()=>
+            {
+                DisplayEXPEntityUI.Instance.Show(CurrentUser.actor.exp);
+                Orb.gameObject.SetActive(false);
+                GameObject orbEXP = ResourcesLoader.Instance.GetRecycledObject("ExpOrbExplosion");
+                orbEXP.transform.position = Orb.transform.position;
+            });
+        }
     }
 
     public void OnLevelUp(string eventName, JSONNode data)

@@ -356,6 +356,7 @@ public class Actor : MonoBehaviour
         }
         else
         {
+
             if(Vector2.Distance(transform.position,Vector3.zero) > 5000f)
             {
                 if(CORE.Instance.ActiveSceneInfo.Portals.Count > 0)
@@ -1551,7 +1552,7 @@ public class Actor : MonoBehaviour
 
         ClientMovingTowardsDir = -1;
 
-        Rigid.position += Vector2.left * Time.deltaTime * State.Data.MovementSpeed;
+        Rigid.position += Vector2.left *  Time.deltaTime* State.Data.MovementSpeed;
     }
 
     public void AttemptMoveRight(bool throughCharm = false)

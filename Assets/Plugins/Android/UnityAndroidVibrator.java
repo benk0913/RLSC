@@ -6,23 +6,23 @@ import android.content.Context;
 
 public class UnityAndroidVibrator 
 {
-    private static UnityAndroidVibrator _instance;
+    private static UnityAndroidVibrator _instance = null;
 
     public UnityAndroidVibrator() {
     }
 
     public void VibrateForGivenDuration(int duration) {
-        Vibrator vibs = (Vibrator)UnityPlayer.currentActivity.getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+        Vibrator vibs = (Vibrator)UnityPlayer.currentActivity.getApplicationContext().getSystemService("vibrator");
         vibs.vibrate((long)duration);
     }
 
     public void StopVibrate() {
-        Vibrator vibs = (Vibrator)UnityPlayer.currentActivity.getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+        Vibrator vibs = (Vibrator)UnityPlayer.currentActivity.getApplicationContext().getSystemService("vibrator");
         vibs.cancel();
     }
 
     public void CustomVibrate(long[] Pattern) {
-        Vibrator vibs = (Vibrator)UnityPlayer.currentActivity.getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+        Vibrator vibs = (Vibrator)UnityPlayer.currentActivity.getApplicationContext().getSystemService("vibrator");
         vibs.vibrate(Pattern, -1);
     }
 

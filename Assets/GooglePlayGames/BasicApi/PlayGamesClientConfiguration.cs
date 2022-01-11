@@ -35,6 +35,8 @@ namespace GooglePlayGames.BasicApi
         /// </summary>
         public static readonly PlayGamesClientConfiguration DefaultConfiguration =
             new Builder()
+                .RequestServerAuthCode(false)
+                .RequestIdToken()
                 .Build();
 
         /// <summary>

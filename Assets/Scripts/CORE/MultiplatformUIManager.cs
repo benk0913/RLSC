@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EdgeworldBase;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -70,6 +71,7 @@ public class MultiplatformUIManager : MonoBehaviour
     public void Jump()
     {
         IsUniversalJump = true;
+        AudioControl.Instance.Play("IconEnter");
         UnityAndroidVibrator.VibrateForGivenDuration(100);
     }
 
@@ -81,12 +83,14 @@ public class MultiplatformUIManager : MonoBehaviour
     public void PickUp()
     {
         IsUniversalPickUp = true;
+        AudioControl.Instance.Play("IconEnter");
         UnityAndroidVibrator.VibrateForGivenDuration(100);
     }
 
     public void Interact()
     {
         IsUniversalInteract = true;
+        AudioControl.Instance.Play("IconEnter");
         UnityAndroidVibrator.VibrateForGivenDuration(100);
     }
 

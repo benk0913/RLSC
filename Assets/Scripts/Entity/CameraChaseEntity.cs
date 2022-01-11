@@ -50,7 +50,7 @@ public class CameraChaseEntity : MonoBehaviour
     {
         CurrentCam = GetComponent<Camera>();
         PostProccessHandler = GetComponent<Volume>();
-        PostProccessHandler.sharedProfile.components.Find(x => x.name == "Bloom");
+        // PostProccessHandler.sharedProfile.components.Find(x => x.name == "Bloom");
 
         #if UNITY_ANDROID || UNITY_IOS
         if(Speed > 0f)

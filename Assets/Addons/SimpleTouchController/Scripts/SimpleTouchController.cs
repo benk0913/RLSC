@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using EdgeworldBase;
 
 public class SimpleTouchController : MonoBehaviour {
 
@@ -29,6 +29,7 @@ public class SimpleTouchController : MonoBehaviour {
 	public void BeginDrag()
 	{
 		touchPresent = true;
+		AudioControl.Instance.Play("IconEnter");
 		if(TouchStateEvent != null)
 			TouchStateEvent(touchPresent);
 UnityAndroidVibrator.VibrateForGivenDuration(100);
@@ -38,11 +39,11 @@ UnityAndroidVibrator.VibrateForGivenDuration(100);
 	{
 		touchPresent = false;
 		movementVector = joystickArea.anchoredPosition = Vector2.zero;
-
+		AudioControl.Instance.Play("IconEnter");
 		if(TouchStateEvent != null)
 			TouchStateEvent(touchPresent);
 
-
+		
 	}
 
 	public void OnValueChanged(Vector2 value)
