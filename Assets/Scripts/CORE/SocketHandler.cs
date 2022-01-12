@@ -138,6 +138,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_change_name_prompt", OnActorChangeNamePrompt));
         SocketEventListeners.Add(new SocketEventListener("actor_change_name", OnActorChangeName));
         SocketEventListeners.Add(new SocketEventListener("promo_code_confirmed", OnPromoCodeConfirmed));
+        SocketEventListeners.Add(new SocketEventListener("confirm_pending_purchase", OnConfirmPendingPurchase));
 
         // Rolls
         SocketEventListeners.Add(new SocketEventListener("choose_item_roll", OnChooseItemRoll));
@@ -2044,6 +2045,11 @@ public class SocketHandler : MonoBehaviour
             WarningWindowUI.Instance.Show("PROMO CODE CONFIRMED",()=>{},true,null,"Great!");
         }
 
+    }
+
+    public void OnConfirmPendingPurchase(string eventName, JSONNode data)
+    {
+        CashShopWindowUI.Instance.OnCompletePendingPurchase?.Invoke();
     }
 
     public void OnChooseItemRoll(string eventName, JSONNode data)

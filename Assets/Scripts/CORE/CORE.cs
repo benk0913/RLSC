@@ -136,7 +136,8 @@ public class CORE : MonoBehaviour
 
     public WindowInterface CurrentWindow;
     public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
-
+    
+    public EQIapManager IAPManager;
     private void Awake()
     {
         Instance = this;
@@ -222,6 +223,7 @@ public class CORE : MonoBehaviour
 
 #if UNITY_ANDROID
         Application.targetFrameRate = 30;
+        IAPManager = new EQIapManager();
 #else
         Application.targetFrameRate = 60;
 #endif

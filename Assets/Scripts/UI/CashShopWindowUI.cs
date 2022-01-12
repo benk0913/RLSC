@@ -433,6 +433,9 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     }
 
+#region  IN APP PURCHASE 
+
+    public Action OnCompletePendingPurchase;
     public void BuyEQP(int dealIndex = 0)
     {
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
@@ -441,9 +444,13 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         node["dealIndex"].AsInt = dealIndex;
         SocketHandler.Instance.SendEvent("buy_eq", node);
         
-#if !UNITY_ANDROID && !UNITY_IOS
+#if !UNITY_ANDROID
         RegisterSteamInAppWindow();
+#else
+        EQIapManager.PurchaseItem(dealIndex.ToString());
 #endif
+
+        
     }
 
 
@@ -456,18 +463,25 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     }
     void OnMicroTxnAuthorizationResponse(MicroTxnAuthorizationResponse_t pCallback) 
     {
+        OnInAppPurchaseResponse(pCallback.m_ulOrderID.ToString(),pCallback.m_ulOrderID.ToString(),pCallback.m_bAuthorized == 1)
+    }
+#endif
+
+    public void OnInAppPurchaseResponse(string orderID, string transactionID, bool authorized, Action onCompletePendingPurchase = null)
+    {
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
 
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Checking Transaction", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
 
+        OnCompletePendingPurchase=onCompletePendingPurchase;
+
         JSONNode node = new JSONClass();
-        node["orderId"] = pCallback.m_ulOrderID.ToString();
-        node["transactionId"] = pCallback.m_ulOrderID.ToString();
-        node["authorized"].AsBool = pCallback.m_bAuthorized == 1;
+        node["orderId"] = orderID;
+        node["transactionId"] = transactionID;
+        node["authorized"].AsBool = authorized;
         SocketHandler.Instance.SendEvent("buy_eq_steam_answer", node);
     }
-#endif
-
+    
     public void ShowPromotionalCodePrompt()
     {
         CORE.Instance.CloseCurrentWindow();
@@ -478,4 +492,6 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
             SocketHandler.Instance.SendEvent("use_promo",node);
         });
     }
+
+#endregion
 }
