@@ -91,6 +91,30 @@ public class CGDatabaseEditor : Editor
             
         }
 
+        if (GUILayout.Button("CUSTOM SCRIPT - PARALAX"))
+        {
+            GameObject[] rootObjs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+
+            foreach (GameObject rootObj in rootObjs)
+            {
+                ParallaxTilingSprite[] tt = rootObj.GetComponentsInChildren<ParallaxTilingSprite>();
+
+                foreach (ParallaxTilingSprite t in tt)
+                {
+                    
+                    if(t.Speed > 0.19f)
+                    {
+                        t.Speed /= 10f;
+                        Debug.Log(t.Speed);
+                        EditorUtility.SetDirty(rootObj);
+                    }
+                }
+
+
+            }
+
+        }
+
         if (GUILayout.Button("CUSTOM SCRIPT 2"))
         {
             List<string> terms = db.Localizator.mSource.GetTermsList();

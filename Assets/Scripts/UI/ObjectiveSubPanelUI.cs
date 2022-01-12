@@ -37,6 +37,9 @@ public class ObjectiveSubPanelUI : MonoBehaviour, IPointerDownHandler
 
     public void SetInfo(QuestData quest)
     {
+        #if UNITY_ANDROID || UNITY_IOS
+        transform.localScale = Vector3.one * 2f;
+        #endif
         CurrentQuest = quest;
         Refresh();
     }

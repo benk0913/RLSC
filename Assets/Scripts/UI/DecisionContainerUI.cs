@@ -15,7 +15,6 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
 
     public bool IsActive = false;
 
-    public GameObject SkipText;
 
     Dialog CurrentDialog;
     private void Awake()
@@ -41,15 +40,6 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
         Show(actor,dialog.Decisions);
     }
 
-    public void ShowSkipText()
-    {
-        SkipText.SetActive(true);
-    }
-
-    public void HideSkipText()
-    {
-        SkipText.SetActive(false);
-    }
 
     public void Show(ActorData actor, List<DialogDecision> decisions)
     {
@@ -58,8 +48,6 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
         #if UNITY_ANDROID || UNITY_IOS
         this.transform.localScale = Vector3.one *0.5f;
         #endif
-
-        ShowSkipText();
 
         CurrentTarget = actor.ActorEntity.transform;
         CurrentDecisions = decisions;
@@ -95,7 +83,6 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
     {
         IsActive = false;
         this.gameObject.SetActive(false);
-        HideSkipText();
     }
 
     private void Update()

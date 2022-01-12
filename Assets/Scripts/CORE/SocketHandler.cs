@@ -291,9 +291,9 @@ public class SocketHandler : MonoBehaviour
         float timeout = 10f;
         while(timeout > 0)
         {
-            #if UNITY_ANDROID || !UNITY_IOS
+            #if UNITY_ANDROID || UNITY_IOS
             break;
-#endif
+            #endif
             timeout -= Time.deltaTime;
 
             if (SteamManager.Initialized)
@@ -331,6 +331,7 @@ public class SocketHandler : MonoBehaviour
     void ObtainSessionTicket(Action OnComplete)
     {
 #if !UNITY_ANDROID && !UNITY_IOS
+
         CORE.Instance.LogMessage("Getting Steam Session Ticket");
         this.OnCompleteSessionTicket = OnComplete;
         TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Getting Session...", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));

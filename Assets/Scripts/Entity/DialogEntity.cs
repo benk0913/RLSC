@@ -79,7 +79,6 @@ public class DialogEntity : MonoBehaviour
         CurrentBubble.gameObject.SetActive(true);
 
         DecisionContainerUI.Instance.Hide();
-        DecisionContainerUI.Instance.ShowSkipText();
 
         CurrentIndex = 0;
         
@@ -107,7 +106,6 @@ public class DialogEntity : MonoBehaviour
     public void Continue()
     {
         CurrentIndex++;
-        DecisionContainerUI.Instance.ShowSkipText();
 
         if (CurrentIndex >= CurrentDialog.DialogPieces.Count)
         {
