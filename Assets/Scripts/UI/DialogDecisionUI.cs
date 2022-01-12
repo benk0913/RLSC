@@ -38,6 +38,7 @@ public class DialogDecisionUI : MonoBehaviour
     {
         CurrentDecision = decision;
 
+
         Butt.interactable = true; 
         foreach (AbilityCondition condition in CurrentDecision.DisplayConditions)
         {

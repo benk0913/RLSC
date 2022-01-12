@@ -18,6 +18,9 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
     [SerializeField]
     Dropdown LanguageDropdown;
 
+    [SerializeField]
+    GameObject GraphicsDialog;
+
     public GameObject KeyboardBindings;
     public GameObject ControllerBindings;
 
@@ -91,6 +94,11 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
     public void Show(ActorData actorData, object data)
     {
         this.gameObject.SetActive(true);
+
+        #if UNITY_ANDROID || UNITY_IOS
+        GraphicsDialog.SetActive(false);
+        KeyboardBindings.SetActive(false);
+        #endif
 
         //TODO Yes, it's stupid, I know, remember to next time build your own settings menu.
         CORE.Instance.DelayedInvokation(0.1f,()=>{Canv.enabled = true;});

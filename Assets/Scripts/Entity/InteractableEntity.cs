@@ -240,4 +240,11 @@ public class InteractableEntity : MonoBehaviour
 
         OnUnhover?.Invoke();
     }
+
+    void OnMouseDown()
+    {
+        if(NearbyActor != CORE.PlayerActor.ActorEntity) return;
+        
+        Interact();
+    }
 }

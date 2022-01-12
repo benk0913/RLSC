@@ -56,7 +56,7 @@ public class SocketHandler : MonoBehaviour
 
     public string TutorialIndex;
 
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
+#if DEVELOPMENT_BUILD || UNITY_EDITOR || UNITY_ANDROID//TODO Remove unity android
     public bool RandomUser;
 #endif
 
@@ -1887,7 +1887,6 @@ public class SocketHandler : MonoBehaviour
         if(actorDat.IsPlayer)
         {
             CORE.Instance.IsPickingUpItem = false;
-            UnityAndroidVibrator.VibrateForGivenDuration(10);
         }
 
         item.Entity.BePickedBy(actorDat.ActorEntity);

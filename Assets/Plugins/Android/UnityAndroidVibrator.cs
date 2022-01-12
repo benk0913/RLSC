@@ -22,7 +22,9 @@ public class UnityAndroidVibrator : MonoBehaviour
     /// <param name="DurationInMilliseconds">Duration in milliseconds.</param>
     public static void VibrateForGivenDuration(int DurationInMilliseconds)
     {
+        #if UNITY_ANDROID || UNITY_EDITOR
         plugin.Call("VibrateForGivenDuration", DurationInMilliseconds);
+        #endif
 
     }
 
@@ -31,7 +33,9 @@ public class UnityAndroidVibrator : MonoBehaviour
     /// </summary>
     public static void StopVibrate()
     {
+        #if UNITY_ANDROID || UNITY_EDITOR
         plugin.Call("StopVibrate");
+        #endif
     }
 
 
@@ -44,7 +48,9 @@ public class UnityAndroidVibrator : MonoBehaviour
     /// <param name="Pattern">Pattern.</param>
     public static void CustomVibrate(long[] Pattern)
     {
+        #if UNITY_ANDROID || UNITY_EDITOR
         plugin.Call("CustomVibrate", Pattern);
+        #endif
     }
 
 

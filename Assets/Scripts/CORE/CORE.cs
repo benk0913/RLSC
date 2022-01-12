@@ -488,15 +488,34 @@ public class CORE : MonoBehaviour
 
     public void ShowSettingsWindow()
     {
+        if(SettingsMenuUI.Instance.gameObject.activeInHierarchy)
+        {
+            CloseCurrentWindow();
+            return;
+        }
+        
+
         ShowWindow(SettingsMenuUI.Instance);
     }
     public void ShowAbilitiesUiWindow()
     {
+        if(AbilitiesUI.Instance.IsOpen)
+        {
+            CloseCurrentWindow();
+            return;
+        }
+        
         ShowWindow(AbilitiesUI.Instance);
     }
 
     public void ShowInventoryUiWindow()
     {
+        if(InventoryUI.Instance.IsOpen)
+        {
+            CloseCurrentWindow();
+            return;
+        }
+
         ShowWindow(InventoryUI.Instance);
     }
 
@@ -531,6 +550,12 @@ public class CORE : MonoBehaviour
 
     public void ShowMapWindow()
     {
+        if(MapWindowUI.Instance.IsOpen)
+        {
+            CloseCurrentWindow();
+            return;
+        }
+        
         ShowWindow(MapWindowUI.Instance);
     }
 

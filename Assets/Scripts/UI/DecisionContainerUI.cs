@@ -54,6 +54,11 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
     public void Show(ActorData actor, List<DialogDecision> decisions)
     {
         this.gameObject.SetActive(true);
+                
+        #if UNITY_ANDROID || UNITY_IOS
+        this.transform.localScale = Vector3.one *0.5f;
+        #endif
+
         ShowSkipText();
 
         CurrentTarget = actor.ActorEntity.transform;
