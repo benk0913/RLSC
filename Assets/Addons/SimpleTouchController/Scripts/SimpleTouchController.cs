@@ -32,7 +32,6 @@ public class SimpleTouchController : MonoBehaviour {
 		AudioControl.Instance.Play("IconEnter");
 		if(TouchStateEvent != null)
 			TouchStateEvent(touchPresent);
-UnityAndroidVibrator.VibrateForGivenDuration(10);
 	}
 
 	public void EndDrag()

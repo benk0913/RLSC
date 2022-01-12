@@ -72,7 +72,6 @@ public class MultiplatformUIManager : MonoBehaviour
     {
         IsUniversalJump = true;
         AudioControl.Instance.Play("IconEnter");
-        UnityAndroidVibrator.VibrateForGivenDuration(10);
     }
 
     public void DropDown()
@@ -84,20 +83,18 @@ public class MultiplatformUIManager : MonoBehaviour
     {
         IsUniversalPickUp = true;
         AudioControl.Instance.Play("IconEnter");
-        UnityAndroidVibrator.VibrateForGivenDuration(10);
+        
     }
 
     public void Interact()
     {
         IsUniversalInteract = true;
         AudioControl.Instance.Play("IconEnter");
-        UnityAndroidVibrator.VibrateForGivenDuration(10);
     }
 
     public void Chat()
     {
         IsUniversalToggleChat = true;
-        UnityAndroidVibrator.VibrateForGivenDuration(10);
     }
     
 }

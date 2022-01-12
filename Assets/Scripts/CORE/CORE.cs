@@ -220,8 +220,11 @@ public class CORE : MonoBehaviour
 #endif
 #endif
 
-
+#if UNITY_ANDROID
+        Application.targetFrameRate = 30;
+#else
         Application.targetFrameRate = 60;
+#endif
         System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
 
         Time.fixedDeltaTime = 0.01666667f;

@@ -808,6 +808,9 @@ public class Actor : MonoBehaviour
             spriteColorGroup.ResetColor();
         });
 
+        
+
+
 
         Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f,(float)State.Data.hp/ (float)State.Data.MaxHP));
 
@@ -862,6 +865,7 @@ public class Actor : MonoBehaviour
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
         Shadow.gameObject.SetActive(false);
+        
 
         if(this.State.Data.ClassJobReference.OnDeathParams != null && this.State.Data.ClassJobReference.OnDeathParams.Count > 0)
         {
@@ -878,6 +882,7 @@ public class Actor : MonoBehaviour
             if (State.Data.isMob && !AIControl.IsBoss)
             {
                 StartCoroutine(FadeAwayRoutine());
+                UnityAndroidVibrator.VibrateForGivenDuration(10);
             }
         }
         else

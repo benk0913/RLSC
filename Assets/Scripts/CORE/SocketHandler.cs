@@ -1096,10 +1096,11 @@ public class SocketHandler : MonoBehaviour
             int newSpellPosition = actorDat.level - 2 + CORE.Instance.Data.content.AbilitiesInitCount;
             Ability newAbility = CORE.Instance.Data.content.Abilities.Find(x => x.name == actorDat.ClassJobReference.Abilities[newSpellPosition]);
 
+            UnityAndroidVibrator.VibrateForGivenDuration(10);
+            
             if (newAbility != null)
             {
                 CORE.Instance.ShowScreenEffect("ScreenEffectGainSpell", newAbility);
-
             }
 
             if (actorDat.abilities.Count < CORE.Instance.Data.content.AbilitiesMaxCount)
@@ -1233,6 +1234,7 @@ public class SocketHandler : MonoBehaviour
         node["itemId"] = itemId;
 
         SocketHandler.Instance.SendEvent("picked_item", node);
+        
     }
 
     public void SendDroppedItem(int slotIndex, int amount = 1)
@@ -1884,9 +1886,11 @@ public class SocketHandler : MonoBehaviour
         if(actorDat.IsPlayer)
         {
             CORE.Instance.IsPickingUpItem = false;
+            UnityAndroidVibrator.VibrateForGivenDuration(10);
         }
 
         item.Entity.BePickedBy(actorDat.ActorEntity);
+        
         if (item.Data.Type.name == "Money")
         {
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up") +" " + String.Format("{0:n0}", item.amount) + " "+CORE.QuickTranslate("coins")+"</color>");

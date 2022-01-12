@@ -120,6 +120,9 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     [Obsolete("Do not call Show directly. Call `CORE.Instance.ShowWindow()` instead.")]
     public void Show(ActorData actorData, object data = null)
     {
+        #if UNITY_ANDROID || UNITY_IOS
+        transform.localScale *= 1.5f;
+        #endif
         CORE.Instance.SubscribeToEvent("CashShopUpdated", RefreshUI);
         CORE.Instance.SubscribeToEvent("InventoryUpdated",RefreshEQPState);
 
