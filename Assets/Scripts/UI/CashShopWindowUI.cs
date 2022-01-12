@@ -463,7 +463,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     }
     void OnMicroTxnAuthorizationResponse(MicroTxnAuthorizationResponse_t pCallback) 
     {
-        OnInAppPurchaseResponse(pCallback.m_ulOrderID.ToString(),pCallback.m_ulOrderID.ToString(),pCallback.m_bAuthorized == 1)
+        OnInAppPurchaseResponse(pCallback.m_ulOrderID.ToString(),pCallback.m_ulOrderID.ToString(),pCallback.m_bAuthorized == 1);
     }
 #endif
 
