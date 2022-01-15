@@ -7,6 +7,7 @@ using UnityEditor.SceneManagement;
 using System.Collections.Generic;
 using I2.Loc;
 using System.Linq;
+using UnityEngine.Rendering.Universal;
 
 [CustomEditor(typeof(CGDatabase))]
 public class CGDatabaseEditor : Editor
@@ -91,23 +92,20 @@ public class CGDatabaseEditor : Editor
             
         }
 
-        if (GUILayout.Button("CUSTOM SCRIPT - PARALAX"))
+        if (GUILayout.Button("CUSTOM SCRIPT -volumetric"))
         {
             GameObject[] rootObjs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
 
             foreach (GameObject rootObj in rootObjs)
             {
-                ParallaxTilingSprite[] tt = rootObj.GetComponentsInChildren<ParallaxTilingSprite>();
+                Light2D[] tt = rootObj.GetComponentsInChildren<Light2D>();
 
-                foreach (ParallaxTilingSprite t in tt)
+                foreach (Light2D t in tt)
                 {
+                    t.volumeIntensityEnabled  = false;
                     
-                    if(t.Speed > 0.19f)
-                    {
-                        t.Speed /= 10f;
-                        Debug.Log(t.Speed);
-                        EditorUtility.SetDirty(rootObj);
-                    }
+                    Debug.Log(t.gameObject.name);
+                    EditorUtility.SetDirty(rootObj);
                 }
 
 

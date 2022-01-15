@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Experimental.Rendering.Universal;
+
 
 public class TimePhaseEntity : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class TimePhaseEntity : MonoBehaviour
 
     #region DefaultBehaviour
     public bool DefaultHandler = false;
-    public Light2D DefaultSun;
+    public UnityEngine.Rendering.Universal.Light2D DefaultSun;
     public Color DefaultSunColor;
     public Color DefaultNightSunColor;
 
@@ -22,11 +22,11 @@ public class TimePhaseEntity : MonoBehaviour
     {
         if (DefaultHandler && DefaultSun == null)
         {
-            Light2D[] lights = FindObjectsOfType<Light2D>();
+            UnityEngine.Rendering.Universal.Light2D[] lights = FindObjectsOfType<UnityEngine.Rendering.Universal.Light2D>();
 
-            foreach(Light2D light in lights)
+            foreach(UnityEngine.Rendering.Universal.Light2D light in lights)
             {
-                if(light.lightType == Light2D.LightType.Global)
+                if(light.lightType == UnityEngine.Rendering.Universal.Light2D.LightType.Global)
                 {
                     DefaultSun = light;
                     DefaultSunColor = DefaultSun.color;
