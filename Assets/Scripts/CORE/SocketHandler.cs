@@ -369,6 +369,7 @@ public class SocketHandler : MonoBehaviour
                         if(!string.IsNullOrEmpty(this.SessionTicket))
                         {
                             OnComplete?.Invoke();
+                            return;
                         }
                     });
                      PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) =>
