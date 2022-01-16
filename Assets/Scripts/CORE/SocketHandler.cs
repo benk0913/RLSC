@@ -1069,11 +1069,12 @@ public class SocketHandler : MonoBehaviour
             label.SetLabel("<size=50>+EXP "+Mathf.RoundToInt(Mathf.Abs(prevExp - CurrentUser.actor.exp))+"</size>", Color.yellow);
 
             label.transform.position = CurrentUser.actor.ActorEntity.transform.position;
-
+            
             HomingObject Orb =  ResourcesLoader.Instance.GetRecycledObject("EXP Orb").GetComponent<HomingObject>();
             Orb.transform.position = CORE.PlayerActor.ActorEntity.transform.position;
             Orb.HomeToTarget(Camera.main.ScreenToWorldPoint(DisplayEXPEntityUI.Instance.transform.position),()=>
             {
+                AudioControl.Instance.Play("sound_reward2");
                 DisplayEXPEntityUI.Instance.Show(CurrentUser.actor.exp);
                 Orb.gameObject.SetActive(false);
                 GameObject orbEXP = ResourcesLoader.Instance.GetRecycledObject("ExpOrbExplosion");

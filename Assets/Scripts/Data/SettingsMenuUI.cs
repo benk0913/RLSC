@@ -95,16 +95,19 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
     {
         this.gameObject.SetActive(true);
 
-        #if UNITY_ANDROID || UNITY_IOS
-        GraphicsDialog.SetActive(false);
-        KeyboardBindings.SetActive(false);
-        #endif
 
         //TODO Yes, it's stupid, I know, remember to next time build your own settings menu.
         CORE.Instance.DelayedInvokation(0.1f,()=>{Canv.enabled = true;});
 
         KeyboardBindings.SetActive(!CORE.Instance.IsUsingJoystick);
         ControllerBindings.SetActive(CORE.Instance.IsUsingJoystick);
+
+
+        #if UNITY_ANDROID || UNITY_IOS
+        GraphicsDialog.SetActive(false);
+        KeyboardBindings.SetActive(false);
+        ControllerBindings.SetActive(false);
+        #endif
 
         RegionDropdown.ClearOptions();
         List<Dropdown.OptionData> regionOptions = new List<Dropdown.OptionData>();

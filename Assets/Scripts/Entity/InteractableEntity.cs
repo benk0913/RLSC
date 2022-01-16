@@ -213,6 +213,15 @@ public class InteractableEntity : MonoBehaviour
 
         NearbyActor = nearActor;
 
+        if(Item)
+        {
+            MultiplatformUIManager.SetCurrentItem(this);
+        }
+        else
+        {
+            MultiplatformUIManager.SetCurrentInteractable(this);
+        }
+
         if(!CORE.IsMachinemaMode)
             OnHover?.Invoke();
     }
@@ -237,6 +246,21 @@ public class InteractableEntity : MonoBehaviour
         }
 
         NearbyActor = null;
+
+        if(Item)
+        {
+            if(MultiplatformUIManager.CurrentItem == this)
+            {
+                MultiplatformUIManager.SetCurrentItem(null);
+            }
+        }
+        else
+        {
+            if(MultiplatformUIManager.CurrentInteractable == this)
+            {
+                MultiplatformUIManager.SetCurrentInteractable(null);
+            }
+        }
 
         OnUnhover?.Invoke();
     }

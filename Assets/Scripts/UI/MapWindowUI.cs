@@ -60,7 +60,10 @@ public class MapWindowUI : MonoBehaviour, WindowInterface
         IsOpen = true;
 
         this.gameObject.SetActive(true);
-        
+
+#if UNITY_ANDROID || UNITY_IOS
+        transform.localScale = Vector3.one * 1.075f;
+#endif   
         
         AudioControl.Instance.Play(OpenSound);
 
