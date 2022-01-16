@@ -226,6 +226,8 @@ public class CashShopDatabase
         public float CostInUSD;
         public int EQPValue;
     }
+
+    public string PlayPackageName;
 }
 
 [Serializable]
