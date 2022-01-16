@@ -439,16 +439,23 @@ public class SocketHandler : MonoBehaviour
         
         node["skipTutorial"] = SessionTicket;
         node["tutorialVersion"] = Application.version;
-        
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
-    if (RandomUser) {
-    #if DEVELOPMENT_BUILD
-        node["randomUser"] = "dev";
-    #elif UNITY_EDITOR
-        node["randomUser"] = "editor";
+    #if UNITY_ANDROID
+        node["tutorialEngine"] = "A";
+    #elif UNITY_IOS
+        node["tutorialEngine"] = "I";
+    #else
+        node["tutorialEngine"] = "S";
     #endif
-    }
-#endif
+        
+    #if DEVELOPMENT_BUILD || UNITY_EDITOR
+        if (RandomUser) {
+        #if DEVELOPMENT_BUILD
+            node["randomUser"] = "dev";
+        #elif UNITY_EDITOR
+            node["randomUser"] = "editor";
+        #endif
+        }
+    #endif
 
         Action loginAction = () =>
         {
