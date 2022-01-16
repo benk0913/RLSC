@@ -32,7 +32,12 @@ public class PartyActivePanelUI : MonoBehaviour
 
     void OnPartyUpdated()
     {
-        if(CORE.Instance.CurrentParty == null)
+        if(CORE.Instance == null)
+        {
+            return;
+        }
+
+        if(CORE.Instance.CurrentParty == null || CORE.Instance.CurrentParty.members == null)
         {
             checksumString = "";
             HideActivePanel();

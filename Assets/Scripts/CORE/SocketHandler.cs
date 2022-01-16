@@ -1,4 +1,4 @@
-﻿using BestHTTP.SocketIO;
+using BestHTTP.SocketIO;
 using BestHTTP.SocketIO.Events;
 using EdgeworldBase;
 using Newtonsoft.Json;
@@ -361,17 +361,47 @@ public class SocketHandler : MonoBehaviour
             }
         });
 #elif UNITY_ANDROID
+                    
+                    PlayGamesPlatform.Activate();
+                    Social.Active.Authenticate(Social.localUser,(bool result, string reason)=>
+                    {
+                        this.SessionTicket = PlayGamesPlatform.Instance.GetIdToken();
+                        if(!string.IsNullOrEmpty(this.SessionTicket))
+                        {
+                            OnComplete?.Invoke();
+                        }
+                    });
                      PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) =>
                      {
                         if(result == SignInStatus.Success)
                         {
                                 this.SessionTicket = PlayGamesPlatform.Instance.GetIdToken();
                                 OnComplete?.Invoke();
-                                WarningWindowUI.Instance.Show("Test "+this.SessionTicket,null);
                         }
                         else
                         {
-                            CORE.Instance.DelayedInvokation(1f,()=>ObtainSessionTicket(OnComplete));
+                            this.SessionTicket = PlayGamesPlatform.Instance.GetIdToken();
+                            if(!string.IsNullOrEmpty(this.SessionTicket))
+                            {
+                                OnComplete?.Invoke();
+                            }
+                            else
+                            {
+                                CORE.Instance.LogMessageError("GooglePlay - Auth Failed! "+result.ToString());
+                                WarningWindowUI.Instance.Show("Sign In Failed! "+result,
+                                ()=>
+                                {
+                                    CORE.Instance.DelayedInvokation(1f,()=>ObtainSessionTicket(OnComplete));
+                                },
+                                false,
+                                ()=>
+                                {
+                                    
+                                    Application.Quit();
+                                });
+                                
+                            }
+                            
                         }
                     });
 #else
