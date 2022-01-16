@@ -10,7 +10,7 @@ public class ServerEnvironment
     //[HideInInspector]
     public string Region = "us";
     
-    private string LocalHostUrl = "http://localhost:5000";
+    private string LocalHostUrl = "http://192.168.0.168:5000";
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
     private string DevHostUrl = "https://lul2.herokuapp.com";
 #endif
