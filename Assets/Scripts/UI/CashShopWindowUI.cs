@@ -87,8 +87,25 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
         Hide();
     }
 
+    void OnEnable()
+    {
+        if(SimpleTouchController.Instance != null)
+        {
+            SimpleTouchController.Instance.gameObject.SetActive(false);
+        }
+    }
     void OnDisable()
     {
+        if(SimpleTouchController.Instance != null)
+        {
+            SimpleTouchController.Instance.gameObject.SetActive(true);
+        }
+
+        if(ResourcesLoader.Instance != null && ResourcesLoader.Instance.LoadingWindowObject.gameObject.activeInHierarchy)
+        {
+            ResourcesLoader.Instance.LoadingWindowObject.gameObject.SetActive(false);
+        }
+
         OnHide?.Invoke();
 
         if(CashShopWarningWindowUI.Instance != null)
@@ -121,7 +138,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     public void Show(ActorData actorData, object data = null)
     {
         #if UNITY_ANDROID || UNITY_IOS
-        transform.localScale = Vector3.one * 1.5f;
+        transform.localScale = Vector3.one;// * 1.5f;
         #endif
         CORE.Instance.SubscribeToEvent("CashShopUpdated", RefreshUI);
         CORE.Instance.SubscribeToEvent("InventoryUpdated",RefreshEQPState);

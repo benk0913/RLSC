@@ -5,7 +5,7 @@ using EdgeworldBase;
 
 public class SimpleTouchController : MonoBehaviour {
 
-
+	public static SimpleTouchController Instance;
 	// PUBLIC
 	public delegate void TouchDelegate(Vector2 value);
 	public event TouchDelegate TouchEvent;
@@ -25,6 +25,10 @@ public class SimpleTouchController : MonoBehaviour {
 		get { return movementVector;}
 	}
 
+	void Awake()
+	{
+		Instance = this;
+	}
 
 	public void BeginDrag()
 	{

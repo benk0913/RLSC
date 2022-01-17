@@ -973,6 +973,7 @@ public class CORE : MonoBehaviour
             //TODO Remove HACK
             if(!ExpeditionQueTimerUI.Instance.IsSearching && !autoExpededOnce)
             {
+                AudioControl.Instance.SetVolume("Music",0.6f,false);
                 SocketHandler.Instance.SendStartExpeditionQueue("Forest");
                 CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
                     autoExpededOnce = true;

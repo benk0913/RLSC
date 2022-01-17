@@ -1,3 +1,4 @@
+using EdgeworldBase;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
@@ -71,6 +72,7 @@ public class EQIapManager : IStoreListener {
     /// </summary>
     public void OnPurchaseFailed (Product i, PurchaseFailureReason p)
     {
+        ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
         CORE.Instance.LogMessageError("EQIapManager Purchase ERROR - "+i.ToString()+" | "+p.ToString());
     }
 }

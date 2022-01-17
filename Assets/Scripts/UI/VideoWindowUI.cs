@@ -42,6 +42,7 @@ public class VideoWindowUI : MonoBehaviour
     }
     public void Hide(bool accepted = false)
     {
+        StopAllCoroutines();
         MoviePlayer.Stop();
 
 

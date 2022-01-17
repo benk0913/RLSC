@@ -13099,7 +13099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ServerEnvironment:
-    Environment: Local
+    Environment: Dev
     Region: 
   CurrentUser:
     actor:
@@ -13210,7 +13210,7 @@ MonoBehaviour:
   UniqueNumber: 0
   SessionTicket: 
   TutorialIndex: 
-  RandomUser: 0
+  RandomUser: 1
 --- !u!114 &231128633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13352,6 +13352,7 @@ MonoBehaviour:
   NextScenePrediction: 
   IsAppInBackground: 0
   CurrentLanguage: 
+  pendingJoinParty: 
 --- !u!114 &231128634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13469,6 +13470,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2af73fb793cbfc4b90421754d5baa0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Instances: []
+  QuizzWhizzQuestionsAsked: []
 --- !u!82 &231128636
 AudioSource:
   m_ObjectHideFlags: 0
@@ -112823,7 +112826,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1105147700}
   m_HandleRect: {fileID: 1105147699}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
