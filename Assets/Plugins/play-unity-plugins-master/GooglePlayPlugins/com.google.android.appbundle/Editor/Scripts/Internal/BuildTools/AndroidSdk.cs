@@ -124,7 +124,7 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
 #endif
         }
 
-        // TODO: Move this to a helper class and move the JDK portion of OverrideEditorPreferences into JavaUtils.
+        // TODO(b/189958664): Move this to a helper class and move the JDK portion of OverrideEditorPreferences into JavaUtils.
         private static void OverrideEditorPreference(
             string environmentVariableKey, Func<string> getPreference, Action<string> setPreference)
         {

@@ -85,11 +85,11 @@ namespace Google.Android.AppBundle.Editor.Internal.AssetPacks
                 "below. Update the \"Delivery Mode\" to include an AssetBundle in AAB builds.");
             EditorGUILayout.Space();
 
-            // TODO: Remove this #if once TCF support is available in Play, to make TCF targeting discoverable.
+            // TODO(b/144677274): Remove this #if once TCF support is available in Play, to make TCF targeting discoverable.
 #if SHOW_TCF_IN_UI
             if (_assetDeliveryConfig.Folders.Count != 0 && !_assetDeliveryConfig.HasTextureCompressionFormatTargeting())
             {
-                // TODO: Add link to public documentation when available.
+                // TODO(b/144677274): Add link to public documentation when available.
                 EditorGUILayout.HelpBox(
                     "These AssetBundles don't specify texture compression format targeting. Generate additional " +
                     "AssetBundles into folders ending with #tcf_xxx (e.g. AssetBundles#tcf_astc), and the " +

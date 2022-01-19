@@ -18,7 +18,7 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
     /// Provided methods on 2017.4 and earlier that call the Android SDK build tool "apksigner" to verify whether an APK
     /// complies with <a href="https://source.android.com/security/apksigning/v2">APK Signature Scheme V2</a>.
     /// </summary>
-    // TODO: Needed for 1.x API compatibility. Should be removed with 2.x.
+    // TODO(b/189958664): Needed for 1.x API compatibility. Should be removed with 2.x.
     public class ApkSigner : IBuildTool
     {
         /// <summary>

@@ -32,6 +32,9 @@ public class MainMenuUI : MonoBehaviour
     TextMeshProUGUI VersionLabel;
 
     [SerializeField]
+    TextMeshProUGUI VersionCode;
+
+    [SerializeField]
     GameObject ClassSelectionPanel;
 
     [SerializeField]
@@ -164,6 +167,7 @@ public class MainMenuUI : MonoBehaviour
     {
         SocketHandler.Instance.SendCreateCharacter(element, null, () =>
         {
+            AudioControl.Instance.SetVolume("Music",0.6f,true);
             SocketHandler.Instance.SendSelectCharacter();
             CORE.Instance.CheckOOGInvitations();
         });

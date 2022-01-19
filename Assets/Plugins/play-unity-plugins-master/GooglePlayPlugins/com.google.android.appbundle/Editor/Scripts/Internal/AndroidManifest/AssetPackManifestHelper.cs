@@ -32,7 +32,7 @@ namespace Google.Android.AppBundle.Editor.Internal.AndroidManifest
         public static XDocument CreateAssetPackManifestXDocument(
             string packageName, string assetPackName, AssetPackDeliveryMode deliveryMode)
         {
-            // TODO: Add support for <dist:instant-delivery>
+            // TODO(b/129943210): Add support for <dist:instant-delivery>
             var deliveryTypeXName = ManifestConstants.DistDeliveryXName;
             XName deliveryModeXName;
             switch (deliveryMode)

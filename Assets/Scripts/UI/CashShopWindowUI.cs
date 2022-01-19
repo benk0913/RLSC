@@ -486,17 +486,20 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void OnInAppPurchaseResponse(string orderID, string transactionID, bool authorized, Action onCompletePendingPurchase = null)
     {
-        ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
 
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Checking Transaction", Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
+        CORE.Instance.ConditionalInvokation((x)=>{return CORE.PlayerActor!=null;},()=>
+        {
+            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Checking Transaction "+orderID + " | " + transactionID  + " | " + authorized , Colors.AsColor(Colors.COLOR_GOOD), 3f));
 
-        OnCompletePendingPurchase=onCompletePendingPurchase;
+            OnCompletePendingPurchase=onCompletePendingPurchase;
 
-        JSONNode node = new JSONClass();
-        node["orderId"] = orderID;
-        node["transactionId"] = transactionID;
-        node["authorized"].AsBool = authorized;
-        SocketHandler.Instance.SendEvent("buy_eq_steam_answer", node);
+            JSONNode node = new JSONClass();
+            node["orderId"] = orderID;
+            node["transactionId"] = transactionID;
+            node["authorized"].AsBool = authorized;
+            SocketHandler.Instance.SendEvent("buy_eq_steam_answer", node);
+        });
     }
     
     public void ShowPromotionalCodePrompt()

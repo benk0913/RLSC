@@ -41,7 +41,7 @@ namespace Google.Play.Instant.Editor.Internal
         void IBuildAndRunExtension.BuildAndRun()
         {
             var buildToolLogger = new BuildToolLogger();
-            // TODO Build an app bundle once bundletool supports locally testing asset packs on instant.
+            // TODO(b/149439143) Build an app bundle once bundletool supports locally testing asset packs on instant.
             BuildAndRunApk(buildToolLogger);
         }
 

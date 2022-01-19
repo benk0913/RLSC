@@ -36,7 +36,7 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
             _jarSigner = jarSigner;
         }
 
-        // TODO: add check for PlayerSettings.productName
+        // TODO(b/130759565): add check for PlayerSettings.productName
         public virtual bool Initialize(BuildToolLogger buildToolLogger)
         {
             // Try to determine whether this is intended to be a release build.

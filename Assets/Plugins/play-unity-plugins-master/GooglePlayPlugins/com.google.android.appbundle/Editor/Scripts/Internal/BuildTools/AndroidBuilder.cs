@@ -73,7 +73,7 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
             _androidSdkPlatform = androidSdkPlatform;
         }
 
-        // TODO: Needed for 1.x API compatibility. Should be removed with 2.x.
+        // TODO(b/189958664): Needed for 1.x API compatibility. Should be removed with 2.x.
         public AndroidBuilder(AndroidSdkPlatform androidSdkPlatform, ApkSigner apkSigner) : this(androidSdkPlatform)
         {
         }
@@ -95,7 +95,7 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
                 return false;
             }
 
-            // TODO: remove this check if we add support for exporting a Gradle project.
+            // TODO(b/154937088): remove this check if we add support for exporting a Gradle project.
             if (EditorUserBuildSettings.exportAsGoogleAndroidProject)
             {
                 const string message = "This build doesn't support exporting to Android Studio.\n\n" +
@@ -146,7 +146,7 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
             return _androidSdkPlatform.Initialize(buildToolLogger);
         }
 
-        // TODO: Needed for 1.x API compatibility. Should be removed with 2.x.
+        // TODO(b/189958664): Needed for 1.x API compatibility. Should be removed with 2.x.
         public virtual bool BuildAndSign(BuildPlayerOptions buildPlayerOptions)
         {
             return Build(buildPlayerOptions).Succeeded;

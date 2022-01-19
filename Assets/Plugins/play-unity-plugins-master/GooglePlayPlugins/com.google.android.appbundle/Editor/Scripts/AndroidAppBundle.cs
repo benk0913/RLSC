@@ -47,7 +47,7 @@ namespace Google.Android.AppBundle.Editor
         /// </summary>
         public static bool IsValidModuleName(string name)
         {
-            // TODO: enforce a name length limit if we make it much smaller than 65535.
+            // TODO(b/131241163): enforce a name length limit if we make it much smaller than 65535.
             return name != null
                    && NameRegex.IsMatch(name)
                    && CheckReservedName(name, BaseModuleName)
@@ -58,7 +58,7 @@ namespace Google.Android.AppBundle.Editor
         /// Always returns true. Previously indicated if this version of the Unity Editor has native support for
         /// building an Android App Bundle.
         /// </summary>
-        // TODO: Needed for 1.x API compatibility. Should be removed with 2.x.
+        // TODO(b/189958664): Needed for 1.x API compatibility. Should be removed with 2.x.
         [Obsolete("This is always true")]
         public static bool HasNativeBuildSupport()
         {
@@ -68,7 +68,7 @@ namespace Google.Android.AppBundle.Editor
         /// <summary>
         /// Returns EditorUserBuildSettings.buildAppBundle if it is defined and false otherwise.
         /// </summary>
-        // TODO: Needed for 1.x API compatibility. Should be removed with 2.x.
+        // TODO(b/189958664): Needed for 1.x API compatibility. Should be removed with 2.x.
         [Obsolete("Use EditorUserBuildSettings.buildAppBundle directly instead")]
         public static bool IsNativeBuildEnabled()
         {
@@ -78,7 +78,7 @@ namespace Google.Android.AppBundle.Editor
         /// <summary>
         /// Enable the EditorUserBuildSettings.buildAppBundle field if it is defined.
         /// </summary>
-        // TODO: Needed for 1.x API compatibility. Should be removed with 2.x.
+        // TODO(b/189958664): Needed for 1.x API compatibility. Should be removed with 2.x.
         [Obsolete("Use EditorUserBuildSettings.buildAppBundle directly instead")]
         public static void EnableNativeBuild()
         {
@@ -88,7 +88,7 @@ namespace Google.Android.AppBundle.Editor
         /// <summary>
         /// Disable the EditorUserBuildSettings.buildAppBundle field if it is defined.
         /// </summary>
-        // TODO: Needed for 1.x API compatibility. Should be removed with 2.x.
+        // TODO(b/189958664): Needed for 1.x API compatibility. Should be removed with 2.x.
         [Obsolete("Use EditorUserBuildSettings.buildAppBundle directly instead")]
         public static void DisableNativeBuild()
         {

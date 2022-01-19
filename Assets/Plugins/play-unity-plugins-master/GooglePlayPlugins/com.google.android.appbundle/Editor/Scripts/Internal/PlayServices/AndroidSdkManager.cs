@@ -682,7 +682,7 @@ namespace Google.Android.AppBundle.Editor.Internal.PlayServices
                 // If this is the start of a package description, add a package.
                 match = PACKAGE_ID_REGEX.Match(line);
                 if (match.Success) {
-                    // TODO: Convert the legacy package name to a new package name.
+                    // TODO(smiles): Convert the legacy package name to a new package name.
                     currentPackage = new AndroidSdkPackage { LegacyName = match.Groups[1].Value };
                     packages[currentPackage.Name].Add(currentPackage);
                     continue;

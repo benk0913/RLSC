@@ -361,26 +361,30 @@ public class SocketHandler : MonoBehaviour
             }
         });
 #elif UNITY_ANDROID
-                    
+                    PlayGamesPlatform.DebugLogEnabled = CORE.Instance.DEBUG;
                     PlayGamesPlatform.Activate();
-                    Social.Active.Authenticate(Social.localUser,(bool result, string reason)=>
-                    {
-                        this.SessionTicket = PlayGamesPlatform.Instance.GetIdToken();
-                        if(!string.IsNullOrEmpty(this.SessionTicket))
-                        {
-                            OnComplete?.Invoke();
-                            return;
-                        }
-                    });
-                     PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) =>
+                    // Social.Active.Authenticate(Social.localUser,(bool result, string reason)=>
+                    // {
+                    //     this.SessionTicket = PlayGamesPlatform.Instance.GetIdToken();
+                    //     if(!string.IsNullOrEmpty(this.SessionTicket))
+                    //     {
+                    //         OnComplete?.Invoke();
+                    //         return;
+                    //     }
+                    // });
+                    TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Authenticating..." , Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
+
+                     PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, (result) =>
                      {
-                        if(result == SignInStatus.Success)
+                        if(result == SignInStatus.Success || PlayGamesPlatform.Instance.IsAuthenticated())
                         {
+                            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Success..." , Colors.AsColor(Colors.COLOR_GOOD), 3f, true));
                                 this.SessionTicket = PlayGamesPlatform.Instance.GetIdToken();
                                 OnComplete?.Invoke();
                         }
                         else
                         {
+                            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Auth Failed..." , Colors.AsColor(Colors.COLOR_BAD), 3f, true));
                             this.SessionTicket = PlayGamesPlatform.Instance.GetIdToken();
                             if(!string.IsNullOrEmpty(this.SessionTicket))
                             {
@@ -404,7 +408,7 @@ public class SocketHandler : MonoBehaviour
                             }
                             
                         }
-                    });
+                });
 #else
 
         this.SessionTicket = "unknown_"+UnityEngine.Random.Range(0,9999);

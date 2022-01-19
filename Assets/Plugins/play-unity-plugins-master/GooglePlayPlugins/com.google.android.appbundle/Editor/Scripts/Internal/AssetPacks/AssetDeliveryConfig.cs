@@ -46,7 +46,7 @@ namespace Google.Android.AppBundle.Editor.Internal.AssetPacks
         /// </summary>
         public IDictionary<string, AssetBundlePack> AssetBundlePacks { get; private set; }
 
-        // TODO: add support for managing this type of asset pack in the UI.
+        // TODO(b/150701341): add support for managing this type of asset pack in the UI.
         public List<SerializableAssetPack> rawAssetsPacks;
 
         private readonly IEnumerable<IAssetPackValidator> _packValidators;

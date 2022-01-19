@@ -250,7 +250,7 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
                 metadataArgumentBuilder.AppendFormat(" --metadata-file={0}", metadataFile);
             }
 
-            // TODO: fix bundletool support for quoted paths around moduleFiles.
+            // TODO(b/128882014): fix bundletool support for quoted paths around moduleFiles.
             return Run(
                 "build-bundle --overwrite --config={0} --modules={1} --output={2}{3}",
                 CommandLine.QuotePath(bundleConfigJsonFile),

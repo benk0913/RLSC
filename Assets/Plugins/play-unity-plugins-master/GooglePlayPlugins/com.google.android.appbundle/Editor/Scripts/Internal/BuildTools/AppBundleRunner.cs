@@ -47,7 +47,7 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
         /// installs the proper apks,
         /// then runs the app on device.
         /// Note: This is designed to run in the main thread.
-        /// TODO: Explore running this in a background thread.
+        /// TODO(b/139089705): Explore running this in a background thread.
         /// </summary>
         public void RunBundle(string aabFilePath, BundletoolBuildMode buildMode)
         {
@@ -68,7 +68,7 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
 
             Debug.Log("Installing app bundle");
 
-            // TODO: Check the number of devices before launching to display a nicer error message.
+            // TODO(b/138958246): Check the number of devices before launching to display a nicer error message.
             errorMessage = _adb.LaunchApp(_packageName);
             if (errorMessage != null)
             {
@@ -95,13 +95,13 @@ namespace Google.Android.AppBundle.Editor.Internal.BuildTools
             apkSetFilePath = Path.Combine(aabFileDirectory, apkSetFileName + ".apks");
             File.Delete(apkSetFilePath);
 
-            // TODO: Set this value to be true regardless of BuildMode once local testing works on instant.
+            // TODO(b/149439143): Set this value to be true regardless of BuildMode once local testing works on instant.
             var enableLocalTesting = buildMode == BundletoolBuildMode.Persistent;
 
             return _bundletool.BuildApkSet(aabFilePath, apkSetFilePath, buildMode, enableLocalTesting);
         }
 
-        // TODO: Display a dialog prompt and/or progress bar.
+        // TODO(b/138958246): Display a dialog prompt and/or progress bar.
         private void DisplayRunError(string errorType, string errorMessage)
         {
             var fullErrorMessage = string.Format("{0} failed: {1}", errorType, errorMessage);

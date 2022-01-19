@@ -57,6 +57,9 @@ public class EQIapManager : IStoreListener {
     /// </summary>
     public PurchaseProcessingResult ProcessPurchase (PurchaseEventArgs e)
     {
+        if(e.purchasedProduct == null)
+            return PurchaseProcessingResult.Pending;
+
         CashShopWindowUI.Instance.OnInAppPurchaseResponse(e.purchasedProduct.definition.id,e.purchasedProduct.transactionID,e.purchasedProduct.hasReceipt
         ,()=>
         {
