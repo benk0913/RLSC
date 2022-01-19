@@ -1140,8 +1140,8 @@ public class SocketHandler : MonoBehaviour
         {
             int newSpellPosition = actorDat.level - 2 + CORE.Instance.Data.content.AbilitiesInitCount;
             Ability newAbility = CORE.Instance.Data.content.Abilities.Find(x => x.name == actorDat.ClassJobReference.Abilities[newSpellPosition]);
-
-            UnityAndroidVibrator.VibrateForGivenDuration(10);
+            if(SettingsMenuUI.Instance.FlashShake)                            
+                UnityAndroidVibrator.VibrateForGivenDuration(10);
             
             if (newAbility != null)
             {

@@ -882,7 +882,8 @@ public class Actor : MonoBehaviour
             if (State.Data.isMob && !AIControl.IsBoss)
             {
                 StartCoroutine(FadeAwayRoutine());
-                UnityAndroidVibrator.VibrateForGivenDuration(10);
+                if(SettingsMenuUI.Instance.FlashShake)                            
+                    UnityAndroidVibrator.VibrateForGivenDuration(10);
             }
         }
         else

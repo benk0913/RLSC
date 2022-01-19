@@ -67,6 +67,9 @@ public class CORE : MonoBehaviour
 
     public bool IsUsingJoystick;
     
+    #if UNITY_ANDROID || UNITY_IOS
+    BatteryStatus CurrentBatteryStatus;
+    #endif
 
     public bool IsTyping
     {
@@ -412,6 +415,23 @@ public class CORE : MonoBehaviour
         {
             Cursor.visible = false;
         }
+
+        #if UNITY_ANDROID || UNITY_IOS
+        if(CurrentBatteryStatus != SystemInfo.batteryStatus)
+        {
+            CurrentBatteryStatus = SystemInfo.batteryStatus;
+            if(CurrentBatteryStatus == BatteryStatus.Charging || CurrentBatteryStatus == BatteryStatus.Full)
+            {
+                Application.targetFrameRate = 60;
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Charging! Targeting 60FPS!", Color.green));
+            }
+            else
+            {
+                Application.targetFrameRate = 30;
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Not Charging! Targeting 30FPS!", Color.green));
+            }
+        }
+        #endif
 
         //TODO ADD LATER
         // if(SocketHandler.Instance != null && SocketHandler.Instance.SocketManager != null && SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open) //AFK HANDLING

@@ -22,6 +22,9 @@ public class CreateCharacterPanelUI : MonoBehaviour
     [SerializeField]
     UnityEvent OnCharacterCreationComplete;
 
+    [SerializeField]
+    GameObject envObject;
+
     public List<GameObject> JobFrames = new List<GameObject>();
     public List<GameObject> JobFrames2 = new List<GameObject>();
     public List<string> Jobs = new List<string>{"fire", "water", "earth", "air"};
@@ -42,6 +45,9 @@ public class CreateCharacterPanelUI : MonoBehaviour
     {
         this.gameObject.SetActive(true);
 
+        #if UNITY_ANDROID || UNITY_IOS
+        envObject.transform.localScale = new Vector3(75,75,envObject.transform.localScale.z);
+        #endif
         DisplayActor.State = new ActorState();
         DisplayActor.State.Data = new ActorData("", "fire", DisplayActor.gameObject);
 

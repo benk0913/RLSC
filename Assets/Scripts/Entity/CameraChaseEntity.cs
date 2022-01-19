@@ -99,6 +99,9 @@ public class CameraChaseEntity : MonoBehaviour
 
     public void Shake(float power = 3f, float duration = 1f)
     {
+        if(!SettingsMenuUI.Instance.FlashShake)
+        return;
+        
         CameraShake.Shake(Vector3.one * power, duration);
     }
 

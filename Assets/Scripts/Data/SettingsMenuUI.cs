@@ -24,11 +24,13 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
     public GameObject KeyboardBindings;
     public GameObject ControllerBindings;
 
+    public bool FlashShake;
     public bool PPVignette;
     public bool PPBloom;
     public bool PPMotionBlur;
     public bool PPProjection;
 
+    public GameObject FlashShakeCheckmark;
     public GameObject PPVignetteCheckmark;
     public GameObject PPBloomCheckmark;
     public GameObject PPMotionBlurCheckmark;
@@ -55,10 +57,13 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         PPMotionBlur = PlayerPrefs.GetInt("PPMotionBlur", 1) == 1 ? true : false;
         PPProjection = PlayerPrefs.GetInt("PPProjection", 1) == 1 ? true : false;
 #endif
+        FlashShake = PlayerPrefs.GetInt("FlashShake", 1) == 1 ? true : false;
+
         PPMotionBlurCheckmark.SetActive(PPMotionBlur);
         PPVignetteCheckmark.SetActive(PPVignette);
         PPBloomCheckmark.SetActive(PPBloom);
         PPProjectionCheckmark.SetActive(PPProjection);
+        FlashShakeCheckmark.SetActive(FlashShake);
 
         VolumeComponent vc = GlobalPostProccessProfile.components.Find(x => x.name == "Vignette");
         if (vc != null)
@@ -240,7 +245,15 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         //     });
         // }
     }
+    public void ToggleFlashShake()
+    {
+        FlashShake = !FlashShake;
 
+        FlashShakeCheckmark.SetActive(FlashShake);
+
+        PlayerPrefs.SetInt("FlashShake", FlashShake ? 1 : 0);
+        PlayerPrefs.Save();
+    }
     public void ToggleVignette()
     {
         PPVignette = !PPVignette;
