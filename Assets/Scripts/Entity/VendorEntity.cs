@@ -52,10 +52,7 @@ public class VendorEntity : MonoBehaviour
 
         ItemData CurrentItemData = ItemsEntities[ItemIndex].CurrentItem;
 
-#if !UNITY_ANDROID && !UNITY_IOS
         CameraChaseEntity.Instance.FocusOn(new FocusInstance(ItemsEntities[ItemIndex].transform,5f));
-#endif
-
         if(!VendorSelectionUI.Instance.IsActive)
         {
             CORE.Instance.ShowVendorSelectionWindow(CurrentItemData);
@@ -69,9 +66,8 @@ public class VendorEntity : MonoBehaviour
     public void StopFocusing()
     {
         
-#if !UNITY_ANDROID && !UNITY_IOS
+
         CameraChaseEntity.Instance.Unfocus();
-#endif
         IsFocusing = false;
         
         if(CurrentInstance == this)

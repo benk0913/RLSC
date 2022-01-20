@@ -256,6 +256,16 @@ public class ConsoleInputUI : MonoBehaviour
         }
     }
 
+    public void InputfieldEndEdit()
+    {
+        #if !UNITY_ANDROID && !UNITY_IOS
+        return;
+        #endif
+
+        OnEndEdit(); 
+        SendConsoleMessage();
+    }
+
     public void OnEndEdit()
     {
         bool wasEnterPressed = Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]) || Input.GetButtonDown("Joystick 9") || Input.GetButtonDown("Joystick 10");

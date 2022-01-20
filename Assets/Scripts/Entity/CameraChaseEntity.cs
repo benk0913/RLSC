@@ -50,7 +50,7 @@ public class CameraChaseEntity : MonoBehaviour
     {
         CurrentCam = GetComponent<Camera>();
         PostProccessHandler = GetComponent<Volume>();
-        // PostProccessHandler.sharedProfile.components.Find(x => x.name == "Bloom");
+        //PostProccessHandler.sharedProfile.components.Find(x => x.name == "Bloom").active;
 
         #if UNITY_ANDROID || UNITY_IOS
         if(Speed > 0f)
@@ -114,12 +114,12 @@ public class CameraChaseEntity : MonoBehaviour
             StopCoroutine(FocusRoutineInstance);
             FocusRoutineInstance = null;
         }
-
+#if !UNITY_ANDROID && !UNITY_IOS
         FocusCam.gameObject.SetActive(true);
 
         UniversalAdditionalCameraData cameraData = CurrentCam.GetUniversalAdditionalCameraData();
         cameraData.cameraStack.Add(FocusCam);
-
+#endif
         CurrentFocus = focus;
 
         FocusRoutineInstance = StartCoroutine(FocusRoutine());

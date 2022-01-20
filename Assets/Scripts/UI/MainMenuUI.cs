@@ -180,7 +180,7 @@ public class MainMenuUI : MonoBehaviour
         SocketHandler.Instance.SendSelectCharacter(()=>
         {
             ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
-
+            AudioControl.Instance.SetVolume("Music",0.6f,true);
             CORE.Instance.CheckOOGInvitations();
 
         }, index);
