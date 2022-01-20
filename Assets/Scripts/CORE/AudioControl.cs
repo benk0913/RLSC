@@ -282,7 +282,12 @@ namespace EdgeworldBase
         Coroutine SwitchMusicFadeInstance;
         IEnumerator SwitchMusicFade(string musicKey, bool keepPlaybackTime = false)
         {
-            float initVolume = PlayerPrefs.GetFloat("Music");
+            float initVolume = PlayerPrefs.GetFloat("Music", 0.6f);
+            if(initVolume < 0.1f)
+            {
+                initVolume = 0.6f;
+            }
+
             float t = 0f;
             while (t < 1f)
             {

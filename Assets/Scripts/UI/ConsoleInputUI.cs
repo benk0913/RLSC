@@ -50,6 +50,11 @@ public class ConsoleInputUI : MonoBehaviour
         {
             inputField.placeholder.GetComponent<TextMeshProUGUI>().text = "/help";
         }
+
+#if UNITY_ANDROID || UNITY_IOS
+        inputField.onSubmit.AddListener((string value)=>{EnterPressed();});
+#endif
+
     }
 
     void Update()

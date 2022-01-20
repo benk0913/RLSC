@@ -69,5 +69,15 @@ public class VendorSelectionUI : MonoBehaviour, WindowInterface
         this.gameObject.SetActive(false);
     }
 
+    public void Purchase()
+    {
+        VendorEntity.CurrentInstance.PurchaseItem(VendorEntity.CurrentInstance.ItemIndex);
+    }
+
+    public void Close()
+    {
+        VendorEntity.CurrentInstance.StopFocusing();
+    }
+
 
 }
