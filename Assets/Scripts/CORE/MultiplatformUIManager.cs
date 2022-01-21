@@ -38,7 +38,7 @@ public class MultiplatformUIManager : MonoBehaviour
         Instance = this;
         #if UNITY_ANDROID
         OnAndroid?.Invoke();
-        this.transform.localScale *= 0.8f;
+        this.transform.localScale *= 0.7f;
         #else
         OnSteam?.Invoke();
         #endif

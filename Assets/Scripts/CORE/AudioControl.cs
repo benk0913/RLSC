@@ -219,6 +219,8 @@ namespace EdgeworldBase
                     m_listInstances[i].GetComponent<AudioSource>().volume = gVolume;
                 }
             }
+
+            Debug.LogError(MusicSource.volume);
         }
 
         public void SetMasterVolume(float gVolume)

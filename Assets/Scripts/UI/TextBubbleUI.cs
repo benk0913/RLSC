@@ -4,9 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TextBubbleUI : MonoBehaviour
+public class TextBubbleUI : MonoBehaviour, IPointerClickHandler
 {
     const float DELAY_PER_LETTER = 0.02f;
 
@@ -29,6 +30,7 @@ public class TextBubbleUI : MonoBehaviour
     Transform CurrentAnchor;
 
     Action OnHide;
+
 
     void Start()
     {
@@ -120,8 +122,11 @@ public class TextBubbleUI : MonoBehaviour
             VerticalGroup.enabled = true;
         }
 
+        #if UNITY_ANDROID || UNITY_IOS
+        yield return new WaitForSeconds(1f + (message.Length * DELAY_PER_LETTER));
+        #else
         yield return new WaitForSeconds(2f + (message.Length * DELAY_PER_LETTER));
-
+        #endif
         CG.alpha = 1f;
         while (CG.alpha > 0f)
         {
@@ -133,5 +138,20 @@ public class TextBubbleUI : MonoBehaviour
 
 
         OnHide?.Invoke();
+    }
+
+    public void ForceHide()
+    {
+        StopAllCoroutines();
+
+        this.gameObject.SetActive(false);
+
+
+        OnHide?.Invoke();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        ForceHide();
     }
 }

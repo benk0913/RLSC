@@ -227,7 +227,6 @@ public class CORE : MonoBehaviour
 #if UNITY_ANDROID
         Application.targetFrameRate = 30;
         IAPManager = new EQIapManager();
-        
 #else
         Application.targetFrameRate = 60;
 #endif
