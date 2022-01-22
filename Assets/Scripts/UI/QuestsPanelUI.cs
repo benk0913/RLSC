@@ -68,7 +68,7 @@ public class QuestsPanelUI : MonoBehaviour
             objSubPanel.transform.localScale = Vector3.one;
 
             objSubPanel.SetInfo(progress.QuestData);
-            createdYPush -= 40f;
+            createdYPush = 40f;
 
             if(Container.childCount > 0)
             {
