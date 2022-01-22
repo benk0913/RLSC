@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ActorAbilitiesPanelUI : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
     [SerializeField]
     Image HPFillBar;
 
+    [SerializeField]
+    TextMeshProUGUI HPLabel;
+
 
     private void Awake()
     {
@@ -28,9 +32,10 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
     
     public void Update()
     {
-        if(CORE.PlayerActor != null)
+        if(CORE.PlayerActor != null && CORE.PlayerActor.MaxHP > 0)
         {
-            HPFillBar.fillAmount = Mathf.Lerp(HPFillBar.fillAmount, (float)CORE.PlayerActor.hp/CORE.PlayerActor.MaxHP,Time.deltaTime*2f);
+            HPFillBar.fillAmount = Mathf.Lerp(HPFillBar.fillAmount, (float)CORE.PlayerActor.hp/(float)CORE.PlayerActor.MaxHP,Time.deltaTime*2f);
+            HPLabel.text = CORE.PlayerActor.hp + " / " + CORE.PlayerActor.MaxHP;
         }
     }
     //public void LateUpdate()
