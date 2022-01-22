@@ -16,13 +16,23 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
     [SerializeField]
     Image CastFillBar;
 
+    [SerializeField]
+    Image HPFillBar;
+
 
     private void Awake()
     {
         Instance = this;
         CORE.Instance.SubscribeToEvent("KeybindingsChanged",()=>SetActor(playerActor));
     }
-
+    
+    public void Update()
+    {
+        if(CORE.PlayerActor != null)
+        {
+            HPFillBar.fillAmount = Mathf.Lerp(HPFillBar.fillAmount, (float)CORE.PlayerActor.hp/CORE.PlayerActor.MaxHP,Time.deltaTime*2f);
+        }
+    }
     //public void LateUpdate()
     //{
     //    if(playerActor == null)

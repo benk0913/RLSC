@@ -87,12 +87,12 @@ public class QuestsPanelUI : MonoBehaviour
                     }
                 }
 
-                objSubPanel.transform.position = mostLowLeftChild.position + new Vector3(0f,createdYPush,0);
+                objSubPanel.transform.position = mostLowLeftChild.position + new Vector3(0f,-createdYPush,0);
             }
             else
             {
                 objSubPanel.transform.SetParent(Container,false);
-                objSubPanel.transform.position = Container.transform.position + new Vector3(createdYPush,createdYPush,0);
+                objSubPanel.transform.position = Container.transform.position + new Vector3(-createdYPush,-createdYPush,0);
             }
             
         }

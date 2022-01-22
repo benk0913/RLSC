@@ -104,8 +104,9 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         //TODO Yes, it's stupid, I know, remember to next time build your own settings menu.
         CORE.Instance.DelayedInvokation(0.1f,()=>{Canv.enabled = true;});
 
-        KeyboardBindings.SetActive(!CORE.Instance.IsUsingJoystick);
-        ControllerBindings.SetActive(CORE.Instance.IsUsingJoystick);
+        KeyboardBindings.SetActive(true);
+        //KeyboardBindings.SetActive(!CORE.Instance.IsUsingJoystick);
+        //ControllerBindings.SetActive(CORE.Instance.IsUsingJoystick);
 
 
         #if UNITY_ANDROID || UNITY_IOS

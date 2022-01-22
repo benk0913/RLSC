@@ -1038,6 +1038,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 61b07cd4793505842a429182248d7011, type: 2}
     - {fileID: 11400000, guid: 60b7a759abb63a84cb10b3a1f11ca3f7, type: 2}
     - {fileID: 11400000, guid: ea4d6598e9e76be4a91bdc489c7c0b1c, type: 2}
+    - {fileID: 11400000, guid: c56d0188ba190b24e821d4af10289d5f, type: 2}
+    - {fileID: 11400000, guid: 62539a04041f78f4ba5c28a403ea0c13, type: 2}
     - {fileID: 11400000, guid: d35e837e89e209b4fab008f7f6b2df01, type: 2}
     - {fileID: 11400000, guid: 92b00de2d470963449c2c783d897b7ca, type: 2}
     - {fileID: 11400000, guid: c068e23d6ebf31640b856b7ef69751ca, type: 2}
@@ -6304,11 +6306,6 @@ MonoBehaviour:
         positionY: -13.34
         respawnSeconds: 0
         IrellevantMob: 0
-      - monsterName: ActorDummyBreakable
-        positionX: -16.73
-        positionY: -19.16
-        respawnSeconds: 0
-        IrellevantMob: 0
       - monsterName: ActorSpikes
         positionX: -37.562576
         positionY: -24.606922
@@ -6342,11 +6339,6 @@ MonoBehaviour:
       - monsterName: ActorDummyBreakable
         positionX: -77.83
         positionY: -17.98
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorDummyBreakable
-        positionX: 14.4
-        positionY: 0
         respawnSeconds: 0
         IrellevantMob: 0
       Interactables:
@@ -7672,19 +7664,9 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorShellCrabBig
-        positionX: 63.4
-        positionY: -23.5
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorShellCrabBig
-        positionX: 73.1
-        positionY: -22.1
-        respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorShellCrabBig
-        positionX: 86.7
-        positionY: -25.5
+      - monsterName: ActorShellCrabHermit
+        positionX: 105.81
+        positionY: -21.98
         respawnSeconds: 60
         IrellevantMob: 1
       - monsterName: ActorShellCrabBig
@@ -7693,10 +7675,6 @@ MonoBehaviour:
         respawnSeconds: 60
         IrellevantMob: 1
       Interactables:
-      - interactableName: NPC_Trainer
-        interactableId: 
-        positionX: 123
-        positionY: -23
       - interactableName: Entry
         interactableId: 
         positionX: 51
@@ -7704,10 +7682,10 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
-      - name: Entry
-        TargetScene: OW_BeachWalk4
-        TargetSceneGate: HermitEntrance
-        IsExpeditionLocked: 0
+      - name: Exit
+        TargetScene: OW_HermitsDenPost
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 1
         portalPositionX: 51.09
         portalPositionY: -25.84
       Vendors: []
@@ -13128,6 +13106,47 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: SunsetPort
+    - sceneName: OW_HermitsDenPost
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorTreasureChestTreasureIsland
+        positionX: 108.61
+        positionY: -19.71
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorTreasureChestMob
+        positionX: 71.67
+        positionY: -21.64
+        respawnSeconds: 0
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 88
+        positionY: -18
+      playerSpawnX: 89.06
+      playerSpawnY: -18.03
+      Portals:
+      - name: EndPortalA
+        TargetScene: 
+        TargetSceneGate: 
+        IsExpeditionLocked: 1
+        portalPositionX: 88
+        portalPositionY: -17.8
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -13148,6 +13167,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21a0d16d5a3654d43a8c2d5f2a39d5b6, type: 2}
     Expeditions:
     - {fileID: 11400000, guid: 1049c1152bc701f4aae659e35ff5b404, type: 2}
+    - {fileID: 11400000, guid: e08855d0944ee024db1c305f347d5b4f, type: 2}
     - {fileID: 11400000, guid: a90382295a280f34fb0e7447835c7063, type: 2}
     - {fileID: 11400000, guid: a46d2ac9e5a7c0843855184554a49fe0, type: 2}
     - {fileID: 11400000, guid: 73920586f7290bc48b7e8b929d7168ad, type: 2}
