@@ -25,6 +25,24 @@ public class ConditionLogic
                         return Inverse; //  True
                     }
                 }
+            case "HasItem":
+                {
+                    Actor target = ((Actor)obj);
+
+                    if(target == null)
+                    {
+                        target = CORE.PlayerActor.ActorEntity;
+                    }
+
+                    if(target.State.Data.items.Find(x=>x != null && x.itemName == ActualValue) != null)
+                    {
+                        return !Inverse; //  False
+                    }
+                    else
+                    {
+                        return Inverse; //  True
+                    }
+                }
             case "Chance":
                 {
                     if(UnityEngine.Random.Range(0f,1f) < float.Parse(ActualValue))
