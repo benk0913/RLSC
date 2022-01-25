@@ -179,7 +179,7 @@ public class InteractableEntity : MonoBehaviour
             InteractableCooldown -= Time.deltaTime;
         }
 
-        bool KeyIsDown = Item? (MultiplatformUIManager.IsUniversalPickUp || Input.GetKeyDown(InputMap.Map["Pick Up Item"]) || Input.GetButtonDown("Joystick 0")) :  (MultiplatformUIManager.IsUniversalInteract|| Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetButtonDown("Joystick 0"));
+        bool KeyIsDown = Item? (MultiplatformUIManager.IsUniversalPickUp || Input.GetKey(InputMap.Map["Pick Up Item"]) || Input.GetButtonDown("Joystick 0")) :  (MultiplatformUIManager.IsUniversalInteract|| Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetButtonDown("Joystick 0"));
         
         if(NearbyActor != null && KeyIsDown && NearbyActor.CanInteract)
         {

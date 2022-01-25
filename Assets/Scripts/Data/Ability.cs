@@ -48,6 +48,12 @@ public class Ability : ScriptableObject
     [JsonIgnore]
     public bool CanMoveInCast;
 
+    [JsonIgnore]
+    public bool Mastery = false;
+
+    [JsonIgnore]
+    public string MasteryDescription;
+
 
     public List<AbilityParam> OnExecuteParams = new List<AbilityParam>();
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();

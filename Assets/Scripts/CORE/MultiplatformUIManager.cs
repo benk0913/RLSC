@@ -33,6 +33,8 @@ public class MultiplatformUIManager : MonoBehaviour
     public GameObject CanInteractIndicator;
     public GameObject CanPickUpIndicator;
 
+    public bool PickUpButtonIsDOWN;
+
     void Awake()
     {
         Instance = this;
@@ -54,14 +56,14 @@ public class MultiplatformUIManager : MonoBehaviour
         {
             IsUniversalLeft = true;
         }
-         else if(TouchController.GetTouchPosition.y < -0.1f)
-         {
-             IsUniversalDown = true;
-         }
-         else if(TouchController.GetTouchPosition.y > 0.1f)
-         {
-             IsUniversalUp = true;
-         }
+        if(TouchController.GetTouchPosition.y < -0.25f)
+        {
+            IsUniversalDown = true;
+        }
+        else if(TouchController.GetTouchPosition.y > 0.25f)
+        {
+            IsUniversalUp = true;
+        }
     }
 
     void LateUpdate()
@@ -69,7 +71,10 @@ public class MultiplatformUIManager : MonoBehaviour
         IsUniversalJump = false;
         IsUniversalInteract = false;
         IsUniversalDropDown= false;
-        IsUniversalPickUp= false;
+        
+        if(!PickUpButtonIsDOWN)
+            IsUniversalPickUp= false;
+
         IsUniversalLeft = false;
         IsUniversalRight = false;
         IsUniversalUp = false;
@@ -89,9 +94,14 @@ public class MultiplatformUIManager : MonoBehaviour
 
     public void PickUp()
     {
+        PickUpButtonIsDOWN = true;
         IsUniversalPickUp = true;
         AudioControl.Instance.Play("IconEnter");
-        
+    }
+
+    public void PickUpRelease()
+    {
+        PickUpButtonIsDOWN = false;
     }
 
     public void Interact()

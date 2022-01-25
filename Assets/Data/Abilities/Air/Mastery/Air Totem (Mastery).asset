@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
+  m_Name: Air Totem (Mastery)
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 124f0ab8f6a3a3243bb419962ef697de, type: 3}
+  Description: Craft a Totem of Wind. It will supply, upon interaction, instant teleportation
+    to you.
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: 
+    PrepareAbilityColliderObject: PrepareTrap
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
+  Sounds:
+    PrepareAbilitySound: Totems
+    ExecuteAbilitySound: 
+    HitAbilitySound: 
+    HitAbilitySoundVarriants: []
+    MissAbilitySound: 
+  Visuals:
+    ScreenEffectObject: 
+    PreparingAnimation: Cast5
+    ExecuteAnimation: Execute5
+  CD: 25
+  CastingTime: 1.5
+  TargetCap: 1
+  MaxSameTargetHits: 1
+  OnlyIfGrounded: 1
+  AIViableRange: 0
+  IsCastingExternal: 0
+  CanMoveInCast: 0
+  Mastery: 1
+  MasteryDescription: Shorter cooldown &  Faster Casting
+  OnExecuteParams:
+  - Type: {fileID: 11400000, guid: 2f3bcc93099b30545b1dc1397e16a5de, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: Air Totem Interactable
+    ObjectValue: {fileID: 0}
+    Value2: 
+  OnHitParams: []
+  OnMissParams: []

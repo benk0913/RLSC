@@ -1161,11 +1161,23 @@ public class SocketHandler : MonoBehaviour
             {
                 AbilitiesUI.Instance.RefreshUI();
             }
+
+            if(newAbility.Mastery)
+            {
+                Ability oldAbility = CORE.Instance.Data.content.Abilities.Find(x=>x.name != newAbility.name &&  newAbility.name.Contains(x.name) && !x.Mastery);
+                if(oldAbility != null)
+                {
+                    AbilitiesUI.Instance.ReplaceAbilities(newAbility.name, oldAbility.name);
+                    CORE.PlayerActor.ActorEntity.RefreshAbilities();
+                }
+            }
         }
 
         GameObject lvlUpEffect = ResourcesLoader.Instance.GetRecycledObject("LevelUpEffect");
         lvlUpEffect.transform.position = actorDat.ActorEntity.transform.position;
         lvlUpEffect.GetComponent<AbilityCollider>().SetInfo(null, actorDat.ActorEntity);
+
+        
     }
 
     public void OnKarmaUpdate(string eventName, JSONNode data)

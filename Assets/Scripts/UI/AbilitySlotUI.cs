@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class AbilitySlotUI : MonoBehaviour, IPointerClickHandler
+public class AbilitySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public AbilityState CurrentAbility;
 
@@ -31,6 +31,9 @@ public class AbilitySlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     GameObject AbilityLock;
 
+    [SerializeField]
+    GameObject AbilityMastery;
+
     
     [SerializeField]
     protected TextMeshProUGUI AbilityKeyLabel;
@@ -39,7 +42,7 @@ public class AbilitySlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     GameObject KeyLabelObject;
 
-    
+    public bool PressHold = false;
     public virtual void SetAbilityState(AbilityState abilityState = null, string abilityKeyText = "")
     {
 
@@ -69,7 +72,12 @@ public class AbilitySlotUI : MonoBehaviour, IPointerClickHandler
 
         tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+CORE.QuickTranslate(abilityState.CurrentAbility.name)+ "</color>";
         tooltipString += System.Environment.NewLine + CORE.QuickTranslate(abilityState.CurrentAbility.Description);
+        if(!string.IsNullOrEmpty(abilityState.CurrentAbility.MasteryDescription))
+            tooltipString += System.Environment.NewLine + CORE.QuickTranslate("Mastery")+": "+CORE.QuickTranslate(abilityState.CurrentAbility.MasteryDescription);
         tooltipString += System.Environment.NewLine + "<color=" + Colors.COLOR_HIGHLIGHT + ">" + CORE.QuickTranslate("cooldown")+": "+abilityState.CurrentAbility.CD+" "+CORE.QuickTranslate("seconds")+".</color>";
+
+
+        AbilityMastery.SetActive(abilityState.CurrentAbility.Mastery);
 
         // TODO do we want detailed tooltips?
         // tooltipString += System.Environment.NewLine + "CASTING TIME: "+abilityState.CurrentAbility.CastingTime;
@@ -118,11 +126,18 @@ public class AbilitySlotUI : MonoBehaviour, IPointerClickHandler
             AbilityLock.SetActive(false);
         }
 
+        
+        
         Tooltip.SetTooltip(tooltipString,null,true);
     }
 
     protected virtual void Update()
-    {
+    {   
+        if(PressHold)
+        {
+            CORE.PlayerActor.ActorEntity.AttemptPrepareAbility(transform.GetSiblingIndex());
+        }
+        
         if(CurrentAbility == null)
         {
             return;
@@ -157,10 +172,16 @@ public class AbilitySlotUI : MonoBehaviour, IPointerClickHandler
             CastingCooldownImage.fillAmount = CurrentAbility.CurrentCastingTime / CurrentAbility.CurrentAbility.CastingTime;
             CastingCooldownLabel.text = Mathf.RoundToInt(CurrentAbility.CurrentCastingTime).ToString();
         }
+
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        CORE.PlayerActor.ActorEntity.AttemptPrepareAbility(transform.GetSiblingIndex());
+        PressHold = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        PressHold = false;
     }
 }

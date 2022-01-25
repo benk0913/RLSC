@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
+  m_Name: Reinforce Earth (Mastery)
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 5372d9436059d6342b8098410fe5277c, type: 3}
+  Description: 'Bolster all negative effects which are on nearby enemies.
+
+
+    Nothing
+    - Becomes slow.
+
+    Slow - Becomes Immobilized.
+
+    Immobilize / Silence -
+    Becomes Stunned.
+
+    Stun - Receives Damage.'
+  Colliders:
+    HitAbilityColliderObject: ReinforceEarthHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: ReinforceEarthCollider
+    PrepareAbilityColliderObject: PrepareEarthSpell
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
+  Sounds:
+    PrepareAbilitySound: E_ReinforceEarth_PrepareOGG
+    ExecuteAbilitySound: E_ReinforceEarth_HitOGG
+    HitAbilitySound: E_ReinforceEarth_Hit2OGG
+    HitAbilitySoundVarriants: []
+    MissAbilitySound: 
+  Visuals:
+    ScreenEffectObject: 
+    PreparingAnimation: Cast3
+    ExecuteAnimation: Execute3
+  CD: 12
+  CastingTime: 0.7
+  TargetCap: 10
+  MaxSameTargetHits: 1
+  OnlyIfGrounded: 0
+  AIViableRange: 0
+  IsCastingExternal: 0
+  CanMoveInCast: 1
+  Mastery: 1
+  MasteryDescription: Slightly Better Overall
+  OnExecuteParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 11400000, guid: 18837ffdc92cd2f4c8d1ec67c56e58e7, type: 2}
+    GameConditions: []
+    Targets: 0
+    Value: 85
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 11400000, guid: 5fc87f4113d25ef4d9705992de3056cf, type: 2}
+    GameConditions: []
+    Targets: 0
+    Value: Reinforce Earth Stun
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: 69bf9e6b0e20a0146a70ab2d0e0abd58, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: a0c8c64f3d109e64c840160f5e873e9e, type: 2}
+      Inverse: 0
+    Targets: 0
+    Value: Reinforce Earth Stun
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 11400000, guid: a3b30c45872d464408c0d60e175ce5b1, type: 2}
+    GameConditions: []
+    Targets: 0
+    Value: Reinforce Earth Immobilize
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 0
+    Value: Mud Slow
+    ObjectValue: {fileID: 0}
+    Value2: 
+  OnMissParams: []

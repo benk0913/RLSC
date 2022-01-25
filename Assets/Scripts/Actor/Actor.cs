@@ -1425,6 +1425,11 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine());
                     break;
                 }
+            case "DashForwardMastery":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(1.25f));
+                    break;
+                }
             case "DashForwardX2":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f));
@@ -1443,6 +1448,11 @@ public class Actor : MonoBehaviour
             case "DashUpwards":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementDashUpwardsRoutine());
+                    break;
+                }
+            case "DashUpwardsMastery":
+                {
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashUpwardsRoutine(1.25f));
                     break;
                 }
             case "Pull":
@@ -1830,7 +1840,7 @@ public class Actor : MonoBehaviour
 
     }
 
-    IEnumerator MovementDashUpwardsRoutine()
+    IEnumerator MovementDashUpwardsRoutine(float multiplier = 1f)
     {
         Vector2 initDir = Vector2.up;
         
@@ -1839,7 +1849,7 @@ public class Actor : MonoBehaviour
         while (t < 1f)
         {
             t += Time.deltaTime * 1;
-            Rigid.position += initDir*48* (1f-t) * Time.deltaTime;
+            Rigid.position += initDir*48*multiplier * (1f-t) * Time.deltaTime;
 
             Rigid.velocity = Vector2.zero;
 
@@ -2086,7 +2096,9 @@ public class AbilityState
     {
         get
         {
-            return OfActor.State.Data.IsPlayer && IndexInClass > OfActor.State.Data.level + 1;
+            int indexInClass = IndexInClass;
+
+            return OfActor.State.Data.IsPlayer && indexInClass > OfActor.State.Data.level + 1;
         }
     }
 

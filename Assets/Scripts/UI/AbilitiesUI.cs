@@ -95,20 +95,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
             }
             else
             {
-                int index1ToReplace = playerActor.State.Data.abilities.IndexOf(ability1Name);
-                int index2ToReplace = playerActor.State.Data.abilities.IndexOf(ability2Name);
-                if (index1ToReplace >= 0)
-                {
-                    playerActor.State.Data.abilities.RemoveAt(index1ToReplace);
-                    playerActor.State.Data.abilities.Insert(index1ToReplace, ability2Name);
-                    SendSwapAbilityEvent(index1ToReplace, ability2Name);
-                }
-                if (index2ToReplace >= 0)
-                {
-                    playerActor.State.Data.abilities.RemoveAt(index2ToReplace);
-                    playerActor.State.Data.abilities.Insert(index2ToReplace, ability1Name);
-                    SendSwapAbilityEvent(index2ToReplace, ability1Name);
-                }
+                ReplaceAbilities(ability1Name,ability2Name);
                 
                 playerActor.RefreshAbilities();
             }
@@ -128,6 +115,24 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         }
 
         AudioControl.Instance.Play(SelectAbilitySound);
+    }
+
+    public void ReplaceAbilities(string ability1Name, string ability2Name)
+    {
+         int index1ToReplace = playerActor.State.Data.abilities.IndexOf(ability1Name);
+        int index2ToReplace = playerActor.State.Data.abilities.IndexOf(ability2Name);
+        if (index1ToReplace >= 0)
+        {
+            playerActor.State.Data.abilities.RemoveAt(index1ToReplace);
+            playerActor.State.Data.abilities.Insert(index1ToReplace, ability2Name);
+            SendSwapAbilityEvent(index1ToReplace, ability2Name);
+        }
+        if (index2ToReplace >= 0)
+        {
+            playerActor.State.Data.abilities.RemoveAt(index2ToReplace);
+            playerActor.State.Data.abilities.Insert(index2ToReplace, ability1Name);
+            SendSwapAbilityEvent(index2ToReplace, ability1Name);
+        }
     }
 
     void ClearMarks()
@@ -162,7 +167,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         }
     }
 
-    private void SendSwapAbilityEvent(int index, string abilityName)
+    public void SendSwapAbilityEvent(int index, string abilityName)
     {
         JSONNode node = new JSONClass();
         node["index"].AsInt = index;
@@ -196,16 +201,40 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
         foreach (string abilityName in job.Abilities)
         {
+            Ability ability = CORE.Instance.Data.content.Abilities.Find(X => X.name == abilityName);
+
+            if(ability == null)
+            {
+                continue;
+            }
+            
+            AbilityState state = new AbilityState(ability, playerActor);
+
             if(playerActor.State.Data.abilities.Contains(abilityName))
             {
                 continue;
+            }
+
+            Ability masteryAbility = CORE.Instance.Data.content.Abilities.Find(x=>
+            x.Mastery &&
+              x.name != ability.name &&
+              x.name.Contains(ability.name));
+
+            if(masteryAbility != null)
+            {
+                AbilityState masteryState = new AbilityState(masteryAbility, playerActor);
+                
+                if(!masteryState.IsAbilityLocked)
+                {
+                    continue;
+                }
             }
 
             AbilitySlotDraggableUI slot = ResourcesLoader.Instance.GetRecycledObject("AbilitySlotDraggableUI").GetComponent<AbilitySlotDraggableUI>();
             slot.transform.SetParent(AllAbilitiesContainer, false);
             slot.transform.localScale = Vector3.one;
             slot.transform.position = Vector3.zero;
-            slot.SetAbilityState(new AbilityState(CORE.Instance.Data.content.Abilities.Find(X => X.name == abilityName), playerActor));
+            slot.SetAbilityState(state);
         }
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));
