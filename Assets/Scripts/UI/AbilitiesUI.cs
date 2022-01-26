@@ -119,18 +119,18 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
     public void ReplaceAbilities(string ability1Name, string ability2Name)
     {
-         int index1ToReplace = playerActor.State.Data.abilities.IndexOf(ability1Name);
-        int index2ToReplace = playerActor.State.Data.abilities.IndexOf(ability2Name);
+         int index1ToReplace = CORE.PlayerActor.abilities.IndexOf(ability1Name);
+        int index2ToReplace =  CORE.PlayerActor.abilities.IndexOf(ability2Name);
         if (index1ToReplace >= 0)
         {
-            playerActor.State.Data.abilities.RemoveAt(index1ToReplace);
-            playerActor.State.Data.abilities.Insert(index1ToReplace, ability2Name);
+            CORE.PlayerActor.abilities.RemoveAt(index1ToReplace);
+            CORE.PlayerActor.abilities.Insert(index1ToReplace, ability2Name);
             SendSwapAbilityEvent(index1ToReplace, ability2Name);
         }
         if (index2ToReplace >= 0)
         {
-            playerActor.State.Data.abilities.RemoveAt(index2ToReplace);
-            playerActor.State.Data.abilities.Insert(index2ToReplace, ability1Name);
+            CORE.PlayerActor.abilities.RemoveAt(index2ToReplace);
+            CORE.PlayerActor.abilities.Insert(index2ToReplace, ability1Name);
             SendSwapAbilityEvent(index2ToReplace, ability1Name);
         }
     }

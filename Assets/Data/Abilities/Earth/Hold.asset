@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
+  m_Name: Hold
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: d1f040f771311c4499606e96b02999df, type: 3}
+  Description: Hold surrounding enemies in place for a very short period of time.
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: HoldCollider
+    PrepareAbilityColliderObject: PrepareEarthSpell
+    HitConditionObject: SplinterHit
+    HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
+  Sounds:
+    PrepareAbilitySound: E_Wall_PrepareOGG
+    ExecuteAbilitySound: 
+    HitAbilitySound: 
+    HitAbilitySoundVarriants: []
+    MissAbilitySound: 
+  Visuals:
+    ScreenEffectObject: 
+    PreparingAnimation: Cast7
+    ExecuteAnimation: Execute8
+  CD: 0.5
+  CastingTime: 0.5
+  TargetCap: 6
+  MaxSameTargetHits: 1
+  OnlyIfGrounded: 0
+  AIViableRange: 0
+  IsCastingExternal: 0
+  CanMoveInCast: 1
+  Mastery: 0
+  MasteryDescription: 
+  OnExecuteParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 0
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 6bda5c181aaedf84a94b647a004bed65, type: 2}
+    Value2: 
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 0
+    Value: 3
+    ObjectValue: {fileID: 0}
+    Value2: 
+  OnMissParams: []

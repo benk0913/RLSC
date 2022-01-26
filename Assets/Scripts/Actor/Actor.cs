@@ -1206,7 +1206,8 @@ public class Actor : MonoBehaviour
             State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.abilities[i]),this));
         }
 
-        if (State.Data.IsPlayer) {
+        if (State.Data.IsPlayer) 
+        {
             RefreshLockedSlots();
             ActorAbilitiesPanelUI.Instance.SetActor(this);
             AbilitiesUI.Instance.RefreshUI();

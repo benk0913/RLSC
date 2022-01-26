@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
+  m_Name: Let Go (Mastery)
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 49d609637da869d498281e782126c5e2, type: 3}
+  Description: Release vast amounts of energy by sacrificing everything
+  Colliders:
+    HitAbilityColliderObject: 
+    MissAbilityColliderObject: 
+    AbilityColliderObject: LetGoCollider
+    PrepareAbilityColliderObject: PrepareLetGo
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
+  Sounds:
+    PrepareAbilitySound: E_EarthQuake_PrepareOGG
+    ExecuteAbilitySound: F_InfernalBomb_ExplosionOGG
+    HitAbilitySound: 
+    HitAbilitySoundVarriants: []
+    MissAbilitySound: 
+  Visuals:
+    ScreenEffectObject: 
+    PreparingAnimation: Cast5
+    ExecuteAnimation: Execute5
+  CD: 25
+  CastingTime: 3
+  TargetCap: 30
+  MaxSameTargetHits: 1
+  OnlyIfGrounded: 0
+  AIViableRange: 0
+  IsCastingExternal: 0
+  CanMoveInCast: 0
+  Mastery: 1
+  MasteryDescription: Slightly Faster To Cast
+  OnExecuteParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 500
+    ObjectValue: {fileID: 0}
+    Value2: 
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 0
+    Value: 500
+    ObjectValue: {fileID: 0}
+    Value2: 
+  OnMissParams: []

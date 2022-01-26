@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
+  m_Name: Liquid Bond (Mastery)
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 4c52f84f8697c774e8d378b0b54dde57, type: 3}
+  Description: Bind yourself to an ally. This bond of water will make every effect,
+    which is set on one of you, good or bad, affect the other as well.
+  Colliders:
+    HitAbilityColliderObject: LiquidBondHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: LiquidBondCollider
+    PrepareAbilityColliderObject: PrepareLiquidBond
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
+  Sounds:
+    PrepareAbilitySound: W_LiquidBond_PrepareOGG
+    ExecuteAbilitySound: W_LiquidBond_ExecuteOGG
+    HitAbilitySound: sound_heal
+    HitAbilitySoundVarriants: []
+    MissAbilitySound: 
+  Visuals:
+    ScreenEffectObject: 
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute5
+  CD: 20
+  CastingTime: 1
+  TargetCap: 1
+  MaxSameTargetHits: 1
+  OnlyIfGrounded: 0
+  AIViableRange: 0
+  IsCastingExternal: 0
+  CanMoveInCast: 1
+  Mastery: 1
+  MasteryDescription: Bond lasts for 3 additional seconds!
+  OnExecuteParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 1
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 333c859274c47274d8ae75797ff0ef96, type: 2}
+    Value2: 
+  OnMissParams: []

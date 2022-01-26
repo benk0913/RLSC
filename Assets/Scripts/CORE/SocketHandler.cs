@@ -1164,7 +1164,7 @@ public class SocketHandler : MonoBehaviour
 
             if(newAbility.Mastery)
             {
-                Ability oldAbility = CORE.Instance.Data.content.Abilities.Find(x=>x.name != newAbility.name &&  newAbility.name.Contains(x.name) && !x.Mastery);
+                Ability oldAbility = CORE.Instance.Data.content.Abilities.Find(x=> newAbility.name.Contains(x.name) && !x.Mastery);
                 if(oldAbility != null)
                 {
                     AbilitiesUI.Instance.ReplaceAbilities(newAbility.name, oldAbility.name);

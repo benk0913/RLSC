@@ -10,45 +10,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Reset Last Cooldown Spell (Mastery)
+  m_Name: Pain Bubble (Mastery)
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 46e165c483d468e43b2650e41ea4a5cf, type: 3}
-  Description: Clear the cooldown of the last used ability
+  Icon: {fileID: 21300000, guid: 9618e80a48846934dae29906b5e5a54a, type: 3}
+  Description: Form a floating bubble, that on impact, deals damage to an enemy.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
-    AbilityColliderObject: SurgeInEffectCollider
-    PrepareAbilityColliderObject: 
+    AbilityColliderObject: PainBubbleCollider
+    PrepareAbilityColliderObject: PrepareWaterSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
     HitConditionObjectGameConditions: []
   Sounds:
-    PrepareAbilitySound: 
-    ExecuteAbilitySound: 
-    HitAbilitySound: 
+    PrepareAbilitySound: W_Bless_PrepareOGG
+    ExecuteAbilitySound: W_Bubble_ExecuteOGG
+    HitAbilitySound: W_PainBubble_HitOGG
     HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
-    PreparingAnimation: 
-    ExecuteAnimation: 
-  CD: 10
-  CastingTime: 0.01
-  TargetCap: 1
-  MaxSameTargetHits: 1
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute3
+  CD: 5
+  CastingTime: 1
+  TargetCap: 32
+  MaxSameTargetHits: 32
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
   CanMoveInCast: 1
   Mastery: 1
-  MasteryDescription: 
-  OnExecuteParams:
-  - Type: {fileID: 11400000, guid: 3a324772d7eee094a956d79f860f9248, type: 2}
+  MasteryDescription: You're Joking
+  OnExecuteParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     GameConditions: []
-    Targets: 2
-    Value: 
+    Targets: 0
+    Value: 42
     ObjectValue: {fileID: 0}
     Value2: 
-  OnHitParams: []
   OnMissParams: []
