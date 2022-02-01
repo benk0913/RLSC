@@ -49,6 +49,8 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
 
         AudioControl.Instance.Play(OpenSound);
+
+        CORE.Instance.InvokeEvent("AbilitiesNotification_OFF");
     }
 
     [Obsolete("Do not call Hide directly. Call `CORE.Instance.CloseCurrentWindow()` instead.")]

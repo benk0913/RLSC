@@ -74,7 +74,7 @@ public class HealthbarUI : MonoBehaviour
             || (CurrentActor.State.Data.isMob && isHPFull || CurrentActor.State.Data.hp <= 0);
     }
 
-    protected IEnumerator UpdateBarFillRoutine()
+    protected virtual IEnumerator UpdateBarFillRoutine()
     {
         float initialHpPercent = ImageFill.fillAmount;
         float t = 0f;

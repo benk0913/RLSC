@@ -90,6 +90,8 @@ public class DatabaseContent
 
     public string StartingScene;
 
+    public string TownScene = "Sunset Port";
+
     public string HumanPrefab;
 
     public AttributeData BaseAttributes;

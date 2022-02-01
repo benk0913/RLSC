@@ -16,4 +16,14 @@ public class UnityEventInvoker : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+
+    public void SetAnimatorVelocityXEqualOne(Animator animer)
+    {
+        animer.SetFloat("VelocityX",1f);
+    }
+
+    public void SetAnimatorVelocityXEqualZero(Animator animer)
+    {
+        animer.SetFloat("VelocityX",0f);
+    }
 }

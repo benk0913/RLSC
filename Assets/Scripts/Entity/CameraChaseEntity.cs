@@ -27,6 +27,7 @@ public class CameraChaseEntity : MonoBehaviour
 
     public bool IsFocusing = false;
 
+
     float DefaultSize;
 
     public Camera CurrentCam;
@@ -52,10 +53,16 @@ public class CameraChaseEntity : MonoBehaviour
         PostProccessHandler = GetComponent<Volume>();
         //PostProccessHandler.sharedProfile.components.Find(x => x.name == "Bloom").active;
 
+        UpdateCameraSize();
+    }
+
+    public void UpdateCameraSize()
+    {
         #if UNITY_ANDROID || UNITY_IOS
         if(Speed > 0f)
         {
-             CurrentCam.orthographicSize *= MobileSize;
+            if(CORE.IsToggledZoom)
+                CurrentCam.orthographicSize *= MobileSize;
         }
         #endif
 

@@ -23,6 +23,9 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI HPLabel;
 
+    [SerializeField]
+    Image StroberIMG;
+
 
     private void Awake()
     {
@@ -93,6 +96,32 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
         CastFillBar.fillAmount = 0f;
 
         StartCastingRoutineInstance = null;
+
+        if(StroberRoutineInstance != null)
+        {
+            StopCoroutine(StroberRoutineInstance);
+        }
+
+        StroberRoutineInstance = StartCoroutine(StroberRoutine());
+    }
+
+    Coroutine StroberRoutineInstance;
+
+    IEnumerator StroberRoutine()
+    {
+        while(StroberIMG.fillAmount < 1f)
+        {
+            StroberIMG.fillAmount = Time.deltaTime * 3f;
+            yield return 0;
+        }
+
+        while( StroberIMG.fillAmount > 0)
+        {
+            StroberIMG.fillAmount -= Time.deltaTime;
+            yield return 0;
+        }
+
+        StroberRoutineInstance = null;
     }
 
     Coroutine StartCastingRoutineInstance;

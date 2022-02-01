@@ -18,6 +18,7 @@ public class InterpolatedChildEntity : MonoBehaviour
         pc.AddSource(cs);
         pc.constraintActive = true;
         pc.locked = true;
+        pc.translationOffset = transform.parent.position;
     }
 
     void Update()

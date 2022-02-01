@@ -1172,12 +1172,12 @@ public class SocketHandler : MonoBehaviour
                 }
             }
         }
-
+        
         GameObject lvlUpEffect = ResourcesLoader.Instance.GetRecycledObject("LevelUpEffect");
         lvlUpEffect.transform.position = actorDat.ActorEntity.transform.position;
         lvlUpEffect.GetComponent<AbilityCollider>().SetInfo(null, actorDat.ActorEntity);
-
         
+        CORE.Instance.InvokeEvent("AbilitiesNotification");
     }
 
     public void OnKarmaUpdate(string eventName, JSONNode data)
@@ -1943,6 +1943,7 @@ public class SocketHandler : MonoBehaviour
         if(actorDat.IsPlayer)
         {
             CORE.Instance.IsPickingUpItem = false;
+            CORE.Instance.InvokeEvent("InventoryNotification");
         }
 
         item.Entity.BePickedBy(actorDat.ActorEntity);
@@ -2009,6 +2010,7 @@ public class SocketHandler : MonoBehaviour
         string itemName = data["itemName"].Value;
         
         CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + CORE.QuickTranslate(itemName) + " " +CORE.QuickTranslate("has been added to your inventory")+ "!'</color>");
+        CORE.Instance.InvokeEvent("InventoryNotification");
     }
 
     public void OnCashRefresh(string eventName, JSONNode data)

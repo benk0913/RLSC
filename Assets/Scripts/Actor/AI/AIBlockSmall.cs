@@ -20,6 +20,11 @@ public class AIBlockSmall : ActorAI
                     
                     if(SelectedAbility == null)
                     {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "TurtleSmashSmallWeak" && x.CurrentCD <= 0f);
+                    }
+
+                    if(SelectedAbility == null)
+                    {
                         SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "BlockEnrageHaste" && x.CurrentCD <= 0f);
                     }
 
@@ -27,6 +32,11 @@ public class AIBlockSmall : ActorAI
                 else
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "TurtleSmashSmall" && x.CurrentCD <= 0f);
+
+                    if(SelectedAbility == null)
+                    {
+                        SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "TurtleSmashSmallWeak" && x.CurrentCD <= 0f);
+                    }
                 }
 
                 WaitBehaviour();

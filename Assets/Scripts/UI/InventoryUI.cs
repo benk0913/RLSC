@@ -174,6 +174,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             AudioControl.Instance.Play("partyWindowOpen");
         }
 
+        CORE.Instance.InvokeEvent("InventoryNotification_OFF");
+
         StatsPanel.SetActor(ofActor);
         StatsPanel.RefreshStats();
         InspectPanel.SetActor(ofActor);

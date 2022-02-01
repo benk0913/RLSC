@@ -25,7 +25,7 @@ public class Actor : MonoBehaviour
     public ActorAI AIControl;
 
     [SerializeField]
-    protected Animator Animer;
+    public Animator Animer;
 
     [SerializeField]
     public ActorSkin Skin;
@@ -451,6 +451,7 @@ public class Actor : MonoBehaviour
 
     protected void LateUpdate()
     {
+
         RefreshVelocity();
 
         RefreshActorState();

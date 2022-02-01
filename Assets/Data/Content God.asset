@@ -880,6 +880,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5cda58be31d534b4f94b85d644b9f8ed, type: 2}
     - {fileID: 11400000, guid: 4c517b12ca85b6c45921a6cb65749efa, type: 2}
     - {fileID: 11400000, guid: 0728a231f64bf5841a051a6ebead32e9, type: 2}
+    - {fileID: 11400000, guid: ecdbf6c05f081514aa12cf29542b9d53, type: 2}
     - {fileID: 11400000, guid: c530541cbda4c07438b4e8a3e21a6387, type: 2}
     - {fileID: 11400000, guid: 11659520b2258e0439b7bc9836e4bdd6, type: 2}
     - {fileID: 11400000, guid: e4c0342d422356f4dac6943eb53c9d1d, type: 2}
@@ -1063,6 +1064,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: aae287cc1f34830499a7c4559ee30f9f, type: 2}
     - {fileID: 11400000, guid: 073d371f97550d1408ab2c27c0be4c92, type: 2}
     - {fileID: 11400000, guid: c4e0119d76c5f684192d208f09117efa, type: 2}
+    - {fileID: 11400000, guid: d75f3bcb848ed584fb80bdfc7d517d60, type: 2}
     - {fileID: 11400000, guid: 6e6f4fea377e56147b35f72a3fde7e79, type: 2}
     - {fileID: 11400000, guid: 39b4516f5135931409631fc18ff59857, type: 2}
     - {fileID: 11400000, guid: 8a3043d5fef77474ab2714f1b75242ae, type: 2}
@@ -1650,6 +1652,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 10bd24eeacdca3248a8b03e37eb53140, type: 2}
     - {fileID: 11400000, guid: 3701f5e9a60089946b6594e2a88a279b, type: 2}
     - {fileID: 11400000, guid: 5cce527580fd282469b5d93ab14a7e0c, type: 2}
+    - {fileID: 11400000, guid: 114a4fd8abbe64a49b2a8eef722f6abf, type: 2}
     - {fileID: 11400000, guid: 2d7360e342ac41344b96a109d440511d, type: 2}
     - {fileID: 11400000, guid: b2389236fdcca784fba89ead1db9db7a, type: 2}
     - {fileID: 11400000, guid: 9c8660a0259b09d41826645ade3e1c51, type: 2}
@@ -13242,6 +13245,632 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: 
       MapPoint: 
+    - sceneName: OW_SchoolRoom1
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 3
+        positionY: 4
+      - interactableName: NPC_Keeper
+        interactableId: 
+        positionX: -6
+        positionY: 0
+      playerSpawnX: -12.48
+      playerSpawnY: -1.09
+      Portals:
+      - name: Entry
+        TargetScene: OW_SchoolCorridor
+        TargetSceneGate: RoomEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 3.35
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: TavernAmbience
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolCorridor
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_SchoolCourtyard
+        interactableId: 
+        positionX: 52
+        positionY: 4
+      playerSpawnX: -8
+      playerSpawnY: 0.52
+      Portals:
+      - name: RoomEntry
+        TargetScene: OW_SchoolCourtyard
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: -7.9
+        portalPositionY: 1.75
+      - name: Entry
+        TargetScene: OW_SchoolCourtyard
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: 51.8
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolCourtyard
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: "R\u0131ghtEnterance"
+        interactableId: 
+        positionX: 418
+        positionY: -35
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: 163
+        positionY: -35
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: 357
+        positionY: -36
+      - interactableName: NPC_Keeper
+        interactableId: 
+        positionX: 341
+        positionY: -38
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entrance
+        TargetScene: Corridor
+        TargetSceneGate: Exit
+        IsExpeditionLocked: 0
+        portalPositionX: 42.117798
+        portalPositionY: -36.337093
+      - name: Entry
+        TargetScene: OW_SchoolClass1a
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: 418.1178
+        portalPositionY: -35.250553
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: Valley SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolRoom2
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 3
+        positionY: 4
+      - interactableName: NPC_Keeper
+        interactableId: 
+        positionX: -8
+        positionY: 1
+      playerSpawnX: -12.48
+      playerSpawnY: -1.09
+      Portals:
+      - name: Spawn
+        TargetScene: OW_SchoolCorridor2
+        TargetSceneGate: RoomEntry
+        IsExpeditionLocked: 0
+        portalPositionX: -14.045061
+        portalPositionY: 3.57
+      - name: Entry
+        TargetScene: OW_SchoolCorridor2
+        TargetSceneGate: RoomEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 3.35
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolCourtyard2
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorDummyBreakable
+        positionX: 190.565
+        positionY: -37.611526
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorDummyBreakable
+        positionX: 182.94
+        positionY: -37.611526
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorDummyBreakable
+        positionX: 198.94
+        positionY: -37.611526
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorDummyBreakable
+        positionX: 175.815
+        positionY: -37.611526
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: "R\u0131ghtEnterance"
+        interactableId: 
+        positionX: 221
+        positionY: -35
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: 163
+        positionY: -35
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entrance
+        TargetScene: Corridor
+        TargetSceneGate: Exit
+        IsExpeditionLocked: 0
+        portalPositionX: 42.117798
+        portalPositionY: -36.212093
+      - name: Entry
+        TargetScene: OW_SchoolClass2a
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: 221.2428
+        portalPositionY: -35.250553
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: Valley SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolRoom3
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 3
+        positionY: 4
+      - interactableName: NPC_Keeper
+        interactableId: 
+        positionX: -16
+        positionY: 1
+      playerSpawnX: -12.48
+      playerSpawnY: -1.09
+      Portals:
+      - name: Spawn
+        TargetScene: OW_SchoolCorridor2
+        TargetSceneGate: RoomEntry
+        IsExpeditionLocked: 0
+        portalPositionX: -14.045061
+        portalPositionY: 3.57
+      - name: Entry
+        TargetScene: OW_SchoolCorridor3
+        TargetSceneGate: RoomEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 3.35
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: soundscape_rain_hummed
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolCorridor3
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_SchoolCourtyard
+        interactableId: 
+        positionX: 52
+        positionY: 4
+      playerSpawnX: -8
+      playerSpawnY: 0.52
+      Portals:
+      - name: RoomEntry
+        TargetScene: OW_SchoolCourtyard2
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: -7.9
+        portalPositionY: 1.875
+      - name: Entry
+        TargetScene: OW_SchoolCourtyard3
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: 51.8
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: soundscape_rain_hummed
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolCorridor2
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_SchoolCourtyard
+        interactableId: 
+        positionX: 52
+        positionY: 4
+      playerSpawnX: -8
+      playerSpawnY: 0.52
+      Portals:
+      - name: RoomEntry
+        TargetScene: OW_SchoolCourtyard2
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: -7.9
+        portalPositionY: 1.875
+      - name: Entry
+        TargetScene: OW_SchoolCourtyard2
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: 51.8
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolCourtyard3
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorBlockSmallWeak
+        positionX: 203.125
+        positionY: -37.611526
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: "R\u0131ghtEnterance"
+        interactableId: 
+        positionX: 221
+        positionY: -35
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: 163
+        positionY: -35
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entrance
+        TargetScene: Corridor
+        TargetSceneGate: Exit
+        IsExpeditionLocked: 0
+        portalPositionX: 42.117798
+        portalPositionY: -35.837093
+      - name: Entry
+        TargetScene: OW_SchoolRoom4
+        TargetSceneGate: Spawn
+        IsExpeditionLocked: 0
+        portalPositionX: 221.2428
+        portalPositionY: -35.250553
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: OW_SchoolRoom3
+      MusicTrack: TavernMusic
+      Soundscape: soundscape_rain
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolClass1a
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_SchoolCourtyard
+        interactableId: 
+        positionX: 58
+        positionY: 4
+      - interactableName: NPC_Guide
+        interactableId: 
+        positionX: 7
+        positionY: 0
+      playerSpawnX: -8
+      playerSpawnY: 0.52
+      Portals:
+      - name: Entrance
+        TargetScene: OW_SchoolCourtyard2
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: -14
+        portalPositionY: 2.6
+      - name: Entry
+        TargetScene: OW_SchoolClass1b
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: 57.704937
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolClass1b
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_SchoolCourtyard
+        interactableId: 
+        positionX: 58
+        positionY: 4
+      - interactableName: NPC_Guide
+        interactableId: 
+        positionX: 6
+        positionY: 0
+      playerSpawnX: -8
+      playerSpawnY: 0.52
+      Portals:
+      - name: Entrance
+        TargetScene: OW_SchoolRoom2
+        TargetSceneGate: Spawn
+        IsExpeditionLocked: 0
+        portalPositionX: -14
+        portalPositionY: 2.6
+      - name: Entry
+        TargetScene: OW_SchoolRoom2
+        TargetSceneGate: Spawn
+        IsExpeditionLocked: 0
+        portalPositionX: 57.704937
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolClass2a
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_SchoolCourtyard
+        interactableId: 
+        positionX: 58
+        positionY: 4
+      - interactableName: NPC_Guide
+        interactableId: 
+        positionX: 7
+        positionY: 0
+      playerSpawnX: -8
+      playerSpawnY: 0.52
+      Portals:
+      - name: Entrance
+        TargetScene: OW_SchoolCourtyard2
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: -14
+        portalPositionY: 2.6
+      - name: Entry
+        TargetScene: OW_SchoolClass2b
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: 57.704937
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolClass2b
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_SchoolCourtyard
+        interactableId: 
+        positionX: 58
+        positionY: 4
+      - interactableName: NPC_Guide
+        interactableId: 
+        positionX: 7
+        positionY: 0
+      playerSpawnX: -8
+      playerSpawnY: 0.52
+      Portals:
+      - name: Entrance
+        TargetScene: OW_SchoolCourtyard2
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: -14
+        portalPositionY: 2.6
+      - name: Entry
+        TargetScene: OW_SchoolRoom3
+        TargetSceneGate: Spawn
+        IsExpeditionLocked: 0
+        portalPositionX: 57.704937
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolRoom4
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 3
+        positionY: 4
+      - interactableName: NPC_Keeper
+        interactableId: 
+        positionX: -16
+        positionY: 1
+      playerSpawnX: -12.48
+      playerSpawnY: -1.09
+      Portals:
+      - name: Spawn
+        TargetScene: OW_SchoolCorridor2
+        TargetSceneGate: RoomEntry
+        IsExpeditionLocked: 0
+        portalPositionX: -14.045061
+        portalPositionY: 3.57
+      - name: Entry
+        TargetScene: OW_SchoolCorridor4
+        TargetSceneGate: RoomEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 3.35
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: soundscape_rain_hummed
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_SchoolCorridor4
+      displyName: Magic School
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_SchoolCourtyard
+        interactableId: 
+        positionX: 36
+        positionY: 4
+      playerSpawnX: -8
+      playerSpawnY: 0.52
+      Portals:
+      - name: RoomEntry
+        TargetScene: OW_SchoolCourtyard2
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: -7.9
+        portalPositionY: 2.6
+      - name: Entry
+        TargetScene: OW_SchoolCourtyard
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: 36.079937
+        portalPositionY: 3.57
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: TavernMusic
+      Soundscape: soundscape_rain_hummed
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -13269,7 +13898,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6316f3673ceba114187e0f620dc19064, type: 2}
     - {fileID: 11400000, guid: 55f7a0f906096f44f8541173f0fdace4, type: 2}
     - {fileID: 11400000, guid: f3fd13e308936a34987cb4e35cda2303, type: 2}
-    ExpChart: 0000000064000000c80000009001000020030000dc050000280a0000681000000019000054240000c8320000c0440000a05a0000cc740000a893000098b7000000e1000044100100c8450100f081010020c50100bc0f020028620200c8bc0200
+    ExpChart: 0000000064000000c80000009001000020030000dc050000280a0000681000000019000054240000c8320000c0440000a05a0000cc740000a893000098b7000000e1000044100100c8450100f081010020c50100bc0f020028620200c8bc020000200300
     TimePhases:
     - Name: Day
       DurationInMinutes: 40
@@ -13308,11 +13937,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 20bcc4be0a497ba4f844957e70e18b88, type: 2}
     - {fileID: 11400000, guid: fa742b90e962a6a42b349172847905be, type: 2}
     - {fileID: 11400000, guid: df6edad209a69c041b4a5c5a5d288993, type: 2}
+    - {fileID: 11400000, guid: 2000b79ed2f126b4baaa20ea96cef509, type: 2}
     - {fileID: 11400000, guid: 09866368ec5f08e4d85438cc3ba207a5, type: 2}
     - {fileID: 11400000, guid: e902b1f398915214dacd2fe333df5d64, type: 2}
     - {fileID: 11400000, guid: 9b025b7671a7a154580d929bf303ce43, type: 2}
     - {fileID: 11400000, guid: 625639c732f591a479b15d54cf1a9fd7, type: 2}
     - {fileID: 11400000, guid: 30a7977c28f319342a44eeb083e4176a, type: 2}
+    - {fileID: 11400000, guid: 11d07776a9282f64580b531980569c16, type: 2}
     - {fileID: 11400000, guid: bfaeac0824db4e94691ddbe140ff56cc, type: 2}
     - {fileID: 11400000, guid: 44563ca72af9c4a4da4f2d5544952478, type: 2}
     - {fileID: 11400000, guid: 6bf605f7197eeaf428ed9d418329a45d, type: 2}
@@ -13326,6 +13957,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 71ad520507207be4f930796d4d637594, type: 2}
     - {fileID: 11400000, guid: 7976e80ee00a88b43ad4435f636cc313, type: 2}
     - {fileID: 11400000, guid: 95f70c4211ca72e4a8a75a7fd31f517b, type: 2}
+    - {fileID: 11400000, guid: d8bfa6d4f94fee549be9844a363b9043, type: 2}
     - {fileID: 11400000, guid: 90cc7b5d868ecfb41bb15650c8b87c5f, type: 2}
     alignmentData:
       MaxKarma: 100
@@ -13351,7 +13983,8 @@ MonoBehaviour:
     - moneyItem: {fileID: 11400000, guid: 94662d86b6b151344bf6d363eba82855, type: 2}
       minAmount: 100000
     LatestVersion: 0.45
-    StartingScene: Potential_Start
+    StartingScene: OW_SchoolRoom1
+    TownScene: Sunset Port
     HumanPrefab: ActorHuman
     BaseAttributes:
       Power: 0
@@ -13420,7 +14053,7 @@ MonoBehaviour:
     DefaultChatBubble: {fileID: 11400000, guid: 7a76aff3eb7d1624aa638f42f5174bde, type: 2}
     titleScreenMusic: music_TitleScreenBaP
     titleScreenSoundscape: Beach SoundScape
-    MaxLevel: 24
+    MaxLevel: 25
     AbilitiesInitCount: 3
     AbilitiesMaxCount: 5
     InventoryData:

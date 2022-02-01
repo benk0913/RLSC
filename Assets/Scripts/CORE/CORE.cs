@@ -126,6 +126,8 @@ public class CORE : MonoBehaviour
     public string NextScenePrediction;
 
     public bool IsAppInBackground = false;
+    
+    public static bool IsToggledZoom;
 
     public string CurrentLanguage = "";
 
@@ -784,6 +786,8 @@ public class CORE : MonoBehaviour
         actorData.ActorEntity.SetActorInfo(actorData);
 
         Room.ActorJoined(actorData);
+
+        InvokeEvent("ActorSpawned");
     }
 
     public void DespawnActor(string actorId)
