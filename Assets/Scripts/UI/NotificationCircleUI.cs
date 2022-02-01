@@ -15,5 +15,4 @@ public class NotificationCircleUI : MonoBehaviour
         CORE.Instance.SubscribeToEvent(NotificationKey+"_OFF",()=>{this.gameObject.SetActive(false);});
         this.gameObject.SetActive(false);
     }
-    }
 }

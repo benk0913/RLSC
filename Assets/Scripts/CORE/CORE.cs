@@ -976,6 +976,7 @@ public class CORE : MonoBehaviour
         InGame = false;
     }
 
+    public LayerMask GroundMask;
 
     bool autoExpededOnce = false;
     public void CheckOOGInvitations()
@@ -994,15 +995,19 @@ public class CORE : MonoBehaviour
             #endif
 
             
-            //TODO Remove HACK
-            if(!ExpeditionQueTimerUI.Instance.IsSearching && !autoExpededOnce)
-            {
-                SocketHandler.Instance.SendStartExpeditionQueue("Forest");
-                CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
-                    autoExpededOnce = true;
-                    ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
-                });
-            }
+            // //TODO Remove HACK
+            // if(!ExpeditionQueTimerUI.Instance.IsSearching && !autoExpededOnce)
+            // {
+            //     SocketHandler.Instance.SendStartExpeditionQueue("Forest");
+            //     CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
+            //         autoExpededOnce = true;
+            //         ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
+            //     });
+            // }
+            
+
+            Physics2D.Raycast(transform.position, -Vector2.up, 1f, GroundMask);
+            
         }
     }
 
