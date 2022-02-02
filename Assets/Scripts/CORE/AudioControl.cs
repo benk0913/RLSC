@@ -220,7 +220,7 @@ namespace EdgeworldBase
                 }
             }
 
-            Debug.LogError(MusicSource.volume);
+            // Debug.LogError(MusicSource.volume);
         }
 
         public void SetMasterVolume(float gVolume)
