@@ -1,4 +1,4 @@
-﻿using EdgeworldBase;
+using EdgeworldBase;
 using I2.Loc;
 #if !UNITY_ANDROID && !UNITY_IOS
 using NewResolutionDialog.Scripts.Controller;
@@ -184,31 +184,7 @@ public class CORE : MonoBehaviour
                 }
 
 
-                CurrentLanguage = PlayerPrefs.GetString("language", "");
-
-                if (string.IsNullOrEmpty(CurrentLanguage))
-                {
-                    Debug.Log("Using steam's UI language");
-                    CurrentLanguage = SteamApps.GetCurrentGameLanguage();
-
-                    if (CurrentLanguage == "Simplified Chinese")
-                    {
-                        CurrentLanguage = "Chinese (Simplified)";
-                    }
-
-                    if (CurrentLanguage == "Spanish - Spain")
-                    {
-                        CurrentLanguage = "Spanish";
-                    }
-
-                }
-
-                PlayerPrefs.SetString("language", CurrentLanguage);
-                PlayerPrefs.Save();
-
-                LocalizationManager.CurrentLanguage = CurrentLanguage;
-                CORE.Instance.InvokeEvent("LanguageChanged");
-
+               //AutoSetLanguage();
 
                 AchievementLogic.Instance.StartAchievementLogic();
             });
@@ -241,6 +217,35 @@ public class CORE : MonoBehaviour
         CurrentGuild = null;
 
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void AutoSetLanguage()
+    {
+         CurrentLanguage = PlayerPrefs.GetString("language", "");
+
+        if (string.IsNullOrEmpty(CurrentLanguage))
+        {
+            Debug.Log("Using steam's UI language");
+            CurrentLanguage = SteamApps.GetCurrentGameLanguage();
+
+            if (CurrentLanguage == "Simplified Chinese")
+            {
+                CurrentLanguage = "Chinese (Simplified)";
+            }
+
+            if (CurrentLanguage == "Spanish - Spain")
+            {
+                CurrentLanguage = "Spanish";
+            }
+
+        }
+
+        PlayerPrefs.SetString("language", CurrentLanguage);
+        PlayerPrefs.Save();
+
+        LocalizationManager.CurrentLanguage = CurrentLanguage;
+        CORE.Instance.InvokeEvent("LanguageChanged");
+
     }
 
 #if !UNITY_ANDROID && !UNITY_IOS
@@ -976,7 +981,6 @@ public class CORE : MonoBehaviour
         InGame = false;
     }
 
-    public LayerMask GroundMask;
 
     bool autoExpededOnce = false;
     public void CheckOOGInvitations()
@@ -1004,10 +1008,7 @@ public class CORE : MonoBehaviour
             //         ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
             //     });
             // }
-            
 
-            Physics2D.Raycast(transform.position, -Vector2.up, 1f, GroundMask);
-            
         }
     }
 
