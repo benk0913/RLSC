@@ -1943,7 +1943,7 @@ public class SocketHandler : MonoBehaviour
         if(actorDat.IsPlayer)
         {
             CORE.Instance.IsPickingUpItem = false;
-            CORE.Instance.InvokeEvent("InventoryNotification");
+            
         }
 
         item.Entity.BePickedBy(actorDat.ActorEntity);
@@ -1958,6 +1958,10 @@ public class SocketHandler : MonoBehaviour
         }
         else
         {
+            if(actorDat.IsPlayer)
+            {
+                CORE.Instance.InvokeEvent("InventoryNotification");
+            }
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up the item") +": '"+ CORE.QuickTranslate(item.itemName) + "'"+(item.amount > 1? " x"+item.amount : "" )+"</color>");
         }
 

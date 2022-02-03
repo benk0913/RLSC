@@ -23,8 +23,14 @@ public class YouthVisitorEntity : MonoBehaviour
             return;
         }
 
+        CORE.Instance.DelayedInvokation(0.1f,()=>{
         newActor.Animer.transform.localScale = new Vector3(0.66f,0.66f,1f);
         newActor.Animer.transform.Find("Torso/Head").localScale = new Vector3(1.1f,1.1f,1f);
         newActor.Animer.transform.Find("Torso/Breast").gameObject.SetActive(false);
+
+        if(!newActor.State.Data.looks.IsFemale)
+            if(newActor.Animer.transform.Find("Torso").GetComponent<SpriteRenderer>().sprite.name == "characterV2_male_1_2")
+                newActor.Animer.transform.Find("Torso").GetComponent<SpriteRenderer>().sprite = CORE.Instance.Data.content.AlternativeTorsoSprite;
+        });
     }
 }

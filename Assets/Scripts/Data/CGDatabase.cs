@@ -120,6 +120,8 @@ public class DatabaseContent
     public InventoryLikeDatabase InventoryData;
     public InventoryLikeDatabase BankData;
 
+    [JsonIgnore]
+    public Sprite AlternativeTorsoSprite;
     public int MaxCashItemSlots;
     public int MaxChatLength;
     public int RollDurationSeconds;
@@ -159,6 +161,8 @@ public class DatabaseContent
     public List<RarirtyToScrap> RarirtyToScrapGains; 
 
     public bool DangerousEveryoneIsAdmin;
+
+    
 }
 
 [Serializable]
