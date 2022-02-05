@@ -13,7 +13,9 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
 
     public SelectionGroupUI SGroup;
 
+    public GameObject SkipText;
     public bool IsActive = false;
+
 
 
     Dialog CurrentDialog;
@@ -44,7 +46,6 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
     public void Show(ActorData actor, List<DialogDecision> decisions)
     {
         this.gameObject.SetActive(true);
-                
         #if UNITY_ANDROID || UNITY_IOS
         this.transform.localScale = Vector3.one *0.5f;
         #endif
@@ -98,5 +99,15 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
         {
             Hide();
         }
+    }
+
+    public void ShowSkipText()
+    {
+        SkipText.SetActive(true);
+    }
+
+    public void HideSkipText()
+    {
+        SkipText.SetActive(false);
     }
 }

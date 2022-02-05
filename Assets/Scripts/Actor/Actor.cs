@@ -107,6 +107,11 @@ public class Actor : MonoBehaviour
                 return 1f;
             }
 
+            if(Rigid.gravityScale == 2)
+            {
+                return 1.5f;
+            }
+
             return Rigid.gravityScale;
         }
     }
@@ -219,7 +224,8 @@ public class Actor : MonoBehaviour
                     && !VirtualKeyboard.VirtualKeyboard.Instance.IsTyping
                     && !CORE.Instance.HasWindowOpen
                     && !CameraChaseEntity.Instance.IsFocusing
-                    && !DecisionContainerUI.Instance.IsActive)
+                    && !DecisionContainerUI.Instance.IsActive
+                    && !WarningWindowUI.Instance.gameObject.activeInHierarchy)
                && !IsDead;
         }
     }

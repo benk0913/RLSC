@@ -72,6 +72,8 @@ public class DialogEntity : MonoBehaviour
             return;
         }
 
+        DecisionContainerUI.Instance.ShowSkipText();
+
         CurrentDialog = dialog;
 
         CurrentInstance = this;
@@ -150,6 +152,7 @@ public class DialogEntity : MonoBehaviour
         CurrentDialog = null;
         this.CurrentBubble.gameObject.SetActive(false);
         isActiveDialog = false;
+        DecisionContainerUI.Instance.HideSkipText();
     }
 
     [System.Serializable]
