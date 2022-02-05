@@ -34,6 +34,9 @@ public class AbilitySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     [SerializeField]
     GameObject AbilityMastery;
 
+    [SerializeField]
+    Animator Animer;
+
     
     [SerializeField]
     protected TextMeshProUGUI AbilityKeyLabel;
@@ -152,6 +155,7 @@ public class AbilitySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             if (!CooldownImage.gameObject.activeInHierarchy)
             {
                 CooldownImage.gameObject.SetActive(true);
+                Animer.SetTrigger("Execute");
             }
 
             CooldownImage.fillAmount = CurrentAbility.CurrentCD / CurrentAbility.CurrentAbility.CD;
@@ -167,6 +171,8 @@ public class AbilitySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             if (!CastingCooldownImage.gameObject.activeInHierarchy)
             {
                 CastingCooldownImage.gameObject.SetActive(true);
+                Animer.SetTrigger("Cast");
+                
             }
 
             CastingCooldownImage.fillAmount = CurrentAbility.CurrentCastingTime / CurrentAbility.CurrentAbility.CastingTime;

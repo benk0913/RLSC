@@ -52,6 +52,7 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
         CurrentTarget = actor.ActorEntity.transform;
         CurrentDecisions = decisions;
 
+        transform.position = CameraChaseEntity.Instance.CurrentCam.WorldToScreenPoint(CurrentTarget.position) + new Vector3(0f, Screen.height / 8,0f);
 
         IsActive = true;
 

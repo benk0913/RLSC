@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 2585603818931633075}
   - component: {fileID: 7311878792503683094}
   - component: {fileID: 4034223515753639897}
+  - component: {fileID: -7836882575160958933}
   m_Layer: 5
   m_Name: AbilitySlotDraggableUI
   m_TagString: Untagged
@@ -189,8 +190,10 @@ MonoBehaviour:
   Tooltip: {fileID: 2585603818931633075}
   AbilityLock: {fileID: 4305219659464228697}
   AbilityMastery: {fileID: 2265104318178581039}
+  Animer: {fileID: -7836882575160958933}
   AbilityKeyLabel: {fileID: 3100013723221866911}
   KeyLabelObject: {fileID: 3713881280758089055}
+  PressHold: 0
   OnSelect:
     m_PersistentCalls:
       m_Calls:
@@ -362,6 +365,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &-7836882575160958933
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829465439225585574}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2b28af362134c243b6dd3853490b1e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2265104318178581039
 GameObject:
   m_ObjectHideFlags: 0

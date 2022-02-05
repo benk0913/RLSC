@@ -98,6 +98,18 @@ public class Actor : MonoBehaviour
 
     public bool disableGlide;
 
+    public float GravityScaleModifier
+    {
+        get
+        {
+            if(Rigid == null || Rigid.gravityScale == 0f)
+            {
+                return 1f;
+            }
+
+            return Rigid.gravityScale;
+        }
+    }
     public bool IsAttached;
 
     public bool IsCharmed
@@ -818,7 +830,7 @@ public class Actor : MonoBehaviour
         if (IsClientControl && ((AIControl != null && !AIControl.IsBoss) || State.Data.IsPlayer))
         {
             Rigid.velocity = new Vector2(0f,Rigid.velocity.y);
-            Rigid.AddForce(((transform.position - source.transform.position).normalized)*KnockbackAmount, ForceMode2D.Impulse);
+            Rigid.AddForce(((transform.position - source.transform.position).normalized)*KnockbackAmount*GravityScaleModifier, ForceMode2D.Impulse);
         }
 
         if(State.Data.IsPlayer)
@@ -1680,7 +1692,7 @@ public class Actor : MonoBehaviour
     private IEnumerator JumpRoutine()
     {
         Vector2 jumpVector = Vector2.up * JumpHeight;
-        jumpVector += jumpVector * State.Data.attributes.JumpHeight;
+        jumpVector += jumpVector * State.Data.attributes.JumpHeight*GravityScaleModifier;
         Rigid.AddForce(jumpVector, ForceMode2D.Impulse);
 
         AudioControl.Instance.PlayInPosition("_ound_bloop",transform.position);
@@ -1804,7 +1816,12 @@ public class Actor : MonoBehaviour
     public void StopFlying()
     {
         Rigid.velocity = Vector2.zero;
-        Rigid.gravityScale = 1f;
+
+        if(State.Data.isCharacter)
+            Rigid.gravityScale = 2f;
+        else
+            Rigid.gravityScale = 1f;
+            
         Animer.SetBool("IsFlying", false);
         IsFlying = false;
     }
@@ -1824,7 +1841,7 @@ public class Actor : MonoBehaviour
     Coroutine MovementEffectRoutineInstance;
     IEnumerator MovementDisengageRoutine(float multiplier = 1f)
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 15 * multiplier, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 15 * multiplier*GravityScaleModifier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
         
@@ -1834,7 +1851,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementEngageRoutine(float power = 1f)
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? 1f : -1f, 2.2f) * 15 * power, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? 1f : -1f, 2.2f) * 15 * power*GravityScaleModifier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
 
@@ -1884,7 +1901,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementEarthPushRoutine(Actor caster)
     {
-        Rigid.AddForce(new Vector2(caster.transform.position.x < transform.position.x ? 1f : -1f, 1f) * 15, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(caster.transform.position.x < transform.position.x ? 1f : -1f, 1f) * 15*GravityScaleModifier, ForceMode2D.Impulse);
 
 
         yield return new WaitForSeconds(1f);
@@ -1894,7 +1911,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementWindPushRoutine(Actor caster)
     {
-        Rigid.AddForce(new Vector2(-caster.Body.transform.localScale.x * 25,25f), ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(-caster.Body.transform.localScale.x * 25,25f)*GravityScaleModifier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
 
@@ -1922,7 +1939,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementEscapeRoutine(float powerMult = 1f)
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 25 * powerMult, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 25 * powerMult*GravityScaleModifier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
 

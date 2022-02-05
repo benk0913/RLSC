@@ -56,7 +56,11 @@ public class PortalEntity : MonoBehaviour
         if(!string.IsNullOrEmpty(EnterWarning))
         {
             if(!WarningWindowUI.Instance.gameObject.activeInHierarchy)
-                WarningWindowUI.Instance.Show(EnterWarning,()=>{SocketHandler.Instance.SendEnterPortal(PortalReference);});
+                WarningWindowUI.Instance.Show(EnterWarning,()=>
+                {
+                    SocketHandler.Instance.SendEnterPortal(PortalReference);
+                    WarningWindowUI.Instance.Hide();
+                });
 
             return;
         }
