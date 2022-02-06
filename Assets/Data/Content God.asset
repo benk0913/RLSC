@@ -914,6 +914,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 61d4a9a4e3354c346bc6898ba6c32c78, type: 2}
     - {fileID: 11400000, guid: 28dba195f74afac40a136f2375bfb6a9, type: 2}
     - {fileID: 11400000, guid: 4d04c0fdd07556948801bc47812c1f79, type: 2}
+    - {fileID: 11400000, guid: a7a2d1bd616141e4bb680b6a5e4458c8, type: 2}
     - {fileID: 11400000, guid: 958d8a61aba1a1540a278c6f0cf7b9bb, type: 2}
     - {fileID: 11400000, guid: 30cd5a1eeab7c294796c3dcaf53e625b, type: 2}
     - {fileID: 11400000, guid: 8a957e38fb70eda41bf70bd86fbfbfcf, type: 2}
@@ -1807,6 +1808,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 98954a3b6b422d143adeac22fe7f2c31, type: 2}
     - {fileID: 11400000, guid: 5f9e471d3cacdf8448005fab79750d47, type: 2}
     - {fileID: 11400000, guid: 563331ea4ae0c484a8b1b248e2d6f0f7, type: 2}
+    - {fileID: 11400000, guid: b718d04a038cad944b39d90338846a57, type: 2}
     - {fileID: 11400000, guid: e647627804455a2489accd4dc069eff7, type: 2}
     - {fileID: 11400000, guid: bdb63f40f6a16c84d839b19b210382f7, type: 2}
     - {fileID: 11400000, guid: b86cb2bdb6e44914ab6115422425f83c, type: 2}
@@ -14276,17 +14278,17 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorSlimeSwamp
+      - monsterName: ActorSlimeSmallSwamp
         positionX: 62.375
         positionY: -16.25
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorSlimeSwamp
+      - monsterName: ActorSlimeSmallSwamp
         positionX: 67.625
         positionY: -17.25
         respawnSeconds: 8
         IrellevantMob: 1
-      - monsterName: ActorSlimeSwamp
+      - monsterName: ActorSlimeSmallSwamp
         positionX: 65.125
         positionY: -17.5
         respawnSeconds: 8
@@ -14337,7 +14339,7 @@ MonoBehaviour:
         positionY: -13
         respawnSeconds: 15
         IrellevantMob: 1
-      - monsterName: ActorGhost
+      - monsterName: ActorGhostSmall
         positionX: 78.75
         positionY: -89.625
         respawnSeconds: 15
@@ -14627,7 +14629,7 @@ MonoBehaviour:
         portalPositionX: -121.018234
         portalPositionY: -45.58043
       - name: UpperEntrance
-        TargetScene: OW_DreamPondCaveU123
+        TargetScene: OW_DreamPondCaveU
         TargetSceneGate: RightEntrance
         IsExpeditionLocked: 0
         portalPositionX: -124.018234
@@ -14638,6 +14640,87 @@ MonoBehaviour:
         IsExpeditionLocked: 0
         portalPositionX: -146.63882
         portalPositionY: -0.2673335
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_DreamPondCaveU
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: TunnelEntrance
+        interactableId: 
+        positionX: -141
+        positionY: 26
+      - interactableName: TunnelEntrance
+        interactableId: 
+        positionX: -175
+        positionY: -36
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: LeftEntrance
+        TargetScene: OW_DreamPondCaveUp1
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -141.26823
+        portalPositionY: 25.794579
+      - name: RightEntrance
+        TargetScene: OW_DreamPondCaveB
+        TargetSceneGate: UpperEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -174.76823
+        portalPositionY: -35.83042
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_DreamPondCaveC
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSimpleCaveFlower
+        positionX: 89.375
+        positionY: -25.25
+        respawnSeconds: 15
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: TunnelEntrance
+        interactableId: 
+        positionX: 51
+        positionY: -24
+      - interactableName: NPC_Trainer
+        interactableId: 
+        positionX: 123
+        positionY: -23
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: RightEntrance
+        TargetScene: OW_DreamPondCaveB
+        TargetSceneGate: LowerEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 51.106766
+        portalPositionY: -24.330421
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
