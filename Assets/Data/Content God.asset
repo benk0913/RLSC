@@ -905,6 +905,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 122e1dac6d3b0354c88c54582c8aeb61, type: 2}
     - {fileID: 11400000, guid: 98da674c4c510054fa4eca9aa40066a2, type: 2}
     - {fileID: 11400000, guid: 0232275aa0d277c488941f40ae46cfc2, type: 2}
+    - {fileID: 11400000, guid: f803615814bc2004185c0329a58301e4, type: 2}
     - {fileID: 11400000, guid: ea51e382b530d6b48ba216b0a6a3c44d, type: 2}
     - {fileID: 11400000, guid: 3036b22cc4aee574d8d49f2d9a67635b, type: 2}
     - {fileID: 11400000, guid: 33acd79c9183fe445b99bf5c7041296c, type: 2}
@@ -9914,18 +9915,6 @@ MonoBehaviour:
         respawnSeconds: 300
         IrellevantMob: 1
       Interactables:
-      - interactableName: "R\u0131ghtEntrance"
-        interactableId: 
-        positionX: 295
-        positionY: -3
-      - interactableName: "R\u0131ghtEntrance"
-        interactableId: 
-        positionX: 246
-        positionY: -3
-      - interactableName: "R\u0131ghtEntrance"
-        interactableId: 
-        positionX: 200
-        positionY: -3
       - interactableName: PondEntrance
         interactableId: 
         positionX: 259
@@ -9934,6 +9923,22 @@ MonoBehaviour:
         interactableId: 
         positionX: 31
         positionY: -16
+      - interactableName: Entry
+        interactableId: 
+        positionX: 298
+        positionY: 24
+      - interactableName: "R\u0131ghtEntrance"
+        interactableId: 
+        positionX: 246
+        positionY: -3
+      - interactableName: "R\u0131ghtEntrance"
+        interactableId: 
+        positionX: 200
+        positionY: -3
+      - interactableName: "R\u0131ghtEntrance"
+        interactableId: 
+        positionX: 295
+        positionY: -3
       - interactableName: "R\u0131ghtEntrance"
         interactableId: 
         positionX: 170
@@ -9949,24 +9954,6 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
-      - name: Cave4Entry
-        TargetScene: OW_DreamPondCave4
-        TargetSceneGate: Entry
-        IsExpeditionLocked: 0
-        portalPositionX: 295.125
-        portalPositionY: -3.125
-      - name: Cave3Entry
-        TargetScene: OW_DreamPondCave3
-        TargetSceneGate: Entry
-        IsExpeditionLocked: 0
-        portalPositionX: 245.5
-        portalPositionY: -3.125
-      - name: Cave2Entry
-        TargetScene: OW_DreamPondCave2
-        TargetSceneGate: Entry
-        IsExpeditionLocked: 0
-        portalPositionX: 200.5
-        portalPositionY: -3.125
       - name: PondEntrance
         TargetScene: OW_DaydreamPond
         TargetSceneGate: Entry
@@ -9979,6 +9966,30 @@ MonoBehaviour:
         IsExpeditionLocked: 0
         portalPositionX: 30.8
         portalPositionY: -16.4
+      - name: CaveUp1Entry
+        TargetScene: OW_DreamPondCaveUp1
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 298.3865
+        portalPositionY: 24.083244
+      - name: Cave3Entry
+        TargetScene: OW_DreamPondCave3
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 245.5
+        portalPositionY: -3.125
+      - name: Cave2Entry
+        TargetScene: OW_DreamPondCave2
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 200.5
+        portalPositionY: -3.125
+      - name: Cave4Entry
+        TargetScene: OW_DreamPondCave4
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 295.125
+        portalPositionY: -3.125
       - name: Cave1Entry
         TargetScene: OW_DreamPondCave1
         TargetSceneGate: Entry
@@ -14151,7 +14162,7 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_DreamPondCave1
-      displyName: 
+      displyName: Dream Pond Caves
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -14177,14 +14188,14 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
-      - name: "R\u0131ghtEnterance"
+      - name: RightEnterance
         TargetScene: OW_DreamPondCaveA123
         TargetSceneGate: Entry1
         IsExpeditionLocked: 0
         portalPositionX: 102.75
         portalPositionY: -17.375
       - name: Entry
-        TargetScene: OW_DayDreamRoad2
+        TargetScene: OW_DaydreamRoad2
         TargetSceneGate: Cave1Entry
         IsExpeditionLocked: 0
         portalPositionX: 82.75
@@ -14192,8 +14203,8 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
@@ -14202,7 +14213,7 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_DreamPondCave2
-      displyName: 
+      displyName: Dream Pond Caves
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -14218,14 +14229,14 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
-      - name: "R\u0131ghtEnterance"
+      - name: RightEnterance
         TargetScene: OW_DreamPondCaveA123
         TargetSceneGate: Entry2
         IsExpeditionLocked: 0
         portalPositionX: 102.75
         portalPositionY: -17.375
       - name: Entry
-        TargetScene: OW_DayDreamRoad2
+        TargetScene: OW_DaydreamRoad2
         TargetSceneGate: Cave2Entry
         IsExpeditionLocked: 0
         portalPositionX: 82.75
@@ -14233,8 +14244,8 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
@@ -14243,7 +14254,7 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_DreamPondCave3
-      displyName: 
+      displyName: Dream Pond Caves
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -14256,7 +14267,7 @@ MonoBehaviour:
       playerSpawnY: 0
       Portals:
       - name: Entry
-        TargetScene: OW_DayDreamRoad2
+        TargetScene: OW_DaydreamRoad2
         TargetSceneGate: Cave3Entry
         IsExpeditionLocked: 0
         portalPositionX: 82.75
@@ -14264,8 +14275,8 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
@@ -14274,7 +14285,7 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_DreamPondCave4
-      displyName: 
+      displyName: Dream Pond Caves
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -14305,14 +14316,14 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
-      - name: "R\u0131ghtEnterance"
-        TargetScene: DreamPondCave4a
-        TargetSceneGate: LeftEntrance
+      - name: RightEnterance
+        TargetScene: OW_DreamPondCaveA123
+        TargetSceneGate: Entry3
         IsExpeditionLocked: 0
         portalPositionX: 102.75
         portalPositionY: -17.375
       - name: Entry
-        TargetScene: OW_DayDreamRoad2
+        TargetScene: OW_DaydreamRoad2
         TargetSceneGate: Cave4Entry
         IsExpeditionLocked: 0
         portalPositionX: 82.75
@@ -14320,8 +14331,8 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
@@ -14330,7 +14341,7 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_DreamPondCaveA123
-      displyName: 
+      displyName: Dream Pond Caves
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -14385,6 +14396,10 @@ MonoBehaviour:
         positionY: -114
       - interactableName: SunsetCaveEntrance
         interactableId: 
+        positionX: 154
+        positionY: -45
+      - interactableName: SunsetCaveEntrance
+        interactableId: 
         positionX: 79
         positionY: -16
       - interactableName: TunnelEntrance
@@ -14396,19 +14411,25 @@ MonoBehaviour:
       Portals:
       - name: Entry1
         TargetScene: OW_DreamPondCave1
-        TargetSceneGate: RightEntrance
+        TargetSceneGate: RightEnterance
         IsExpeditionLocked: 0
         portalPositionX: -9.9
         portalPositionY: -16.4
-      - name: Entry3
+      - name: Entry4
         TargetScene: OW_DreamPondCave3b
-        TargetSceneGate: RightEntrance
+        TargetSceneGate: RightEnterance
         IsExpeditionLocked: 0
         portalPositionX: 113.25
         portalPositionY: -113.875
+      - name: Entry3
+        TargetScene: OW_DreamPondCave4
+        TargetSceneGate: RightEnterance
+        IsExpeditionLocked: 0
+        portalPositionX: 153.58604
+        portalPositionY: -45.165794
       - name: Entry2
         TargetScene: OW_DreamPondCave2
-        TargetSceneGate: RightEntrance
+        TargetSceneGate: RightEnterance
         IsExpeditionLocked: 0
         portalPositionX: 79
         portalPositionY: -15.5
@@ -14421,8 +14442,8 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
@@ -14431,34 +14452,34 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_DreamPondCave3b
-      displyName: 
+      displyName: Dream Pond Caves
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorTreeAnt
+      - monsterName: ActorRabbitOld
         positionX: 77.375
         positionY: -15.125
         respawnSeconds: 15
         IrellevantMob: 1
       Interactables:
-      - interactableName: "R\u0131ghtEnterance"
+      - interactableName: RightEnterance
         interactableId: 
         positionX: 103
         positionY: -17
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
-      - name: "R\u0131ghtEnterance"
+      - name: RightEnterance
         TargetScene: OW_DreamPondCaveA123
-        TargetSceneGate: Entry3
+        TargetSceneGate: Entry4
         IsExpeditionLocked: 0
         portalPositionX: 102.75
         portalPositionY: -17.375
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
@@ -14467,10 +14488,20 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_DreamPondCaveB
-      displyName: 
+      displyName: Dream Pond Caves
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
+      - monsterName: ActorWisp
+        positionX: -111.375
+        positionY: 51.375
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorWisp
+        positionX: -153.5
+        positionY: -49.5
+        respawnSeconds: 5
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -108.29
         positionY: 46.21
@@ -14480,11 +14511,6 @@ MonoBehaviour:
         positionX: -149.61
         positionY: -30.06
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: WispElectric
-        positionX: -114.25
-        positionY: 30.375
-        respawnSeconds: 8
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -110.52
@@ -14506,20 +14532,10 @@ MonoBehaviour:
         positionY: -31.46
         respawnSeconds: 0
         IrellevantMob: 1
-      - monsterName: WispElectric
-        positionX: -111.5
-        positionY: 17.375
-        respawnSeconds: 12
-        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.6
         positionY: 0.87
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorFlowerbeingSwamp
-        positionX: -125.5
-        positionY: -44.875
-        respawnSeconds: 12
         IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -149.71
@@ -14586,11 +14602,6 @@ MonoBehaviour:
         positionY: -7.58
         respawnSeconds: 0
         IrellevantMob: 1
-      - monsterName: WispElectric
-        positionX: -149.625
-        positionY: -11.125
-        respawnSeconds: 5
-        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: -150.4
         positionY: -8.15
@@ -14600,11 +14611,6 @@ MonoBehaviour:
         positionX: -110.04
         positionY: 1.01
         respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: WispElectric
-        positionX: -111.875
-        positionY: -40.375
-        respawnSeconds: 8
         IrellevantMob: 1
       Interactables:
       - interactableName: TunnelEntrance
@@ -14643,8 +14649,8 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
@@ -14653,39 +14659,39 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_DreamPondCaveU
-      displyName: 
+      displyName: Dream Pond Caves
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
       - interactableName: TunnelEntrance
         interactableId: 
-        positionX: -141
-        positionY: 26
-      - interactableName: TunnelEntrance
-        interactableId: 
         positionX: -175
         positionY: -36
+      - interactableName: TunnelEntrance
+        interactableId: 
+        positionX: -141
+        positionY: 26
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
-      - name: LeftEntrance
-        TargetScene: OW_DreamPondCaveUp1
-        TargetSceneGate: RightEntrance
-        IsExpeditionLocked: 0
-        portalPositionX: -141.26823
-        portalPositionY: 25.794579
       - name: RightEntrance
         TargetScene: OW_DreamPondCaveB
         TargetSceneGate: UpperEntrance
         IsExpeditionLocked: 0
         portalPositionX: -174.76823
         portalPositionY: -35.83042
+      - name: LeftEntrance
+        TargetScene: OW_DreamPondCaveUp1
+        TargetSceneGate: RightEnterance
+        IsExpeditionLocked: 0
+        portalPositionX: -141.26823
+        portalPositionY: 25.794579
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
@@ -14694,7 +14700,7 @@ MonoBehaviour:
       Map: 
       MapPoint: 
     - sceneName: OW_DreamPondCaveC
-      displyName: 
+      displyName: Dream Pond Caves
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -14724,8 +14730,59 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
+    - sceneName: OW_DreamPondCaveUp1
+      displyName: Dream Pond Caves
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorShellCrab
+        positionX: 94.375
+        positionY: -16.125
+        respawnSeconds: 8
+        IrellevantMob: 1
+      - monsterName: ActorShellCrab
+        positionX: 71.2
+        positionY: -16.625
+        respawnSeconds: 8
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: RightEnterance
+        interactableId: 
+        positionX: 103
+        positionY: -17
+      - interactableName: Entry
+        interactableId: 
+        positionX: 83
+        positionY: -20
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: RightEnterance
+        TargetScene: OW_DreamPondCaveU
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 102.75
+        portalPositionY: -17.375
+      - name: Entry
+        TargetScene: OW_DaydreamRoad2
+        TargetSceneGate: CaveUp1Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 82.75
+        portalPositionY: -20.5
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: CaveVenture
+      Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
       enablePvp: 0
