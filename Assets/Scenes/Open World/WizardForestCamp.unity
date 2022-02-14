@@ -4949,6 +4949,18 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2150766351401979610, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: m_Color.b
+      value: 0.15566039
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150766351401979610, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8944576
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150766351401979610, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2150766351401979611, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
@@ -6691,7 +6703,111 @@ MonoBehaviour:
       OnDialogPiece:
         m_PersistentCalls:
           m_Calls: []
-    Decisions: []
+    Decisions:
+    - Content: 'Ask about medicine for Maggie '
+      OnSelect:
+      - {fileID: 11400000, guid: 45e8bd95af4918340857431b890ac6b0, type: 2}
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: b6598d0f461b276428091ef1f6441f96, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: Oh, yes, I have some time to talk about it.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions: []
+        IsFemale: 0
+    - Content: <u>Experimenting</u>
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 39f14071ccdcb7a429ce8366f8c2d517, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: e2f57d138dd59ec48bbe682d1ffdd52f, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
+      DefaultDialog:
+        DialogPieces:
+        - Content: An incurable disease you say...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'When dealing with situations such as this, I would advise to:'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Throw everything at the wall and see what sticks.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: How so? You might ask...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'Pick everything you find that is unique to the Edgeworld... '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Mix it together and hope you don't end up with poison!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: I know of the Froopta and the Red Corn, but these are not enough.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: There is a shaman, a hermit, that knows more about the nature
+            of this land than I...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: "He lives in a cave under a waterfall... \nHe is a little odd
+            though, take this into consideration."
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Good Luck!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: <u> Accept </u>
+          OnSelect:
+          - {fileID: 11400000, guid: 4ec99f93d513775458584215530de58c, type: 2}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 0
+    - Content: Leave
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces: []
+        Decisions: []
+        IsFemale: 0
     IsFemale: 0
   CurrentDialog:
     DialogPieces: []

@@ -24,7 +24,7 @@ public class DialogEntity : MonoBehaviour
         {
             if (Input.anyKey)
             {
-                if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Joystick 2"))
+                if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Joystick 2") || Input.GetMouseButtonDown(0) )
                 {
                     return;
                 }

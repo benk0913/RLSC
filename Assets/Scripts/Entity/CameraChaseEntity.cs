@@ -61,7 +61,7 @@ public class CameraChaseEntity : MonoBehaviour
         #if UNITY_ANDROID || UNITY_IOS
         if(Speed > 0f)
         {
-            if(CORE.IsToggledZoom)
+            if(!CORE.IsToggledZoom)
                 CurrentCam.orthographicSize *= MobileSize;
         }
         #endif

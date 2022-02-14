@@ -46,6 +46,8 @@ public class CORE : MonoBehaviour
 
     public string TimePhase = "Day";
     
+    public bool DisableRAIN =false;
+
     public bool DEBUG = false;
 
     public bool DEBUG_SPAMMY_EVENTS = false;
@@ -151,10 +153,14 @@ public class CORE : MonoBehaviour
         if (!GetComponent<SocketHandler>().RandomUser)
         {
 #endif
-            if (SteamAPI.RestartAppIfNecessary(new AppId_t(1780330)))
+            
+            if(!DisableRAIN)
             {
-                Application.Quit();
-                return;
+                if (SteamAPI.RestartAppIfNecessary(new AppId_t(1903270)))
+                {
+                    Application.Quit();
+                    return;
+                }
             }
 
             SteamAPI.Init();
@@ -223,6 +229,7 @@ public class CORE : MonoBehaviour
     {
          CurrentLanguage = PlayerPrefs.GetString("language", "");
 
+        #if !UNITY_ANDROID && !UNITY_IOS
         if (string.IsNullOrEmpty(CurrentLanguage))
         {
             Debug.Log("Using steam's UI language");
@@ -239,6 +246,7 @@ public class CORE : MonoBehaviour
             }
 
         }
+        #endif
 
         PlayerPrefs.SetString("language", CurrentLanguage);
         PlayerPrefs.Save();

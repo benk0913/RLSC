@@ -12,6 +12,8 @@ class DeployServerWindowsCustom : EditorWindow
     bool secondConfirmationGroupEnabled;
     bool disconnectedAllGroupEnabled;
     bool testedProdGroupEnabled;
+
+    string UnicornText;
     
     string disconnectWarning = "The server will be going down for maintenance in a minute";
 
@@ -24,6 +26,15 @@ class DeployServerWindowsCustom : EditorWindow
     void OnGUI ()
     {
         ServerEnvironment.Environment = "Prod";
+
+        GUILayout.Space(20);
+        UnicornText = GUILayout.TextField(UnicornText);
+        if (GUILayout.Button("Update Unicorn"))
+        {
+            PlayerPrefs.SetString("unic0rn", UnicornText);
+            PlayerPrefs.Save();
+            UnicornText = "";
+        }
 
         GUILayout.Space(20);
         GUILayout.Label("~~~~~~Deploy Server~~~~~~", EditorStyles.largeLabel);
