@@ -17,7 +17,7 @@ MonoBehaviour:
   Colliders:
     HitAbilityColliderObject: HealHit
     MissAbilityColliderObject: 
-    AbilityColliderObject: WaterTotemInteractionSpellCollider
+    AbilityColliderObject: ProvideCollider
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
@@ -38,8 +38,8 @@ MonoBehaviour:
   MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
-  IsCastingExternal: 1
-  CanMoveInCast: 0
+  IsCastingExternal: 0
+  CanMoveInCast: 1
   Mastery: 1
   MasteryDescription: Faster Overall
   OnExecuteParams:

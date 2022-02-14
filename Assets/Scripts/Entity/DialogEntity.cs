@@ -24,8 +24,13 @@ public class DialogEntity : MonoBehaviour
         {
             if (Input.anyKey)
             {
-                if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Joystick 2") || Input.GetMouseButtonDown(0) )
+                if (Input.GetKeyDown(InputMap.Map["Interact"]) || Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Joystick 2") )
                 {
+                    return;
+                }
+                else if(Input.GetMouseButtonDown(0))
+                {
+                    Continue();
                     return;
                 }
 
@@ -36,12 +41,12 @@ public class DialogEntity : MonoBehaviour
                 else
                 {
                     EndDialog();
-                    keyDownTimer = 0.5f;
+                    keyDownTimer = 0.3f;
                 }
             }
             else
             {
-                keyDownTimer = 0.5f;
+                keyDownTimer = 0.3f;
             }
         }
     }

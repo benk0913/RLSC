@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47855a378ea5084bbf17a692b45aa8e, type: 3}
+  m_Name: Malachite & Bronze
+  m_EditorClassIdentifier: 
+  Description: Provide the blacksmith with the relevant items.
+  StartConditions: []
+  StartGameConditions:
+  - Type: {fileID: 11400000, guid: 1f828a2f17e2a28449701238de9bb6db, type: 2}
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: e902b1f398915214dacd2fe333df5d64, type: 2}
+    Inverse: 0
+  Goals:
+  - Action: {fileID: 11400000, guid: 3200dd04404bbac48bad5e46385140dd, type: 2}
+    ObjectValue: {fileID: 11400000, guid: 3ea9230185882044fb6e1d2fa1463d60, type: 2}
+    Value: 
+    Count: 1
+  - Action: {fileID: 11400000, guid: 3200dd04404bbac48bad5e46385140dd, type: 2}
+    ObjectValue: {fileID: 11400000, guid: bc8dcaa70cb1d3a4aa755c9baca67287, type: 2}
+    Value: 
+    Count: 1
+  - Action: {fileID: 11400000, guid: 3200dd04404bbac48bad5e46385140dd, type: 2}
+    ObjectValue: {fileID: 11400000, guid: 2a9e4d7bec92cb949b0eb48f1d288ae0, type: 2}
+    Value: 
+    Count: 1
+  - Action: {fileID: 11400000, guid: 3200dd04404bbac48bad5e46385140dd, type: 2}
+    ObjectValue: {fileID: 11400000, guid: 88796f4bf764d04488f9bb11bd810b6b, type: 2}
+    Value: 
+    Count: 1
+  Rewards:
+  - Type: {fileID: 11400000, guid: 63fd1591cae8d4b4eb907de443b7b589, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 200
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 801798a1757a02c4aa3c6f24bb1d4b2e, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: b53e5a994f65c3843bd48eb6be06a7d5, type: 2}
+    Value2: 
+  Origin: Sunset Port
