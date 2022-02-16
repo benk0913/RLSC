@@ -2099,7 +2099,7 @@ public class SocketHandler : MonoBehaviour
 
         if(eqpGained > 0)
         {
-            WarningWindowUI.Instance.Show("PROMO CODE CONFIRMED <color=purple>(+"+eqpGained+" SQP!)</color>",()=>{CORE.Instance.ShowInAppShopWindow();},true,null,"Great!");
+            WarningWindowUI.Instance.Show("PROMO CODE CONFIRMED <color=purple>(+"+eqpGained+" SWP!)</color>",()=>{CORE.Instance.ShowInAppShopWindow();},true,null,"Great!");
         }
         else
         {

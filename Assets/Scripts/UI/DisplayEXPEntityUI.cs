@@ -116,6 +116,10 @@ public class DisplayEXPEntityUI : MonoBehaviour
             yield return 0;
         }
 
+        Animator animer = ConstantFillImage.transform.parent.GetComponent<Animator>();
+        if(animer!=null)
+            animer.SetTrigger("Start");
+
         if(instance.CurrentEXP < CurrentExp)
         {
             while(FillImage.fillAmount < 1f)

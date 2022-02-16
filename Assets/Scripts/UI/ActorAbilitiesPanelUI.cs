@@ -33,10 +33,19 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
         CORE.Instance.SubscribeToEvent("KeybindingsChanged",()=>SetActor(playerActor));
     }
     
+    float lastHP;
     public void Update()
     {
         if(CORE.PlayerActor != null && CORE.PlayerActor.MaxHP > 0)
         {
+            if(CORE.PlayerActor.hp != lastHP)
+            {
+                lastHP = CORE.PlayerActor.hp;
+                Animator animer = HPFillBar.transform.parent.GetComponent<Animator>();
+                if(animer!=null)
+                    animer.SetTrigger("Start");
+            }
+
             HPFillBar.fillAmount = Mathf.Lerp(HPFillBar.fillAmount, (float)CORE.PlayerActor.hp/(float)CORE.PlayerActor.MaxHP,Time.deltaTime*2f);
             HPLabel.text = CORE.PlayerActor.hp + " / " + CORE.PlayerActor.MaxHP;
         }
@@ -78,6 +87,10 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
 
     public void StartCasting(float time)
     {
+        Animator animer = CastFillBar.transform.parent.GetComponent<Animator>();
+        if(animer!=null)
+            animer.SetTrigger("Start");
+
         if(StartCastingRoutineInstance != null)
         {
             StopCoroutine(StartCastingRoutineInstance);
@@ -88,6 +101,10 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
 
     public void StopCasting()
     {
+        Animator animer = CastFillBar.transform.parent.GetComponent<Animator>();
+        if(animer!=null)
+            animer.SetTrigger("End");
+
         if (StartCastingRoutineInstance != null)
         {
             StopCoroutine(StartCastingRoutineInstance);
@@ -109,6 +126,7 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
 
     IEnumerator StroberRoutine()
     {
+        
         while(StroberIMG.fillAmount < 1f)
         {
             StroberIMG.fillAmount = Time.deltaTime * 3f;
@@ -127,7 +145,9 @@ public class ActorAbilitiesPanelUI : MonoBehaviour
     Coroutine StartCastingRoutineInstance;
     IEnumerator StartCastingRoutine(float castingTime)
     {
+
         float startValue = castingTime;
+        float t=0f;
         while(castingTime > 0f)
         {
             CastFillBar.fillAmount = 1f-(castingTime / startValue);

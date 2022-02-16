@@ -341,11 +341,11 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
 
 
-        CashShopWarningWindowUI.Instance.Show(CORE.QuickTranslate("Buy")+" "+ CORE.QuickTranslate(SelectedProduct.CurrentItem.DisplayName)+" "+CORE.QuickTranslate("for")+" "+SelectedProduct.CurrentItem.CashItemPrice+" "+CORE.QuickTranslate("EQP")+" ? ",()=>
+        CashShopWarningWindowUI.Instance.Show(CORE.QuickTranslate("Buy")+" "+ CORE.QuickTranslate(SelectedProduct.CurrentItem.DisplayName)+" "+CORE.QuickTranslate("for")+" "+SelectedProduct.CurrentItem.CashItemPrice+" SWP?",()=>
         {     
             if(SocketHandler.Instance.CurrentUser.info.cashPoints < SelectedProduct.CurrentItem.CashItemPrice)
             {
-                CashShopWarningWindowUI.Instance.Show(CORE.QuickTranslate("You don't have enough EQP") +"! (" +SocketHandler.Instance.CurrentUser.info.cashPoints+"/"+SelectedProduct.CurrentItem.CashItemPrice+")",()=>
+                CashShopWarningWindowUI.Instance.Show(CORE.QuickTranslate("You don't have enough SWP") +"! (" +SocketHandler.Instance.CurrentUser.info.cashPoints+"/"+SelectedProduct.CurrentItem.CashItemPrice+")",()=>
                 {
                     DeselectProduct();
                     HideDisplayActor();
