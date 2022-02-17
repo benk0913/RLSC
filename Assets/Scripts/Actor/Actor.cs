@@ -181,6 +181,8 @@ public class Actor : MonoBehaviour
 
     TextBubbleUI CurrentBubble;
 
+    public bool InAnimationEmote = false;
+
 
 
     public float JumpHeight = 1f;
@@ -560,6 +562,15 @@ public class Actor : MonoBehaviour
             Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
             Animer.SetFloat("VelocityY", deltaPosition.y);
 
+            if(InAnimationEmote)
+            {
+                if(ClientMovingTowardsDir != 0 || deltaPosition.y > 0.35f ||  deltaPosition.y < -0.35f )
+                {
+                    Animer.SetTrigger("Interrupted");
+                    InAnimationEmote = false;
+                }
+            }
+
             this.State.Data.movementDirection = ClientMovingTowardsDir;
 
             ClientMovingTowardsDir = 0;
@@ -568,6 +579,15 @@ public class Actor : MonoBehaviour
         {
             Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
             Animer.SetFloat("VelocityY", deltaPosition.y);
+
+            if(InAnimationEmote)
+            {
+                if(ClientMovingTowardsDir != 0 || deltaPosition.y > 0.35f ||  deltaPosition.y < -0.35f)
+                {
+                    Animer.SetTrigger("Interrupted");
+                    InAnimationEmote = false;
+                }
+            }
         }
 
     }
@@ -1374,9 +1394,19 @@ public class Actor : MonoBehaviour
         CurrentBubble.transform.position = transform.position;
     }
 
+
     public void Emote(Emote emote)
     {
-        Skin.SetEmote(emote);
+        if(emote.name.Contains("Animation Emote "))
+        {
+            string animationName = emote.name.Replace("Animation Emote ","");
+            Animer.Play(animationName);
+            InAnimationEmote = true;
+        }
+        else
+        {
+            Skin.SetEmote(emote);
+        }
     }
 
     #region ClientControl
