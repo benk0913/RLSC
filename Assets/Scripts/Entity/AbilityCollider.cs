@@ -33,6 +33,8 @@ public class AbilityCollider : HitCollider
     [SerializeField]
     bool RepositionChildrenOnEnable;
 
+    public bool OnlyForPlayers = false;
+
     [SerializeField]
     bool DuplicateBubbles = false; //TODO Replace with something more generic?
     public bool IsBubble = false; //TODO Replace with something more generic?
@@ -163,6 +165,12 @@ public class AbilityCollider : HitCollider
     {
         base.SetInfo(abilitySource, actorSource, abilityInstanceId, parentCollider);
         
+        if(OnlyForPlayers && !actorSource.State.Data.isCharacter)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+
         if (AbilitySource != null)
         {
             incrementAbilityCollidersCount(AbilitySource.name);

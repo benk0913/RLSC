@@ -1507,7 +1507,15 @@ public class Actor : MonoBehaviour
                 }
             case "Pull":
                 {
-                    MovementEffectRoutineInstance = StartCoroutine(MovementPullRoutine(casterActor));
+                    if(AIControl != null && AIControl.ChaseBehaviour == AIChaseBehaviour.Static)
+                    {
+
+                    }
+                    else
+                    {
+                        MovementEffectRoutineInstance = StartCoroutine(MovementPullRoutine(casterActor));
+                    }
+                    
                     break;
                 }
             case "Escape":
