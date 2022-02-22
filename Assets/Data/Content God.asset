@@ -1018,6 +1018,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e2e87f3830b2b4b4281fe324ab9828e9, type: 2}
     - {fileID: 11400000, guid: e160b8ac1bfb79744af66492a598fa58, type: 2}
     - {fileID: 11400000, guid: c8ef1498ee1461540b21858122c76e8d, type: 2}
+    - {fileID: 11400000, guid: 7c3f702de106a494187da6558d0287ed, type: 2}
     - {fileID: 11400000, guid: 58db497593745244f945b581783444b6, type: 2}
     - {fileID: 11400000, guid: 44539ed072a35184a8aacda8f551dbc2, type: 2}
     - {fileID: 11400000, guid: a6b0b717fbcf8174faced17048811f57, type: 2}
@@ -1719,6 +1720,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 01341e65e42ebc24180d5ea734a953a8, type: 2}
     - {fileID: 11400000, guid: e48ca45cf3c1f504aaa084a9a3431d1e, type: 2}
     - {fileID: 11400000, guid: 7ffe61c8e510bfe42bfc23af6207a7fd, type: 2}
+    - {fileID: 11400000, guid: 0b672a01ca8e7244d8bb173e58ed6dc9, type: 2}
     - {fileID: 11400000, guid: 2f5eeb78910fd82428c1cd9665fc1ed7, type: 2}
     - {fileID: 11400000, guid: e7d53dfc2ab37ee48a0f6c82849c88ca, type: 2}
     - {fileID: 11400000, guid: 3779afbf08e32b04a9f4605dddf0dae5, type: 2}
@@ -12824,17 +12826,33 @@ MonoBehaviour:
         respawnSeconds: 15
         IrellevantMob: 1
       Interactables:
+      - interactableName: RightEntrance
+        interactableId: 
+        positionX: 119
+        positionY: -23
+      - interactableName: OW_DreamPondCaveULower2
+        interactableId: 
+        positionX: 17
+        positionY: -39
       - interactableName: Entry
         interactableId: 
         positionX: 51
         positionY: -26
-      - interactableName: NPC_Trainer
-        interactableId: 
-        positionX: 123
-        positionY: -23
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: RightEntrance
+        TargetScene: OW_ShroomCave2
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 118.875
+        portalPositionY: -23
+      - name: RightLowerEntrance
+        TargetScene: OW_DreamPondCaveULower2
+        TargetSceneGate: DreamCaveEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 16.625
+        portalPositionY: -38.75
       - name: Entry
         TargetScene: OW_SunsetPortCave4
         TargetSceneGate: ShroomEntrance
@@ -14707,6 +14725,10 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
+      - interactableName: OW_DreamPondCaveULower
+        interactableId: 
+        positionX: -142
+        positionY: -12
       - interactableName: TunnelEntrance
         interactableId: 
         positionX: -175
@@ -14722,6 +14744,12 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: ULowerEntrance
+        TargetScene: OW_DreamPondCaveULower
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -142.5
+        portalPositionY: -11.875
       - name: RightEntrance
         TargetScene: OW_DreamPondCaveB
         TargetSceneGate: UpperEntrance
@@ -14849,29 +14877,29 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
-      - interactableName: LeftEntrance
-        interactableId: 
-        positionX: -175
-        positionY: -36
       - interactableName: RightEntrance
         interactableId: 
         positionX: -141
         positionY: 26
+      - interactableName: LeftEntrance
+        interactableId: 
+        positionX: -175
+        positionY: -36
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
-      - name: LeftEntrance
-        TargetScene: OW_DreamPondCaveU
-        TargetSceneGate: UpperLeftEntrance
-        IsExpeditionLocked: 0
-        portalPositionX: -174.7
-        portalPositionY: -35.7
       - name: RightEntrance
         TargetScene: OW_DreamPondCaveBossCaveEntry
         TargetSceneGate: LeftEntrance
         IsExpeditionLocked: 0
         portalPositionX: -141.26823
         portalPositionY: 25.794579
+      - name: LeftEntrance
+        TargetScene: OW_DreamPondCaveU
+        TargetSceneGate: UpperLeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -174.7
+        portalPositionY: -35.7
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
@@ -14900,8 +14928,8 @@ MonoBehaviour:
         positionY: -41
       - interactableName: Entry
         interactableId: 
-        positionX: 83
-        positionY: -20
+        positionX: 80
+        positionY: -43
       - interactableName: NPC_Trainer
         interactableId: 
         positionX: 138
@@ -14917,16 +14945,10 @@ MonoBehaviour:
         portalPositionY: -40.9
       - name: Entry
         TargetScene: OW_DaydreamRoad2
-        TargetSceneGate: BossEntry
-        IsExpeditionLocked: 0
-        portalPositionX: 79.3
-        portalPositionY: -40.9
-      - name: Entry
-        TargetScene: OW_DaydreamRoad2
         TargetSceneGate: Cave1Entry
         IsExpeditionLocked: 0
-        portalPositionX: 82.75
-        portalPositionY: -20.5
+        portalPositionX: 79.5
+        portalPositionY: -42.625
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
@@ -14950,8 +14972,8 @@ MonoBehaviour:
         respawnSeconds: 0
         IrellevantMob: 0
       - monsterName: ActorTreasureChestMob
-        positionX: 104.29
-        positionY: -21.24
+        positionX: 97.875
+        positionY: -22
         respawnSeconds: 0
         IrellevantMob: 0
       Interactables:
@@ -14959,13 +14981,17 @@ MonoBehaviour:
         interactableId: 
         positionX: 83
         positionY: -20
+      - interactableName: NPC_Guide
+        interactableId: 
+        positionX: 104
+        positionY: -21
       playerSpawnX: 89.06
       playerSpawnY: -18.03
       Portals:
       - name: Entry
         TargetScene: OW_DaydreamRoad2
         TargetSceneGate: CaveUp1Entry
-        IsExpeditionLocked: 0
+        IsExpeditionLocked: 1
         portalPositionX: 82.75
         portalPositionY: -20.5
       Vendors: []
@@ -14985,10 +15011,20 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorFairySmall
-        positionX: -129.75
-        positionY: -51.75
-        respawnSeconds: 30
+      - monsterName: ActorWisp
+        positionX: -126.5
+        positionY: 61.5
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorWispRed
+        positionX: -205.75
+        positionY: -39.875
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorWispRed
+        positionX: -58.75
+        positionY: 41.375
+        respawnSeconds: 15
         IrellevantMob: 1
       - monsterName: ActorFlowerbeingWild
         positionX: -152
@@ -15013,6 +15049,11 @@ MonoBehaviour:
       - monsterName: ActorFairySmall
         positionX: -157.625
         positionY: 51.25
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorFairySmall
+        positionX: -129.75
+        positionY: -51.75
         respawnSeconds: 30
         IrellevantMob: 1
       Interactables:
@@ -15041,6 +15082,679 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
+    - sceneName: OW_DreamPondCaveULower
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSpikes
+        positionX: -32.375
+        positionY: -29
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 0.75
+        positionY: -45.875
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -29.75
+        positionY: 71.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 7.25
+        positionY: -46.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151
+        positionY: 12.875
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -141
+        positionY: 67.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -126
+        positionY: -52.75
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 8
+        positionY: -16.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -79.5
+        positionY: -25.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -86.125
+        positionY: 68.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -42
+        positionY: -29.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 17.75
+        positionY: 3.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -48.125
+        positionY: 12.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -12.25
+        positionY: -35.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -120.375
+        positionY: 29.375
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 28.125
+        positionY: -25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 22.625
+        positionY: -16.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -95.875
+        positionY: 32.375
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -55.25
+        positionY: -48.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 5.5
+        positionY: -7.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -98.5
+        positionY: -44.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 11.375
+        positionY: 42.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -113.5
+        positionY: -52.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.75
+        positionY: 50
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -117.25
+        positionY: -45.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -129
+        positionY: -13.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -36.25
+        positionY: 9.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 16.5
+        positionY: -45.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -60.25
+        positionY: 52
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -79.5
+        positionY: -50.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 26.375
+        positionY: 22.875
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -96.875
+        positionY: 67
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -67.625
+        positionY: -17.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -123.875
+        positionY: -6.875
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -99.25
+        positionY: 24.75
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -95.125
+        positionY: -21
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -103.5
+        positionY: 38.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 28.625
+        positionY: -35.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -116.75
+        positionY: 68.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 26.5
+        positionY: 35.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -127.5
+        positionY: 68.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -124.25
+        positionY: 1.875
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -94.75
+        positionY: -9.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -44.625
+        positionY: -49.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151
+        positionY: 30.75
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -147.75
+        positionY: -32.875
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -44.125
+        positionY: 67.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -12.375
+        positionY: 64.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -107.375
+        positionY: -42.875
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -112.375
+        positionY: 62.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -9.125
+        positionY: -44.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -147
+        positionY: 3.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -43.875
+        positionY: -40.75
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 3.375
+        positionY: 54.75
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -67.75
+        positionY: 63.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -25.625
+        positionY: 19.375
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -135.625
+        positionY: -16.375
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -55.375
+        positionY: 19
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -36.75
+        positionY: 29.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 24.625
+        positionY: 10.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -27.5
+        positionY: 11.375
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -75.375
+        positionY: 70.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -45.875
+        positionY: 53.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -72.625
+        positionY: -3.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -104.125
+        positionY: 60.25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -149.25
+        positionY: 58.75
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -86
+        positionY: -3.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -143.625
+        positionY: -17.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150
+        positionY: 22.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -49.375
+        positionY: 27.375
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -90.125
+        positionY: -48.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 25
+        positionY: -44.375
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -147
+        positionY: -25
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: 9.625
+        positionY: 1
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -113.125
+        positionY: 22.125
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -22.125
+        positionY: -27.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -138
+        positionY: 3.75
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -115.375
+        positionY: 39.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.625
+        positionY: 41.375
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.625
+        positionY: -37.625
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -67.375
+        positionY: -49.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: OW_DreamPondCaveULower
+        interactableId: 
+        positionX: -143
+        positionY: -49
+      - interactableName: OW_DreamPondCaveULower2
+        interactableId: 
+        positionX: 17
+        positionY: -39
+      - interactableName: OW_DreamPondCaveULower2
+        interactableId: 
+        positionX: -26
+        positionY: 53
+      playerSpawnX: -140.375
+      playerSpawnY: -44.875
+      Portals:
+      - name: LeftEntrance
+        TargetScene: OW_DreamPondCaveU
+        TargetSceneGate: ULowerEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -143.375
+        portalPositionY: -48.875
+      - name: RightLowerEntrance
+        TargetScene: OW_ShroomCave2
+        TargetSceneGate: DreamCaveEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 16.625
+        portalPositionY: -38.75
+      - name: RightEntrance
+        TargetScene: OW_DreamPondCaveULower2
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: -26.125
+        portalPositionY: 52.75
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: burrowOGG
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: DaydreamRoad (2)
+    - sceneName: OW_DreamPondCaveULower2
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: Entry
+        interactableId: 
+        positionX: 86
+        positionY: -22
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entry
+        TargetScene: OW_DreamPondCaveULower
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 86.125
+        portalPositionY: -22.25
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: burrowOGG
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: DaydreamRoad (2)
+    - sceneName: OW_ShroomCave2
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorMushroomSmall2
+        positionX: -129.5
+        positionY: -38.5
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall2
+        positionX: -127.375
+        positionY: -22.875
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall2
+        positionX: -143.625
+        positionY: 1.375
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall2
+        positionX: -123.625
+        positionY: 30.875
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: -137.375
+        positionY: -42.125
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: -116.25
+        positionY: -30.125
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: -134.625
+        positionY: -5
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: -123.625
+        positionY: 15.25
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -110.04
+        positionY: 1.01
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.4
+        positionY: -8.15
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -109.4
+        positionY: -7.58
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.92
+        positionY: 19.4
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.8
+        positionY: -37.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151.8
+        positionY: 34.83
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -111.39
+        positionY: 8.89
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151.08
+        positionY: 26.08
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -112.51
+        positionY: 32.36
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -109.69
+        positionY: -20.04
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151.56
+        positionY: 45.73
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.68
+        positionY: 9.7
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorMushroomSmall
+        positionX: -140.5
+        positionY: 28.75
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -149.71
+        positionY: -22.03
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.6
+        positionY: 0.87
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -108.77
+        positionY: -31.46
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -110.2
+        positionY: 40.16
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -108.69
+        positionY: 16.05
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -110.52
+        positionY: 25.52
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -149.61
+        positionY: -30.06
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -108.29
+        positionY: 46.21
+        respawnSeconds: 0
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: DreamCaveEntry
+        interactableId: 
+        positionX: -124
+        positionY: 27
+      - interactableName: LeftEntrance
+        interactableId: 
+        positionX: -153
+        positionY: -49
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: DreamCaveEntry
+        TargetScene: OW_DreamPondCaveULower2
+        TargetSceneGate: RightLowerEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -123.5
+        portalPositionY: 26.75
+      - name: Entry
+        TargetScene: OW_ShroomCave
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -153.125
+        portalPositionY: -49.25
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: burrowOGG
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: SunsetSplit
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -15116,6 +15830,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2000b79ed2f126b4baaa20ea96cef509, type: 2}
     - {fileID: 11400000, guid: 09866368ec5f08e4d85438cc3ba207a5, type: 2}
     - {fileID: 11400000, guid: e902b1f398915214dacd2fe333df5d64, type: 2}
+    - {fileID: 11400000, guid: 367d89d8547360547b6eea2fa3b9867c, type: 2}
     - {fileID: 11400000, guid: 9b025b7671a7a154580d929bf303ce43, type: 2}
     - {fileID: 11400000, guid: 625639c732f591a479b15d54cf1a9fd7, type: 2}
     - {fileID: 11400000, guid: 30a7977c28f319342a44eeb083e4176a, type: 2}

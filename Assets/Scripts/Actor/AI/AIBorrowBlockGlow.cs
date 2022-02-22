@@ -16,10 +16,31 @@ public class AIBorrowBlockGlow : ActorAI
 
             while (SelectedAbility == null)
             {
-
                 if (Act.State.Data.hp < Act.State.Data.MaxHP /2f)
                 {
                     SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "BorrowHolePoisonGlow" && x.CurrentCD <= 0f);
+
+                    if(SelectedAbility != null)
+                    {
+                        break;
+                    }
+                }
+                
+                if(Act.State.Data.hp < (Act.State.Data.MaxHP*0.4f))
+                {
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "FlipScreen" && x.CurrentCD <= 0f);
+                    
+                    if(SelectedAbility != null)
+                    {
+                        break;
+                    }
+                }
+
+                SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "Ghost Possess" && x.CurrentCD <= 0f);
+
+                if(SelectedAbility != null)
+                {
+                    break;
                 }
 
                 WaitBehaviour();
@@ -32,5 +53,6 @@ public class AIBorrowBlockGlow : ActorAI
             yield return 0;
         }
     }
+
 
 }
