@@ -270,6 +270,7 @@ public class InteractableEntity : MonoBehaviour
         if(NearbyActor != CORE.PlayerActor.ActorEntity) return;
         
         if(DecisionContainerUI.Instance.CurrentDecisions.Count > 0 && DecisionContainerUI.Instance.gameObject.activeInHierarchy) return;
+        
         Interact();
     }
 }

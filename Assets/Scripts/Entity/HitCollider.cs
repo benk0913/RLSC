@@ -44,9 +44,11 @@ public class HitCollider : MonoBehaviour
     {
         if (!CanHitActor(actorVictim))
         {
+            
             return false;
         }
 
+        
         if(ParentCollider != null)
         {
             return ParentCollider.AttemptHitAbility(actorVictim);

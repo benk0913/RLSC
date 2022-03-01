@@ -18,6 +18,10 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
     [SerializeField]
     SelectionGroupUI SelectionGroup;
 
+    [SerializeField]
+    GridLayoutGroup UpperAbilitiesLG;
+
+
     public AbilitySlotDraggableUI SelectedAbility;
 
     Actor playerActor;
@@ -42,9 +46,15 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
     {
         IsOpen = true;
         playerActor = actorData.ActorEntity;
-
+        
         this.gameObject.SetActive(true);
-
+        #if UNITY_ANDROID || UNITY_IOS
+        UpperAbilitiesLG.startCorner = GridLayoutGroup.Corner.UpperRight;
+        UpperAbilitiesLG.childAlignment = TextAnchor.UpperRight;
+        #else
+        UpperAbilitiesLG.startCorner = GridLayoutGroup.Corner.UpperLeft;
+        UpperAbilitiesLG.childAlignment = TextAnchor.UpperLeft;
+        #endif
         RefreshUI(false);
 
 

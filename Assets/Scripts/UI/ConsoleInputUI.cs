@@ -28,6 +28,8 @@ public class ConsoleInputUI : MonoBehaviour
     [SerializeField]
     TMP_Dropdown ChannelDropdown;
 
+    public List<EmoteSlotUI> EmoteSlots = new List<EmoteSlotUI>();
+
 
     public bool IsTyping;
 
@@ -232,7 +234,18 @@ public class ConsoleInputUI : MonoBehaviour
             IsTyping = true;
         }
 
-
+        for(int i=1;i<9;i++)
+        {
+            if(CORE.PlayerActor.equips.ContainsKey("Emote "+i) && CORE.PlayerActor.equips["Emote "+i] != null)
+            {
+                EmoteSlots[i-1].SetInfo(CORE.PlayerActor.equips["Emote "+i].itemName);
+            }
+            else
+            {
+                EmoteSlots[i-1].SetInfo("");
+            }
+        }
+        
         RefreshChatLog();
     }
 

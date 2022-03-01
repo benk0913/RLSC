@@ -231,6 +231,9 @@ public class AbilityCollider : HitCollider
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
+        CORE.Instance.LogMessage(this.AbilitySource.name+" Hit "+other.gameObject.name);
+
         if(other.tag == "Actor")
         {
 

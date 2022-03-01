@@ -679,28 +679,34 @@ public class Actor : MonoBehaviour
 
     public void ExecuteAbility(Ability ability, Vector3 position, bool faceRight, bool castingExternal, string abilityInstanceId)
     {
+        if(ability == null)
+        {
+            CORE.Instance.LogMessageError("NO ABILITY!?!?");
+            return;
+        }
+
         bool isCastingExternal = castingExternal || ability.IsCastingExternal;
         if(IsClientControl)
         {
             CORE.Instance.ActivateParams(ability.OnExecuteParams, null, this);
 
-            for(int i=0;i<State.Data.equips.Keys.Count;i++)
+            if(State.Data.equips != null)
             {
-                Item item = State.Data.equips[State.Data.equips.Keys.ElementAt(i)];
-                if(item == null)
+                for(int i=0;i<State.Data.equips.Keys.Count;i++)
                 {
-                    continue;
-                }
+                    Item item = State.Data.equips[State.Data.equips.Keys.ElementAt(i)];
 
-                if(item.Data.OnExecuteParams == null || item.Data.OnExecuteParams.Count == 0)
-                {
-                    continue;
-                }
+                    if(item == null) continue;
 
-                CORE.Instance.ActivateParams(item.Data.OnExecuteParams, null, this);
+                    if(item.Data ==  null) continue;
+
+                    if(item.Data.OnExecuteParams == null || item.Data.OnExecuteParams.Count == 0) continue;
+
+                    CORE.Instance.ActivateParams(item.Data.OnExecuteParams, null, this);
+                }
             }
 
-            AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility.name == ability.name);
+            AbilityState abilityState = State.Abilities.Find(x =>  x.CurrentAbility != null && x.CurrentAbility.name == ability.name);
 
             if (!isCastingExternal)
             {
@@ -736,18 +742,26 @@ public class Actor : MonoBehaviour
         if (!string.IsNullOrEmpty(ability.Colliders.AbilityColliderObject))
         {
             GameObject colliderObj = AddColliderOnPosition(ability.Colliders.AbilityColliderObject);
-            State.ExecutingAbilityCollider = colliderObj.GetComponent<AbilityCollider>();
-            State.ExecutingAbilityCollider.SetInfo(ability, this, abilityInstanceId);
 
-            if (State.Data.isCharacter)
+            if(colliderObj != null)
             {
-                if(colliderObj.layer == 15)
-                    colliderObj.layer = 9;
+                State.ExecutingAbilityCollider = colliderObj.GetComponent<AbilityCollider>();
+                State.ExecutingAbilityCollider.SetInfo(ability, this, abilityInstanceId);
+
+                if (State.Data.isCharacter)
+                {
+                    if(colliderObj.layer == 15)
+                        colliderObj.layer = 9;
+                }
+                else
+                {
+                    if (colliderObj.layer == 9)
+                        colliderObj.layer = 15;
+                }
             }
             else
             {
-                if (colliderObj.layer == 9)
-                    colliderObj.layer = 15;
+                CORE.Instance.LogMessageError(ability.Colliders.AbilityColliderObject +" IS NULL?");
             }
         }
     }
@@ -1788,7 +1802,7 @@ public class Actor : MonoBehaviour
     }
 
     public void AttemptExecuteAbility(Ability ability, Actor caster = null)
-    {
+    { 
         JSONNode node = new JSONClass();
         node["abilityName"] = ability.name;
         node["actorId"] = caster == null? this.State.Data.actorId : caster.State.Data.actorId;

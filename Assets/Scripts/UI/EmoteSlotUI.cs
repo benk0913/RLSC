@@ -12,7 +12,6 @@ public class EmoteSlotUI : MonoBehaviour
     public Emote CurrentEmote;
     public void SetInfo(string emoteKey)
     {
-        
 
         CurrentEmote = CORE.Instance.Data.content.Emotes.Find(X=>X.name == emoteKey);
 

@@ -15,7 +15,7 @@ public class GEEnterExpedition : GameEvent
 
     public override void Execute(System.Object obj = null)
     {
-        if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length == memberHardWarning)
+        if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members != null && CORE.Instance.CurrentParty.members .Length == memberHardWarning)
         {
             WarningWindowUI.Instance.Show(memberHardWarning+" "+CORE.QuickTranslate("Member Expeditions are HARD")+"!",()=>
             {
@@ -23,7 +23,7 @@ public class GEEnterExpedition : GameEvent
                 SocketHandler.Instance.SendEnterExpedition(ExpeditionName);
             },false,null);
         }
-        else if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length == memberEasysWarning)
+        else if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members != null && CORE.Instance.CurrentParty.members.Length == memberEasysWarning)
         {
             WarningWindowUI.Instance.Show(memberEasysWarning+" "+CORE.QuickTranslate("Member Expeditions are easy and there is less loot for everyone")+"!",()=>
             {
