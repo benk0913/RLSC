@@ -17,7 +17,7 @@ MonoBehaviour:
     temporary damage boost.
   BuffColliderObject: ConsumeSpellBuffEffect
   BuffMaterial: {fileID: 0}
-  Length: 0.5
+  Length: 1
   isDebuff: 0
   ShowBuffIcon: 1
   Attributes:
@@ -48,13 +48,6 @@ MonoBehaviour:
   OnStart: []
   OnEnd: []
   OnTakeDamage:
-  - Type: {fileID: 11400000, guid: 9808926be5a20354592163dcf83d54da, type: 2}
-    Condition: {fileID: 0}
-    GameConditions: []
-    Targets: 2
-    Value: Consume Spell (Mastery)
-    ObjectValue: {fileID: 0}
-    Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     GameConditions: []
@@ -67,5 +60,12 @@ MonoBehaviour:
     GameConditions: []
     Targets: 2
     Value: 15
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 9808926be5a20354592163dcf83d54da, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: Consume Spell (Mastery)
     ObjectValue: {fileID: 0}
     Value2: 
