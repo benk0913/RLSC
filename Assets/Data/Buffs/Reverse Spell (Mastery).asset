@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Reverse the next spell that is about to hit you back at the enemy!
   BuffColliderObject: ReverseSpellBuffEffect
   BuffMaterial: {fileID: 0}
-  Length: 1
+  Length: 0.75
   isDebuff: 0
   ShowBuffIcon: 1
   Attributes:
@@ -43,8 +43,8 @@ MonoBehaviour:
   OnEndSound: 
   States:
   - {fileID: 11400000, guid: 9dea26e2d504f6e4099c87406ba265fc, type: 2}
-  - {fileID: 11400000, guid: df8b5e19831d77a47a72b49fd78b7c33, type: 2}
   - {fileID: 11400000, guid: e7fceea113913be4fb95d1f64d2b4c22, type: 2}
+  - {fileID: 11400000, guid: df8b5e19831d77a47a72b49fd78b7c33, type: 2}
   OnStart: []
   OnEnd: []
   OnTakeDamage:
@@ -60,12 +60,5 @@ MonoBehaviour:
     GameConditions: []
     Targets: 2
     Value: Reverse Spell (Mastery)
-    ObjectValue: {fileID: 0}
-    Value2: 
-  - Type: {fileID: 11400000, guid: a606211bb21ffeb45ae90aa94e749759, type: 2}
-    Condition: {fileID: 0}
-    GameConditions: []
-    Targets: 2
-    Value: 15
     ObjectValue: {fileID: 0}
     Value2: 

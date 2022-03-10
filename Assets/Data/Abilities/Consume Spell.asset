@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Consume Spell
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 45f145ea28fcc644ea436e73ab8aca48, type: 3}
-  Description: Consume the next spell that is about to hit you and gain a significant
-    temporary damage boost.
+  Description: 'Block the next spell that is about to hit you in exchange for speed
+    & temporary inability to do any spells!
+
+'
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -34,7 +36,7 @@ MonoBehaviour:
     PreparingAnimation: Cast9
     ExecuteAnimation: Execute10
   CD: 5
-  CastingTime: 0.3
+  CastingTime: 0.1
   TargetCap: 3
   MaxSameTargetHits: 1
   OnlyIfGrounded: 0

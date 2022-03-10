@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Consume Spell
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 45f145ea28fcc644ea436e73ab8aca48, type: 3}
-  Description: Consume the next spell that is about to hit you and gain a significant
-    temporary damage boost.
+  Description: 'Block the next spell that is about to hit you in exchange for speed
+    & temporary inability to do any spells!
+
+'
   BuffColliderObject: ConsumeSpellBuffEffect
   BuffMaterial: {fileID: 0}
   Length: 1
@@ -44,9 +46,9 @@ MonoBehaviour:
   OnEndSound: 
   States:
   - {fileID: 11400000, guid: e7fceea113913be4fb95d1f64d2b4c22, type: 2}
+  - {fileID: 11400000, guid: df8b5e19831d77a47a72b49fd78b7c33, type: 2}
   OnStart: []
-  OnEnd: []
-  OnTakeDamage:
+  OnEnd:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     GameConditions: []
@@ -54,10 +56,4 @@ MonoBehaviour:
     Value: Consumed Energy
     ObjectValue: {fileID: 0}
     Value2: 
-  - Type: {fileID: 11400000, guid: 9808926be5a20354592163dcf83d54da, type: 2}
-    Condition: {fileID: 0}
-    GameConditions: []
-    Targets: 2
-    Value: Consume Spell
-    ObjectValue: {fileID: 0}
-    Value2: 
+  OnTakeDamage: []
