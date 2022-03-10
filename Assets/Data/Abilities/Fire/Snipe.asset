@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PreparePiercingFlame
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: F_PiercingFlame_PrepareOGG
     ExecuteAbilitySound: sound_flamerelease
@@ -34,15 +35,21 @@ MonoBehaviour:
   CD: 12
   CastingTime: 1
   TargetCap: 3
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 0
+  Mastery: 0
+  MasteryDescription: 
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: 120
     ObjectValue: {fileID: 0}
     Value2: 
   OnMissParams: []
+  Reverseable: 1

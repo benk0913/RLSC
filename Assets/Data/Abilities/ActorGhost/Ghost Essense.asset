@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PrepareGhostialSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: 
     ExecuteAbilitySound: _wosh
@@ -34,15 +35,21 @@ MonoBehaviour:
   CD: 28
   CastingTime: 2
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 0
+  Mastery: 0
+  MasteryDescription: 
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: Ghostial Essense
     ObjectValue: {fileID: 0}
     Value2: 
   OnHitParams: []
   OnMissParams: []
+  Reverseable: 1

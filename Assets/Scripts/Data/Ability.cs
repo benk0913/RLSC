@@ -59,6 +59,7 @@ public class Ability : ScriptableObject
     public List<AbilityParam> OnHitParams = new List<AbilityParam>();
     public List<AbilityParam> OnMissParams = new List<AbilityParam>();
 
+    public bool Reverseable = false;
 }
 
 [Serializable]

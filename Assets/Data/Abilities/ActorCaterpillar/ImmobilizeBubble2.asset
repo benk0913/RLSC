@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: PreparePoisonSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: W_Bless_PrepareOGG
     ExecuteAbilitySound: caterbubble
@@ -38,18 +39,24 @@ MonoBehaviour:
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 0
+  Mastery: 0
+  MasteryDescription: 
   OnExecuteParams: []
   OnHitParams:
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: Bubble Immobilize
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: 20
     ObjectValue: {fileID: 0}
     Value2: 
   OnMissParams: []
+  Reverseable: 1

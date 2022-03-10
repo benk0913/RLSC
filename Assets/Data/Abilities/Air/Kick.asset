@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: A_Kick_PrepareOGG
     ExecuteAbilitySound: A_Kick_ExecuteOGG
@@ -34,12 +35,17 @@ MonoBehaviour:
   CD: 5
   CastingTime: 0.5
   TargetCap: 3
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 0
+  Mastery: 0
+  MasteryDescription: 
   OnExecuteParams:
   - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 2
     Value: Disengage
     ObjectValue: {fileID: 0}
@@ -47,8 +53,10 @@ MonoBehaviour:
   OnHitParams:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
+    GameConditions: []
     Targets: 0
     Value: 40
     ObjectValue: {fileID: 0}
     Value2: 
   OnMissParams: []
+  Reverseable: 1

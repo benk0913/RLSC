@@ -21,6 +21,7 @@ MonoBehaviour:
     PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
   Sounds:
     PrepareAbilitySound: 
     ExecuteAbilitySound: _wosh
@@ -34,9 +35,14 @@ MonoBehaviour:
   CD: 2
   CastingTime: 1
   TargetCap: 1
+  MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
+  CanMoveInCast: 0
+  Mastery: 0
+  MasteryDescription: 
   OnExecuteParams: []
   OnHitParams: []
   OnMissParams: []
+  Reverseable: 1
