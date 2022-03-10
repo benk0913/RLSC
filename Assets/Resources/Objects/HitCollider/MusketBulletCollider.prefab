@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: -0.5000003, y: 0.49999973, z: -0.49999985, w: 0.50000024}
   m_LocalPosition: {x: 0.27, y: 1.64, z: -0.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 4
@@ -4791,6 +4792,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
+  m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -4814,6 +4816,10 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+  m_MeshWeighting: 1
+  m_MeshWeighting1: 1
+  m_MeshWeighting2: 1
+  m_MeshWeighting3: 1
   m_MaskInteraction: 0
 --- !u!1 &1314719724268210257
 GameObject:
@@ -4847,6 +4853,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1314719725301908297}
   - {fileID: 2110628725830955293}
@@ -4858,7 +4865,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1314719724268210271
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4871,6 +4878,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -4960,11 +4968,13 @@ MonoBehaviour:
         m_CallState: 2
   CanMiss: 0
   HitOnlyGroundedActors: 0
+  AbilityInstanceId: 
   ParentCollider: {fileID: 0}
   StickToActor: 0
   StickToActorFacing: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 1
+  InitPosition: {x: 0, y: 0, z: 0}
   SkilledShotPoint: {fileID: 0}
   SkilledshotLayermask:
     serializedVersion: 2
@@ -4972,6 +4982,8 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: SplinterHit
   OnHitSource: {fileID: 0}
+  RepositionChildrenOnEnable: 0
+  OnlyForPlayers: 0
   DuplicateBubbles: 0
   IsBubble: 0
   BubblesDuplicated: []
@@ -5042,6 +5054,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.48, y: 2.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 0
@@ -5125,6 +5138,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.93444127, w: 0.35611722}
   m_LocalPosition: {x: 0, y: 1.49, z: 0}
   m_LocalScale: {x: 0.69028515, y: 0.69028515, z: 0.69028515}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 1
@@ -5208,6 +5222,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.93444127, w: 0.35611722}
   m_LocalPosition: {x: 0, y: 1.49, z: 0}
   m_LocalScale: {x: 1.2856561, y: 0.3892035, z: 0.69028515}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 2
@@ -5291,6 +5306,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.99997604, w: -0.006928075}
   m_LocalPosition: {x: 0, y: 1.49, z: 0}
   m_LocalScale: {x: 1.2856561, y: 0.3892035, z: 0.69028515}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 3

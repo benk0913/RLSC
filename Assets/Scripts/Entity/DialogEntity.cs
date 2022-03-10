@@ -43,6 +43,11 @@ public class DialogEntity : MonoBehaviour
                     EndDialog();
                     keyDownTimer = 0.3f;
                 }
+
+                if(Input.GetKeyDown(InputMap.Map["Exit"]))
+                {
+                    EndDialog();
+                }
             }
             else
             {

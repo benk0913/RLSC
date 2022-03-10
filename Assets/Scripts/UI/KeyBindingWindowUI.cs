@@ -36,23 +36,32 @@ public class KeyBindingWindowUI : MonoBehaviour {
         CloseBinding();
     }
 
+    Coroutine RefreshingRoutine;
 	public void Init()
     {
         Clear();
 
-        GameObject tempPiece;
-        string key;
-        for(int i=0;i<InputMap.Map.Count;i++)
+        if(RefreshingRoutine != null)
         {
-            tempPiece = ResourcesLoader.Instance.GetRecycledObject("KeyBindingPiece");
-            tempPiece.transform.SetParent(Container, false);
-            key = InputMap.Map.Keys.ElementAt(i);
-            KeyBindingPieceUI KeyBindingPiece = tempPiece.GetComponent<KeyBindingPieceUI>();
-            KeyBindingPiece.SetInfo(key, InputMap.Map[key]);
+            StopCoroutine(RefreshingRoutine);
         }
 
+        RefreshingRoutine = CORE.Instance.DelayedInvokation(0.1f,()=>
+        {    
+            GameObject tempPiece;
+            string key;
+            for(int i=0;i<InputMap.Map.Count;i++)
+            {
+                tempPiece = ResourcesLoader.Instance.GetRecycledObject("KeyBindingPiece");
+                tempPiece.transform.SetParent(Container, false);
+                key = InputMap.Map.Keys.ElementAt(i);
+                KeyBindingPieceUI KeyBindingPiece = tempPiece.GetComponent<KeyBindingPieceUI>();
+                KeyBindingPiece.SetInfo(key, InputMap.Map[key]);
+            }
 
-        CORE.Instance.DelayedInvokation(0.1f,()=>SGroup.RefreshGroup());
+
+            CORE.Instance.DelayedInvokation(0.1f,()=>SGroup.RefreshGroup());
+        });
     }
 
     public void OnKeyBindingPieceClicked(KeyBindingPieceUI KeyBindingPiece)

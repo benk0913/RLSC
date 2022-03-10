@@ -28,5 +28,6 @@ public class MatchFoundPanelUI : PartyInvitePanelUI
     {
         SocketHandler.Instance.SendExpeditionQueueMatchResponse(false);
         CG.interactable = false;
+        ExpeditionQueTimerUI.Instance.StopSearching();
     }
 }

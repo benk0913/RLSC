@@ -190,7 +190,7 @@ public class CORE : MonoBehaviour
                 }
 
 
-               //AutoSetLanguage();
+               AutoSetLanguage();
 
                 AchievementLogic.Instance.StartAchievementLogic();
             });
@@ -227,32 +227,34 @@ public class CORE : MonoBehaviour
 
     public void AutoSetLanguage()
     {
-         CurrentLanguage = PlayerPrefs.GetString("language", "");
+            LocalizationManager.CurrentLanguage = "English";
+            CORE.Instance.InvokeEvent("LanguageChanged");
+    //      CurrentLanguage = PlayerPrefs.GetString("language", "");
 
-        #if !UNITY_ANDROID && !UNITY_IOS
-        if (string.IsNullOrEmpty(CurrentLanguage))
-        {
-            Debug.Log("Using steam's UI language");
-            CurrentLanguage = SteamApps.GetCurrentGameLanguage();
+    //     #if !UNITY_ANDROID && !UNITY_IOS
+    //     if (string.IsNullOrEmpty(CurrentLanguage))
+    //     {
+    //         Debug.Log("Using steam's UI language");
+    //         CurrentLanguage = SteamApps.GetCurrentGameLanguage();
 
-            if (CurrentLanguage == "Simplified Chinese")
-            {
-                CurrentLanguage = "Chinese (Simplified)";
-            }
+    //         if (CurrentLanguage == "Simplified Chinese")
+    //         {
+    //             CurrentLanguage = "Chinese (Simplified)";
+    //         }
 
-            if (CurrentLanguage == "Spanish - Spain")
-            {
-                CurrentLanguage = "Spanish";
-            }
+    //         if (CurrentLanguage == "Spanish - Spain")
+    //         {
+    //             CurrentLanguage = "Spanish";
+    //         }
 
-        }
-        #endif
+    //     }
+    //     #endif
 
-        PlayerPrefs.SetString("language", CurrentLanguage);
-        PlayerPrefs.Save();
+    //     PlayerPrefs.SetString("language", CurrentLanguage);
+    //     PlayerPrefs.Save();
 
-        LocalizationManager.CurrentLanguage = CurrentLanguage;
-        CORE.Instance.InvokeEvent("LanguageChanged");
+    //     LocalizationManager.CurrentLanguage = CurrentLanguage;
+    //     CORE.Instance.InvokeEvent("LanguageChanged");
 
     }
 
@@ -892,6 +894,8 @@ public class CORE : MonoBehaviour
     public void DisposeChamberCache()
     {
         screenEffectQue.Clear();
+        DecisionContainerUI.Instance.HideSkipText();
+        DecisionContainerUI.Instance.Hide();
         // Room = null;
     }
 
@@ -1037,6 +1041,23 @@ public class CORE : MonoBehaviour
     }
 
     public void ReturnToMainMenu()
+    {
+        if(IsLoading || LoadSceneRoutineInstance != null)
+        {
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Busy Loading...",Color.red,1f,true));
+            return;
+        }
+        LoadScene("MainMenu",()=> 
+        {
+            ResourcesLoader.Instance.RunWhenResourcesLoaded(() =>
+            {
+                AudioControl.Instance.SetMusic(Data.content.titleScreenMusic);
+                AudioControl.Instance.SetSoundscape(Data.content.titleScreenSoundscape);
+            });
+        });
+    }
+
+    public void ReturnToMainMenuForced()
     {
         LoadScene("MainMenu",()=> 
         {
@@ -1286,6 +1307,10 @@ public class CORE : MonoBehaviour
             else  if (param.Type.name == "Flip Screen")
             {
                 CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,180f);
+                CORE.Instance.DelayedInvokation(10f,()=>
+                {
+                    CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,0f);
+                });
             }
             else  if (param.Type.name == "Unflip Screen")
             {
@@ -1293,6 +1318,7 @@ public class CORE : MonoBehaviour
             }
         }
     }
+    
 
     public void RefreshSceneInfo()
     {

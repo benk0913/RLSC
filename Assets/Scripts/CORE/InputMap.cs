@@ -6,8 +6,10 @@ using System;
 
 public class InputMap : MonoBehaviour {
 
+    public static InputMap Instance;
     [SerializeField]
     List<InitInputObject> InitList = new List<InitInputObject>();
+
      
     public static Dictionary<string, KeyCode> Map = new Dictionary<string, KeyCode>();
 
@@ -16,6 +18,7 @@ public class InputMap : MonoBehaviour {
         Map.Clear();
         Initialize();
         LoadMap();
+        Instance = this;
     }
 
     private void Initialize()
@@ -24,6 +27,21 @@ public class InputMap : MonoBehaviour {
         {
             Map.Add(InitList[i].Name, InitList[i].KeyCode);
         }
+    }
+
+    public void ResetBindings()
+    {
+        WarningWindowUI.Instance.Show("Are you sure? Your saved state will be reset!",()=>
+        {
+            foreach(InitInputObject initInput in InitList)
+            {
+                Map[initInput.Name] = initInput.KeyCode;
+            }
+
+            SaveMap();
+
+            KeyBindingWindowUI.Instance.Init();
+        });
     }
 
     public static void LoadMap()
@@ -54,6 +72,7 @@ public class InputMap : MonoBehaviour {
 
         PlayerPrefs.Save();
     }
+
 
 }
 

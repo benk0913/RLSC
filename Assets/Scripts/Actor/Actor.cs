@@ -1691,7 +1691,7 @@ public class Actor : MonoBehaviour
         return true;
     }
 
-    public void AttemptMoveDown()
+    public async void AttemptMoveDown()
     {
         disableGlide = true;
         if (!CanAttemptToMove)
@@ -1699,7 +1699,8 @@ public class Actor : MonoBehaviour
             return;
         }
         
-        if (CurrentGround && CurrentGround.GetComponent<PlatformEffector2D>() != null)
+        if ((CurrentGround && CurrentGround.GetComponent<PlatformEffector2D>() != null)
+         && (!CORE.Instance.IsUsingJoystick || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") < -0.8f)))
         {
             StartCoroutine(JumpDown(CurrentGround));
             return;

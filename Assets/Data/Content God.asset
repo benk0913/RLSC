@@ -1117,6 +1117,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 05daea6aa56b6ce478fc62f73b39a834, type: 2}
     - {fileID: 11400000, guid: cabe8c300b1bc8e418bcd701ffc3bde0, type: 2}
     - {fileID: 11400000, guid: 81aa2045cf2c2ff44969b457ba8e480e, type: 2}
+    - {fileID: 11400000, guid: 98e6902a08531a84a9bd356b6c010798, type: 2}
+    - {fileID: 11400000, guid: 0df59e94c290bc946936a2a14e51c265, type: 2}
     - {fileID: 11400000, guid: 9c916b90b798f6a4daf3bcda1bdf02c8, type: 2}
     - {fileID: 11400000, guid: 89d34c7b2e7e0d84eb1b1fed2e099ad6, type: 2}
     - {fileID: 11400000, guid: 479c1c616f2e0084fbefbe6e7757ea6f, type: 2}
@@ -1193,6 +1195,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7fe1208363346524ab14d1453cf957f1, type: 2}
     - {fileID: 11400000, guid: ab1ec3a91fdfd314e9ef6634259fd6f0, type: 2}
     - {fileID: 11400000, guid: b2d6dc525416b94409f05a7b80050af1, type: 2}
+    - {fileID: 11400000, guid: cbfff00c8f608c042aba3358a78f4592, type: 2}
+    - {fileID: 11400000, guid: b3d68f6c1d9701b48b75b610308a2601, type: 2}
     - {fileID: 11400000, guid: 6710c83b9e30f154abe243a1e2333c95, type: 2}
     - {fileID: 11400000, guid: 868effaec9b9fe141a98f168c9133eb4, type: 2}
     - {fileID: 11400000, guid: d1fec7b980d8d094494c67e836b983f9, type: 2}
@@ -1255,6 +1259,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2f1453362378e5040a70faf639d20cfc, type: 2}
     - {fileID: 11400000, guid: ae48770f530ee86459163af75c59192a, type: 2}
     - {fileID: 11400000, guid: ee8bc3558059992419e0bd6b1054ab9a, type: 2}
+    - {fileID: 11400000, guid: 3b1fbd6bfbc61d4498cd621e89a4f465, type: 2}
+    - {fileID: 11400000, guid: 044c9b439aa24874a87541cf5be72cad, type: 2}
+    - {fileID: 11400000, guid: 59b80d4a2444ac64d82869db311e61ca, type: 2}
     - {fileID: 11400000, guid: eb794106e6bd895499dd2b4e1235bc04, type: 2}
     - {fileID: 11400000, guid: b4ab2f713af48c643961ec636137826c, type: 2}
     - {fileID: 11400000, guid: 2cc7b29a94035604ea08d88878afc8b0, type: 2}
@@ -1298,6 +1305,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d7293f9faa0679348a180dec120f3b5d, type: 2}
     - {fileID: 11400000, guid: 2848e42e1d439db46b4308736dbfbcf5, type: 2}
     - {fileID: 11400000, guid: 0e20b002c2da36f4db0ceff415cb266f, type: 2}
+    - {fileID: 11400000, guid: 3adc6becaed88be408f4c6f335062e45, type: 2}
+    - {fileID: 11400000, guid: 40d5448c051e4254da90ccecaf47e881, type: 2}
     - {fileID: 11400000, guid: 7b910040f1e91fa48b378237e97418a8, type: 2}
     - {fileID: 11400000, guid: a2256444a74c1964093d475fe90348d4, type: 2}
     - {fileID: 11400000, guid: c7bc8264ce0e50b4e8d5798db5b712dc, type: 2}
@@ -1317,6 +1326,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 38315d8c81597444c8b9f65f7f354530, type: 2}
     - {fileID: 11400000, guid: 779fb6fa3a2b11544a2a3b569a3b4752, type: 2}
     - {fileID: 11400000, guid: f97f4147b3901d24fa87fdff103e9476, type: 2}
+    - {fileID: 11400000, guid: 8c50a9e76c7442d49b386ed9d9c47c4f, type: 2}
     - {fileID: 11400000, guid: 0e02fe5e1a71afb40b335b3775c95175, type: 2}
     - {fileID: 11400000, guid: 80af513e5837e514991eef950a5eeea7, type: 2}
     - {fileID: 11400000, guid: 026f6a6c72c5b2d4099a36ec2eaf80e3, type: 2}
@@ -6993,6 +7003,10 @@ MonoBehaviour:
         respawnSeconds: 30
         IrellevantMob: 1
       Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 162
+        positionY: -4
       - interactableName: LeftEntrance
         interactableId: 
         positionX: -10
@@ -7004,6 +7018,12 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: Beachwalk2CaveEntry
+        TargetScene: OW_BeachCave1
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 162.36
+        portalPositionY: -3.95
       - name: LeftEntrance
         TargetScene: OW_BeachWalk1
         TargetSceneGate: RightEntrance
@@ -11060,6 +11080,10 @@ MonoBehaviour:
         respawnSeconds: 0
         IrellevantMob: 1
       Interactables:
+      - interactableName: Entry
+        interactableId: 
+        positionX: 9
+        positionY: -8
       - interactableName: SunsetCaveEntrance
         interactableId: 
         positionX: -40
@@ -11075,6 +11099,12 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: BeachCaveEntrance
+        TargetScene: OW_BeachCave3
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 8.6
+        portalPositionY: -8.34
       - name: SunsetCaveEntrance
         TargetScene: OW_SunsetPortCave3
         TargetSceneGate: DeepCaveEntrance
@@ -14875,7 +14905,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
     - sceneName: OW_DreamPondCaveU2
-      displyName: 
+      displyName: ???
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -14916,7 +14946,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
     - sceneName: OW_DreamPondCaveBossCaveEntry
-      displyName: 
+      displyName: ????
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -14965,7 +14995,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
     - sceneName: OW_DreamPondCaveBossCavePost
-      displyName: 
+      displyName: '?'
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -15010,7 +15040,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
     - sceneName: OW_DreamPondCaveBossCaveChamber
-      displyName: 
+      displyName: ???
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -15081,7 +15111,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
     - sceneName: OW_DreamPondCaveULower
-      displyName: 
+      displyName: Hm?
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -15537,7 +15567,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
     - sceneName: OW_DreamPondCaveULower2
-      displyName: 
+      displyName: Somewhere?
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -15568,7 +15598,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
     - sceneName: OW_ShroomCave2
-      displyName: 
+      displyName: Shroom Cave 2
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -15753,6 +15783,309 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: SunsetSplit
+    - sceneName: OW_BeachCave1
+      displyName: Beach Cave 1
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorShellCrabBig
+        positionX: 88.9
+        positionY: -54.6
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 69.299995
+        positionY: -22.300001
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 58.5
+        positionY: -20.5
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 53.699997
+        positionY: -20.2
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 63.9
+        positionY: -25.300001
+        respawnSeconds: 30
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: GateRightInteractable
+        interactableId: 
+        positionX: 44
+        positionY: -46
+      - interactableName: RightEntrance
+        interactableId: 
+        positionX: 129
+        positionY: -50
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: LeftEntrance
+        TargetScene: OW_BeachWalk2
+        TargetSceneGate: Beachwalk2CaveEntry
+        IsExpeditionLocked: 0
+        portalPositionX: 44.1
+        portalPositionY: -45.6
+      - name: RightEntrance
+        TargetScene: OW_BeachCave2
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 128.6
+        portalPositionY: -49.6
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: burrowOGG
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: HermitWalk (3)
+    - sceneName: OW_BeachCave2
+      displyName: Beach Cave 2
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorBlockSmall
+        positionX: 163.8
+        positionY: -79.8
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorBlockSmall
+        positionX: 265.4
+        positionY: -78.1
+        respawnSeconds: 60
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 254.70001
+        positionY: -81.26
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 201.75
+        positionY: -81.26
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 211.75
+        positionY: -81.26
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 206.75
+        positionY: -81.26
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 264.7
+        positionY: -81.26
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 269.7
+        positionY: -81.26
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorDungeonSpikes
+        positionX: 259.7
+        positionY: -81.26
+        respawnSeconds: 0
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: RightEntrance
+        interactableId: 
+        positionX: 353
+        positionY: -79
+      - interactableName: RightEntrance
+        interactableId: 
+        positionX: 79
+        positionY: -79
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: RightEntrance
+        TargetScene: OW_BeachCave3
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 353.1
+        portalPositionY: -78.68
+      - name: LeftEntrance
+        TargetScene: OW_BeachCave1
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 79.01
+        portalPositionY: -78.68
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: burrowOGG
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: HermitWalk (3)
+    - sceneName: OW_BeachCave3
+      displyName: Beach Cave 3
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSpikes
+        positionX: -108.29
+        positionY: 46.21
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -149.61
+        positionY: -30.06
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -110.52
+        positionY: 25.52
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -108.69
+        positionY: 16.05
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -110.2
+        positionY: 40.16
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -108.77
+        positionY: -31.46
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.6
+        positionY: 0.87
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -149.71
+        positionY: -22.03
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorFlowerbeingWild
+        positionX: -125.5
+        positionY: -44.875
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.68
+        positionY: 9.7
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151.56
+        positionY: 45.73
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -109.69
+        positionY: -20.04
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -112.51
+        positionY: 32.36
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151.08
+        positionY: 26.08
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -111.39
+        positionY: 8.89
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -151.8
+        positionY: 34.83
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.8
+        positionY: -37.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorFlowerbeingWild
+        positionX: -138.625
+        positionY: 29.75
+        respawnSeconds: 12
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.92
+        positionY: 19.4
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -109.4
+        positionY: -7.58
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -150.4
+        positionY: -8.15
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikes
+        positionX: -110.04
+        positionY: 1.01
+        respawnSeconds: 0
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: LeftEntrance
+        interactableId: 
+        positionX: -153
+        positionY: -50
+      - interactableName: RightEntrance
+        interactableId: 
+        positionX: -124
+        positionY: 26
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: LeftEntrance
+        TargetScene: OW_BeachCave2
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -153.08
+        portalPositionY: -49.77
+      - name: RightEntrance
+        TargetScene: OW_SunsetPortCave4
+        TargetSceneGate: BeachCaveEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: -124.018234
+        portalPositionY: 25.857668
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: burrowOGG
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: HermitWalk (3)
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -15781,7 +16114,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6316f3673ceba114187e0f620dc19064, type: 2}
     - {fileID: 11400000, guid: 55f7a0f906096f44f8541173f0fdace4, type: 2}
     - {fileID: 11400000, guid: f3fd13e308936a34987cb4e35cda2303, type: 2}
-    ExpChart: 0000000064000000c80000009001000020030000dc050000280a0000681000000019000054240000c8320000c0440000a05a0000cc740000a893000098b7000000e1000044100100c8450100f081010020c50100bc0f020028620200c8bc020000200300348c0300
+    ExpChart: 0000000064000000c80000009001000020030000dc050000280a0000681000000019000054240000c8320000c0440000a05a0000cc740000a893000098b7000000e1000044100100c8450100f081010020c50100bc0f020028620200c8bc020000200300348c0300c801040020810400a00a0500ac9e0500
     TimePhases:
     - Name: Day
       DurationInMinutes: 40
@@ -15874,7 +16207,7 @@ MonoBehaviour:
       minAmount: 5000
     - moneyItem: {fileID: 11400000, guid: 94662d86b6b151344bf6d363eba82855, type: 2}
       minAmount: 100000
-    LatestVersion: 0.45
+    LatestVersion: 0.46
     StartingScene: OW_SchoolRoom1
     TownScene: Sunset Port
     HumanPrefab: ActorHuman
@@ -15946,7 +16279,7 @@ MonoBehaviour:
     DefaultChatBubble: {fileID: 11400000, guid: 7a76aff3eb7d1624aa638f42f5174bde, type: 2}
     titleScreenMusic: music_TitleScreenBaP
     titleScreenSoundscape: Beach SoundScape
-    MaxLevel: 26
+    MaxLevel: 30
     AbilitiesInitCount: 3
     AbilitiesMaxCount: 5
     InventoryData:
@@ -16037,7 +16370,7 @@ MonoBehaviour:
         Condition: {fileID: 0}
         GameConditions:
         - Type: {fileID: 11400000, guid: 84c7520e50ed3f2438862496439ab510, type: 2}
-          Value: 0.085
+          Value: 0.05
           ObjectValue: {fileID: 0}
           Inverse: 0
         Targets: 2
@@ -16103,7 +16436,7 @@ MonoBehaviour:
         Condition: {fileID: 0}
         GameConditions:
         - Type: {fileID: 11400000, guid: 84c7520e50ed3f2438862496439ab510, type: 2}
-          Value: 0.775
+          Value: 0.81
           ObjectValue: {fileID: 0}
           Inverse: 0
         Targets: 2

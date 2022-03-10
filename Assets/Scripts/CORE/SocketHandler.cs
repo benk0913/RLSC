@@ -973,7 +973,7 @@ public class SocketHandler : MonoBehaviour
             CORE.Instance.DisposeSession();
         }
 
-        CORE.Instance.ReturnToMainMenu();
+        CORE.Instance.ReturnToMainMenuForced();
     }
 
     public void OnError(string eventName, JSONNode data)

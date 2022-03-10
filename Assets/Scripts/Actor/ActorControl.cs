@@ -52,7 +52,7 @@ public class ActorControl : MonoBehaviour
             CurrentActor.AttemptMoveDown();
         }
 
-        if (MultiplatformUIManager.IsUniversalJump||MultiplatformUIManager.IsUniversalUp || Input.GetKey(InputMap.Map["Jump"]) || Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") > 0f))
+        if (MultiplatformUIManager.IsUniversalJump||MultiplatformUIManager.IsUniversalUp || Input.GetKey(InputMap.Map["Jump"]) || Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") > 0.8f))
         {
             CurrentActor.AttemptJump();
         }

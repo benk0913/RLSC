@@ -180,6 +180,14 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         });
     }
 
+    public void ResetBindings()
+    {
+        InputMap.Instance.ResetBindings();
+
+
+
+    }
+
     public void OnLanguageChanged(string languageKey)
     {
         Hide();

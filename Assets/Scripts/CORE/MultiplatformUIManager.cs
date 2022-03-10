@@ -56,11 +56,11 @@ public class MultiplatformUIManager : MonoBehaviour
         {
             IsUniversalLeft = true;
         }
-        if(TouchController.GetTouchPosition.y < -0.25f)
+        if(TouchController.GetTouchPosition.y < -0.8f)
         {
             IsUniversalDown = true;
         }
-        else if(TouchController.GetTouchPosition.y > 0.25f)
+        else if(TouchController.GetTouchPosition.y > 0.8f)
         {
             IsUniversalUp = true;
         }
