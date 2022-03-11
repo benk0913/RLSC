@@ -1510,13 +1510,21 @@ public class SocketHandler : MonoBehaviour
             return;
         }
 
+        string casterSource = data["casterActorId"].Value;
+        ActorData casterActorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == casterSource);
+
+        if (casterActorDat == null)
+        {
+            CORE.Instance.LogMessageError("No actor with ID " + data["casterActorId"].Value);
+        }
+
         string buffName = data["buffName"];
         string abilityInstanceId = data["abilityInstanceId"].Value;
         float duration = data["durationInSeconds"].AsFloat;
 
         Buff buff = CORE.Instance.Data.content.Buffs.Find(x => x.name == buffName);
 
-        actorDat.ActorEntity.AddBuff(buff, duration, abilityInstanceId);
+        actorDat.ActorEntity.AddBuff(buff, duration, abilityInstanceId, casterActorDat);
 
 
     }

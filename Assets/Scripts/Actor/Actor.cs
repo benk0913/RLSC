@@ -1013,7 +1013,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void AddBuff(Buff buff, float duration, string abilityInstanceId)
+    public void AddBuff(Buff buff, float duration, string abilityInstanceId,ActorData casterActor = null)
     {
         
         BuffState state = State.Buffs.Find(x => x.CurrentBuff.name == buff.name);
@@ -1026,7 +1026,7 @@ public class Actor : MonoBehaviour
             if (!string.IsNullOrEmpty(buff.BuffColliderObject))
             {
                 GameObject colliderObj = AddColliderOnPosition(buff.BuffColliderObject);
-                colliderObj.GetComponent<BuffCollider>().SetInfo(state, this, abilityInstanceId);
+                colliderObj.GetComponent<BuffCollider>().SetInfo(state, this, abilityInstanceId, casterActor);
 
                 state.EffectObject = colliderObj;
                 

@@ -10,6 +10,9 @@ public class HitCollider : MonoBehaviour
     public Actor ActorSource;
 
     [SerializeField]
+    public Actor CasterActor;
+
+    [SerializeField]
     public Ability AbilitySource;
 
     [SerializeField]
