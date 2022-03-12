@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
+  m_Name: Icicle
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 34eedf71e36aa15428c40d2feb56bbe6, type: 3}
+  Description: Throw an icicle that will slow an enemy, if the enemy is slowed, it
+    will freeze the enemy, if the enemy is frozen, it will break the ice. (Don't
+    mix with fire magic)
+  Colliders:
+    HitAbilityColliderObject: IcicleHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: IcicleCollider
+    PrepareAbilityColliderObject: PrepareIceSpell
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions: []
+  Sounds:
+    PrepareAbilitySound: 
+    ExecuteAbilitySound: sound_earth_3
+    HitAbilitySound: sound_earth_4
+    HitAbilitySoundVarriants: []
+    MissAbilitySound: 
+  Visuals:
+    ScreenEffectObject: 
+    PreparingAnimation: Cast1
+    ExecuteAnimation: Execute3
+  CD: 0.5
+  CastingTime: 0.5
+  TargetCap: 6
+  MaxSameTargetHits: 1
+  OnlyIfGrounded: 0
+  AIViableRange: 0
+  IsCastingExternal: 0
+  CanMoveInCast: 1
+  Mastery: 0
+  MasteryDescription: 
+  OnExecuteParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 9b030e09835f02a419f8b15027f11c41, type: 2}
+      Inverse: 1
+    Targets: 0
+    Value: 10
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 702f92c8f9d60634e9a401d7e7e4af3f, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 9b030e09835f02a419f8b15027f11c41, type: 2}
+      Inverse: 0
+    Targets: 0
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 8f938034dee470e4980652e196853862, type: 2}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 702f92c8f9d60634e9a401d7e7e4af3f, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 8e632e16f7be8b54299b7f0151a21efd, type: 2}
+      Inverse: 0
+    Targets: 0
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 386db136b92c0b74f8aaeca0ede41b68, type: 2}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 702f92c8f9d60634e9a401d7e7e4af3f, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 8e632e16f7be8b54299b7f0151a21efd, type: 2}
+      Inverse: 1
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 9b030e09835f02a419f8b15027f11c41, type: 2}
+      Inverse: 1
+    Targets: 0
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 397a81e7c14ece6488eb4fde5907043d, type: 2}
+    Value2: 
+  OnMissParams: []
+  Reverseable: 1
