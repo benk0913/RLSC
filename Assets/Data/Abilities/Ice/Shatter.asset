@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
+  m_Name: Shatter
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3d6bc98e4c89d8b4394f865314b8db2b, type: 3}
+  Description: The ice blocks, currently freezing your opponents, will shatter, dealing
+    significant damage along the way!
+  Colliders:
+    HitAbilityColliderObject: ShatterHit
+    MissAbilityColliderObject: 
+    AbilityColliderObject: ShatterCollider
+    PrepareAbilityColliderObject: PrepareIceSpell
+    HitConditionObject: 
+    HitConditionObjectCondition: {fileID: 0}
+    HitConditionObjectGameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 9b030e09835f02a419f8b15027f11c41, type: 2}
+      Inverse: 0
+  Sounds:
+    PrepareAbilitySound: sound_flamerelease
+    ExecuteAbilitySound: F_BolsterFlamesOGG
+    HitAbilitySound: F_BolsterFlames_HitOGG
+    HitAbilitySoundVarriants: []
+    MissAbilitySound: 
+  Visuals:
+    ScreenEffectObject: 
+    PreparingAnimation: Cast4
+    ExecuteAnimation: Execute4
+  CD: 10
+  CastingTime: 0.2
+  TargetCap: 10
+  MaxSameTargetHits: 1
+  OnlyIfGrounded: 0
+  AIViableRange: 0
+  IsCastingExternal: 0
+  CanMoveInCast: 1
+  Mastery: 0
+  MasteryDescription: 
+  OnExecuteParams: []
+  OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 9b030e09835f02a419f8b15027f11c41, type: 2}
+      Inverse: 0
+    Targets: 0
+    Value: 50
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 9b030e09835f02a419f8b15027f11c41, type: 2}
+      Inverse: 0
+    Targets: 0
+    Value: 50
+    ObjectValue: {fileID: 0}
+    Value2: 
+  - Type: {fileID: 11400000, guid: 9808926be5a20354592163dcf83d54da, type: 2}
+    Condition: {fileID: 0}
+    GameConditions:
+    - Type: {fileID: 11400000, guid: c0abc0ad57e570645b626cc7938f5298, type: 2}
+      Value: 
+      ObjectValue: {fileID: 11400000, guid: 9b030e09835f02a419f8b15027f11c41, type: 2}
+      Inverse: 0
+    Targets: 0
+    Value: Frost Stun
+    ObjectValue: {fileID: 0}
+    Value2: 
+  OnMissParams: []
+  Reverseable: 1
