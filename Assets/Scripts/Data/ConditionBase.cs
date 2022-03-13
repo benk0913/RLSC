@@ -120,6 +120,17 @@ public class ConditionLogic
                         return Inverse;
                     }
                 }
+            case "HasLevel":
+                {
+                    if(CORE.PlayerActor.level >= int.Parse(ActualValue))
+                    {
+                        return !Inverse;
+                    }
+                    else
+                    {
+                        return Inverse;
+                    }
+                }
         } 
 
         return !Inverse; //  True 

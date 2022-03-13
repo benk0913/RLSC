@@ -938,6 +938,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6b77fe28f36d1d548bc568ec3d47450f, type: 2}
     - {fileID: 11400000, guid: df12cc265558ecc41aa9a83fd0380e14, type: 2}
     - {fileID: 11400000, guid: 80a7a416d1cafc84ca8455498667f97f, type: 2}
+    - {fileID: 11400000, guid: fb6704e3a06df5e47a357192deb8b58d, type: 2}
     - {fileID: 11400000, guid: e35aaeda36cbe8146bf180cec3caffc2, type: 2}
     - {fileID: 11400000, guid: 7a52df83f8eafce479e996f4d95ea998, type: 2}
     - {fileID: 11400000, guid: 0089b72f450b1fa4ca3b4458e9a7ec49, type: 2}
@@ -1005,6 +1006,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c7acc5fc5c3d3324fa9dafa892bd7689, type: 2}
     - {fileID: 11400000, guid: f6bee5d7825963b4f9ea0fcb70fa541b, type: 2}
     - {fileID: 11400000, guid: 60827fb66363f784a91648869ed29b5b, type: 2}
+    - {fileID: 11400000, guid: 7b03b98bb92e166429323fc1153cef94, type: 2}
     - {fileID: 11400000, guid: 2233657f4f47ace4faa64e43f3b76b0d, type: 2}
     - {fileID: 11400000, guid: 61c32f0517ad87d4789b7980f6a4cb30, type: 2}
     - {fileID: 11400000, guid: 983f1ae8b217c21479ad57461254c366, type: 2}
@@ -10428,6 +10430,10 @@ MonoBehaviour:
         respawnSeconds: 8
         IrellevantMob: 1
       Interactables:
+      - interactableName: DreamRoadCaveEntrance
+        interactableId: 
+        positionX: 728
+        positionY: -2
       - interactableName: LeftEntrance
         interactableId: 
         positionX: 120
@@ -10436,9 +10442,19 @@ MonoBehaviour:
         interactableId: 
         positionX: 840
         positionY: 7
+      - interactableName: NPC_SIGN
+        interactableId: 
+        positionX: 868
+        positionY: 20
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: DreamRoadCaveEntrance
+        TargetScene: OW_DreamroadCave
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 0
+        portalPositionX: 728.27
+        portalPositionY: -1.8
       - name: LeftEntrance
         TargetScene: OW_DaydreamRoad3
         TargetSceneGate: RightEntrance
@@ -15631,6 +15647,10 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
+      - interactableName: RightEntrance
+        interactableId: 
+        positionX: 112
+        positionY: -22
       - interactableName: Entry
         interactableId: 
         positionX: 86
@@ -15638,6 +15658,12 @@ MonoBehaviour:
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
+      - name: RightEntrance
+        TargetScene: OW_DreamPondCaveULower3
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 112.08
+        portalPositionY: -21.85
       - name: Entry
         TargetScene: OW_DreamPondCaveULower
         TargetSceneGate: RightEntrance
@@ -15647,7 +15673,7 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: burrowOGG
+      MusicTrack: music_cave_2
       Soundscape: Dungeon SoundScape
       NightMusicTrack: 
       NightSoundscape: 
@@ -16145,6 +16171,224 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: HermitWalk (3)
+    - sceneName: OW_DreamroadCave
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: Entry
+        interactableId: 
+        positionX: 87
+        positionY: -23
+      - interactableName: NPC_SIGN
+        interactableId: 
+        positionX: 73
+        positionY: -15
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: Entry
+        TargetScene: OW_DaydreamRoad4
+        TargetSceneGate: DreamRoadCaveEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 87.14
+        portalPositionY: -23
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: music_cave_2
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: DaydreamRoad (4)
+    - sceneName: OW_DreamPondCaveULower3
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSpikesCold
+        positionX: 90
+        positionY: -63.7
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 123.6
+        positionY: -52.9
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 112.2
+        positionY: -57.9
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 98.2
+        positionY: -63.7
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 83
+        positionY: -64.5
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 68.6
+        positionY: -61.7
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 52.6
+        positionY: -54.3
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorBatBig
+        positionX: 66.299995
+        positionY: -21.5
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 69.299995
+        positionY: -22.300001
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 58.5
+        positionY: -20.5
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 53.699997
+        positionY: -20.2
+        respawnSeconds: 30
+        IrellevantMob: 1
+      - monsterName: ActorBat
+        positionX: 63.9
+        positionY: -25.300001
+        respawnSeconds: 30
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: LeftEntrance
+        interactableId: 
+        positionX: 43
+        positionY: -47
+      - interactableName: NPC_SIGN
+        interactableId: 
+        positionX: 92
+        positionY: -60
+      playerSpawnX: 0
+      playerSpawnY: 0
+      Portals:
+      - name: LeftEntrance
+        TargetScene: OW_DreamPondCaveULower2
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 43.2
+        portalPositionY: -46.7
+      - name: RightEntrance
+        TargetScene: OW_DreamPondCaveULower4
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 87.9
+        portalPositionY: -50.7
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: music_cave_2
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: DaydreamRoad (2)
+    - sceneName: OW_DreamPondCaveULower4
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorSpikesCold
+        positionX: 56
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 47.1
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 36.3
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 26.6
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 15.5
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: 6.4
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: -1.9
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: -11.2
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorSpikesCold
+        positionX: -20.1
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: OW_OldTown
+        interactableId: 
+        positionX: 58
+        positionY: 4
+      playerSpawnX: -8
+      playerSpawnY: 0.52
+      Portals:
+      - name: RoomEntry
+        TargetScene: OW_SchoolCourtyard2
+        TargetSceneGate: Entrance
+        IsExpeditionLocked: 0
+        portalPositionX: 60.625
+        portalPositionY: 2.6
+      - name: LeftEntrance
+        TargetScene: OW_DreamPondCaveULower3
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 58.4
+        portalPositionY: 3.7
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: music_cave_2
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: DaydreamRoad (2)
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -16239,6 +16483,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 917bc3bf70b4dc844a2524e90783122a, type: 2}
     - {fileID: 11400000, guid: 1d8bca08fa83361479c93fc762a2556f, type: 2}
     - {fileID: 11400000, guid: 71ad520507207be4f930796d4d637594, type: 2}
+    - {fileID: 11400000, guid: a835d489dac3c424e8e1c13f6c209fc0, type: 2}
+    - {fileID: 11400000, guid: 158d44f3838b0cf40b51747e4127b3f8, type: 2}
     - {fileID: 11400000, guid: 7976e80ee00a88b43ad4435f636cc313, type: 2}
     - {fileID: 11400000, guid: 95f70c4211ca72e4a8a75a7fd31f517b, type: 2}
     - {fileID: 11400000, guid: d8bfa6d4f94fee549be9844a363b9043, type: 2}
