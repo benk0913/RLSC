@@ -135,7 +135,7 @@ public class GuildMemberDisplayUI : MonoBehaviour
         if (IsInRoom)
         {
             ClassIcon.gameObject.SetActive(true);
-            ClassIcon.sprite = CurrentActor.State.Data.ClassJobReference.Icon;
+            ClassIcon.sprite = CurrentActor.State.Data.ClassIcon;
             Background.color = CurrentActor.State.Data.ClassJobReference.ClassColor;
 
             LVLLabel.gameObject.SetActive(true);

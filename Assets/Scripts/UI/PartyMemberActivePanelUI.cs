@@ -67,7 +67,7 @@ public class PartyMemberActivePanelUI : MonoBehaviour
             {
                 CurrentActor = actor.ActorEntity;
                 ClassIcon.enabled = true;
-                ClassIcon.sprite = CurrentActor.State.Data.ClassJobReference.Icon;
+                ClassIcon.sprite = CurrentActor.State.Data.ClassIcon;
             }
             else 
             {

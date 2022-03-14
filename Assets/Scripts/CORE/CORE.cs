@@ -1316,6 +1316,10 @@ public class CORE : MonoBehaviour
             {
                 CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,0f);
             }
+            else  if (param.Type.name == "Unlock Class")
+            {
+                SocketHandler.Instance.SendUnlockClassJob(param.ObjectValue == null? param.Value : ((ClassJob)param.ObjectValue).name);
+            }
         }
     }
     

@@ -209,48 +209,55 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
             slot.SetAbilityState(abilityState,InputMap.Map["Ability"+i].ToString());
         }
 
-        ClassJob job = playerActor.State.Data.ClassJobReference;
-
-        foreach (string abilityName in job.Abilities)
+        foreach(string unlockedClass in playerActor.State.Data.unlockedClassJobs)
         {
-            Ability ability = CORE.Instance.Data.content.Abilities.Find(X => X.name == abilityName);
-
-            if(ability == null)
+            ClassJob job = CORE.Instance.Data.content.Classes.Find(X=>X.name == unlockedClass);
+            foreach (string abilityName in job.Abilities)
             {
-                continue;
+                GenerateAbilitySlot(abilityName);
             }
-            
-            AbilityState state = new AbilityState(ability, playerActor);
-
-            if(playerActor.State.Data.abilities.Contains(abilityName))
-            {
-                continue;
-            }
-
-            Ability masteryAbility = CORE.Instance.Data.content.Abilities.Find(x=>
-            x.Mastery &&
-              x.name != ability.name &&
-              x.name.Contains(ability.name));
-
-            if(masteryAbility != null)
-            {
-                AbilityState masteryState = new AbilityState(masteryAbility, playerActor);
-                
-                if(!masteryState.IsAbilityLocked)
-                {
-                    continue;
-                }
-            }
-
-            AbilitySlotDraggableUI slot = ResourcesLoader.Instance.GetRecycledObject("AbilitySlotDraggableUI").GetComponent<AbilitySlotDraggableUI>();
-            slot.transform.SetParent(AllAbilitiesContainer, false);
-            slot.transform.localScale = Vector3.one;
-            slot.transform.position = Vector3.zero;
-            slot.SetAbilityState(state);
         }
 
         CORE.Instance.DelayedInvokation(0f, () => SelectionGroup.RefreshGroup(restoreSelectionPlacement));
 
         ResetReplacement();
+    }
+    
+    public void GenerateAbilitySlot(string abilityName)
+    {
+        Ability ability = CORE.Instance.Data.content.Abilities.Find(X => X.name == abilityName);
+
+        if(ability == null)
+        {
+            return;
+        }
+        
+        AbilityState state = new AbilityState(ability, playerActor);
+
+        if(playerActor.State.Data.abilities.Contains(abilityName))
+        {
+            return;
+        }
+
+        Ability masteryAbility = CORE.Instance.Data.content.Abilities.Find(x=>
+        x.Mastery &&
+            x.name != ability.name &&
+            x.name.Contains(ability.name));
+
+        if(masteryAbility != null)
+        {
+            AbilityState masteryState = new AbilityState(masteryAbility, playerActor);
+            
+            if(!masteryState.IsAbilityLocked)
+            {
+                return;
+            }
+        }
+
+        AbilitySlotDraggableUI slot = ResourcesLoader.Instance.GetRecycledObject("AbilitySlotDraggableUI").GetComponent<AbilitySlotDraggableUI>();
+        slot.transform.SetParent(AllAbilitiesContainer, false);
+        slot.transform.localScale = Vector3.one;
+        slot.transform.position = Vector3.zero;
+        slot.SetAbilityState(state);
     }
 }

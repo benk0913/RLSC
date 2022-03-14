@@ -131,6 +131,30 @@ public class ConditionLogic
                         return Inverse;
                     }
                 }
+            case "HasParty":
+                {
+                    if(CORE.Instance.CurrentParty != null && CORE.Instance.CurrentParty.members.Length > 1)
+                    {
+                        return !Inverse;
+                    }
+                    else
+                    {
+                        return Inverse;
+                    }
+                }
+            case "CanUnlockClass":
+                {
+                    if(CORE.PlayerActor.unlockedClassJobs.Find(x=>x == Value) == null //Don't already have the class 
+                    && CORE.PlayerActor.ClassJobReference.NextClassJobs.Find(x=>x.name == Value) != null // Currnet class can unlock the class
+                    && CORE.Instance.Data.content.Classes.Find(X=>X.name==Value).UnlockLevel <= CORE.PlayerActor.level) //Has sufficient level
+                    {
+                        return !Inverse;
+                    }
+                    else
+                    {
+                        return Inverse;
+                    }
+                }
         } 
 
         return !Inverse; //  True 

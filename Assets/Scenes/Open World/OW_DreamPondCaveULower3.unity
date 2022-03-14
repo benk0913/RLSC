@@ -13375,12 +13375,8 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       DisplayConditions: []
-      DisplayGameConditions:
-      - Type: {fileID: 11400000, guid: 1f828a2f17e2a28449701238de9bb6db, type: 2}
-        Value: 
-        ObjectValue: {fileID: 11400000, guid: a835d489dac3c424e8e1c13f6c209fc0, type: 2}
-        Inverse: 1
-      DisplayOnlyIfConditionsMet: 1
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
       DefaultDialog:
         DialogPieces:
         - Content: What
@@ -13561,15 +13557,15 @@ MonoBehaviour:
             Decisions: []
             IsFemale: 0
         IsFemale: 0
-    - Content: '*Knock*'
+    - Content: Cold
       OnSelect: []
       OnSelectInvokation:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1629483060}
-            m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-            m_MethodName: SetTrigger
-            m_Mode: 5
+          - m_Target: {fileID: 994206008}
+            m_TargetAssemblyTypeName: PortalEntity, Assembly-CSharp
+            m_MethodName: Teleport
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13579,47 +13575,11 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       DisplayConditions: []
-      DisplayGameConditions:
-      - Type: {fileID: 11400000, guid: 1f828a2f17e2a28449701238de9bb6db, type: 2}
-        Value: 
-        ObjectValue: {fileID: 11400000, guid: a835d489dac3c424e8e1c13f6c209fc0, type: 2}
-        Inverse: 0
-      DisplayOnlyIfConditionsMet: 1
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
       DefaultDialog:
-        DialogPieces:
-        - Content: What
-          OnDialogPiece:
-            m_PersistentCalls:
-              m_Calls: []
-        - Content: Is your favorite color?
-          OnDialogPiece:
-            m_PersistentCalls:
-              m_Calls: []
-        Decisions:
-        - Content: Cold
-          OnSelect: []
-          OnSelectInvokation:
-            m_PersistentCalls:
-              m_Calls:
-              - m_Target: {fileID: 994206008}
-                m_TargetAssemblyTypeName: PortalEntity, Assembly-CSharp
-                m_MethodName: Teleport
-                m_Mode: 0
-                m_Arguments:
-                  m_ObjectArgument: {fileID: 0}
-                  m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                  m_IntArgument: 0
-                  m_FloatArgument: 0
-                  m_StringArgument: 
-                  m_BoolArgument: 0
-                m_CallState: 0
-          DisplayConditions: []
-          DisplayGameConditions: []
-          DisplayOnlyIfConditionsMet: 0
-          DefaultDialog:
-            DialogPieces: []
-            Decisions: []
-            IsFemale: 0
+        DialogPieces: []
+        Decisions: []
         IsFemale: 0
     - Content: Leave
       OnSelect: []

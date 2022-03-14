@@ -883,6 +883,7 @@ MonoBehaviour:
       SteamItemDescription: Sunset World Points, used for in-app purchases
       PlayPackageName: 
     Classes:
+    - {fileID: 11400000, guid: 151e54cf65ed6fb439466b7cd674c8a1, type: 2}
     - {fileID: 11400000, guid: a52fd69d1f2bf1a4391d03536414a1ea, type: 2}
     - {fileID: 11400000, guid: 5cda58be31d534b4f94b85d644b9f8ed, type: 2}
     - {fileID: 11400000, guid: 4c517b12ca85b6c45921a6cb65749efa, type: 2}
@@ -977,6 +978,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c3ded401da21ff54f98ab919159aa614, type: 2}
     - {fileID: 11400000, guid: 4f30f0753b0fdb6479c058f168861cfb, type: 2}
     - {fileID: 11400000, guid: 96716ea7040a0304cbb813bee25f510c, type: 2}
+    - {fileID: 11400000, guid: 9525a83584e9fb9448aa2e1d2bd792db, type: 2}
+    - {fileID: 11400000, guid: f331f1f2718599b42b0b5ba3057d414f, type: 2}
     - {fileID: 11400000, guid: 04ee3105cc9c85441b5d645383a8ec5f, type: 2}
     - {fileID: 11400000, guid: a541fc971532da54ea76ffd9ad8070b9, type: 2}
     Abilities:
@@ -1047,6 +1050,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b0d5be31382a90546bf016a55aca8ffe, type: 2}
     - {fileID: 11400000, guid: 1f0c0c34c813d44438f658d4a182e6c8, type: 2}
     - {fileID: 11400000, guid: 5be1a2ba91ebe444f8ca405fdbcf33ff, type: 2}
+    - {fileID: 11400000, guid: 7c750c9d55abde94184835722fe61819, type: 2}
     - {fileID: 11400000, guid: 539935ce1ad6f2943a4f7a2816c2de26, type: 2}
     - {fileID: 11400000, guid: 949b184eb5ca89c408d9698bb49a6919, type: 2}
     - {fileID: 11400000, guid: d15000ef0223f3449aa864a6bfaa883b, type: 2}
@@ -1119,12 +1123,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 05daea6aa56b6ce478fc62f73b39a834, type: 2}
     - {fileID: 11400000, guid: cabe8c300b1bc8e418bcd701ffc3bde0, type: 2}
     - {fileID: 11400000, guid: 81aa2045cf2c2ff44969b457ba8e480e, type: 2}
+    - {fileID: 11400000, guid: cbc3fc2f94abcda48922b1d139ffab4d, type: 2}
     - {fileID: 11400000, guid: 98e6902a08531a84a9bd356b6c010798, type: 2}
     - {fileID: 11400000, guid: 0df59e94c290bc946936a2a14e51c265, type: 2}
     - {fileID: 11400000, guid: 9c916b90b798f6a4daf3bcda1bdf02c8, type: 2}
     - {fileID: 11400000, guid: 89d34c7b2e7e0d84eb1b1fed2e099ad6, type: 2}
     - {fileID: 11400000, guid: 479c1c616f2e0084fbefbe6e7757ea6f, type: 2}
     - {fileID: 11400000, guid: 4935cf19c3621dd458fa771bde991866, type: 2}
+    - {fileID: 11400000, guid: bc3f47946f6c2854cb94e0cab6048e45, type: 2}
     - {fileID: 11400000, guid: d3326989d7cb3bf46876f31c63f46c18, type: 2}
     - {fileID: 11400000, guid: 329c812063f5e5c4cacdde5597b34857, type: 2}
     - {fileID: 11400000, guid: da25d7ecaa68d9143b7de03023743e4a, type: 2}
@@ -1197,6 +1203,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: dd148e35e6a08f14cb915643adc44bfa, type: 2}
     - {fileID: 11400000, guid: fbee180d41798c04f9b1e62a0ac1f670, type: 2}
     - {fileID: 11400000, guid: ac37bbd7285204d48ba1a56064e895fc, type: 2}
+    - {fileID: 11400000, guid: 32495ee16b6a3ea409acdeb372789ef6, type: 2}
     - {fileID: 11400000, guid: 75dcd1f9020c029459e8af90a35ca9c5, type: 2}
     - {fileID: 11400000, guid: cb7dbe63bee009344b218ca663699aaf, type: 2}
     - {fileID: 11400000, guid: 03283a1fa6ff10f4b813820f3cd28342, type: 2}
@@ -10126,7 +10133,7 @@ MonoBehaviour:
       RespawnMap: Sunset Port
       MusicTrack: music_grasslands_1
       Soundscape: Valley SoundScape
-      NightMusicTrack: 
+      NightMusicTrack: PLACEHOLDER_town_night
       NightSoundscape: Dark SoundScape
       enablePvp: 0
       displayTitleOnEnter: 0
@@ -16172,7 +16179,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: HermitWalk (3)
     - sceneName: OW_DreamroadCave
-      displyName: 
+      displyName: ???
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -16207,7 +16214,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (4)
     - sceneName: OW_DreamPondCaveULower3
-      displyName: 
+      displyName: ???
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -16283,7 +16290,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
     - sceneName: OW_DreamPondCaveULower4
-      displyName: 
+      displyName: ???
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
@@ -16376,6 +16383,73 @@ MonoBehaviour:
       PredictionImage: {fileID: 0}
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
+    - sceneName: Frost_Test_Chamber
+      displyName: ???
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorAcolyteOfFrost
+        positionX: -14.4
+        positionY: -1.2
+        respawnSeconds: 0
+        IrellevantMob: 0
+      Interactables:
+      - interactableName: OW_OldTown
+        interactableId: 
+        positionX: 58
+        positionY: 4
+      playerSpawnX: 54.7
+      playerSpawnY: 0.52
+      Portals:
+      - name: LeftEntrance
+        TargetScene: OW_DreamPondCaveULower4
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 1
+        portalPositionX: 58.4
+        portalPositionY: 3.7
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: music_cave_2
+      Soundscape: Dungeon SoundScape
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: DaydreamRoad (2)
+    - sceneName: Frost_Test_Chamber2
+      displyName: 
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_OldTown
+        interactableId: 
+        positionX: 58
+        positionY: 4
+      playerSpawnX: 5.45
+      playerSpawnY: 0.52
+      Portals:
+      - name: RightEntrance
+        TargetScene: OW_DreamPondCaveULower4
+        TargetSceneGate: LeftEntrance
+        IsExpeditionLocked: 0
+        portalPositionX: 58.4
+        portalPositionY: 3.7
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: 
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: 
+      MapPoint: 
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -16396,6 +16470,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21a0d16d5a3654d43a8c2d5f2a39d5b6, type: 2}
     Expeditions:
     - {fileID: 11400000, guid: 1049c1152bc701f4aae659e35ff5b404, type: 2}
+    - {fileID: 11400000, guid: a2444fb0dc6bdbf41beb653f14f4a50f, type: 2}
     - {fileID: 11400000, guid: e08855d0944ee024db1c305f347d5b4f, type: 2}
     - {fileID: 11400000, guid: 3ec062849d3164a408079f2ec988d5e4, type: 2}
     - {fileID: 11400000, guid: a90382295a280f34fb0e7447835c7063, type: 2}
@@ -16433,6 +16508,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7c87c2aeb1485c747a02a7cb4134be07, type: 2}
     - {fileID: 11400000, guid: 0f12b7a1ef6758a4b902e1a05124f5cd, type: 2}
     - {fileID: 11400000, guid: 49e2c658a3cb1194db4bc43eb94bd259, type: 2}
+    - {fileID: 11400000, guid: 809b34f0fc72d814b96b524e742b6522, type: 2}
     - {fileID: 11400000, guid: 3d52ea080a04edd4aa51e1c32f45ba81, type: 2}
     - {fileID: 11400000, guid: 7905986fd48275448858026c7f2bd571, type: 2}
     - {fileID: 11400000, guid: 38acfffe4b19a534abd89359c43b13aa, type: 2}

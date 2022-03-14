@@ -149,8 +149,8 @@ public class AIRabbit : ActorAI
                     }
                 }
 
-                if(SelectedAbility != null)
-                    CORE.Instance.LogMessageError("SELECTED " + SelectedAbility.CurrentAbility.name);
+                // if(SelectedAbility != null)
+                //     CORE.Instance.LogMessageError("SELECTED " + SelectedAbility.CurrentAbility.name);
 
                 WaitBehaviour();
 

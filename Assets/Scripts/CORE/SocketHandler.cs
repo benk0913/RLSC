@@ -1582,13 +1582,63 @@ public class SocketHandler : MonoBehaviour
         SocketHandler.Instance.SendEvent("unlock_class", node);
     }
 
-    public void OnActorUpdateClassJob(string eventName, JSONNode data)
+    public async void OnActorUpdateClassJob(string eventName, JSONNode data)
     {
         string givenActorId = data["actorId"].Value;
         ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
 
-        actorDat.classJob = data["classJob"];
-        actorDat.unlockedClassJobs.Add(data["classJob"]);
+        actorDat.classJob = data["classJob"].Value;
+        actorDat.unlockedClassJobs.Add(data["classJob"].Value);
+
+        ClassJob newClass = CORE.Instance.Data.content.Classes.Find(x=>x.name == data["classJob"].Value);
+
+        if(SettingsMenuUI.Instance.FlashShake)                            
+                    UnityAndroidVibrator.VibrateForGivenDuration(10);
+
+        CORE.Instance.ShowScreenEffect("ScreenEffectGainClass", newClass);
+        
+        for(int i=0;i<(CORE.PlayerActor.level-newClass.UnlockLevel);i++)
+        {
+            if(i >= newClass.Abilities.Count)
+            {
+                CORE.Instance.LogMessageError("ABILITY INDEX ISSUE");
+                break;
+            }
+
+            Ability newAbility = CORE.Instance.Data.content.Abilities.Find(x => x.name == newClass.Abilities[i]);
+
+            if(newAbility != null)
+            {
+                if(SettingsMenuUI.Instance.FlashShake)                            
+                    UnityAndroidVibrator.VibrateForGivenDuration(10);
+                
+                CORE.Instance.ShowScreenEffect("ScreenEffectGainSpell", newAbility);
+            }
+
+            
+
+            actorDat.abilities.Add(newAbility.name);
+
+            if(newAbility.Mastery)
+            {
+                Ability oldAbility = CORE.Instance.Data.content.Abilities.Find(x=> newAbility.name.Contains(x.name) && !x.Mastery);
+                if(oldAbility != null)
+                {
+                    AbilitiesUI.Instance.ReplaceAbilities(newAbility.name, oldAbility.name);
+                    CORE.PlayerActor.ActorEntity.RefreshAbilities();
+                }
+            }
+        }
+
+        actorDat.ActorEntity.RefreshAbilities();
+        AbilitiesUI.Instance.RefreshUI();
+
+        GameObject unlockClassEffect = ResourcesLoader.Instance.GetRecycledObject("UnlockedClassEffect");
+        unlockClassEffect.transform.position = actorDat.ActorEntity.transform.position;
+        unlockClassEffect.GetComponent<AbilityCollider>().SetInfo(null, actorDat.ActorEntity);
+        
+        CORE.Instance.InvokeEvent("AbilitiesNotification");
+
     }
 
     public void OnActorHurt(string eventName, JSONNode data)
@@ -2615,6 +2665,19 @@ public class ActorData
         get
         {
             return actorId == SocketHandler.Instance.CurrentUser.actor.actorId;
+        }
+    }
+
+    public Sprite ClassIcon
+    {
+        get
+        {
+            if(unlockedClassJobs.Count > 0)
+            {
+                return CORE.Instance.Data.content.Classes.Find(x=>x.name == unlockedClassJobs[unlockedClassJobs.Count-1]).Icon;
+            }
+
+            return ClassJobReference.Icon;
         }
     }
 
