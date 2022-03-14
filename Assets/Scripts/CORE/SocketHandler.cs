@@ -101,6 +101,7 @@ public class SocketHandler : MonoBehaviour
         SocketEventListeners.Add(new SocketEventListener("actor_set_attributes", OnActorSetAttributes));
         SocketEventListeners.Add(new SocketEventListener("actor_set_states", OnActorSetStates));
         SocketEventListeners.Add(new SocketEventListener("actor_update_data", OnActorUpdateData));
+        SocketEventListeners.Add(new SocketEventListener("actor_update_class_job", OnActorUpdateClassJob));
 
         SocketEventListeners.Add(new SocketEventListener("actor_hurt", OnActorHurt));
         SocketEventListeners.Add(new SocketEventListener("actor_interrupt", OnActorInterrupt));
@@ -1573,6 +1574,23 @@ public class SocketHandler : MonoBehaviour
 
     }
 
+    public void SendUnlockClassJob(string classJob)
+    {
+        JSONNode node = new JSONClass();
+        node["classJob"] = classJob;
+
+        SocketHandler.Instance.SendEvent("unlock_class", node);
+    }
+
+    public void OnActorUpdateClassJob(string eventName, JSONNode data)
+    {
+        string givenActorId = data["actorId"].Value;
+        ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == givenActorId);
+
+        actorDat.classJob = data["classJob"];
+        actorDat.unlockedClassJobs.Add(data["classJob"]);
+    }
+
     public void OnActorHurt(string eventName, JSONNode data)
     {
         string givenActorId = data["actorId"].Value;
@@ -2552,6 +2570,7 @@ public class ActorData
     public bool faceRight;
     public string name;
     public string classJob;
+    public List<string> unlockedClassJobs;
     public ulong steamID;
 
     public bool alignmentGood;

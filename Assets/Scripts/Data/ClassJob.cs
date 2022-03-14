@@ -57,4 +57,11 @@ public class ClassJob : ScriptableObject
 
     [JsonIgnore]
     public bool NoHurtAnimation = false;
+
+    public int UnlockLevel;
+
+    [JsonConverter(typeof(ObjectNameConverter))]
+    public List<ClassJob> NextClassJobs = new List<ClassJob>();
+    
+    public bool IsPlayerClass;
 }
