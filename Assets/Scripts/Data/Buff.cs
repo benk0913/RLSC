@@ -38,6 +38,9 @@ public class Buff : ScriptableObject
     [JsonIgnore]
     public string OnEndSound;
 
+    [JsonIgnore]
+    public bool DontReplaySoundOnRecharge = false;
+
     public List<State> States = new List<State>();
 
     public List<AbilityParam> OnStart = new List<AbilityParam>();

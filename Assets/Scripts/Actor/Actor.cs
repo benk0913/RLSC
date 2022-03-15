@@ -1021,6 +1021,15 @@ public class Actor : MonoBehaviour
         if (state == null)
         {
             state = new BuffState(buff, duration);
+
+            if(State.Buffs.Find(x=>x.CurrentBuff.name == buff.name) == null || 
+            (State.Buffs.Find(x=>x.CurrentBuff.name == buff.name) != null && !buff.DontReplaySoundOnRecharge))
+            {    
+                if(!string.IsNullOrEmpty(buff.OnStartSound))
+                {
+                    AudioControl.Instance.PlayInPosition(buff.OnStartSound,transform.position);
+                }
+            }
             State.Buffs.Add(state);
 
             if (!string.IsNullOrEmpty(buff.BuffColliderObject))
@@ -1031,12 +1040,7 @@ public class Actor : MonoBehaviour
                 state.EffectObject = colliderObj;
                 
             }
-
-            if(!string.IsNullOrEmpty(buff.OnStartSound))
-            {
-                AudioControl.Instance.PlayInPosition(buff.OnStartSound,transform.position);
-            }
-
+            
             CORE.Instance.ActivateParams(state.CurrentBuff.OnStart, null, this);
 
             if(buff.BuffMaterial != null)
