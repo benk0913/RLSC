@@ -10,46 +10,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Charge Up Enforcer 2
+  m_Name: Molten Rock
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 36b41c795c52f8641b69befed6a29f2c, type: 3}
-  Description: Charge yourself with more current!
+  Icon: {fileID: 21300000, guid: 23973b4914b3cd54f9498fbcd4629285, type: 3}
+  Description: Throw a molten rock that deals a lot of damage and stuns for a short
+    period of time
   Colliders:
-    HitAbilityColliderObject: 
+    HitAbilityColliderObject: RockHitBig
     MissAbilityColliderObject: 
-    AbilityColliderObject: InvisibleSelfCollider
-    PrepareAbilityColliderObject: 
+    AbilityColliderObject: ThrowRockCollider
+    PrepareAbilityColliderObject: PrepareMagmaSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
     HitConditionObjectGameConditions: []
   Sounds:
-    PrepareAbilitySound: 
-    ExecuteAbilitySound: 
-    HitAbilitySound: 
+    PrepareAbilitySound: E_Rock_PrepareOGG
+    ExecuteAbilitySound: E_Rock_ExecuteOGG
+    HitAbilitySound: E_Rock_HitOGG
     HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
-    PreparingAnimation: Cast4
-    ExecuteAnimation: Execute4
-  CD: 0.1
-  CastingTime: 0.1
-  TargetCap: 1
+    PreparingAnimation: Cast3
+    ExecuteAnimation: Execute3
+  CD: 10
+  CastingTime: 1
+  TargetCap: 6
   MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
-  IsCastingExternal: 1
+  IsCastingExternal: 0
   CanMoveInCast: 1
   Mastery: 0
   MasteryDescription: 
   OnExecuteParams: []
   OnHitParams:
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 0
+    Value: 40
+    ObjectValue: {fileID: 0}
+    Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     GameConditions: []
-    Targets: 2
-    Value: 
-    ObjectValue: {fileID: 11400000, guid: 73ddc0a978dd05a4dbdc65531dfce11d, type: 2}
+    Targets: 0
+    Value: Rock Stun
+    ObjectValue: {fileID: 0}
     Value2: 
   OnMissParams: []
-  Reverseable: 0
+  Reverseable: 1
