@@ -10,54 +10,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Molten Rock
+  m_Name: Volcanic Trap
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 23973b4914b3cd54f9498fbcd4629285, type: 3}
-  Description: Throw a molten rock that deals a lot of damage and stuns for a short
-    period of time
+  Icon: {fileID: 21300000, guid: 4bdbffa40b69adb4782dcfcbb3fdff4b, type: 3}
+  Description: Set a trap that will deal a significant amount of damage & immobility,
+    when an enemy stumbles upon it.
   Colliders:
-    HitAbilityColliderObject: MoltenRockHitBig
+    HitAbilityColliderObject: TrapHit
     MissAbilityColliderObject: 
-    AbilityColliderObject: ThrowMagmaRockCollider
-    PrepareAbilityColliderObject: PrepareThrowMagmaRock
+    AbilityColliderObject: VolcanicTrapCollider
+    PrepareAbilityColliderObject: PrepareMagmaSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
     HitConditionObjectGameConditions: []
   Sounds:
-    PrepareAbilitySound: E_Rock_PrepareOGG
-    ExecuteAbilitySound: E_Rock_ExecuteOGG
-    HitAbilitySound: E_Rock_HitOGG
+    PrepareAbilitySound: E_Trap_PrepareOGG
+    ExecuteAbilitySound: E_Trap_ExecuteOGG
+    HitAbilitySound: E_Trap_HitOGG
     HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
-    PreparingAnimation: Cast3
-    ExecuteAnimation: Execute3
-  CD: 15
-  CastingTime: 1
-  TargetCap: 6
+    PreparingAnimation: Cast5
+    ExecuteAnimation: Execute5
+  CD: 17
+  CastingTime: 2
+  TargetCap: 3
   MaxSameTargetHits: 1
-  OnlyIfGrounded: 0
+  OnlyIfGrounded: 1
   AIViableRange: 0
   IsCastingExternal: 0
-  CanMoveInCast: 1
+  CanMoveInCast: 0
   Mastery: 0
   MasteryDescription: 
   OnExecuteParams: []
   OnHitParams:
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
-    Condition: {fileID: 0}
-    GameConditions: []
-    Targets: 0
-    Value: 80
-    ObjectValue: {fileID: 0}
-    Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     GameConditions: []
     Targets: 0
-    Value: Molten Rock Stun
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: be60a42672f95254b8e03ba6d42ffea8, type: 2}
+    Value2: 
+  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 0
+    Value: 50
     ObjectValue: {fileID: 0}
     Value2: 
   OnMissParams: []
-  Reverseable: 1
+  Reverseable: 0

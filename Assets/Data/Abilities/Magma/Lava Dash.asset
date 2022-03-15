@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Cruel Dance
+  m_Name: Lava Dash
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: b394c9ab01d91f545ba1585c6b561ae8, type: 3}
-  Description: 'Dash forward quickly while hitting everyone along the way
-
-'
+  Icon: {fileID: 21300000, guid: aff5aab177314f44a9d8495151f7f6e7, type: 3}
+  Description: Dash forward, leaving a trail lava that deals damage to enemies you
+    have crossed along the way.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
-    AbilityColliderObject: CruelDanceCollider
-    PrepareAbilityColliderObject: 
+    AbilityColliderObject: MagmaDashCollider
+    PrepareAbilityColliderObject: PrepareMagmaSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
     HitConditionObjectGameConditions: []
@@ -34,14 +33,14 @@ MonoBehaviour:
     ScreenEffectObject: 
     PreparingAnimation: Cast2
     ExecuteAnimation: Execute2
-  CD: 3
-  CastingTime: 0.003
+  CD: 5
+  CastingTime: 1
   TargetCap: 10
   MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
   IsCastingExternal: 0
-  CanMoveInCast: 0
+  CanMoveInCast: 1
   Mastery: 0
   MasteryDescription: 
   OnExecuteParams:
@@ -49,14 +48,7 @@ MonoBehaviour:
     Condition: {fileID: 0}
     GameConditions: []
     Targets: 2
-    Value: DashForward
-    ObjectValue: {fileID: 0}
-    Value2: 
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
-    Condition: {fileID: 0}
-    GameConditions: []
-    Targets: 2
-    Value: 10
+    Value: DashForwardX2
     ObjectValue: {fileID: 0}
     Value2: 
   - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
@@ -70,16 +62,9 @@ MonoBehaviour:
   - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
     Condition: {fileID: 0}
     GameConditions: []
-    Targets: 1
-    Value: 5
-    ObjectValue: {fileID: 0}
-    Value2: 
-  - Type: {fileID: 11400000, guid: a48a073dbc008b6418df8696f3ee0f0a, type: 2}
-    Condition: {fileID: 0}
-    GameConditions: []
     Targets: 0
-    Value: 5
+    Value: 25
     ObjectValue: {fileID: 0}
     Value2: 
   OnMissParams: []
-  Reverseable: 1
+  Reverseable: 0
