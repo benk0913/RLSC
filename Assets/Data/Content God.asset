@@ -968,6 +968,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 59f0a939912db544897377842d7cdc3e, type: 2}
     - {fileID: 11400000, guid: 7118480b9c485c24f945823b379ce5a9, type: 2}
     - {fileID: 11400000, guid: 52c9938e9e2e5c542a983f04960896ea, type: 2}
+    - {fileID: 11400000, guid: d1cc4ae089edc744bbf483b0a0aa4269, type: 2}
     - {fileID: 11400000, guid: ec2356c397add4e4f81b7c0ec62e3c56, type: 2}
     - {fileID: 11400000, guid: 3493fe02ac89c5a49bb7cd91bf2322ac, type: 2}
     - {fileID: 11400000, guid: e2e35440c41ad70489e19ba498c27bbe, type: 2}
@@ -1124,6 +1125,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cabe8c300b1bc8e418bcd701ffc3bde0, type: 2}
     - {fileID: 11400000, guid: 81aa2045cf2c2ff44969b457ba8e480e, type: 2}
     - {fileID: 11400000, guid: cbc3fc2f94abcda48922b1d139ffab4d, type: 2}
+    - {fileID: 11400000, guid: 986452930baf9b948892e6a2b6e8df83, type: 2}
+    - {fileID: 11400000, guid: 44365ce3135369a429508b6601c15522, type: 2}
     - {fileID: 11400000, guid: 98e6902a08531a84a9bd356b6c010798, type: 2}
     - {fileID: 11400000, guid: 0df59e94c290bc946936a2a14e51c265, type: 2}
     - {fileID: 11400000, guid: 9c916b90b798f6a4daf3bcda1bdf02c8, type: 2}
@@ -16420,7 +16423,7 @@ MonoBehaviour:
       Map: WorldMap
       MapPoint: DaydreamRoad (2)
     - sceneName: Frost_Test_Chamber2
-      displyName: 
+      displyName: ???
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs: []
@@ -16448,8 +16451,97 @@ MonoBehaviour:
       enablePvp: 0
       displayTitleOnEnter: 0
       PredictionImage: {fileID: 0}
-      Map: 
-      MapPoint: 
+      Map: WorldMap
+      MapPoint: DaydreamRoad (2)
+    - sceneName: brain_test_chamber
+      displyName: ???
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs: []
+      Interactables:
+      - interactableName: OW_OldTown
+        interactableId: 
+        positionX: 340
+        positionY: 498
+      - interactableName: 
+        interactableId: 
+        positionX: -352
+        positionY: 163
+      - interactableName: 
+        interactableId: 
+        positionX: 889
+        positionY: 231
+      - interactableName: 
+        interactableId: 
+        positionX: 188
+        positionY: 873
+      playerSpawnX: -0.8
+      playerSpawnY: 5.6
+      Portals:
+      - name: LeftEntrance
+        TargetScene: OW_DreamPondCaveULower4
+        TargetSceneGate: RightEntrance
+        IsExpeditionLocked: 1
+        portalPositionX: 340.5
+        portalPositionY: 498.2
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: music_space
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: DaydreamRoad (2)
+    - sceneName: brain_test_chamber2
+      displyName: ???
+      objectiveDescription: 
+      UniqueCompletionScreenEffect: 
+      Mobs:
+      - monsterName: ActorBrainBoss
+        positionX: 114.14
+        positionY: -13.16
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorSpikesDeadly
+        positionX: 81.2
+        positionY: -30.1
+        respawnSeconds: 15
+        IrellevantMob: 1
+      - monsterName: ActorSpikesDeadly
+        positionX: 141.7
+        positionY: -30.1
+        respawnSeconds: 15
+        IrellevantMob: 1
+      Interactables:
+      - interactableName: Entry
+        interactableId: 
+        positionX: 114
+        positionY: -27
+      playerSpawnX: 110.7
+      playerSpawnY: -26.7
+      Portals:
+      - name: Exit
+        TargetScene: OW_LostTowerFloorChamberPost
+        TargetSceneGate: Entry
+        IsExpeditionLocked: 1
+        portalPositionX: 113.61
+        portalPositionY: -27.25
+      Vendors: []
+      OnDemandParams: []
+      RespawnMap: Sunset Port
+      MusicTrack: music_space
+      Soundscape: 
+      NightMusicTrack: 
+      NightSoundscape: 
+      enablePvp: 0
+      displayTitleOnEnter: 0
+      PredictionImage: {fileID: 0}
+      Map: WorldMap
+      MapPoint: DaydreamRoad (2)
     Interactables:
     - {fileID: 11400000, guid: 0b9a5cc67c8690f4b8338f69ab683ef8, type: 2}
     - {fileID: 11400000, guid: c1a6e56e95940e042b67e3092520f55a, type: 2}
@@ -16469,6 +16561,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ec55653a982c5e2459ab1b835a9f890a, type: 2}
     - {fileID: 11400000, guid: 21a0d16d5a3654d43a8c2d5f2a39d5b6, type: 2}
     Expeditions:
+    - {fileID: 11400000, guid: ebcec5a5d5bd3d043bcc1489c2385d36, type: 2}
     - {fileID: 11400000, guid: 1049c1152bc701f4aae659e35ff5b404, type: 2}
     - {fileID: 11400000, guid: a2444fb0dc6bdbf41beb653f14f4a50f, type: 2}
     - {fileID: 11400000, guid: e08855d0944ee024db1c305f347d5b4f, type: 2}
@@ -16491,6 +16584,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6820923a93ccd4844b31fc03c16ac7d3, type: 2}
     - {fileID: 11400000, guid: 674f93b096775b746956d85cdca4f665, type: 2}
     Quests:
+    - {fileID: 11400000, guid: ee7eb6bab5a387948b629b2ae463cbf1, type: 2}
     - {fileID: 11400000, guid: 63054d51334828e4bb0104aaf64d978d, type: 2}
     - {fileID: 11400000, guid: 91d2fca65341d8d4eb1c120b65493de7, type: 2}
     - {fileID: 11400000, guid: b77a35ccb631d4e428cb6486fc4ca3f0, type: 2}

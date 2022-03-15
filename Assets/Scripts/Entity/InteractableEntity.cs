@@ -151,16 +151,21 @@ public class InteractableEntity : MonoBehaviour
         IsBusy = state;
     }
 
-    public void Teleport(Transform targetTransform)
+    public async void Teleport(Transform targetTransform)
     {
         if(NearbyActor == null)
         {
+            CORE.PlayerActor.ActorEntity.transform.position = new Vector3(targetTransform.position.x,targetTransform.position.y,CORE.PlayerActor.ActorEntity.transform.position.z);    
             return;
         }
 
         NearbyActor.transform.position = new Vector3(targetTransform.position.x,targetTransform.position.y,NearbyActor.transform.position.z);
     }
 
+    public void ScreenEffect(string effectKey)
+    {
+        CORE.Instance.ShowScreenEffect(effectKey);
+    }
     private void Update()
     {
         if(IsBusy)
