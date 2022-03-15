@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: Bloom
+  m_Name: Nature Bond
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: e782bb86f265137469d8021e342a6bb3, type: 3}
-  Description: Give surrounding allies the gift of nature, buffing them for a short
-    period of time. This can be stacked up to 5 at a time. (5% Anti debuff & 5% HP)
+  Icon: {fileID: 21300000, guid: b98f6f06a98fac945bc3ee3e66f8e4af, type: 3}
+  Description: Create a bond with an ally, that only shares buffs & debuffs and lasts
+    for a long period of time
   Colliders:
-    HitAbilityColliderObject: 
+    HitAbilityColliderObject: NatureBondHit
     MissAbilityColliderObject: 
-    AbilityColliderObject: MakeBloomCollider
+    AbilityColliderObject: NatureBondCollider
     PrepareAbilityColliderObject: PrepareNatureSpell
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
     HitConditionObjectGameConditions: []
   Sounds:
-    PrepareAbilitySound: sound_flamerelease
-    ExecuteAbilitySound: F_BolsterFlamesOGG
-    HitAbilitySound: F_BolsterFlames_HitOGG
+    PrepareAbilitySound: W_LiquidBond_PrepareOGG
+    ExecuteAbilitySound: W_LiquidBond_ExecuteOGG
+    HitAbilitySound: sound_heal
     HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
-    PreparingAnimation: Cast4
-    ExecuteAnimation: Execute4
-  CD: 2
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute5
+  CD: 20
   CastingTime: 1
-  TargetCap: 10
+  TargetCap: 1
   MaxSameTargetHits: 1
   OnlyIfGrounded: 0
   AIViableRange: 0
@@ -45,12 +45,12 @@ MonoBehaviour:
   MasteryDescription: 
   OnExecuteParams: []
   OnHitParams:
-  - Type: {fileID: 11400000, guid: 702f92c8f9d60634e9a401d7e7e4af3f, type: 2}
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
     Condition: {fileID: 0}
     GameConditions: []
     Targets: 1
-    Value: ApplyBloomSelf
-    ObjectValue: {fileID: 0}
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 5e65ffe2f32bfff47af9c4ee4926abeb, type: 2}
     Value2: 
   OnMissParams: []
   Reverseable: 1

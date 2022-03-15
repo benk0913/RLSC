@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64fc36b32bd3fc468397f20b163f3ea, type: 3}
+  m_Name: Regrowth
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 90da876748f82f441b422a61cde68591, type: 3}
+  Description: You are being regenerated
+  BuffColliderObject: RegrowthBuffEffect
+  BuffMaterial: {fileID: 0}
+  Length: 10
+  isDebuff: 0
+  ShowBuffIcon: 1
+  Attributes:
+    Power: 0
+    HP: 0
+    Defense: 0
+    Block: 0
+    CDReduction: 0
+    CTReduction: 0
+    Lifesteal: 0
+    LongRangeMultiplier: 0
+    ShortRangeMultiplier: 0
+    WildMagicChance: 0
+    SpellDuration: 0
+    AntiDebuff: 0
+    Threat: 0
+    MovementSpeed: 0
+    JumpHeight: 0
+    DoubleCast: 0
+    Explode: 0
+    HpRegen: 0.25
+  HitAbility: {fileID: 0}
+  OnStartSound: 
+  OnEndSound: 
+  States: []
+  OnStart: []
+  OnEnd:
+  - Type: {fileID: 11400000, guid: a606211bb21ffeb45ae90aa94e749759, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 15
+    ObjectValue: {fileID: 0}
+    Value2: 
+  OnTakeDamage: []

@@ -10,32 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: fire
+  m_Name: ActorFlowerFriend
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 34d3c354760f3f04db86c9daa9454829, type: 3}
-  DisplayName: Fire
+  Icon: {fileID: 2635430504182236085, guid: 61d3ef9eab4b3894b9ad412cdf344ed7, type: 3}
+  DisplayName: Rosey Flower Friend
   Abilities:
-  - Punch
-  - Defend
-  - Flame Fan
-  - Blast
-  - Bolster Flame
-  - Surge
-  - Reverse Spell
-  - Fireball
-  - Orbs
-  - Snipe
-  - Meteor
-  - Brazier
-  - Infernal Bomb
-  - Contagious Flames
-  - Rage
-  - Let Go
-  - Lend Energy
-  PassiveAbility: 
+  - AllyMobExistenceTimer
+  - Throw Flower
+  PassiveAbility: PassiveHitFlowerBeingFriend
   Attributes:
     Power: 0
-    HP: 0
+    HP: -0.99
     Defense: 0
     Block: 0
     CDReduction: 0
@@ -46,29 +31,28 @@ MonoBehaviour:
     WildMagicChance: 0
     SpellDuration: 0
     AntiDebuff: 0
-    Threat: 0.35
-    MovementSpeed: 0
+    Threat: 0
+    MovementSpeed: -1
     JumpHeight: 0
     DoubleCast: 0
     Explode: 0
     HpRegen: 0
   Immunity: []
   States: []
-  ClassColor: {r: 1, g: 0.57254905, b: 0, a: 1}
-  ClassFeatureVideo: {fileID: 32900000, guid: 6362af1e99149bd4ba8f98ab0ff48733, type: 3}
-  ClassMusic: {fileID: 8300000, guid: ca8318140fcece94ba9d589fc1676438, type: 3}
+  ClassColor: {r: 0, g: 0, b: 0, a: 0}
+  ClassFeatureVideo: {fileID: 0}
+  ClassMusic: {fileID: 0}
   DropsOnDeath: []
   CoinDropMultiplier: 0
   EXPMultiplier: 0
   OnGetHitParams: []
   OnSomeoneExecutesParams: []
   OnDeathParams: []
-  UniqueHurtSounds: []
+  UniqueHurtSounds:
+  - FlowerOnHit
   UniqueBlockSounds: []
   UniqueDeathSound: 
   NoHurtAnimation: 0
   UnlockLevel: 0
-  NextClassJobs:
-  - {fileID: 11400000, guid: 1ec22c2bca1bfac4583f350641b2b043, type: 2}
-  - {fileID: 11400000, guid: db37401490e37e74e8cfc00dae0dcf89, type: 2}
-  IsPlayerClass: 1
+  NextClassJobs: []
+  IsPlayerClass: 0
