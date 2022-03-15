@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1314719725301908297}
   m_Father: {fileID: 0}
@@ -38,7 +39,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1314719724268210271
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51,6 +52,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -106,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100, y: 100}
+  m_Size: {x: 50, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &1935860746220234754
 MonoBehaviour:
@@ -121,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActorSource: {fileID: 0}
+  CasterActor: {fileID: 0}
   AbilitySource: {fileID: 0}
   targetType: 0
   OnHitEvent:
@@ -128,11 +131,13 @@ MonoBehaviour:
       m_Calls: []
   CanMiss: 0
   HitOnlyGroundedActors: 1
+  AbilityInstanceId: 
   ParentCollider: {fileID: 0}
   StickToActor: 0
   StickToActorFacing: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 0
+  InitPosition: {x: 0, y: 0, z: 0}
   SkilledShotPoint: {fileID: 0}
   SkilledshotLayermask:
     serializedVersion: 2
@@ -140,6 +145,8 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
+  RepositionChildrenOnEnable: 0
+  OnlyForPlayers: 0
   DuplicateBubbles: 0
   IsBubble: 0
   BubblesDuplicated: []
@@ -186,6 +193,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.01, y: 0.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 0

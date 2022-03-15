@@ -234,12 +234,13 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         
         AbilityState state = new AbilityState(ability, playerActor);
 
-        if(playerActor.State.Data.abilities.Contains(abilityName))
-        {
-            return;
-        }
+         if(playerActor.State.Data.abilities.Contains(abilityName))
+         {
+             return;
+         }
 
         Ability masteryAbility = CORE.Instance.Data.content.Abilities.Find(x=>
+        playerActor.State.Data.ClassJobReference.Abilities.Contains(x.name) &&
         x.Mastery &&
             x.name != ability.name &&
             x.name.Contains(ability.name));

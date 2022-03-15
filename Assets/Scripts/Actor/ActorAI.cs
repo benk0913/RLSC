@@ -439,10 +439,13 @@ Coroutine TemporaryPatrolRoutine;
         &&
          ((Act.IsFlying && (tooFarAwayX || tooFarAwayY)) || (!Act.IsFlying && tooFarAwayX)))
         {
-            tooFarAwayX = ChaseDistance > 0 && Mathf.Abs(transform.position.x - CurrentTarget.transform.position.x) > ChaseDistance;
-            tooFarAwayY = ChaseDistance > 0 && Mathf.Abs(transform.position.y - CurrentTarget.transform.position.y) > ChaseDistance;
+            if(CurrentTarget != null)
+            {
+                tooFarAwayX = ChaseDistance > 0 && Mathf.Abs(transform.position.x - CurrentTarget.transform.position.x) > ChaseDistance;
+                tooFarAwayY = ChaseDistance > 0 && Mathf.Abs(transform.position.y - CurrentTarget.transform.position.y) > ChaseDistance;
 
-            MoveToTarget();
+                MoveToTarget();
+            }
             yield return 0;
         }
 
