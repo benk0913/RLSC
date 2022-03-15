@@ -1418,6 +1418,9 @@ public class RoomData
     public Actor MostThreateningActor;
 
     [JsonIgnore]
+    public Actor MostThreateningMob;
+
+    [JsonIgnore]
     public Actor LeastThreatheningActor;
 
     [JsonIgnore]
@@ -1456,6 +1459,34 @@ public class RoomData
 
         return mostThreatAct;
 
+    }
+
+    public Actor GetMostThreatheningMob()
+    {
+        Actor mostThreatAct = null;
+        float mostThreat = Mathf.NegativeInfinity;
+        for (int i = 0; i < Actors.Count; i++)
+        {
+            if(Actors[i] == null || Actors[i].ActorEntity == null)
+            {
+                continue;
+            }
+
+            if (Actors[i].ActorEntity.IsDead || !Actors[i].isMob || Actors[i].states.ContainsKey("Untargetable"))
+            {
+                continue;
+            }
+
+            float currentThreat = Actors[i].ActorEntity.State.Data.attributes.Threat;
+
+            if (currentThreat > mostThreat)
+            {
+                mostThreatAct = Actors[i].ActorEntity;
+                mostThreat = currentThreat;
+            }
+        }
+
+        return mostThreatAct;
     }
 
     public Actor GetLeastThreateningActor()
@@ -1660,6 +1691,7 @@ public class RoomData
     {
         MostThreateningActor = GetMostThreateningActor();
         LeastThreatheningActor = GetLeastThreateningActor();
+        MostThreateningMob = GetMostThreatheningMob();
     }
 
     int lastSentMovementDirection;

@@ -10,20 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: magma
+  m_Name: ActorGolemFriend
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 185489af840fe6f4eac86213783ce35c, type: 3}
-  DisplayName: Magma
+  Icon: {fileID: 2635430504182236085, guid: 61d3ef9eab4b3894b9ad412cdf344ed7, type: 3}
+  DisplayName: Golem Friend
   Abilities:
-  - Molten Rock
-  - Volcanic Trap
-  - Lava Dash
-  - Eruption
-  - Shatter
-  PassiveAbility: 
+  - AllyMobExistenceTimerX2
+  - GolemFriendSMASH
+  PassiveAbility: PassiveHitGolemFriend
   Attributes:
     Power: 0
-    HP: 0
+    HP: -0.99
     Defense: 0
     Block: 0
     CDReduction: 0
@@ -42,9 +39,9 @@ MonoBehaviour:
     HpRegen: 0
   Immunity: []
   States: []
-  ClassColor: {r: 1, g: 1, b: 1, a: 1}
+  ClassColor: {r: 0, g: 0, b: 0, a: 0}
   ClassFeatureVideo: {fileID: 0}
-  ClassMusic: {fileID: 8300000, guid: 6ead697015275904ea40677aa00657a1, type: 3}
+  ClassMusic: {fileID: 0}
   DropsOnDeath: []
   CoinDropMultiplier: 0
   EXPMultiplier: 0
@@ -55,6 +52,6 @@ MonoBehaviour:
   UniqueBlockSounds: []
   UniqueDeathSound: 
   NoHurtAnimation: 0
-  UnlockLevel: 15
+  UnlockLevel: 0
   NextClassJobs: []
-  IsPlayerClass: 1
+  IsPlayerClass: 0
