@@ -66,7 +66,7 @@ namespace VirtualKeyboard
 
             for(int i=1;i<9;i++)
             {
-                if(CORE.PlayerActor.equips.ContainsKey("Emote "+i) && CORE.PlayerActor.equips["Emote "+i] != null)
+                if( CORE.PlayerActor != null && CORE.PlayerActor.equips != null && CORE.PlayerActor.equips.ContainsKey("Emote "+i) && CORE.PlayerActor.equips["Emote "+i] != null)
                 {
                     EmoteSlots[i-1].SetInfo(CORE.PlayerActor.equips["Emote "+i].itemName);
                 }
@@ -152,6 +152,42 @@ namespace VirtualKeyboard
             _currentText = listChars;
             //inputAnswer.caretPosition = _currentText.Length;
 
+        }
+
+        void Update()
+        {
+            if(joystickPressed)
+            {
+                return;
+            }
+
+            if(Input.anyKeyDown)
+            {
+                ConsoleInputUI.Instance.SetStateKeyboard();          
+            }
+        }
+
+        public bool joystickPressed
+        {
+            get
+            {
+                return Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 
+                || Input.GetAxis("RT") != 0 || Input.GetAxis("LT") != 0 
+                || Input.GetButtonDown("RT")
+                || Input.GetButtonDown("LT")
+                || Input.GetButtonDown("Joystick 0")
+                || Input.GetButtonDown("Joystick 1") 
+                || Input.GetButtonDown("Joystick 2")
+                || Input.GetButtonDown("Joystick 3")
+                || Input.GetButtonDown("Joystick 4")
+                || Input.GetButtonDown("Joystick 5")
+                || Input.GetButtonDown("Joystick 6")
+                || Input.GetButtonDown("Joystick 7")
+                || Input.GetButtonDown("Joystick 8")
+                || Input.GetButtonDown("Joystick 9")
+                || Input.GetButtonDown("Joystick 10")
+                || Input.GetButtonDown("Joystick 11");
+            }
         }
 
 

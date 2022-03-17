@@ -1256,7 +1256,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void RefreshAbilities()
+    public async void RefreshAbilities()
     {
         // Interrupt before refreshing abilities, to ensure you don't prepare an ability that you can't execute because it's not there anymore. 
         State.Interrupt(false, false);
@@ -2146,6 +2146,8 @@ public class AbilityState
 
     public Actor OfActor;
 
+    public ClassJob OfClassJob;
+
     public bool IsOrbLocked = false;
 
     public bool IsCanDoAbility
@@ -2160,7 +2162,7 @@ public class AbilityState
     {
         get
         {
-            int lvl =  IndexInClass - (CORE.Instance.Data.content.AbilitiesInitCount-1);
+            int lvl = IndexInClass - (OfClassJob.AbilitiesInitCount-1);
 
             if(lvl < 0)
             {
@@ -2175,7 +2177,19 @@ public class AbilityState
     {
         get
         {
-            return OfActor.State.Data.ClassJobReference.Abilities.IndexOf(OfActor.State.Data.ClassJobReference.Abilities.Find(x=>x == CurrentAbility.name));
+            foreach(string unlockedClass in OfActor.State.Data.unlockedClassJobs)
+            {
+                ClassJob classJob =CORE.Instance.Data.content.Classes.Find(x=>x.name == unlockedClass);
+
+                string ability = classJob.Abilities.Find(x=>x == CurrentAbility.name);
+
+                if(!string.IsNullOrEmpty(ability))
+                {
+                    return classJob.UnlockLevel+classJob.Abilities.IndexOf(ability);    
+                }
+            }
+
+            return -1;
         }
     }
 
@@ -2185,7 +2199,12 @@ public class AbilityState
         {
             int indexInClass = IndexInClass;
 
-            return OfActor.State.Data.IsPlayer && indexInClass > OfActor.State.Data.level + 1;
+            if(indexInClass == -1)
+            {
+                CORE.Instance.LogMessageError("BAD INDEX IN CLASS "+this.CurrentAbility.name);
+                return true;
+            }
+            return OfActor.State.Data.IsPlayer &&  (indexInClass >= (OfActor.State.Data.level-1)+OfClassJob.AbilitiesInitCount);
         }
     }
 
@@ -2197,10 +2216,15 @@ public class AbilityState
         }
     }
 
-    public AbilityState(Ability ability, Actor ofActor)
+    public AbilityState(Ability ability, Actor ofActor, ClassJob ofClassJob = null)
     {
         this.CurrentAbility = ability;
         this.OfActor = ofActor;
+
+        if(ofClassJob != null)
+            this.OfClassJob = ofClassJob;
+        else
+            this.OfClassJob = OfActor.State.Data.ClassJobReference;
     }
 
 

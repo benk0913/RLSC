@@ -484,6 +484,31 @@ public class CORE : MonoBehaviour
             {
                 ShowSideButtonUiWindow();
             }
+
+            if (IsUsingJoystick && (Input.GetAxis("LT") != 0f) && TriggerTreshold <= 0f)
+            {
+                
+                if(!AbilitiesUI.Instance.gameObject.activeInHierarchy)
+                    ShowAbilitiesUiWindow();
+                else
+                    CloseCurrentWindow();
+
+                    TriggerTreshold = 0.5f;
+            }
+
+            if (IsUsingJoystick && (Input.GetAxis("RT") != 0f)&& TriggerTreshold <= 0f)
+            {
+                if(!AbilitiesUI.Instance.gameObject.activeInHierarchy)
+                    ShowInventoryUiWindow();
+                else
+                    CloseCurrentWindow();
+
+                    TriggerTreshold = 0.5f;
+            }
+
+            if(TriggerTreshold > 0f)
+                TriggerTreshold -= Time.deltaTime;
+            
         }
 
         if (IsMachinemaMode && (Input.GetKeyDown(InputMap.Map["Exit"]) ||( Input.GetButtonDown("Joystick 8"))||  Input.GetButtonDown("Joystick 11")) && !CashShopWindowUI.Instance.IsOpen)
@@ -498,6 +523,8 @@ public class CORE : MonoBehaviour
             InvokeEvent("MachinemaModeRefresh");
         }
     }
+    
+    public float TriggerTreshold=0f;
 
     public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed = null, ActorData ofActor = null, object data = null)
     {
@@ -1418,9 +1445,6 @@ public class RoomData
     public Actor MostThreateningActor;
 
     [JsonIgnore]
-    public Actor MostThreateningMob;
-
-    [JsonIgnore]
     public Actor LeastThreatheningActor;
 
     [JsonIgnore]
@@ -1691,7 +1715,6 @@ public class RoomData
     {
         MostThreateningActor = GetMostThreateningActor();
         LeastThreatheningActor = GetLeastThreateningActor();
-        MostThreateningMob = GetMostThreatheningMob();
     }
 
     int lastSentMovementDirection;

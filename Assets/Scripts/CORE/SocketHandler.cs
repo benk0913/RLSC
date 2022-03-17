@@ -1615,9 +1615,6 @@ public class SocketHandler : MonoBehaviour
                 CORE.Instance.ShowScreenEffect("ScreenEffectGainSpell", newAbility);
             }
 
-            
-
-            actorDat.abilities.Add(newAbility.name);
 
             if(newAbility.Mastery)
             {

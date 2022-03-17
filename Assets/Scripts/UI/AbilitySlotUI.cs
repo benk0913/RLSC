@@ -55,6 +55,14 @@ public class AbilitySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             KeyLabelObject.SetActive(true);
             AbilityKeyLabel.text = abilityKeyText.Replace("Alpha","");
+            if(CORE.Instance.IsUsingJoystick)
+            {
+                AbilityKeyLabel.text = AbilityKeyLabel.text.Replace("1","Y");       
+                AbilityKeyLabel.text = AbilityKeyLabel.text.Replace("2","B");       
+                AbilityKeyLabel.text = AbilityKeyLabel.text.Replace("3","X");       
+                AbilityKeyLabel.text = AbilityKeyLabel.text.Replace("4","LB");       
+                AbilityKeyLabel.text = AbilityKeyLabel.text.Replace("5","RB");       
+            }
         }
         else
         {

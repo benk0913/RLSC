@@ -43,6 +43,7 @@ public class ActorControl : MonoBehaviour
             CurrentActor.AttemptMoveRight();
         }
 
+
         if (MultiplatformUIManager.IsUniversalUp ||Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") > 0f))
         {
             CurrentActor.AttemptMoveUp();
@@ -52,7 +53,7 @@ public class ActorControl : MonoBehaviour
             CurrentActor.AttemptMoveDown();
         }
 
-        if (MultiplatformUIManager.IsUniversalJump||MultiplatformUIManager.IsUniversalUp || Input.GetKey(InputMap.Map["Jump"]) || Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") > 0.8f))
+        if (MultiplatformUIManager.IsUniversalJump||MultiplatformUIManager.IsUniversalUp || Input.GetKey(InputMap.Map["Jump"]) || Input.GetKey(InputMap.Map["Move Up"]) || Input.GetKey(InputMap.Map["Secondary Move Up"]) || (CORE.Instance.IsUsingJoystick && !InteractableEntity.ByInteractable && (Input.GetButtonDown("Joystick 0") || Input.GetAxis("Vertical") > 0.8f)))
         {
             CurrentActor.AttemptJump();
         }

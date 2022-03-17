@@ -200,6 +200,14 @@ public class ConsoleInputUI : MonoBehaviour
         ChannelDropdown.AddOptions(options);
     }
 
+    public void SetStateKeyboard()
+    {
+        inputField.ActivateInputField();
+
+        IsTyping = true;
+
+    }
+
     public void EnterPressed()
     {
         if (IsTyping)
@@ -229,9 +237,7 @@ public class ConsoleInputUI : MonoBehaviour
         }
         else
         {
-            inputField.ActivateInputField();
-
-            IsTyping = true;
+            SetStateKeyboard();
         }
 
         for(int i=1;i<9;i++)

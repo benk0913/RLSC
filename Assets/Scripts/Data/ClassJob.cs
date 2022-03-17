@@ -58,6 +58,8 @@ public class ClassJob : ScriptableObject
     [JsonIgnore]
     public bool NoHurtAnimation = false;
 
+    public int AbilitiesInitCount = 3;
+
     public int UnlockLevel;
 
     [JsonConverter(typeof(ObjectNameConverter))]

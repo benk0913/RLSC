@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIAllyGolem : AIAllyMob
 {
-       protected override IEnumerator AIBehaviourRoutine()
+    protected override IEnumerator AIBehaviourRoutine()
     {
         yield return new WaitForSeconds(0.5f);
 
@@ -27,7 +27,7 @@ public class AIAllyGolem : AIAllyMob
                 {
                     SelectedAbility = GetAvailableAbilityState();
                 }
-                
+
                 WaitBehaviour();
 
                 yield return 0;
@@ -40,6 +40,33 @@ public class AIAllyGolem : AIAllyMob
             yield return 0;
         }
     }
+
+    public override Actor GetCurrentTarget()
+    {
+        if(_cachedCurrentTarget == null || _cachedCurrentTarget.IsDead || !_cachedCurrentTarget.State.Data.isMob)
+        {
+            List<ActorData> roomMobs = CORE.Instance.Room.Actors.FindAll(x=>!x.ActorEntity.IsDead && x.isMob && x.ActorEntity != Act);
+
+            if(roomMobs != null && roomMobs.Count > 0)
+            {
+                float minDistance = Mathf.Infinity;
+                foreach(ActorData mob in roomMobs)
+                {
+                    float dist = Vector2.Distance(transform.position,mob.ActorEntity.transform.position);
+                    if(dist < minDistance)
+                    {
+                        minDistance = dist;
+                        _cachedCurrentTarget = mob.ActorEntity;
+                    }
+                }
+            }
+        }
+
+        return _cachedCurrentTarget;
+    }
+
+    Actor _cachedCurrentTarget;
+
 
     protected override AbilityState GetAvailableAbilityState()
     {
@@ -62,29 +89,4 @@ public class AIAllyGolem : AIAllyMob
     }
     
 
-
-    public override Actor GetCurrentTarget()
-    {
-
-        if (ChaseBehaviour == AIChaseBehaviour.Chase && NoticeDistance > 0f && Asleep) //TODO Should probably replace with a less performance heavy implementation
-        {
-            if(CORE.Instance.Room.Actors.Find(X =>
-                X.isMob
-                && X.ActorEntity != null 
-                && (Vector2.Distance(X.ActorEntity.transform.position, transform.position) < NoticeDistance || Act.State.Data.hp < Act.State.Data.MaxHP)
-                && !X.ActorEntity.IsDead) != null)
-            {
-                Asleep = false;
-                return null;
-            }
-
-            return null;
-        }
-        
-        Actor target = CORE.Instance.Room.MostThreateningMob;
-        if(target == null || target == this)
-            return null;
-        else 
-            return target;
-    }
 }

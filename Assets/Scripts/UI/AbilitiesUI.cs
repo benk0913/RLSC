@@ -85,9 +85,9 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
     public void SelectAbility(AbilitySlotDraggableUI HoveredAbility)
     {
-        if (HoveredAbility.CurrentAbility.IsLevelLocked)
+        // Only allow interacting with a locked ability when it's in the action bar.
+        if (HoveredAbility.transform.parent != CurrentAbilitiesContainer && HoveredAbility.CurrentAbility.IsLevelLocked)
         {
-            // Don't allow selecting abilities that aren't unlocked yet through levels.
             return;
         }
 
@@ -214,7 +214,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
             ClassJob job = CORE.Instance.Data.content.Classes.Find(X=>X.name == unlockedClass);
             foreach (string abilityName in job.Abilities)
             {
-                GenerateAbilitySlot(abilityName);
+                GenerateAbilitySlot(abilityName,job);
             }
         }
 
@@ -223,7 +223,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         ResetReplacement();
     }
     
-    public void GenerateAbilitySlot(string abilityName)
+    public void GenerateAbilitySlot(string abilityName,ClassJob job = null)
     {
         Ability ability = CORE.Instance.Data.content.Abilities.Find(X => X.name == abilityName);
 
@@ -232,7 +232,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
             return;
         }
         
-        AbilityState state = new AbilityState(ability, playerActor);
+        AbilityState state = new AbilityState(ability, playerActor,job);
 
          if(playerActor.State.Data.abilities.Contains(abilityName))
          {
@@ -247,7 +247,7 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
         if(masteryAbility != null)
         {
-            AbilityState masteryState = new AbilityState(masteryAbility, playerActor);
+            AbilityState masteryState = new AbilityState(masteryAbility, playerActor,job);
             
             if(!masteryState.IsAbilityLocked)
             {

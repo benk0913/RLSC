@@ -26,6 +26,8 @@ public class SelectionGroupUI : MonoBehaviour
 
     public bool CompensateOnEmptySelections = false;
 
+    public GameObject SelectionMarker;
+
     float joystickPressedDelay;
     const float JOYSTICK_DELAY = 0.1f;
 
@@ -356,6 +358,11 @@ public class SelectionGroupUI : MonoBehaviour
         if (canvasGroup == null)
         {
             canvasGroup = CurrentSelectedSelectable.gameObject.AddComponent<CanvasGroup>();   
+        }
+
+        if(SelectionMarker != null)
+        {
+            SelectionMarker.transform.position = canvasGroup.transform.position;
         }
 
         while(true)

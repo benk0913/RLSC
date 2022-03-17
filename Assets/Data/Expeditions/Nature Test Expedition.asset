@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc2adfdfb13ed34ebcde0d74f58d9a9, type: 3}
+  m_Name: Nature Test Expedition
+  m_EditorClassIdentifier: 
+  Floors:
+  - PossibleChambers:
+    - nature_test_chamber
+    Exp: 0
+    FloorPrediction: 0
+  PartyLengthMin: 1
+  PartyLengthMax: 1
+  QueueRules:
+  - RequireAllClasses: 0
+    RequireAirOrEarth: 0
+    PartyLength: 1
+    SecondsToStartRule: 0
+  EndTargetScene: OW_DreamPondCave2
+  EndTargetSceneGate: Entry
+  SuccessTargetScene: 
+  SuccessTargetSceneGate: 
+  RequireAllInSameRoomToEnter: 1
+  OnPlayerDeathParams: []

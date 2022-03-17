@@ -15,6 +15,8 @@ public class InteractableEntity : MonoBehaviour
 
     Actor NearbyActor;
 
+    public static bool ByInteractable;
+
     public float InteractableCooldown = 0f;
 
     public float BusyCooldown = 3f;
@@ -33,6 +35,8 @@ public class InteractableEntity : MonoBehaviour
 
     void Awake()
     {
+        
+        
         if(MapInteractable)
         {
             this.gameObject.SetActive(false);
@@ -44,6 +48,8 @@ public class InteractableEntity : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         Data = data;
+
+        ByInteractable = false;
 
         if(string.IsNullOrEmpty(data.interactableId))
         {
@@ -217,6 +223,7 @@ public class InteractableEntity : MonoBehaviour
         }
 
         NearbyActor = nearActor;
+        ByInteractable = true;
 
         if(Item)
         {
@@ -251,7 +258,7 @@ public class InteractableEntity : MonoBehaviour
         }
 
         NearbyActor = null;
-
+        ByInteractable = false;
         if(Item)
         {
             if(MultiplatformUIManager.CurrentItem == this)
