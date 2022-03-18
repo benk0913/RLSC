@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6856035597772828355}
   m_RootOrder: 0
@@ -101,6 +102,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425342020889108}
   m_RootOrder: 6
@@ -138,6 +140,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3754, y: 1.3754, z: 1.3754}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6856035597772828355}
   m_Father: {fileID: 5050014949473777357}
@@ -214,6 +217,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5050014949473777357}
   m_RootOrder: 1
@@ -289,6 +293,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1878318, y: 1.1878318, z: 1.1878318}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425343587752884}
   m_RootOrder: 2
@@ -423,6 +428,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1564888336429803008}
   - {fileID: 5224109167338713186}
@@ -500,6 +506,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1878318, y: 1.1878318, z: 1.1878318}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425342152334510}
   m_RootOrder: 2
@@ -634,6 +641,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7470784148466624842}
   m_Father: {fileID: 1564888336429803008}
@@ -710,6 +718,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425343310099308}
   m_RootOrder: 0
@@ -788,6 +797,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2712386001670978167}
   - {fileID: 7876425343186656193}
@@ -878,7 +888,7 @@ MonoBehaviour:
     OrbMaterial: {fileID: 0}
 --- !u!95 &1660920911
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -891,6 +901,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -920,6 +931,7 @@ GameObject:
   - component: {fileID: 7876425342152334511}
   - component: {fileID: 7876425342152334509}
   - component: {fileID: 5811274051460442900}
+  - component: {fileID: 3925275213575210712}
   m_Layer: 5
   m_Name: ButtonGreed
   m_TagString: Untagged
@@ -937,6 +949,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.84187, y: 0.84187, z: 0.84187}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7876425342720369345}
   - {fileID: 7876425342463403212}
@@ -1059,6 +1072,19 @@ MonoBehaviour:
   PointerUpSound: 
   PointerHoverSound: lootrollHover
   PointerUnhoverSound: 
+--- !u!114 &3925275213575210712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7876425342152334505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737b48a166fcbd849b062b1a7d076b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text: 'I wish to sell / scrap it '
 --- !u!1 &7876425342284576172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,6 +1113,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3220592, y: 1.3220592, z: 1.3220592}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425343587752884}
   m_RootOrder: 1
@@ -1162,6 +1189,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425342751921005}
   m_RootOrder: 0
@@ -1237,6 +1265,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3220618, y: 1.3220618, z: 1.3220618}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425342152334510}
   m_RootOrder: 1
@@ -1312,6 +1341,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425342152334510}
   m_RootOrder: 0
@@ -1372,6 +1402,7 @@ GameObject:
   - component: {fileID: 7876425342751920994}
   - component: {fileID: 7876425342751920992}
   - component: {fileID: 8352127431306790680}
+  - component: {fileID: 6248029909041279083}
   m_Layer: 5
   m_Name: ButtonNeed
   m_TagString: Untagged
@@ -1389,6 +1420,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.84187, y: 0.84187, z: 0.84187}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7876425342335854378}
   - {fileID: 7876425343673108220}
@@ -1511,6 +1543,19 @@ MonoBehaviour:
   PointerUpSound: 
   PointerHoverSound: lootrollHover
   PointerUnhoverSound: 
+--- !u!114 &6248029909041279083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7876425342751921004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737b48a166fcbd849b062b1a7d076b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text: I NEED IT (Avoid if you don't really need it.)
 --- !u!1 &7876425343186656192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1585,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425342020889108}
   m_RootOrder: 1
@@ -1687,6 +1733,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425343587752884}
   m_RootOrder: 0
@@ -1762,6 +1809,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7876425341938507287}
   m_Father: {fileID: 7876425342020889108}
@@ -1823,6 +1871,7 @@ GameObject:
   - component: {fileID: 7876425343587752885}
   - component: {fileID: 7876425343587752875}
   - component: {fileID: 5474159910571043788}
+  - component: {fileID: 7158860773420506858}
   m_Layer: 5
   m_Name: ButtonDecline
   m_TagString: Untagged
@@ -1840,6 +1889,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.84187, y: 0.84187, z: 0.84187}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7876425343283072221}
   - {fileID: 7876425342284576173}
@@ -1962,6 +2012,19 @@ MonoBehaviour:
   PointerUpSound: 
   PointerHoverSound: lootrollHover
   PointerUnhoverSound: 
+--- !u!114 &7158860773420506858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7876425343587752887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737b48a166fcbd849b062b1a7d076b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text: Don't need that...
 --- !u!1 &7876425343673108223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,6 +2053,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3220618, y: 1.3220618, z: 1.3220618}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425342751921005}
   m_RootOrder: 1
@@ -2065,6 +2129,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1878318, y: 1.1878318, z: 1.1878318}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7876425342751921005}
   m_RootOrder: 2
@@ -2305,6 +2370,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5473138621324737562, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
+--- !u!224 &2712386001670978167 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5254288634801956004, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
+  m_PrefabInstance: {fileID: 7876425343109242579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5316540592178943921 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2631943444614629730, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
@@ -2316,11 +2386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8142ea0fd638cb24db45f2b9d3d24c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2712386001670978167 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5254288634801956004, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}
-  m_PrefabInstance: {fileID: 7876425343109242579}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6529269069553654523 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4022331011380134952, guid: 33c351f68e054544e985fea9cbf4f8bf, type: 3}

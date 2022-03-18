@@ -49,3 +49,33 @@ public class Buff : ScriptableObject
 
 
 }
+public class BuffLogic
+{
+    public static string GetTooltipTextFromBuff(Buff buffData)
+    {
+        string text = "";
+        text += Util.GetTooltipTextFromAttributes(buffData.Attributes);
+        text +=  Util.GetTooltipTextFromAbilityParams(buffData.OnStart, "on start");
+        text +=  Util.GetTooltipTextFromAbilityParams(buffData.OnEnd, "on end");
+        text +=  Util.GetTooltipTextFromAbilityParams(buffData.OnTakeDamage, "on take damage");
+        return text;
+    }
+
+    public static string GetBuffTooltip(Buff buffData)
+    {
+        string text = CORE.QuickTranslate(buffData.name);
+        
+        string description = CORE.QuickTranslate(buffData.Description).Trim();
+
+        if (!string.IsNullOrEmpty(description)) {
+            text += System.Environment.NewLine + "<i>"+description+"</i>";
+        }
+
+        //text += System.Environment.NewLine + "<i><u><color=" + Colors.COLOR_HIGHLIGHT + "> Bonuses: </color></u></i>";
+        text += GetTooltipTextFromBuff(buffData);
+
+        return text;
+    }
+
+
+}

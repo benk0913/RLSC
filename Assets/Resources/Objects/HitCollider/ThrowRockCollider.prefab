@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1314719725301908297}
   - {fileID: 1547226838245754541}
@@ -39,7 +40,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1314719724268210271
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -52,6 +53,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -122,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActorSource: {fileID: 0}
+  CasterActor: {fileID: 0}
   AbilitySource: {fileID: 0}
   targetType: 0
   OnHitEvent:
@@ -139,9 +142,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  CanMiss: 0
+  HitOnlyGroundedActors: 0
+  AbilityInstanceId: 
+  ParentCollider: {fileID: 0}
   StickToActor: 0
+  StickToActorFacing: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 1
+  InitPosition: {x: 0, y: 0, z: 0}
   SkilledShotPoint: {fileID: 1547226838245754541}
   SkilledshotLayermask:
     serializedVersion: 2
@@ -149,7 +158,15 @@ MonoBehaviour:
   InitForce: {x: 1200, y: 1200, z: 0}
   onHitObject: RockHit
   OnHitSource: {fileID: 1314719725301908297}
+  RepositionChildrenOnEnable: 0
+  OnlyForPlayers: 0
+  DuplicateBubbles: 0
+  IsBubble: 0
+  BubblesDuplicated: []
   AudioOnHit: sound_earth_2
+  HitInterval: 0
+  RemoveOnInterrupt: 0
+  ChildrenColliders: []
 --- !u!50 &7377038427229910495
 Rigidbody2D:
   serializedVersion: 4
@@ -197,7 +214,8 @@ Transform:
   m_GameObject: {fileID: 1314719725301908296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: 7.41, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.93813, y: 0.93813, z: 0.93813}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 0
@@ -213,6 +231,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -279,6 +298,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.07, y: 14.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 1

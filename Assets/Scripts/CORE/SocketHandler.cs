@@ -1091,7 +1091,7 @@ public class SocketHandler : MonoBehaviour
             CORE.Instance.InvokeEvent("PhaseChanged");
         }
         
-        // TODO update clock here using PhaseFraction
+        GameClockUI.Instance.UpdateGameClock(Phase,PhaseFraction);
     }
 
     public void OnExpUpdate(string eventName, JSONNode data)
@@ -1317,6 +1317,8 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["slotIndex"].AsInt = slotIndex;
         node["isCash"].AsBool = isCash;
+
+        CORE.Instance.ActivateParams(CORE.PlayerActor.items[slotIndex].Data.OnUseParams);
 
         SocketHandler.Instance.SendEvent("used_item", node);
     }

@@ -131,6 +131,7 @@ public class DialogEntity : MonoBehaviour
                 EndDialog();
             }
 
+            CurrentIndex = 0;
             return;
         }
 
@@ -145,6 +146,8 @@ public class DialogEntity : MonoBehaviour
     {
 
         DecisionContainerUI.Instance.Hide();
+        
+        if(CurrentDialog == null) return;
 
         string content = CurrentDialog.DialogPieces[index].Content;
 

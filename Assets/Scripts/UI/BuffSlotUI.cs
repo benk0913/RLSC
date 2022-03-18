@@ -47,7 +47,11 @@ public class BuffSlotUI : MonoBehaviour
 
         tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+buffName+"</color>";
         tooltipString += buffDesc;
+        tooltipString += BuffLogic.GetBuffTooltip(ActiveBuffEffect.BuffState.CurrentBuff);
         Tooltip.SetTooltip(tooltipString,null,true);
+
+
+
     }
 
     private void Update()

@@ -449,25 +449,33 @@ public class CORE : MonoBehaviour
         }
         #endif
 
-        //TODO ADD LATER
-        // if(SocketHandler.Instance != null && SocketHandler.Instance.SocketManager != null && SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open) //AFK HANDLING
-        // {
-        //     if(Input.anyKey)
-        //     {
-        //         TimeAFK = 0f;
-        //     }
+        if(SocketHandler.Instance != null && SocketHandler.Instance.SocketManager != null && SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open) //AFK HANDLING
+        {
+            if(Input.anyKey)
+            {
+                TimeAFK = 0f;
+            }
 
-            // if(TimeAFK < MAX_TIME_AFK)
-            // {
-            //     TimeAFK += Time.deltaTime;
-            // }
-            // else
-            // {
-            //     TimeAFK = 0f;
-            //     ReturnToMainMenu();
-            //     WarningWindowUI.Instance.Show("Disconnected due to inactivity...",()=>{});
-            // }
-        // }
+            if(TimeAFK < MAX_TIME_AFK)
+            {
+                TimeAFK += Time.deltaTime;
+            }
+            else
+            {
+                TimeAFK = 0f;
+
+                if(ExpeditionQueTimerUI.Instance != null && ExpeditionQueTimerUI.Instance.IsSearching)
+                {
+                    ExpeditionQueTimerUI.Instance.StopSearching();
+                }
+
+                WarningWindowUI.Instance.Show("Are you away?... ",()=>{});
+
+                //TODO ADD LATER
+                // ReturnToMainMenu();
+                // WarningWindowUI.Instance.Show("Disconnected due to inactivity...",()=>{});
+            }
+        }
 
 
         if (InGame && !IsLoading && !IsTyping)
@@ -921,8 +929,17 @@ public class CORE : MonoBehaviour
     public void DisposeChamberCache()
     {
         screenEffectQue.Clear();
-        DecisionContainerUI.Instance.HideSkipText();
-        DecisionContainerUI.Instance.Hide();
+        
+        if(DialogEntity.CurrentInstance != null)
+        {
+            DialogEntity.CurrentInstance.EndDialog();
+        }
+
+        if(DecisionContainerUI.Instance != null)
+        {
+            DecisionContainerUI.Instance.HideSkipText();
+            DecisionContainerUI.Instance.Hide();
+        }
         // Room = null;
     }
 

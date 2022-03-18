@@ -486,7 +486,7 @@ public class SelectionGroupUI : MonoBehaviour
 
             if (CurrentSelectedSelectable.GetType() == typeof(Button))
             {
-                ((Button)CurrentSelectedSelectable).onClick.Invoke();
+                ((Button)CurrentSelectedSelectable).onClick?.Invoke();
             }
             else if (CurrentSelectedSelectable.GetType() == typeof(TMP_InputField))
             {

@@ -59,31 +59,29 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
 
         CORE.ClearContainer(transform);
 
-        CORE.Instance.DelayedInvokation(0.1f, () =>
+        CORE.Instance.DelayedInvokation(0.2f, () =>
         {
+            foreach (DialogDecision decision in CurrentDecisions)
+            {
+                DialogDecisionUI decisionUI = ResourcesLoader.Instance.GetRecycledObject("DialogDecisionUI").GetComponent<DialogDecisionUI>();
+                decisionUI.SetInfo(decision);
+                decisionUI.transform.SetParent(transform, false);
+                decisionUI.transform.position = Vector3.zero;
+                decisionUI.transform.localScale = Vector3.one;
+            }
 
             CORE.Instance.DelayedInvokation(0.1f, () =>
             {
-                foreach (DialogDecision decision in CurrentDecisions)
-                {
-                    DialogDecisionUI decisionUI = ResourcesLoader.Instance.GetRecycledObject("DialogDecisionUI").GetComponent<DialogDecisionUI>();
-                    decisionUI.SetInfo(decision);
-                    decisionUI.transform.SetParent(transform, false);
-                    decisionUI.transform.position = Vector3.zero;
-                    decisionUI.transform.localScale = Vector3.one;
-                }
-
-                CORE.Instance.DelayedInvokation(0.1f, () =>
-                {
-                    SGroup.RefreshGroup(false);
-                });
+                SGroup.RefreshGroup(false);
             });
+        
         });
     }
 
     public void Hide()
     {
         IsActive = false;
+        CORE.ClearContainer(transform);
         this.gameObject.SetActive(false);
     }
 

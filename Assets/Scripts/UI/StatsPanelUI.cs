@@ -49,7 +49,7 @@ public class StatsPanelUI : MonoBehaviour
         GenerateStatItem("Level", CurrentActor.level.ToString());
         GenerateStatItem("EXP", CurrentActor.exp.ToString());
 
-        foreach (KeyValuePair<string, ItemsLogic.DisplayAttribute> keyValuePair in ItemsLogic.DisplayAttributes)
+        foreach (KeyValuePair<string, Util.DisplayAttribute> keyValuePair in Util.DisplayAttributes)
         {
             if(keyValuePair.Value.FieldInfo == null)
             {

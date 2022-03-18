@@ -13,11 +13,18 @@ public class DialogDecisionUI : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI DecisionLabel;
-
+    
     public void OnClick()
     {
         if(CurrentDecision == null)
+            return;
+
+        if(DialogEntity.CurrentInstance == null || DialogEntity.CurrentInstance.CurrentDialog == null)
+            return;
+        
+        if(DialogEntity.CurrentInstance.CurrentDialog.Decisions.Find(x=>x == CurrentDecision) == null)
         {
+            CORE.Instance.LogMessageError("DECISION CLICKED is not in the current dialog!?");
             return;
         }
 
