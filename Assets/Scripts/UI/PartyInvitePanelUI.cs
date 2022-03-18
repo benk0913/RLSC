@@ -52,7 +52,7 @@ public class PartyInvitePanelUI : MonoBehaviour
             StopCoroutine(TimerRoutineInstance);
         }
 
-        TimerRoutineInstance = StartCoroutine(TimerRoutine(CORE.Instance.Data.content.PartyInviteTimeoutSeconds));
+        TimerRoutineInstance = StartCoroutine(TimerRoutine(GetTimeoutSeconds()));
 
         if (CORE.Instance.IsUsingJoystick)
         {
@@ -71,6 +71,11 @@ public class PartyInvitePanelUI : MonoBehaviour
         this.CurrentFromPlayer = fromPlayer;
         TitleText.text = "Join "+CurrentFromPlayer+"'s Party?";
         SetInfo();
+    }
+
+    protected virtual int GetTimeoutSeconds()
+    {
+        return CORE.Instance.Data.content.PartyInviteTimeoutSeconds;
     }
 
     protected IEnumerator TimerRoutine(float timeLeft)

@@ -30,4 +30,10 @@ public class MatchFoundPanelUI : PartyInvitePanelUI
         CG.interactable = false;
         ExpeditionQueTimerUI.Instance.StopSearching();
     }
+    
+    protected override int GetTimeoutSeconds()
+    {
+        return CORE.Instance.Data.content.ExpeditionQueueMatchDurationSeconds;
+    }
+
 }
