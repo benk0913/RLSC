@@ -1317,8 +1317,9 @@ public class SocketHandler : MonoBehaviour
         JSONNode node = new JSONClass();
         node["slotIndex"].AsInt = slotIndex;
         node["isCash"].AsBool = isCash;
-
-        CORE.Instance.ActivateParams(CORE.PlayerActor.items[slotIndex].Data.OnUseParams);
+        
+        if(CORE.PlayerActor.items[slotIndex] != null && CORE.PlayerActor.items[slotIndex].Data != null && CORE.PlayerActor.items[slotIndex].Data.OnExecuteParams != null)
+            CORE.Instance.ActivateParams(CORE.PlayerActor.items[slotIndex].Data.OnUseParams);
 
         SocketHandler.Instance.SendEvent("used_item", node);
     }

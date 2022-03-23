@@ -760,3 +760,67 @@
 [2022-03-06 18:10:52] [Roaming Config] OnRemoteStorageSyncedClient() - result OK
 [2022-03-06 18:10:52] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
 [2022-03-06 18:11:52] [Roaming Config] PerformSyncCloud - all sync'd up
+
+
+[2022-03-22 14:11:48] [AppID 7] Starting sync (init,)
+[2022-03-22 14:11:48] [AppID 7] AutoCloud checking local state for user 33262196
+[2022-03-22 14:11:48] [AppID 7] (ValidateCache) File 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder\userdata\33262196\7\remote\serverbrowser_hist.vdf' timestamp or SHA mismatch with cache - setting local changes
+[2022-03-22 14:11:48] [U:1:33262196] [AppID 7] Init cache request complete
+[2022-03-22 14:11:48] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2022-03-22 14:11:50] [Roaming Config] PerformSyncCloud - evaluating sync state
+[2022-03-22 14:11:50] [AppID 7] Starting sync (eval,)
+[2022-03-22 14:11:50] [AppID 7] AutoCloud checking local state for user 33262196
+[2022-03-22 14:11:50] [AppID 7] Need to sync from local change number '0' to global change number '12221119987363737399', but not attempting now
+[2022-03-22 14:11:50] [AppID 7] serverbrowser_hist.vdf has local changes but mismatch - creating a conflict. Local/Remote SHA: 2f0805c7598fbac050184337520f4b08f883aec0 / f9bfeb1fb65564fa76e9860ee9cfd9d7d3fbcfba, Timestamps: 1647948733 / 1647899172, persist state: 0 / 0
+[2022-03-22 14:11:50] [AppID 7] Sync conflict for file serverbrowser_hist.vdf
+[2022-03-22 14:11:50] [AppID 7] Eval complete
+[2022-03-22 14:11:50] [Roaming Config] OnRemoteStorageStateEvaluated - result OK
+[2022-03-22 14:11:50] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2022-03-22 14:11:50] [Roaming Config] PerformSyncCloud - conflict detected, accepting local files
+[2022-03-22 14:11:50] [AppID 7] Starting sync (up,resolve,)
+[2022-03-22 14:11:50] [AppID 7] Attempting to sync from local change number '0' to global change number '12221119987363737399'
+[2022-03-22 14:11:50] [AppID 7] serverbrowser_hist.vdf already marked as conflicting. Local/Remote SHA: 2f0805c7598fbac050184337520f4b08f883aec0 / f9bfeb1fb65564fa76e9860ee9cfd9d7d3fbcfba, Local/Remote persist state: 0 / 0
+[2022-03-22 14:11:50] [AppID 7] Resolving file serverbrowser_hist.vdf from state 4, bUseLocal = true
+[2022-03-22 14:11:50] [AppID 7] Resolving file sharedconfig.vdf from state 2, bUseLocal = true
+[2022-03-22 14:11:50] [AppID 7] Need to upload file serverbrowser_hist.vdf
+[2022-03-22 14:11:50] [AppID 7] Need to upload file sharedconfig.vdf
+[2022-03-22 14:11:50] [AppID 7] Successfully synced to ChangeNumber 12221119987363737399
+[2022-03-22 14:11:51] [AppID 7] Upload batch initiated, ID: 4186980172818912997, ChangeNumber: 15173114126633681956, App Build ID: 0
+[2022-03-22 14:11:51] [AppID 7] HTTP upload for file 'serverbrowser_hist.vdf' beginning . . .
+[2022-03-22 14:11:51] [AppID 7] HTTP upload for file 'sharedconfig.vdf' beginning . . .
+[2022-03-22 14:11:52] [AppID 7] HTTP upload for file 'serverbrowser_hist.vdf' (offset=0, length=13175) to (134.70.172.1 / 134.70.172.1, host: objectstorage.il-jerusalem-1.oraclecloud.com), path /n/axbfdybgjsmg/b/steamcloud-jerusalem/o/74/8A/FB/01/7/066_D_1FD01805_AEB01_75.dat - success.
+[2022-03-22 14:11:52] [AppID 7] HTTP upload for file 'sharedconfig.vdf' (offset=0, length=2573) to (20.60.130.68 / 20.60.130.68, host: steamcloudams2.blob.core.windows.net), path /cloud/74/8A/FB/01/7/066_4_20125136_654B5_5.dat - success.
+[2022-03-22 14:11:53] [AppID 7] Upload OK for file serverbrowser_hist.vdf
+[2022-03-22 14:11:53] [AppID 7] Upload OK for file sharedconfig.vdf
+[2022-03-22 14:11:54] [AppID 7] Upload complete, result OK
+[2022-03-22 14:11:54] [Roaming Config] OnRemoteStorageConflictResolution - result OK
+[2022-03-22 14:11:54] [AppID 7] Starting sync (down,)
+[2022-03-22 14:11:54] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2022-03-22 14:11:54] [AppID 7] Currently already synced to global change number '15173114126633681956', should be nothing to download
+[2022-03-22 14:11:54] [AppID 7] Download complete in build list
+[2022-03-22 14:11:54] [AppID 7] Successfully synced to ChangeNumber 0
+[2022-03-22 14:11:54] [Roaming Config] OnRemoteStorageSyncedClient() - result OK
+[2022-03-22 14:11:54] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2022-03-22 14:12:50] [Roaming Config] PerformSyncCloud - all sync'd up
+
+
+[2022-03-22 14:22:42] [AppID 7] Starting sync (init,)
+[2022-03-22 14:22:42] [AppID 7] AutoCloud checking local state for user 33262196
+[2022-03-22 14:22:42] [U:1:33262196] [AppID 7] Init cache request complete
+[2022-03-22 14:22:42] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2022-03-22 14:22:44] [Roaming Config] PerformSyncCloud - evaluating sync state
+[2022-03-22 14:22:44] [AppID 7] Starting sync (eval,)
+[2022-03-22 14:22:44] [AppID 7] AutoCloud checking local state for user 33262196
+[2022-03-22 14:22:44] [AppID 7] Currently already synced to global change number '15173114126633681956', should be nothing to download
+[2022-03-22 14:22:44] [AppID 7] File is in sync serverbrowser_hist.vdf
+[2022-03-22 14:22:44] [AppID 7] File is in sync sharedconfig.vdf
+[2022-03-22 14:22:44] [AppID 7] Eval complete
+[2022-03-22 14:22:44] [Roaming Config] OnRemoteStorageStateEvaluated - result OK
+[2022-03-22 14:22:44] [AppID 7] Starting sync (down,)
+[2022-03-22 14:22:44] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2022-03-22 14:22:45] [AppID 7] Currently already synced to global change number '15173114126633681956', should be nothing to download
+[2022-03-22 14:22:45] [AppID 7] Download complete in build list
+[2022-03-22 14:22:45] [AppID 7] Successfully synced to ChangeNumber 0
+[2022-03-22 14:22:45] [Roaming Config] OnRemoteStorageSyncedClient() - result OK
+[2022-03-22 14:22:45] [AppID 7] YldWriteCacheDirectoryToFile - saved to 'M:\UnityProjects\RLSC\RLSCOnline2D\element_quest_sdk\tools\ContentBuilder\builder/userdata/33262196/7/remotecache.vdf'
+[2022-03-22 14:23:44] [Roaming Config] PerformSyncCloud - all sync'd up

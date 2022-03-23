@@ -10,7 +10,7 @@ public class AskForReviewEntity : MonoBehaviour
         {
             WarningWindowUI.Instance.Show("<color=yellow>Help us</color> stay afloat and attract new players by <color=yellow>reviewing the game on the store page!</color>",()=>
             {
-                #if UNITY_ANDROID || UNITY_ASSERTIONS
+                #if UNITY_ANDROID || UNITY_IOS
                     Application.OpenURL("https://play.google.com/store/apps/details?id=com.XPloria.ElementQuest");
                 #else
                     Application.OpenURL("https://store.steampowered.com/app/1903270/Sunset_World_Online/");

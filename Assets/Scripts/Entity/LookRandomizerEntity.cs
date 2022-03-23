@@ -53,8 +53,9 @@ public class LookRandomizerEntity : MonoBehaviour
 
              KeysAdded.Add(itm.Data.Type.name);
              itm.itemName = itm.Data.name;
-            
-             Act.State.Data.equips.Add(itm.Data.Type.name,itm);
+             
+            if(!Act.State.Data.equips.ContainsKey(itm.Data.Type.name))
+                Act.State.Data.equips.Add(itm.Data.Type.name,itm);
          }
          Act.RefreshLooks();
     }
