@@ -50,6 +50,10 @@ public class AbilitySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
 
         CurrentAbility = abilityState;
+        
+        #if UNITY_ANDROID || UNITY_IOS
+            KeyLabelObject.SetActive(false);
+        #else
 
         if(!string.IsNullOrEmpty(abilityKeyText))
         {
@@ -69,6 +73,8 @@ public class AbilitySlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             KeyLabelObject.SetActive(false);
             AbilityKeyLabel.text ="";
         }
+        
+        #endif
 
         if(CurrentAbility == null || CurrentAbility.CurrentAbility == null)
         {

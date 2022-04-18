@@ -353,6 +353,14 @@ public class Actor : MonoBehaviour
 
     public void Inspect()
     {
+        #if UNITY_ANDROID || UNITY_IOS
+        if(CORE.PlayerActor == this.State.Data)
+        {
+            MultiplatformUIManager.IsUniversalPickUp = true;
+            return;
+        }
+        #endif
+
         CORE.Instance.ShowInventoryUiWindow(this.State.Data);
     }
 

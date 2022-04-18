@@ -64,6 +64,8 @@ public class CameraChaseEntity : MonoBehaviour
             if(!CORE.IsToggledZoom)
                 CurrentCam.orthographicSize *= MobileSize;
         }
+
+        YOffset=2f;
         #endif
 
         DefaultSize = CurrentCam.orthographicSize;

@@ -31,6 +31,7 @@ public class ItemEntity : MonoBehaviour
 
     float InteractableCooldown = 0f;
 
+    
     private void Update()
     {
         if (InteractableCooldown > 0f)
@@ -43,6 +44,7 @@ public class ItemEntity : MonoBehaviour
             Interact();
         }
     }
+
 
     public void Interact()
     {

@@ -75,6 +75,7 @@ public class InteractableEntity : MonoBehaviour
         {
             return;
         }
+
         
         onced = true;
 
@@ -149,6 +150,8 @@ public class InteractableEntity : MonoBehaviour
             }
 
             CORE.Instance.ActivateParams(Data.Data.OnInteractParams, casterData.ActorEntity, byActor.ActorEntity);
+
+            AudioControl.Instance.Play("CashShopSubCategoryClick");
         }
     }
 
@@ -280,9 +283,11 @@ public class InteractableEntity : MonoBehaviour
     void OnMouseDown()
     {
         if(NearbyActor != CORE.PlayerActor.ActorEntity) return;
-        
+    
         if(DecisionContainerUI.Instance.CurrentDecisions.Count > 0 && DecisionContainerUI.Instance.gameObject.activeInHierarchy) return;
-        
-        Interact();
+
+        AudioControl.Instance.Play("CashShopItemHover");
+
+        MultiplatformUIManager.IsUniversalInteract = true;
     }
 }

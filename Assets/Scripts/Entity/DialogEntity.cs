@@ -20,6 +20,11 @@ public class DialogEntity : MonoBehaviour
     float keyDownTimer = 0.5f;
     private void Update()
     {
+        if(ContinueCooldown > 0f)
+        {
+            ContinueCooldown -= Time.deltaTime;
+        }
+
         if (isActiveDialog)
         {
             if (Input.anyKey)
@@ -30,7 +35,9 @@ public class DialogEntity : MonoBehaviour
                 }
                 else if(Input.GetMouseButtonDown(0))
                 {
-                    Continue();
+                    if(!DecisionContainerUI.Instance.IsActive)
+                        Continue();
+                        
                     return;
                 }
 
@@ -67,14 +74,14 @@ public class DialogEntity : MonoBehaviour
     {
 
         if (VendorEntity.CurrentInstance != null && VendorEntity.CurrentInstance.IsFocusing)
-        {
             return;
-        }
 
         if(DecisionContainerUI.Instance.IsActive)
-        {
             return;
-        }
+
+        if(DecisionContainerUI.Instance.CurrentDecisions.Count > 0 && DecisionContainerUI.Instance.gameObject.activeInHierarchy) 
+            return;
+
 
         if(isActiveDialog)
         {
@@ -115,8 +122,15 @@ public class DialogEntity : MonoBehaviour
         }
     }
 
+    float ContinueCooldown = 0f;
     public void Continue()
     {
+        if(ContinueCooldown > 0f)
+        {
+            return;
+        }
+        ContinueCooldown = 1f;
+
         CurrentIndex++;
 
         if (CurrentIndex >= CurrentDialog.DialogPieces.Count)
