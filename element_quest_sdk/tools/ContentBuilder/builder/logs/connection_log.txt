@@ -933,3 +933,46 @@
 [2022-03-22 14:22:43] [1,3] Client thinks it can connect via: UDP - yes, TCP - yes, WebSocket:443 - yes, WebSocket:Non443 - yes
 [2022-03-22 14:22:44] [1,3] RecvMsgClientLogOnResponse() : [U:1:33262196] 'OK'
 [2022-03-22 14:22:44] CClientJobGetClientUpdateHosts: cached version not expired
+
+
+[2022-04-19 10:39:54] Connectivity test: Starting test, fetching 'http://test.steampowered.com/204'
+[2022-04-19 10:39:54] [0,0] SetSteamID( [U:1:0] )
+[2022-04-19 10:39:54] [0,0] SetSteamID( [U:1:33262196] )
+[2022-04-19 10:39:54] [0,0] SetSteamID( [U:1:33262196] )
+[2022-04-19 10:39:54] IPv6 HTTP connectivity test (ipv6check-http.steamcontent.com / 0.0.0.0:80 (0.0.0.0:80)) - TIMEOUT
+[2022-04-19 10:39:54] IPv6 UDP connectivity test (ipv6check-udp.steamcontent.com) - FAILED, no addresses resolved
+[2022-04-19 10:39:54] Connectivity test: OK!
+[2022-04-19 10:39:54] CCMInterface::OnConnectivityTestResult -- Start connecting to Steam
+[2022-04-19 10:39:54] CCMInterface::OnConnectivityTestResult -- Start connecting to Steam
+[2022-04-19 10:39:54] CCMInterface::OnConnectivityTestResult -- Start connecting to Steam
+[2022-04-19 10:39:54] Connectivity test: result=Connected, in progress=0
+[2022-04-19 10:39:54] CCMInterface::YieldingConnect -- calling ISteamDirectory/GetCMListForConnect web api
+[2022-04-19 10:39:55] GetCMListForConnect -- got 14 Netfilter CMs and 66 WebSocket CMs
+[2022-04-19 10:39:55] GetCMListForConnect -- DC 'lhr1' count: 20
+[2022-04-19 10:39:55] GetCMListForConnect -- DC 'fra1' count: 20
+[2022-04-19 10:39:55] GetCMListForConnect -- DC 'fra2' count: 20
+[2022-04-19 10:39:55] GetCMListForConnect -- DC 'sto1' count: 10
+[2022-04-19 10:39:55] GetCMListForConnect -- DC 'sto2' count: 10
+[2022-04-19 10:39:55] [0,0] CM Directory list says 82% of connections should be websockets, we rolled 14 - using WebSockets as default.
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm1-lhr1.cm.steampowered.com:27037) starting...
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm1-lhr1.cm.steampowered.com:27023) starting...
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm1-lhr1.cm.steampowered.com:443) starting...
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm2-fra2.cm.steampowered.com:27028) starting...
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm1-lhr1.cm.steampowered.com:27037) results: 88.7927ms + load 40.0000
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm2-fra1.cm.steampowered.com:27027) starting...
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm1-lhr1.cm.steampowered.com:27023) results: 82.1559ms + load 41.0000
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm2-fra1.cm.steampowered.com:27034) starting...
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm2-fra2.cm.steampowered.com:27028) results: 75.4319ms + load 47.0000
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm2-fra2.cm.steampowered.com:27030) starting...
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm1-lhr1.cm.steampowered.com:443) results: 77.3718ms + load 47.0000
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm1-fra2.cm.steampowered.com:443) starting...
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm1-fra2.cm.steampowered.com:443) results: 92.2691ms + load 57.0000
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() stopping after 400.00ms timeout and using good enough host (cm2-fra2.cm.steampowered.com:27028)
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm2-fra2.cm.steampowered.com:27030) results: 85.3622ms + load 51.0000
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm2-fra1.cm.steampowered.com:27034) results: 77.7762ms + load 46.0000
+[2022-04-19 10:39:55] [0,0] PingWebSocketCM() (cm2-fra1.cm.steampowered.com:27027) results: 120.3636ms + load 46.0000
+[2022-04-19 10:39:55] [1,3] Connect() starting connection (eNetQOSLevelHigh, cm2-fra2.cm.steampowered.com:27028, WebSocket)
+[2022-04-19 10:39:55] [1,3] ConnectionCompleted() (155.133.226.78:27028, WebSocket) local address (192.168.0.179:55548)
+[2022-04-19 10:39:55] [1,3] Client thinks it can connect via: UDP - yes, TCP - yes, WebSocket:443 - yes, WebSocket:Non443 - yes
+[2022-04-19 10:39:56] [1,3] RecvMsgClientLogOnResponse() : [U:1:33262196] 'OK'
+[2022-04-19 10:39:56] CClientJobGetClientUpdateHosts: cached copy new expiration: Wed Apr 20 03:19:30 2022

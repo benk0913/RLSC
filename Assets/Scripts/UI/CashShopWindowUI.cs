@@ -138,7 +138,7 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
     public void Show(ActorData actorData, object data = null)
     {
         #if UNITY_ANDROID || UNITY_IOS
-        transform.localScale = Vector3.one;// * 1.5f;
+        transform.localScale = Vector3.one * 1.25f;
         #endif
         CORE.Instance.SubscribeToEvent("CashShopUpdated", RefreshUI);
         CORE.Instance.SubscribeToEvent("InventoryUpdated",RefreshEQPState);

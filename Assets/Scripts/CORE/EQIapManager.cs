@@ -64,9 +64,14 @@ public class EQIapManager : IStoreListener {
         ,()=>
         {
             Controller.ConfirmPendingPurchase(e.purchasedProduct);
-        });
+            
+            
 
-        return PurchaseProcessingResult.Pending;
+            ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+        });
+        
+        
+        return PurchaseProcessingResult.Complete;
     }
     
 
@@ -75,7 +80,7 @@ public class EQIapManager : IStoreListener {
     /// </summary>
     public void OnPurchaseFailed (Product i, PurchaseFailureReason p)
     {
-        ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
+        ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
         CORE.Instance.LogMessageError("EQIapManager Purchase ERROR - "+i.ToString()+" | "+p.ToString());
     }
 }
