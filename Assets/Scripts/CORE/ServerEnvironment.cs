@@ -15,7 +15,7 @@ public class ServerEnvironment
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
     private string DevHostUrl = "https://lul2.herokuapp.com";
 #endif
-    private string ProdHostUrlUs ="http://eq-1786457703.us-east-1.elb.amazonaws.com";
+    private string ProdHostUrlUs ="http://eq-prod-us.herokuapp.com";
     private string SocketPath = "/socket.io/";
     private string CGPath = "/update-content";
     public string HostUrl
