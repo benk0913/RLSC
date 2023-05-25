@@ -2026,7 +2026,13 @@ public class SocketHandler : MonoBehaviour
         
         if (item.Data.Type.name == "Money")
         {
+            int actualAmount = item.amount;
+            if(CORE.Instance.CurrentParty != null)
+            {
+                 actualAmount /= CORE.Instance.CurrentParty.members.Length;
+            }
             CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + actorDat.name + " " + CORE.QuickTranslate("has picked up") +" " + String.Format("{0:n0}", item.amount) + " "+CORE.QuickTranslate("coins")+"</color>");
+            actorDat.ActorEntity.ShowMoneyLabel(actualAmount);
         }
         else if (item.Data.Type.name == "Orb")
         {

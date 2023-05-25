@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class Actor : MonoBehaviour
 {
-    
+
     public ActorState State;
 
     [SerializeField]
@@ -54,12 +54,12 @@ public class Actor : MonoBehaviour
 
     [SerializeField]
     TooltipTargetUI TooltipTarget;
-    
+
     [SerializeField]
     public bool IsDisplayActor = false;
-    
+
     private Dictionary<string, Coroutine> ColliderCooldowns = new Dictionary<string, Coroutine>();
-    
+
     public List<DamageHistoryRow> DamageHistory = new List<DamageHistoryRow>();
     private Coroutine DamageHistoryResetRoutine = null;
 
@@ -102,12 +102,12 @@ public class Actor : MonoBehaviour
     {
         get
         {
-            if(Rigid == null || Rigid.gravityScale == 0f)
+            if (Rigid == null || Rigid.gravityScale == 0f)
             {
                 return 1f;
             }
 
-            if(Rigid.gravityScale == 2)
+            if (Rigid.gravityScale == 2)
             {
                 return 1.5f;
             }
@@ -167,7 +167,7 @@ public class Actor : MonoBehaviour
     public int ClientMovingTowardsDir;
 
     public float GroundCheckDistance = 10f;
-    public float GroundedDistance= 1f;
+    public float GroundedDistance = 1f;
     public float JumpCooldown = 0.5f;
 
     public float VelocityMinimumThreshold = 0.1f;
@@ -220,7 +220,7 @@ public class Actor : MonoBehaviour
         {
             return !IsStunned
                && !State.IsPreparingAbility
-               && (State.Data.isMob || 
+               && (State.Data.isMob ||
                        !CORE.Instance.IsLoading
                     && !CORE.Instance.IsTyping
                     && !VirtualKeyboard.VirtualKeyboard.Instance.IsTyping
@@ -286,7 +286,7 @@ public class Actor : MonoBehaviour
         {
             PutAbilitiesOnCooldown();
         }
- 
+
 
         ClassJob classJob = CORE.Instance.Data.content.Classes.Find(x => x.name == State.Data.classJob);
 
@@ -303,27 +303,27 @@ public class Actor : MonoBehaviour
             }
         }
 
-        if(PlayerHalo != null)
+        if (PlayerHalo != null)
             PlayerHalo.SetActive(State.Data.IsPlayer || !CORE.Instance.InGame);
 
         State.OnInterrupt.AddListener(Interrupted);
 
         SetIsInAir();
 
-        if(TooltipTarget != null)
+        if (TooltipTarget != null)
         {
-            TooltipTarget.SetTooltip("<color=" + Colors.COLOR_HIGHLIGHT + ">" + this.State.Data.name +"</color>"
+            TooltipTarget.SetTooltip("<color=" + Colors.COLOR_HIGHLIGHT + ">" + this.State.Data.name + "</color>"
                 + System.Environment.NewLine + "<size=7>" + "Class: " + State.Data.ClassJobReference.name + "</color>"
-                + System.Environment.NewLine + "<size=7>" + "Level: " + State.Data.level+ "</color>"
-                +( InParty? System.Environment.NewLine + "<size=7><color=" + Colors.COLOR_HIGHLIGHT + ">" + "In Party</color></size>" : "")
-                + (State.Data.IsPlayer? System.Environment.NewLine + "<size=7><color=" + Colors.COLOR_HIGHLIGHT + ">" + "This is YOU!</color></size>" : "")
+                + System.Environment.NewLine + "<size=7>" + "Level: " + State.Data.level + "</color>"
+                + (InParty ? System.Environment.NewLine + "<size=7><color=" + Colors.COLOR_HIGHLIGHT + ">" + "In Party</color></size>" : "")
+                + (State.Data.IsPlayer ? System.Environment.NewLine + "<size=7><color=" + Colors.COLOR_HIGHLIGHT + ">" + "This is YOU!</color></size>" : "")
                 + System.Environment.NewLine + "<size=7><color=" + Colors.COLOR_HIGHLIGHT + ">(Double Click - To Inspect)</color></size>");
         }
     }
 
     public void Interrupted()
     {
-        if(IsDead)
+        if (IsDead)
         {
             return;
         }
@@ -353,13 +353,13 @@ public class Actor : MonoBehaviour
 
     public void Inspect()
     {
-        #if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
         if(CORE.PlayerActor == this.State.Data)
         {
             MultiplatformUIManager.IsUniversalPickUp = true;
             return;
         }
-        #endif
+#endif
 
         CORE.Instance.ShowInventoryUiWindow(this.State.Data);
     }
@@ -384,16 +384,16 @@ public class Actor : MonoBehaviour
         }
         else
         {
-            if(AIControl != null && AIControl.ChaseBehaviour == AIChaseBehaviour.Static)
+            if (AIControl != null && AIControl.ChaseBehaviour == AIChaseBehaviour.Static)
             {
                 return;
             }
 
-            if(Vector2.Distance(transform.position,Vector3.zero) > 5000f)
+            if (Vector2.Distance(transform.position, Vector3.zero) > 5000f)
             {
-                if(CORE.Instance.ActiveSceneInfo.Portals.Count > 0)
+                if (CORE.Instance.ActiveSceneInfo.Portals.Count > 0)
                 {
-                    transform.position = new Vector3(CORE.Instance.ActiveSceneInfo.Portals[0].portalPositionX,CORE.Instance.ActiveSceneInfo.Portals[0].portalPositionY,transform.position.z);
+                    transform.position = new Vector3(CORE.Instance.ActiveSceneInfo.Portals[0].portalPositionX, CORE.Instance.ActiveSceneInfo.Portals[0].portalPositionY, transform.position.z);
                 }
                 else
                 {
@@ -407,7 +407,7 @@ public class Actor : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        if(!IsClientControl)
+        if (!IsClientControl)
         {
             return;
         }
@@ -417,9 +417,9 @@ public class Actor : MonoBehaviour
             Rigid.velocity = Vector2.Lerp(Rigid.velocity, Vector2.zero, Time.deltaTime);
         }
 
-        if(IsGliding)
+        if (IsGliding)
         {
-            if(Rigid.velocity.y < 0 && !isJumpingDown )
+            if (Rigid.velocity.y < 0 && !isJumpingDown)
             {
                 if (disableGlide)
                 {
@@ -431,8 +431,8 @@ public class Actor : MonoBehaviour
                 }
             }
         }
-        
-        if(IsCharmed)
+
+        if (IsCharmed)
         {
             ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.states["Charm"].linkedActorIds[0]);
 
@@ -460,7 +460,7 @@ public class Actor : MonoBehaviour
             }
         }
 
-        if(IsAttached)
+        if (IsAttached)
         {
             ActorData actorDat = CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.states["Bind Attach"].linkedActorIds[0]);
 
@@ -468,7 +468,7 @@ public class Actor : MonoBehaviour
             {
                 CORE.Instance.LogMessageError("No actor with actorId " + CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.states["Bind Buff"].linkedActorIds[0]));
             }
-            else if(actorDat == this.State.Data)
+            else if (actorDat == this.State.Data)
             {
                 //
             }
@@ -476,7 +476,7 @@ public class Actor : MonoBehaviour
             {
                 Rigid.position = actorDat.ActorEntity.transform.position;
             }
-            
+
         }
 
     }
@@ -504,7 +504,7 @@ public class Actor : MonoBehaviour
             Physics2D.IgnoreCollision(collision.collider, Collider);
         }
     }
-    
+
     void OnCollisionStay2D(Collision2D collision)
     {
         ContactPoint2D contact = collision.GetContact(0);
@@ -514,7 +514,7 @@ public class Actor : MonoBehaviour
             SetIsInAir(collision.collider);
         }
     }
-    
+
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider == CurrentGround)
@@ -561,7 +561,7 @@ public class Actor : MonoBehaviour
         Animer.SetBool("Stunned", IsStunned);
         Animer.SetBool("Dead", IsDead);
     }
-    
+
     void RefreshVelocity()
     {
         deltaPosition = Rigid.position - lastPosition;
@@ -574,9 +574,9 @@ public class Actor : MonoBehaviour
             Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
             Animer.SetFloat("VelocityY", deltaPosition.y);
 
-            if(InAnimationEmote)
+            if (InAnimationEmote)
             {
-                if(ClientMovingTowardsDir != 0 || deltaPosition.y > 0.35f ||  deltaPosition.y < -0.35f )
+                if (ClientMovingTowardsDir != 0 || deltaPosition.y > 0.35f || deltaPosition.y < -0.35f)
                 {
                     Animer.SetTrigger("Interrupted");
                     InAnimationEmote = false;
@@ -592,9 +592,9 @@ public class Actor : MonoBehaviour
             Animer.SetFloat("VelocityX", ClientMovingTowardsDir);
             Animer.SetFloat("VelocityY", deltaPosition.y);
 
-            if(InAnimationEmote)
+            if (InAnimationEmote)
             {
-                if(ClientMovingTowardsDir != 0 || deltaPosition.y > 0.35f ||  deltaPosition.y < -0.35f)
+                if (ClientMovingTowardsDir != 0 || deltaPosition.y > 0.35f || deltaPosition.y < -0.35f)
                 {
                     Animer.SetTrigger("Interrupted");
                     InAnimationEmote = false;
@@ -635,18 +635,18 @@ public class Actor : MonoBehaviour
     {
         Vector3 targetPosition = new Vector2(State.Data.x, State.Data.y);
 
-        ClientMovingTowardsDir = State.Data.movementDirection; 
+        ClientMovingTowardsDir = State.Data.movementDirection;
 
         float dist = Vector2.Distance(Rigid.position, targetPosition);
 
-        if(dist < 0.1f)
+        if (dist < 0.1f)
         {
             //TODO TEST - REMOVE IF NMAKJES TROUBLE!
             //Rigid.position = targetPosition;
         }
         else
         {
-            if(!IsClientControl && State.IsPreparingAbility && State.Data.movementDirection != 0) //Prevent getting stuck in anim...
+            if (!IsClientControl && State.IsPreparingAbility && State.Data.movementDirection != 0) //Prevent getting stuck in anim...
             {
                 State.IsPreparingAbility = false;
                 Animer.SetTrigger("Break Cast");
@@ -670,7 +670,7 @@ public class Actor : MonoBehaviour
         State.PreparingAbilityCurrent = ability;
 
         if (!string.IsNullOrEmpty(ability.Sounds.PrepareAbilitySound))
-            AudioControl.Instance.PlayInPosition(ability.Sounds.PrepareAbilitySound,transform.position);
+            AudioControl.Instance.PlayInPosition(ability.Sounds.PrepareAbilitySound, transform.position);
 
         if (!string.IsNullOrEmpty(ability.Colliders.PrepareAbilityColliderObject))
         {
@@ -679,7 +679,7 @@ public class Actor : MonoBehaviour
             State.PreparingAbiityColliderObject = colliderObj;
         }
 
-        if(CORE.PlayerActor == this.State.Data)
+        if (CORE.PlayerActor == this.State.Data)
         {
             ActorAbilitiesPanelUI.Instance.StartCasting(ability.CastingTime);
         }
@@ -687,34 +687,34 @@ public class Actor : MonoBehaviour
 
     public void ExecuteAbility(Ability ability, Vector3 position, bool faceRight, bool castingExternal, string abilityInstanceId)
     {
-        if(ability == null)
+        if (ability == null)
         {
             CORE.Instance.LogMessageError("NO ABILITY!?!?");
             return;
         }
 
         bool isCastingExternal = castingExternal || ability.IsCastingExternal;
-        if(IsClientControl)
+        if (IsClientControl)
         {
             CORE.Instance.ActivateParams(ability.OnExecuteParams, null, this);
 
-            if(State.Data.equips != null)
+            if (State.Data.equips != null)
             {
-                for(int i=0;i<State.Data.equips.Keys.Count;i++)
+                for (int i = 0; i < State.Data.equips.Keys.Count; i++)
                 {
                     Item item = State.Data.equips[State.Data.equips.Keys.ElementAt(i)];
 
-                    if(item == null) continue;
+                    if (item == null) continue;
 
-                    if(item.Data ==  null) continue;
+                    if (item.Data == null) continue;
 
-                    if(item.Data.OnExecuteParams == null || item.Data.OnExecuteParams.Count == 0) continue;
+                    if (item.Data.OnExecuteParams == null || item.Data.OnExecuteParams.Count == 0) continue;
 
                     CORE.Instance.ActivateParams(item.Data.OnExecuteParams, null, this);
                 }
             }
 
-            AbilityState abilityState = State.Abilities.Find(x =>  x.CurrentAbility != null && x.CurrentAbility.name == ability.name);
+            AbilityState abilityState = State.Abilities.Find(x => x.CurrentAbility != null && x.CurrentAbility.name == ability.name);
 
             if (!isCastingExternal)
             {
@@ -724,7 +724,7 @@ public class Actor : MonoBehaviour
                 }
             }
         }
-        
+
         if (!string.IsNullOrEmpty(ability.Sounds.ExecuteAbilitySound))
             AudioControl.Instance.PlayInPosition(ability.Sounds.ExecuteAbilitySound, transform.position);
 
@@ -751,14 +751,14 @@ public class Actor : MonoBehaviour
         {
             GameObject colliderObj = AddColliderOnPosition(ability.Colliders.AbilityColliderObject);
 
-            if(colliderObj != null)
+            if (colliderObj != null)
             {
                 State.ExecutingAbilityCollider = colliderObj.GetComponent<AbilityCollider>();
                 State.ExecutingAbilityCollider.SetInfo(ability, this, abilityInstanceId);
 
                 if (State.Data.isCharacter)
                 {
-                    if(colliderObj.layer == 15)
+                    if (colliderObj.layer == 15)
                         colliderObj.layer = 9;
                 }
                 else
@@ -769,7 +769,7 @@ public class Actor : MonoBehaviour
             }
             else
             {
-                CORE.Instance.LogMessageError(ability.Colliders.AbilityColliderObject +" IS NULL?");
+                CORE.Instance.LogMessageError(ability.Colliders.AbilityColliderObject + " IS NULL?");
             }
         }
     }
@@ -780,15 +780,15 @@ public class Actor : MonoBehaviour
         {
             CORE.Instance.ActivateParams(ability.OnHitParams, casterActor, this);
 
-             for(int i=0;i<State.Data.equips.Keys.Count;i++)
+            for (int i = 0; i < State.Data.equips.Keys.Count; i++)
             {
                 Item item = State.Data.equips[State.Data.equips.Keys.ElementAt(i)];
-                if(item == null)
+                if (item == null)
                 {
                     continue;
                 }
 
-                if(item.Data.OnHitParams == null || item.Data.OnHitParams.Count == 0)
+                if (item.Data.OnHitParams == null || item.Data.OnHitParams.Count == 0)
                 {
                     continue;
                 }
@@ -800,7 +800,7 @@ public class Actor : MonoBehaviour
 
         if (ability.Sounds.HitAbilitySoundVarriants.Count > 0)
         {
-            AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySoundVarriants[UnityEngine.Random.Range(0,ability.Sounds.HitAbilitySoundVarriants.Count)], transform.position);
+            AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySoundVarriants[UnityEngine.Random.Range(0, ability.Sounds.HitAbilitySoundVarriants.Count)], transform.position);
         }
         else
         {
@@ -815,11 +815,11 @@ public class Actor : MonoBehaviour
             GameObject colliderObj = AddColliderOnPosition(ability.Colliders.HitAbilityColliderObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
-        
-        bool isValidHitCondition = 
-            (ability.Colliders.HitConditionObjectCondition != null 
+
+        bool isValidHitCondition =
+            (ability.Colliders.HitConditionObjectCondition != null
                 && ability.Colliders.HitConditionObjectCondition.IsValid(this));
-        
+
         if (!isValidHitCondition && ability.Colliders.HitConditionObjectGameConditions.Count > 0)
         {
             isValidHitCondition = true;
@@ -831,8 +831,8 @@ public class Actor : MonoBehaviour
                 }
             }
         }
-        
-        if(isValidHitCondition && !string.IsNullOrEmpty(ability.Colliders.HitConditionObject))
+
+        if (isValidHitCondition && !string.IsNullOrEmpty(ability.Colliders.HitConditionObject))
         {
             GameObject colliderObj = AddColliderOnPosition(ability.Colliders.HitConditionObject);
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
@@ -857,7 +857,7 @@ public class Actor : MonoBehaviour
             colliderObj.GetComponent<AbilityCollider>().SetInfo(ability, this);
         }
 
-        
+
     }
 
     public void HurtEffect(Actor source = null)
@@ -873,26 +873,26 @@ public class Actor : MonoBehaviour
             spriteColorGroup.ResetColor();
         });
 
-        
 
 
 
-        Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f,(float)State.Data.hp/ (float)State.Data.MaxHP));
+
+        Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f, (float)State.Data.hp / (float)State.Data.MaxHP));
 
         if (IsClientControl && ((AIControl != null && !AIControl.IsBoss) || State.Data.IsPlayer))
         {
-            Rigid.velocity = new Vector2(0f,Rigid.velocity.y);
-            Rigid.AddForce(((transform.position - source.transform.position).normalized)*KnockbackAmount*GravityScaleModifier, ForceMode2D.Impulse);
+            Rigid.velocity = new Vector2(0f, Rigid.velocity.y);
+            Rigid.AddForce(((transform.position - source.transform.position).normalized) * KnockbackAmount * GravityScaleModifier, ForceMode2D.Impulse);
         }
 
-        if(State.Data.IsPlayer)
+        if (State.Data.IsPlayer)
         {
-            CORE.Instance.ShowScreenEffect("ScreenEffectHurt",null,true);
+            CORE.Instance.ShowScreenEffect("ScreenEffectHurt", null, true);
         }
 
-        if(State.Data.ClassJobReference.UniqueHurtSounds.Count > 0)
+        if (State.Data.ClassJobReference.UniqueHurtSounds.Count > 0)
         {
-            AudioControl.Instance.PlayInPosition(State.Data.ClassJobReference.UniqueHurtSounds[UnityEngine.Random.Range(0, State.Data.ClassJobReference.UniqueHurtSounds.Count)],transform.position);
+            AudioControl.Instance.PlayInPosition(State.Data.ClassJobReference.UniqueHurtSounds[UnityEngine.Random.Range(0, State.Data.ClassJobReference.UniqueHurtSounds.Count)], transform.position);
         }
     }
 
@@ -904,19 +904,19 @@ public class Actor : MonoBehaviour
         {
             spriteColorGroup.ResetColor();
         });
-        
+
         Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f, (float)State.Data.hp / (float)State.Data.MaxHP));
     }
 
     public void BlockEffect(Actor source = null)
     {
-        if(this.State.Data.ClassJobReference.UniqueBlockSounds != null && this.State.Data.ClassJobReference.UniqueBlockSounds.Count > 0)
+        if (this.State.Data.ClassJobReference.UniqueBlockSounds != null && this.State.Data.ClassJobReference.UniqueBlockSounds.Count > 0)
         {
-            AudioControl.Instance.PlayInPosition(this.State.Data.ClassJobReference.UniqueBlockSounds[UnityEngine.Random.Range(0,this.State.Data.ClassJobReference.UniqueBlockSounds.Count)], transform.position);
+            AudioControl.Instance.PlayInPosition(this.State.Data.ClassJobReference.UniqueBlockSounds[UnityEngine.Random.Range(0, this.State.Data.ClassJobReference.UniqueBlockSounds.Count)], transform.position);
         }
         else
         {
-            AudioControl.Instance.PlayInPosition("sound_blocked_hit", transform.position);   
+            AudioControl.Instance.PlayInPosition("sound_blocked_hit", transform.position);
         }
     }
 
@@ -924,15 +924,15 @@ public class Actor : MonoBehaviour
     public void Ded()
     {
         gameObject.layer = 16;
-        
+
         Animer.Play("Dead1");
         IsDead = true;
         Animer.SetBool("IsDead", true);
         CORE.Instance.InvokeEvent("ActorDied");
         Shadow.gameObject.SetActive(false);
-        
 
-        if(this.State.Data.ClassJobReference.OnDeathParams != null && this.State.Data.ClassJobReference.OnDeathParams.Count > 0)
+
+        if (this.State.Data.ClassJobReference.OnDeathParams != null && this.State.Data.ClassJobReference.OnDeathParams.Count > 0)
         {
             CORE.Instance.ActivateParams(this.State.Data.ClassJobReference.OnDeathParams);
         }
@@ -947,7 +947,7 @@ public class Actor : MonoBehaviour
             if (State.Data.isMob && !AIControl.IsBoss)
             {
                 StartCoroutine(FadeAwayRoutine());
-                if(SettingsMenuUI.Instance.FlashShake)                            
+                if (SettingsMenuUI.Instance.FlashShake)
                     UnityAndroidVibrator.VibrateForGivenDuration(10);
             }
         }
@@ -960,14 +960,14 @@ public class Actor : MonoBehaviour
             {
                 Destroy(Ghost.gameObject);
             }
-            
-            CORE.Instance.DelayedInvokation(3f, () => 
+
+            CORE.Instance.DelayedInvokation(3f, () =>
             {
-                if(this.gameObject == null || !CORE.Instance.Room.PlayerActor.ActorEntity.IsDead || CORE.Instance.Room.Actors.Find(x=>x.actorId == State.Data.actorId) == null)
+                if (this.gameObject == null || !CORE.Instance.Room.PlayerActor.ActorEntity.IsDead || CORE.Instance.Room.Actors.Find(x => x.actorId == State.Data.actorId) == null)
                 {
                     return;
                 }
-                
+
                 Ghost = Instantiate(ResourcesLoader.Instance.GetObject("ActorGhostPlayer")).GetComponent<ActorControlClient>();
                 Ghost.transform.position = transform.position;
                 CameraChaseEntity.Instance.ReferenceObject = Ghost.transform;
@@ -975,9 +975,9 @@ public class Actor : MonoBehaviour
 
             StartCoroutine(DeathSlowmo());
 
-            
+
             //Eliminated emote
-            if(!State.Data.isMob)
+            if (!State.Data.isMob)
             {
                 JSONClass node = new JSONClass();
                 node["emoteRaw"] = "Eliminated Emote";
@@ -990,9 +990,9 @@ public class Actor : MonoBehaviour
     {
         Time.timeScale = 0.1f;
 
-        while(Time.timeScale < 1f)
+        while (Time.timeScale < 1f)
         {
-            Time.timeScale +=  (Time.fixedDeltaTime);
+            Time.timeScale += (Time.fixedDeltaTime);
 
             yield return 0;
         }
@@ -1021,21 +1021,21 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void AddBuff(Buff buff, float duration, string abilityInstanceId,ActorData casterActor = null)
+    public void AddBuff(Buff buff, float duration, string abilityInstanceId, ActorData casterActor = null)
     {
-        
+
         BuffState state = State.Buffs.Find(x => x.CurrentBuff.name == buff.name);
 
         if (state == null)
         {
             state = new BuffState(buff, duration);
 
-            if(State.Buffs.Find(x=>x.CurrentBuff.name == buff.name) == null || 
-            (State.Buffs.Find(x=>x.CurrentBuff.name == buff.name) != null && !buff.DontReplaySoundOnRecharge))
-            {    
-                if(!string.IsNullOrEmpty(buff.OnStartSound))
+            if (State.Buffs.Find(x => x.CurrentBuff.name == buff.name) == null ||
+            (State.Buffs.Find(x => x.CurrentBuff.name == buff.name) != null && !buff.DontReplaySoundOnRecharge))
+            {
+                if (!string.IsNullOrEmpty(buff.OnStartSound))
                 {
-                    AudioControl.Instance.PlayInPosition(buff.OnStartSound,transform.position);
+                    AudioControl.Instance.PlayInPosition(buff.OnStartSound, transform.position);
                 }
             }
             State.Buffs.Add(state);
@@ -1046,12 +1046,12 @@ public class Actor : MonoBehaviour
                 colliderObj.GetComponent<BuffCollider>().SetInfo(state, this, abilityInstanceId, casterActor);
 
                 state.EffectObject = colliderObj;
-                
+
             }
-            
+
             CORE.Instance.ActivateParams(state.CurrentBuff.OnStart, null, this);
 
-            if(buff.BuffMaterial != null)
+            if (buff.BuffMaterial != null)
             {
                 spriteColorGroup.SetMaterial(buff.BuffMaterial);
             }
@@ -1059,7 +1059,7 @@ public class Actor : MonoBehaviour
         else
         {
             state.CurrentLength = duration;
-            
+
             if (state.EffectObject != null)
             {
                 state.EffectObject.GetComponent<BuffCollider>().AbilityInstanceId = abilityInstanceId;
@@ -1131,34 +1131,34 @@ public class Actor : MonoBehaviour
 
         CORE.Instance.InvokeEvent("ActorRemovedBuff");
     }
-    
+
     public void ShowHurtLabel(int damage, Actor source = null)
     {
 
         bool isPlayerRelevant = source.State.Data.IsPlayer || this.State.Data.IsPlayer;
 
-        if(!CORE.IsMachinemaMode)
+        if (!CORE.IsMachinemaMode)
         {
             HitLabelEntityUI label = null;
-            
-            if(source != null && source.State.Data.isCharacter && !source.State.Data.IsPlayer) // OTHER PLAYER
+
+            if (source != null && source.State.Data.isCharacter && !source.State.Data.IsPlayer) // OTHER PLAYER
             {
-                label =  ResourcesLoader.Instance.GetRecycledObject("HitLabelEntityAlly").GetComponent<HitLabelEntityUI>();
+                label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntityAlly").GetComponent<HitLabelEntityUI>();
                 label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Colors.AsColor(Colors.COLOR_HIGHLIGHT_ALLY) : Colors.AsColor(Colors.COLOR_GOOD));
             }
-            else if(source != null && source.State.Data.isMob) // MOB
+            else if (source != null && source.State.Data.isMob) // MOB
             {
-                label =  ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+                label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
                 label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Colors.AsColor(Colors.COLOR_BAD) : Colors.AsColor(Colors.COLOR_GOOD));
             }
             else // PLAYER / MOB
             {
-                label =  ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
+                label = ResourcesLoader.Instance.GetRecycledObject("HitLabelEntity").GetComponent<HitLabelEntityUI>();
                 label.SetLabel(Mathf.Abs(damage).ToString(), damage >= 0 ? Colors.AsColor(Colors.COLOR_HIGHLIGHT) : Colors.AsColor(Colors.COLOR_GOOD));
             }
 
             label.transform.position = transform.position;
-            
+
         }
 
         if (damage > 0)
@@ -1172,6 +1172,20 @@ public class Actor : MonoBehaviour
         else if (damage < 0)
         {
             HealEffect(source);
+        }
+    }
+
+    public void ShowMoneyLabel(int money)
+    {
+        if (!CORE.IsMachinemaMode)
+        {
+            HitLabelEntityUI label = null;
+
+            label = ResourcesLoader.Instance.GetRecycledObject("MoneyLabelEntity").GetComponent<HitLabelEntityUI>();
+            label.SetLabel("+"+money.ToString("N0"), Color.yellow);
+
+            label.transform.position = transform.position;
+
         }
     }
 
@@ -1216,7 +1230,7 @@ public class Actor : MonoBehaviour
         }
 
         float t = 1f;
-        while(t>0f)
+        while (t > 0f)
         {
             t -= 0.5f * Time.deltaTime;
 
@@ -1245,11 +1259,11 @@ public class Actor : MonoBehaviour
             StopFlying();
         }
 
-        if(State.Data.states.ContainsKey("Bind Attach") && !IsAttached)
+        if (State.Data.states.ContainsKey("Bind Attach") && !IsAttached)
         {
             StartAttach();
         }
-        else if(!State.Data.states.ContainsKey("Bind Attach") && IsAttached)
+        else if (!State.Data.states.ContainsKey("Bind Attach") && IsAttached)
         {
             StopAttach();
         }
@@ -1272,10 +1286,10 @@ public class Actor : MonoBehaviour
         State.Abilities.Clear();
         for (int i = 0; i < State.Data.abilities.Count; i++)
         {
-            State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.abilities[i]),this));
+            State.Abilities.Add(new AbilityState(CORE.Instance.Data.content.Abilities.Find(x => x.name == State.Data.abilities[i]), this));
         }
 
-        if (State.Data.IsPlayer) 
+        if (State.Data.IsPlayer)
         {
             RefreshLockedSlots();
             ActorAbilitiesPanelUI.Instance.SetActor(this);
@@ -1286,8 +1300,8 @@ public class Actor : MonoBehaviour
     private void RefreshLockedSlots()
     {
         int slotsLocked = 0;
-        
-        foreach(Item orb in State.Data.orbs)
+
+        foreach (Item orb in State.Data.orbs)
         {
             foreach (State state in orb.Data.States)
             {
@@ -1307,7 +1321,7 @@ public class Actor : MonoBehaviour
 
     public void RefreshLooks()
     {
-        if(Skin == null)
+        if (Skin == null)
         {
             return;
         }
@@ -1317,7 +1331,7 @@ public class Actor : MonoBehaviour
 
     public void RefreshOrbs()
     {
-        if(IsDisplayActor)
+        if (IsDisplayActor)
         {
             return;
         }
@@ -1400,7 +1414,7 @@ public class Actor : MonoBehaviour
 
     public void ShowTextBubble(string message)
     {
-        if(CurrentBubble != null)
+        if (CurrentBubble != null)
         {
             CurrentBubble.gameObject.SetActive(false);
             CurrentBubble = null;
@@ -1411,25 +1425,25 @@ public class Actor : MonoBehaviour
         Sprite chatBubbleSprite = null;
 
         Item chatBubbleSkin = null;
-        if(this.State.Data.equips.ContainsKey("Chat Bubble"))
+        if (this.State.Data.equips.ContainsKey("Chat Bubble"))
         {
-             chatBubbleSkin = this.State.Data.equips["Chat Bubble"];
+            chatBubbleSkin = this.State.Data.equips["Chat Bubble"];
         }
-        if(chatBubbleSkin != null)
+        if (chatBubbleSkin != null)
         {
             chatBubbleSprite = chatBubbleSkin.Data.Icon;
         }
 
-        CurrentBubble.Show(transform,message,()=> { CurrentBubble = null; },State.Data.looks.IsFemale,chatBubbleSprite);
+        CurrentBubble.Show(transform, message, () => { CurrentBubble = null; }, State.Data.looks.IsFemale, chatBubbleSprite);
         CurrentBubble.transform.position = transform.position;
     }
 
 
     public void Emote(Emote emote)
     {
-        if(emote.name.Contains("Animation Emote "))
+        if (emote.name.Contains("Animation Emote "))
         {
-            string animationName = emote.name.Replace("Animation Emote ","");
+            string animationName = emote.name.Replace("Animation Emote ", "");
             Animer.Play(animationName);
             InAnimationEmote = true;
         }
@@ -1443,7 +1457,7 @@ public class Actor : MonoBehaviour
 
     public void ExecuteMovement(string movementKey, Actor casterActor = null)
     {
-        if(MovementEffectRoutineInstance != null)
+        if (MovementEffectRoutineInstance != null)
         {
             StopCoroutine(MovementEffectRoutineInstance);
             MovementEffectRoutineInstance = null;
@@ -1497,7 +1511,7 @@ public class Actor : MonoBehaviour
                 }
             case "DashForward1/2":
                 {
-                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f,0.5f));
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f, 0.5f));
                     break;
                 }
             case "DashForward":
@@ -1517,13 +1531,13 @@ public class Actor : MonoBehaviour
                 }
             case "SalamanderDash":
                 {
-                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f,0.625f));
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(2f, 0.625f));
                     break;
                 }
             case "SalamanderDashSmall":
                 {
-                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(1f,0.25f));
-                    break;   
+                    MovementEffectRoutineInstance = StartCoroutine(MovementDashRoutine(1f, 0.25f));
+                    break;
                 }
             case "DashUpwards":
                 {
@@ -1537,7 +1551,7 @@ public class Actor : MonoBehaviour
                 }
             case "Pull":
                 {
-                    if(AIControl != null && AIControl.ChaseBehaviour == AIChaseBehaviour.Static)
+                    if (AIControl != null && AIControl.ChaseBehaviour == AIChaseBehaviour.Static)
                     {
 
                     }
@@ -1545,7 +1559,7 @@ public class Actor : MonoBehaviour
                     {
                         MovementEffectRoutineInstance = StartCoroutine(MovementPullRoutine(casterActor));
                     }
-                    
+
                     break;
                 }
             case "Escape":
@@ -1553,7 +1567,7 @@ public class Actor : MonoBehaviour
                     MovementEffectRoutineInstance = StartCoroutine(MovementEscapeRoutine(1f));
                     break;
                 }
-                case "EscapeSmall":
+            case "EscapeSmall":
                 {
                     MovementEffectRoutineInstance = StartCoroutine(MovementEscapeRoutine(0.5f));
                     break;
@@ -1614,18 +1628,19 @@ public class Actor : MonoBehaviour
                     Vector2 teleportPoint = new Vector2(targetEdge + targetOffset * direction, nearestTarget.Rigid.position.y);
                     float targetBottom = nearestTarget.Rigid.position.y;
                     Vector2 actorEdgeBottomPoint = new Vector2(targetEdge, targetBottom + GroundCheckDistance);
-                    
+
                     // Verify there aren't walls
                     RaycastHit2D raycastHitsSide = Physics2D.Raycast(actorEdgeBottomPoint, Vector2.right * direction, targetOffset, GroundMask);
                     if (raycastHitsSide)
                     {
                         break;
                     }
-                    CORE.Instance.DelayedInvokation(0.01f, () => { 
+                    CORE.Instance.DelayedInvokation(0.01f, () =>
+                    {
                         transform.position = teleportPoint;
                         Body.localScale = new Vector3(direction, 1f, 1f);
                     });
-                    
+
                     break;
                 }
 
@@ -1635,7 +1650,7 @@ public class Actor : MonoBehaviour
 
     public void AttemptMoveLeft(bool throughCharm = false)
     {
-        if(!AttemptLookLeft())
+        if (!AttemptLookLeft())
         {
             if (!IsClientControl && State.IsPreparingAbility)
             {
@@ -1650,13 +1665,14 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        if (!throughCharm && IsCharmed) {
+        if (!throughCharm && IsCharmed)
+        {
             return;
         }
 
         ClientMovingTowardsDir = -1;
 
-        Rigid.position += Vector2.left *  Time.deltaTime* State.Data.MovementSpeed;
+        Rigid.position += Vector2.left * Time.deltaTime * State.Data.MovementSpeed;
     }
 
     public void AttemptMoveRight(bool throughCharm = false)
@@ -1671,11 +1687,12 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        if (!throughCharm && IsCharmed) {
+        if (!throughCharm && IsCharmed)
+        {
             return;
         }
 
-        
+
         ClientMovingTowardsDir = 1;
 
         Rigid.position += Vector2.right * Time.deltaTime * State.Data.MovementSpeed;
@@ -1710,14 +1727,14 @@ public class Actor : MonoBehaviour
         {
             return;
         }
-        
+
         if ((CurrentGround && CurrentGround.GetComponent<PlatformEffector2D>() != null)
          && (!CORE.Instance.IsUsingJoystick || (CORE.Instance.IsUsingJoystick && Input.GetAxis("Vertical") < -0.8f)))
         {
             StartCoroutine(JumpDown(CurrentGround));
             return;
         }
-        if(!IsFlying)
+        if (!IsFlying)
         {
             return;
         }
@@ -1756,7 +1773,7 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        if(IsFlying)
+        if (IsFlying)
         {
             return;
         }
@@ -1767,10 +1784,10 @@ public class Actor : MonoBehaviour
     private IEnumerator JumpRoutine()
     {
         Vector2 jumpVector = Vector2.up * JumpHeight;
-        jumpVector += jumpVector * State.Data.attributes.JumpHeight*GravityScaleModifier;
+        jumpVector += jumpVector * State.Data.attributes.JumpHeight * GravityScaleModifier;
         Rigid.AddForce(jumpVector, ForceMode2D.Impulse);
 
-        AudioControl.Instance.PlayInPosition("_ound_bloop",transform.position);
+        AudioControl.Instance.PlayInPosition("_ound_bloop", transform.position, 200, UnityEngine.Random.Range(0.75f, 1.25f));
 
         yield return new WaitForSeconds(JumpCooldown);
 
@@ -1788,12 +1805,12 @@ public class Actor : MonoBehaviour
 
     public void AttemptPrepareAbility(int abilityIndex)
     {
-        if(State.Abilities.Count <= abilityIndex)
+        if (State.Abilities.Count <= abilityIndex)
         {
             return;
         }
 
-        if(!IsAbleToUseAbility(State.Abilities[abilityIndex].CurrentAbility))
+        if (!IsAbleToUseAbility(State.Abilities[abilityIndex].CurrentAbility))
         {
             return;
         }
@@ -1815,10 +1832,10 @@ public class Actor : MonoBehaviour
     }
 
     public void AttemptExecuteAbility(Ability ability, Actor caster = null)
-    { 
+    {
         JSONNode node = new JSONClass();
         node["abilityName"] = ability.name;
-        node["actorId"] = caster == null? this.State.Data.actorId : caster.State.Data.actorId;
+        node["actorId"] = caster == null ? this.State.Data.actorId : caster.State.Data.actorId;
         node["x"] = transform.position.x.ToString();
         node["y"] = transform.position.y.ToString();
         node["faceRight"] = (Body.localScale.x < 0).ToString();
@@ -1837,14 +1854,14 @@ public class Actor : MonoBehaviour
 
     public bool IsAbleToUseAbility(Ability ability)
     {
-        if(!CanCastAbility)
+        if (!CanCastAbility)
         {
             return false;
         }
 
-        if(ability.OnlyIfGrounded && !IsGrounded)
+        if (ability.OnlyIfGrounded && !IsGrounded)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(ability.name + " can only be cast from the ground!",Colors.AsColor(Colors.COLOR_BAD)));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance(ability.name + " can only be cast from the ground!", Colors.AsColor(Colors.COLOR_BAD)));
             return false;
         }
 
@@ -1857,21 +1874,21 @@ public class Actor : MonoBehaviour
         string emoteString = "Emote " + emoteIndex;
         Item emoteItem = null;
 
-        if(State.Data.equips.ContainsKey(emoteString))
+        if (State.Data.equips.ContainsKey(emoteString))
         {
             emoteItem = State.Data.equips[emoteString];
         }
 
-        if(emoteItem == null)
+        if (emoteItem == null)
         {
             return;
         }
 
-        Emote emote = CORE.Instance.Data.content.Emotes.Find(X=>X.name == emoteItem.Data.name);
+        Emote emote = CORE.Instance.Data.content.Emotes.Find(X => X.name == emoteItem.Data.name);
 
-        if(emote == null)
+        if (emote == null)
         {
-            CORE.Instance.LogMessageError("NO EMOTE in index "+emoteIndex + " - "+ emoteItem.itemName);
+            CORE.Instance.LogMessageError("NO EMOTE in index " + emoteIndex + " - " + emoteItem.itemName);
             return;
         }
 
@@ -1892,11 +1909,11 @@ public class Actor : MonoBehaviour
     {
         Rigid.velocity = Vector2.zero;
 
-        if(State.Data.isCharacter)
+        if (State.Data.isCharacter)
             Rigid.gravityScale = 2f;
         else
             Rigid.gravityScale = 1f;
-            
+
         Animer.SetBool("IsFlying", false);
         IsFlying = false;
     }
@@ -1916,17 +1933,17 @@ public class Actor : MonoBehaviour
     Coroutine MovementEffectRoutineInstance;
     IEnumerator MovementDisengageRoutine(float multiplier = 1f)
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 15 * multiplier*GravityScaleModifier, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 15 * multiplier * GravityScaleModifier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
-        
+
         MovementEffectRoutineInstance = null;
 
     }
 
     IEnumerator MovementEngageRoutine(float power = 1f)
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? 1f : -1f, 2.2f) * 15 * power*GravityScaleModifier, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? 1f : -1f, 2.2f) * 15 * power * GravityScaleModifier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
 
@@ -1937,19 +1954,19 @@ public class Actor : MonoBehaviour
     IEnumerator MovementDashUpwardsRoutine(float multiplier = 1f)
     {
         Vector2 initDir = Vector2.up;
-        
+
 
         float t = 0f;
         while (t < 1f)
         {
             t += Time.deltaTime * 1;
-            Rigid.position += initDir*48*multiplier * (1f-t) * Time.deltaTime;
+            Rigid.position += initDir * 48 * multiplier * (1f - t) * Time.deltaTime;
 
             Rigid.velocity = Vector2.zero;
 
             yield return new WaitForFixedUpdate();
         }
-  
+
         Rigid.velocity = Vector2.zero;
 
         MovementEffectRoutineInstance = null;
@@ -1958,14 +1975,14 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementDashRoutine(float duration = 1f, float speed = 1f)
     {
-        
-        Vector2 initDir= (Body.localScale.x < 0 ? Vector3.right : Vector3.left);
+
+        Vector2 initDir = (Body.localScale.x < 0 ? Vector3.right : Vector3.left);
 
         float t = 0f;
-        while(t<1f)
+        while (t < 1f)
         {
-            t += Time.deltaTime  * 2f * (1f/duration);
-            Rigid.position += initDir  * speed * 48f * Time.deltaTime;
+            t += Time.deltaTime * 2f * (1f / duration);
+            Rigid.position += initDir * speed * 48f * Time.deltaTime;
 
             yield return new WaitForFixedUpdate();
         }
@@ -1976,7 +1993,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementEarthPushRoutine(Actor caster)
     {
-        Rigid.AddForce(new Vector2(caster.transform.position.x < transform.position.x ? 1f : -1f, 1f) * 15*GravityScaleModifier, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(caster.transform.position.x < transform.position.x ? 1f : -1f, 1f) * 15 * GravityScaleModifier, ForceMode2D.Impulse);
 
 
         yield return new WaitForSeconds(1f);
@@ -1986,7 +2003,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementWindPushRoutine(Actor caster)
     {
-        Rigid.AddForce(new Vector2(-caster.Body.transform.localScale.x * 25,25f)*GravityScaleModifier, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(-caster.Body.transform.localScale.x * 25, 25f) * GravityScaleModifier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
 
@@ -2014,7 +2031,7 @@ public class Actor : MonoBehaviour
 
     IEnumerator MovementEscapeRoutine(float powerMult = 1f)
     {
-        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 25 * powerMult*GravityScaleModifier, ForceMode2D.Impulse);
+        Rigid.AddForce(new Vector2(Body.localScale.x < 0 ? -1f : 1f, 1f) * 25 * powerMult * GravityScaleModifier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1f);
 
@@ -2026,11 +2043,11 @@ public class Actor : MonoBehaviour
     IEnumerator MovementPounceRoutine()
     {
         Vector2 initDir;
-        
-        if(IsGrounded)
-            initDir = new Vector2((Body.localScale.x < 0 ? Vector3.right : Vector3.left).x,1f);
+
+        if (IsGrounded)
+            initDir = new Vector2((Body.localScale.x < 0 ? Vector3.right : Vector3.left).x, 1f);
         else
-            initDir = new Vector2((Body.localScale.x < 0 ? Vector3.right : Vector3.left).x,-1f);
+            initDir = new Vector2((Body.localScale.x < 0 ? Vector3.right : Vector3.left).x, -1f);
 
         float t = 0f;
         while (t < 1f)
@@ -2049,7 +2066,7 @@ public class Actor : MonoBehaviour
     {
 
         GameObject targetKettle = GameObject.Find("ActorKettle");
-        if(Vector2.Distance(targetKettle.transform.position, transform.position) < 3f)
+        if (Vector2.Distance(targetKettle.transform.position, transform.position) < 3f)
         {
             MovementEffectRoutineInstance = null;
             yield break;
@@ -2086,15 +2103,15 @@ public class ActorState
 
     public void ClearAllObjects()
     {
-        foreach(BuffState buff in Buffs)
+        foreach (BuffState buff in Buffs)
         {
-            if(buff.EffectObject != null)
+            if (buff.EffectObject != null)
             {
                 buff.EffectObject.SetActive(false);
             }
         }
     }
-    
+
     public void Interrupt(bool putAbilityOnCd, bool putAllAbilitiesOnCd)
     {
         foreach (AbilityState state in Abilities)
@@ -2102,16 +2119,18 @@ public class ActorState
             if (state.CurrentCastingTime > 0f)
             {
                 state.CurrentCastingTime = 0f;
-                if (putAbilityOnCd) {
+                if (putAbilityOnCd)
+                {
                     Data.ActorEntity.PutAbilityOnCooldown(state);
                 }
             }
-            if (putAllAbilitiesOnCd) {
+            if (putAllAbilitiesOnCd)
+            {
                 Data.ActorEntity.PutAbilityOnCooldown(state);
             }
         }
 
-        if(IsPreparingAbility)
+        if (IsPreparingAbility)
         {
             if (PreparingAbiityColliderObject != null)
             {
@@ -2127,7 +2146,7 @@ public class ActorState
             }
         }
 
-        if(ExecutingAbilityCollider != null && ExecutingAbilityCollider.RemoveOnInterrupt)
+        if (ExecutingAbilityCollider != null && ExecutingAbilityCollider.RemoveOnInterrupt)
         {
             if (!string.IsNullOrEmpty(ExecutingAbilityCollider.AbilitySource.Sounds.ExecuteAbilitySound))
             {
@@ -2170,14 +2189,14 @@ public class AbilityState
     {
         get
         {
-            int lvl = IndexInClass - (OfClassJob.AbilitiesInitCount-1);
+            int lvl = IndexInClass - (OfClassJob.AbilitiesInitCount - 1);
 
-            if(lvl < 0)
+            if (lvl < 0)
             {
                 lvl = 0;
             }
 
-            return lvl+1;
+            return lvl + 1;
         }
     }
 
@@ -2185,15 +2204,15 @@ public class AbilityState
     {
         get
         {
-            foreach(string unlockedClass in OfActor.State.Data.unlockedClassJobs)
+            foreach (string unlockedClass in OfActor.State.Data.unlockedClassJobs)
             {
-                ClassJob classJob =CORE.Instance.Data.content.Classes.Find(x=>x.name == unlockedClass);
+                ClassJob classJob = CORE.Instance.Data.content.Classes.Find(x => x.name == unlockedClass);
 
-                string ability = classJob.Abilities.Find(x=>x == CurrentAbility.name);
+                string ability = classJob.Abilities.Find(x => x == CurrentAbility.name);
 
-                if(!string.IsNullOrEmpty(ability))
+                if (!string.IsNullOrEmpty(ability))
                 {
-                    return classJob.UnlockLevel+classJob.Abilities.IndexOf(ability);    
+                    return classJob.UnlockLevel + classJob.Abilities.IndexOf(ability);
                 }
             }
 
@@ -2207,12 +2226,12 @@ public class AbilityState
         {
             int indexInClass = IndexInClass;
 
-            if(indexInClass == -1)
+            if (indexInClass == -1)
             {
-                CORE.Instance.LogMessageError("BAD INDEX IN CLASS "+this.CurrentAbility.name);
+                CORE.Instance.LogMessageError("BAD INDEX IN CLASS " + this.CurrentAbility.name);
                 return true;
             }
-            return OfActor.State.Data.IsPlayer &&  (indexInClass >= (OfActor.State.Data.level-1)+OfClassJob.AbilitiesInitCount);
+            return OfActor.State.Data.IsPlayer && (indexInClass >= (OfActor.State.Data.level - 1) + OfClassJob.AbilitiesInitCount);
         }
     }
 
@@ -2229,7 +2248,7 @@ public class AbilityState
         this.CurrentAbility = ability;
         this.OfActor = ofActor;
 
-        if(ofClassJob != null)
+        if (ofClassJob != null)
             this.OfClassJob = ofClassJob;
         else
             this.OfClassJob = OfActor.State.Data.ClassJobReference;
