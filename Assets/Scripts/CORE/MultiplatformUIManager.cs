@@ -11,7 +11,7 @@ public class MultiplatformUIManager : MonoBehaviour
 
     public UnityEvent OnAndroid;
     public UnityEvent OnSteam;
-    
+
     public static InteractableEntity CurrentInteractable;
     public static InteractableEntity CurrentItem;
 
@@ -33,34 +33,48 @@ public class MultiplatformUIManager : MonoBehaviour
     public GameObject CanInteractIndicator;
     public GameObject CanPickUpIndicator;
 
+    public GameObject AbilitiesButton;
+    public GameObject InventoryButton;
+
+    public GameObject ChatButton;
+
     public bool PickUpButtonIsDOWN;
+
 
     void Awake()
     {
         Instance = this;
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
         OnAndroid?.Invoke();
         this.transform.localScale *= 0.85f;
-        #else
+
+        ChatButton.SetActive(false);//Hide chat if player is playing alone
+        CORE.Instance.SubscribeToEvent("HumanActorJoined", () => 
+        {
+            ChatButton.SetActive(CORE.Instance.Room.Actors.FindAll(x=>x.isCharacter).Count > 1);
+            AbilitiesButton.SetActive(CORE.PlayerActor.level > 2);
+            InventoryButton.SetActive(CORE.PlayerActor.level > 1);
+        });
+#else
         OnSteam?.Invoke();
-        #endif
+#endif
     }
 
     void Update()
     {
-        if(TouchController.GetTouchPosition.x > 0.05f)
+        if (TouchController.GetTouchPosition.x > 0.05f)
         {
             IsUniversalRight = true;
         }
-        else if(TouchController.GetTouchPosition.x < -0.05f)
+        else if (TouchController.GetTouchPosition.x < -0.05f)
         {
             IsUniversalLeft = true;
         }
-        if(TouchController.GetTouchPosition.y < -0.8f)
+        if (TouchController.GetTouchPosition.y < -0.8f)
         {
             IsUniversalDown = true;
         }
-        else if(TouchController.GetTouchPosition.y > 0.8f)
+        else if (TouchController.GetTouchPosition.y > 0.8f)
         {
             IsUniversalUp = true;
         }
@@ -68,18 +82,16 @@ public class MultiplatformUIManager : MonoBehaviour
 
     void LateUpdate()
     {
-        IsUniversalJump = false;
         IsUniversalInteract = false;
-        IsUniversalDropDown= false;
-        
-        if(!PickUpButtonIsDOWN)
-            IsUniversalPickUp= false;
+
+        if (!PickUpButtonIsDOWN)
+            IsUniversalPickUp = false;
 
         IsUniversalLeft = false;
         IsUniversalRight = false;
         IsUniversalUp = false;
         IsUniversalDown = false;
-        IsUniversalToggleChat = false; 
+        IsUniversalToggleChat = false;
     }
     public void Jump()
     {
@@ -87,9 +99,21 @@ public class MultiplatformUIManager : MonoBehaviour
         AudioControl.Instance.Play("IconEnter");
     }
 
+    public void ReleaseJump()
+    {
+        IsUniversalJump = false;
+    }
+
     public void DropDown()
     {
         IsUniversalDropDown = true;
+        IsUniversalDown = true;
+    }
+
+    public void ReleaseDropDown()
+    {
+        IsUniversalDropDown = false;
+        IsUniversalDown = false;
     }
 
     public void PickUp()
@@ -119,7 +143,7 @@ public class MultiplatformUIManager : MonoBehaviour
     {
         CurrentInteractable = interactable;
         Instance.CanInteractIndicator.SetActive(CurrentInteractable != null);
-        
+
     }
 
     internal static void SetCurrentItem(InteractableEntity item)

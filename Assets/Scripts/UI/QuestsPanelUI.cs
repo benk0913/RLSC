@@ -14,6 +14,11 @@ public class QuestsPanelUI : MonoBehaviour
     [SerializeField]
     GameObject PanelObject;
 
+    [SerializeField]
+    Animator ShowHideAnimator;
+
+    bool IsShowingQuests;
+
     public Transform Container;
 
 
@@ -27,14 +32,45 @@ public class QuestsPanelUI : MonoBehaviour
         CORE.Instance.SubscribeToEvent("RefreshQuests", Refresh);
         
         Refresh();
+
+        HideQuests();
+    }
+
+    public void ToggleQuests()
+    {
+        if(IsShowingQuests)
+        {
+            HideQuests();
+        }
+        else
+        {
+            ShowQuests();
+        }
+    }
+    void HideQuests()
+    {
+        ShowHideAnimator.SetTrigger("Hide");
+        IsShowingQuests = false;
+    }
+
+    void ShowQuests()
+    {
+        ShowHideAnimator.SetTrigger("Show");
+        IsShowingQuests = true;
+        CORE.Instance.InvokeEvent("QuestsNotification_OFF");
     }
 
 
     private void Refresh()
     {
         QuestCountLabel.text = CORE.PlayerActor.quests.started.Count.ToString();
-
+    
         PanelObject.SetActive(CORE.PlayerActor.quests.started.Count > 0);
+
+        if(!IsShowingQuests) 
+        {
+            CORE.Instance.InvokeEvent("QuestsNotification");
+        }
 
         float createdYPush = 0f;
         //CREATE NEW

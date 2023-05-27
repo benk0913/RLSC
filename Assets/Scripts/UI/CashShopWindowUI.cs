@@ -200,7 +200,6 @@ public class CashShopWindowUI : MonoBehaviour, WindowInterface
 
     public void RefreshEQPState()
     {
-        Debug.LogError("CASH REFRESH");
 
         EQPLabel.text = System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.info.cashPoints);
 

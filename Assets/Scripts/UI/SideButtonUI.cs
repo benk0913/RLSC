@@ -14,7 +14,7 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     Button ReportBugButton;
-    
+
     [SerializeField]
     Button AbordExpeditionButton;
 
@@ -38,12 +38,12 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
         Animer.SetTrigger("Show");
         isVisible = true;
 
-        AbordExpeditionButton.gameObject.SetActive(CORE.Instance.Data.content.Expeditions.Find(X=>{ return X.ContainsScene(CORE.Instance.ActiveSceneInfo.sceneName);}) != null);
+        AbordExpeditionButton.gameObject.SetActive(CORE.Instance.Data.content.Expeditions.Find(X => { return X.ContainsScene(CORE.Instance.ActiveSceneInfo.sceneName); }) != null);
     }
 
     public void Toggle()
     {
-        if(isVisible)
+        if (isVisible)
         {
             CORE.Instance.CloseCurrentWindow();
         }
@@ -60,15 +60,28 @@ public class SideButtonUI : MonoBehaviour, WindowInterface
 
     public void SendReportABug()
     {
-        CORE.Instance.ReportBug(()=>
+        CORE.Instance.ReportBug(() =>
         {
-            LockReportABug(); 
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Thank you for the report!",Color.green,2f));
+            LockReportABug();
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Thank you for the report!", Color.green, 2f));
         });
     }
 
     public void AbortExped()
     {
-        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Are you sure")+"?",()=>SocketHandler.Instance.SendEvent("suicide"));
+        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Are you sure") + "?", () =>
+        {
+            SocketHandler.Instance.SendEvent("suicide");
+
+            WarningWindowUI.Instance.Show(CORE.QuickTranslate("Leave Party") + "?", () =>
+            {
+                SocketHandler.Instance.SendPartyLeave();
+            });
+        });
+    }
+
+    public void KillSelf()
+    {
+        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Are you sure") + "?", () => SocketHandler.Instance.SendEvent("suicide"));
     }
 }

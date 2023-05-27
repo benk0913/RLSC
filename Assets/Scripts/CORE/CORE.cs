@@ -1632,6 +1632,7 @@ public class RoomData
         if (!actor.isMob)
         {
             RefreshThreat();
+            CORE.Instance.InvokeEvent("HumanActorJoined");
         }
     }
 

@@ -2097,6 +2097,8 @@ public class SocketHandler : MonoBehaviour
         
         CORE.Instance.AddChatMessage("<color=" + Colors.COLOR_HIGHLIGHT + ">" + CORE.QuickTranslate(itemName) + " " +CORE.QuickTranslate("has been added to your inventory")+ "!'</color>");
         CORE.Instance.InvokeEvent("InventoryNotification");
+
+        InventoryUI.Instance.AttemptAutoequip(itemName);
     }
 
     public void OnCashRefresh(string eventName, JSONNode data)

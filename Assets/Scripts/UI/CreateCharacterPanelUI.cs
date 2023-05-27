@@ -110,6 +110,7 @@ public class CreateCharacterPanelUI : MonoBehaviour
             CORE.Instance.DelayedInvokation(0.1f, () => {
                 MainMenuUI.Instance.RefreshUserInfo();            
                 ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
+                MainMenuUI.Instance.AutoConfirmOnlyCharacter();
             });
         },()=>
         {

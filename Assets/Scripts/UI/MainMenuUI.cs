@@ -67,14 +67,14 @@ public class MainMenuUI : MonoBehaviour
     {
         AutoLogin();
     }
-    
+
     public void AutoLogin()
     {
         CORE.Instance.LogMessage("Auto Login");
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
         // string region = PlayerPrefs.GetString("region", "");
-        
+
         // if (string.IsNullOrEmpty(region))
         // {
         //     SocketHandler.Instance.SendGeolocationRequest((UnityWebRequest response) =>
@@ -103,9 +103,9 @@ public class MainMenuUI : MonoBehaviour
         //     SocketHandler.Instance.ServerEnvironment.Region = region;
         // }
 
-        Action postRealmLogin = () => 
+        Action postRealmLogin = () =>
         {
-            CORE.Instance.LogMessage("Post Realm Login ("+ SocketHandler.Instance.SelectedRealmIndex+")");
+            CORE.Instance.LogMessage("Post Realm Login (" + SocketHandler.Instance.SelectedRealmIndex + ")");
             RealmSigil.SetData(CORE.Instance.Data.content.Realms[SocketHandler.Instance.SelectedRealmIndex]);
 
             if (!string.IsNullOrEmpty(SocketHandler.Instance.SessionTicket))
@@ -125,8 +125,8 @@ public class MainMenuUI : MonoBehaviour
                 {
                     SocketHandler.Instance.SendLogin(() =>
                     {
-                        
-                    
+
+
                         ResourcesLoader.Instance.RunWhenResourcesLoaded(() =>
                         {
                             ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
@@ -139,10 +139,10 @@ public class MainMenuUI : MonoBehaviour
 
         SocketHandler.Instance.SelectedRealmIndex = PlayerPrefs.GetInt("SelectedRealmIndex", -1);
 
-        if(SocketHandler.Instance.SelectedRealmIndex == -1)
+        if (SocketHandler.Instance.SelectedRealmIndex == -1)
         {
             ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
-            RealmSelectionUI.Instance.Show((int selectdRealm) => 
+            RealmSelectionUI.Instance.Show((int selectdRealm) =>
             {
                 SocketHandler.Instance.SelectedRealmIndex = selectdRealm;
                 PlayerPrefs.SetInt("SelectedRealmIndex", SocketHandler.Instance.SelectedRealmIndex);
@@ -171,7 +171,7 @@ public class MainMenuUI : MonoBehaviour
     {
         SocketHandler.Instance.SendCreateCharacter(element, null, () =>
         {
-            AudioControl.Instance.SetVolume("Music",0.6f,true);
+            AudioControl.Instance.SetVolume("Music", 0.6f, true);
             SocketHandler.Instance.SendSelectCharacter();
             CORE.Instance.CheckOOGInvitations();
         });
@@ -181,31 +181,31 @@ public class MainMenuUI : MonoBehaviour
     {
         ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
 
-        SocketHandler.Instance.SendSelectCharacter(()=>
+        SocketHandler.Instance.SendSelectCharacter(() =>
         {
             ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
-            AudioControl.Instance.SetVolume("Music",0.6f,true);
+            AudioControl.Instance.SetVolume("Music", 0.6f, true);
             CORE.Instance.CheckOOGInvitations();
 
         }, index);
     }
 
-    public void DeleteCharacter (string actorId)
+    public void DeleteCharacter(string actorId)
     {
         WarningWindowUI.Instance.Show("Delete this character forever and ever!?", () =>
         {
-            InputLabelWindow.Instance.Show("Type 'DELETE'","For Extra Validation",(string result)=>
+            InputLabelWindow.Instance.Show("Type 'DELETE'", "For Extra Validation", (string result) =>
             {
-                if(result.ToLower() == "delete")
+                if (result.ToLower() == "delete")
                 {
                     ResourcesLoader.Instance.LoadingWindowObject.SetActive(true);
                     SocketHandler.Instance.SendDeleteCharacter(actorId, () =>
                     {
                         ResourcesLoader.Instance.LoadingWindowObject.SetActive(false);
                         List<ActorData> characters = new List<ActorData>();
-                        foreach(ActorData chara in SocketHandler.Instance.CurrentUser.chars)
+                        foreach (ActorData chara in SocketHandler.Instance.CurrentUser.chars)
                         {
-                            if(chara.actorId == actorId)
+                            if (chara.actorId == actorId)
                             {
                                 continue;
                             }
@@ -218,67 +218,67 @@ public class MainMenuUI : MonoBehaviour
                     });
                 }
             });
-            
+
 
         });
     }
 
     public void RefreshUserInfo()
     {
-        if(CharacterSelectionContainer == null)
+        if (CharacterSelectionContainer == null)
         {
             return;
         }
 
         ControllerHint.SetActive(CORE.Instance.IsUsingJoystick);
-        
+
         CORE.DestroyContainer(CharacterSelectionContainer);
         RemoveCharacterSelected();
 
         CORE.Instance.DelayedInvokation(0.1f, () =>
              {
 
-                for (int i = 0; i < SocketHandler.Instance.CurrentUser.chars.Count; i++)
-                {
-                    ActorData character = SocketHandler.Instance.CurrentUser.chars[i];
-                    int characterIndex = 0 + i;
-                    
-                    DisplayCharacterUI disAct = Instantiate(ResourcesLoader.Instance.GetObject("DisplayActor")).GetComponent<DisplayCharacterUI>();
-                    disAct.transform.SetParent(CharacterSelectionContainer, false);
-                    disAct.transform.localScale = Vector3.one;
-                    disAct.transform.position = Vector3.one;
-                    disAct.AttachedCharacter.transform.position = Vector3.one;
-                    disAct.AttachedCharacter.SetActorInfo(character);
-                    disAct.GetComponent<DoubleclickHandlerUI>().OnDoubleClick.AddListener(() => { SelectCharacter(characterIndex); });
-                    disAct.SetInfo(() => { SetCharacterSelected(disAct); });
-                    if (i == 0)
-                    {
-                        SetCharacterSelected(disAct);
-                    }
+                 for (int i = 0; i < SocketHandler.Instance.CurrentUser.chars.Count; i++)
+                 {
+                     ActorData character = SocketHandler.Instance.CurrentUser.chars[i];
+                     int characterIndex = 0 + i;
 
-                    disAct.AttachedCharacter.RefreshLooks();
-                }
+                     DisplayCharacterUI disAct = Instantiate(ResourcesLoader.Instance.GetObject("DisplayActor")).GetComponent<DisplayCharacterUI>();
+                     disAct.transform.SetParent(CharacterSelectionContainer, false);
+                     disAct.transform.localScale = Vector3.one;
+                     disAct.transform.position = Vector3.one;
+                     disAct.AttachedCharacter.transform.position = Vector3.one;
+                     disAct.AttachedCharacter.SetActorInfo(character);
+                     disAct.GetComponent<DoubleclickHandlerUI>().OnDoubleClick.AddListener(() => { SelectCharacter(characterIndex); });
+                     disAct.SetInfo(() => { SetCharacterSelected(disAct); });
+                     if (i == 0)
+                     {
+                         SetCharacterSelected(disAct);
+                     }
 
-                if (SocketHandler.Instance.CurrentUser.chars.Count <= 0)
-                {
-                    OnNoCharacters?.Invoke();
-                }
-                int maxCharacters = CORE.Instance.Data.content.MaxCharacters + SocketHandler.Instance.CurrentUser.info.additionalCharSlots;
-                CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Count < maxCharacters;
-                CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : CORE.QuickTranslate("Cannot have more than")+" " + maxCharacters + " "+ CORE.QuickTranslate("characters")+".");
+                     disAct.AttachedCharacter.RefreshLooks();
+                 }
 
-                CORE.Instance.DelayedInvokation(0.1f, () =>
-                {
-                    if (SelectionGroup != null)
-                    {
-                        SelectionGroup.RefreshGroup(false);
-                        SelectionGroup.enabled =false;
-                        CORE.Instance.DelayedInvokation(0.1f, () =>
-                        {
-                            SelectionGroup.enabled =true;
-                        });
-                    }
-                });
+                 if (SocketHandler.Instance.CurrentUser.chars.Count <= 0)
+                 {
+                     OnNoCharacters?.Invoke();
+                 }
+                 int maxCharacters = CORE.Instance.Data.content.MaxCharacters + SocketHandler.Instance.CurrentUser.info.additionalCharSlots;
+                 CreateCharButton.interactable = SocketHandler.Instance.CurrentUser.chars.Count < maxCharacters;
+                 CreateCharTooltip.SetTooltip(CreateCharButton.interactable ? "Create a new character!" : CORE.QuickTranslate("Cannot have more than") + " " + maxCharacters + " " + CORE.QuickTranslate("characters") + ".");
+
+                 CORE.Instance.DelayedInvokation(0.1f, () =>
+                 {
+                     if (SelectionGroup != null)
+                     {
+                         SelectionGroup.RefreshGroup(false);
+                         SelectionGroup.enabled = false;
+                         CORE.Instance.DelayedInvokation(0.1f, () =>
+                         {
+                             SelectionGroup.enabled = true;
+                         });
+                     }
+                 });
 
 
              });
@@ -296,18 +296,34 @@ public class MainMenuUI : MonoBehaviour
 
     public void RemoveCharacterSelected()
     {
-        if(SelectedDisplayActor != null)
+        if (SelectedDisplayActor != null)
         {
             SelectedDisplayActor.Deselect();
             SelectedDisplayActor = null;
         }
     }
 
+    public void AutoConfirmOnlyCharacter()
+    {
+        if (CharacterSelectionContainer.childCount > 1)
+        {
+            Debug.LogError("Not first"+ CharacterSelectionContainer.childCount);
+            return; //Not the first character;
+        }
+
+        CORE.Instance.DelayedInvokation(0.2f, () =>
+        {
+            SetCharacterSelected(CharacterSelectionContainer.GetChild(0).GetComponent<DisplayCharacterUI>());
+            ConfirmSelectedCharacter();
+        });
+
+    }
+
     public void ConfirmSelectedCharacter()
     {
-        if(SelectedDisplayActor == null)
+        if (SelectedDisplayActor == null)
         {
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No selected character...", Colors.AsColor(Colors.COLOR_HIGHLIGHT),1f));
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("No selected character...", Colors.AsColor(Colors.COLOR_HIGHLIGHT), 1f));
             return;
         }
 
@@ -346,12 +362,12 @@ public class MainMenuUI : MonoBehaviour
     public void ShowForums()
     {
         OpenURL("https://steamcommunity.com/app/1903270/discussions/");
-// #if !UNITY_ANDROID && !UNITY_IOS
-//         Steamworks.SteamFriends.ActivateGameOverlay("community");
-// #endif
+        // #if !UNITY_ANDROID && !UNITY_IOS
+        //         Steamworks.SteamFriends.ActivateGameOverlay("community");
+        // #endif
     }
 
-       public void ShowStorePage()
+    public void ShowStorePage()
     {
         Application.OpenURL("https://discord.gg/NbZgMpRxqr");
         //Steamworks.SteamFriends.ActivateGameOverlayToStore(new Steamworks.AppId_t(1903270), Steamworks.EOverlayToStoreFlag.k_EOverlayToStoreFlag_None);

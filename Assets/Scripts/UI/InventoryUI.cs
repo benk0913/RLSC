@@ -87,16 +87,16 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     [SerializeField]
     public List<GameObject> EquipmentTabsSelectedHalos;
-    
+
     [SerializeField]
-    public List<GameObject> EquipmentPanelsGameObjects; 
+    public List<GameObject> EquipmentPanelsGameObjects;
 
     public List<EquippableSlotTab> EquipSlotsByTab = new List<EquippableSlotTab>();
-    
+
 
     InventorySlotUI SelectedSlot;
     float SelectedTime;
-    
+
     public bool IsOpen;
 
     bool isInspecting;
@@ -111,7 +111,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     {
         get
         {
-            
+
             for (int i = 0; i < EquipmentPanelsGameObjects.Count; i++)
             {
                 if (EquipmentPanelsGameObjects[i].activeInHierarchy)
@@ -133,16 +133,16 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     {
         Hide();
     }
-    
+
 
     private void Update()
-    {   
-        if(Input.GetKeyDown(InputMap.Map["Drop Inventory Item"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1")))
+    {
+        if (Input.GetKeyDown(InputMap.Map["Drop Inventory Item"]) || (CORE.Instance.IsUsingJoystick && Input.GetButtonDown("Joystick 1")))
         {
             AttemptDrop();
         }
 
-        if(currentlyDraggedItem != null)
+        if (currentlyDraggedItem != null)
         {
             currentlyDraggedItem.transform.position = Input.mousePosition;
         }
@@ -150,9 +150,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     public void IncreaseSlotSize()
     {
-        int currentLevel = ((ItemsContainer.childCount-1)-CORE.Instance.Data.content.InventoryData.StartingSlots)/CORE.Instance.Data.content.InventoryData.IncreaseSlotsAmount;
-        
-        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Increase Inventory Capacity?, this will cost you ")+CORE.Instance.Data.content.InventoryData.BuySlotsPrices[currentLevel]+CORE.QuickTranslate(" gold!"),()=>
+        int currentLevel = ((ItemsContainer.childCount - 1) - CORE.Instance.Data.content.InventoryData.StartingSlots) / CORE.Instance.Data.content.InventoryData.IncreaseSlotsAmount;
+
+        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Increase Inventory Capacity?, this will cost you ") + CORE.Instance.Data.content.InventoryData.BuySlotsPrices[currentLevel] + CORE.QuickTranslate(" gold!"), () =>
         {
             SocketHandler.Instance.SendEvent("increase_inventory_slots");
         });
@@ -169,7 +169,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         isInspecting = ofActor != CORE.PlayerActor;
 
-        if(isInspecting)
+        if (isInspecting)
         {
             AudioControl.Instance.Play("partyWindowOpen");
         }
@@ -197,14 +197,14 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (CORE.Instance.IsUsingJoystick)
         {
-           
-            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + "B "+translatedDrop+"</color>";
-            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + "A "+ translatedUse +"</ color>";
+
+            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + "B " + translatedDrop + "</color>";
+            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + "A " + translatedUse + "</ color>";
         }
         else
         {
-            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + InputMap.Map["Drop Inventory Item"].ToString() + translatedDrop +"</color>";
-            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + InputMap.Map["Use Inventory Item"].ToString() +translatedUse+"</color>";
+            IsSelectedDropText.text = "<color=" + Colors.COLOR_BAD + ">" + InputMap.Map["Drop Inventory Item"].ToString() + translatedDrop + "</color>";
+            IsSelectedUseText.text = "<color=" + Colors.COLOR_HIGHLIGHT + ">" + InputMap.Map["Use Inventory Item"].ToString() + translatedUse + "</color>";
         }
 
         AudioControl.Instance.Play(ShowSound);
@@ -216,7 +216,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         IsOpen = false;
         this.gameObject.SetActive(false);
 
-        if(CORE.Instance != null)
+        if (CORE.Instance != null)
             CORE.Instance.UnsubscribeFromEvent("InventoryUpdated", RefreshUI);
 
         AudioControl.Instance.Play(HideSound);
@@ -224,7 +224,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     void OnDisable()
     {
-        if(InspectPanel.IsFocusingOnActor)
+        if (InspectPanel.IsFocusingOnActor)
         {
             InspectPanel.SetActor(null);
         }
@@ -247,10 +247,10 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (!isInspecting)
         {
-            
-            if(IsCashTab)
+
+            if (IsCashTab)
             {
-                CashPointsLabel.text =  System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.info.cashPoints);
+                CashPointsLabel.text = System.String.Format("{0:n0}", SocketHandler.Instance.CurrentUser.info.cashPoints);
 
                 CORE.ClearContainer(CashItemsContainer);
 
@@ -283,9 +283,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
                 }
 
-                if(CORE.Instance.Data.content.InventoryData.MaxSlots > ItemsContainer.childCount)
+                if (CORE.Instance.Data.content.InventoryData.MaxSlots > ItemsContainer.childCount)
                 {
-                    InventoryPlusButton.SetParent(ItemsContainer,false);
+                    InventoryPlusButton.SetParent(ItemsContainer, false);
                     InventoryPlusButton.gameObject.SetActive(true);
                     InventoryPlusButton.transform.localScale = Vector3.one;
                     InventoryPlusButton.transform.position = Vector3.zero;
@@ -294,7 +294,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 {
                     InventoryPlusButton.gameObject.SetActive(false);
                 }
-                
+
             }
         }
 
@@ -302,10 +302,11 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         for (int i = 0; i < EquipSlots.Count; i++)
         {
             Item item = null;
-            currentActor.equips.TryGetValue(EquipSlots[i].Type.name, out item); 
+            currentActor.equips.TryGetValue(EquipSlots[i].Type.name, out item);
             InventorySlotUI slot = EquipSlots[i].Slot;
-            
-            slot.SetItem(item, () => {
+
+            slot.SetItem(item, () =>
+            {
                 if (!isInspecting)
                 {
                     Select(slot);
@@ -348,12 +349,13 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (ContainersScrolls != null)
         {
-            CORE.Instance.DelayedInvokation(0f,()=>{
+            CORE.Instance.DelayedInvokation(0f, () =>
+            {
                 ContainersScrolls[index].verticalNormalizedPosition = 1f;
             });
         }
 
-        if(IsCashTab)
+        if (IsCashTab)
         {
             BankPanelUI.Instance.Hide();
             ScrapWindowUI.Instance.Hide();
@@ -424,8 +426,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     }
 
     internal void UndragItem(InventorySlotUI inventorySlotUI)
-    { 
-        if(currentlyDraggedItem != null)
+    {
+        if (currentlyDraggedItem != null)
         {
             //Select(inventorySlotUI);
             currentlyDraggedItem.gameObject.SetActive(false);
@@ -443,61 +445,61 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (SelectedSlot != null)
         {
-            if(SelectedSlot.IsBankSlot)
+            if (SelectedSlot.IsBankSlot)
             {
-                if(slot.IsBankSlot) //From bank slot to bank slot 
+                if (slot.IsBankSlot) //From bank slot to bank slot 
                 {
-                    if(slot == SelectedSlot)// Doubleclick
+                    if (slot == SelectedSlot)// Doubleclick
                     {
-                        BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
-                    }
-                    else 
-                    {
-                        BankPanelUI.Instance.SwapBankSlot(SelectedSlot,slot);
-                    }
-                }
-                else if(slot.IsEquipmentSlot) //From bank slot to equip slot 
-                {
-                    BankPanelUI.Instance.BankFromEquipSlot(SelectedSlot,slot);
-                }
-                else //From bank slot to other (inventory) slot 
-                {
-                    BankPanelUI.Instance.RetreiveItemToSlot(SelectedSlot,slot);
-                }
-            }
-            else if(slot.IsBankSlot)
-            {
-                if(SelectedSlot.IsBankSlot) //From bank slot to bank slot 
-                {
-                    if(slot == SelectedSlot)// Doubleclick
-                    {
-                        BankPanelUI.Instance.UsedBankItem(SelectedSlot);    
+                        BankPanelUI.Instance.UsedBankItem(SelectedSlot);
                     }
                     else
                     {
-                        BankPanelUI.Instance.SwapBankSlot(SelectedSlot,slot);
+                        BankPanelUI.Instance.SwapBankSlot(SelectedSlot, slot);
                     }
                 }
-                else if(SelectedSlot.IsEquipmentSlot) //From equip slot to bank slot 
+                else if (slot.IsEquipmentSlot) //From bank slot to equip slot 
+                {
+                    BankPanelUI.Instance.BankFromEquipSlot(SelectedSlot, slot);
+                }
+                else //From bank slot to other (inventory) slot 
+                {
+                    BankPanelUI.Instance.RetreiveItemToSlot(SelectedSlot, slot);
+                }
+            }
+            else if (slot.IsBankSlot)
+            {
+                if (SelectedSlot.IsBankSlot) //From bank slot to bank slot 
+                {
+                    if (slot == SelectedSlot)// Doubleclick
+                    {
+                        BankPanelUI.Instance.UsedBankItem(SelectedSlot);
+                    }
+                    else
+                    {
+                        BankPanelUI.Instance.SwapBankSlot(SelectedSlot, slot);
+                    }
+                }
+                else if (SelectedSlot.IsEquipmentSlot) //From equip slot to bank slot 
                 {
                     BankPanelUI.Instance.BankFromEquipSlot(slot, SelectedSlot);
                 }
                 else //From inventory slot to bank slot 
                 {
-                    BankPanelUI.Instance.SetItemInBank(SelectedSlot,slot);
+                    BankPanelUI.Instance.SetItemInBank(SelectedSlot, slot);
                 }
             }
-            else if(slot.IsScrapSlot)
+            else if (slot.IsScrapSlot)
             {
-                if(SelectedSlot.IsScrapSlot) //From trade slot to trade slot 
+                if (SelectedSlot.IsScrapSlot) //From trade slot to trade slot 
                 {
-                    if(slot == SelectedSlot)// Doubleclick
+                    if (slot == SelectedSlot)// Doubleclick
                     {
-                        ScrapWindowUI.Instance.Clear();    
+                        ScrapWindowUI.Instance.Clear();
                     }
 
                 }
-                else if(SelectedSlot.IsEquipmentSlot) //From equip slot to scrap slot 
+                else if (SelectedSlot.IsEquipmentSlot) //From equip slot to scrap slot 
                 {
                     TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("First UNEQUIP the item, then scrap it.", Color.red));
                 }
@@ -506,40 +508,40 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                     ScrapWindowUI.Instance.SetItem(SelectedSlot.CurrentItem, SelectedSlot.transform.GetSiblingIndex());
                 }
             }
-            else if(SelectedSlot.IsTradeSlot)
+            else if (SelectedSlot.IsTradeSlot)
             {
-                if(slot.IsTradeSlot) //From trade slot to trade slot 
+                if (slot.IsTradeSlot) //From trade slot to trade slot 
                 {
-                    if(slot == SelectedSlot)// Doubleclick
+                    if (slot == SelectedSlot)// Doubleclick
                     {
-                        TradeWindowUI.Instance.SetItem(null,SelectedSlot);    
+                        TradeWindowUI.Instance.SetItem(null, SelectedSlot);
                     }
                 }
-                else if(slot.IsEquipmentSlot) //From trade slot to other slot 
+                else if (slot.IsEquipmentSlot) //From trade slot to other slot 
                 {
-                    TradeWindowUI.Instance.SetItem(null,SelectedSlot);
+                    TradeWindowUI.Instance.SetItem(null, SelectedSlot);
                 }
                 else //From trade slot to other slot 
                 {
-                    TradeWindowUI.Instance.SetItem(null,SelectedSlot);
+                    TradeWindowUI.Instance.SetItem(null, SelectedSlot);
                 }
             }
-            else if(slot.IsTradeSlot)
+            else if (slot.IsTradeSlot)
             {
-                if(SelectedSlot.IsTradeSlot) //From trade slot to trade slot 
+                if (SelectedSlot.IsTradeSlot) //From trade slot to trade slot 
                 {
-                    if(slot == SelectedSlot) // Doubleclick
+                    if (slot == SelectedSlot) // Doubleclick
                     {
-                        TradeWindowUI.Instance.SetItem(null,slot);    
+                        TradeWindowUI.Instance.SetItem(null, slot);
                     }
                 }
-                else if(SelectedSlot.IsEquipmentSlot) //From equip slot to trade slot 
+                else if (SelectedSlot.IsEquipmentSlot) //From equip slot to trade slot 
                 {
                     // do nothing
                 }
                 else //From inventory slot to trade slot 
                 {
-                    TradeWindowUI.Instance.SetItem(SelectedSlot.CurrentItem,slot);
+                    TradeWindowUI.Instance.SetItem(SelectedSlot.CurrentItem, slot);
                 }
             }
             else
@@ -551,15 +553,15 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 }
                 else if (!SelectedSlot.IsEquipmentSlot && SelectedSlot == slot) //Doubleclick equip
                 {
-                    if(BankPanelUI.Instance.gameObject.activeInHierarchy)
+                    if (BankPanelUI.Instance.gameObject.activeInHierarchy)
                     {
                         BankPanelUI.Instance.UsedInventoryItem(SelectedSlot);
                     }
-                    else if(ScrapWindowUI.Instance.gameObject.activeInHierarchy)
+                    else if (ScrapWindowUI.Instance.gameObject.activeInHierarchy)
                     {
                         ScrapWindowUI.Instance.SetItem(SelectedSlot.CurrentItem, SelectedSlot.transform.GetSiblingIndex());
                     }
-                    else 
+                    else
                     {
                         SocketHandler.Instance.SendUsedItem(SelectedSlot.transform.GetSiblingIndex(), IsCashTab);
                     }
@@ -579,7 +581,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 {
                     SocketHandler.Instance.SendSwappedEquipAndEquipSlots(slot.SlotType.name, SelectedSlot.SlotType.name);
                 }
-                else if (SelectedSlot.IsEquipmentSlot )//swapped between equo and inventory 
+                else if (SelectedSlot.IsEquipmentSlot)//swapped between equo and inventory 
                 {
                     SocketHandler.Instance.SendSwappedItemAndEquipSlots(slot.transform.GetSiblingIndex(), SelectedSlot.SlotType.name, IsCashTab);
                 }
@@ -611,16 +613,16 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     public void UseSelected()
     {
-        if(SelectedSlot == null || SelectedSlot.CurrentItem == null)
+        if (SelectedSlot == null || SelectedSlot.CurrentItem == null)
         {
             return;
         }
 
-        if(SelectedSlot.IsTradeSlot)
+        if (SelectedSlot.IsTradeSlot)
         {
-            TradeWindowUI.Instance.SetItem(null, SelectedSlot);    
+            TradeWindowUI.Instance.SetItem(null, SelectedSlot);
         }
-        else if(TradeWindowUI.Instance.gameObject.activeInHierarchy)
+        else if (TradeWindowUI.Instance.gameObject.activeInHierarchy)
         {
             TradeWindowUI.Instance.AddItem(SelectedSlot.CurrentItem);
         }
@@ -637,6 +639,33 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         }
 
         AudioControl.Instance.Play(UseSelectedSound);
+    }
+
+    public void AttemptAutoequip(string itemName)
+    {
+
+        Item item;
+        for (int foundIndex = 0; foundIndex < CORE.PlayerActor.items.Count; foundIndex++)
+        {
+            item = CORE.PlayerActor.items[foundIndex];
+            if (item.itemName == itemName)
+            {
+                if (CORE.Instance.Data.content.Equips.Find(x => x.name == item.Data.Type.name) == null)
+                {
+                    return; //Not an equippable
+                }
+
+                if (CORE.PlayerActor.equips.ContainsKey(item.Data.Type.name) && CORE.PlayerActor.equips[item.Data.Type.name] != null)
+                {
+                    return; //Something is already equipped in that slot
+                }
+
+                SocketHandler.Instance.SendUsedItem(foundIndex, false);
+                return;
+            }
+        }
+
+        Debug.LogError("Couldn't autoequip " + itemName + " didnt find index");
     }
 
     public void Deselect()
@@ -670,16 +699,16 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
         if (SelectedSlot.IsTradeSlot)
         {
-            TradeWindowUI.Instance.SetItem(null,SelectedSlot);
+            TradeWindowUI.Instance.SetItem(null, SelectedSlot);
             return;
         }
 
-        if(SelectedSlot.IsBankSlot)
+        if (SelectedSlot.IsBankSlot)
         {
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Can't drop directly from bank!", Color.red));
             return;
         }
-        
+
         if (IsCashTab)
         {
             TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Cash items cannot be dropped.", Colors.AsColor(Colors.COLOR_BAD)));
@@ -692,19 +721,19 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         }
         else
         {
-            if(SelectedSlot.CurrentItem.amount > 1)
+            if (SelectedSlot.CurrentItem.amount > 1)
             {
                 InventorySlotUI slot = SelectedSlot;
-                InputLabelWindow.Instance.Show(CORE.QuickTranslate("How many items should you drop")+"?","Set Amount",(string finalValue)=>
+                InputLabelWindow.Instance.Show(CORE.QuickTranslate("How many items should you drop") + "?", "Set Amount", (string finalValue) =>
                 {
                     int finalValueInt = 0;
-                    if(int.TryParse(finalValue, out finalValueInt))
+                    if (int.TryParse(finalValue, out finalValueInt))
                     {
-                        SocketHandler.Instance.SendDroppedItem(slot.transform.GetSiblingIndex(),finalValueInt);
+                        SocketHandler.Instance.SendDroppedItem(slot.transform.GetSiblingIndex(), finalValueInt);
                     }
                     else
                     {
-                        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Wrong Amount")+"!",()=>{},false,null);
+                        WarningWindowUI.Instance.Show(CORE.QuickTranslate("Wrong Amount") + "!", () => { }, false, null);
                     }
                 },
                 slot.CurrentItem.amount);
@@ -718,15 +747,15 @@ public class InventoryUI : MonoBehaviour, WindowInterface
         Deselect();
 
         AudioControl.Instance.Play(DropSound);
-        
+
     }
 
     public void AttemptDropMoney()
     {
-        InputLabelWindow.Instance.Show("Throw Away Money", "Amount Of Money", (string setAmount) => 
+        InputLabelWindow.Instance.Show("Throw Away Money", "Amount Of Money", (string setAmount) =>
         {
             int result = 0;
-            if(int.TryParse(setAmount, out result))
+            if (int.TryParse(setAmount, out result))
             {
                 if (result <= 0)
                 {
@@ -743,8 +772,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
                 JSONClass node = new JSONClass();
 
                 node["money"].AsInt = result;
-                
-                SocketHandler.Instance.SendEvent("dropped_money",node);
+
+                SocketHandler.Instance.SendEvent("dropped_money", node);
                 AudioControl.Instance.PlayInPosition("sound_coins", transform.position);
             }
             else
@@ -757,7 +786,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     public void RefreshInventorySlotIndex(int index)
     {
-        if(!this.gameObject.activeInHierarchy)
+        if (!this.gameObject.activeInHierarchy)
         {
             return;
         }
@@ -767,7 +796,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     public void RefreshCashShopSlotIndex(int index)
     {
-        if(!this.gameObject.activeInHierarchy)
+        if (!this.gameObject.activeInHierarchy)
         {
             return;
         }
@@ -788,7 +817,7 @@ public class InventoryUI : MonoBehaviour, WindowInterface
     //         Item item = null;
     //         currentActor.equips.TryGetValue(EquipSlots[i].Type.name, out item); 
     //         InventorySlotUI slot = EquipSlots[i].Slot;
-            
+
     //         slot.SetItem(item, () => {
     //             if (!isInspecting)
     //             {

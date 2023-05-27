@@ -52,7 +52,7 @@ public class PassiveAbilityCollider : HitCollider
             //TODO Added null check, but didnt solve the issue from the start.
             if (actorVictim == null)
             {
-                Debug.LogError("No Actor component on " + other.gameObject.name);
+                //Debug.LogError("No Actor component on " + other.gameObject.name);
 
                 return;
             }
