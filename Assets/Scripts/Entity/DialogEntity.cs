@@ -16,8 +16,6 @@ public class DialogEntity : MonoBehaviour
 
     [SerializeField]
     TextBubbleUI CurrentBubble;
-
-    float keyDownTimer = 0.5f;
     private void Update()
     {
         if(ContinueCooldown > 0f)
@@ -41,24 +39,10 @@ public class DialogEntity : MonoBehaviour
                     return;
                 }
 
-                if (keyDownTimer > 0f)
-                {
-                    keyDownTimer -= Time.deltaTime;
-                }
-                else
-                {
-                    EndDialog();
-                    keyDownTimer = 0.3f;
-                }
-
                 if(Input.GetKeyDown(InputMap.Map["Exit"]))
                 {
                     EndDialog();
                 }
-            }
-            else
-            {
-                keyDownTimer = 0.3f;
             }
         }
     }
@@ -129,14 +113,14 @@ public class DialogEntity : MonoBehaviour
         {
             return;
         }
-        ContinueCooldown = 1f;
+        ContinueCooldown = 0.1f;
 
         CurrentIndex++;
 
-        if (CurrentIndex >= CurrentDialog.DialogPieces.Count)
+        if (CurrentIndex >= CurrentDialog.DialogPieces.Count) // End of dialog?
         {
             
-            if (CurrentDialog.Decisions.Count > 0)
+            if (CurrentDialog.Decisions.Count > 0) // Has decisions to pick?
             {
                 DecisionContainerUI.Instance.ShowDialogSpecific(CORE.Instance.Room.PlayerActor, CurrentDialog);
             }
@@ -145,10 +129,10 @@ public class DialogEntity : MonoBehaviour
                 EndDialog();
             }
 
-            CurrentIndex = 0;
             return;
         }
 
+        //Not end of dialog
         CORE.Instance.DelayedInvokation(0.1f, () => 
         {
             ShowIndex(CurrentIndex);

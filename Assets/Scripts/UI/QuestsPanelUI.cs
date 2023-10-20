@@ -32,8 +32,8 @@ public class QuestsPanelUI : MonoBehaviour
         CORE.Instance.SubscribeToEvent("RefreshQuests", Refresh);
         
         Refresh();
-
-        HideQuests();
+        
+        ShowQuests();
     }
 
     public void ToggleQuests()

@@ -222,6 +222,8 @@ public class CORE : MonoBehaviour
         CurrentParty = null;
         CurrentGuild = null;
 
+        GameUICG.alpha = 0f;
+        
         DontDestroyOnLoad(this.gameObject);
     }
 
