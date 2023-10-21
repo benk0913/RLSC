@@ -71,7 +71,7 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
             }
 
             SGroup.enabled = false;
-            CORE.Instance.DelayedInvokation(1f, () =>
+            CORE.Instance.DelayedInvokation(0.5f, () =>
             {
                 SGroup.enabled = true;
                 SGroup.RefreshGroup(false);
