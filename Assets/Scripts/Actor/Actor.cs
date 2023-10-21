@@ -876,7 +876,7 @@ public class Actor : MonoBehaviour
 
 
 
-
+        
         Animer.SetFloat("WoundedBlend", Mathf.Lerp(1f, -1f, (float)State.Data.hp / (float)State.Data.MaxHP));
 
         if (IsClientControl && ((AIControl != null && !AIControl.IsBoss) || State.Data.IsPlayer))

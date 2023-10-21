@@ -70,8 +70,10 @@ public class DecisionContainerUI : MonoBehaviour, WindowInterface
                 decisionUI.transform.localScale = Vector3.one;
             }
 
-            CORE.Instance.DelayedInvokation(0.1f, () =>
+            SGroup.enabled = false;
+            CORE.Instance.DelayedInvokation(1f, () =>
             {
+                SGroup.enabled = true;
                 SGroup.RefreshGroup(false);
             });
         
