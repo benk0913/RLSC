@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8445536448255949976}
   m_Father: {fileID: 0}
@@ -39,7 +40,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1314719724268210271
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -52,10 +53,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &1314719724268210270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActorSource: {fileID: 0}
+  CasterActor: {fileID: 0}
   AbilitySource: {fileID: 0}
   targetType: 0
   OnHitEvent:
@@ -141,6 +144,7 @@ MonoBehaviour:
         m_CallState: 2
   CanMiss: 0
   HitOnlyGroundedActors: 0
+  AbilityInstanceId: 
   ParentCollider: {fileID: 0}
   StickToActor: 0
   StickToActorFacing: 0
@@ -155,6 +159,7 @@ MonoBehaviour:
   onHitObject: PainBubblePopHit
   OnHitSource: {fileID: 0}
   RepositionChildrenOnEnable: 0
+  OnlyForPlayers: 0
   DuplicateBubbles: 0
   IsBubble: 1
   BubblesDuplicated: []
@@ -225,6 +230,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.11649999, y: 0.11649999, z: 0.11649999}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8445536448255949976}
   m_RootOrder: 0
@@ -308,6 +314,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.7071064, w: -0.7071072}
   m_LocalPosition: {x: -2.5, y: 1.47, z: 0}
   m_LocalScale: {x: 2.5203, y: 2.5203, z: 2.5203}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8569120220983137347}
   m_Father: {fileID: 1314719724268210268}
