@@ -108,6 +108,13 @@ public class DisplayEXPEntityUI : MonoBehaviour
     IEnumerator ShowRoutine(DisplayExpInstance instance)
     {
         GainEXPText.text = "";
+        
+
+        while (CG.alpha < 1f)
+        {
+            CG.alpha += 1f * Time.deltaTime;
+            yield return 0;
+        }
 
         Animator animer = ConstantFillImage.transform.parent.GetComponent<Animator>();
         if(animer!=null)
@@ -115,7 +122,6 @@ public class DisplayEXPEntityUI : MonoBehaviour
 
         if(instance.CurrentEXP < CurrentExp)
         {
-            CG.alpha += Time.deltaTime;
             while(FillImage.fillAmount < 1f)
             {
                 FillImage.fillAmount += Time.deltaTime;
@@ -135,7 +141,6 @@ public class DisplayEXPEntityUI : MonoBehaviour
         float t = 0f;
         while(t<1f)
         {
-            CG.alpha += Time.deltaTime;
             t += Time.deltaTime;
 
             CurrentExp = Mathf.RoundToInt(Mathf.Lerp(CurrentExp, instance.CurrentEXP, t));
