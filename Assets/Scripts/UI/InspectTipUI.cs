@@ -14,6 +14,8 @@ public class InspectTipUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI ContentLabel;
 
+    [SerializeField] private Vector3 PositionOffset;
+
     Actor currentActor;
 
 
@@ -64,6 +66,7 @@ public class InspectTipUI : MonoBehaviour
         }
         else
         {
+            transform.position = Camera.current.WorldToScreenPoint(currentActor.transform.position) + PositionOffset;
             string targetString = "to inspect " + currentActor.State.Data.name;
             if (ContentLabel.text != targetString)
             {

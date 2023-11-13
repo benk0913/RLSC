@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PartyMemberActivePanelUI : MonoBehaviour
+public class PartyMemberActivePanelUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     protected Actor CurrentActor;
@@ -142,5 +142,10 @@ public class PartyMemberActivePanelUI : MonoBehaviour
         }
 
         UpdateBarFillRoutineInstance = null;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        CORE.Instance.ShowPartyUiWindow();
     }
 }

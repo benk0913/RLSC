@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,13 +8,11 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     [SerializeField]
     public string Text;
-
-
     public List<TooltipBonus> Bonuses;
 
-    bool screenSpaceCamera;
+    protected bool screenSpaceCamera;
 
-    bool IsTranslated = false;
+    protected bool IsTranslated = false;
 
     public void OnPointerEnterSimple()
     {

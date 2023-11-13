@@ -121,7 +121,15 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
         {
             SelectedAbility = HoveredAbility;
 
-            MarkAll();
+            if (SelectedAbility.transform.parent == CurrentAbilitiesContainer)
+            {
+                MarkAll();
+            }
+            else
+            {
+                MarkAllCurrentAbilities();
+            }
+
             SelectedAbility.Select();
 
         }
@@ -149,12 +157,13 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
 
     void ClearMarks()
     {
-        for (int i = 0; i < CurrentAbilitiesContainer.childCount; i++)
-        {
-            AbilitySlotDraggableUI slot = CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
-            slot.Unmark();
-        }
+        ClearMarksCurrentAbilities();
+        
+        ClearMarksAllAbilities();
+    }
 
+    void ClearMarksAllAbilities()
+    {
         for (int i = 0; i < AllAbilitiesContainer.childCount; i++)
         {
             AbilitySlotDraggableUI slot = AllAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
@@ -162,15 +171,32 @@ public class AbilitiesUI : MonoBehaviour, WindowInterface
             slot.Unmark();
         }
     }
+    
+    void ClearMarksCurrentAbilities()
+    {
+        for (int i = 0; i < CurrentAbilitiesContainer.childCount; i++)
+        {
+            AbilitySlotDraggableUI slot = CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
+            slot.Unmark();
+        }
+    }
 
     void MarkAll()
+    {
+        MarkAllCurrentAbilities();
+        MarkAllAbilities();
+    }
+
+    void MarkAllCurrentAbilities()
     {
         for (int i = 0; i < CurrentAbilitiesContainer.childCount; i++)
         {
             AbilitySlotDraggableUI slot = CurrentAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();
             slot.Mark();
         }
-
+    }
+    void MarkAllAbilities()
+    {
         for (int i = 0; i < AllAbilitiesContainer.childCount; i++)
         {
             AbilitySlotDraggableUI slot = AllAbilitiesContainer.GetChild(i).GetComponent<AbilitySlotDraggableUI>();

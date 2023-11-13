@@ -20,6 +20,8 @@ public class QuestData: ScriptableObject
 
     public string Origin = "Unknown";
 
+    public bool IsHidden;
+
     [JsonIgnore]
     public bool CanComplete
     {

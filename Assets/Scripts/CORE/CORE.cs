@@ -103,6 +103,9 @@ public class CORE : MonoBehaviour
             return ConsoleInputUI.Instance.IsTyping;
         }
     }
+
+    public bool IsHotkeysBusy => DialogEntity.InDialog;
+    
     public bool HasWindowOpen
     {
         get
@@ -478,9 +481,8 @@ public class CORE : MonoBehaviour
                 // WarningWindowUI.Instance.Show("Disconnected due to inactivity...",()=>{});
             }
         }
-
-
-        if (InGame && !IsLoading && !IsTyping)
+        
+        if (InGame && !IsLoading && !IsTyping && !IsHotkeysBusy)
         {
             foreach (var windowToKeyCode in WindowToKeyMap)
             {

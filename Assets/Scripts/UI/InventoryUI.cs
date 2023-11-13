@@ -15,6 +15,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
 
     ActorData currentActor;
 
+
+    [SerializeField] public GameObject DragDropSpace;
+    
     [SerializeField]
     public Transform ItemsContainer;
 
@@ -416,6 +419,8 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             return;
         }
 
+        DragDropSpace.SetActive(true);
+
         currentlyDraggedItem = ResourcesLoader.Instance.GetRecycledObject("InventoryDraggedItemUI").GetComponent<InventoryDraggedItemUI>();
         currentlyDraggedItem.transform.SetParent(transform);
         currentlyDraggedItem.SetInfo(inventorySlotUI.CurrentItem);
@@ -433,6 +438,9 @@ public class InventoryUI : MonoBehaviour, WindowInterface
             currentlyDraggedItem.gameObject.SetActive(false);
         }
 
+        
+        DragDropSpace.SetActive(false);
+        
         AudioControl.Instance.Play(UndragItemSound);
 
         //Deselect();

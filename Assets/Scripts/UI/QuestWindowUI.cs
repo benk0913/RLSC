@@ -88,6 +88,11 @@ public class QuestWindowUI : MonoBehaviour, WindowInterface
             {
                 continue;
             }
+            
+            if (quest.IsHidden)
+            {
+                continue;
+            }
 
             QuestWindowTitleUI element = ResourcesLoader.Instance.GetRecycledObject("QuestWindowTitleUI").GetComponent<QuestWindowTitleUI>();
 

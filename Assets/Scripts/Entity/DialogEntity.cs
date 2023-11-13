@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class DialogEntity : MonoBehaviour
 {
     public static DialogEntity CurrentInstance;
+    public static bool InDialog => CurrentInstance != null && CurrentInstance.CurrentDialog != null;
 
     public Dialog DefaultDialog;
     public Dialog CurrentDialog;
@@ -16,6 +17,8 @@ public class DialogEntity : MonoBehaviour
 
     [SerializeField]
     TextBubbleUI CurrentBubble;
+    
+    
     private void Update()
     {
         if(ContinueCooldown > 0f)
@@ -159,7 +162,6 @@ public class DialogEntity : MonoBehaviour
 
     public void EndDialog()
     {
-
         CurrentDialog = null;
         this.CurrentBubble.gameObject.SetActive(false);
         isActiveDialog = false;

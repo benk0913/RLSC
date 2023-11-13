@@ -41,10 +41,12 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
     void Awake()
     {
         Instance = this;
+        Initialize();
+        
         Hide();
     }
 
-    void Start()
+    void Initialize()
     {
 #if UNITY_ANDROID || UNITY_IOS
         PPVignette = PlayerPrefs.GetInt("PPVignette", 0) == 1 ? true : false;
@@ -65,6 +67,12 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         PPProjectionCheckmark.SetActive(PPProjection);
         FlashShakeCheckmark.SetActive(FlashShake);
 
+        RefreshPostProccessState();
+        
+    }
+
+    void RefreshPostProccessState()
+    {
         VolumeComponent vc = GlobalPostProccessProfile.components.Find(x => x.name == "Vignette");
         if (vc != null)
         {
@@ -88,7 +96,6 @@ public class SettingsMenuUI : MonoBehaviour, WindowInterface
         {
             vc.active = PPMotionBlur;
         }
-
     }
 
     public void Hide()
