@@ -24,7 +24,7 @@ public class UnityAndroidVibrator : MonoBehaviour
     {
 
         
-        #if UNITY_ANDROID || UNITY_EDITOR
+        #if UNITY_ANDROID
 
         plugin.Call("VibrateForGivenDuration", DurationInMilliseconds);
         #endif
