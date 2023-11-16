@@ -11,6 +11,8 @@ public class ConditionalInvokation : MonoBehaviour
     public List<AbilityParam> Actions;
 
     public UnityEvent EventToInvoke;
+    
+    public UnityEvent EventToInvokeWhenInvalid;
 
     public string RefreshEventString = "RefreshQuests";
     void Start()
@@ -26,6 +28,7 @@ public class ConditionalInvokation : MonoBehaviour
         {
             if(!cond.IsValid(null))
             {
+                EventToInvokeWhenInvalid?.Invoke();
                 return;
             }
         }
@@ -34,6 +37,7 @@ public class ConditionalInvokation : MonoBehaviour
         {
             if(!cond.IsValid(null))
             {
+                EventToInvokeWhenInvalid?.Invoke();
                 return;
             }
         }
