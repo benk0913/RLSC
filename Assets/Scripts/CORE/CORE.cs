@@ -19,16 +19,42 @@ using UnityEngine.SceneManagement;
 
 public class CORE : MonoBehaviour
 {
+#region Gamewide Essentials
     public static CORE Instance;
-
-    public static ActorData PlayerActor
-    {
-        get{return SocketHandler.Instance.CurrentUser.actor;}
-    }
 
     public CanvasGroup GameUICG;
 
     public CGDatabase Data;
+    
+    public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
+    
+    public EQIapManager IAPManager;
+    
+#endregion
+
+#region Gamewide Configuration
+
+    public bool DisableRAIN =false;
+
+    public bool DEBUG = false;
+
+    public bool DEBUG_SPAMMY_EVENTS = false;
+    
+    public bool NEVER_BITCH = false;
+
+    public bool CAN_MOVE_IN_SPELLS = false;
+
+    const float CURSOR_MAX_TIMER = 3f;
+
+    const float MAX_TIME_AFK = 7200;
+
+#endregion
+    
+#region Gamewide State
+    public static ActorData PlayerActor
+    {
+        get{return SocketHandler.Instance.CurrentUser.actor;}
+    }
 
     public SceneInfo ActiveSceneInfo
     {
@@ -46,18 +72,10 @@ public class CORE : MonoBehaviour
 
     public string TimePhase = "Day";
     
-    public bool DisableRAIN =false;
-
-    public bool DEBUG = false;
-
-    public bool DEBUG_SPAMMY_EVENTS = false;
-
     public Dictionary<string, UnityEvent> DynamicEvents = new Dictionary<string, UnityEvent>();
-
-    public bool NEVER_BITCH = false;
-
-    public bool CAN_MOVE_IN_SPELLS = false;
-
+    
+    List<string> SessionRules = new List<string>();
+    
     public bool IsBitch;
     public bool InGame = false;
     public bool IsLoading = false;
@@ -68,7 +86,7 @@ public class CORE : MonoBehaviour
     public string CurrentTimePhase;
 
     public bool IsUsingJoystick;
-    
+ 
     #if UNITY_ANDROID || UNITY_IOS
     BatteryStatus CurrentBatteryStatus;
     #endif
@@ -137,17 +155,15 @@ public class CORE : MonoBehaviour
     public string CurrentLanguage = "";
 
     float CursorTimer = 0f;
-    const float CURSOR_MAX_TIMER = 3f;
-
-
-    const float MAX_TIME_AFK = 7200;
-
-    float TimeAFK = 0f;
-
-    public WindowInterface CurrentWindow;
-    public Dictionary<WindowInterface, KeyCode> WindowToKeyMap = new Dictionary<WindowInterface, KeyCode>();
     
-    public EQIapManager IAPManager;
+    float TimeAFK = 0f;
+    
+    public WindowInterface CurrentWindow;
+    
+#endregion
+    
+#region Game Initialization
+
     private void Awake()
     {
         Instance = this;
@@ -230,7 +246,7 @@ public class CORE : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void AutoSetLanguage()
+    void AutoSetLanguage()
     {
             LocalizationManager.CurrentLanguage = "English";
             CORE.Instance.InvokeEvent("LanguageChanged");
@@ -263,73 +279,12 @@ public class CORE : MonoBehaviour
 
     }
 
-#if !UNITY_ANDROID && !UNITY_IOS
-    protected Callback<GameLobbyJoinRequested_t> GetJoinLobbyRequestResponse;
-    void OnGetJoinLobbyRequestResponse(GameLobbyJoinRequested_t pCallBack)
-    {
-        LogMessage("STEAM - JOIN LOBBY RESPONSE | key: " + pCallBack.m_steamIDLobby);
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Joining a friend's lobby!", Color.green, 3, true));
-
-        pendingJoinParty = pCallBack.m_steamIDLobby.ToString();
-
-        if (SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
-            CheckOOGInvitations();
-    }
-
-    protected Callback<GameRichPresenceJoinRequested_t> GetJoinRequestResponse;
-    public string pendingJoinParty = null;
-    void OnGetJoinRequestResponse(GameRichPresenceJoinRequested_t pCallBack)
-    {
-        LogMessage("STEAM - JOIN GAME RESPONSE | key: " + pCallBack.m_rgchConnect);
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Joining a friend's game!", Color.green, 3, true));
-
-        pendingJoinParty = pCallBack.m_rgchConnect;
-
-        if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
-            CheckOOGInvitations();
-    }
-
-    protected Callback<LobbyCreated_t> GetLobbyCreatedRespose;
-    void OnGetLobbyCreatedResponse(LobbyCreated_t pCallBack)
-    {
-        if (pCallBack.m_ulSteamIDLobby == 0)
-        {
-            LogMessage("STEAM - LOBBY CREATION FAILED | " + pCallBack.m_eResult.ToString());
-            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Created Steam Lobby Failed!", Color.red, 3, true));
-            return;
-        }
-
-        LogMessage("STEAM - LOBBY CREATED RESPONSE | key: " + pCallBack.m_ulSteamIDLobby);
-        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Lobby Created!", Color.green, 3, true));
-       
-
-        JSONNode node = new JSONClass();
-
-        node["steamLobbyId"] = pCallBack.m_ulSteamIDLobby.ToString();
-        SocketHandler.Instance.SendEvent("party_steam_lobby_id", node);
-    }
-#endif
-
-    void OnApplicationFocus(bool focus)
-    {
-        if (focus)
-        {
-            AudioControl.Instance.SetNoInBackground();
-            IsAppInBackground = false;
-        }
-        else
-        {
-            AudioControl.Instance.SetInBackground();
-            IsAppInBackground = true;
-        }
-    }
-
     private void Start()
     {        
         SubscribeToEvent("ActorDied", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorResurrected", () => { Room.RefreshThreat(); });
         SubscribeToEvent("ActorChangedStates", () => { Room.RefreshThreat(); });
-        SubscribeToEvent("PhaseChanged", () => { PhaseChange(); });
+        SubscribeToEvent("PhaseChanged", () => { OnPhaseChange(); });
 
         WindowToKeyMap.Add(AbilitiesUI.Instance, InputMap.Map["Abilities Window"]);
         WindowToKeyMap.Add(InventoryUI.Instance, InputMap.Map["Character Window"]);
@@ -384,7 +339,71 @@ public class CORE : MonoBehaviour
         }
         #endif
     }
-    private void PhaseChange()
+#endregion
+    
+#region Gamewide Callbacks
+#if !UNITY_ANDROID && !UNITY_IOS
+    protected Callback<GameLobbyJoinRequested_t> GetJoinLobbyRequestResponse;
+    void OnGetJoinLobbyRequestResponse(GameLobbyJoinRequested_t pCallBack)
+    {
+        LogMessage("STEAM - JOIN LOBBY RESPONSE | key: " + pCallBack.m_steamIDLobby);
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Joining a friend's lobby!", Color.green, 3, true));
+
+        pendingJoinParty = pCallBack.m_steamIDLobby.ToString();
+
+        if (SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
+            CheckOOGInvitations();
+    }
+
+    protected Callback<GameRichPresenceJoinRequested_t> GetJoinRequestResponse;
+    public string pendingJoinParty = null;
+    void OnGetJoinRequestResponse(GameRichPresenceJoinRequested_t pCallBack)
+    {
+        LogMessage("STEAM - JOIN GAME RESPONSE | key: " + pCallBack.m_rgchConnect);
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Joining a friend's game!", Color.green, 3, true));
+
+        pendingJoinParty = pCallBack.m_rgchConnect;
+
+        if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
+            CheckOOGInvitations();
+    }
+
+    protected Callback<LobbyCreated_t> GetLobbyCreatedRespose;
+    void OnGetLobbyCreatedResponse(LobbyCreated_t pCallBack)
+    {
+        if (pCallBack.m_ulSteamIDLobby == 0)
+        {
+            LogMessage("STEAM - LOBBY CREATION FAILED | " + pCallBack.m_eResult.ToString());
+            TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Created Steam Lobby Failed!", Color.red, 3, true));
+            return;
+        }
+
+        LogMessage("STEAM - LOBBY CREATED RESPONSE | key: " + pCallBack.m_ulSteamIDLobby);
+        TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Lobby Created!", Color.green, 3, true));
+       
+
+        JSONNode node = new JSONClass();
+
+        node["steamLobbyId"] = pCallBack.m_ulSteamIDLobby.ToString();
+        SocketHandler.Instance.SendEvent("party_steam_lobby_id", node);
+    }
+#endif
+    
+    void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            AudioControl.Instance.SetNoInBackground();
+            IsAppInBackground = false;
+        }
+        else
+        {
+            AudioControl.Instance.SetInBackground();
+            IsAppInBackground = true;
+        }
+    }
+
+    private void OnPhaseChange()
     {
         if (!PhaseInitialized)
         {
@@ -417,6 +436,13 @@ public class CORE : MonoBehaviour
 
         }
     }
+
+    
+#endregion
+
+#region Perframe Gamewide
+  
+    public float TriggerTreshold=0f;
 
     private void Update()
     {
@@ -535,8 +561,10 @@ public class CORE : MonoBehaviour
             InvokeEvent("MachinemaModeRefresh");
         }
     }
-    
-    public float TriggerTreshold=0f;
+  
+#endregion
+
+#region Gamewide Window Management
 
     public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed = null, ActorData ofActor = null, object data = null)
     {
@@ -560,7 +588,6 @@ public class CORE : MonoBehaviour
             CurrentWindow.Show(ofActor == null ? SocketHandler.Instance.CurrentUser.actor : ofActor, data);
         }
     }
-
 
     public void ShowSettingsWindow()
     {
@@ -677,6 +704,10 @@ public class CORE : MonoBehaviour
         });
     }
 
+#endregion
+
+#region Gamewide Utils
+
     public static void ClearContainer(Transform container)
     {
         while (container.childCount > 0)
@@ -714,6 +745,46 @@ public class CORE : MonoBehaviour
         return Instance.Data.Localizator.mSource.GetTranslationCodwise(text);
     }
 
+     
+    public Coroutine DelayedInvokation(float time, Action action)
+    {
+        Coroutine routine = null;
+        routine = StartCoroutine(DelayedInvokationRoutine(time, action,routine));
+        return routine;
+    }
+
+    IEnumerator DelayedInvokationRoutine(float time, Action action,Coroutine routine = null)
+    {
+        yield return new WaitForSeconds(time);
+
+        action.Invoke();
+        routine = null;
+    }
+
+    public void ConditionalInvokation(Predicate<object> condition, Action action, float interval = 1f, bool repeat = false)
+    {
+        StartCoroutine(ConditionalInvokationRoutine(condition, action, interval));
+    }
+
+    IEnumerator ConditionalInvokationRoutine(Predicate<object> condition, Action action, float interval = 1f, bool repeat = false)
+    {
+
+        while (!condition(null))
+        {
+            yield return new WaitForSeconds(interval);
+        }
+
+        action.Invoke();
+
+        if (repeat)
+        {
+            StartCoroutine(ConditionalInvokationRoutine(condition, action, interval, repeat));
+        }
+    }
+    
+#endregion
+
+#region Gamewide General Events
 
     public void SubscribeToEvent(string eventKey, UnityAction action)
     {
@@ -751,41 +822,10 @@ public class CORE : MonoBehaviour
         DynamicEvents[eventKey].Invoke();
     }
 
-    public Coroutine DelayedInvokation(float time, Action action)
-    {
-        Coroutine routine = null;
-        routine = StartCoroutine(DelayedInvokationRoutine(time, action,routine));
-        return routine;
-    }
 
-    IEnumerator DelayedInvokationRoutine(float time, Action action,Coroutine routine = null)
-    {
-        yield return new WaitForSeconds(time);
+#endregion
 
-        action.Invoke();
-        routine = null;
-    }
-
-    public void ConditionalInvokation(Predicate<object> condition, Action action, float interval = 1f, bool repeat = false)
-    {
-        StartCoroutine(ConditionalInvokationRoutine(condition, action, interval));
-    }
-
-    IEnumerator ConditionalInvokationRoutine(Predicate<object> condition, Action action, float interval = 1f, bool repeat = false)
-    {
-
-        while (!condition(null))
-        {
-            yield return new WaitForSeconds(interval);
-        }
-
-        action.Invoke();
-
-        if (repeat)
-        {
-            StartCoroutine(ConditionalInvokationRoutine(condition, action, interval, repeat));
-        }
-    }
+#region Gamewide Log Management  
 
     public void LogMessage(string message)
     {
@@ -807,6 +847,10 @@ public class CORE : MonoBehaviour
         Debug.LogError(message);
     }
 
+#endregion
+
+#region Gamewide Scene Management 
+
     public void LoadScene(string sceneKey, Action onComplete = null)
     {
         if (LoadSceneRoutineInstance != null)
@@ -818,7 +862,66 @@ public class CORE : MonoBehaviour
         LoadSceneRoutineInstance = StartCoroutine(LoadSceneRoutine(sceneKey, onComplete));
     }
 
-    public void SpawnActor(ActorData actorData)
+        
+    Coroutine LoadSceneRoutineInstance;
+    IEnumerator LoadSceneRoutine(string sceneKey, Action onComplete = null)
+    {
+        DisposeChamberCache();
+
+        string currentSceneKey = SceneManager.GetActiveScene().name;
+
+        SceneManager.LoadScene(sceneKey);
+
+        if (RoomUpdateRoutineInstance != null)
+        {
+            StopCoroutine(RoomUpdateRoutineInstance);
+            RoomUpdateRoutineInstance = null;
+        }
+
+        yield return 0;
+
+        while (SceneManager.GetActiveScene().name != sceneKey)
+        {
+            yield return 0;
+        }
+
+        yield return 0;
+
+        RoomUpdateRoutineInstance = StartCoroutine(RoomUpdateRoutine());
+
+        onComplete?.Invoke();
+
+
+        InvokeEvent("NewSceneLoaded");
+
+        PlayerPrefs.SetString(SceneManager.GetActiveScene().name+"_vl","true");
+        PlayerPrefs.Save();
+
+        if (sceneKey == "MainMenu")
+        {
+            if (InGame)
+            {
+                SocketHandler.Instance.SendDisconnectSocket();
+                LeaveGame();
+            }
+        }
+        else
+        {
+            EnterGame();
+        }
+
+        LoadSceneRoutineInstance = null;
+
+        //    ObjectiveUI.Instance.SetInfo(Data.content.Scenes.Find(X => X.sceneName == sceneKey).objectiveDescription);
+
+    }
+
+
+#endregion
+
+#region Gamewide Entity Management 
+
+  public void SpawnActor(ActorData actorData)
     {
         ActorData existingActor = Room.Actors.Find(X => X.actorId == actorData.actorId);
 
@@ -917,89 +1020,6 @@ public class CORE : MonoBehaviour
         Room.ItemLeft(itemId);
     }
 
-    public void DisposeSession()
-    {
-        CORE.Instance.CurrentParty = null;
-        CORE.Instance.CurrentGuild = null;
-        DefaultChatLogUI.Instance.ClearLog();
-        ConsoleInputUI.Instance.ClearLog();
-        LootRollPanelUI.Instance.ClearContainer();
-        ExpeditionQueTimerUI.Instance.Hide();
-        FriendsDataHandler.Instance.ClearFriends();
-        QuestsPanelUI.Instance.Wipe();
-        CORE.Instance.InvokeEvent("PartyUpdated");
-    }
-
-    public void DisposeChamberCache()
-    {
-        screenEffectQue.Clear();
-        
-        if(DialogEntity.CurrentInstance != null)
-        {
-            DialogEntity.CurrentInstance.EndDialog();
-        }
-
-        if(DecisionContainerUI.Instance != null)
-        {
-            DecisionContainerUI.Instance.HideSkipText();
-            DecisionContainerUI.Instance.Hide();
-        }
-        // Room = null;
-    }
-
-    Coroutine LoadSceneRoutineInstance;
-    IEnumerator LoadSceneRoutine(string sceneKey, Action onComplete = null)
-    {
-        DisposeChamberCache();
-
-        string currentSceneKey = SceneManager.GetActiveScene().name;
-
-        SceneManager.LoadScene(sceneKey);
-
-        if (RoomUpdateRoutineInstance != null)
-        {
-            StopCoroutine(RoomUpdateRoutineInstance);
-            RoomUpdateRoutineInstance = null;
-        }
-
-        yield return 0;
-
-        while (SceneManager.GetActiveScene().name != sceneKey)
-        {
-            yield return 0;
-        }
-
-        yield return 0;
-
-        RoomUpdateRoutineInstance = StartCoroutine(RoomUpdateRoutine());
-
-        onComplete?.Invoke();
-
-
-        InvokeEvent("NewSceneLoaded");
-
-        PlayerPrefs.SetString(SceneManager.GetActiveScene().name+"_vl","true");
-        PlayerPrefs.Save();
-
-        if (sceneKey == "MainMenu")
-        {
-            if (InGame)
-            {
-                SocketHandler.Instance.SendDisconnectSocket();
-                LeaveGame();
-            }
-        }
-        else
-        {
-            EnterGame();
-        }
-
-        LoadSceneRoutineInstance = null;
-
-        //    ObjectiveUI.Instance.SetInfo(Data.content.Scenes.Find(X => X.sceneName == sceneKey).objectiveDescription);
-
-    }
-
     Coroutine PickupBusyRoutineInstance;
     public void AttemptPickUpItem(Item item)
     {
@@ -1023,6 +1043,41 @@ public class CORE : MonoBehaviour
         });
     }
 
+#endregion
+
+#region Gamewide Session Management
+
+    public void DisposeSession()
+    {
+        CORE.Instance.CurrentParty = null;
+        CORE.Instance.CurrentGuild = null;
+        DefaultChatLogUI.Instance.ClearLog();
+        ConsoleInputUI.Instance.ClearLog();
+        LootRollPanelUI.Instance.ClearContainer();
+        ExpeditionQueTimerUI.Instance.Hide();
+        FriendsDataHandler.Instance.ClearFriends();
+        QuestsPanelUI.Instance.Wipe();
+        CORE.Instance.InvokeEvent("PartyUpdated");
+    }
+
+    public void DisposeChamberCache()
+    {
+        screenEffectQue.Clear();
+            
+        if(DialogEntity.CurrentInstance != null)
+        {
+            DialogEntity.CurrentInstance.EndDialog();
+        }
+
+        if(DecisionContainerUI.Instance != null)
+        {
+            DecisionContainerUI.Instance.HideSkipText();
+            DecisionContainerUI.Instance.Hide();
+        }
+        // Room = null;
+    }
+
+
     void EnterGame()
     {
         GameUICG.alpha = 1f;
@@ -1041,52 +1096,6 @@ public class CORE : MonoBehaviour
         InGame = false;
     }
 
-
-    bool autoExpededOnce = false;
-    public void CheckOOGInvitations()
-    {
-        if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
-        {
-            #if !UNITY_ANDROID && !UNITY_IOS
-            if(!string.IsNullOrEmpty(pendingJoinParty))
-            {
-                JSONNode node = new JSONClass();
-                node["steamLobbyId"] = pendingJoinParty;
-                SocketHandler.Instance.SendEvent("party_auto_join", node);
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to join party...", Color.green, 3, false));
-
-            }
-            #endif
-
-            
-            // //TODO Remove HACK
-            // if(!ExpeditionQueTimerUI.Instance.IsSearching && !autoExpededOnce)
-            // {
-            //     SocketHandler.Instance.SendStartExpeditionQueue("Forest");
-            //     CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
-            //         autoExpededOnce = true;
-            //         ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
-            //     });
-            // }
-
-        }
-    }
-
-    public void SetJoystickMode(bool isOn)
-    {
-        if(IsUsingJoystick && !isOn)
-        {
-            IsUsingJoystick = false;
-            //CHANGE STATE
-        }
-        else if (!IsUsingJoystick && isOn)
-        {
-            IsUsingJoystick = true;
-            //CHANGE STATE
-
-        
-        }
-    }
 
     public void ReturnToMainMenu()
     {
@@ -1162,8 +1171,117 @@ public class CORE : MonoBehaviour
         }
 #endif
     }
+    
+    
+    public void RefreshSceneInfo()
+    {
+        SceneInfo info = ActiveSceneInfo;
 
-    #region Screen Effects
+        if (info != null)
+        {
+            if (CORE.Instance.TimePhase == "Day")
+            {
+                if (!string.IsNullOrEmpty(info.MusicTrack))
+                {
+                    AudioControl.Instance.SetMusic(info.MusicTrack);
+                }
+
+                if (!string.IsNullOrEmpty(info.Soundscape))
+                {
+                    AudioControl.Instance.SetSoundscape(info.Soundscape);
+                }
+                else
+                {
+                    AudioControl.Instance.SetSoundscape(null);
+                }
+            }
+            else if (CORE.Instance.TimePhase == "Night")
+            {
+                if (!string.IsNullOrEmpty(info.NightMusicTrack))
+                {
+                    AudioControl.Instance.SetMusic(info.NightMusicTrack);
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(info.MusicTrack))
+                    {
+                        AudioControl.Instance.SetMusic(info.MusicTrack);
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(info.NightSoundscape))
+                {
+                    AudioControl.Instance.SetSoundscape(info.NightSoundscape);
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(info.Soundscape))
+                    {
+                        AudioControl.Instance.SetSoundscape(info.Soundscape);
+                    }
+                    else
+                    {
+                        AudioControl.Instance.SetSoundscape(null);
+                    }
+                }
+            }
+
+
+        }
+    }
+
+#endregion
+
+#region Misc Functionality
+
+    public void CheckOOGInvitations()
+    {
+        if(SocketHandler.Instance.SocketManager.State == BestHTTP.SocketIO.SocketManager.States.Open)
+        {
+    #if !UNITY_ANDROID && !UNITY_IOS
+            if(!string.IsNullOrEmpty(pendingJoinParty))
+            {
+                JSONNode node = new JSONClass();
+                node["steamLobbyId"] = pendingJoinParty;
+                SocketHandler.Instance.SendEvent("party_auto_join", node);
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Trying to join party...", Color.green, 3, false));
+
+            }
+    #endif
+
+                
+            // //TODO Remove HACK
+            // if(!ExpeditionQueTimerUI.Instance.IsSearching && !autoExpededOnce)
+            // {
+            //     SocketHandler.Instance.SendStartExpeditionQueue("Forest");
+            //     CORE.Instance.ConditionalInvokation(X=>ExpeditionQueTimerUI.Instance.IsSearching,()=>{
+            //         autoExpededOnce = true;
+            //         ExpeditionQueTimerUI.Instance.gameObject.SetActive(false);
+            //     });
+            // }
+
+        }
+    }
+
+    public void SetJoystickMode(bool isOn)
+    {
+        if(IsUsingJoystick && !isOn)
+        {
+            IsUsingJoystick = false;
+            //CHANGE STATE
+        }
+        else if (!IsUsingJoystick && isOn)
+        {
+            IsUsingJoystick = true;
+            //CHANGE STATE
+
+            
+        }
+    }
+
+#endregion
+
+#region Gamewide Screen Effects Management
 
     public class ScreenEffectQueInstance
     {
@@ -1253,7 +1371,9 @@ public class CORE : MonoBehaviour
 
     }
 
-    #endregion
+#endregion
+
+#region Gamewide Chat
 
     public void AddChatMessage(string chatlogMessage, string channel = "all")
     {
@@ -1371,63 +1491,7 @@ public class CORE : MonoBehaviour
         }
     }
     
-
-    public void RefreshSceneInfo()
-    {
-        SceneInfo info = ActiveSceneInfo;
-
-        if (info != null)
-        {
-            if (CORE.Instance.TimePhase == "Day")
-            {
-                if (!string.IsNullOrEmpty(info.MusicTrack))
-                {
-                    AudioControl.Instance.SetMusic(info.MusicTrack);
-                }
-
-                if (!string.IsNullOrEmpty(info.Soundscape))
-                {
-                    AudioControl.Instance.SetSoundscape(info.Soundscape);
-                }
-                else
-                {
-                    AudioControl.Instance.SetSoundscape(null);
-                }
-            }
-            else if (CORE.Instance.TimePhase == "Night")
-            {
-                if (!string.IsNullOrEmpty(info.NightMusicTrack))
-                {
-                    AudioControl.Instance.SetMusic(info.NightMusicTrack);
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(info.MusicTrack))
-                    {
-                        AudioControl.Instance.SetMusic(info.MusicTrack);
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(info.NightSoundscape))
-                {
-                    AudioControl.Instance.SetSoundscape(info.NightSoundscape);
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(info.Soundscape))
-                    {
-                        AudioControl.Instance.SetSoundscape(info.Soundscape);
-                    }
-                    else
-                    {
-                        AudioControl.Instance.SetSoundscape(null);
-                    }
-                }
-            }
-
-
-        }
-    }
+#endregion
 }
 
 [Serializable]
