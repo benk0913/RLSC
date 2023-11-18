@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc2adfdfb13ed34ebcde0d74f58d9a9, type: 3}
+  m_Name: Beach
+  m_EditorClassIdentifier: 
+  Floors:
+  - PossibleChambers:
+    - IntermissionChamber0
+    Exp: 0
+    FloorPrediction: 2
+  - PossibleChambers:
+    - FCMonsterQuest_Beach
+    - FCMonsterQuest_BeachB
+    - FCMonsterQuest_BeachJumpquest
+    Exp: 25
+    FloorPrediction: 0
+  - PossibleChambers:
+    - PLACEHOLDER_preboss stage
+    Exp: 12
+    FloorPrediction: 0
+  - PossibleChambers:
+    - PLACEHOLDER_bossesstage
+    Exp: 55
+    FloorPrediction: 0
+  - PossibleChambers:
+    - PLACEHOLDER_campfirestage
+    Exp: 0
+    FloorPrediction: 5
+  - PossibleChambers:
+    - PLACEHOLDER_normal stage
+    Exp: 30
+    FloorPrediction: 0
+  - PossibleChambers:
+    - PLACEHOLDER_preboss_stage
+    Exp: 15
+    FloorPrediction: 0
+  - PossibleChambers:
+    - PLACEHOLDER_bossstage
+    Exp: 32
+    FloorPrediction: 0
+  - PossibleChambers:
+    - PLACEHOLDER_campfirestage2
+    Exp: 0
+    FloorPrediction: 8
+  - PossibleChambers:
+    - PLACEHOLDER_finalstage
+    Exp: 0
+    FloorPrediction: 0
+  PartyLengthMin: 3
+  PartyLengthMax: 5
+  QueueRules:
+  - RequireAllClasses: 1
+    RequireAirOrEarth: 0
+    PartyLength: 4
+    SecondsToStartRule: 0
+  - RequireAllClasses: 0
+    RequireAirOrEarth: 1
+    PartyLength: 4
+    SecondsToStartRule: 30
+  - RequireAllClasses: 0
+    RequireAirOrEarth: 1
+    PartyLength: 3
+    SecondsToStartRule: 60
+  EndTargetScene: Sunset Port
+  EndTargetSceneGate: TavernEntrance
+  SuccessTargetScene: WizardForestCamp
+  SuccessTargetSceneGate: Entrance
+  RequireAllInSameRoomToEnter: 0
+  OnPlayerDeathParams:
+  - Type: {fileID: 11400000, guid: 801798a1757a02c4aa3c6f24bb1d4b2e, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 36ae7797e3063c7459df1c482e8dfafb, type: 2}
+    Value2: 
