@@ -19,7 +19,7 @@ using UnityEngine.SceneManagement;
 
 public class CORE : MonoBehaviour
 {
-#region Gamewide Essentials
+#region Essentials
     public static CORE Instance;
 
     public CanvasGroup GameUICG;
@@ -32,7 +32,7 @@ public class CORE : MonoBehaviour
     
 #endregion
 
-#region Gamewide Configuration
+#region Configuration
 
     public bool DisableRAIN =false;
 
@@ -50,7 +50,7 @@ public class CORE : MonoBehaviour
 
 #endregion
     
-#region Gamewide State
+#region State
     public static ActorData PlayerActor
     {
         get{return SocketHandler.Instance.CurrentUser.actor;}
@@ -74,7 +74,7 @@ public class CORE : MonoBehaviour
     
     public Dictionary<string, UnityEvent> DynamicEvents = new Dictionary<string, UnityEvent>();
     
-    List<string> SessionRules = new List<string>();
+    List<string> SessionRules = new ();
     
     public bool IsBitch;
     public bool InGame = false;
@@ -341,7 +341,7 @@ public class CORE : MonoBehaviour
     }
 #endregion
     
-#region Gamewide Callbacks
+#region Callbacks
 #if !UNITY_ANDROID && !UNITY_IOS
     protected Callback<GameLobbyJoinRequested_t> GetJoinLobbyRequestResponse;
     void OnGetJoinLobbyRequestResponse(GameLobbyJoinRequested_t pCallBack)
@@ -440,7 +440,7 @@ public class CORE : MonoBehaviour
     
 #endregion
 
-#region Perframe Gamewide
+#region Perframe 
   
     public float TriggerTreshold=0f;
 
@@ -564,7 +564,7 @@ public class CORE : MonoBehaviour
   
 #endregion
 
-#region Gamewide Window Management
+#region  Window Management
 
     public void ShowWindow(WindowInterface WindowToShow, KeyCode? keyPressed = null, ActorData ofActor = null, object data = null)
     {
@@ -706,7 +706,7 @@ public class CORE : MonoBehaviour
 
 #endregion
 
-#region Gamewide Utils
+#region  Utils
 
     public static void ClearContainer(Transform container)
     {
@@ -784,7 +784,34 @@ public class CORE : MonoBehaviour
     
 #endregion
 
-#region Gamewide General Events
+#region Session Rules
+
+public void AddSessionRule(string sr)
+{
+    if (HasSessionRule(sr)) return;
+    
+    LogMessage("Add session rule:"+sr);
+    
+    SessionRules.Add(sr);
+}
+
+public void RemoveSessionRule(string sr)
+{
+    if (!HasSessionRule(sr)) return;
+    
+    LogMessage("Remove session rule:"+sr);
+    
+    SessionRules.Remove(sr);
+}
+
+public bool HasSessionRule(string sr)
+{
+    return SessionRules.Contains(sr);
+}
+
+#endregion
+
+#region General Events
 
     public void SubscribeToEvent(string eventKey, UnityAction action)
     {
@@ -825,7 +852,7 @@ public class CORE : MonoBehaviour
 
 #endregion
 
-#region Gamewide Log Management  
+#region Log Management  
 
     public void LogMessage(string message)
     {
@@ -849,7 +876,7 @@ public class CORE : MonoBehaviour
 
 #endregion
 
-#region Gamewide Scene Management 
+#region Scene Management 
 
     public void LoadScene(string sceneKey, Action onComplete = null)
     {
@@ -919,7 +946,7 @@ public class CORE : MonoBehaviour
 
 #endregion
 
-#region Gamewide Entity Management 
+#region Entity Management 
 
   public void SpawnActor(ActorData actorData)
     {
@@ -1045,7 +1072,7 @@ public class CORE : MonoBehaviour
 
 #endregion
 
-#region Gamewide Session Management
+#region Session Management
 
     public void DisposeSession()
     {
@@ -1281,7 +1308,7 @@ public class CORE : MonoBehaviour
 
 #endregion
 
-#region Gamewide Screen Effects Management
+#region Screen Effects Management
 
     public class ScreenEffectQueInstance
     {
@@ -1373,7 +1400,7 @@ public class CORE : MonoBehaviour
 
 #endregion
 
-#region Gamewide Chat
+#region Chat
 
     public void AddChatMessage(string chatlogMessage, string channel = "all")
     {

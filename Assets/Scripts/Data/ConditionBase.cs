@@ -155,6 +155,17 @@ public class ConditionLogic
                         return Inverse;
                     }
                 }
+            case "HasSessionRule":
+            {
+                if (CORE.Instance.HasSessionRule(Value))
+                {
+                    return !Inverse;
+                }
+                else
+                {
+                    return Inverse;
+                }
+            }
         } 
 
         return !Inverse; //  True 

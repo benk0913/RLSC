@@ -18,6 +18,8 @@ public class DialogEntity : MonoBehaviour
     [SerializeField]
     TextBubbleUI CurrentBubble;
     
+    [SerializeField]
+    public UnityEvent OnDialogClose;
     
     private void Update()
     {
@@ -162,6 +164,7 @@ public class DialogEntity : MonoBehaviour
 
     public void EndDialog()
     {
+        OnDialogClose?.Invoke();
         CurrentDialog = null;
         this.CurrentBubble.gameObject.SetActive(false);
         isActiveDialog = false;

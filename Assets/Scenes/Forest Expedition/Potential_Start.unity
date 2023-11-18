@@ -2881,6 +2881,38 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -2.4258971
       objectReference: {fileID: 0}
+    - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 253838620}
+    - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: InvokeGameEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameEventListener, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 2efd00b5b3105bd4983b883ddc4790aa, type: 2}
+    - target: {fileID: 2150766350667378267, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: GameEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2150766351199819809, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2899,6 +2931,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+--- !u!1 &253838619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2150766350667378262, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+  m_PrefabInstance: {fileID: 253838618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &253838620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253838619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9911aa8d9e384b811738160c32d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Events: []
 --- !u!1 &261259599
 GameObject:
   m_ObjectHideFlags: 0
@@ -8235,6 +8285,9 @@ MonoBehaviour:
     IsFemale: 0
   CurrentIndex: 0
   CurrentBubble: {fileID: 1351842202}
+  OnDialogClose:
+    m_PersistentCalls:
+      m_Calls: []
   isActiveDialog: 0
 --- !u!114 &650027846
 MonoBehaviour:
@@ -26906,6 +26959,9 @@ MonoBehaviour:
     IsFemale: 0
   CurrentIndex: 0
   CurrentBubble: {fileID: 1368330781}
+  OnDialogClose:
+    m_PersistentCalls:
+      m_Calls: []
   isActiveDialog: 0
 --- !u!114 &1916778943
 MonoBehaviour:

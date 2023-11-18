@@ -22,6 +22,11 @@ public class GameEventListener : MonoBehaviour
             CORE.Instance.UnsubscribeFromEvent(instance.EventKey, instance.Event.Invoke);
         }
     }
+
+    public void InvokeGameEvent(GameEvent eventObject)
+    {
+        eventObject.Execute();
+    }
 }
 
 [System.Serializable]
