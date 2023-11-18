@@ -14,9 +14,10 @@ public class AIAllyGolem : AIAllyMob
 
             while (SelectedAbility == null)
             {
-                if (!Act.State.Data.states.ContainsKey("Shielded"))
+                if (!Act.State.Data.states.ContainsKey("Invulnerable"))
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "AllyMobExistenceTimerX2" && x.CurrentCD <= 0f);
+                    yield return new WaitForSeconds(1f);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name.Contains("AllyMobExistenceTimer") && x.CurrentCD <= 0f);
 
                     if (SelectedAbility != null)
                     {
@@ -73,12 +74,12 @@ public class AIAllyGolem : AIAllyMob
         List<AbilityState> abilities = new List<AbilityState>();
 
         abilities.AddRange(Act.State.Abilities.FindAll(
-            x => x.CurrentAbility.name != "AllyMobExistenceTimerX2"
-            && x.CurrentCD <= 0 
-            && CurrentTarget != null
-            &&              
-                        (x.CurrentAbility.AIViableRange == 0
-                        || (x.CurrentAbility.AIViableRange > 0f && Vector2.Distance(transform.position, CurrentTarget.transform.position) < x.CurrentAbility.AIViableRange))));
+            x => !x.CurrentAbility.name.Contains("AllyMobExistenceTimer")
+                 && x.CurrentCD <= 0 
+                 && CurrentTarget != null
+                 &&              
+                 (x.CurrentAbility.AIViableRange == 0
+                  || (x.CurrentAbility.AIViableRange > 0f && Vector2.Distance(transform.position, CurrentTarget.transform.position) < x.CurrentAbility.AIViableRange))));
 
         if(abilities.Count == 0)
         {

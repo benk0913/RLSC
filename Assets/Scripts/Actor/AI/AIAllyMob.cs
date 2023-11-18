@@ -14,10 +14,11 @@ public class AIAllyMob : ActorAI
 
             while (SelectedAbility == null)
             {
-                if (!Act.State.Data.states.ContainsKey("Shielded"))
+                if (!Act.State.Data.states.ContainsKey("Invulnerable"))
                 {
-                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name == "AllyMobExistenceTimer" && x.CurrentCD <= 0f);
-
+                    
+                    yield return new WaitForSeconds(1f);
+                    SelectedAbility = Act.State.Abilities.Find(x => x.CurrentAbility.name.Contains("AllyMobExistenceTimer") && x.CurrentCD <= 0f);
                     if (SelectedAbility != null)
                     {
                         break;
@@ -46,7 +47,7 @@ public class AIAllyMob : ActorAI
         List<AbilityState> abilities = new List<AbilityState>();
 
         abilities.AddRange(Act.State.Abilities.FindAll(
-            x => x.CurrentAbility.name != "AllyMobExistenceTimer"
+            x => !x.CurrentAbility.name.Contains("AllyMobExistenceTimer")
             && x.CurrentCD <= 0 
             && CurrentTarget != null
             &&              

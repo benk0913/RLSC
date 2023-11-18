@@ -1134,7 +1134,11 @@ public class Actor : MonoBehaviour
 
     public void ShowHurtLabel(int damage, Actor source = null)
     {
-
+        if (Math.Abs(damage) > CORE.Instance.Data.content.HideDamageAboveNumber)
+        {
+            return;
+        }
+        
         bool isPlayerRelevant = source.State.Data.IsPlayer || this.State.Data.IsPlayer;
 
         if (!CORE.IsMachinemaMode)

@@ -134,6 +134,7 @@ public class DatabaseContent
     public int MinNameLength;
     public int HpRegenSeconds;
     public float HpRegen;
+    public int HideDamageAboveNumber = 9999;
     public int MaxPartyMembers;
     public int PartyInviteTimeoutSeconds;
     public float OnHitBonusesInternalCdSeconds;
@@ -162,7 +163,7 @@ public class DatabaseContent
 
     public bool DangerousEveryoneIsAdmin;
 
-    
+
 }
 
 [Serializable]
