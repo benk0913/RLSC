@@ -50,6 +50,11 @@ public class EQIapManager : IStoreListener {
         IsInitialized = false;
     }
 
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        CORE.Instance.LogMessageError("EQIapManager ERROR - "+message+" | " + error.ToString());
+    }
+
     /// <summary>
     /// Called when a purchase completes.
     ///
