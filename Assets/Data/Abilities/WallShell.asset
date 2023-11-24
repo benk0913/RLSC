@@ -18,8 +18,8 @@ MonoBehaviour:
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
-    AbilityColliderObject: WallShell
-    PrepareAbilityColliderObject: PrepareEarthSpell
+    AbilityColliderObject: 
+    PrepareAbilityColliderObject: 
     HitConditionObject: 
     HitConditionObjectCondition: {fileID: 0}
     HitConditionObjectGameConditions: []
@@ -31,8 +31,8 @@ MonoBehaviour:
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
-    PreparingAnimation: Cast1
-    ExecuteAnimation: Execute1
+    PreparingAnimation: Cast2
+    ExecuteAnimation: Execute2
   CD: 10
   CastingTime: 0.6
   TargetCap: 1
@@ -41,6 +41,16 @@ MonoBehaviour:
   AIViableRange: 0
   IsCastingExternal: 0
   CanMoveInCast: 1
-  OnExecuteParams: []
+  Mastery: 0
+  MasteryDescription: 
+  OnExecuteParams:
+  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 0}
+    Value2: 
   OnHitParams: []
   OnMissParams: []
+  Reverseable: 0
