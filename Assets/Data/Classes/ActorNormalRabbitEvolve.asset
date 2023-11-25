@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
+  m_Name: ActorNormalRabbitEvolve
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 936190719, guid: 04409754138bba1489e865415078f3e0, type: 3}
+  DisplayName: Evolving Bunny
+  Abilities: []
+  PassiveAbility: PassiveHitPuffBunny
+  Attributes:
+    Power: -0.5
+    HP: -0.5
+    Defense: 0
+    Block: 0
+    CDReduction: 0
+    CTReduction: 0
+    Lifesteal: 0
+    LongRangeMultiplier: 0
+    ShortRangeMultiplier: 0
+    WildMagicChance: 0
+    SpellDuration: 0
+    AntiDebuff: 0
+    Threat: 0
+    MovementSpeed: 0.1
+    JumpHeight: 0
+    DoubleCast: 0
+    Explode: 0
+    HpRegen: 0
+  Immunity: []
+  States: []
+  ClassColor: {r: 0, g: 0, b: 0, a: 0}
+  ClassFeatureVideo: {fileID: 0}
+  ClassMusic: {fileID: 0}
+  DropsOnDeath:
+  - {fileID: 11400000, guid: ebaa8fb60635b1f41b0d4627fcb94449, type: 2}
+  CoinDropMultiplier: 1
+  EXPMultiplier: 5
+  OnGetHitParams: []
+  OnSomeoneExecutesParams: []
+  OnDeathParams:
+  - Type: {fileID: 11400000, guid: 925789fd29bf01b4794f3effafc40709, type: 2}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: f21f8946bca3aed4aa07c19ff159c1d3, type: 2}
+    Value2: 
+  UniqueHurtSounds:
+  - RabbitOnHit
+  UniqueBlockSounds: []
+  UniqueDeathSound: brap3
+  NoHurtAnimation: 0
+  AbilitiesInitCount: 3
+  UnlockLevel: 0
+  NextClassJobs: []
+  IsPlayerClass: 0
