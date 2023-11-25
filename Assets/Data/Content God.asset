@@ -953,6 +953,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 916431677a092b240bdd3228b4917203, type: 2}
     - {fileID: 11400000, guid: 7a52df83f8eafce479e996f4d95ea998, type: 2}
     - {fileID: 11400000, guid: 0089b72f450b1fa4ca3b4458e9a7ec49, type: 2}
+    - {fileID: 11400000, guid: ec7f13cc47189f7418f76c17669c1516, type: 2}
     - {fileID: 11400000, guid: e35989922faf0f64c98d9a4784f87b41, type: 2}
     - {fileID: 11400000, guid: a8076f703b7ce61449e71d84be54fbcc, type: 2}
     - {fileID: 11400000, guid: 6b4278970a605d84189fc0dcff1b79ac, type: 2}
@@ -19273,11 +19274,6 @@ MonoBehaviour:
         positionY: 7.9
         respawnSeconds: 60
         IrellevantMob: 1
-      - monsterName: ActorSkeleton
-        positionX: 392.5
-        positionY: 7.1
-        respawnSeconds: 0
-        IrellevantMob: 1
       - monsterName: ActorSkeleton2
         positionX: 380.2
         positionY: 6.1
@@ -19287,16 +19283,6 @@ MonoBehaviour:
         positionX: 181.6
         positionY: -0.4
         respawnSeconds: 60
-        IrellevantMob: 1
-      - monsterName: ActorShellCrab
-        positionX: 302.6
-        positionY: 11.8
-        respawnSeconds: 0
-        IrellevantMob: 1
-      - monsterName: ActorShellCrabSmall
-        positionX: 298.5
-        positionY: 15.3
-        respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSkeleton
         positionX: 418.7
@@ -19830,7 +19816,7 @@ MonoBehaviour:
       NightSoundscape: 
       enablePvp: 0
       displayTitleOnEnter: 0
-      PredictionImage: {fileID: 0}
+      PredictionImage: {fileID: 21300000, guid: 762303b184162c54b816f9e06b32deaa, type: 3}
       Map: 
       MapPoint: 
     - sceneName: BCMonsterQuest_BeachCave1
@@ -20783,7 +20769,22 @@ MonoBehaviour:
       displyName: 
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
-      Mobs: []
+      Mobs:
+      - monsterName: ActorBat
+        positionX: 109.222305
+        positionY: -6.247795
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorMushroomSmall2
+        positionX: 69.222305
+        positionY: -31.247795
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorMushroomSmall
+        positionX: 86.222305
+        positionY: -36.247795
+        respawnSeconds: 0
+        IrellevantMob: 0
       Interactables:
       - interactableName: EndPortalA
         interactableId: 
@@ -20996,13 +20997,13 @@ MonoBehaviour:
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
-      NightMusicTrack: 
-      NightSoundscape: 
+      MusicTrack: FaceBoss
+      Soundscape: Beach SoundScape
+      NightMusicTrack: FaceBoss
+      NightSoundscape: Beach SoundScape
       enablePvp: 0
       displayTitleOnEnter: 0
-      PredictionImage: {fileID: 0}
+      PredictionImage: {fileID: -1823522988, guid: 4301c2d24d7a7724cbdae9c19cab0d7a, type: 3}
       Map: 
       MapPoint: 
     Interactables:

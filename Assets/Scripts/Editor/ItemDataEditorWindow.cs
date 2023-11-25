@@ -12,6 +12,7 @@ public class ItemDataEditorWindow : EditorWindow
     ItemType _currentItemType;
     public List<string> _rarities = new List<string>() { "Common","Uncommon","Rare","Epic","Legendary","One of a kind"};
     private List<ItemData> _rewardPools = new List<ItemData>();
+    private List<QuestData> _quests = new List<QuestData>();
     private List<ClassJob> classJobDataList;
     private Dictionary<ItemData, List<ClassJob>> categorizedClassJobData;
     
@@ -67,6 +68,8 @@ public class ItemDataEditorWindow : EditorWindow
                 }
             }
         }
+        
+        _quests = new List<QuestData>(Resources.FindObjectsOfTypeAll<QuestData>());
     }
 
     void OnGUI()
@@ -135,6 +138,21 @@ public class ItemDataEditorWindow : EditorWindow
                     foreach (ClassJob monster in categorizedClassJobData[item])
                     {
                         EditorGUILayout.LabelField(monster.name);
+                    }
+                }
+
+                foreach (QuestData quest in _quests)
+                {
+                    if (quest.Rewards.FindAll(x => x.Type.name == "Add Item").FindAll(y => y.Value == item.name || (y.ObjectValue != null && y.ObjectValue.name == item.name)).Count == 0)
+                        continue;
+                    
+                    if (quest.IsHidden)
+                    {
+                        EditorGUILayout.LabelField("(Hidden)"+quest.name);
+                    }
+                    else
+                    {
+                        EditorGUILayout.LabelField(quest.name);
                     }
                 }
 
