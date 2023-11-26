@@ -15,11 +15,12 @@ MonoBehaviour:
   Icon: {fileID: 968590385, guid: 04409754138bba1489e865415078f3e0, type: 3}
   DisplayName: Puff Bunny
   Abilities:
-  - Puff Bunny Spooked
+  - Escape
+  - Throw Carrot
   PassiveAbility: PassiveHitPuffBunny
   Attributes:
     Power: 0
-    HP: 0
+    HP: 2
     Defense: 0
     Block: 0
     CDReduction: 0
@@ -31,8 +32,8 @@ MonoBehaviour:
     SpellDuration: 0
     AntiDebuff: 0
     Threat: 0
-    MovementSpeed: 0
-    JumpHeight: 0
+    MovementSpeed: 0.1
+    JumpHeight: 0.5
     DoubleCast: 0
     Explode: 0
     HpRegen: 0
@@ -42,6 +43,7 @@ MonoBehaviour:
   ClassFeatureVideo: {fileID: 0}
   ClassMusic: {fileID: 0}
   DropsOnDeath:
+  - {fileID: 11400000, guid: 563331ea4ae0c484a8b1b248e2d6f0f7, type: 2}
   - {fileID: 11400000, guid: ebaa8fb60635b1f41b0d4627fcb94449, type: 2}
   CoinDropMultiplier: 1
   EXPMultiplier: 5

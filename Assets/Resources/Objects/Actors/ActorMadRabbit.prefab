@@ -1727,8 +1727,7 @@ GameObject:
   - component: {fileID: 1551737043}
   - component: {fileID: 1551737044}
   - component: {fileID: 1551737046}
-  - component: {fileID: 7318722103061463516}
-  - component: {fileID: 4018855144712917049}
+  - component: {fileID: -4295954770748943915}
   m_Layer: 8
   m_Name: ActorMadRabbit
   m_TagString: Actor
@@ -1903,8 +1902,8 @@ MonoBehaviour:
         m_Calls: []
   Rigid: {fileID: 1551737043}
   Body: {fileID: 1450574624275921511}
-  PlayerControl: {fileID: 7318722103061463516}
-  AIControl: {fileID: 4018855144712917049}
+  PlayerControl: {fileID: 0}
+  AIControl: {fileID: -4295954770748943915}
   Animer: {fileID: 1968958247804861251}
   Skin: {fileID: 0}
   GroundMask:
@@ -1937,21 +1936,8 @@ MonoBehaviour:
   InAnimationEmote: 0
   JumpHeight: 20
   InterpolationSpeed: 25
-  ControlSource: 0
---- !u!114 &7318722103061463516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7785496889078657400}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7913fd1b015e2764d8773bc6a5a52cca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentActor: {fileID: 1551737046}
---- !u!114 &4018855144712917049
+  ControlSource: 1
+--- !u!114 &-4295954770748943915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1960,7 +1946,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7785496889078657400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3248b4929e02a8a4aa33d75aaefbe169, type: 3}
+  m_Script: {fileID: 11500000, guid: 31ce14612f8661b4f9c44ec9cad37fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Act: {fileID: 1551737046}
@@ -1968,16 +1954,20 @@ MonoBehaviour:
   IsBoss: 0
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 4097
-  NoticeDistance: 15
+    m_Bits: 1
+  NoticeDistance: 0
   Asleep: 1
   DontInitiateSpells: 0
-  ChaseDistance: 1
-  FleeDistance: 35
+  ChaseDistance: 25
+  FleeDistance: 10
   HasTargetingLine: 0
   IsJumping: 1
   PatrolTargetArea: 1
-  PatrolElapseSpeed: 1
+  PatrolElapseSpeed: 6
+  closestActorDistance: 0
+  EscapeDistance: 10
+  ThrowCarrotRange: 40
+  ThinkingTime: 0
 --- !u!1 &8010918503604997769
 GameObject:
   m_ObjectHideFlags: 0
