@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9e362ffe76194489d387c2eb294caf, type: 3}
-  m_Name: WallShell
+  m_Name: Slime Hop Slow
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 7cbe7cc0ad0ea8c49bf83490f1bbf34c, type: 3}
-  Description: Raise a physical and solid wall from the ground. It may block enemies
-    from advancing, stop enemy projectiles and function as a climbable platform.
+  Icon: {fileID: 21300000, guid: 3c088dabd8b4d464f8883382a02db6c1, type: 3}
+  Description: Strike the enemy in a short distance while backing away from it.
   Colliders:
     HitAbilityColliderObject: 
     MissAbilityColliderObject: 
@@ -24,32 +23,32 @@ MonoBehaviour:
     HitConditionObjectCondition: {fileID: 0}
     HitConditionObjectGameConditions: []
   Sounds:
-    PrepareAbilitySound: E_Wall_PrepareOGG
-    ExecuteAbilitySound: 
+    PrepareAbilitySound: 
+    ExecuteAbilitySound: Slime Jump
     HitAbilitySound: 
     HitAbilitySoundVarriants: []
     MissAbilitySound: 
   Visuals:
     ScreenEffectObject: 
-    PreparingAnimation: Cast2
-    ExecuteAnimation: Execute2
-  CD: 30
+    PreparingAnimation: Cast1
+    ExecuteAnimation: Jump
+  CD: 1
   CastingTime: 1
-  TargetCap: 1
+  TargetCap: 10
   MaxSameTargetHits: 1
-  OnlyIfGrounded: 1
-  AIViableRange: 0
+  OnlyIfGrounded: 0
+  AIViableRange: 1
   IsCastingExternal: 0
-  CanMoveInCast: 1
+  CanMoveInCast: 0
   Mastery: 0
   MasteryDescription: 
   OnExecuteParams:
-  - Type: {fileID: 11400000, guid: 6353e805b3bbacd4ea7ea5d9b2beecb2, type: 2}
+  - Type: {fileID: 11400000, guid: 97f5f3128df482b45928c09019e07632, type: 2}
     Condition: {fileID: 0}
     GameConditions: []
     Targets: 2
-    Value: 
-    ObjectValue: {fileID: 11400000, guid: 3d8fe69247550bb48bb67c681b77187d, type: 2}
+    Value: Engage
+    ObjectValue: {fileID: 0}
     Value2: 
   OnHitParams: []
   OnMissParams: []

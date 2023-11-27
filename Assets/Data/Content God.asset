@@ -918,15 +918,18 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0ba3084f0e46bae4f95664cd4875be64, type: 2}
     - {fileID: 11400000, guid: 95b6aa61b2090cb4998ea47a6b39ef4c, type: 2}
     - {fileID: 11400000, guid: 10a832d5c65aeee4eb80c6b6fa0f1e8e, type: 2}
+    - {fileID: 11400000, guid: c5b162b82e3f3854bbdd603829e9cac5, type: 2}
     - {fileID: 11400000, guid: f7e9b282ccdbb0b4aa0e4fe6e6e8dc6d, type: 2}
     - {fileID: 11400000, guid: b74847b2168bc1c47b1effe4108edf73, type: 2}
     - {fileID: 11400000, guid: 48b9fdea90960ca40900089ba7c0f050, type: 2}
     - {fileID: 11400000, guid: 122e1dac6d3b0354c88c54582c8aeb61, type: 2}
     - {fileID: 11400000, guid: f21f8946bca3aed4aa07c19ff159c1d3, type: 2}
     - {fileID: 11400000, guid: 28eef348302c78844aaf5da2072dfa57, type: 2}
+    - {fileID: 11400000, guid: d36f04cfca3956a4396ff82484f4f04a, type: 2}
     - {fileID: 11400000, guid: a69a1bc485f8f14489f566f8aec9da84, type: 2}
     - {fileID: 11400000, guid: 98da674c4c510054fa4eca9aa40066a2, type: 2}
     - {fileID: 11400000, guid: 0232275aa0d277c488941f40ae46cfc2, type: 2}
+    - {fileID: 11400000, guid: d7a4e9d597c9a3e4291adc537b08b4f6, type: 2}
     - {fileID: 11400000, guid: f803615814bc2004185c0329a58301e4, type: 2}
     - {fileID: 11400000, guid: ea51e382b530d6b48ba216b0a6a3c44d, type: 2}
     - {fileID: 11400000, guid: 3036b22cc4aee574d8d49f2d9a67635b, type: 2}
@@ -1102,6 +1105,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b1db3ec9ac92c5449aa9b176af4b9cc4, type: 2}
     - {fileID: 11400000, guid: 234163ae77b6dc34191326f09493f3eb, type: 2}
     - {fileID: 11400000, guid: 4d1d6cf2a9012ec4c9abae71ed7c6672, type: 2}
+    - {fileID: 11400000, guid: a6040fee074770c498e9e643e63a8fb5, type: 2}
     - {fileID: 11400000, guid: 6219c991027a4e041a4e745bef602efc, type: 2}
     - {fileID: 11400000, guid: 6bb6b16cbbe150a41ab16319abb06af0, type: 2}
     - {fileID: 11400000, guid: 3f6f6ce7775c2484cbc5bb2c1d69bed4, type: 2}
@@ -1433,6 +1437,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3adc6becaed88be408f4c6f335062e45, type: 2}
     - {fileID: 11400000, guid: 40d5448c051e4254da90ccecaf47e881, type: 2}
     - {fileID: 11400000, guid: 7b910040f1e91fa48b378237e97418a8, type: 2}
+    - {fileID: 11400000, guid: 3d8fe69247550bb48bb67c681b77187d, type: 2}
     - {fileID: 11400000, guid: b28ae45bfd144b748bf627daa560b302, type: 2}
     - {fileID: 11400000, guid: 1b9d3bef9cd09c84cb8d16295f284f49, type: 2}
     - {fileID: 11400000, guid: 1951e388feb5ef24e90a8a2a478d1b73, type: 2}
@@ -19790,12 +19795,12 @@ MonoBehaviour:
       - monsterName: ActorShellCrabSmall
         positionX: 113.1
         positionY: -22.9
-        respawnSeconds: 10
+        respawnSeconds: 120
         IrellevantMob: 1
       - monsterName: ActorShellCrabSmall
         positionX: 116.9
         positionY: -22.5
-        respawnSeconds: 10
+        respawnSeconds: 120
         IrellevantMob: 1
       Interactables:
       - interactableName: EndPortalA
@@ -20547,20 +20552,10 @@ MonoBehaviour:
         positionY: -24.6
         respawnSeconds: 300
         IrellevantMob: 1
-      - monsterName: ActorSalamander
-        positionX: 327
-        positionY: -48.2
-        respawnSeconds: 0
-        IrellevantMob: 0
       - monsterName: ActorSimpleFruit
         positionX: 46.8
         positionY: -30.8
         respawnSeconds: 300
-        IrellevantMob: 1
-      - monsterName: ActorSalamanderSmall
-        positionX: 349.6
-        positionY: -37
-        respawnSeconds: 0
         IrellevantMob: 1
       - monsterName: ActorSimpleFruit
         positionX: 51.6
@@ -20572,16 +20567,6 @@ MonoBehaviour:
         positionY: -26.1
         respawnSeconds: 300
         IrellevantMob: 1
-      - monsterName: ActorSalamander
-        positionX: 304.4
-        positionY: -48.6
-        respawnSeconds: 0
-        IrellevantMob: 0
-      - monsterName: ActorSalamander
-        positionX: 152.6
-        positionY: -37.6
-        respawnSeconds: 0
-        IrellevantMob: 0
       - monsterName: ActorSimpleFruit2
         positionX: 92.5
         positionY: -28.1
@@ -21015,6 +21000,21 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
+      - monsterName: ActorNormalRabbitEvolveFull
+        positionX: -27.8
+        positionY: -23
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorNormalRabbitEvolve
+        positionX: -38.6
+        positionY: -22.1
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorNormalRabbitEvolve
+        positionX: -14.2
+        positionY: -17.3
+        respawnSeconds: 0
+        IrellevantMob: 0
       - monsterName: ActorSpikes
         positionX: 4.1
         positionY: -12.4
