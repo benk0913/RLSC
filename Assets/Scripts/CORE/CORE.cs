@@ -793,6 +793,7 @@ public void AddSessionRule(string sr)
     LogMessage("Add session rule:"+sr);
     
     SessionRules.Add(sr);
+    InvokeEvent("SessionRulesChanged");
 }
 
 public void RemoveSessionRule(string sr)
@@ -802,6 +803,7 @@ public void RemoveSessionRule(string sr)
     LogMessage("Remove session rule:"+sr);
     
     SessionRules.Remove(sr);
+    InvokeEvent("SessionRulesChanged");
 }
 
 public bool HasSessionRule(string sr)

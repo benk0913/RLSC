@@ -1672,7 +1672,7 @@ MonoBehaviour:
   MobKey: ActorNormalRabbitEvolve
   PlayersSpawner: 0
   RespawnSeconds: 0
-  IrellevantMob: 0
+  IrellevantMob: 1
 --- !u!4 &269743285
 Transform:
   m_ObjectHideFlags: 0
@@ -3340,6 +3340,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+--- !u!1 &576012389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2150766350667378262, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+  m_PrefabInstance: {fileID: 576012388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &635543630
 GameObject:
   m_ObjectHideFlags: 0
@@ -9599,7 +9604,7 @@ MonoBehaviour:
   MobKey: ActorNormalRabbitEvolveFull
   PlayersSpawner: 0
   RespawnSeconds: 0
-  IrellevantMob: 0
+  IrellevantMob: 1
 --- !u!4 &1546159718
 Transform:
   m_ObjectHideFlags: 0
@@ -11653,6 +11658,102 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1905437898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905437900}
+  - component: {fileID: 1905437899}
+  m_Layer: 0
+  m_Name: SpecialConditionEntity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1905437899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905437898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51aedc6810939b143a5b1c686762f80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Conditions: []
+  GameConditions:
+  - Type: {fileID: 11400000, guid: 7071e8ea9b5328948ab21055349c79c1, type: 2}
+    Value: Killed Rabbit King
+    ObjectValue: {fileID: 0}
+    Inverse: 0
+  Actions:
+  - Type: {fileID: 0}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: 52bda859e46a2db42891f6c9e4f401ad, type: 2}
+    Value2: 
+  - Type: {fileID: 0}
+    Condition: {fileID: 0}
+    GameConditions: []
+    Targets: 2
+    Value: 
+    ObjectValue: {fileID: 11400000, guid: bf71fefbe7001b14eb6c66d561d69d1c, type: 2}
+    Value2: 
+  EventToInvoke:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 576012389}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  EventToInvokeWhenInvalid:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 576012389}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  RefreshEventString: SessionRulesChanged
+--- !u!4 &1905437900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905437898}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.2525077, y: -15.517946, z: -0.28468123}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1928857368
 GameObject:
   m_ObjectHideFlags: 0
@@ -12048,7 +12149,7 @@ MonoBehaviour:
   MobKey: ActorNormalRabbitEvolve
   PlayersSpawner: 0
   RespawnSeconds: 0
-  IrellevantMob: 0
+  IrellevantMob: 1
 --- !u!4 &2011093981
 Transform:
   m_ObjectHideFlags: 0

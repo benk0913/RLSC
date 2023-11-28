@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9ebd9a1c780074aaddf00ca485ef46, type: 3}
-  m_Name: ActorMadRabbitEvolveFull
+  m_Name: ActorRabbitFullExpedition
   m_EditorClassIdentifier: 
-  Icon: {fileID: 968590385, guid: 04409754138bba1489e865415078f3e0, type: 3}
-  DisplayName: Puff Bunny
+  Icon: {fileID: -1354114567, guid: 04409754138bba1489e865415078f3e0, type: 3}
+  DisplayName: Muscle Rabbit
   Abilities:
-  - Escape
-  - Throw Carrot
+  - Slime Hop Slow
+  - Carrot Explosion
   PassiveAbility: PassiveHitPuffBunny
   Attributes:
     Power: 0
@@ -32,8 +32,8 @@ MonoBehaviour:
     SpellDuration: 0
     AntiDebuff: 0
     Threat: 0
-    MovementSpeed: 0.1
-    JumpHeight: 0.5
+    MovementSpeed: 0
+    JumpHeight: 1
     DoubleCast: 0
     Explode: 0
     HpRegen: 0
@@ -50,12 +50,12 @@ MonoBehaviour:
   OnGetHitParams: []
   OnSomeoneExecutesParams: []
   OnDeathParams:
-  - Type: {fileID: 11400000, guid: 925789fd29bf01b4794f3effafc40709, type: 2}
+  - Type: {fileID: 0}
     Condition: {fileID: 0}
     GameConditions: []
     Targets: 2
     Value: 
-    ObjectValue: {fileID: 11400000, guid: 3232a6ae727c14441bc1a179eea1acef, type: 2}
+    ObjectValue: {fileID: 11400000, guid: e0a138099e2f7ec458e5c7b3c928e182, type: 2}
     Value2: 
   UniqueHurtSounds:
   - RabbitOnHit
