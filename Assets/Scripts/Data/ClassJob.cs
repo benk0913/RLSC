@@ -47,6 +47,9 @@ public class ClassJob : ScriptableObject
     public List<AbilityParam> OnDeathParams = new List<AbilityParam>();
 
     [JsonIgnore]
+    public List<AbilityParam> ClientSideOnDeathParams = new List<AbilityParam>();
+
+    [JsonIgnore]
     public List<string> UniqueHurtSounds = new List<string>();
 
     [JsonIgnore]

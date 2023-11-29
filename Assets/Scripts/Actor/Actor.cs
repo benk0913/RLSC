@@ -936,7 +936,12 @@ public class Actor : MonoBehaviour
         {
             CORE.Instance.ActivateParams(this.State.Data.ClassJobReference.OnDeathParams);
         }
-
+        
+        if (this.State.Data.ClassJobReference.ClientSideOnDeathParams != null && this.State.Data.ClassJobReference.ClientSideOnDeathParams.Count > 0)
+        {
+            CORE.Instance.ActivateParams(this.State.Data.ClassJobReference.ClientSideOnDeathParams);
+        }
+        
         if (!string.IsNullOrEmpty(State.Data.ClassJobReference.UniqueDeathSound))
         {
             AudioControl.Instance.PlayInPosition(State.Data.ClassJobReference.UniqueDeathSound, transform.position);

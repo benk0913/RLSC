@@ -12,6 +12,7 @@ public class AbilityCollider : HitCollider
     public bool StickToActorFacing;
     public bool StickToSkilledShot;
     public bool HitEventOnWalls;
+    public bool DestroyOnDisable;
 
     public Vector3 InitPosition;
 
@@ -309,6 +310,11 @@ public class AbilityCollider : HitCollider
         if (this.CanMiss && this.AbilitySource.OnMissParams.Count > 0 && this.TimesHit == 0)
         {
             this.AttemptMissAbility();
+        }
+
+        if (DestroyOnDisable)
+        {
+            Destroy(this.gameObject);
         }
         
         if (AbilitySource != null)

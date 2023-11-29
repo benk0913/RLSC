@@ -510,36 +510,41 @@ namespace EdgeworldBase
         protected GameObject recycleObject(string gKey)
         {
             GameObject tempObj = null;
-
-            List<int> objectIndexesToRemove = new List<int>();
-            for (int i = 0; i < m_listObjectPool.Count; i++)
+            
+            if (!gKey.Contains("DontRecycle"))
             {
-                if (m_listObjectPool[i] == null)
+
+                List<int> objectIndexesToRemove = new List<int>();
+                for (int i = 0; i < m_listObjectPool.Count; i++)
                 {
-                    // if an object was destroyed, it will equal to null
-                    if (debugMode)
+                    if (m_listObjectPool[i] == null)
                     {
-                        Debug.Log("Object destroyed " + gKey);
+                        // if an object was destroyed, it will equal to null
+                        if (debugMode)
+                        {
+                            Debug.Log("Object destroyed " + gKey);
+                        }
+
+                        objectIndexesToRemove.Add(i);
                     }
-                    objectIndexesToRemove.Add(i);
+                    else if (!m_listObjectPool[i].activeInHierarchy && m_listObjectPool[i].name == gKey)
+                    {
+                        tempObj = m_listObjectPool[i];
+
+                        if (debugMode)
+                        {
+                            Debug.Log("Recycled " + gKey);
+                        }
+
+                        break;
+                    }
                 }
-                else if (!m_listObjectPool[i].activeInHierarchy && m_listObjectPool[i].name == gKey)
+
+                for (int i = objectIndexesToRemove.Count - 1; i >= 0; i--)
                 {
-                    tempObj = m_listObjectPool[i];
-
-                    if (debugMode)
-                    {
-                        Debug.Log("Recycled " + gKey);
-                    }
-
-                    break;
+                    int indexToRemove = objectIndexesToRemove[i];
+                    m_listObjectPool.RemoveAt(indexToRemove);
                 }
-            }
-
-            for (int i = objectIndexesToRemove.Count - 1; i >= 0; i--)
-            {
-                int indexToRemove = objectIndexesToRemove[i];
-                m_listObjectPool.RemoveAt(indexToRemove);
             }
 
             if (tempObj == null)

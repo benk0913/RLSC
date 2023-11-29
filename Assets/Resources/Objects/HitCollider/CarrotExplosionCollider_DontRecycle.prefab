@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6091865643249420805}
   - component: {fileID: 1935860746220234754}
   m_Layer: 9
-  m_Name: CarrotExplosionCollider
+  m_Name: CarrotExplosionCollider_DontRecycle
   m_TagString: HitCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3974355910143395655}
   - {fileID: 8947289219296034307}
@@ -106,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActorSource: {fileID: 0}
+  CasterActor: {fileID: 0}
   AbilitySource: {fileID: 0}
   targetType: 0
   OnHitEvent:
@@ -125,11 +127,13 @@ MonoBehaviour:
         m_CallState: 2
   CanMiss: 0
   HitOnlyGroundedActors: 0
+  AbilityInstanceId: 
   ParentCollider: {fileID: 0}
   StickToActor: 0
   StickToActorFacing: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 1
+  DestroyOnDisable: 1
   InitPosition: {x: 0, y: 0, z: 0}
   SkilledShotPoint: {fileID: 0}
   SkilledshotLayermask:
@@ -139,6 +143,7 @@ MonoBehaviour:
   onHitObject: MudshotHit
   OnHitSource: {fileID: 0}
   RepositionChildrenOnEnable: 1
+  OnlyForPlayers: 0
   DuplicateBubbles: 0
   IsBubble: 0
   BubblesDuplicated: []
@@ -313,11 +318,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
---- !u!4 &4112541729725066078 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1314719724268210268, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
-  m_PrefabInstance: {fileID: 3110998290398667522}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3598925178624215808 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1935860746220234754, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
@@ -329,6 +329,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &4112541729725066078 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1314719724268210268, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
+  m_PrefabInstance: {fileID: 3110998290398667522}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6515659964497444860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -402,11 +407,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
---- !u!4 &5211391172344182688 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1314719724268210268, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
-  m_PrefabInstance: {fileID: 6515659964497444860}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4661728232004835326 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1935860746220234754, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
@@ -418,6 +418,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &5211391172344182688 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1314719724268210268, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
+  m_PrefabInstance: {fileID: 6515659964497444860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7932522005166208607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,11 +496,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
---- !u!4 &8947289219296034307 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1314719724268210268, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
-  m_PrefabInstance: {fileID: 7932522005166208607}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8415105284597538397 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1935860746220234754, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
@@ -507,6 +507,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f0dffce949cc4478f6dc87aa40c256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8947289219296034307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1314719724268210268, guid: 8e446774d4facf74aab0b6efc718d18c, type: 3}
+  m_PrefabInstance: {fileID: 7932522005166208607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8610376162061695893
 PrefabInstance:
   m_ObjectHideFlags: 0
