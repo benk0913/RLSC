@@ -1427,95 +1427,114 @@ public bool HasSessionRule(string sr)
                 }
             }
 
-            if (param.Type.name == "Movement")
+            if (param.Type != null)
             {
-                if ((param.Targets == TargetType.Self || param.Targets == TargetType.FriendsAndSelf) && casterActor != null)
+                if (param.Type.name == "Movement")
                 {
-                    if (casterActor != null)
+                    if ((param.Targets == TargetType.Self || param.Targets == TargetType.FriendsAndSelf) &&
+                        casterActor != null)
                     {
-                        casterActor.ExecuteMovement(param.Value, casterActor);
+                        if (casterActor != null)
+                        {
+                            casterActor.ExecuteMovement(param.Value, casterActor);
+                        }
+                    }
+                    else
+                    {
+                        originCaster.ExecuteMovement(param.Value, casterActor);
                     }
                 }
-                else
+                else if (param.Type.name == "Change Looks")
                 {
-                    originCaster.ExecuteMovement(param.Value, casterActor);
-                }
-            }
-            else if (param.Type.name == "Change Looks")
-            {
-                switch(param.Value)
-                {
-                    case "Ears":
+                    switch (param.Value)
                     {
-                        casterActor.State.Data.looks.Ears = param.Value2;
-                        break;
+                        case "Ears":
+                        {
+                            casterActor.State.Data.looks.Ears = param.Value2;
+                            break;
+                        }
+                        case "Eyes":
+                        {
+                            casterActor.State.Data.looks.Eyes = param.Value2;
+                            break;
+                        }
+                        case "Nose":
+                        {
+                            casterActor.State.Data.looks.Nose = param.Value2;
+                            break;
+                        }
+                        case "Eyebrows":
+                        {
+                            casterActor.State.Data.looks.Eyebrows = param.Value2;
+                            break;
+                        }
+                        case "Mouth":
+                        {
+                            casterActor.State.Data.looks.Mouth = param.Value2;
+                            break;
+                        }
+                        case "Hair":
+                        {
+                            casterActor.State.Data.looks.Hair = param.Value2;
+                            break;
+                        }
+                        case "Iris":
+                        {
+                            casterActor.State.Data.looks.Iris = param.Value2;
+                            break;
+                        }
+                        case "HairColor":
+                        {
+                            casterActor.State.Data.looks.HairColor = param.Value2;
+                            break;
+                        }
+                        case "SkinColor":
+                        {
+                            casterActor.State.Data.looks.SkinColor = param.Value2;
+                            break;
+                        }
                     }
-                    case "Eyes":
-                    {
-                        casterActor.State.Data.looks.Eyes = param.Value2;
-                        break;
-                    }
-                    case "Nose":
-                    {
-                        casterActor.State.Data.looks.Nose = param.Value2;
-                        break;
-                    }
-                    case "Eyebrows":
-                    {
-                        casterActor.State.Data.looks.Eyebrows = param.Value2;
-                        break;
-                    }
-                    case "Mouth":
-                    {
-                        casterActor.State.Data.looks.Mouth = param.Value2;
-                        break;
-                    }
-                    case "Hair":
-                    {
-                        casterActor.State.Data.looks.Hair = param.Value2;
-                        break;
-                    }
-                    case "Iris":
-                    {
-                        casterActor.State.Data.looks.Iris = param.Value2;
-                        break;
-                    }
-                    case "HairColor":
-                    {
-                        casterActor.State.Data.looks.HairColor = param.Value2;
-                        break;
-                    }
-                    case "SkinColor":
-                    {
-                        casterActor.State.Data.looks.SkinColor = param.Value2;
-                        break;
-                    }
-                }
 
-                                    
-                casterActor.RefreshLooks();
-            }
-            else if(param.Type.name == "SetAchievement")
-            {
-#if !UNITY_ANDROID && !UNITY_IOS
-                AchievementLogic.Instance.SetAchievment(param.Value);
-#endif
-            }
-            else  if (param.Type.name == "Flip Screen")
-            {
-                CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,180f);
-                CORE.Instance.DelayedInvokation(10f,()=>
+
+                    casterActor.RefreshLooks();
+                }
+                else if (param.Type.name == "SetAchievement")
                 {
-                    CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,0f);
-                });
-            }
-            else  if (param.Type.name == "Unflip Screen")
-            {
-                CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f,0f,0f);
-            }
-            else  if (param.Type.name == "Unlock Class")
-            {
-                SocketHandler.Instance.SendUnlockClassJob(param.ObjectValue == null? param.Value : ((ClassJob)param.ObjectValue).name);
+#if !UNITY_ANDROID && !UNITY_IOS
+                    AchievementLogic.Instance.SetAchievment(param.Value);
+#endif
+                }
+                else if (param.Type.name == "Flip Screen")
+                {
+                    CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                    CORE.Instance.DelayedInvokation(10f,
+                        () => { CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f, 0f, 0f); });
+                }
+                else if (param.Type.name == "Unflip Screen")
+                {
+                    CameraChaseEntity.Instance.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                }
+                else if (param.Type.name == "Unlock Class")
+                {
+                    SocketHandler.Instance.SendUnlockClassJob(param.ObjectValue == null
+                        ? param.Value
+                        : ((ClassJob)param.ObjectValue).name);
+                }
+                else if (param.Type.name == "Add Session Rule")
+                {
+                    CORE.Instance.AddSessionRule(param.Value);
+                }
+                else if (param.Type.name == "Remove Session Rule")
+                {
+                    CORE.Instance.RemoveSessionRule(param.Value);
+                }
+                else if (param.Type.name == "Execute Game Event")
+                {
+                    if (param.ObjectValue != null && param.ObjectValue is GameEvent gEvent)
+                    {
+                        gEvent.Execute();
+                    }
+                }
             }
         }
     }

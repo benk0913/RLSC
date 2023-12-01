@@ -3294,13 +3294,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal Gate
       objectReference: {fileID: 0}
+    - target: {fileID: 2150766350667378262, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378265, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378265, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.2
+      value: 21.61
       objectReference: {fileID: 0}
     - target: {fileID: 2150766350667378265, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3337,6 +3341,10 @@ PrefabInstance:
     - target: {fileID: 2150766350667378265, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150766351199819809, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b701fdfce5485ab47802a5f0e97c0fed, type: 3}
@@ -6247,11 +6255,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131906245715575174, guid: 85a19c7f03160ab40baa0a59f150a04f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -77.53
+      value: -44.9
       objectReference: {fileID: 0}
     - target: {fileID: 9131906245715575174, guid: 85a19c7f03160ab40baa0a59f150a04f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: -13.6
       objectReference: {fileID: 0}
     - target: {fileID: 9131906245715575174, guid: 85a19c7f03160ab40baa0a59f150a04f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7853,7 +7861,7 @@ MonoBehaviour:
   MobKey: 
   PlayersSpawner: 1
   RespawnSeconds: 0
-  IrellevantMob: 0
+  IrellevantMob: 1
 --- !u!4 &1358837869
 Transform:
   m_ObjectHideFlags: 0
@@ -11668,6 +11676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1905437900}
   - component: {fileID: 1905437899}
+  - component: {fileID: 1905437901}
   m_Layer: 0
   m_Name: SpecialConditionEntity
   m_TagString: Untagged
@@ -11693,21 +11702,7 @@ MonoBehaviour:
     Value: Killed Rabbit King
     ObjectValue: {fileID: 0}
     Inverse: 0
-  Actions:
-  - Type: {fileID: 0}
-    Condition: {fileID: 0}
-    GameConditions: []
-    Targets: 2
-    Value: 
-    ObjectValue: {fileID: 11400000, guid: 52bda859e46a2db42891f6c9e4f401ad, type: 2}
-    Value2: 
-  - Type: {fileID: 0}
-    Condition: {fileID: 0}
-    GameConditions: []
-    Targets: 2
-    Value: 
-    ObjectValue: {fileID: 11400000, guid: bf71fefbe7001b14eb6c66d561d69d1c, type: 2}
-    Value2: 
+  Actions: []
   EventToInvoke:
     m_PersistentCalls:
       m_Calls:
@@ -11718,6 +11713,30 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1905437901}
+        m_TargetAssemblyTypeName: GameEventListener, Assembly-CSharp
+        m_MethodName: InvokeGameEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 52bda859e46a2db42891f6c9e4f401ad, type: 2}
+          m_ObjectArgumentAssemblyTypeName: GameEvent, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1905437901}
+        m_TargetAssemblyTypeName: GameEventListener, Assembly-CSharp
+        m_MethodName: InvokeGameEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: bf71fefbe7001b14eb6c66d561d69d1c, type: 2}
+          m_ObjectArgumentAssemblyTypeName: GameEvent, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11754,6 +11773,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1905437901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905437898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9911aa8d9e384b811738160c32d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Events: []
 --- !u!1 &1928857368
 GameObject:
   m_ObjectHideFlags: 0
