@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Actor))]
 public class ActorControl : MonoBehaviour
 {
-    
-
     [SerializeField]
     Actor CurrentActor;
 
