@@ -56,7 +56,7 @@ public class SocketHandler : MonoBehaviour
 
     public string TutorialIndex;
 
-#if DEVELOPMENT_BUILD || UNITY_EDITOR || UNITY_ANDROID//TODO Remove unity android
+#if DEVELOPMENT_BUILD || UNITY_EDITOR 
     public bool RandomUser;
 #endif
 

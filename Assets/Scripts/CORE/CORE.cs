@@ -172,7 +172,6 @@ public class CORE : MonoBehaviour
         if (!GetComponent<SocketHandler>().RandomUser)
         {
 #endif
-            
             if(!DisableRAIN)
             {
                 if (SteamAPI.RestartAppIfNecessary(new AppId_t(1903270)))
