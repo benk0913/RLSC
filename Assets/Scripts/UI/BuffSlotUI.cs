@@ -34,6 +34,7 @@ public class BuffSlotUI : MonoBehaviour
 
     private void UpdateBuffEffect()
     {
+        
         IconImage.sprite = ActiveBuffEffect.Icon;
 
         string tooltipString = "";
@@ -47,7 +48,12 @@ public class BuffSlotUI : MonoBehaviour
 
         tooltipString += "<color=" + Colors.COLOR_HIGHLIGHT + ">"+buffName+"</color>";
         tooltipString += buffDesc;
-        tooltipString += BuffLogic.GetBuffTooltip(ActiveBuffEffect.BuffState.CurrentBuff);
+
+        if (ActiveBuffEffect.BuffState != null)
+        {
+            tooltipString += BuffLogic.GetBuffTooltip(ActiveBuffEffect.BuffState.CurrentBuff);
+        }
+
         Tooltip.SetTooltip(tooltipString,null,true);
 
 
