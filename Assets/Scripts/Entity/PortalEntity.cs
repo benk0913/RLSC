@@ -45,11 +45,18 @@ public class PortalEntity : MonoBehaviour
     {
         if(IsLocked)
         {
+            string reason = "Defeat all of the monsters in the chamber.";
+            if (!string.IsNullOrEmpty(CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == SceneManager.GetActiveScene().name).objectiveDescription))
+            {
+                reason = CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == SceneManager.GetActiveScene().name).objectiveDescription;
+            }
+            
             TopNotificationUI.Instance.Show(
                 new TopNotificationUI.TopNotificationInstance("The chamber is not complete! "
-                + CORE.Instance.Data.content.Scenes.Find(X => X.sceneName == SceneManager.GetActiveScene().name).objectiveDescription, 
+                + reason, 
                 Colors.AsColor(Colors.COLOR_HIGHLIGHT),
                 3));
+            
             return;
         }
 

@@ -890,6 +890,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0728a231f64bf5841a051a6ebead32e9, type: 2}
     - {fileID: 11400000, guid: ecdbf6c05f081514aa12cf29542b9d53, type: 2}
     - {fileID: 11400000, guid: c530541cbda4c07438b4e8a3e21a6387, type: 2}
+    - {fileID: 11400000, guid: 410963507e7a5f3499d196006f8a83a3, type: 2}
     - {fileID: 11400000, guid: 11659520b2258e0439b7bc9836e4bdd6, type: 2}
     - {fileID: 11400000, guid: e4c0342d422356f4dac6943eb53c9d1d, type: 2}
     - {fileID: 11400000, guid: c390f7879186fba40ab83b1b20ac3e6c, type: 2}
@@ -1011,6 +1012,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ce132cc4dc3accf4f8fd8d2e47307f57, type: 2}
     - {fileID: 11400000, guid: c43b041613882e9429b142df748d58d4, type: 2}
     - {fileID: 11400000, guid: 02e95dac9b1d6b245b293c0dbaf21f78, type: 2}
+    - {fileID: 11400000, guid: 7f952f241913c5346af4363f64990cd9, type: 2}
     - {fileID: 11400000, guid: d36198cce2fbe314d81198cf98d102b9, type: 2}
     - {fileID: 11400000, guid: 87802d1836267654583fc8ae140596a2, type: 2}
     - {fileID: 11400000, guid: 3f0d1ab27c85a4e4b90eb6adf26a4842, type: 2}
@@ -1952,6 +1954,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f6495212cfd05fc47b02e7861b63e302, type: 2}
     - {fileID: 11400000, guid: ab475535d7e3974418047270de7dae37, type: 2}
     - {fileID: 11400000, guid: 62b0796eafbd71e47afa8f93522ae3be, type: 2}
+    - {fileID: 11400000, guid: 906da938d24f966439a50446574d6afc, type: 2}
     - {fileID: 11400000, guid: 0bb8739256f85e5449ab5f7bd8f6a7a5, type: 2}
     - {fileID: 11400000, guid: e4fe878f60a593c42927687e538c1edb, type: 2}
     - {fileID: 11400000, guid: 94662d86b6b151344bf6d363eba82855, type: 2}
@@ -6374,7 +6377,7 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorRabbit
+      - monsterName: ActorRabbitFull
         positionX: -163
         positionY: 42.4
         respawnSeconds: 0
@@ -6784,12 +6787,12 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorRabbitQuix
+      - monsterName: ActorRabbitFull
         positionX: -232.2
         positionY: 46.8
         respawnSeconds: 0
         IrellevantMob: 0
-      - monsterName: ActorRabbitQuix
+      - monsterName: ActorRabbitFull
         positionX: -138.8
         positionY: 46.3
         respawnSeconds: 0
@@ -7981,8 +7984,8 @@ MonoBehaviour:
       Interactables:
       - interactableName: Entry
         interactableId: 
-        positionX: 51
-        positionY: -26
+        positionX: 114
+        positionY: -25
       playerSpawnX: 0
       playerSpawnY: 0
       Portals:
@@ -7990,8 +7993,8 @@ MonoBehaviour:
         TargetScene: OW_HermitsDenPost
         TargetSceneGate: Entrance
         IsExpeditionLocked: 1
-        portalPositionX: 51.09
-        portalPositionY: -25.84
+        portalPositionX: 113.6
+        portalPositionY: -25.4
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
@@ -21024,27 +21027,21 @@ MonoBehaviour:
       Interactables:
       - interactableName: GateRightInteractable
         interactableId: 
-        positionX: 30
+        positionX: 22
         positionY: 0
       playerSpawnX: -103.52
       playerSpawnY: -6.64
-      Portals:
-      - name: EndPortalA
-        TargetScene: 
-        TargetSceneGate: 
-        IsExpeditionLocked: 1
-        portalPositionX: 30.2
-        portalPositionY: 0.3
+      Portals: []
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
-      MusicTrack: 
-      Soundscape: 
-      NightMusicTrack: 
-      NightSoundscape: 
+      MusicTrack: music_bugzbani_1
+      Soundscape: Valley SoundScape
+      NightMusicTrack: music_bugzbani_1
+      NightSoundscape: Valley SoundScape
       enablePvp: 0
       displayTitleOnEnter: 0
-      PredictionImage: {fileID: 0}
+      PredictionImage: {fileID: -1354114567, guid: 04409754138bba1489e865415078f3e0, type: 3}
       Map: 
       MapPoint: 
     Interactables:
