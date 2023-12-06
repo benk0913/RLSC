@@ -1,0 +1,771 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2117ed5eb5c7caf40864adf1d82f7b52, type: 3}
+  m_Name: Sarah Questions Dialog
+  m_EditorClassIdentifier: 
+  DialogEntityGameObjectName: NPC_Guide
+  Dialog:
+    DialogPieces:
+    - Content: Questions?
+      OnDialogPiece:
+        m_PersistentCalls:
+          m_Calls: []
+    Decisions:
+    - Content: Who are you?
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: ' I''m Sarah, the town brainiac, or at least that''s what they
+            call me.'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'I was on this big journey to the Edgeworld with my crew, you
+            know, eager minds and all. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: "But, uh, things got a bit weird \u2013 strange disease, crewmates
+            dropping like..."
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'leaves in autumn. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'Now, here I am, stuck in this land of mystery, still trying to
+            wrap my head around it. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'Now, here I am, stuck in this land of mystery, still trying to
+            wrap my head around it. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'Mapping the unknown is the plan, '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: but, oh, what were we talking about again?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Oh, right, who I am. Sarah, the slightly absent-minded scholar.
+            Any more brain-benders for me?
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: More Questions
+          OnSelect:
+          - {fileID: 11400000}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: Who am I?
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: 'Oh, you would be surprised by the amount of things I don''t know. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: But here's the thing, my curious friend. In this land of mystery,
+            the past is as faded as an old map.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'ou have a blank canvas before you, and the ink of destiny is
+            in your hands. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'Who are you? Well, that''s a tale yet to be written. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'he Edgeworld is full of chances, so go ahead, shape your story. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: The past may be a foggy forest, but the future, my friend, is
+            an open horizon waiting for your brushstroke.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: You'd be surprised by the number of things I don't know...
+          OnSelect:
+          - {fileID: 11400000}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        - Content: Thank you!
+          OnSelect:
+          - {fileID: 11400000}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        - Content: I already knew that...
+          OnSelect:
+          - {fileID: 11400000}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        - Content: Philosophical Jargain
+          OnSelect:
+          - {fileID: 11400000}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: What is this place?
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: ' Welcome to the Edgeworld, my inquisitive companion!'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'It''s like a vast, mysterious canvas waiting for adventurous
+            brushstrokes. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: We're at the edge of known maps, and well, the unknown awaits
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ystical creatures, uncharted lands, and, oh, the occasional...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Forgetful scholar...
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ' Quite the place, isn''t it?'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: OK
+          OnSelect:
+          - {fileID: 11400000}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: Tell me about the different classes!
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: 'Alrighty then! '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Fire's all about BIG damage!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Air's your go-to for speedy moves and helping buddies find their
+            sweet spots.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'Earth? Oh, Earth loves to control things, whether it''s holding
+            back enemies or deciding where they should stand. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ' And Water? Well, Water''s the healer, keeping everyone in tip-top
+            shape. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ' Each one''s got its own superpower '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: use 'em wisely, and you'll be the hero of the Edgeworld!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Understood.
+          OnSelect:
+          - {fileID: 11400000}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        - Content: Are there more classes out there?
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: 'Oh, you''ve got an eye for the mysterious, huh? '
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: ' Yes indeed, there are more classes, like hidden gems waiting
+                to be discovered! '
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Magma, Nature, Ice, and Lightning are out there, lurking.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: 'They''re a bit trickier to master, or in some cases, downright
+                nature''s nightmares. '
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: You might stumble upon them if you're adventurous enough.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions:
+            - Content: OK
+              OnSelect:
+              - {fileID: 11400000}
+              OnSelectInvokation:
+                m_PersistentCalls:
+                  m_Calls: []
+              DisplayConditions: []
+              DisplayGameConditions: []
+              DisplayOnlyIfConditionsMet: 0
+              DefaultDialog:
+                DialogPieces: []
+                Decisions: []
+                IsFemale: 0
+            IsFemale: 1
+        IsFemale: 1
+    - Content: Can I learn a second class? (Advanced)
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: 'Oh, diving into the mysteries, huh? '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: "Absolutely! But here's the deal \u2013 mastering your current
+            class is the key. "
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Once you hit level 15, you'll be primed for the next adventure.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: To unlock a second class, though, you'll need to find a master.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: The only one I've heard of is the elusive Great Wizard, hiding
+            out there in the mysterious forest.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Seek him out when you're ready, prove your skills, and voila!
+            Double the powers, double the fun.
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Learn about LIGHTNING Magic
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: 'What? The thing you are talking about, it''s must originate
+                from some lesser-known study I have never heard of. '
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Rumors say that the top of the Lost Towers which are located
+                in the center of the ruins to the east, emit a mysterious beam to
+                the sky.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Maybe it's worth checking!
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Learn about ICE Magic
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: Oh ho ho, hold up right there.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: The art of frost magic is forbidden, even talking about it
+                could be trouble for us both!
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: So hush, I know some secret practitioners study the subject
+                ILLEGALLY
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Some sort of secret cult
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Authorities in the old-world often tend to hunt and arrest
+                those unlawful practitioners.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: They manage to hide in small caves, studying ICE magic secretly.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: I would not recommend you to NOT get in touch with any of
+                them.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Learn about NATURE Magic?
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: Oh my, beautiful and rare is the magic of nature.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: I have seen only one person which knows something about it
+                in my lifetime, and he is half-mad too!
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: I  assume it demands some cognitive sacrifice.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Or maybe nature is simply too indigestible to our comprehension.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: The grand wizard had spoken about some shaman that is experienced
+                in this subject.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Learn about MAGMA Magic?
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: Whoops!  I wouldn't if I were you!
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: That's a dangerous and destructive type of magic.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Like if Fire was not destructive enough, magma doubles down
+                on that aspect.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: If you do want to study it, I bet some of the caves in the
+                region will eventually lead you low enough.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: A dangerous journey, nonetheless.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions: []
+            IsFemale: 1
+        IsFemale: 1
+    - Content: Can I learn 2 first-classes? (Like water & fire)
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: Oh, you've got an appetite for power, I see!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: " But, um, here's the thing \u2013 classes are a bit like stubborn
+            cats."
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ' Fire and Water, for instance, well, they''re not exactly tea
+            party pals. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'Mixing them? It''s like asking for a storm in a teacup. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ' The Edgeworld''s got rules,  you know,'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ' and these classes, they''re like nature''s fine print.'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: '. One first-class is your ticket to power-town. Two? '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ' Let''s just say they tend to argue more than agree. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ' you''re not the first to dream of mixing classes! People have
+            tried, oh yes, they have. '
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: ". Fire and Water, they're like oil and water \u2013 don't exactly
+            blend. Some ambitious souls thought they could outsmart nature, but,
+            well, let's just say it didn't end well. "
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'Picture this: water on their fires, and healing spells turning
+            into unintentional burns. Ouch!'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: Edgeworld's got a sense of humor, you see. Stick to one first-class,
+            and you'll avoid becoming a magical comedy show!
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: More Questions
+          OnSelect:
+          - {fileID: 11400000}
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces: []
+            Decisions: []
+            IsFemale: 0
+        IsFemale: 1
+    - Content: No... No questions...
+      OnSelect: []
+      OnSelectInvokation:
+        m_PersistentCalls:
+          m_Calls: []
+      DisplayConditions: []
+      DisplayGameConditions: []
+      DisplayOnlyIfConditionsMet: 0
+      DefaultDialog:
+        DialogPieces:
+        - Content: 'Of course, you can! The only thing which stops us from learning
+            new things is our very own human capacity!
+
+'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'It''s best if you first master one class before you move over
+            to another! (Reach level 15)
+
+'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'If you feel like you already know everything then, and you never
+            really do...
+
+'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        - Content: 'Then take a tour around the Edgeworld, I bet there are plenty
+            of magical entities and experts that may share their knowledge with you!
+
+'
+          OnDialogPiece:
+            m_PersistentCalls:
+              m_Calls: []
+        Decisions:
+        - Content: Learn about LIGHTNING Magic
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: 'What? The thing you are talking about, it''s must originate
+                from some lesser-known study I have never heard of. '
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Rumors say that the top of the Lost Towers which are located
+                in the center of the ruins to the east, emit a mysterious beam to
+                the sky.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Maybe it's worth checking!
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Learn about ICE Magic
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: Oh ho ho, hold up right there.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: The art of frost magic is forbidden, even talking about it
+                could be trouble for us both!
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: So hush, I know some secret practitioners study the subject
+                ILLEGALLY
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Some sort of secret cult
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Authorities in the old-world often tend to hunt and arrest
+                those unlawful practitioners.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: They manage to hide in small caves, studying ICE magic secretly.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: I would not recommend you to NOT get in touch with any of
+                them.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Learn about NATURE Magic?
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: Oh my, beautiful and rare is the magic of nature.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: I have seen only one person which knows something about it
+                in my lifetime, and he is half-mad too!
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: I  assume it demands some cognitive sacrifice.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Or maybe nature is simply too indigestible to our comprehension.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: The grand wizard had spoken about some shaman that is experienced
+                in this subject.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions: []
+            IsFemale: 1
+        - Content: Learn about MAGMA Magic?
+          OnSelect: []
+          OnSelectInvokation:
+            m_PersistentCalls:
+              m_Calls: []
+          DisplayConditions: []
+          DisplayGameConditions: []
+          DisplayOnlyIfConditionsMet: 0
+          DefaultDialog:
+            DialogPieces:
+            - Content: Whoops!  I wouldn't if I were you!
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: That's a dangerous and destructive type of magic.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: Like if Fire was not destructive enough, magma doubles down
+                on that aspect.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: If you do want to study it, I bet some of the caves in the
+                region will eventually lead you low enough.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            - Content: A dangerous journey, nonetheless.
+              OnDialogPiece:
+                m_PersistentCalls:
+                  m_Calls: []
+            Decisions: []
+            IsFemale: 1
+        IsFemale: 1
+    IsFemale: 1
