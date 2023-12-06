@@ -379,22 +379,35 @@ MonoBehaviour:
           DisplayOnlyIfConditionsMet: 0
           DefaultDialog:
             DialogPieces:
-            - Content: 'What? The thing you are talking about, it''s must originate
-                from some lesser-known study I have never heard of. '
+            - Content: 'Ah, the Lightning Class, a spark of danger in the Edgeworld!
+                It''s all about that high-voltage damage and crowd control. '
               OnDialogPiece:
                 m_PersistentCalls:
                   m_Calls: []
-            - Content: Rumors say that the top of the Lost Towers which are located
-                in the center of the ruins to the east, emit a mysterious beam to
-                the sky.
+            - Content: "But here's the twist \u2013 you've got to dance with a bit
+                of self-harm with each jolt."
               OnDialogPiece:
                 m_PersistentCalls:
                   m_Calls: []
-            - Content: Maybe it's worth checking!
+            - Content: ' It''s like making a deal with a storm, you know? Power comes
+                at a cost.'
               OnDialogPiece:
                 m_PersistentCalls:
                   m_Calls: []
-            Decisions: []
+            Decisions:
+            - Content: I see
+              OnSelect:
+              - {fileID: 11400000}
+              OnSelectInvokation:
+                m_PersistentCalls:
+                  m_Calls: []
+              DisplayConditions: []
+              DisplayGameConditions: []
+              DisplayOnlyIfConditionsMet: 0
+              DefaultDialog:
+                DialogPieces: []
+                Decisions: []
+                IsFemale: 0
             IsFemale: 1
         - Content: Learn about ICE Magic
           OnSelect: []
