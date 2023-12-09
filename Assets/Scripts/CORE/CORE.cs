@@ -86,6 +86,8 @@ public class CORE : MonoBehaviour
     public string CurrentTimePhase;
 
     public bool IsUsingJoystick;
+
+    public static bool IsUsingSteam;
  
     #if UNITY_ANDROID || UNITY_IOS
     BatteryStatus CurrentBatteryStatus;
@@ -1169,10 +1171,14 @@ public bool HasSessionRule(string sr)
 #if DEVELOPMENT_BUILD  || UNITY_EDITOR
         if (SocketHandler.Instance.RandomUser)
         {
+            IsUsingSteam = false;
             return;
         }
 #endif
 #if !UNITY_ANDROID && !UNITY_IOS
+        
+        IsUsingSteam = true;
+        
         if(SceneManager.GetActiveScene().name == "MainMenu")
         {
             SteamFriends.SetRichPresence("steam_display", "#Status_AtMainMenu");
@@ -1199,8 +1205,8 @@ public bool HasSessionRule(string sr)
         }
 #endif
     }
-    
-    
+
+
     public void RefreshSceneInfo()
     {
         SceneInfo info = ActiveSceneInfo;

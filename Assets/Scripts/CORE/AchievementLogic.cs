@@ -1,4 +1,4 @@
-#if !UNITY_ANDROID && !UNITY_IOS
+#if !UNITY_ANDROID && !UNITY_IOS && !DEVELOPMENT_BUILD
 using System.Collections;
 using System.Collections.Generic;
 using Steamworks;
@@ -28,7 +28,11 @@ public class AchievementLogic : MonoBehaviour
     {
         try
         {
-
+            if (!CORE.IsUsingSteam)
+            {
+                return;
+            }
+            
             if (GetUserAchievmentStored == null)
                 GetUserAchievmentStored = Callback<UserAchievementStored_t>.Create(OnUserAchievmentStored);
 
