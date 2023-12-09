@@ -146,6 +146,13 @@ public class PartyMemberActivePanelUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        CORE.Instance.ShowPartyUiWindow();
+        if (eventData.button == 0)
+        {
+            CORE.Instance.ShowPartyUiWindow();
+        }
+        else if (eventData.button == 1)
+        {
+            CORE.Instance.ShowInventoryUiWindow(CORE.Instance.Room.Actors.Find(X => X.name == CurrentActorName));
+        }
     }
 }

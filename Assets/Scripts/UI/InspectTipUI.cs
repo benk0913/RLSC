@@ -66,7 +66,7 @@ public class InspectTipUI : MonoBehaviour
         }
         else
         {
-            transform.position = CameraChaseEntity.Instance.CurrentCam.WorldToScreenPoint(currentActor.transform.position) + PositionOffset;
+            transform.position = currentActor.transform.position + PositionOffset;
             string targetString = "to inspect " + currentActor.State.Data.name;
             if (ContentLabel.text != targetString)
             {
