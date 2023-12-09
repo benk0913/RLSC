@@ -2475,31 +2475,36 @@ public class SocketHandler : MonoBehaviour
         PartyData newPartyData = JsonConvert.DeserializeObject<PartyData>(data["party"].ToString());
 
         #if !UNITY_ANDROID && !UNITY_IOS
-        if(CORE.Instance.CurrentParty == null && newPartyData != null) // Entering a party for hte first time 
+        if (CORE.IsUsingSteam)
         {
-            CORE.Instance.pendingJoinParty = String.Empty;
-            if (newPartyData.leaderName == CORE.PlayerActor.name)//Leader of the new party
+            if (CORE.Instance.CurrentParty == null && newPartyData != null) // Entering a party for hte first time 
             {
-                SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, CORE.Instance.Data.content.MaxPartyMembers);
+                CORE.Instance.pendingJoinParty = String.Empty;
+                if (newPartyData.leaderName == CORE.PlayerActor.name) //Leader of the new party
+                {
+                    SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly,
+                        CORE.Instance.Data.content.MaxPartyMembers);
+                }
+                else if (newPartyData.steamLobbyId != default) //Not leader and steamid exists
+                {
+                    SteamMatchmaking.JoinLobby(new CSteamID(newPartyData.steamLobbyId));
+                }
             }
-            else if(newPartyData.steamLobbyId != default) //Not leader and steamid exists
-            {
-                SteamMatchmaking.JoinLobby(new CSteamID(newPartyData.steamLobbyId));
-            }
-        }
-        else if (CORE.Instance.CurrentParty != null && newPartyData == null) //Leaving a party
-        {
-            SteamMatchmaking.LeaveLobby(new CSteamID(CORE.Instance.CurrentParty.steamLobbyId));
-        }
-        else if(CORE.Instance.CurrentParty != null && newPartyData != null)
-        {
-            if(CORE.Instance.CurrentParty.steamLobbyId != newPartyData.steamLobbyId) //Still in a party, different steampartyid
+            else if (CORE.Instance.CurrentParty != null && newPartyData == null) //Leaving a party
             {
                 SteamMatchmaking.LeaveLobby(new CSteamID(CORE.Instance.CurrentParty.steamLobbyId));
-                SteamMatchmaking.JoinLobby(new CSteamID(newPartyData.steamLobbyId));
+            }
+            else if (CORE.Instance.CurrentParty != null && newPartyData != null)
+            {
+                if (CORE.Instance.CurrentParty.steamLobbyId !=
+                    newPartyData.steamLobbyId) //Still in a party, different steampartyid
+                {
+                    SteamMatchmaking.LeaveLobby(new CSteamID(CORE.Instance.CurrentParty.steamLobbyId));
+                    SteamMatchmaking.JoinLobby(new CSteamID(newPartyData.steamLobbyId));
+                }
             }
         }
-        #endif
+#endif
 
         CORE.Instance.CurrentParty = newPartyData;
 

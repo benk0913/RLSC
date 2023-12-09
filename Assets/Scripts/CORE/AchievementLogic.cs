@@ -1,4 +1,4 @@
-#if !UNITY_ANDROID && !UNITY_IOS && !DEVELOPMENT_BUILD
+#if !UNITY_ANDROID && !UNITY_IOS
 using System.Collections;
 using System.Collections.Generic;
 using Steamworks;
