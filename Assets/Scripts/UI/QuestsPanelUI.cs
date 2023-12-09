@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using EdgeworldBase;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class QuestsPanelUI : MonoBehaviour
+public class QuestsPanelUI : MonoBehaviour, IPointerClickHandler
 {
     public static QuestsPanelUI Instance;
 
@@ -151,4 +152,15 @@ public class QuestsPanelUI : MonoBehaviour
          CORE.ClearContainer(Container);
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            CORE.Instance.ShowQuestsUIWindow();
+        }
+        else
+        {
+            ToggleQuests();
+        }
+    }
 }

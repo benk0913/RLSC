@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1314719724268210270}
   - component: {fileID: 6091865643249420805}
   - component: {fileID: 1935860746220234754}
+  - component: {fileID: 5960920977012177350}
   m_Layer: 14
   m_Name: WallCollider
   m_TagString: Untagged
@@ -30,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1314719725301908297}
   - {fileID: 9089347534806188863}
@@ -40,7 +42,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1314719724268210271
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -53,10 +55,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &1314719724268210270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActorSource: {fileID: 0}
+  CasterActor: {fileID: 0}
   AbilitySource: {fileID: 0}
   targetType: 0
   OnHitEvent:
@@ -130,10 +134,14 @@ MonoBehaviour:
       m_Calls: []
   CanMiss: 0
   HitOnlyGroundedActors: 0
+  AbilityInstanceId: 
+  ParentCollider: {fileID: 0}
   StickToActor: 0
   StickToActorFacing: 0
   StickToSkilledShot: 1
   HitEventOnWalls: 0
+  DestroyOnDisable: 0
+  InitPosition: {x: 0, y: 0, z: 0}
   SkilledShotPoint: {fileID: 1392339480142145124}
   SkilledshotLayermask:
     serializedVersion: 2
@@ -141,12 +149,26 @@ MonoBehaviour:
   InitForce: {x: 0, y: 0, z: 0}
   onHitObject: 
   OnHitSource: {fileID: 0}
+  RepositionChildrenOnEnable: 0
+  OnlyForPlayers: 0
   DuplicateBubbles: 0
   IsBubble: 0
   BubblesDuplicated: []
   AudioOnHit: 
   HitInterval: 0
   RemoveOnInterrupt: 0
+  ChildrenColliders: []
+--- !u!210 &5960920977012177350
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314719724268210257}
+  m_Enabled: 1
+  m_SortingLayerID: -647044453
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +196,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.0000009536743, w: -1}
   m_LocalPosition: {x: 0.13, y: 1.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 0
@@ -257,6 +280,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.0000009536743, w: -1}
   m_LocalPosition: {x: 0.13, y: 0.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 1
@@ -340,6 +364,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.0000009536743, w: -1}
   m_LocalPosition: {x: 0.29, y: 1.87, z: 0}
   m_LocalScale: {x: 3.358628, y: 3.358628, z: 3.358628}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 2
@@ -422,6 +447,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.200001, y: 5.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1314719724268210268}
   m_RootOrder: 3
