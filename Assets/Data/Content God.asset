@@ -1167,6 +1167,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 44365ce3135369a429508b6601c15522, type: 2}
     - {fileID: 11400000, guid: 98e6902a08531a84a9bd356b6c010798, type: 2}
     - {fileID: 11400000, guid: 0df59e94c290bc946936a2a14e51c265, type: 2}
+    - {fileID: 11400000, guid: 382c553346788764282fbfbb20936dac, type: 2}
     - {fileID: 11400000, guid: 9c916b90b798f6a4daf3bcda1bdf02c8, type: 2}
     - {fileID: 11400000, guid: 89d34c7b2e7e0d84eb1b1fed2e099ad6, type: 2}
     - {fileID: 11400000, guid: 479c1c616f2e0084fbefbe6e7757ea6f, type: 2}
@@ -1814,6 +1815,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0ed258eca526bb648a488a4bb2743e2e, type: 2}
     - {fileID: 11400000, guid: 3806db7ac61b3b44597d9a45bcdaa52f, type: 2}
     - {fileID: 11400000, guid: 26ae113dba5591549a62afb4917248e0, type: 2}
+    - {fileID: 11400000, guid: 95cc6697fd6902c43b02529b4e4483e0, type: 2}
     - {fileID: 11400000, guid: 2d1a7e9cfa3910d40a44753e6de1ddea, type: 2}
     - {fileID: 11400000, guid: 9111268de2a55124e9ce6e8b0851c666, type: 2}
     - {fileID: 11400000, guid: a5096962d0368e74cb2f7c2cd797463e, type: 2}
@@ -19358,6 +19360,16 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
+      - monsterName: ActorBlockage
+        positionX: 343.89
+        positionY: -11.9
+        respawnSeconds: 0
+        IrellevantMob: 1
+      - monsterName: ActorBlockage
+        positionX: 351.06
+        positionY: -7.95
+        respawnSeconds: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 276.3
         positionY: -17.5
@@ -19483,11 +19495,6 @@ MonoBehaviour:
         positionY: -17.5
         respawnSeconds: 15
         IrellevantMob: 1
-      - monsterName: ActorBat
-        positionX: 282.9
-        positionY: 52.6
-        respawnSeconds: 0
-        IrellevantMob: 0
       - monsterName: ActorSimpleFruit2
         positionX: 191.9
         positionY: 18.6
@@ -19513,11 +19520,11 @@ MonoBehaviour:
         positionY: -17.5
         respawnSeconds: 15
         IrellevantMob: 1
-      - monsterName: ActorBat
-        positionX: 269.4
-        positionY: 59.9
+      - monsterName: ActorBlockage
+        positionX: 342.84
+        positionY: -9.86
         respawnSeconds: 0
-        IrellevantMob: 0
+        IrellevantMob: 1
       - monsterName: ActorSpikes
         positionX: 347.8
         positionY: -17.5
@@ -20683,41 +20690,31 @@ MonoBehaviour:
       objectiveDescription: 
       UniqueCompletionScreenEffect: 
       Mobs:
-      - monsterName: ActorFlowerbeingWild
-        positionX: -152
-        positionY: -22
-        respawnSeconds: 10
-        IrellevantMob: 1
       - monsterName: ActorWispRed
-        positionX: -58.75
-        positionY: 41.375
-        respawnSeconds: 10
-        IrellevantMob: 1
+        positionX: -56.4
+        positionY: 27.4
+        respawnSeconds: 0
+        IrellevantMob: 0
+      - monsterName: ActorFlowerbeingWild
+        positionX: -123.6
+        positionY: -21.75
+        respawnSeconds: 0
+        IrellevantMob: 0
       - monsterName: ActorFlowerbeingWild
         positionX: -106.5
         positionY: -21.75
-        respawnSeconds: 10
-        IrellevantMob: 1
-      - monsterName: ActorFairySmall
-        positionX: -97
-        positionY: 50.625
-        respawnSeconds: 10
-        IrellevantMob: 1
+        respawnSeconds: 0
+        IrellevantMob: 0
       - monsterName: ActorFairySmall
         positionX: -157.625
         positionY: 51.25
-        respawnSeconds: 10
-        IrellevantMob: 1
+        respawnSeconds: 0
+        IrellevantMob: 0
       - monsterName: ActorWispRed
         positionX: -205.75
         positionY: -39.875
-        respawnSeconds: 10
-        IrellevantMob: 1
-      - monsterName: ActorFairySmall
-        positionX: -129.75
-        positionY: -51.75
-        respawnSeconds: 10
-        IrellevantMob: 1
+        respawnSeconds: 0
+        IrellevantMob: 0
       - monsterName: ActorSimpleShroom
         positionX: -93.07
         positionY: -34.43
@@ -20732,8 +20729,8 @@ MonoBehaviour:
         interactableId: 
         positionX: -186
         positionY: 26
-      playerSpawnX: -165.4
-      playerSpawnY: -30
+      playerSpawnX: -169.2777
+      playerSpawnY: -28.047794
       Portals:
       - name: EndPortalA
         TargetScene: 
@@ -20759,19 +20756,23 @@ MonoBehaviour:
       UniqueCompletionScreenEffect: 
       Mobs: []
       Interactables:
-      - interactableName: EndPortalA
+      - interactableName: GateRightInteractable
         interactableId: 
-        positionX: 101
-        positionY: -22
-      playerSpawnX: 74.02231
-      playerSpawnY: -20.647797
+        positionX: 103
+        positionY: -18
+      - interactableName: NPC_ShamanRiddler
+        interactableId: 
+        positionX: 90
+        positionY: -21
+      playerSpawnX: 74.0223
+      playerSpawnY: -20.647799
       Portals:
-      - name: EndPortalA
+      - name: 
         TargetScene: 
         TargetSceneGate: 
         IsExpeditionLocked: 1
-        portalPositionX: 100.9223
-        portalPositionY: -22.047794
+        portalPositionX: 102.82
+        portalPositionY: -17.66
       Vendors: []
       OnDemandParams: []
       RespawnMap: Sunset Port
@@ -20962,11 +20963,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21a0d16d5a3654d43a8c2d5f2a39d5b6, type: 2}
     Expeditions:
     - {fileID: 11400000, guid: 1e3f67cca936d514293a389c238367a1, type: 2}
-    - {fileID: 11400000, guid: ebcec5a5d5bd3d043bcc1489c2385d36, type: 2}
     - {fileID: 11400000, guid: 1049c1152bc701f4aae659e35ff5b404, type: 2}
     - {fileID: 11400000, guid: a2444fb0dc6bdbf41beb653f14f4a50f, type: 2}
     - {fileID: 11400000, guid: e08855d0944ee024db1c305f347d5b4f, type: 2}
     - {fileID: 11400000, guid: feb533f69a73c224bb0faf6e5857cb58, type: 2}
+    - {fileID: 11400000, guid: ebcec5a5d5bd3d043bcc1489c2385d36, type: 2}
     - {fileID: 11400000, guid: 4025c0f158c1ea0419cd6467fdc6765c, type: 2}
     - {fileID: 11400000, guid: 3ec062849d3164a408079f2ec988d5e4, type: 2}
     - {fileID: 11400000, guid: a90382295a280f34fb0e7447835c7063, type: 2}
@@ -21034,6 +21035,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9b025b7671a7a154580d929bf303ce43, type: 2}
     - {fileID: 11400000, guid: 625639c732f591a479b15d54cf1a9fd7, type: 2}
     - {fileID: 11400000, guid: 30a7977c28f319342a44eeb083e4176a, type: 2}
+    - {fileID: 11400000, guid: cfe4d39bf2af8814d94bcfb7d5625fd0, type: 2}
     - {fileID: 11400000, guid: 11d07776a9282f64580b531980569c16, type: 2}
     - {fileID: 11400000, guid: 2275382626a3fda4dbeab2445581fcd7, type: 2}
     - {fileID: 11400000, guid: bfaeac0824db4e94691ddbe140ff56cc, type: 2}
@@ -21318,7 +21320,6 @@ MonoBehaviour:
     Promos:
     - {fileID: 11400000, guid: 9b60725707c00524fb8c0006ae5fb253, type: 2}
     - {fileID: 11400000, guid: b247eb85163aab647b414733216a987c, type: 2}
-    - {fileID: 11400000, guid: 4935b6ea82b8afa43a6ff939c3bc212a, type: 2}
     Friends:
       FriendRequestTimeoutSeconds: 30
     Guilds:

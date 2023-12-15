@@ -144,9 +144,9 @@ public class ConditionLogic
                 }
             case "CanUnlockClass":
                 {
-                    if(CORE.PlayerActor.unlockedClassJobs.Find(x=>x == Value) == null //Don't already have the class 
-                    && CORE.PlayerActor.ClassJobReference.NextClassJobs.Find(x=>x.name == Value) != null // Currnet class can unlock the class
-                    && CORE.Instance.Data.content.Classes.Find(X=>X.name==Value).UnlockLevel <= CORE.PlayerActor.level) //Has sufficient level
+                    if(CORE.PlayerActor.unlockedClassJobs.Find(x=>x == ActualValue) == null //Don't already have the class 
+                    && CORE.PlayerActor.ClassJobReference.NextClassJobs.Find(x=>x.name == ActualValue) != null // Currnet class can unlock the class
+                    && CORE.Instance.Data.content.Classes.Find(X=>X.name==ActualValue).UnlockLevel <= CORE.PlayerActor.level) //Has sufficient level
                     {
                         return !Inverse;
                     }
@@ -157,7 +157,7 @@ public class ConditionLogic
                 }
             case "HasSessionRule":
             {
-                if (CORE.Instance.HasSessionRule(Value))
+                if (CORE.Instance.HasSessionRule(ActualValue))
                 {
                     return !Inverse;
                 }

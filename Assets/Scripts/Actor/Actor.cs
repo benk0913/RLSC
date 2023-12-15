@@ -671,7 +671,7 @@ public class Actor : MonoBehaviour
         State.PreparingAbilityCurrent = ability;
 
         if (!string.IsNullOrEmpty(ability.Sounds.PrepareAbilitySound))
-            AudioControl.Instance.PlayInPosition(ability.Sounds.PrepareAbilitySound, transform.position, 200f, UnityEngine.Random.Range(0.9f,1.1f));
+            AudioControl.Instance.PlayInPosition(ability.Sounds.PrepareAbilitySound, transform.position, 200f, UnityEngine.Random.Range(0.8f,1.2f));
 
         if (!string.IsNullOrEmpty(ability.Colliders.PrepareAbilityColliderObject))
         {
@@ -727,7 +727,7 @@ public class Actor : MonoBehaviour
         }
 
         if (!string.IsNullOrEmpty(ability.Sounds.ExecuteAbilitySound))
-            AudioControl.Instance.PlayInPosition(ability.Sounds.ExecuteAbilitySound, transform.position, 200f, UnityEngine.Random.Range(0.9f,1.1f));
+            AudioControl.Instance.PlayInPosition(ability.Sounds.ExecuteAbilitySound, transform.position, 200f, UnityEngine.Random.Range(0.8f,1.2f));
 
         if (!string.IsNullOrEmpty(ability.Visuals.ScreenEffectObject))
         {
@@ -801,13 +801,13 @@ public class Actor : MonoBehaviour
 
         if (ability.Sounds.HitAbilitySoundVarriants.Count > 0)
         {
-            AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySoundVarriants[UnityEngine.Random.Range(0, ability.Sounds.HitAbilitySoundVarriants.Count)], transform.position, 200f, UnityEngine.Random.Range(0.9f,1.1f));
+            AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySoundVarriants[UnityEngine.Random.Range(0, ability.Sounds.HitAbilitySoundVarriants.Count)], transform.position, 200f, UnityEngine.Random.Range(0.8f,1.2f));
         }
         else
         {
             if (!string.IsNullOrEmpty(ability.Sounds.HitAbilitySound))
             {
-                AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySound, transform.position, 200f, UnityEngine.Random.Range(0.9f,1.1f));
+                AudioControl.Instance.PlayInPosition(ability.Sounds.HitAbilitySound, transform.position, 200f, UnityEngine.Random.Range(0.8f,1.2f));
             }
         }
 
@@ -849,7 +849,7 @@ public class Actor : MonoBehaviour
 
         if (!string.IsNullOrEmpty(ability.Sounds.MissAbilitySound))
         {
-            AudioControl.Instance.PlayInPosition(ability.Sounds.MissAbilitySound, transform.position, 200f, UnityEngine.Random.Range(0.9f,1.1f));
+            AudioControl.Instance.PlayInPosition(ability.Sounds.MissAbilitySound, transform.position, 200f, UnityEngine.Random.Range(0.8f,1.2f));
         }
 
         if (!string.IsNullOrEmpty(ability.Colliders.MissAbilityColliderObject))
