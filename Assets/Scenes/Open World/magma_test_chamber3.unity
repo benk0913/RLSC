@@ -7966,7 +7966,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1602939605
   m_SortingLayer: -1
-  m_SortingOrder: -331
+  m_SortingOrder: -186
   m_Sprite: {fileID: 969682300669943935, guid: bc8b17502583244788bbc357e10d2696, type: 3}
   m_Color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
   m_FlipX: 1
@@ -9337,8 +9337,12 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       DisplayConditions: []
-      DisplayGameConditions: []
-      DisplayOnlyIfConditionsMet: 0
+      DisplayGameConditions:
+      - Type: {fileID: 11400000, guid: 25c45af80e90c4745bc6769097e42ad2, type: 2}
+        Value: 
+        ObjectValue: {fileID: 11400000, guid: 02385d68077c06b41aa3bd0bf97c79e4, type: 2}
+        Inverse: 0
+      DisplayOnlyIfConditionsMet: 1
       DefaultDialog:
         DialogPieces: []
         Decisions: []
@@ -9350,6 +9354,9 @@ MonoBehaviour:
     IsFemale: 0
   CurrentIndex: 0
   CurrentBubble: {fileID: 862283097}
+  OnDialogClose:
+    m_PersistentCalls:
+      m_Calls: []
   isActiveDialog: 0
 --- !u!114 &663356599
 MonoBehaviour:
@@ -9448,7 +9455,7 @@ MonoBehaviour:
   MapInteractable: 0
 --- !u!95 &663356600
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9465,7 +9472,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!61 &663356601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9553,6 +9560,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -14430,6 +14438,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -19554,8 +19563,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387247773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.33, y: -35.9, z: 0}
-  m_LocalScale: {x: 3.8959186, y: 4.828449, z: 3.4340665}
+  m_LocalPosition: {x: 67.33, y: -37.4456, z: 0}
+  m_LocalScale: {x: 3.8959186, y: 4.3963027, z: 3.4340665}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -25741,6 +25750,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -27298,6 +27308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -27644,7 +27655,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -30
+  m_SortingOrder: -40
   m_Sprite: {fileID: 8720604468809159126, guid: b21c847db180e4cdf864070490bd8919, type: 3}
   m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   m_FlipX: 1
@@ -27664,8 +27675,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1933857898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.5, y: -37.0845, z: 0}
-  m_LocalScale: {x: 1.6390771, y: 1.6390771, z: 1.6390771}
+  m_LocalPosition: {x: 70.5, y: -38.1694, z: 0}
+  m_LocalScale: {x: 1.6390771, y: 2.020982, z: 1.6390771}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -28615,7 +28626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1987350795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28658,7 +28669,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 2647a95e313d043048d6935ce0fe36fa, type: 3}
-  m_Color: {r: 0.08397116, g: 0.13290647, b: 0.3490566, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -28676,8 +28687,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987350794}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1011963, y: -23.9561, z: 10}
-  m_LocalScale: {x: 9.136825, y: 15.508926, z: 17.195557}
+  m_LocalPosition: {x: -0.3049, y: -25.1506, z: 10}
+  m_LocalScale: {x: 11.044736, y: 15.88269, z: 17.195557}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1994326039}
