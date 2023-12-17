@@ -22,7 +22,11 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnPointerEnter(PointerEventData eventData)
     {
         Vector3? posi = null;
-        PointAndClickTooltipUI.Instance.Show(Text, Bonuses,posi,-1,-1,IsTranslated,true);
+
+        if (Input.touchCount < 2)
+        {
+            PointAndClickTooltipUI.Instance.Show(Text, Bonuses, posi, -1, -1, IsTranslated, true);
+        }
     }
 
     public void OnPointerExitSimple()

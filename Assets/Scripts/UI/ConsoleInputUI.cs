@@ -293,6 +293,9 @@ public class ConsoleInputUI : MonoBehaviour
     public void OnEndEdit()
     {
         bool wasEnterPressed = Input.GetKeyDown(InputMap.Map["Console"]) || Input.GetKeyDown(InputMap.Map["Console Alt"]) || Input.GetButtonDown("Joystick 9") || Input.GetButtonDown("Joystick 10");
+        #if UNITY_ANDROID
+                wasEnterPressed = true;
+        #endif
         if (!wasEnterPressed)
         {
             CORE.Instance.DelayedInvokation(0, () => Hide());

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class InteractableEntity : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class InteractableEntity : MonoBehaviour
 
     public bool MapInteractable = false;
 
+    private Vector3 centerPoint;
+
     void Awake()
     {
         
@@ -42,6 +45,21 @@ public class InteractableEntity : MonoBehaviour
             this.gameObject.SetActive(false);
         }
 
+        AttemptToGetCenter();
+
+    }
+
+    private void AttemptToGetCenter()
+    {
+        Collider2D collider = GetComponent<Collider2D>();
+
+        if (collider == null)
+        {
+            centerPoint = transform.position;
+            return;
+        }
+
+        centerPoint = collider.bounds.center;
     }
 
     public void SetInfo(Interactable data)
@@ -282,6 +300,12 @@ public class InteractableEntity : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (!CORE.Instance.IsInputEnabled) return;
+
+        Vector2 screenPoint = CameraChaseEntity.Instance.CurrentCam.WorldToScreenPoint(centerPoint);
+
+        if (Vector2.Distance(screenPoint, Input.mousePosition) > Screen.width / 4f) return;
+        
         if(NearbyActor != CORE.PlayerActor.ActorEntity) return;
     
         if(DecisionContainerUI.Instance.CurrentDecisions.Count > 0 && DecisionContainerUI.Instance.gameObject.activeInHierarchy) return;

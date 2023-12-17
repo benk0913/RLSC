@@ -468,15 +468,15 @@ public class CORE : MonoBehaviour
         if(CurrentBatteryStatus != SystemInfo.batteryStatus)
         {
             CurrentBatteryStatus = SystemInfo.batteryStatus;
-            if(CurrentBatteryStatus == BatteryStatus.Charging || CurrentBatteryStatus == BatteryStatus.Full)
+            if(CurrentBatteryStatus == BatteryStatus.Charging ||  SystemInfo.batteryLevel > 0.5f)
             {
                 Application.targetFrameRate = 60;
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Charging! Targeting 60FPS!", Color.green));
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Performance Mode! Targeting 60FPS!", Color.green));
             }
             else
             {
                 Application.targetFrameRate = 30;
-                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Not Charging! Targeting 30FPS!", Color.green));
+                TopNotificationUI.Instance.Show(new TopNotificationUI.TopNotificationInstance("Battery Saving Mode! Targeting 30FPS!", Color.green));
             }
         }
         #endif
@@ -1094,6 +1094,12 @@ public bool HasSessionRule(string sr)
     {
         screenEffectQue.Clear();
             
+        StopCurrentDialog();
+        // Room = null;
+    }
+
+    public void StopCurrentDialog()
+    {
         if(DialogEntity.CurrentInstance != null)
         {
             DialogEntity.CurrentInstance.EndDialog();
@@ -1103,8 +1109,7 @@ public bool HasSessionRule(string sr)
         {
             DecisionContainerUI.Instance.HideSkipText();
             DecisionContainerUI.Instance.Hide();
-        }
-        // Room = null;
+        }        
     }
 
 
@@ -1344,7 +1349,12 @@ public bool HasSessionRule(string sr)
             obj = Instantiate(refObj);
             obj.transform.SetParent(GameUICG.transform, true);
             obj.transform.position = GameUICG.transform.position;
+            #if UNITY_ANDROID
+            obj.transform.localScale = Vector3.one*2F;
+            #else
             obj.transform.localScale = Vector3.one;
+            #endif
+            
             ScreenEffectUI screenEffect = obj.GetComponent<ScreenEffectUI>();
 
             if(screenEffect != null)

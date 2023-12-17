@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using EdgeworldBase;
 using UnityEngine;
 using UnityEngine.Events;
@@ -39,8 +36,7 @@ public class MultiplatformUIManager : MonoBehaviour
     public GameObject ChatButton;
 
     public bool PickUpButtonIsDOWN;
-
-
+    
     void Awake()
     {
         Instance = this;
@@ -78,6 +74,7 @@ public class MultiplatformUIManager : MonoBehaviour
         {
             IsUniversalUp = true;
         }
+        
     }
 
     void LateUpdate()

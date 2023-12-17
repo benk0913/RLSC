@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class UnityAndroidVibrator : MonoBehaviour 
 {
@@ -9,8 +10,16 @@ public class UnityAndroidVibrator : MonoBehaviour
     // Use this for initialization
     void Awake () 
     {
-        #if UNITY_ANDROID && !UNITY_EDITOR 
-        plugin = new AndroidJavaClass("com.XPloria.ElementQuest.UnityAndroidVibrator").CallStatic<AndroidJavaObject>("instance");
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        try
+        {
+            plugin = new AndroidJavaClass("com.XPloria.ElementQuest.UnityAndroidVibrator").CallStatic<AndroidJavaObject>("instance");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+        
         #endif
     }
 
@@ -24,9 +33,15 @@ public class UnityAndroidVibrator : MonoBehaviour
     {
 
         
-        #if UNITY_ANDROID
-
-        plugin.Call("VibrateForGivenDuration", DurationInMilliseconds);
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        try
+        {
+            plugin.Call("VibrateForGivenDuration", DurationInMilliseconds);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
         #endif
 
     }
@@ -36,8 +51,29 @@ public class UnityAndroidVibrator : MonoBehaviour
     /// </summary>
     public static void StopVibrate()
     {
-        #if UNITY_ANDROID || UNITY_EDITOR
-        plugin.Call("StopVibrate");
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        try
+        {
+            plugin.Call("StopVibrate");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+        #endif
+    }
+    
+    public static void HandheldVibrateDefault() //DO Not remove, this auto-adds permissions.
+    {
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        try
+        {
+            Handheld.Vibrate();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
         #endif
     }
 
@@ -51,8 +87,15 @@ public class UnityAndroidVibrator : MonoBehaviour
     /// <param name="Pattern">Pattern.</param>
     public static void CustomVibrate(long[] Pattern)
     {
-        #if UNITY_ANDROID || UNITY_EDITOR
-        plugin.Call("CustomVibrate", Pattern);
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        try
+        {
+            plugin.Call("CustomVibrate", Pattern);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
         #endif
     }
 
