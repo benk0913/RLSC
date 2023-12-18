@@ -1350,7 +1350,7 @@ public bool HasSessionRule(string sr)
             obj.transform.SetParent(GameUICG.transform, true);
             obj.transform.position = GameUICG.transform.position;
             #if UNITY_ANDROID
-            obj.transform.localScale = Vector3.one*2F;
+            obj.transform.localScale = Vector3.one*1.25F;
             #else
             obj.transform.localScale = Vector3.one;
             #endif
