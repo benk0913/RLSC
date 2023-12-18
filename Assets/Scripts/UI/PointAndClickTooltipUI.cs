@@ -22,11 +22,13 @@ public class PointAndClickTooltipUI : MonoBehaviour
 
     private Vector3? AnchorPosition;
 
+    public bool IsVisible;
     public bool LastIsMouse;
     private float PivotX;
     private float PivotY;
 
     Coroutine ShowRoutineInstance;
+    
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class PointAndClickTooltipUI : MonoBehaviour
     {
 
         this.gameObject.SetActive(true);
+        IsVisible = true;
 
         if (ShowRoutineInstance != null)
         {
@@ -121,7 +124,7 @@ public class PointAndClickTooltipUI : MonoBehaviour
             }
         }
 
-
+        
         PivotX = pivotX;
         PivotY = pivotY;
 
@@ -208,10 +211,16 @@ public class PointAndClickTooltipUI : MonoBehaviour
     private void Update()
     {
         PositionTooltip();
+
+        if (Input.touchCount > 1 && IsVisible)
+        {
+            Hide();
+        }
     }
 
     public void Hide()
     {
+        IsVisible = false;
         this.gameObject.SetActive(false);
     }
 }

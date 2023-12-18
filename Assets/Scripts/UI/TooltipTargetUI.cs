@@ -27,6 +27,10 @@ public class TooltipTargetUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             PointAndClickTooltipUI.Instance.Show(Text, Bonuses, posi, -1, -1, IsTranslated, true);
         }
+        else
+        {
+            Hide();
+        }
     }
 
     public void OnPointerExitSimple()

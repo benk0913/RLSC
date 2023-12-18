@@ -154,6 +154,10 @@ public class QuestsPanelUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+#if UNITY_ANDROID || UNITY_IOS
+        ToggleQuests();
+        return;
+#endif
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             CORE.Instance.ShowQuestsUIWindow();
