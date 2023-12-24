@@ -27,6 +27,8 @@ public class ItemEntity : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI NameLabel;
 
+    [SerializeField] private bool _autoPick = false;
+
     Actor NearbyActor;
 
     float InteractableCooldown = 0f;
@@ -156,6 +158,14 @@ public class ItemEntity : MonoBehaviour
         Animer.SetBool("Hover", true);
         NearbyActor = nearActor;
 
+#if UNITY_ANDROID
+
+        if (_autoPick && NearbyActor != null)
+        {
+            BePickedBy(NearbyActor);
+        }
+        
+#endif
     }
 
     public void OnExit(Collider2D collision)
