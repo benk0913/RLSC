@@ -125,8 +125,6 @@ GameObject:
   - component: {fileID: 1935860746220234754}
   - component: {fileID: 801194603942372026}
   - component: {fileID: 7186284417272727043}
-  - component: {fileID: 5592465131693731747}
-  - component: {fileID: 4282985309317769626}
   m_Layer: 14
   m_Name: IceBlockCollider
   m_TagString: Untagged
@@ -228,6 +226,7 @@ MonoBehaviour:
   StickToActorFacing: 0
   StickToSkilledShot: 0
   HitEventOnWalls: 0
+  DestroyOnDisable: 0
   InitPosition: {x: 0, y: 0, z: 0}
   SkilledShotPoint: {fileID: 0}
   SkilledshotLayermask:
@@ -348,88 +347,6 @@ CompositeCollider2D:
       - {x: 3.695021, y: -1.3643786}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &5592465131693731747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314719724268210257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d62304be1a1d4a4eb1900663a138c6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnRandom:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1314719725301908310}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 958657950641613976}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Chance: 0.5
-  IsRandomOnEnable: 1
---- !u!114 &4282985309317769626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314719724268210257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d62304be1a1d4a4eb1900663a138c6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnRandom:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1314719725301908310}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 958657950641613976}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  Chance: 0.5
-  IsRandomOnEnable: 1
 --- !u!1 &1314719725301908296
 GameObject:
   m_ObjectHideFlags: 0

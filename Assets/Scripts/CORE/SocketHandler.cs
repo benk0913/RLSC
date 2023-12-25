@@ -1788,6 +1788,7 @@ public class SocketHandler : MonoBehaviour
 
         SendEvent("quest_started", node);
 
+        
     }
 
     public void SendQuestComplete(string questName)
@@ -1846,6 +1847,15 @@ public class SocketHandler : MonoBehaviour
         CurrentUser.actor.quests.started[questName] = new Dictionary<string, Dictionary<string, int>>();
 
         AudioControl.Instance.Play("QuestStarted");
+
+        QuestData questData = CORE.Instance.Data.content.Quests.Find(x => x.name == questName);
+        if (questData != null)
+        {
+            if (!string.IsNullOrEmpty(questData.ScreenEffect))
+            {
+                CORE.Instance.ShowScreenEffect(questData.ScreenEffect);
+            }
+        }
     }
     
     public void OnQuestProgress(string eventName, JSONNode data)

@@ -20,7 +20,10 @@ public class QuestData: ScriptableObject
 
     public string Origin = "Unknown";
 
+    public string ScreenEffect;
+
     public bool IsHidden;
+    
 
     [JsonIgnore]
     public bool CanComplete
